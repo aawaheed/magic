@@ -1,9 +1,9 @@
-Workflow; Create AI Chatbot Embed Script
+Workflow; Create Embed Script for AI Chatbot
 WORKFLOW ==> create-embed-script
 
-An embeddable website AI chatbot can be embedded on any CMS using the chatbot's embed script. The embed script is a simple JavaScript file with a total size of roughly 50KB, and it will initialize the chatbot on you HTML pages. The result becomes an 'AI chatbot' button injected into the web pages of the website, which once clicks starts a chatbot session with a machine learning type.
+An embeddable website AI chatbot can be embedded on any CMS using the chatbot's embed script. The embed script is a simple JavaScript file with a total size of roughly 50KB, and it will initialize the chatbot on any HTML pages it is added to. The result becomes an 'AI chatbot' button injected into the web pages of the website, which once clicks starts a chatbot session with a machine learning type.
 
-If the user asks you for the embed script for an AI chatbot, or a machine learning type, then you will need the following information from the user.
+If the user asks you for the embed script for an AI chatbot, or asks you to create an "embed script", or something similar, then you will need the following information from the user.
 
 1. type - The full name of your machine learning type.
 2. header - The header of the chat window. Defaults to 'Ask me anything'.
