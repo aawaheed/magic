@@ -65,6 +65,12 @@ Combined, the above components allows you to rapidly manage your application(s) 
 
 * [Magic Cloud Documentation](https://docs.ainiro.io)
 
+## Performance
+
+Hyperlambda is just a tiny abstraction on top of C# and the CLR. This implies it is almost as fast as pure C# code. Below is an article where I measured it against .Net 9 with C# and Entity Framework, and Hyperlambda is actually 3 to 10 percent faster on average than C# with EF.
+
+* [Hyperlambda versus C# with EF](https://ainiro.io/blog/hyperlambda-is-faster-than-csharp)
+
 ## Getting Started
 
 Clone the repository, and make sure you’ve got .Net Core version 9 installed, the latest version of NodeJS, and Angular, and enter the "backend" and "frontend" folders with two terminals, and execute the following commands in the respective terminals.
