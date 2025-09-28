@@ -71,7 +71,7 @@ Hyperlambda is just a tiny abstraction on top of C# and the CLR. This implies it
 
 * [Hyperlambda versus C# with EF](https://ainiro.io/blog/hyperlambda-is-faster-than-csharp)
 
-For _"orchestration code"_ the small overhead of Hyperlambda is irrelevant. But you should _not_ use it for algorithm-heavy code. If you use Hyperlambda for what it was supposed to be used for, it's very often much faster than the equivalent C# code - This is especially true if you're using abstractions such as ORM libraries. But you should _never_ use Hyperlambda for heavy algorithms. These should rather be implemented as custom slots and invoked from Hyperlambda as such.
+For _"orchestration code"_ the small overhead of Hyperlambda is irrelevant. But you should _not_ use it for algorithm-heavy code. If you use Hyperlambda for what it was supposed to be used for, it's often _much faster_ than the equivalent C# code - This is especially true if you're using abstractions such as ORM libraries. But you should _never_ use Hyperlambda for heavy algorithms. These should rather be implemented as custom slots in C# and invoked from Hyperlambda as such.
 
 ## Getting Started
 
