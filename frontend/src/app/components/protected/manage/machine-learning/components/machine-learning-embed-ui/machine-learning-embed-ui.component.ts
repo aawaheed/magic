@@ -56,6 +56,7 @@ export class MachineLearningEmbedUiComponent implements OnInit {
   sticky: boolean = false;
   history: boolean = false;
   attachments: boolean = false;
+  meta: string = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -199,6 +200,9 @@ export class MachineLearningEmbedUiComponent implements OnInit {
     }
     if (this.attachments) {
       url += '&attachments=true';
+    }
+    if (this.meta && this.meta !== '') {
+      url += '&meta=' + encodeURIComponent(this.meta);
     }
 
     if (html) {

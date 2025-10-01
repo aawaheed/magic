@@ -1,6 +1,6 @@
 
 
-<h3 mat-dialog-title class="mb-3">Embed Chatbot or AI Search on your website</h3>
+<h3 mat-dialog-title class="mb-3">Embed AI Chatbot on your website</h3>
 
 <div mat-dialog-content class="content pb-2">
 
@@ -73,7 +73,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field class="col-4">
+    <mat-form-field class="col-3">
       <span
         matPrefix
         matTooltip="Theme to use"
@@ -92,7 +92,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="col-4">
+    <mat-form-field class="col-3">
       <span
         matPrefix
         matTooltip="Positioning of the chatbot"
@@ -112,7 +112,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="col-4">
+    <mat-form-field class="col-3">
       <span
         matPrefix
         matTooltip="Animations on chatbot"
@@ -130,6 +130,23 @@
           Blink
         </mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <span
+        matPrefix
+        matTooltip="Meta filtering value for RAG training snippets"
+        class="d-flex flex-nowrap align-items-center justify-content-between me-2">
+        <mat-icon>edit</mat-icon>
+        <span class="text-muted">|</span>
+      </span>
+      <input
+        matInput
+        placeholder="Meta filtering value ..."
+        spellcheck="false"
+        [(ngModel)]="meta"
+        autocomplete="off">
+
     </mat-form-field>
 
   </div>

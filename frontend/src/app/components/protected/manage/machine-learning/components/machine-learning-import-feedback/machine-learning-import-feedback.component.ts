@@ -97,7 +97,8 @@ export class MachineLearningImportFeedbackComponent implements OnInit, OnDestroy
               result.result,
               this.data.images,
               this.data.lists,
-              this.data.code).subscribe({
+              this.data.code,
+              this.data.meta).subscribe({
               next: () => {
     
                 this.generalService.hideLoading();

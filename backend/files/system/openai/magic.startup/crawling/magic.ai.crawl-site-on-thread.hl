@@ -246,6 +246,7 @@ slots.create:magic.ai.crawl-site-on-thread
                   lists:x:@.arguments/*/lists
                   code:x:@.arguments/*/code
                   insert_url:x:@.arguments/*/insert_url
+                  meta:x:@.arguments/*/meta
 
                // Verifying we've got more snippets before applying Crawl-Delay
                if

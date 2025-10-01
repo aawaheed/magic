@@ -356,7 +356,6 @@ slots.create:magic.ai.url.scrape
                   and
                      type.eq:x:@.arguments/*/type
                      uri.eq:x:@.arguments/*/url
-                     meta.eq:AINIRO-Website-Crawler
             if
                neq
                   convert:x:@data.read/*/*/count
@@ -383,7 +382,6 @@ slots.create:magic.ai.url.scrape
                   and
                      type.eq:x:@.arguments/*/type
                      uri.eq:x:@.arguments/*/url
-                     meta.eq:AINIRO-Website-Crawler
 
             /*
              * Now looping through each snippet from above [.snippet] and inserting into database
@@ -476,7 +474,7 @@ slots.create:magic.ai.url.scrape
                                        uri:x:@.arguments/*/url
                                        prompt:x:@.dp/#/*/prompt
                                        completion:x:@.dp/#/*/completion
-                                       meta:AINIRO-Website-Crawler
+                                       meta:x:@.arguments/*/meta
 
                            else-if
                               eq:x:@data.read/0/*/prompt

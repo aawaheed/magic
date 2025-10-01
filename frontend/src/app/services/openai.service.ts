@@ -205,7 +205,8 @@ export class OpenAIService {
     feedbackChannel: string,
     images: boolean = true,
     lists: boolean = true,
-    code: boolean = true) {
+    code: boolean = true,
+    meta: string) {
 
     return this.httpService.post<any>('/magic/system/openai/import-url', {
       url,
@@ -219,6 +220,7 @@ export class OpenAIService {
       lists,
       code,
       ['feedback-channel']: feedbackChannel,
+      meta,
     });
   }
 

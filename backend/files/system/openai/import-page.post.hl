@@ -11,6 +11,7 @@
    lists:bool
    code:bool
    feedback-channel:string
+   meta:string
 
 // Ensures user is authorized to access endpoint.
 auth.ticket.verify:root
@@ -27,6 +28,7 @@ validators.default:x:@.arguments
    images:bool:true
    lists:bool:true
    code:bool:true
+   meta:AINIRO-Website-Crawler
 
 // Doing some basic logging.
 log.info:Crawling page generating OpenAI training snippets
@@ -56,6 +58,7 @@ fork
          lists:x:@.arguments/*/lists
          images:x:@.arguments/*/images
          code:x:@.arguments/*/code
+         meta:x:@.arguments/*/meta
 
       /*
        * Crawling is done.

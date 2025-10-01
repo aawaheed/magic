@@ -161,6 +161,7 @@ export class MachineLearningModelsComponent implements OnInit {
         code?: boolean,
         lists?: boolean,
         urlFiles?: any[],
+        meta?: string,
       }) => {
 
         if (result?.crawl) {
@@ -182,6 +183,7 @@ export class MachineLearningModelsComponent implements OnInit {
                 code: result.code ?? true,
                 lists: result.lists ?? true,
                 mode: 'site',
+                meta: result.meta,
               }
             });
         } else if (result?.urlFiles) {

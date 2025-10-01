@@ -46,6 +46,7 @@ export class MachineLearningImportComponent {
   summarizePdfFile: boolean = false;
   overwrite: boolean = false;
   preservePages: boolean = false;
+  meta: string = null;
   massageTemplates: string[] = [
     'Summarize the following into a descriptive title and content, separated by carrriage return',
     'Extract the most important information and create a one line descriptive title, and the rest of the content as paragraphs',
@@ -89,6 +90,7 @@ export class MachineLearningImportComponent {
       images: this.images,
       code: this.code,
       lists: this.lists,
+      meta: this.meta,
     });
   }
 

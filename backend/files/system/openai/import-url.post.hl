@@ -17,6 +17,7 @@
    code:bool
    feedback-channel:string
    vectorize:bool
+   meta:string
 
 // Ensures user is authorized to access endpoint.
 auth.ticket.verify:root
@@ -27,6 +28,7 @@ validators.default:x:@.arguments
    lists:bool:true
    code:bool:true
    insert_url:bool:false
+   meta:AINIRO-Website-Crawler
 
 // Prepending scheme unless given.
 if

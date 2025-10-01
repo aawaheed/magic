@@ -104,6 +104,22 @@
                 autocomplete="off">
             </mat-form-field>
 
+            <mat-form-field class="standalone-field me-2 w-100">
+              <span
+                matPrefix
+                matTooltip="Meta value to associate snippets with"
+                class="d-flex flex-nowrap align-items-center justify-content-between me-2">
+                <mat-icon>edit</mat-icon>
+                <span class="text-muted">|</span>
+              </span>
+              <input
+                matInput
+                placeholder="Meta value ..."
+                [(ngModel)]="meta"
+                name="meta"
+                autocomplete="off">
+            </mat-form-field>
+
             <button
               class="px-3"
               matTooltip="Start crawling website"
