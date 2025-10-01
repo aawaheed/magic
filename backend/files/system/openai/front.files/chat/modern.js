@@ -54,7 +54,8 @@
       hidden: [[hidden]],
       sticky: [[sticky]],
       attachments: [[attachments]],
-      history: [[history]]
+      history: [[history]],
+      meta: '[[meta]]'
     },
 
     // References buffer for storing references during invocation.
@@ -1498,6 +1499,9 @@
       };
       if (token) {
         payload.recaptcha_response = token;
+      }
+      if (this.ainiro_settings.meta && this.ainiro_settings.meta !== '') {
+        payload.meta = this.ainiro_settings.meta;
       }
       if (this.ainiro_settings.references) {
         payload.references = true;

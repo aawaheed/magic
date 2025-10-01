@@ -34,6 +34,9 @@
    // Not used, but allows embedders to do a hard refresh to reload JavaScript.
    v:string
 
+   // Optional parameter which allows for further filtering RAG training snippets during context lookup.
+   meta:string
+
 .description:Returns the JavaScript required to embed a ChatGPT based chatbot on some website to caller.
 
 // Sanity checking invocation.
@@ -203,6 +206,12 @@ set-value:x:@.result
       .:[[button]]
       get-first-value
          get-value:x:@.arguments/*/button
+         .:
+set-value:x:@.result
+   strings.replace:x:@.result
+      .:[[meta]]
+      get-first-value
+         get-value:x:@.arguments/*/meta
          .:
 if:x:@.arguments/*/rtl
    set-value:x:@.result

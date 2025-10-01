@@ -27,6 +27,9 @@
    // Not used, but allows embedders to do a hard refresh to reload JavaScript.
    v:string
 
+   // Optional parameter which allows for further filtering RAG training snippets during context lookup.
+   meta:string
+
 add:x:./*/execute-file
    get-nodes:x:@.arguments/*
 execute-file:/system/openai/include-chatbot.js.get.hl
