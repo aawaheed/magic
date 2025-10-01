@@ -120,6 +120,20 @@ slots.create:magic.ai.get-context
                set-value:x:@.next
                   get-value:x:@cache.get
 
+   // Checking if we've got a meta filter argument.
+   if
+      and
+         exists:x:@.arguments/*/meta
+         not-null:x:@.arguments/*/meta
+      .lambda
+         set-value:x:@.tail
+            strings.concat
+               get-value:x:@.tail
+               .:" and (ts.meta is null or ts.meta like @meta)"
+         add:x:../*/data.connect/*/data.select
+            .
+               @meta:x:@.arguments/*/meta
+
    // Fetching relevant snippets, making sure we profile the time it takes.
    .begin
    set-value:x:@.begin
@@ -253,7 +267,7 @@ select vss.distance, vss.rowid as id, ts.prompt, ts.completion, ts.uri, ts.cache
             set-value:x:@.tmp
                strings.concat
                   get-value:x:@.tmp
-                  .:"\r\n"
+                  .:"\r\n# "
                   get-value:x:@.dp/#/*/prompt
                   .:"\r\n"
                   .:"\r\n"
