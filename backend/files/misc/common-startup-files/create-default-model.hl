@@ -32,6 +32,7 @@ try
                   cached:int:0
                   auth:root
                   threshold:decimal:0.3
+                  max_session_items:int:100
                   greeting:Hi there, I am your virtual AI-based software development assistant. How can I help you?
                   system_message:x:@io.file.load
 
@@ -52,6 +53,7 @@ try
                cached:int:0
                auth:root
                threshold:decimal:0.3
+               max_session_items:int:100
                system_message:x:@io.file.load
             where
                and

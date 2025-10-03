@@ -1,9 +1,9 @@
 Workflow; Create Embed Script for AI Chatbot
 WORKFLOW ==> create-embed-script
 
-An embeddable website AI chatbot can be embedded on any CMS using the chatbot's embed script. The embed script is a simple JavaScript file with a total size of roughly 50KB, and it will initialize the chatbot on any HTML pages it is added to. The result becomes an 'AI chatbot' button injected into the web pages of the website, which once clicks starts a chatbot session with a machine learning type.
+This is the standard way to create an embed script for an AI chatbot, allowing the user to embed the chatbot on some website somewhere.
 
-If the user asks you for the embed script for an AI chatbot, or asks you to create an "embed script", or something similar, then you will need the following information from the user.
+If the user asks you to create an embed script for an AI chatbot or machine learning type, or asks you to "create an embed script", or something similar, then you will need the following information from the user.
 
 1. type - The full name of your machine learning type.
 2. header - The header of the chat window. Defaults to 'Ask me anything'.
@@ -30,12 +30,7 @@ If the user asks you for the embed script for an AI chatbot, or asks you to crea
 23. extra - Additional extra parameters, which can be anything, and is typically used for complex integrations where “instance information” is required on a “per chatbot window” basis. Defaults to null.
 24. history - If true the chatbot will allow its users to see historical requests and continue previous conversations.
 
-Don't show all of the above options to the user, but rely on the defaults for most values, and show these to the user and offer the user to change your defaults. The machine learning type however is the most important argument and must be an existing machine learning type.
-
-If the user asks you to create an embed script for an AI chatbot, you should ask the user for the following information.
-
-1. Machine learning type the user wants to use
-2. Values for above settings
+The machine learning type must be an existing machine learning type. You can use the "list-types" function to list existing machine learning types, and the "create-type" machine learning type to create a new type.
 
 Once the user is satisfied with his choices, return the following HTML to the user.
 
@@ -45,4 +40,16 @@ Once the user is satisfied with his choices, return the following HTML to the us
 
 Replace the above [BACKEND_URL_HERE], [RTL], etc according to settings chosen by user.
 
-**NOTICE** - It's CRUCIAL that you HTML endode the result before returning it to make sure it displays correctly in the frontend. And also please realise that only machine learning types WITHOUT any authorization requirements can actually be embedded.
+**NOTICE** - It's CRUCIAL that you replace `<` with `&lt;` and `>` with `&gt;` before returning the HTML embed script. And also please realise that only machine learning types WITHOUT any authorization requirements can actually be embedded.
+
+**NOTICE** - It is absolutely CRUCIAL that you follow this workflow if the user is asking you to "create embed script", "give me embed script", "generate AI chatbot embed script", or anything else implying embedding tha AI chatbot somewhere. Only if the user explicitly tells you to NOT follow this workflow you can do something else.
+
+## Finishing
+
+After you've created the embed script, offer the user to create an HTML website landing page for him where you inject the embed script. If the user confirms he or she wants a landing page, ask the user for a URL to a page to scrape, which you will scrape using the "scrape-url" function and use the information found during scraping to create an HTML landing page you can save using the "create-web-file" function. Use the name of the machine learning type as a file name and add ".html" to it unless the user explicitly tells you something else.
+
+**IMPORTANT** - Create a kick ass landing page, intended as a demonstration of the chatbot, using information found from the original URL the chatbot was created from, or the URL the user supplied when asking for a URL to scrape to create a landing page. Then inject the embed script on this page, and save it using the "create-web-file" function. Use the content found at the website you scraped as you create this landing page.
+
+**IMPORTANT** - Decode the HTML before saving it, replacing `&lt;` characters with `<`, etc.
+
+**IMPORTANT** - Remember to save the HTML as *valid* HTML and HTML decode characters such as `&lt;` to become `<`, etc.

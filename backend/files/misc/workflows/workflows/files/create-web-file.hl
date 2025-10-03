@@ -33,6 +33,18 @@ set-value:x:@.full_path
 io.file.save:x:@.full_path
    get-value:x:@.arguments/*/content
 
+// Warning user about decoding HTML.
+if
+   and
+      strings.ends-with:x:@.arguments/*/file
+         .:.html
+      strings.contains:x:@.arguments/*/content
+         .:&lt;
+   .lambda
+      yield
+         full_path:x:@.full_path
+         warning:We found encoded HTML tags, you might want to decode these to correctly display your HTML unless this was intentional! You can invoke this function again to overwrite your file.
+
 // Returning success
 yield
    full_path:x:@.full_path
