@@ -1,0 +1,38 @@
+
+/*
+ * Creates a new website file or modifies the content of an existing file.
+ * 
+ * Arguments:
+ * 
+ * - [file] being mandatory filename of the file that should be saved or created.
+ * - [content] being mandatory text content for file.
+ */
+.arguments
+
+   // Mandatory filename. Must be relative.
+   file:string
+
+   // Mandatory text content for file.
+   content:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/file
+validators.mandatory:x:@.arguments/*/content
+
+// Figuring out full path.
+.full_path
+set-value:x:@.full_path
+   strings.concat
+      .:/etc/www/
+      get-value:x:@.arguments/*/file
+
+// Saving file.
+io.file.save:x:@.full_path
+   get-value:x:@.arguments/*/content
+
+// Returning success
+yield
+   full_path:x:@.full_path

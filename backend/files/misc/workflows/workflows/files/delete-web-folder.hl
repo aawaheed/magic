@@ -1,0 +1,43 @@
+/*
+ * Deletes the specified [folder] inside the static web server folder.
+ *
+ * Arguments:
+ *
+ * - [folder] being mandatory relative folder name that must exist within the [module] module.
+ */
+.arguments
+
+   // Mandatory relative folder name of folder to delete.
+   folder:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/folder
+
+// Building full file path.
+.full_path
+set-value:x:@.full_path
+   strings.concat
+      .:/etc/www/
+      get-value:x:@.arguments/*/folder
+      .:/
+set-value:x:@.full_path
+   strings.replace:x:@.full_path
+      .://
+      .:/
+
+// Verifying folder exists.
+if
+   not
+      io.folder.exists:x:@.full_path
+   .lambda
+      throw:Folder does not exist
+         public:bool:true
+         status:int:400
+
+// Deleting folder and returning success to caller.
+io.folder.delete:x:@.full_path
+return
+   result:success

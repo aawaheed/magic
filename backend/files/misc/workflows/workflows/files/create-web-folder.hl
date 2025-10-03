@@ -1,0 +1,45 @@
+
+/*
+ * Creates a new sub-folder for in your static website folder.
+ * 
+ * Arguments:
+ * 
+ * - [folder] being mandatory name of an existing module where the folder should be created.
+ */
+.arguments
+
+   // Mandatory full path of folder to create.
+   folder:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/folder
+
+// Figuring out full path.
+.full_path
+set-value:x:@.full_path
+   strings.concat
+      .:/etc/www/
+      get-value:x:@.arguments/*/folder
+      .:/
+set-value:x:@.full_path
+   strings.replace:x:@.full_path
+      .://
+      .:/
+
+// Verifying folder doesn't already exists.
+if
+   io.folder.exists:x:@.full_path
+   .lambda
+      throw:Folder already exists
+         status:int:400
+         public:bool:true
+
+// Creating folder.
+io.folder.create:x:@.full_path
+
+// Returning success
+return
+   result:success

@@ -1,0 +1,39 @@
+/*
+ * Deletes the specified [file] inside of '/etc/www/'
+ *
+ * Arguments:
+ *
+ * - [file] being mandatory relative filename that must exist within the [module] module.
+ */
+.arguments
+
+   // Mandatory relative filename of file to delete.
+   file:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/file
+
+
+// Building full file path.
+.full_path
+set-value:x:@.full_path
+   strings.concat
+      .:/etc/www/
+      get-value:x:@.arguments/*/file
+
+// Verifying file exists
+if
+   not
+      io.file.exists:x:@.full_path
+   .lambda
+      throw:File does not exist
+         public:bool:true
+         status:int:400
+
+// Deleting folder and returning success to caller.
+io.file.delete:x:@.full_path
+return
+   result:success
