@@ -35,21 +35,15 @@ The machine learning type must be an existing machine learning type. You can use
 Once the user is satisfied with his choices, return the following HTML to the user.
 
 ```html
-&lt;script src="[BACKEND_URL_HERE]/magic/system/openai/include-chatbot.js?rtl=[RTL]&clear_button=[CLEAR_BUTTON]&follow_up=[FOLLOW_UP]&copyButton=[COPY_BUTTON]&new_tab=[NEW_TAB]&code=[CODE]&references=[REFERENCES]&position=[POSITION]&type=[MACHINE_LEARNING_TYPE]&header=[HEADER]&popup=[POPUP]&button=[BUTTON_TEXT]&placeholder=[PLACEHOLDER]&color=[TEXT_COLOR]&start=[START_BG_VOLOR]&end=[END_BG_COLOR]&link=[LINK_COLOR]&theme=[THEME]&sticky=[STICKY]&attachments=[ATTACHMENTS]&history=[HISTORY]" defer&gt;&lt;/script&gt;
+<script src="[BACKEND_URL_HERE]/magic/system/openai/include-chatbot.js?rtl=[RTL]&clear_button=[CLEAR_BUTTON]&follow_up=[FOLLOW_UP]&copyButton=[COPY_BUTTON]&new_tab=[NEW_TAB]&code=[CODE]&references=[REFERENCES]&position=[POSITION]&type=[MACHINE_LEARNING_TYPE]&header=[HEADER]&popup=[POPUP]&button=[BUTTON_TEXT]&placeholder=[PLACEHOLDER]&color=[TEXT_COLOR]&start=[START_BG_VOLOR]&end=[END_BG_COLOR]&link=[LINK_COLOR]&theme=[THEME]&sticky=[STICKY]&attachments=[ATTACHMENTS]&history=[HISTORY]" defer></script>;
 ```
 
 Replace the above [BACKEND_URL_HERE], [RTL], etc according to settings chosen by user.
 
-**NOTICE** - It's CRUCIAL that you replace `<` with `&lt;` and `>` with `&gt;` before returning the HTML embed script. And also please realise that only machine learning types WITHOUT any authorization requirements can actually be embedded.
-
-**NOTICE** - It is absolutely CRUCIAL that you follow this workflow if the user is asking you to "create embed script", "give me embed script", "generate AI chatbot embed script", or anything else implying embedding tha AI chatbot somewhere. Only if the user explicitly tells you to NOT follow this workflow you can do something else.
+**NOTICE** - It is absolutely CRUCIAL that you follow this workflow if the user is asking you to "create embed script", "give me embed script", "generate AI chatbot embed script", or anything else implying embedding the AI chatbot somewhere. Only if the user explicitly tells you to NOT follow this workflow you can do something else.
 
 ## Finishing
 
 After you've created the embed script, offer the user to create an HTML website landing page for him where you inject the embed script. If the user confirms he or she wants a landing page, ask the user for a URL to a page to scrape, which you will scrape using the "scrape-url" function and use the information found during scraping to create an HTML landing page you can save using the "create-web-file" function. Use the name of the machine learning type as a file name and add ".html" to it unless the user explicitly tells you something else.
 
 **IMPORTANT** - Create a kick ass landing page, intended as a demonstration of the chatbot, using information found from the original URL the chatbot was created from, or the URL the user supplied when asking for a URL to scrape to create a landing page. Then inject the embed script on this page, and save it using the "create-web-file" function. Use the content found at the website you scraped as you create this landing page.
-
-**IMPORTANT** - Decode the HTML before saving it, replacing `&lt;` characters with `<`, etc.
-
-**IMPORTANT** - Remember to save the HTML as *valid* HTML and HTML decode characters such as `&lt;` to become `<`, etc.

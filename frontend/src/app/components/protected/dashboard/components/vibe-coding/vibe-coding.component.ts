@@ -5,9 +5,9 @@
 
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import mermaid from 'mermaid';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
-import mermaid from 'mermaid';
 import { BackendService } from 'src/app/services/backend.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { GeneralService } from 'src/app/services/general.service';
@@ -125,7 +125,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       this.response = '';
       this.messages.push({
         type: 'human',
-        message: marked.parse(this.query),
+        message: marked.parse(this.cleanHtml(this.query)),
       });
       this.messages.push({
         type: 'machine',
@@ -251,14 +251,12 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       }
 
       this.response += msg.message;
-      this.messages[this.messages.length - 1].message = marked.parse(this.response);
+      this.messages[this.messages.length - 1].message = marked.parse(this.cleanHtml(this.response));
       this.scrollToBottom(true);
 
     } else if (msg.function_waiting) {
 
-      this.response = this.response.trim();
-      this.response +=
-        '\n\n<span class="function_waiting">Waiting ...</span>\n\n';
+      this.response += '\n\n<span class="function_waiting">Waiting ...</span>\n\n';
       this.messages[this.messages.length - 1].message = marked.parse(this.response);
       return;
 
@@ -278,7 +276,6 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
         }
         xtra = ' tabindex="0" data-tippy-content="' + xtra + '"';
       }
-      this.response = this.response.trim();
       this.response = this.response.replace(
         '<span class="function_waiting">Waiting ...</span>',
         ''
@@ -293,7 +290,6 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
     } else if (msg.function_error) {
 
-      this.response = this.response.trim();
       this.response = this.response.replace(this.waitingString, '');
       this.response +=
         '\n\n<span class="function_failed">' +
@@ -301,6 +297,43 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
         '</span>\n\n';
       return;
     }
+  }
+
+  private cleanHtml(markdown: string) {
+    while (true) {
+      if (markdown.indexOf('\r') === -1) {
+        break;
+      }
+      markdown = markdown.replace('\r', '');
+    }
+
+    let result = '';
+    let splits = markdown.split('\n');
+    let insideCode = false;
+    for (let idx = 0; idx < splits.length; idx++) {
+      let tmp = splits[idx];
+      if (tmp.startsWith('```')) {
+        insideCode = !insideCode;
+        result += tmp + '\n';
+      } else {
+        if (insideCode) {
+          while (true) {
+            if (tmp.indexOf('<') === -1 && tmp.indexOf('>') === -1) {
+              break;
+            }
+            tmp = tmp.replace('<', '&lt;');
+            tmp = tmp.replace('>', '&gt;');
+          }
+          result += tmp;
+        } else {
+          result += splits[idx];
+        }
+        result += '\n';
+      }
+    }
+
+    console.log(result);
+    return result;
   }
 
   private scrollToBottom(abortIfScrolledUp: boolean = false) {
