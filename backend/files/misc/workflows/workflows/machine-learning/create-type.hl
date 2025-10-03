@@ -35,6 +35,8 @@ validators.default:x:@.arguments
    threshold:decimal:0.3
    greeting:Hi there, I am your virtual AI-based assistant. How can I help you?
    system_message:
+   conversation_starters:@"* What can I ask you about?
+* Who created you?"
 
 // Making sure we add support for executing AI functions to the system instruction.
 set-value:x:@.arguments/*/system_message
