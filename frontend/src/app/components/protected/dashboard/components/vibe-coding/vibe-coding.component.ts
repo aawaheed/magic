@@ -243,6 +243,23 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       this.applySyntaxHighlighting();
       this.scrollToBottom(false);
 
+    } else if (msg.error) {
+
+      // Making sure we remove the jumping dots
+      if (this.messages[this.messages.length - 1].message.includes(this.waitingString)) {
+        this.messages[this.messages.length - 1].message = this.messages[this.messages.length - 1].message.replace(this.waitingString, '');
+      }
+      this.messages[this.messages.length - 1].message += 'Something went wrong while trying to invoke the LLM';
+      this.messages[this.messages.length - 1].type = 'error';
+
+      this.is_answering = false;
+      setTimeout(() => {
+        this.queryTextarea.nativeElement.focus();
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      }, 1);
+      this.applySyntaxHighlighting();
+      this.scrollToBottom(false);
+
     } else if (msg.message) {
 
       // Making sure we remove the jumping dots
@@ -332,7 +349,6 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log(result);
     return result;
   }
 
