@@ -31,6 +31,17 @@ slots.create:magic.ai.get-context
       convert:x:@.arguments/*/threshold
          type:double
 
+   // Making sure we don't overflow model's context window.
+   if
+      mt
+         openai.tokenize:x:@.arguments/*/prompt
+         .:int:8100
+      .lambda
+         set-value:x:@.arguments/*/prompt
+            strings.substring:x:@.arguments/*/prompt
+               .:int:0
+               .:int:16000
+
    // Retrieving embeddings.
    .token
    set-value:x:@.token
