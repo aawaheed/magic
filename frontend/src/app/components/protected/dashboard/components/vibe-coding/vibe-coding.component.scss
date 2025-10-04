@@ -188,6 +188,7 @@
 
 ::ng-deep .function_waiting {
   color: #a0a0a0;
+  animation: function_waiting 1s infinite alternate;
 }
 
 ::ng-deep .function_succeeded {
