@@ -1,0 +1,22 @@
+
+/*
+ * Downloads the specified [url] as a binary file, and saves to the specified [path].
+ * 
+ * [path] is relative, and will have /etc/www/ prepended to ensure we can only save files in this folder.
+ * 
+ * All arguments are mandatory, and user must be root to execute
+ */
+.arguments
+   url:string
+   path:string
+auth.ticket.verify:root
+validators.mandatory:x:@.arguments/*/url
+validators.mandatory:x:@.arguments/*/path
+strings.concat
+   .:/etc/www/
+   get-value:x:@.arguments/*/path
+http.get:x:@.arguments/*/url
+io.file.save.binary:x:@strings.concat
+   get-value:x:@http.get/*/content
+return
+   result:success
