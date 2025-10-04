@@ -314,7 +314,7 @@ Arguments:
 
 - file - Mandatory filename, including its path.
 
-### Red website file
+### Read website file
 
 Reads the content of an existing website file.
 
@@ -328,6 +328,23 @@ ___
 Arguments:
 
 - file - Mandatory filename of file to load, including its path.
+
+### Download from web
+
+This function downloads a file and saves to your web folder. These can be images, CSS files, JavaScript files, or anything really.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-from-web.hl]:
+{
+  "url": "[STRING_VALUE]",
+  "path": "[STRING_VALUE]"
+}
+___
+
+Arguments:
+
+- url - Mandatory URL of file to download
+- path - Mandatory relative full path of where to save it inside of your web folder.
 
 ### OpenAPI specification
 
