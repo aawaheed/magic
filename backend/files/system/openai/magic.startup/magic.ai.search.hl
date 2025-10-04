@@ -87,7 +87,7 @@ slots.create:magic.ai.search
       strings.concat
          .:@"
 select vss.distance, ts.prompt, ts.uri
-	from vector_quantize_scan_stream('ml_training_snippets', 'embeddings', vector_as_f32(@embedding)) as vss
+	from vector_full_scan_stream('ml_training_snippets', 'embeddings', vector_as_f32(@embedding)) as vss
     	inner join ml_training_snippets ts on ts.id = vss.rowid
    where
       ts.type = @type and "

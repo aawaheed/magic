@@ -74,7 +74,7 @@ data.connect:[generic|magic]
    .sql:@"
 select vss.distance, ts.id, ts.created, ts.type, ts.pushed, ts.uri, ts.prompt, ts.completion, ts.filename, ts.cached, ts.meta, ts.embeddings as embedding_vss
    from ml_training_snippets ts 
-      inner join vector_quantize_scan_stream('ml_training_snippets', 'embeddings', vector_as_f32(@embedding)) as vss on vss.rowid = ts.id
+      inner join vector_full_scan_stream('ml_training_snippets', 'embeddings', vector_as_f32(@embedding)) as vss on vss.rowid = ts.id
    where 1"
 
    // Further parametrising invocation if we should.
