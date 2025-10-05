@@ -8,7 +8,7 @@ Use this workflow if the user wants to create a landing page for signing up to t
    - Once the embed script has been created following the above workflow, you can continue with step 2 below.
 2. Suggest a database design to the user, and when the user is satisfied create this database and apply the DDL.
    - Ask the user what type of data he or she wants to save, and change the database design accordingly.
-   - Show the design as a simplified Mermaid chart. Make it SIMPLE and obey all rules related to Mermaid charts from your system instruction.
+   - Show the design as a simplified Mermaid chart. Make it a SIMPLE Mermaid chart for MermaidJS, and obey all rules related to Mermaid charts from your system instruction.
 3. Ask the user what type of design he wants for his landing page, and offer to create a futuristic design, modern design, classic design, etc.
 
 When done, return the URL for the landing page to the user as a Markdown hyperlink.
