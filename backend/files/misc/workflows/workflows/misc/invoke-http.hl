@@ -101,4 +101,8 @@ if
          status:int:500
 
 // Returning the result of the invocation.
-return-nodes:x:@.helper/+/*/content/*
+if
+   exists:x:@.helper/+/*/content/*
+   .lambda
+      return-nodes:x:@.helper/+/*/content/*
+return-nodes:x:@.helper/+/*/content
