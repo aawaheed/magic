@@ -55,26 +55,29 @@ if
       strings.concat
          .:"Bearer "
          get-value:x:@.arguments/*/token
-      unwrap:x:+/*/*/*
-      add:x:../*/http.xxx
+      unwrap:x:+/*/*
+      add:x:../*/http.xxx/*/headers
          .
-            headers
-               Authorization:x:@strings.concat
+            Authorization:x:@strings.concat
 
 // Adding any HTTP headers.
-add:x:./*/http.xxx
-   get-nodes:x:@.arguments/*/headers
+add:x:./*/http.xxx/*/headers
+   get-nodes:x:@.arguments/*/headers/*
 
 // Changing the HTTP invocation
 set-name:x:./*/http.xxx
    strings.concat
       .:http.
       get-value:x:@.arguments/*/verb
+lambda2hyper:x:../*
+log.info:x:-
 
 // Invoking endpoint, now correctly decorated. Notice, helper to find node afterwards.
 .helper
 http.xxx:x:@.arguments/*/url
    convert:true
+   headers
+      User-Agent:AINIRO-bot
 
 // Sanity checking above invocation.
 if
