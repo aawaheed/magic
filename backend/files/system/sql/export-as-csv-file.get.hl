@@ -7,6 +7,9 @@
    databaseName:string
    tableName:string
 
+// Making sure only root users can access endpoint.
+auth.ticket.verify:root
+
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/databaseType
 validators.mandatory:x:@.arguments/*/connectionString
