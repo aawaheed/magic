@@ -13,11 +13,13 @@ import { CommonComponentsModule } from 'src/app/components/protected/common/comm
 import { DashboardComponent } from '../dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { VibeCodingComponent } from '../components/vibe-coding/vibe-coding.component';
+import { TypewriterPlaceholderDirective } from 'src/app/helpers/typewriter-placeholder.directive';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     VibeCodingComponent,
+    TypewriterPlaceholderDirective,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,9 @@ import { VibeCodingComponent } from '../components/vibe-coding/vibe-coding.compo
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
+  ],
+  exports: [
+    TypewriterPlaceholderDirective,
   ]
 })
 export class DashboardModule { }

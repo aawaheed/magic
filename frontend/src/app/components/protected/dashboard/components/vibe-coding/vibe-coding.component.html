@@ -99,10 +99,17 @@
             rows="4"
             name="query"
             [disabled]="is_answering"
-            placeholder="Where the Machine Creates the Code ..."
             [(ngModel)]="query"
-            (keydown.enter)="onKeydownEnter($event)">
-          </textarea>
+            (keydown.enter)="onKeydownEnter($event)"
+            [appTypewriterPlaceholder]="[
+              'Create a new Database to keep track of customers ...',
+              'Create an API that integrates with HubSpot ...',
+              'Create an AI chatbot with an escalate to human email function ...',
+              'Create a new full stack app, with a database, API and a frontend ...'
+            ]"
+            [pauseAtStart]="100"
+            [deletingSpeed]="10"
+            [typingSpeed]="20"></textarea>
         </mat-form-field>
 
       </form>
