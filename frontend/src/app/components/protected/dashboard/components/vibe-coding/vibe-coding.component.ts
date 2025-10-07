@@ -3,7 +3,7 @@
  * Copyright (c) 2023 Thomas Hansen - For license inquiries you can contact thomas@ainiro.io.
  */
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import mermaid from 'mermaid';
 import { marked } from 'marked';
@@ -25,6 +25,7 @@ import { TypewriterPlaceholderDirective } from 'src/app/helpers/typewriter-place
 export class VibeCodingComponent implements OnInit, OnDestroy {
 
   @ViewChild('outputDiv') private outputDiv!: ElementRef;
+  @ViewChildren('outputDiv', { read: ElementRef }) private container!: QueryList<ElementRef>;
   @ViewChild('queryTextarea') queryTextarea!: ElementRef;
   @ViewChild(TypewriterPlaceholderDirective) typewriter!: TypewriterPlaceholderDirective;
 
@@ -246,6 +247,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       }, 1);
       this.applySyntaxHighlighting();
       this.scrollToBottom(false);
+      this.runScriptsIn(this.outputDiv.nativeElement);
 
     } else if (msg.error) {
 
@@ -317,7 +319,9 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
         msg.function_error +
         '</span>\n\n';
       return;
+
     } else if (msg.type) {
+
       switch (msg.type) {
 
         case 'download_file':
@@ -329,7 +333,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
           break;
 
         case 'render_html':
-          this.response += msg.html;
+          this.response += '<div class="hljs_ignore">' + msg.html + '</div>';
           break;
 
         default:
@@ -365,7 +369,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
           }
           result += tmp;
         } else {
-          result += splits[idx];
+          result += tmp;
         }
         result += '\n';
       }
@@ -394,13 +398,69 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
   private applySyntaxHighlighting() {
     setTimeout(() => {
-      document
-        .querySelectorAll('pre code')
-        .forEach((el) => {
-          if (!el.classList.contains('hyperlambda') && !el.parentElement.classList.contains('hyperlambda')) {
-            hljs.highlightElement(el as HTMLElement);
+      this.container.forEach(container => {
+        const codeBlocks = container.nativeElement.querySelectorAll('pre code');
+
+        codeBlocks.forEach((el: HTMLElement) => {
+
+          // Verifying we should not ignore this guy.
+          let ignore = false;
+          let idxEl = el
+          while (idxEl) {
+            if (idxEl.classList.contains('hljs_ignore')) {
+              ignore = true;
+              break;
+            }
+            idxEl = idxEl.parentElement;
+          }
+          if (!ignore && !el.classList.contains('hyperlambda') && !el.parentElement?.classList.contains('hyperlambda')) {
+            hljs.highlightElement(el);
           }
         });
+      });
     }, 0);
+  }
+
+  async runScriptsIn(root: Element): Promise<void> {
+
+    const scripts: HTMLScriptElement[] = Array.from(root.querySelectorAll('script:not([data-executed])'));
+
+    for (const oldScript of scripts) {
+      oldScript.setAttribute('data-executed', '1');
+
+      if ((oldScript.type || '').trim().toLowerCase() === 'importmap') {
+        const map = document.createElement('script');
+        for (const { name, value } of Array.from(oldScript.attributes)) {
+          if (name !== 'data-executed') map.setAttribute(name, value);
+        }
+        map.textContent = oldScript.textContent || '';
+        oldScript.parentNode?.replaceChild(map, oldScript);
+        continue;
+      }
+
+      const newScript = document.createElement('script');
+      for (const { name, value } of Array.from(oldScript.attributes)) {
+        if (name !== 'data-executed') newScript.setAttribute(name, value);
+      }
+
+      const isExternal = !!oldScript.src;
+
+      if (!isExternal && oldScript.textContent) {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      const parent = oldScript.parentNode;
+      if (!parent) continue;
+
+      const wait = isExternal
+        ? new Promise<void>((res) => {
+            newScript.addEventListener('load', () => res(), { once: true });
+            newScript.addEventListener('error', () => res(), { once: true });
+          })
+        : Promise.resolve();
+
+      parent.replaceChild(newScript, oldScript);
+      await wait;
+    }
   }
 }
