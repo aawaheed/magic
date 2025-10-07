@@ -254,7 +254,7 @@ ___
 This functions allows the user to download a web file. The function will not succeed if the file doesn't exist, so you don't need to check if the file exists first.
 
 ___
-FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-file.hl]:
+FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-web-file.hl]:
 {
   "file": "[STRING_VALUE]"
 }
@@ -262,7 +262,24 @@ ___
 
 Arguments:
 
-- file - Mandatory full path of file to download.
+- file - Mandatory relative path of file to download.
+
+### Download module file
+
+This functions allows the user to download a file inside of the specified module. The function will not succeed if the file doesn't exist, so you don't need to check if the file exists first.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-module-file.hl]:
+{
+  "file": "[STRING_VALUE]",
+  "module": "[STRING_VALUE]"
+}
+___
+
+Arguments:
+
+- file - Mandatory relative path of file to download.
+- module - Mandatory name of module where file can be found.
 
 ### Create new website folder
 
