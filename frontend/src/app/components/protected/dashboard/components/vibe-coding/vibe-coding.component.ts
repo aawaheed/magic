@@ -12,6 +12,7 @@ import { BackendService } from 'src/app/services/backend.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { OpenAIService } from 'src/app/services/openai.service';
+import { TypewriterPlaceholderDirective } from 'src/app/helpers/typewriter-placeholder.directive';
 
 /**
  * Vibe coding component, allowing the user to instruct the system using natural language.
@@ -25,6 +26,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
   @ViewChild('outputDiv') private outputDiv!: ElementRef;
   @ViewChild('queryTextarea') queryTextarea!: ElementRef;
+  @ViewChild(TypewriterPlaceholderDirective) typewriter!: TypewriterPlaceholderDirective;
 
   private hubConnection: HubConnection = null;
   private session: string = null;
@@ -115,6 +117,8 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     if (!this.query || this.query === '') {
       return;
     }
+
+    this.typewriter.setStaticPlaceholder('Where the Machine Creates the Code ...');
 
     // Making sure we don't allow for pushing multiple queries at the same time.
     this.is_answering = true;

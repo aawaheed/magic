@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Thomas Hansen - For license inquiries you can contact thomas@ainiro.io.
  */
@@ -36,6 +35,9 @@ export class TypewriterPlaceholderDirective implements OnInit, OnDestroy {
   private charIndex = 0;
   private deleting = false;
   private running = false;
+
+  // ADDED: remember if we've permanently stopped
+  private permanentlyStopped = false;
 
   constructor(
     private el: ElementRef<HTMLTextAreaElement>,
@@ -77,6 +79,7 @@ export class TypewriterPlaceholderDirective implements OnInit, OnDestroy {
 
   private maybeStart(initial = false) {
     if (this.running) return;
+    if (this.permanentlyStopped) return; // ADDED: don't restart after permanent stop
     if ((this.el.nativeElement.value ?? '').length > 0) return;
     if (!this.phrases || this.phrases.length === 0) return;
 
@@ -85,12 +88,20 @@ export class TypewriterPlaceholderDirective implements OnInit, OnDestroy {
     this.queueTick(delay);
   }
 
-  private stop() {
+  // UPDATED: support "permanent" stop
+  public stop(permanent = false) {
     this.running = false;
+    if (permanent) this.permanentlyStopped = true;
     if (this.timerId !== null) {
       clearTimeout(this.timerId);
       this.timerId = null;
     }
+  }
+
+  // ADDED: external API to set a static placeholder and permanently stop
+  public setStaticPlaceholder(text: string) {
+    this.stop(true);
+    this.setPlaceholder(text);
   }
 
   private queueTick(delay: number) {
