@@ -57,5 +57,5 @@ sockets.signal:x:@.arguments/*/_session
       ticket:x:@auth.ticket.create
 
 // Returning success
-yield
+return
    message:Click the button to download the file

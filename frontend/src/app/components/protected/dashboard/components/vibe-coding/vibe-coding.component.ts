@@ -319,6 +319,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       return;
     } else if (msg.type) {
       switch (msg.type) {
+
         case 'download_file':
           let url = this.backendService.active.url +
             '/magic/system/file-system/file-with-token?access_token=' +
@@ -326,6 +327,11 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
             '&file=' + encodeURIComponent(msg.filename);
             this.response += `<a href='${url}' target='_blank' class='download_file'>Download</a>`;
           break;
+
+        case 'render_html':
+          this.response += msg.html;
+          break;
+
         default:
           alert('Unknown client-side binding; \'' + msg.type + '\'');
       }

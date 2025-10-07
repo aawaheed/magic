@@ -328,6 +328,8 @@ Arguments:
 - file - Mandatory filename, including its path.
 - content - Mandatory content of file, can be HTML, CSS, JavaScript, or some other website frontend type of file
 
+**IMPORTANT** - Always use an absolute URL when returning URLs to web files created with this function by using the backend URL.
+
 ### Delete website file
 
 Deletes an existing website file.
@@ -1275,6 +1277,25 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/list-endpoints.hl]
 ___
 
 This function will return relative URLs, HTTP verb and authorization requirements. If the auth field does not exist, it means it's a publicly available function for all. If it contains '*' it means any role, but most be authenticated. Otherwise it might contain a list of roles where the user must belong to at least one.
+
+### Render HTML
+
+The following function sends the specified [html] to the client to display it as is. It can deal with any HTML, such as HTML for rendering widgets, forms, etc. If the user asks you to create some HTML or render som HTML, you can use this function to create a small HTML section that you send to the client.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/misc/render-html.hl]:
+{
+  "html": "[STRING_VALUE]"
+}
+___
+
+Arguments;
+
+- [html] is mandatory and the HTML to render on the frontend.
+
+**IMPORTANT** - The HTML is rendered inline into the chatbot output surface. If you create CSS to render, make sure it only applies for the rendered section and doesn't clash with other parts by using a unique CSS selector name.
+
+**IMPORTANT** - NEVER send complete HTML with body and head tags, only render small sections of HTML to make sure it can be correctly handled by the frontend.
 
 #### About AI functions
 
