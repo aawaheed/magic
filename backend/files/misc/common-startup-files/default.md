@@ -249,6 +249,21 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/list-web-files.hl]
 ___
 
+### Download web file
+
+This functions allows the user to download a web file. The function will not succeed if the file doesn't exist, so you don't need to check if the file exists first.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-file.hl]:
+{
+  "file": "[STRING_VALUE]"
+}
+___
+
+Arguments:
+
+- file - Mandatory full path of file to download.
+
 ### Create new website folder
 
 Creates a new website folder for serving static files like HTML, CSS, or JavaScript.

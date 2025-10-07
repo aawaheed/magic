@@ -1,0 +1,58 @@
+
+/*
+ * Downloads the specified web file [file] file.
+ * 
+ * Arguments:
+ * 
+ * - [file] being mandatory full file
+ */
+.arguments
+
+   // Mandatory argument specified by the framework being the SignalR session.
+   _session:string
+
+   // Mandatory relative path of file to download
+   file:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/file
+
+// Figuring out full path.
+.full_path
+set-value:x:@.full_path
+   strings.concat
+      .:/etc/www/
+      strings.trim:x:@.arguments/*/file
+         .:/
+
+// Verifying that file exists.
+if
+   not
+      io.file.exists:x:@.full_path
+   .lambda
+
+      // Oops ...!!
+      throw:File does not exist
+         public:bool:true
+         status:int:404
+
+// We'll need a token for the download URL.
+auth.ticket.create
+   username:service
+   roles
+      .:root
+
+// Signaling frontend.
+sockets.signal:x:@.arguments/*/_session
+   roles:root
+   args
+      type:download_file
+      filename:x:@.full_path
+      ticket:x:@auth.ticket.create
+
+// Returning success
+yield
+   message:Click the button to download the file
