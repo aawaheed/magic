@@ -279,12 +279,8 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
       this.response = this.response.replace(
         '<span class="function_waiting">Waiting ...</span>',
-        ''
+        '<span class="function_succeeded">' + msg.function_result + '</span>\n\n'
       );
-      this.response +=
-        '\n\n<span class="function_succeeded">' +
-        msg.function_result +
-        '</span>\n\n';
       return;
 
     } else if (msg.function_error) {
@@ -373,6 +369,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   }
 
   private applySyntaxHighlighting() {
+
     setTimeout(() => {
       this.container.forEach(container => {
         const codeBlocks = container.nativeElement.querySelectorAll('pre code');
@@ -400,50 +397,38 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   async runScriptsIn(root: Element): Promise<void> {
 
     const scripts: HTMLScriptElement[] = Array.from(
-      root.querySelectorAll('script:not([data-executed])')
+      root.querySelectorAll('.hljs_ignore script:not([data-executed])')
     );
 
     for (const oldScript of scripts) {
-
       oldScript.setAttribute('data-executed', '1');
 
       const parent = oldScript.parentNode;
-      if (!parent) {
-        continue;
-      }
+      if (!parent) continue;
 
       const newScript = document.createElement('script');
       for (const { name, value } of Array.from(oldScript.attributes)) {
-        if (name !== 'data-executed') {
-          newScript.setAttribute(name, value);
-        }
+        if (name !== 'data-executed') newScript.setAttribute(name, value);
       }
 
       const isExternal = !!oldScript.src;
-      if (!isExternal) {
-        newScript.textContent = oldScript.textContent || '';
-      }
+      if (!isExternal) newScript.textContent = oldScript.textContent || '';
 
       const wait = isExternal
         ? new Promise<void>((resolve) => {
             newScript.addEventListener('load', () => resolve(), { once: true });
             newScript.addEventListener('error', (ev) => {
-              console.error('External classic script failed to load:', newScript.src, ev);
+              console.error('External script failed to load:', newScript.src, ev);
               resolve();
             }, { once: true });
           })
         : Promise.resolve();
 
       try {
-        console.log({
-          old: oldScript,
-          new: newScript,
-        });
-        console.log(oldScript.innerHTML);
-        parent.replaceChild(newScript, oldScript); // inline errors throw here synchronously
+        parent.replaceChild(newScript, oldScript);
         await wait;
       } catch (e) {
-        console.error('Inline classic script threw while executing:', e, newScript);
+        console.error('Script execution error:', e, newScript);
       }
     }
   }
@@ -456,54 +441,51 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     let out = '';
     let pos = 0;
 
-    // Find the next fenced code block (``` or ~~~), allowing: leading spaces, language hint, CRLF.
     const findNextFence = (s: string, from: number) => {
+      const openRe = /(^|\r?\n)[ \t]*(?:>[ \t]*)*(?:(?:\d+[.)]|[*\-+])[ \t]+)?([`~]{3,})([^\r\n]*)(?:\r?\n|$)/g;
 
-      const openRe = /(^|\r?\n)[ \t]{0,3}(`{3,}|~{3,})([^\r\n]*)\r?\n/g;
       const slice = s.slice(from);
       const m = openRe.exec(slice);
       if (!m) return null;
 
-      const marks = m[2];               // the whole run of backticks/tilde, e.g. "```" or "~~~~"
-      const fChar = marks[0];           // '`' or '~'
-      const fLen = marks.length;        // opening length (>=3)
-      const openAbsStart = from + m.index + (m[1] ? m[1].length : 0);
-      const afterOpen = from + m.index + m[0].length;
+      const marks = m[2];           // "```", "~~~~", etc.
+      const fChar = marks[0];       // '`' or '~'
+      const fLen  = marks.length;   // >= 3
 
-      // Closing fence must be same char, length >= opening, optional leading spaces, then EOL/EOF.
+      const openAbsStart = from + m.index + (m[1] ? m[1].length : 0);
+      const afterOpen    = from + m.index + m[0].length;
       const fenceCharEsc = fChar === '`' ? '\\`' : '~';
-      const closePattern =
-        '(^|\\r?\\n)[ \\t]{0,3}' + fenceCharEsc + '{' + fLen + ',}\\s*(?=\\r?\\n|$)';
-      const closeRe = new RegExp(closePattern, 'g');
+      const closeRe = new RegExp('(^|\\r?\\n)[ \\t]*(?:>[ \\t]*)*' + fenceCharEsc + '{' + fLen + ',}\\s*(?=\\r?\\n|$)', 'g');
 
       const slice2 = s.slice(afterOpen);
       const m2 = closeRe.exec(slice2);
 
-      const endAbs = m2 ? (afterOpen + m2.index + (m2[0].match(/\r?\n$/) ? m2[0].length : 0)) : s.length;
+      const endAbs = m2 ? (afterOpen + m2.index + m2[0].length) : s.length;
       return { start: openAbsStart, end: endAbs };
     };
 
-    // Find the next <script>…</script> (case-insensitive, spans newlines).
     const findNextScript = (s: string, from: number) => {
+
       const re = /<script\b[^>]*>[\s\S]*?<\/script\s*>/i;
       const slice = s.slice(from);
       const m = re.exec(slice);
       if (!m) return null;
       const start = from + m.index;
-      const end = start + m[0].length;
+      const end   = start + m[0].length;
       return { start, end, html: m[0] };
     };
 
     while (pos < src.length) {
+
       const fence = findNextFence(src, pos);
-      const scr = findNextScript(src, pos);
+      const scr   = findNextScript(src, pos);
 
       if (!fence && !scr) {
         out += src.slice(pos);
         break;
       }
 
-      // If a fenced block starts before the next <script>, copy it verbatim (do NOT touch scripts inside)
+      // If a fenced block starts before (or at) the next <script>, copy the whole fenced block verbatim
       if (fence && (!scr || fence.start <= scr.start)) {
         out += src.slice(pos, fence.end);
         pos = fence.end;

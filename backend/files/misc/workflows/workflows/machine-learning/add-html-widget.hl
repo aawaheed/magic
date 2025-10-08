@@ -37,7 +37,7 @@ if
       strings.starts-with:x:@.arguments/*/filename
          .:/modules/
    .lambda
-      throw:You can only add widgets inside the /modules/ folder
+      throw:"You can only add widgets that are inside of the /modules/xyz/ folder, where xyz is your module's name. Use fully qualitifed paths, including '/module/' and the module's name."
          status:int:400
          public:bool:true
 
