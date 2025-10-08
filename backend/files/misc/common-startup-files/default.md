@@ -420,6 +420,21 @@ Arguments:
 
 * module - Mandatory name of module to retrieve files from.
 
+### List module folders
+
+Lists all folders for the specified module. Returns a list of strings being folder names found inside the specified module's folder.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/files/list-folders.hl]:
+{
+  "module": "[STRING_VALUE]"
+}
+___
+
+Arguments:
+
+* module - Mandatory name of module to retrieve folders from.
+
 ### Creates or modifies a file
 
 Creates a new file or modifies the content of an existing file for the specified [module] with the specified [name] and the specified [content].
@@ -1279,12 +1294,12 @@ ___
 
 This function will return relative URLs, HTTP verb and authorization requirements. If the auth field does not exist, it means it's a publicly available function for all. If it contains '*' it means any role, but most be authenticated. Otherwise it might contain a list of roles where the user must belong to at least one.
 
-### Render HTML
+### Show HTML widget
 
-The following function sends the specified [html] to the client to display it as is. It can deal with any HTML, such as HTML for rendering widgets, forms, etc. If the user asks you to create some HTML or render som HTML, you can use this function to create a small HTML section that you send to the client.
+This function sends the specified [html] to the client to display it as is. Use it if the user asks you to show widget, display widget, or something similar, and you either have some partial HTML snippet from before in your context, or the user has asked you to create HTML. It can deal with any HTML, such as HTML for rendering forms, etc. If the user asks you to show widget, display widget, etc, you can use this function to send the HTML to the client, which will be injected into the frontend's surface automatically.
 
 ___
-FUNCTION_INVOCATION[/misc/workflows/workflows/misc/render-html.hl]:
+FUNCTION_INVOCATION[/misc/workflows/workflows/misc/display-widget.hl]:
 {
   "html": "[STRING_VALUE]"
 }
@@ -1294,11 +1309,32 @@ Arguments;
 
 - [html] is mandatory and the HTML to render on the frontend.
 
-**IMPORTANT** - The HTML is rendered inline into the chatbot output surface. Make sure any CSS in the HTML only applies for the rendered section and doesn't clash with other parts by using a unique CSS selector name. And use unique IDs, form name attributes, and CSS classes for every single form you create, such as "form1_name", "form2_css-selector", etc.
+**IMPORTANT** - Remember to always use absolute URLs in your JavaScript if you're invoking the backend. You can find the backend URL further up in this instruction.
 
-**IMPORTANT** - NEVER send complete HTML with body and head tags, only render small sections of HTML to make sure it can be correctly handled by the frontend.
+### Add HTML widget to machine learning type
 
-**IMPORTANT** - The frontend and the backend runs on different hosts. ALWAYS use absolute URLs if the form is invoking the backend with HTTP invocation. Use the backend URL as your base URL. **USE ABSOLUTE URLS WHEN GENERATING JAVASCRIPT TO BE SHOWN USING THIS FUNCTION**!
+This function allows you to associate an HTML widget with a machine learning type.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-html-widget.hl]:
+{
+  "type": "[STRING_VALUE]",
+  "prompt": "[STRING_VALUE]",
+  "filename": "[STRING_VALUE]"
+}
+___
+
+Arguments;
+
+- [type] is mandatory and the machine learning type you want the widget to be associated with
+- [prompt] is mandatory and should be a VSS friendly name, allowing us to easily match the widget towards natural English when we should render the widget.
+- [filename] is mandatory, and a filename of an existing HTML widget that must physically exist on disc.
+
+#### Rules for widgets
+
+1. The HTML is rendered inline into the chatbot output surface. Make sure any CSS in the HTML only applies for the rendered section and doesn't clash with other parts by using a unique CSS selector name.
+2. NEVER send complete HTML with body and head tags, only render small sections of HTML to make sure it can be correctly handled by the frontend.
+3. The frontend and the backend runs on different hosts. ALWAYS use absolute URLs if the form is invoking the backend with HTTP invocation. Use the backend URL as your base URL. **ALWAYS USE ABSOLUTE URLS WHEN GENERATING JAVASCRIPT TO BE SHOWN USING THIS FUNCTION**!
 
 #### About AI functions
 

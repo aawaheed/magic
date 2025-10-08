@@ -347,6 +347,7 @@
 
         // We've got an existing session and user have already asked at least one question.
         chatSurface.innerHTML = sessionItems;
+        this.runScriptsIn(document.getElementById('ainiro_chat_surf'));
 
         // This prevents questionnaires from being shown.
         this.execQuestionnaires = false;
@@ -612,7 +613,7 @@
       if (this.initSession && this.ainiro_settings.greeting && this.ainiro_settings.greeting !== '') {
 
         // Adding greeting.
-        const html = marked.parse(this.ainiro_settings.greeting);
+        const html = this.renderMarkdownWithScriptPassthrough(this.ainiro_settings.greeting);
         this.addMessage(html, 'ainiro_machine greeting', false);
       }
 
@@ -734,12 +735,24 @@
         const obj = JSON.parse(args);
 
         // Checking if we're finished.
-        if (obj.finished === true) {
+        if (obj.type) {
+
+          switch (obj.type) {
+
+            case 'render_html':
+              this.response += '<div class="hljs_ignore">' + obj.html + '</div>';
+              break;
+
+            default:
+              alert('Unknown client-side binding; \'' + obj.type + '\'');
+          }
+        } else if (obj.finished === true) {
 
           // Checking if we've got a callback for onDone, at which point we invoke it.
           this.chatMessageDone(this.response);
           if (this.onDone) {
             this.onDone();
+            this.runScriptsIn(document.getElementById('ainiro_chat_surf'));
           }
           return;
           
@@ -749,7 +762,7 @@
           if (obj.error === true) {
 
             // Appending message to temporary response.
-            const html = marked.parse(obj.message ?? 'An unspecified error occurred, sorry about that :/');
+            const html = this.renderMarkdownWithScriptPassthrough(obj.message ?? 'An unspecified error occurred, sorry about that :/');
 
             // Updating value of last chat message.
             const surf = document.getElementById('ainiro_chat_surf');
@@ -775,7 +788,7 @@
           // Function invocation succeeded.
           this.response = this.response.replace('<span class="ainiro_function_waiting"><i class="ainiro-icofont ainiro-icofont-web"></i>Waiting ...</span>', '');
           this.response = this.response.replace('<span class="ainiro_function_waiting ainiro_function_animate"><i class="ainiro-icofont ainiro-icofont-web"></i>Waiting ...</span>', '');
-          obj.message = '<span class="ainiro_function_succeeded ainiro_function_animate"><i class="ainiro-icofont ainiro-icofont-star"></i>'+ obj.function_result + '</span>\n\n';
+          obj.message = '<p><span class="ainiro_function_succeeded ainiro_function_animate"><i class="ainiro-icofont ainiro-icofont-star"></i>'+ obj.function_result + '</span></p>\n\n';
 
         } else if (obj.function_error) {
 
@@ -806,7 +819,7 @@
           this.response += obj.message;
   
             // Transforming Markdown
-          const html = marked.parse(this.response);
+          const html = this.renderMarkdownWithScriptPassthrough(this.response);
 
           // Updating value of last chat message.
           const surf = document.getElementById('ainiro_chat_surf');
@@ -1317,7 +1330,7 @@
         err.json().then(errObj => {
 
           // Appending message to temporary response.
-          const html = marked.parse(errObj.message);
+          const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
           const surf = document.getElementById('ainiro_chat_surf');
@@ -1567,7 +1580,7 @@
         err.json().then(errObj => {
 
           // Appending message to temporary response.
-          const html = marked.parse(errObj.message);
+          const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
           const surf = document.getElementById('ainiro_chat_surf');
@@ -1604,7 +1617,7 @@
         followUpQuestions = markdownSections.pop();
         wholeMarkdown = markdownSections.join('\n---').trim();
       }
-      const html = marked.parse(wholeMarkdown);
+      const html = this.renderMarkdownWithScriptPassthrough(wholeMarkdown);
 
       // Updating value of last chat message.
       const surf = document.getElementById('ainiro_chat_surf');
@@ -1638,7 +1651,7 @@
 
         // Parsing follow up questions.
         const followUp = [];
-        const html = marked.parse(followUpQuestions);
+        const html = this.renderMarkdownWithScriptPassthrough(followUpQuestions);
         const domRoot = document.createElement('div');
         domRoot.innerHTML = html;
 
@@ -1660,6 +1673,36 @@
 
       // Scrolling to the bottom of surface to make sure we display currently written text.
       this.scrollToBottom(false, false);
+    },
+
+    extractScripts: function (src) {
+
+      const scripts = [];
+      const TOKEN = '__RAW_SCRIPT_' + Math.random().toString(36).slice(2) + '__';
+      let i = 0;
+      const without = src.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, function (m) {
+        const key = TOKEN + (i++) + '__';
+        scripts.push({ key: key, html: m });
+        return key;
+      });
+      return { without: without, scripts: scripts };
+    },
+
+    restoreScripts: function (html, scripts) {
+
+      var out = html;
+      for (var j = 0; j < scripts.length; j++) {
+        var s = scripts[j];
+        out = out.split(s.key).join(s.html);
+      }
+      return out;
+    },
+
+    renderMarkdownWithScriptPassthrough: function (md) {
+
+      const parts = this.extractScripts(md);
+      const rendered = marked.parse(parts.without);
+      return this.restoreScripts(rendered, parts.scripts);
     },
 
     /*
@@ -1810,6 +1853,48 @@
           this.submit();
         }
       });
+    },
+
+    runScriptsIn: async function (root) {
+
+      const scripts = Array.from(root.querySelectorAll('script:not([data-executed])'));
+
+      for (const oldScript of scripts) {
+        oldScript.setAttribute('data-executed', '1');
+
+        const parent = oldScript.parentNode;
+        if (!parent) {
+          continue;
+        }
+        const newScript = document.createElement('script');
+        for (const { name, value } of Array.from(oldScript.attributes)) {
+          if (name !== 'data-executed') {
+            newScript.setAttribute(name, value);
+          }
+        }
+
+        const isExternal = !!oldScript.src;
+        if (!isExternal) {
+          newScript.textContent = oldScript.textContent || '';
+        }
+
+        const wait = isExternal
+          ? new Promise(function (resolve) {
+              newScript.addEventListener('load', function () { resolve(); }, { once: true });
+              newScript.addEventListener('error', function (ev) {
+                console.error('External classic script failed to load:', newScript.src, ev);
+                resolve();
+              }, { once: true });
+            })
+          : Promise.resolve();
+
+        try {
+          parent.replaceChild(newScript, oldScript);
+          await wait;
+        } catch (e) {
+          console.error('Inline classic script threw while executing:', e, newScript);
+        }
+      }
     }
   };
 

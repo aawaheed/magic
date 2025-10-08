@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Thomas Hansen - For license inquiries you can contact thomas@ainiro.io.
  */
@@ -49,19 +48,12 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     // Initialising frontend URL
     this.frontendUrl = this.backendService.active.url;
 
-    // Applying plugin support for marked
     const renderer = {
       link: function (href: string, title: string, text: string) {
         if (text) {
           if (title) {
             return (
-              '<a target="_blank" href="' +
-              href +
-              '" title="' +
-              title +
-              '">' +
-              text +
-              '</a>'
+              '<a target="_blank" href="' + href + '" title="' + title + '">' + text + '</a>'
             );
           }
           return '<a target="_blank" href="' + href + '">' + text + '</a>';
@@ -130,7 +122,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       this.response = '';
       this.messages.push({
         type: 'human',
-        message: marked.parse(this.cleanHtml(this.query)),
+        message: this.renderMarkdownWithScriptPassthrough(this.cleanHtml(this.query)),
       });
       this.messages.push({
         type: 'machine',
@@ -274,39 +266,23 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       }
 
       this.response += msg.message;
-      this.messages[this.messages.length - 1].message = marked.parse(this.cleanHtml(this.response));
+      this.messages[this.messages.length - 1].message = this.renderMarkdownWithScriptPassthrough(this.cleanHtml(this.response));
       this.scrollToBottom(true);
 
     } else if (msg.function_waiting) {
 
       this.response += '\n\n<span class="function_waiting">Waiting ...</span>\n\n';
-      this.messages[this.messages.length - 1].message = marked.parse(this.response);
+      this.messages[this.messages.length - 1].message = this.renderMarkdownWithScriptPassthrough(this.response);
       return;
 
     } else if (msg.function_result) {
 
-      let xtra = '';
-      if (msg.file) {
-        xtra = '<h3 class="no-margin">' + msg.file + '</h3>';
-        if (msg.invocation) {
-          xtra +=
-            '<pre class="no-margin">' +
-            JSON.stringify(JSON.parse(msg.invocation), null, 2) +
-            '</pre>';
-        }
-        while (xtra.indexOf('"') !== -1) {
-          xtra = xtra.replace('"', "'");
-        }
-        xtra = ' tabindex="0" data-tippy-content="' + xtra + '"';
-      }
       this.response = this.response.replace(
         '<span class="function_waiting">Waiting ...</span>',
         ''
       );
       this.response +=
-        '\n\n<span class="function_succeeded"' +
-        xtra +
-        '>' +
+        '\n\n<span class="function_succeeded">' +
         msg.function_result +
         '</span>\n\n';
       return;
@@ -423,44 +399,142 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
   async runScriptsIn(root: Element): Promise<void> {
 
-    const scripts: HTMLScriptElement[] = Array.from(root.querySelectorAll('script:not([data-executed])'));
+    const scripts: HTMLScriptElement[] = Array.from(
+      root.querySelectorAll('script:not([data-executed])')
+    );
 
     for (const oldScript of scripts) {
+
       oldScript.setAttribute('data-executed', '1');
 
-      if ((oldScript.type || '').trim().toLowerCase() === 'importmap') {
-        const map = document.createElement('script');
-        for (const { name, value } of Array.from(oldScript.attributes)) {
-          if (name !== 'data-executed') map.setAttribute(name, value);
-        }
-        map.textContent = oldScript.textContent || '';
-        oldScript.parentNode?.replaceChild(map, oldScript);
+      const parent = oldScript.parentNode;
+      if (!parent) {
         continue;
       }
 
       const newScript = document.createElement('script');
       for (const { name, value } of Array.from(oldScript.attributes)) {
-        if (name !== 'data-executed') newScript.setAttribute(name, value);
+        if (name !== 'data-executed') {
+          newScript.setAttribute(name, value);
+        }
       }
 
       const isExternal = !!oldScript.src;
-
-      if (!isExternal && oldScript.textContent) {
-        newScript.textContent = oldScript.textContent;
+      if (!isExternal) {
+        newScript.textContent = oldScript.textContent || '';
       }
 
-      const parent = oldScript.parentNode;
-      if (!parent) continue;
-
       const wait = isExternal
-        ? new Promise<void>((res) => {
-            newScript.addEventListener('load', () => res(), { once: true });
-            newScript.addEventListener('error', () => res(), { once: true });
+        ? new Promise<void>((resolve) => {
+            newScript.addEventListener('load', () => resolve(), { once: true });
+            newScript.addEventListener('error', (ev) => {
+              console.error('External classic script failed to load:', newScript.src, ev);
+              resolve();
+            }, { once: true });
           })
         : Promise.resolve();
 
-      parent.replaceChild(newScript, oldScript);
-      await wait;
+      try {
+        console.log({
+          old: oldScript,
+          new: newScript,
+        });
+        console.log(oldScript.innerHTML);
+        parent.replaceChild(newScript, oldScript); // inline errors throw here synchronously
+        await wait;
+      } catch (e) {
+        console.error('Inline classic script threw while executing:', e, newScript);
+      }
     }
+  }
+
+  private extractScripts(src: string): { without: string; scripts: Array<{ key: string; html: string }> } {
+
+    const scripts: Array<{ key: string; html: string }> = [];
+    const TOKEN = `__RAW_SCRIPT_${Math.random().toString(36).slice(2)}__`;
+    let i = 0;
+    let out = '';
+    let pos = 0;
+
+    // Find the next fenced code block (``` or ~~~), allowing: leading spaces, language hint, CRLF.
+    const findNextFence = (s: string, from: number) => {
+
+      const openRe = /(^|\r?\n)[ \t]{0,3}(`{3,}|~{3,})([^\r\n]*)\r?\n/g;
+      const slice = s.slice(from);
+      const m = openRe.exec(slice);
+      if (!m) return null;
+
+      const marks = m[2];               // the whole run of backticks/tilde, e.g. "```" or "~~~~"
+      const fChar = marks[0];           // '`' or '~'
+      const fLen = marks.length;        // opening length (>=3)
+      const openAbsStart = from + m.index + (m[1] ? m[1].length : 0);
+      const afterOpen = from + m.index + m[0].length;
+
+      // Closing fence must be same char, length >= opening, optional leading spaces, then EOL/EOF.
+      const fenceCharEsc = fChar === '`' ? '\\`' : '~';
+      const closePattern =
+        '(^|\\r?\\n)[ \\t]{0,3}' + fenceCharEsc + '{' + fLen + ',}\\s*(?=\\r?\\n|$)';
+      const closeRe = new RegExp(closePattern, 'g');
+
+      const slice2 = s.slice(afterOpen);
+      const m2 = closeRe.exec(slice2);
+
+      const endAbs = m2 ? (afterOpen + m2.index + (m2[0].match(/\r?\n$/) ? m2[0].length : 0)) : s.length;
+      return { start: openAbsStart, end: endAbs };
+    };
+
+    // Find the next <script>…</script> (case-insensitive, spans newlines).
+    const findNextScript = (s: string, from: number) => {
+      const re = /<script\b[^>]*>[\s\S]*?<\/script\s*>/i;
+      const slice = s.slice(from);
+      const m = re.exec(slice);
+      if (!m) return null;
+      const start = from + m.index;
+      const end = start + m[0].length;
+      return { start, end, html: m[0] };
+    };
+
+    while (pos < src.length) {
+      const fence = findNextFence(src, pos);
+      const scr = findNextScript(src, pos);
+
+      if (!fence && !scr) {
+        out += src.slice(pos);
+        break;
+      }
+
+      // If a fenced block starts before the next <script>, copy it verbatim (do NOT touch scripts inside)
+      if (fence && (!scr || fence.start <= scr.start)) {
+        out += src.slice(pos, fence.end);
+        pos = fence.end;
+        continue;
+      }
+
+      // Otherwise replace the next <script> (outside fences) with a token
+      if (scr) {
+        out += src.slice(pos, scr.start);
+        const key = `${TOKEN}${i++}__`;
+        scripts.push({ key, html: scr.html });
+        out += key;
+        pos = scr.end;
+        continue;
+      }
+    }
+
+    return { without: out, scripts };
+  }
+
+  private restoreScripts(html: string, scripts: Array<{ key: string; html: string }>): string {
+
+    let out = html;
+    for (const s of scripts) out = out.split(s.key).join(s.html);
+    return out;
+  }
+
+  private renderMarkdownWithScriptPassthrough(md: string): string {
+
+    const { without, scripts } = this.extractScripts(md);
+    const rendered = (marked as any).parse ? (marked as any).parse(without) : (marked as any)(without);
+    return this.restoreScripts(rendered as string, scripts);
   }
 }

@@ -1,0 +1,61 @@
+
+/*
+ * Sends the specified HTML to the frontend
+ * 
+ * [html] is mandatory and can be any HTML
+ */
+.arguments
+
+   // Mandatory argument injected by the framework, being the current session.
+   _session:string
+
+   // Mandatory argument being the HTML to send to the client.
+   html:string
+
+// Making sure user is allowed to execute function.
+auth.ticket.verify:root
+
+// Sanity checking invocation
+validators.mandatory:x:@.arguments/*/html
+
+// Buffer for HTML.
+.html
+set-value:x:@.html
+   get-value:x:@.arguments/*/html
+
+// Verifying this is a valid widget.
+if
+   not
+      strings.contains:x:@.html
+         .:WIDGET_ID_UNIQUE_NUMBER
+   .lambda
+      throw:"Not a valid widget! No 'WIDGET_ID_UNIQUE_NUMBER' found in HTML"
+         status:int:400
+         public:bool:true
+
+/*
+ * Replacing all "WIDGET_ID_UNIQUE_NUMBER" strings with a CSRNG generated string to avoid duplication of HTML elements,
+ * CSS selectors, and JavaScript functions.
+ */
+set-value:x:@.html
+   strings.replace:x:@.html
+      .:WIDGET_ID_UNIQUE_NUMBER
+      strings.concat
+         .:x
+         crypto.random
+            min:20
+            max:20
+
+/*
+ * Signaling frontend.
+ * This will create a download link in the frontend dashboard.
+ */
+sockets.signal:x:@.arguments/*/_session
+   roles:root
+   args
+      type:render_html
+      html:x:@.html
+
+// Returning success
+return
+   message:HTML was successfully sent to client

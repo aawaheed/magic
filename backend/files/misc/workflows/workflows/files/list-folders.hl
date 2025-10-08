@@ -1,0 +1,36 @@
+/*
+ * Lists all folders for the specified module.
+ *
+ * Returns a list of strings being folders found inside the specified folder.
+ */
+.arguments
+
+   // Mandatory name of module to retrieve folders from.
+   module:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/module
+validators.regex:x:@.arguments/*/module
+   regex:"^[a-z0-9_-]+$"
+
+// Listing all folders.
+strings.concat
+   .:/modules/
+   get-value:x:@.arguments/*/module
+   .:/
+io.folder.list-recursively:x:@strings.concat
+.result
+for-each:x:@io.folder.list-recursively/*
+   if
+      not
+         strings.contains:x:@.dp/#
+            .:/.
+      .lambda
+         add:x:@.result
+            get-nodes:x:@.dp/#
+   
+// Returning files to caller.
+return-nodes:x:@.result/*

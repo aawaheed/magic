@@ -1,0 +1,68 @@
+
+/*
+ * Adds the specified [filename] to the specified [type] as an HTML widget.
+ */
+.arguments
+
+   // Mandatory name of type.
+   type:string
+
+   // Mandatory prompt for widget
+   prompt:string
+
+   // Mandatory widget file.
+   filename:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/type
+validators.regex:x:@.arguments/*/type
+   regex:^[a-z0-9_-]+$
+validators.mandatory:x:@.arguments/*/filename
+
+// Making sure file exists.
+if
+   not
+      io.file.exists:x:@.arguments/*/filename
+   .lambda
+      throw:Widget file does not exist
+         status:int:404
+         public:bool:true
+
+// Makes sure we don't try to add widgets outside of modules.
+if
+   not
+      strings.starts-with:x:@.arguments/*/filename
+         .:/modules/
+   .lambda
+      throw:You can only add widgets inside the /modules/ folder
+         status:int:400
+         public:bool:true
+
+// Creating our completion.
+.completion
+set-value:x:@.completion
+   strings.concat
+      .:"___\n"
+      .:"FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]:\n{\n"
+      .:"  \"filename\":\""
+      get-value:x:@.arguments/*/filename
+      .:"\"\n}\n"
+
+// Opening database.
+data.connect:magic
+
+   // Inserting our item.
+   data.create
+      table:ml_training_snippets
+      values
+         type:x:@.arguments/*/type
+         prompt:x:@.arguments/*/prompt
+         completion:x:@.completion
+         meta:"FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]"
+
+   // Returning result to caller.
+   yield
+      id:x:@data.create

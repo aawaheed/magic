@@ -1,0 +1,73 @@
+
+/*
+ * This function renders an existing HTML widget
+ *
+ * Pass in the full path as [filename].
+ */
+.arguments
+
+   // Injected by the framework, and is the SignalR channel to transmit the widget over.
+   _session:string
+
+   // Mandatory filename where HTML widget can be found.
+   filename:string
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/filename
+
+// Verifying we're inside a module folder!
+if
+   not
+      strings.starts-with:x:@.arguments/*/filename
+         .:/modules/
+   .lambda
+      throw:We cannot render widgets outside of the '/modules/' folder.
+         status:int:404
+         public:bool:true
+
+// Verifying that widget exists.
+if
+   not
+      io.file.exists:x:@.arguments/*/filename
+   .lambda
+      throw:Widget does not exist!
+         status:int:404
+         public:bool:true
+
+// Loading widget and replacing dynamic parts.
+.html
+set-value:x:@.html
+   io.file.load:x:@.arguments/*/filename
+
+// Verifying this is a valid widget.
+if
+   not
+      strings.contains:x:@.html
+         .:WIDGET_ID_UNIQUE_NUMBER
+   .lambda
+      throw:Not a valid widget!
+         status:int:400
+         public:bool:true
+
+/*
+ * Replacing all "WIDGET_ID_UNIQUE_NUMBER" strings with a CSRNG generated string to avoid duplication of HTML elements,
+ * CSS selectors, and JavaScript functions.
+ */
+set-value:x:@.html
+   strings.replace:x:@.html
+      .:WIDGET_ID_UNIQUE_NUMBER
+      strings.concat
+         .:x
+         crypto.random
+            min:20
+            max:20
+
+// Rendering widget.
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:render_html
+      html:x:@.html
+
+// Returning success.
+return
+   result:success
