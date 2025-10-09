@@ -35,6 +35,8 @@ Magic Cloud allows you to create AI agents with *visual* tools. A visual tool is
 
 Tha above is a contact us form, and it was 100% completely created using natural language, including its backend, database, API and frontend code.
 
+You can watch me create the above app in the [following video](https://www.youtube.com/watch?v=Zt-XNN1mxDA).
+
 ## Hyperlambda
 
 Hyperlambda is a _"5th generation programming language"_, that is on average 10 to 50 times less verbose than traditional languages such as C#, Java, Python, GoLang, and PHP. On average it can solve most problems with 5% of the codebase compared to any traditional programming language. This makes it an extremely high level programming language, allowing you to work declaratively instead of having to implement everything imperatively. Below is a simple HTTP CRUD Read endpoint implemented in C# and Hyperlambda to illustrate what effects this might have on your codebase.
