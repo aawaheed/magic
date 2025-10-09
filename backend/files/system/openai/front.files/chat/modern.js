@@ -478,8 +478,38 @@
           };
           marked.use({
             renderer,
+            tokenizer: {
+              html(src) {
+                const m = src.match(/^<div[^>]*\bclass=(["'])[^"']*\bhljs_ignore\b[^"']*\1[^>]*>[\s\S]*?<\/div>/i);
+                if (m) {
+                  const raw = m[0];
+                  return { type: 'html', raw, text: raw, pre: false, block: true };
+                }
+                return false;
+              },
+            },
           });
+        } else {
+
+          marked.use({
+            tokenizer: {
+              html(src) {
+                const m = src.match(/^<div[^>]*\bclass=(["'])[^"']*\bhljs_ignore\b[^"']*\1[^>]*>[\s\S]*?<\/div>/i);
+                if (m) {
+                  const raw = m[0];
+                  return { type: 'html', raw, text: raw, pre: false, block: true };
+                }
+                return false;
+              },
+            },
+          });
+
         }
+        marked.setOptions({
+          mangle: false,
+          headerIds: false,
+          sanitize: false,
+        });
         marked.use(extendedTables());
       };
 
@@ -1675,26 +1705,69 @@
       this.scrollToBottom(false, false);
     },
 
-    extractScripts: function (src) {
+    extractScripts: function(src) {
 
       const scripts = [];
-      const TOKEN = '__RAW_SCRIPT_' + Math.random().toString(36).slice(2) + '__';
-      let i = 0;
-      const without = src.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, function (m) {
-        const key = TOKEN + (i++) + '__';
-        scripts.push({ key: key, html: m });
-        return key;
-      });
-      return { without: without, scripts: scripts };
+      const TOKEN = `__RAW_SCRIPT_${Math.random().toString(36).slice(2)}__`;
+      let i = 0, out = '', pos = 0;
+
+      const findNextFence = (s, from) => {
+        const openRe = /(^|\r?\n)[ \t]*(?:>[ \t]*)*(?:(?:\d+[.)]|[*\-+])[ \t]+)?([`~]{3,})([^\r\n]*)(?:\r?\n|$)/g;
+        const slice = s.slice(from);
+        const m = openRe.exec(slice);
+        if (!m) return null;
+
+        const marks = m[2], fChar = marks[0], fLen = marks.length;
+        const openAbsStart = from + m.index + (m[1] ? m[1].length : 0);
+        const afterOpen    = from + m.index + m[0].length;
+        const fenceCharEsc = fChar === '`' ? '\\`' : '~';
+        const closeRe = new RegExp('(^|\\r?\\n)[ \\t]*(?:>[ \\t]*)*' + fenceCharEsc + '{' + fLen + ',}\\s*(?=\\r?\\n|$)', 'g');
+
+        const slice2 = s.slice(afterOpen);
+        const m2 = closeRe.exec(slice2);
+        const endAbs = m2 ? (afterOpen + m2.index + m2[0].length) : s.length;
+        return { start: openAbsStart, end: endAbs };
+      };
+
+      const findNextScript = (s, from) => {
+        const re = /<script\b[^>]*>[\s\S]*?<\/script\s*>/i;
+        const slice = s.slice(from);
+        const m = re.exec(slice);
+        if (!m) return null;
+        const start = from + m.index;
+        const end   = start + m[0].length;
+        return { start, end, html: m[0] };
+      };
+
+      while (pos < src.length) {
+
+        const fence = findNextFence(src, pos);
+        const scr   = findNextScript(src, pos);
+
+        if (!fence && !scr) { out += src.slice(pos); break; }
+
+        if (fence && (!scr || fence.start <= scr.start)) {
+          out += src.slice(pos, fence.end);
+          pos = fence.end;
+          continue;
+        }
+
+        if (scr) {
+          out += src.slice(pos, scr.start);
+          const key = `${TOKEN}${i++}__`;
+          scripts.push({ key, html: scr.html });
+          out += key;
+          pos = scr.end;
+          continue;
+        }
+      }
+      return { without: out, scripts };
     },
 
-    restoreScripts: function (html, scripts) {
+    restoreScripts: function(html, scripts) {
 
-      var out = html;
-      for (var j = 0; j < scripts.length; j++) {
-        var s = scripts[j];
-        out = out.split(s.key).join(s.html);
-      }
+      let out = html;
+      for (const s of scripts) out = out.split(s.key).join(s.html);
       return out;
     },
 
@@ -1857,7 +1930,7 @@
 
     runScriptsIn: async function (root) {
 
-      const scripts = Array.from(root.querySelectorAll('script:not([data-executed])'));
+      const scripts = Array.from(root.querySelectorAll('.hljs_ignore script:not([data-executed])'));
 
       for (const oldScript of scripts) {
         oldScript.setAttribute('data-executed', '1');

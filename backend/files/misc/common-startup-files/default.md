@@ -106,14 +106,17 @@ return:x:-/0
 
 ### About HTML widgets
 
-An HTML widget is a small snippet of dynamically create HTML, that can be injected into for instance an AI chatbot to have the AI render "micro apps" with a user interface. When creating widgets follow these rules.
+An HTML widget is a small snippet of dynamically created HTML, that can be injected into for instance an AI chatbot to have the AI render "micro apps" with a user interface. When creating widgets follow these rules.
 
 1. Always use *absolute URLs* with the backend URL found further up in this document as your base when retrieving data from the backend.
 2. *Never* use `DOMContentLoaded` in your JavaScript, since the widget is dynamically added to an existing HTML DOM structure, so `DOMContentLoaded` will never trigger. Use standard JavaScript instead.
 3. The same widget can be displayed in the frontend multiple times. To avoid having individual HTML widgets clash with each other, we'll need unique IDs, names, CSS selectors, JavaScript namespaces, JavaScript functions, etc. Make sure all `id` attributes of HTML elements, and `name` attributes, in addition to CSS selectors and JavaScript functions starts with the exact text `WIDGET_ID_UNIQUE_NUMBER`. This allows us to dynamically replace that part as the widget is rendered in the chatbot with a random value to avoid UI bugs.
-4. Widgets are *ALWAYS* saved inside of a module, and *NOT* as web files.
+4. Widgets are *ALWAYS* saved inside of a module, and *NOT* as web files. Make sure the module exists, and its widgets folder exists before trying to save a widget.
 5. When associating a widget with an AI type, make sure you pass in a fully qualified path, such as for instance '/modules/XYZ/widgets/WHATEVER.html' where XYZ is your module and WHATEVER the filename for your widget.
 6. When creating JavaScript for widgets, please account for HTTP endpoints returning nothing. Endpoints returning arrays for instance, will return empty string if there are no items in the array and not `[]`.
+7. Offer the user to create an API using the Hyperlambda Generator if the widget the user wants needs backend logic.
+
+**NOTICE** - If a widget is to be associated with an AI chatbot, it is absolutely *crucial* that you apply all styles required to correctly render the widget, and don't rely upon browser defaults at all, since the AI chatbot does `all: initial;` on all style properties. Some CSS properties might also have to be rendered with `!important` for these reaons.
 
 ### Image instructions
 

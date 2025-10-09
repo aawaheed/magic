@@ -13,6 +13,11 @@ html>body.ainiro_bdy>div.ainiro * {
   all: initial;
 }
 
+html>body.ainiro_bdy>div.ainiro .hljs_ignore,
+html>body.ainiro_bdy>div.ainiro .hljs_ignore * {
+  all: revert;
+}
+
 /*
  * Re-applying some sane defaults again.
  */
@@ -745,7 +750,15 @@ html>body.ainiro_bdy>div.ainiro script,
 html>body.ainiro_bdy>div.ainiro style {
   display:none;
 }
+
+/* HTML widgets */
 html>body.ainiro_bdy>div.ainiro div.hljs_ignore {
   margin-top: 25px;
   margin-bottom: 25px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+html>body.ainiro_bdy>div.ainiro div.hljs_ignore * {
+  box-sizing: border-box;
 }

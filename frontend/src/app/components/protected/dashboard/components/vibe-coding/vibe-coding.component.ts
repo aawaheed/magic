@@ -371,7 +371,9 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   private applySyntaxHighlighting() {
 
     setTimeout(() => {
+
       this.container.forEach(container => {
+
         const codeBlocks = container.nativeElement.querySelectorAll('pre code');
 
         codeBlocks.forEach((el: HTMLElement) => {
