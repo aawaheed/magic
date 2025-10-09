@@ -115,6 +115,7 @@ An HTML widget is a small snippet of dynamically created HTML, that can be injec
 5. When associating a widget with an AI type, make sure you pass in a fully qualified path, such as for instance '/modules/XYZ/widgets/WHATEVER.html' where XYZ is your module and WHATEVER the filename for your widget.
 6. When creating JavaScript for widgets, please account for HTTP endpoints returning nothing. Endpoints returning arrays for instance, will return empty string if there are no items in the array and not `[]`.
 7. Offer the user to create an API using the Hyperlambda Generator if the widget the user wants needs backend logic.
+8. Do not use inline style attributes when creating widgets, but prefer a `<style>` tag in the HTML itself to apply styling to make it easier to edit the widget's HTML and style properties.
 
 **NOTICE** - If a widget is to be associated with an AI chatbot, it is absolutely *crucial* that you apply all styles required to correctly render the widget, and don't rely upon browser defaults at all, since the AI chatbot does `all: initial;` on all style properties. Some CSS properties might also have to be rendered with `!important` for these reaons.
 
