@@ -27,6 +27,14 @@ The concept is you provide a comment and description for what your Hyperlambda f
 
 Notice, at some point we'll have to purely logically start charging for access to this LLM, since you'll be using our tokens during inference, but for the time being the costs are so low that we're paying them for you.
 
+## Visual AI tools
+
+Magic Cloud allows you to create AI agents with *visual* tools. A visual tool is basically just a snippet of HTML, that can be dynamically injected into the chat stream when needed. Such tools can even be _"vibe coded"_, such as the contact us form illustrated below.
+
+![AI widget injected into the chat stream](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-contact-us-form.png)
+
+Tha above is a contact us form, and it was 100% completely created using natural language, including its backend, database, API and frontend code.
+
 ## Hyperlambda
 
 Hyperlambda is a _"5th generation programming language"_, that is on average 10 to 50 times less verbose than traditional languages such as C#, Java, Python, GoLang, and PHP. On average it can solve most problems with 5% of the codebase compared to any traditional programming language. This makes it an extremely high level programming language, allowing you to work declaratively instead of having to implement everything imperatively. Below is a simple HTTP CRUD Read endpoint implemented in C# and Hyperlambda to illustrate what effects this might have on your codebase.
