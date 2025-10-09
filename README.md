@@ -35,7 +35,7 @@ Magic Cloud allows you to create AI agents with *visual* tools. A visual tool is
 
 Tha above is a contact us form, and it was 100% completely created using natural language, including its backend, database, API and frontend code.
 
-You can watch me create the above app in the [following video](https://www.youtube.com/watch?v=Zt-XNN1mxDA).
+You can watch me create the above app in the [following video](https://www.youtube.com/watch?v=Zt-XNN1mxDA), but basically it's like _"vibe coding for ChatGPT apps"_.
 
 ## Hyperlambda
 
