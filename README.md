@@ -27,9 +27,9 @@ The concept is you provide a comment and description for what your Hyperlambda f
 
 Notice, at some point we'll have to purely logically start charging for access to this LLM, since you'll be using our tokens during inference, but for the time being the costs are so low that we're paying them for you.
 
-## Visual AI tools
+## Vibe code "ChatGPT apps"
 
-Magic Cloud allows you to create AI agents with *visual* tools. A visual tool is basically just a snippet of HTML, that can be dynamically injected into the chat stream when needed. Such tools can even be _"vibe coded"_, such as the contact us form illustrated below.
+Magic Cloud allows you to create AI agents with *visual* tools, or _"ChatGPT apps"_. A visual tool is basically just a snippet of HTML, that can be dynamically injected into the chat stream when needed. Such tools can even be _"vibe coded"_, such as the contact us form illustrated below.
 
 ![AI widget injected into the chat stream](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-contact-us-form.png)
 
