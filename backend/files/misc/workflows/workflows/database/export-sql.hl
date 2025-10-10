@@ -1,10 +1,13 @@
 
 /*
- * Executes the specified [sql] and returns the result
+ * Executes the specified [sql] and exports it as a CSV file
  * 
- * Connects to [database] database, and executes the specified [sql], and returns all rows resulting from the SQL to caller.
+ * Connects to [database] database, and executes the specified [sql], and exports the file as a CSV vile.
  */
 .arguments
+
+   // Injected by the framework to identify the session.
+   _session:string
 
    // Mandatory argument being SQL to execute, unless specifically overridden the dialect should be SQLite
    sql:string
@@ -24,6 +27,7 @@ validators.default:x:@.arguments
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/sql
+validators.mandatory:x:@.arguments/*/_session
 validators.mandatory:x:@.arguments/*/database
 log.info:x:@.arguments/*/sql
    database:x:@.arguments/*/database
@@ -41,6 +45,41 @@ data.connect:x:@.arguments/*/database
 
    // Executing SQL.
    data.select:x:@.arguments/*/sql
+
+   // Converting to CSV.
+   lambda2csv:x:@data.select/*
+
+   // Saving to temp folder.
+   .path:/etc/tmp/
+   if
+      not
+         io.folder.exists:x:@.path
+      .lambda
+         io.folder.create:x:@.path
+   set-value:x:@.path
+      strings.concat
+         get-value:x:@.path
+         .:sql-export-
+         crypto.random
+            min:25
+            max:25
+         .:.csv
+   io.file.save:x:@.path
+      get-value:x:@lambda2csv
+
+   auth.ticket.create
+      username:service
+      roles
+         .:root
+
+   // Signaling frontend that file can be downloaded
+   sockets.signal:x:@.arguments/*/_session
+      role:root
+      args
+         type:download_file
+         ticket:x:@auth.ticket.create
+         filename:x:@.path
+         .
 
    // Returning result to caller.
    yield

@@ -381,3 +381,4 @@ backend/files/etc/cache/*
 deployment.apps/*
 backend/files/etc/stripe-subscription-templates/templates.hl
 backend/files/etc/hyperlambda-training-material/*
+/backend/files/etc/tmp

@@ -380,7 +380,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
           // Verifying we should not ignore this guy.
           let ignore = false;
-          let idxEl = el
+          let idxEl = el;
           while (idxEl) {
             if (idxEl.classList.contains('hljs_ignore')) {
               ignore = true;

@@ -206,9 +206,20 @@
 }
 
 ::ng-deep .download_file {
-  display: inline-block;
+  display: block;
   border: solid 1px rgba(0,0,0,.1);
   border-radius: 5px;
   padding: 5px 25px;
   text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+::ng-deep .hljs_ignore {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
