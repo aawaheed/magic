@@ -8,6 +8,20 @@
 /*
  * Resetting all CSS values to make sure site's CSS doesn't interfere with chatbot UI.
  */
+.ainiro,
+.ainiro * {
+  all: initial;
+}
+
+.hljs_ignore,
+.hljs_ignore * {
+  all: revert;
+}
+
+/*
+  If the above doesn't work, there might be too specific selectors on the page where
+  the chatbot is embedded, at which point the following might work:
+
 html>body.ainiro_bdy>button.ainiro,
 html>body.ainiro_bdy>div.ainiro * {
   all: initial;
@@ -18,8 +32,13 @@ html>body.ainiro_bdy>div.ainiro .hljs_ignore * {
   all: revert;
 }
 
+*/
+
 /*
  * Re-applying some sane defaults again.
+ *
+ * NOTICE!
+ * Extreme "specificity" to avoid CSS on page from overriding things.
  */
 html>body.ainiro_bdy>div.ainiro div {
   display: block !important;
