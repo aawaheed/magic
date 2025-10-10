@@ -83,4 +83,5 @@ data.connect:x:@.arguments/*/database
 
    // Returning result to caller.
    yield
-      rows:x:@data.select/*
+      result:success
+      message:You should be able to download your file now.
