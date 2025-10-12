@@ -286,6 +286,7 @@ button.ainiro.ainiro_hide {
 .ainiro_human {
   margin-bottom: 55px;
   font-size: 18px;
+  line-height: 24px;
   text-align: justify;
   position: relative;
   border-radius: 10px;

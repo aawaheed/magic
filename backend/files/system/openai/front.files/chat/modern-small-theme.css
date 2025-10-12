@@ -281,6 +281,7 @@ div.ainiro>.ainiro_chat_surface>.ainiro_starters>.ainiro_starter {
 .ainiro_human {
   margin-block: 40px;
   font-size: 16px;
+  line-height: 24px;
   text-align: justify;
   position: relative;
   padding: 15px;
