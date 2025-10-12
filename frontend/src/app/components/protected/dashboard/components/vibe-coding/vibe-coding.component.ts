@@ -438,7 +438,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   private extractScripts(src: string): { without: string; scripts: Array<{ key: string; html: string }> } {
 
     const scripts: Array<{ key: string; html: string }> = [];
-    const TOKEN = `__RAW_SCRIPT_${Math.random().toString(36).slice(2)}__`;
+    const TOKEN = `%%RAW_SCRIPT_${Math.random().toString(36).slice(2)}%%`;
     let i = 0;
     let out = '';
     let pos = 0;

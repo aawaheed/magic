@@ -14,12 +14,9 @@
 /*
  * Applying font for all elements.
  */
-html>body.ainiro_bdy>button.ainiro,
-html>body.ainiro_bdy>div.ainiro {
+.ainiro,
+.ainiro *:not(.hljs_ignore):not(.hljs_ignore *) {
   font-family: Roboto;
-}
-html>body.ainiro_bdy>div.ainiro * {
-  font-family: inherit;
 }
 
 /*
@@ -39,7 +36,7 @@ html>body.ainiro_bdy>div.ainiro * {
 /*
  * Button to open chatbot.
  */
-html>body.ainiro_bdy>button.ainiro {
+button.ainiro {
   display: block !important;
   position: fixed;
   bottom: 10px;
@@ -58,18 +55,19 @@ html>body.ainiro_bdy>button.ainiro {
   background: linear-gradient(var(--ainiro-bg-start), var(--ainiro-bg-end));
   color:var(--ainiro-color);
   border-radius: 50px;
+  border: none;
 }
-html>body.ainiro_bdy>button.ainiro.ainiro_left {
+button.ainiro.ainiro_left {
   left: 10px;
   right: unset;
 }
-html>body.ainiro_bdy>button.ainiro:hover,
-html>body.ainiro_bdy>button.ainiro:active,
-html>body.ainiro_bdy>button.ainiro:focus {
+button.ainiro:hover,
+button.ainiro:active,
+button.ainiro:focus {
   transition: color .1s ease-in-out;
   color:var(--ainiro-link);
 }
-html>body.ainiro_bdy>button.ainiro>i.ainiro-icofont {
+button.ainiro>i.ainiro-icofont {
   font-size: 22px;
   margin-left: 15px;
   margin-right: 15px;
@@ -78,7 +76,7 @@ html>body.ainiro_bdy>button.ainiro>i.ainiro-icofont {
 /*
  * Chat window itself.
  */
-html>body.ainiro_bdy>div.ainiro {
+div.ainiro {
   display: none;
   position: fixed;
   bottom: 10px;
@@ -96,15 +94,15 @@ html>body.ainiro_bdy>div.ainiro {
   background: linear-gradient(var(--ainiro-bg-start), var(--ainiro-bg-end));
   border-radius: 10px;
 }
-html>body.ainiro_bdy>div.ainiro.ainiro_left {
+div.ainiro.ainiro_left {
   left: 10px;
   right: unset;
 }
-html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot {
+div.ainiro.show_ainiro_chatbot {
   display: block !important;
   transition: all .25s ease-in-out;
 }
-html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot.ainiro_maximized {
+div.ainiro.show_ainiro_chatbot.ainiro_maximized {
   width: 100%;
   height: 100%;
   max-height: 100%;
@@ -121,20 +119,20 @@ html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot.ainiro_maximized {
     background-color: rgba(0,0,0,.75);
   }
 }
-html>body.ainiro_bdy>button.ainiro.ainiro_hide {
+button.ainiro.ainiro_hide {
   display:none !important;
 }
 
 /*
  * Toolbar.
  */
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar {
+.ainiro_toolbar {
   display: flex !important;
   flex-direction: row;
   padding: 10px 15px;
   border-bottom: solid 1px rgb(0,0,0);
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>div.ainiro_header {
+.ainiro_toolbar>.ainiro_header {
   width: 100%;
   font-weight: bold;
   font-size: 14px;
@@ -148,40 +146,21 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>div.ainiro_header {
 /*
  * Action buttons, close and maximize.
  */
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action {
-  padding: 5px;
-  margin-left: 5px;
-}
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action i {
+.ainiro_toolbar>.ainiro_action i {
   color:var(--ainiro-color);
   transition: color .1s ease-in-out;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action:hover i,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action:active i,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action:focus i {
+.ainiro_toolbar>.ainiro_action:hover i,
+.ainiro_toolbar>.ainiro_action:active i,
+.ainiro_toolbar>.ainiro_action:focus i {
   transition: color .1s ease-in-out;
   color: var(--ainiro-link);
-}
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action.ainiro_new_chat i {
-  font-size:24px;
-}
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action.ainiro_maximize i {
-  font-size:16px;
-}
-html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar>button.ainiro_action.ainiro_close i {
-  font-size:24px;
-}
-html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot:not(.ainiro_maximized)>div.ainiro_toolbar>button.ainiro_maximize>i.ainiro-icofont-contract-alt {
-  display: none;
-}
-html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot.ainiro_maximized>div.ainiro_toolbar>button.ainiro_maximize>i.ainiro-icofont-expand-full {
-  display: none;
 }
 
 /*
  * Chat window surface.
  */
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface {
+.ainiro_chat_surface {
   height: calc(100% - 144px);
   padding: 15px 35px;
   overflow-y: auto;
@@ -200,10 +179,10 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface {
     opacity:1;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters {
   margin-top: 55px;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter {
   border: solid 1px rgb(0,0,0);
   padding: 8px 15px;
   margin: 0 15px 15px 0;
@@ -219,45 +198,46 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>butt
   color: var(--ainiro-color);
   background-color: rgba(0,0,0,.1);
   border-radius: 10px;
+  cursor: pointer;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:hover,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:active,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:focus {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:hover,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:active,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:focus {
   transition: color .1s ease-in-out;
   color: var(--ainiro-link);
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(1) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(1) {
   animation-delay: .2s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(2) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(2) {
   animation-delay: .3s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(3) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(3) {
   animation-delay: .4s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(4) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(4) {
   animation-delay: .5s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(5) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(5) {
   animation-delay: .6s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(6) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(6) {
   animation-delay: .7s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(7) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(7) {
   animation-delay: .8s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(8) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(8) {
   animation-delay: .9s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(9) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>button.ainiro_starter:nth-child(9) {
   animation-delay: 1s;
 }
 
 /*
  * Watermark.
  */
- html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_watermark {
+ .ainiro_watermark {
   text-align: right;
   margin-bottom: 10px;
   margin-top: -10px;
@@ -266,7 +246,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_starters>butt
   color:var(--ainiro-color);
 }
 
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_watermark a {
+.ainiro_watermark a {
   font-size: 12px;
   color:var(--ainiro-link);
 }
@@ -274,8 +254,8 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_watermark a {
 /*
  * Chat messages from human or machine.
  */
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
   margin-bottom: 55px;
   font-size: 16px;
   text-align: justify;
@@ -286,8 +266,8 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
   border: solid 1px rgb(0,0,0);
   border-radius: 10px;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine:after,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine:after,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
   content:'';
   background-size: 40px 40px;
   width: 40px;
@@ -298,7 +278,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
   bottom: -18px;
   border: solid 1px rgb(0,0,0);
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine {
   margin-right: 0;
 }
 @keyframes ainiro_fade_in_left {
@@ -313,7 +293,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine {
     opacity:1;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_question {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_question {
   opacity: 0;
   animation-name: ainiro_fade_in_left;
   animation-duration: .4s;
@@ -321,20 +301,20 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainir
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine:after {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine:after {
   background-image: url('https://ainiro.io/assets/images/misc/machine5.png');
   left: -18px;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.integration:after {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.integration:after {
   background-image: url('https://ainiro.io/assets/images/misc/human5.png');
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.integration.slack:after {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.integration.slack:after {
   background-image: url('https://ainiro.io/assets/images/misc/slack2.png');
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
   margin-left: 0;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
   background-image: url('https://ainiro.io/assets/images/misc/human5.png');
   right: -18px;
 }
@@ -350,14 +330,14 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human:after {
     margin-left: 0;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
   opacity: 0;
   animation-name: ainiro_fade_from_right;
   animation-duration: .4s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_error {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_error {
   background-color: rgba(255,0,0,.2);
 }
 @keyframes ainiro_fade_from_left {
@@ -372,7 +352,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainir
     margin-right: 0;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
   opacity: 0;
   animation-name: ainiro_fade_from_left;
   animation-duration: .4s;
@@ -396,7 +376,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainir
     bottom: 0px;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot {
   position: relative;
   animation: ainiro_jump 1s infinite;
   display: inline-block;
@@ -406,13 +386,13 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>spa
   margin-right: 3px;
   background-color: var(--ainiro-color);
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-1 {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-1 {
   animation-delay: 150ms;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-2 {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-2 {
   animation-delay: 300ms;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-3 {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>span.ainiro-dot.ainiro-dot-3 {
   animation-delay: 450ms;
 }
 
@@ -431,13 +411,13 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>p>spa
     opacity:1;
   }
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references {
   display: block;
   padding-left: 0;
   margin-top: 25px;
   padding-left: 30px;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li {
   list-style-type:decimal;
   color: #999 !important;
   animation-name: ainiro_fade_in_left_full_width;
@@ -447,67 +427,67 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ai
   opacity: 0;
   display: list-item;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(1) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(1) {
   animation-delay: .1s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(2) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(2) {
   animation-delay: .2s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(3) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(3) {
   animation-delay: .3s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(4) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(4) {
   animation-delay: .4s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(5) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(5) {
   animation-delay: .5s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(6) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(6) {
   animation-delay: .6s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(7) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(7) {
   animation-delay: .7s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(8) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(8) {
   animation-delay: .8s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(9) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(9) {
   animation-delay: .9s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(10) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(10) {
   animation-delay: 1s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(11) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(11) {
   animation-delay: 1.1s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(12) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(12) {
   animation-delay: 1.2s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(13) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(13) {
   animation-delay: 1.3s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(14) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(14) {
   animation-delay: 1.4s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(15) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(15) {
   animation-delay: 1.5s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(16) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(16) {
   animation-delay: 1.6s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(17) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(17) {
   animation-delay: 1.7s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(18) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(18) {
   animation-delay: 1.8s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(19) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(19) {
   animation-delay: 1.9s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(20) {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li:nth-child(20) {
   animation-delay: 2s;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a {
   text-decoration: none;
   padding: 5px 15px;
   overflow-x: hidden;
@@ -520,9 +500,9 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ai
   box-sizing: border-box;
   color: var(--ainiro-link);
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:hover,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:active,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:focus {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:hover,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:active,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ainiro_references>li>a:focus {
   background-color: rgba(0,0,0,.2);
   transition: background-color .1s ease-in-out;
 }
@@ -530,7 +510,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ai
 /*
  * Form elements.
  */
- html>body.ainiro_bdy>div.ainiro>form.ainiro_form {
+ div.ainiro>form.ainiro_form {
   position: absolute;
   bottom: 15px;
   left: 0;
@@ -541,7 +521,7 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>ul.ai
   flex-direction: row;
   padding: 0 36px;
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>input.ainiro_query {
+div.ainiro>form.ainiro_form>input.ainiro_query {
   display: block;
   width: 100%;
   padding: 8px 15px;
@@ -554,11 +534,11 @@ html>body.ainiro_bdy>div.ainiro>form.ainiro_form>input.ainiro_query {
   font-family: inherit;
   border-radius: 10px 0 0 10px;
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>input.ainiro_query::placeholder {
+div.ainiro>form.ainiro_form>input.ainiro_query::placeholder {
   color: rgb(180,180,180) !important;
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments {
+div.ainiro>form.ainiro_form>button.ainiro_send,
+div.ainiro>form.ainiro_form>button.ainiro_attachments {
   outline: none;
   padding: 0 25px;
   border: none;
@@ -567,29 +547,29 @@ html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments {
   cursor: pointer;
   background: linear-gradient(var(--ainiro-bg-start), var(--ainiro-bg-end));
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send {
+div.ainiro>form.ainiro_form>button.ainiro_send {
   border-radius: 0 10px 10px 0;
   border-left: solid 1px rgba(0,0,0,.4);
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send:disabled,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:disabled {
+div.ainiro>form.ainiro_form>button.ainiro_send:disabled,
+div.ainiro>form.ainiro_form>button.ainiro_attachments:disabled {
   cursor: not-allowed !important;
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments i {
+div.ainiro>form.ainiro_form>button.ainiro_send i,
+div.ainiro>form.ainiro_form>button.ainiro_attachments i {
   transition: color .4s ease-in-out, opacity .4s ease-in-out;
   color: var(--ainiro-color);
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send:hover i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send:active i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send:focus i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:hover i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:active i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:focus i {
+div.ainiro>form.ainiro_form>button.ainiro_send:hover i,
+div.ainiro>form.ainiro_form>button.ainiro_send:active i,
+div.ainiro>form.ainiro_form>button.ainiro_send:focus i,
+div.ainiro>form.ainiro_form>button.ainiro_attachments:hover i,
+div.ainiro>form.ainiro_form>button.ainiro_attachments:active i,
+div.ainiro>form.ainiro_form>button.ainiro_attachments:focus i {
   color: var(--ainiro-link);
 }
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_send:disabled i,
-html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:disabled i {
+div.ainiro>form.ainiro_form>button.ainiro_send:disabled i,
+div.ainiro>form.ainiro_form>button.ainiro_attachments:disabled i {
   opacity: 0.1;
   transition: color .4s ease-in-out, opacity .4s ease-in-out;
   cursor: not-allowed !important;
@@ -623,38 +603,38 @@ html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:disab
   }
 }
 @media (max-width: 768px) {
-  html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot {
+  div.ainiro.show_ainiro_chatbot {
     right: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
   }
-  html>body.ainiro_bdy>div.ainiro.show_ainiro_chatbot:not(.ainiro_maximized)>div.ainiro_toolbar>button.ainiro_maximize {
+  div.ainiro.show_ainiro_chatbot:not(.ainiro_maximized)>div.ainiro_toolbar>button.ainiro_maximize {
     display: none;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine,
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_machine,
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
     text-align: left;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_machine {
     margin-right: 0;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
     animation-name: ainiro_fade_in_right_2;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_human {
     margin-left: 0;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
     animation-name: ainiro_fade_in_left_2;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_machine.ainiro_just_added {
     margin-right: 0;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
+  div.ainiro>div.ainiro_chat_surface>div.ainiro_human.ainiro_just_added {
     margin-left: 0;
   }
-  html>body.ainiro_bdy>div.ainiro>div.ainiro_toolbar {
+  .ainiro_toolbar {
     border-radius: 0;
     margin-top: 0;
   }
@@ -663,7 +643,7 @@ html>body.ainiro_bdy>div.ainiro>form.ainiro_form>button.ainiro_attachments:disab
 /*
  * Copy response button.
  */
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response {
   position:absolute !important;
   bottom: 10px !important;
   right: 10px !important;
@@ -673,18 +653,18 @@ html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>butto
   opacity: .5 !important;
   transition: opacity .1s ease-in-out !important;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:hover,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:active,
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:focus {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:hover,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:active,
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response:focus {
   opacity: 1 !important;
   transition: opacity .1s ease-in-out !important;
 }
-html>body.ainiro_bdy>div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response i {
+div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_response i {
   font-size: 16px !important;
   color: var(--ainiro-color);
 }
 
-html>body.ainiro_bdy>button.ainiro_hidden,
+button.ainiro_hidden,
 html>body.ainiro_bdy button.ainiro_hidden {
   display: none !important;
 }

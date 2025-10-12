@@ -116,6 +116,10 @@ An HTML widget is a small snippet of dynamically created HTML, that can be injec
 6. When creating JavaScript for widgets, please account for HTTP endpoints returning nothing. Endpoints returning arrays for instance, will return empty string if there are no items in the array and not `[]`.
 7. Offer the user to create an API using the Hyperlambda Generator if the widget the user wants needs backend logic.
 8. Do not use inline style attributes when creating widgets, but prefer a `<style>` tag in the HTML itself to apply styling to make it easier to edit the widget's HTML and style properties.
+9. Widgets are injected into a shadow DOM container, so you **CANNOT** use `document.querySelector` or `document.getElementById`. Use the following functions instead:
+   - `ainiro.$` instead of `querySelector`.
+   - `ainiro.$id` instead of `getElementById`.
+   - `ainiro.$$` instead of `querySelectorAll`.
 
 **NOTICE** - If a widget is to be associated with an AI chatbot, it is absolutely *crucial* that you apply all styles required to correctly render the widget, and don't rely upon browser defaults at all, since the AI chatbot does `all: initial;` on all style properties. Some CSS properties might also have to be rendered with `!important` for these reaons.
 
@@ -1327,13 +1331,17 @@ This function sends the specified [html] to the client to display it as is. Use 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/display-widget.hl]:
 {
-  "html": "[STRING_VALUE]"
+  "html": "[STRING_VALUE]",
+  "filename": "[STRING_VALUE]"
 }
 ___
 
 Arguments;
 
-- [html] is mandatory and the HTML to render on the frontend.
+- [html] is a snippet of HTML to render on the frontend.
+- [filename] is a full path to a file that'll be loaded and sent to the frontend.
+
+Supply at least one of the arguments, but NOT both!
 
 **IMPORTANT** - Remember to always use absolute URLs in your JavaScript if you're invoking the backend. You can find the backend URL further up in this instruction. The widget will be injected into an already preloaded DOM structure, so don't rely upon `DOMContentReady` or similar events.
 

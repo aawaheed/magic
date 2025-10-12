@@ -48,3 +48,29 @@ RecaptchaComponent.prototype.ngOnDestroy = function () {
     this.subscription.unsubscribe();
   }
 }
+
+function waitForAiniro(timeoutMs = 8000): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+
+    (function check() {
+      if (window.ainiro) return resolve(window.ainiro);
+      if (Date.now() - start > timeoutMs)
+        return reject(new Error('Timed out waiting for window.ainiro'));
+      requestAnimationFrame(check);
+    })();
+  });
+}
+
+(async () => {
+  try {
+    await waitForAiniro();
+    window.ainiro = Object.assign(window.ainiro ?? {}, {
+      $: (selector: string) => document.querySelector(selector),
+      $$: (selector: string) => {return Array.from(document.querySelectorAll(selector))},
+      $id: (id: string) => document.getElementById(id),
+    });
+  } catch (err) {
+    console.error(err);
+  }
+})();

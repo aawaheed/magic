@@ -12,16 +12,38 @@
    // Mandatory argument being the HTML to send to the client.
    html:string
 
+   // Optional filename argument serving as an alternative to above [html] argument.
+   filename:string
+
 // Making sure user is allowed to execute function.
 auth.ticket.verify:root
 
-// Sanity checking invocation
-validators.mandatory:x:@.arguments/*/html
-
 // Buffer for HTML.
 .html
-set-value:x:@.html
-   get-value:x:@.arguments/*/html
+if
+   and
+      exists:x:@.arguments/*/html
+      not-null:x:@.arguments/*/html
+   .lambda
+      set-value:x:@.html
+         get-value:x:@.arguments/*/html
+
+else-if
+
+   and
+      exists:x:@.arguments/*/filename
+      not-null:x:@.arguments/*/filename
+   .lambda
+      if
+         not
+            io.file.exists:x:@.arguments/*/filename
+         .lambda
+            throw:"No [html] or [filename] argument provided, provide one of these"
+               status:int:500
+               public:bool:true
+
+      set-value:x:@.html
+         io.file.load:x:@.arguments/*/filename
 
 // Verifying this is a valid widget.
 if
