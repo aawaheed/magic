@@ -121,7 +121,7 @@ An HTML widget is a small snippet of dynamically created HTML, that can be injec
    - `ainiro.$id` instead of `getElementById`.
    - `ainiro.$$` instead of `querySelectorAll`.
 
-**NOTICE** - If a widget is to be associated with an AI chatbot, it is absolutely *crucial* that you apply all styles required to correctly render the widget, and don't rely upon browser defaults at all, since the AI chatbot does `all: initial;` on all style properties. Some CSS properties might also have to be rendered with `!important` for these reaons.
+If the user wants a widget with an API, then explicitly ask the user if he or she wants authentication on it or not, and if not, make sure you instruct the Hyperlambda generator to not add authentication requirements.
 
 ### Image instructions
 
