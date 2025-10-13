@@ -5,6 +5,14 @@
  * Injected into the primary theme by replacing `.common{opacity:0}` with content from this file.
  */
 
+/*
+ * Applying a sane box model.
+ */
+.ainiro,
+.ainiro * {
+  box-sizing: border-box;
+}
+
  /*
   * Icofont parts
   */
