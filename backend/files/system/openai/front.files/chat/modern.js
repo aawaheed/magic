@@ -1,4 +1,3 @@
-
 /*
  * Modern JavaScript file for OpenAI chat inclusion.
  */
@@ -9,16 +8,36 @@
     return;
   }
 
-  // Global handler to make sure we delete popup if anything is clicked in document.
+  // Creating our shadow DOM element.
+  const host = document.createElement('ainiro-chatbot');
+  document.body.appendChild(host);
+
+  class AiniroChatbotEl extends HTMLElement {
+    constructor() {
+      super();
+      this.root = this.attachShadow({ mode: 'open' });
+    }
+  }
+  customElements.define('ainiro-chatbot', AiniroChatbotEl);
+
+  // Global handler to make sure we delete session list popup if anything is clicked in document.
   document.addEventListener("click", function () {
-    const el = document.querySelector('.ainiro_sessions_list');
-    if (el) {
-      el.parentNode.removeChild(el);
+    if (window.ainiro && window.ainiro.shadow) {
+      const inShadow = window.ainiro.shadow.querySelector('.ainiro_sessions_list');
+      if (inShadow && inShadow.parentNode) {
+        inShadow.parentNode.removeChild(inShadow);
+      }
     }
   });
 
   // Creating our primary namespace.
   window.ainiro = {
+
+    // Shadow helpers.
+    shadow: host.shadowRoot || host.attachShadow({ mode: 'open' }),
+    $: function(sel) { return ainiro.shadow.querySelector(sel); },
+    $$: function(sel) { return Array.from(ainiro.shadow.querySelectorAll(sel)); },
+    $id: function(id) { return ainiro.shadow.getElementById(id); },
 
     /*
      * Settings for chatbot.
@@ -104,9 +123,6 @@
      */
     init: function() {
 
-      // Adding our CSS selector to body HTML element to make it easier to create targeted CSS selectors.
-      document.body.classList.add('ainiro_bdy');
-
       /*
        * Figuring out theme to use.
        *
@@ -119,8 +135,10 @@
 
       /*
        * Including CSS files required for chatbot.
+       * (Load inside shadow root to isolate styles.)
+       * 
+       * Notice, our little injectShadowCSS function
        */
-      const cssFileElement = document.createElement('link');
       let styleUrl = `${this.ainiro_settings.url}/magic/system/openai/include-style.css?`;
       styleUrl += `file=${encodeURIComponent(theme)}&`;
       styleUrl += `position=${encodeURIComponent(this.ainiro_settings.position)}&`;
@@ -129,10 +147,19 @@
       styleUrl += `start=${encodeURIComponent(this.ainiro_settings.start)}&`;
       styleUrl += `end=${encodeURIComponent(this.ainiro_settings.end)}&`;
       styleUrl += `v=${encodeURIComponent(this.ainiro_settings.version)}`;
-      cssFileElement.href = styleUrl;
-      cssFileElement.rel = 'stylesheet';
-      const head = document.getElementsByTagName('head')[0];
-      head.appendChild(cssFileElement);
+      this.injectShadowCSS(this.shadow, styleUrl);
+
+      // Ensuring we're using correct icons for buttons.
+      const style = document.createElement('style');
+        style.textContent = `
+          @font-face {
+            font-family: 'AiniroIcoFont';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://ainiro.io/assets/css/fonts/icofont.woff2?v=22.0.0') format('woff2'), url('https://ainiro.io/assets/css/fonts/icofont.woff?v=22.0.0') format('woff');
+            font-display: swap;
+          }`;
+      document.head.appendChild(style);
 
       // Creating chatbot trigger button that opens chatbot.
       const chatButton = document.createElement('button');
@@ -165,14 +192,11 @@
         chatButton.style.setProperty('--ainiro-dynamic-content', '"' + this.ainiro_settings.popup + '"');
       }
 
-      // Appending button to document.
-      document.getElementsByTagName('body')[0].appendChild(chatButton);
+      // Appending button to shadow.
+      this.shadow.appendChild(chatButton);
 
       /*
        * Creating chatbot window.
-       *
-       * Notice, chat window is always on page, it's just invisible when the chatbot is not used.
-       * This makes it faster to initialise and results in better UX.
        */
       const chatWindow = document.createElement('div');
       chatWindow.className = 'ainiro ainiro_' + this.ainiro_settings.position;
@@ -181,7 +205,7 @@
       if (this.ainiro_settings.rtl) {
         chatWindow.style.direction = 'rtl';
       }
-      window.document.getElementsByTagName('body')[0].appendChild(chatWindow);
+      this.shadow.appendChild(chatWindow);
 
       // Creating top toolbar.
       const toolbar = document.createElement('div');
@@ -314,9 +338,9 @@
           fileInp.value = null;
 
           // Removing text of upload file button.
-          const lbl = document.getElementById('ainiro_filename_label');
-          if (lbl) {
-            lbl.innerHTML = '';
+          const l2 = this.$id('ainiro_filename_label');
+          if (l2) {
+            l2.innerHTML = '';
           }
         });
         attRem.innerHTML = '<i class="ainiro-icofont-duotone ainiro-icofont-purge ainiro-icofont-lg"></i>';
@@ -335,19 +359,14 @@
       chatWindow.appendChild(chatForm);
 
       /*
-       * Checking if we've got something in our session storage,
-       * implying the user has already asked the chatbot something, possibly on a previous page or something.
-       *
-       * This allows us to continue the chat session as the user is browsing the website, visiting links, etc,
-       * while avoiding running through the same questionnaire multiple times in the same session, and also
-       * keeping the context for questions asked previously.
+       * Checking if we've got something in our session storage
        */
       const sessionItems = sessionStorage.getItem('ainiro_chatbot.session');
       if (sessionItems && sessionItems !== '') {
 
         // We've got an existing session and user have already asked at least one question.
         chatSurface.innerHTML = sessionItems;
-        this.runScriptsIn(document.getElementById('ainiro_chat_surf'));
+        this.runScriptsIn(this.$id('ainiro_chat_surf'));
 
         // This prevents questionnaires from being shown.
         this.execQuestionnaires = false;
@@ -410,31 +429,56 @@
      * Deletes DOM elements associated with chatbot, and cleans up DOM
      */
     destroy: function() {
-      document.body.classList.remove('ainiro_bdy');
-      const wnd = document.getElementById('ainiro_chat_wnd');
+
+      const wnd = this.$id('ainiro_chat_wnd');
       wnd.parentElement.removeChild(wnd);
-      const btn = document.getElementById('ainiro_chat_btn');
+      const btn = this.$id('ainiro_chat_btn');
       btn.parentElement.removeChild(btn);
       sessionStorage.setItem('ainiro_state', 'closed');
     },
 
     /*
+     * Correctly injects @import statements from original CSS into root, and the rest of the CSS into our shadow DOM.
+     * This allows us to create CSS files importing fonts for instance.
+     */
+    injectShadowCSS: async function(shadowRoot, styleUrl) {
+
+      // Fetching CSS file.
+      const res = await fetch(styleUrl, { mode: 'cors' });
+      let cssText = await res.text();
+
+      // Finding @import statements
+      const importRegex = /@import\s+url\(["']?([^"')]+)["']?\)[^;]*;/g;
+
+      // Adding all @import statements to head of document.
+      let match;
+      while ((match = importRegex.exec(cssText)) !== null) {
+        const importUrl = match[1];
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = importUrl;
+        document.head.appendChild(link);
+      }
+
+      // Replacing all @import statements with empty text.
+      cssText = cssText.replace(importRegex, '');
+
+      // Adding style as inline style into DOM.
+      const style = document.createElement('style');
+      style.textContent = cssText;
+      shadowRoot.appendChild(style);
+    },
+
+    /*
      * Shows the chat window.
-     *
-     * Notice, this does a little bit of JavaScript trickery to make sure CAPTCHA JS, Marked JS, and SignalR JS
-     * have been included before the window is shown.
      */
     show: function(onAfter = null) {
 
       // Hiding chat button.
-      const btn = document.getElementById('ainiro_chat_btn');
+      const btn = this.$id('ainiro_chat_btn');
       btn.classList.add('ainiro_hide');
       btn.classList.add('ainiro_shown');
 
-      /*
-       * Including resources with callback function being the actual show function, ensuring that chatbot
-       * is not shown before resources have been included on page.
-       */
       this.includeResources(() => {
 
         // Now we can safely invoke our real show function.
@@ -444,8 +488,8 @@
           }
 
           // Disabling button to avoid race conditions.
-          const btn = document.getElementById('ainiro_send');
-          btn.disabled = false;
+          const sb = this.$id('ainiro_send');
+          sb.disabled = false;
 
           // Storing the fact the chatbot is open into session, in case we've got a "sticky" chatbot.
           sessionStorage.setItem('ainiro_state', 'open');
@@ -513,9 +557,11 @@
         marked.use(extendedTables());
       };
 
+      // Allow safe reference to previous AMD define
+      var _ainiroOldDefine;
+
       /*
-       * Checking if reCAPTCHA, Marked, and SignalR are already initialised, and invoking
-       * callback and returning early if they are already included.
+       * Checking if reCAPTCHA, Marked, and SignalR are already initialised.
        */
       if ((this.ainiro_settings.recaptcha === '-1' || typeof mcaptcha !== 'undefined' || typeof grecaptcha !== 'undefined') &&
         typeof marked !== 'undefined' &&
@@ -523,11 +569,9 @@
         typeof extendedTables !== 'undefined' &&
         (this.ainiro_settings.code === false || typeof hljs !== 'undefined')) {
 
-        // Invokingh callback and returning since everything is already included on page.
         afterMarked();
         onAfter();
 
-        // If define was removed, we reset it back to what it was.
         if (_ainiroOldDefine !== undefined) {
           window.define = _ainiroOldDefine;
           _ainiroOldDefine = undefined;
@@ -547,46 +591,31 @@
         jsFiles.push(this.ainiro_settings.url + '/magic/system/misc/magic-captcha-challenge.js')
       }
       if (this.ainiro_settings.code === true) {
-
-        // Adding JavaScript file.
         jsFiles.push('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js');
       }
 
       // To avoid confusing any module loaders here, we reset the "define" object.
       if (window.define !== undefined) {
-        var _ainiroOldDefine = window.define;
+        _ainiroOldDefine = window.define;
         window.define = undefined;
       }
       jsFiles.forEach(idx => {
-
-        // Appending JS file to body element.
         const el = document.createElement('script');
         el.src = idx;
         document.getElementsByTagName('body')[0].appendChild(el);
       });
 
-      /*
-       * Postponing execution of callback until reCAPTCHA, Marked, and SignalR have been initialised.
-       *
-       * This little trickery ensures we do not continue initialization of chatbot before all required
-       * JavaScript files have been included and are executed, which prevents rendering issues, in addition
-       * to issues relating from reCAPTCHA not being initialized.
-       */
       const tick = () => {
 
-        // Checking if all JS resources have been downloaded and initialised.
         if ((this.ainiro_settings.recaptcha === '-1' || typeof mcaptcha !== 'undefined' || typeof grecaptcha !== 'undefined') &&
           typeof marked !== 'undefined' &&
           typeof signalR !== 'undefined' &&
           (this.ainiro_settings.code === false || typeof hljs !== 'undefined')) {
 
-          // Invoking callback and returning early to avoid recursively invoking self again.
           afterMarked();
           onAfter();
           return;
         }
-
-        // Invoking self again to check in 250ms if resources have been included correctly.
         setTimeout(tick, 250);
       };
       tick();
@@ -599,11 +628,11 @@
     _show: function(onAfter) {
 
       // Disabling button to avoid race conditions.
-      const btn = document.getElementById('ainiro_send');
+      const btn = this.$id('ainiro_send');
       btn.disabled = true;
 
       // Showing chat window.
-      const wnd = document.getElementById('ainiro_chat_wnd');
+      const wnd = this.$id('ainiro_chat_wnd');
       wnd.classList.add('show_ainiro_chatbot');
 
       // Making sure body element cannot scroll.
@@ -647,14 +676,6 @@
         this.addMessage(html, 'ainiro_machine greeting', false);
       }
 
-      /*
-       * Checking if we should intialize chatbot with questionnaires before allowing user to access LLM.
-       *
-       * Notice, if user has already opened the chatbot before and asked a question, we do not execute this part.
-       * 
-       * Also if user asks an FAQ question we also do not invoke this part to avoid having the initial questionnaire
-       * and conversation starters interfere with the FAQ question.
-       */
       if (this.execQuestionnaires) {
 
         // Fetching questionnaire for type from backend.
@@ -782,7 +803,7 @@
           this.chatMessageDone(this.response);
           if (this.onDone) {
             this.onDone();
-            this.runScriptsIn(document.getElementById('ainiro_chat_surf'));
+            this.runScriptsIn(this.$id('ainiro_chat_surf'));
           }
           return;
           
@@ -795,7 +816,7 @@
             const html = this.renderMarkdownWithScriptPassthrough(obj.message ?? 'An unspecified error occurred, sorry about that :/');
 
             // Updating value of last chat message.
-            const surf = document.getElementById('ainiro_chat_surf');
+            const surf = this.$id('ainiro_chat_surf');
             const msg = surf.childNodes[surf.childNodes.length - 1];
             msg.innerHTML = html;
             msg.className = 'ainiro_machine ainiro_error';
@@ -834,7 +855,7 @@
 
             default:
               this.addMessage(obj.text, 'ainiro_machine integration ' + obj.integration_type, true);
-              const surf = document.getElementById('ainiro_chat_surf');
+              const surf = this.$id('ainiro_chat_surf');
               const html = surf.innerHTML;
               sessionStorage.setItem('ainiro_chatbot.session', html);
               this.scrollToBottom(true, true);
@@ -848,11 +869,11 @@
           // Appending message to temporary response.
           this.response += obj.message;
   
-            // Transforming Markdown
+          // Transforming Markdown
           const html = this.renderMarkdownWithScriptPassthrough(this.response);
 
           // Updating value of last chat message.
-          const surf = document.getElementById('ainiro_chat_surf');
+          const surf = this.$id('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
 
@@ -915,8 +936,6 @@
 
       // Adding button for each question.
       questions.forEach(idx => {
-
-        // Creating button for conversation starter.
         const el = document.createElement('button');
         el.className = 'ainiro_starter';
         el.innerHTML = idx;
@@ -925,7 +944,7 @@
       });
 
       // Adding conversation starters to surface.
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
       surf.appendChild(wrp);
       this.scrollToBottom(true, false);
     },
@@ -936,27 +955,14 @@
     scrollToBottom: function(smooth, force) {
 
       // Retrieving element we're supposed to scroll.
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
 
-      /*
-       * If we're not forcing scrolling, and we've scrolled up at least 50px,
-       * we do not scroll chat window, to allow user to explicitly scroll up to "lock scrolling",
-       * allowing user to read content before it's finished without being disturbed by
-       * automatic scrolling.
-       */
       if (force || surf.scrollTop + 50 > (surf.scrollHeight - surf.offsetHeight)) {
 
-        // Checking if we should scroll smooth.
         if (smooth) {
-
-          // Smooth scrolling.
           const last = surf.childNodes[surf.childNodes.length - 1];
           last.scrollIntoView({behavior: 'smooth', block: 'start'});
-
         } else {
-
-          // Instant scrolling.
-          const surf = document.getElementById('ainiro_chat_surf');
           surf.scrollTop = surf.scrollHeight;
         }
       }
@@ -968,7 +974,7 @@
     maximize: function() {
 
       // Maximizing chat window.
-      const wnd = document.getElementById('ainiro_chat_wnd');
+      const wnd = this.$id('ainiro_chat_wnd');
       wnd.classList.toggle('ainiro_maximized');
     },
 
@@ -980,7 +986,7 @@
       // Clearing out chat window and session storage.
       sessionStorage.removeItem('ainiro_chatbot.session');
       var lst = [];
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
       surf.childNodes.forEach(el => {
         lst.push(el);
       });
@@ -995,16 +1001,9 @@
       this.session = 'c_' + Date.now() + Math.random();
       this.socket?.stop();
 
-      /*
-       * Initialising socket connection again, making sure we also re-initialise chat surface
-       * with greeting and watermark.
-       */
       this.initSession = true;
       this.initSocket(function() {
-
-        // Initialising chat surface with watermark and greeting
         this.initialiseChatSurface();
-
       }.bind(this));
     },
 
@@ -1036,7 +1035,7 @@
     _showSession: function(items) {
 
       // Checking if dropdown already exists, at which point we delete it.
-      const existing = document.querySelector('.ainiro_sessions_list');
+      const existing = this.$('.ainiro_sessions_list');
       if (existing) {
         existing.parentNode.removeChild(existing);
         return;
@@ -1048,11 +1047,11 @@
       }
 
       // Figuring out height of toolbar.
-      const toolbar = document.querySelector('.ainiro_toolbar');
+      const toolbar = this.$('.ainiro_toolbar');
       const topPosition = toolbar.clientHeight + 5;
 
       // Finding parent element to inject popup into.
-      const parentEl = document.querySelector('#ainiro_chat_wnd');
+      const parentEl = this.shadow;
 
       // Creating our popup div.
       const sessionEl = document.createElement('div');
@@ -1069,7 +1068,7 @@
         const link =  document.createElement('a');
         link.href = '#';
         link.innerHTML = items[idx].name;
-        link.addEventListener('click', () => this.selectSession(event, items[idx].session_id));
+        link.addEventListener('click', (ev) => this.selectSession(ev, items[idx].session_id));
         cur.appendChild(link);
         ul.appendChild(cur);
       }
@@ -1084,7 +1083,7 @@
       event.preventDefault()
 
       // Making sure we destroy drop down ...
-      const existing = document.querySelector('.ainiro_sessions_list');
+      const existing = this.$('.ainiro_sessions_list');
       if (existing) {
         existing.parentNode.removeChild(existing);
       }
@@ -1109,7 +1108,7 @@
         .then((res) => {
 
           // Updating GUI ...
-          const surface = document.getElementById('ainiro_chat_surf');
+          const surface = this.$id('ainiro_chat_surf');
 
           // Deleting old items.
           const toDel = [];
@@ -1157,11 +1156,11 @@
     hide: function() {
 
       // Shows chat button.
-      const btn = document.getElementById('ainiro_chat_btn');
+      const btn = this.$id('ainiro_chat_btn');
       btn.classList.remove('ainiro_hide');
 
       // Hides chat window.
-      const wnd = document.getElementById('ainiro_chat_wnd');
+      const wnd = this.$id('ainiro_chat_wnd');
       wnd.classList.remove('show_ainiro_chatbot');
 
       // Making sure body element cannot scroll.
@@ -1194,17 +1193,17 @@
       el.className = cls;
 
       // Checking if we've got "ainiro_starter" element, at which point we insert the message *BEFORE* these.
-      const starters = document.getElementById('ainiro_starter');
+      const starters = this.$id('ainiro_starter');
       if (starters) {
 
         // Appending message to surface container.
-        const surf = document.getElementById('ainiro_chat_surf');
+        const surf = this.$id('ainiro_chat_surf');
         surf.insertBefore(el, starters);
 
       } else {
 
         // Appending message to surface container.
-        const surf = document.getElementById('ainiro_chat_surf');
+        const surf = this.$id('ainiro_chat_surf');
         surf.appendChild(el);
       }
     },
@@ -1215,17 +1214,17 @@
     submit: function() {
 
       // Making sure user provided any actual text.
-      const txtEl = document.getElementById('ainiro_txt');
+      const txtEl = this.$id('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = document.getElementById('ainiro_send');
+      const btn = this.$id('ainiro_send');
       btn.disabled = true;
 
       // Making sure we remove conversation starters if they're in the DOM.
-      const wrp = document.querySelectorAll('.ainiro_starters');
+      const wrp = this.$$('.ainiro_starters');
       if (wrp) {
         for (let idx = 0; idx < wrp.length; idx++) {
           wrp[idx].parentNode.removeChild(wrp[idx]);
@@ -1233,7 +1232,7 @@
       }
 
       // Removing text of upload file button.
-      const lbl = document.getElementById('ainiro_filename_label');
+      const lbl = this.$id('ainiro_filename_label');
       if (lbl) {
         lbl.innerHTML = '';
       }
@@ -1287,13 +1286,13 @@
     submitAnswer: function(token) {
 
       // Retrieving query input field and sanity checking input.
-      const txtEl = document.getElementById('ainiro_txt');
+      const txtEl = this.$id('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = document.getElementById('ainiro_send');
+      const btn = this.$id('ainiro_send');
       btn.disabled = true;
 
       // Creating our payload.
@@ -1326,7 +1325,7 @@
       }).then(() => {
 
         // Retrieving query input field and resetting its prompt.
-        const txtbox = document.getElementById('ainiro_txt');
+        const txtbox = this.$id('ainiro_txt');
         txtbox.value = '';
 
         // Storing user's answer.
@@ -1363,7 +1362,7 @@
           const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
-          const surf = document.getElementById('ainiro_chat_surf');
+          const surf = this.$id('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
           msg.className = 'ainiro_machine ainiro_error';
@@ -1459,10 +1458,8 @@
 
         /*
          * Removing animation CSS class from question.
-         *
-         * This is needed to avoid having animations trigger again if chatbot is closed and re-opened.
          */
-        const surf = document.getElementById('ainiro_chat_surf');
+        const surf = this.$id('ainiro_chat_surf');
         surf.childNodes[surf.childNodes.length - 1].classList.remove('ainiro_question');
 
         // Checking if currently asked question was in fact a message, at which point we ask the next question.
@@ -1478,10 +1475,9 @@
             this.onQuestionnaireDone();
 
             // Enabling send button.
-            const btn = document.getElementById('ainiro_send');
+            const btn = this.$id('ainiro_send');
             btn.disabled = false;
 
-            // Returning early.
             return;
           }
 
@@ -1494,7 +1490,7 @@
         } else {
 
           // Enabling send button.
-          const btn = document.getElementById('ainiro_send');
+          const btn = this.$id('ainiro_send');
           btn.disabled = false;
         }
 
@@ -1507,13 +1503,13 @@
     submitQuestion: function(token) {
 
       // Retrieving query input field and disabling it.
-      const txtEl = document.getElementById('ainiro_txt');
+      const txtEl = this.$id('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = document.getElementById('ainiro_send');
+      const btn = this.$id('ainiro_send');
       btn.disabled = true;
 
       // Adding wait message to surface.
@@ -1596,9 +1592,9 @@
         }
 
         // Retrieving query input field and resetting its prompt.
-        const txtbox = document.getElementById('ainiro_txt');
+        const txtbox = this.$id('ainiro_txt');
         txtbox.value = '';
-        const fileInp = document.getElementById('ainiro_upload');
+        const fileInp = this.$id('ainiro_upload');
         if (fileInp) {
           fileInp.value = null;
         }
@@ -1613,7 +1609,7 @@
           const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
-          const surf = document.getElementById('ainiro_chat_surf');
+          const surf = this.$id('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
           msg.className = 'ainiro_machine ainiro_error';
@@ -1638,10 +1634,6 @@
       // Buffer for follow up questions. This will be empty if we don't have follow up questions.
       let followUpQuestions = [];
 
-      /*
-       * We only extract follow up questions if chatbot has been configured to do so,
-       * and server returned more than one section.
-       */
       const markdownSections = wholeMarkdown.split('\n---');
       if (this.ainiro_settings.follow_up && markdownSections.length > 1) {
         followUpQuestions = markdownSections.pop();
@@ -1650,7 +1642,7 @@
       const html = this.renderMarkdownWithScriptPassthrough(wholeMarkdown);
 
       // Updating value of last chat message.
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
       const msg = surf.childNodes[surf.childNodes.length - 1];
       msg.innerHTML = html;
 
@@ -1660,14 +1652,8 @@
         // Finding all PRE elements.
         for (let idx = 0; idx < msg.childNodes.length; idx++) {
 
-          // Verifying it's a PRE element.
           if (msg.childNodes[idx].tagName === 'PRE') {
-
-            // Highlighting element.
             hljs.highlightElement(msg.childNodes[idx]);
-
-            // Adding a "copy code" button.
-            // Notice, this is done with HTML to allow for navigating to new pages, without losing logic.
             msg.childNodes[idx].innerHTML = msg.childNodes[idx].innerHTML + '<button class="copy_code_button" onclick="ainiro.copyCode(event)"><i class="ainiro-icofont ainiro-icofont-copy"></i></button>';
           }
         }
@@ -1679,11 +1665,10 @@
       // Checking if we've got follow up questions.
       if (followUpQuestions.length > 0 && addConvoFollowUps) {
 
-        // Parsing follow up questions.
         const followUp = [];
-        const html = this.renderMarkdownWithScriptPassthrough(followUpQuestions);
+        const htmlFU = this.renderMarkdownWithScriptPassthrough(followUpQuestions);
         const domRoot = document.createElement('div');
-        domRoot.innerHTML = html;
+        domRoot.innerHTML = htmlFU;
 
         const listItems = domRoot.childNodes;
         for (let idxNo = 0; idxNo < listItems.length; idxNo++) {
@@ -1708,7 +1693,7 @@
     extractScripts: function(src) {
 
       const scripts = [];
-      const TOKEN = `__RAW_SCRIPT_${Math.random().toString(36).slice(2)}__`;
+      const TOKEN = `%%RAW_SCRIPT_${Math.random().toString(36).slice(2)}%%`;
       let i = 0, out = '', pos = 0;
 
       const findNextFence = (s, from) => {
@@ -1824,7 +1809,7 @@
       });
 
       // Adding ul element to surface.
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
       let last = surf.childNodes[surf.childNodes.length - 1];
       if (last.classList.contains('ainiro_starters')) {
         last  = surf.childNodes[surf.childNodes.length - 2];
@@ -1844,11 +1829,11 @@
     onFinished: function() {
 
       // Enabling send button.
-      const btn = document.getElementById('ainiro_send');
+      const btn = this.$id('ainiro_send');
       btn.disabled = false;
 
       // Retrieving surface for chat messages.
-      const surf = document.getElementById('ainiro_chat_surf');
+      const surf = this.$id('ainiro_chat_surf');
 
       // Adding "copy response button", if we should.
       if (this.ainiro_settings.copyButton) {
@@ -1907,22 +1892,11 @@
       // Opening chat window, and ensuring we submit form once the chat window is visible.
       this.show(() => {
 
-        /*
-         * Setting query to either specified message or innerText of element clicked,
-         * prioritizing explicit msg argument.
-         */
-        const query = document.getElementById('ainiro_txt');
+        // Setting query
+        const query = this.$id('ainiro_txt');
         query.value = question;
 
-        /*
-         * Verifying user actually has a quesiton before we're trying to submit form.
-         *
-         * Since we're using the same function for FAQ questions and external trigger buttons,
-         * we need to check if we actually have a question before we try to submit the prompt.
-         */
         if (question && question !== '') {
-
-          // Submitting form to retrieve answer to question.
           this.submit();
         }
       });
@@ -1981,7 +1955,7 @@
   window.ask_follow_up = function(e) {
 
     // Changing value of textbox.
-    const query = document.getElementById('ainiro_txt');
+    const query = window.ainiro.$id('ainiro_txt');
     const question = e.srcElement.innerText;
     query.value = question;
 

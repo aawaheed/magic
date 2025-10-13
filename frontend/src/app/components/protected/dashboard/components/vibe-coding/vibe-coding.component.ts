@@ -285,11 +285,10 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
     } else if (msg.function_error) {
 
-      this.response = this.response.replace(this.waitingString, '');
-      this.response +=
-        '\n\n<span class="function_failed">' +
-        msg.function_error +
-        '</span>\n\n';
+      this.response = this.response.replace(
+        '<span class="function_waiting">Waiting ...</span>',
+        '<span class="function_failed">' + msg.function_error + '</span>\n\n'
+      );
       return;
 
     } else if (msg.type) {
@@ -438,7 +437,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   private extractScripts(src: string): { without: string; scripts: Array<{ key: string; html: string }> } {
 
     const scripts: Array<{ key: string; html: string }> = [];
-    const TOKEN = `__RAW_SCRIPT_${Math.random().toString(36).slice(2)}__`;
+    const TOKEN = `%%RAW_SCRIPT_${Math.random().toString(36).slice(2)}%%`;
     let i = 0;
     let out = '';
     let pos = 0;

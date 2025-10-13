@@ -74,19 +74,19 @@ else
 // Applying variables.
 set-value:x:@.common
    strings.concat
-      .:"html>body.ainiro_bdy {--ainiro-color:"
+      .:":host {\n  --ainiro-color:"
       get-value:x:@.arguments/*/color
       .:;
-      .:"--ainiro-link:"
+      .:"\n  --ainiro-link:"
       get-value:x:@.arguments/*/link
       .:";"
-      .:"--ainiro-bg-start:"
+      .:"\n  --ainiro-bg-start:"
       get-value:x:@.arguments/*/start
       .:";"
-      .:"--ainiro-bg-end:"
+      .:"\n  --ainiro-bg-end:"
       get-value:x:@.arguments/*/end
       .:";"
-      .:"}"
+      .:"\n}\n\n"
       get-value:x:@.common
 
 // Loading file and adding common.css file first.

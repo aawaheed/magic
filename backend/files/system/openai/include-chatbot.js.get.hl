@@ -37,8 +37,6 @@
    // Optional parameter which allows for further filtering RAG training snippets during context lookup.
    meta:string
 
-.description:Returns the JavaScript required to embed a ChatGPT based chatbot on some website to caller.
-
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/type
 
@@ -59,6 +57,10 @@ validators.default:x:@.arguments
    sticky:bool:false
    attachments:bool:false
    history:bool:false
+   color:#fefefe
+   start:#7892e5
+   end:#142660
+   link:#fe8464
 
 // Checking if custom JavaScript file exists.
 .filename
