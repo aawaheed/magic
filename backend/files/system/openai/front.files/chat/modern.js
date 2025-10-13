@@ -35,9 +35,9 @@
 
     // Shadow helpers.
     shadow: host.shadowRoot || host.attachShadow({ mode: 'open' }),
-    $: function(sel) { return this.shadow.querySelector(sel); },
-    $$: function(sel) { return Array.from(this.shadow.querySelectorAll(sel)); },
-    $id: function(id) { return this.shadow.getElementById(id); },
+    $: function(sel) { return ainiro.shadow.querySelector(sel); },
+    $$: function(sel) { return Array.from(ainiro.shadow.querySelectorAll(sel)); },
+    $id: function(id) { return ainiro.shadow.getElementById(id); },
 
     /*
      * Settings for chatbot.
