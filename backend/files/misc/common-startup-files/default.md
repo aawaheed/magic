@@ -187,6 +187,7 @@ Description:
 * Unless something else is explicitly stated all arguments are optional by default
 * Each argument can only be supplied once
 * Unless you know the argument's value, do not pass it in, but instead completely remove it from your JSON payload
+* If you have multiple functions you need to execute sequentially, you can return multiple function invocations in one message.
 
 Below you can find a list of functions you can execute. Use these functions at the best of your ability to answer the user's questions and perform tasks the user is giving you.
 
