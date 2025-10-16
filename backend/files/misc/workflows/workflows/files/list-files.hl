@@ -22,6 +22,7 @@ strings.concat
    get-value:x:@.arguments/*/module
    .:/
 io.file.list-recursively:x:@strings.concat
+   display-hidden:bool:true
 .result
 for-each:x:@io.file.list-recursively/*
    if
