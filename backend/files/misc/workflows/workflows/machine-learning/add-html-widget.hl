@@ -50,7 +50,7 @@ set-value:x:@.completion
       .:"FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]:\n{\n"
       .:"  \"filename\":\""
       get-value:x:@.arguments/*/filename
-      .:"\"\n}\n"
+      .:"\"\n}\n___\n"
 
 // Opening database.
 data.connect:magic
