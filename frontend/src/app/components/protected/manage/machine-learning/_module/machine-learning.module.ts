@@ -30,6 +30,7 @@ import { MachineLearningCreateSystemMessage } from '../components/machine-learni
 import { MachineLearningAddWorkflow } from '../components/machine-learning-add-workflow/machine-learning-add-workflow.component';
 import { LoadTemplateDialogComponent } from '../components/load-template-dialog/load-template-dialog.component';
 import { MachineLearningViewConversationComponent } from '../components/machine-learning-view-conversation/machine-learning-view-conversation.component';
+import { MachineLearningAddWidget } from '../components/machine-learning-add-widget/machine-learning-add-widget.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MachineLearningViewConversationComponent } from '../components/machine-
     MachineLearningAddWorkflow,
     MachineLearningViewConversationComponent,
     LoadTemplateDialogComponent,
+    MachineLearningAddWidget,
   ],
   imports: [
     CommonModule,

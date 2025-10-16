@@ -353,4 +353,12 @@ export class OpenAIService {
 
     return this.httpService.get<any[]>('/magic/system/openai/available-template-snippets');
   }
+
+  /**
+   * Get available widgets.
+   */
+  getAvailableWidgets(all: boolean = false) {
+
+    return this.httpService.get<any[]>('/magic/system/openai/available-widgets?private=' + all);
+  }
 }

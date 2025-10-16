@@ -93,4 +93,15 @@
     {{button3Text}}
   </button>
 
+  <button
+    mat-flat-button
+    *ngIf="button4Text"
+    color="primary"
+    [disabled]="button4Disabled"
+    [matTooltip]="button4Tooltip"
+    class="ms-3"
+    (click)="button4Clicked()">
+    {{button4Text}}
+  </button>
+
 </div>

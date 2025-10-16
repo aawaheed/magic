@@ -20,6 +20,7 @@ export class FilterComponent implements OnInit {
   @Output() buttonClick = new EventEmitter();
   @Output() button2Click = new EventEmitter();
   @Output() button3Click = new EventEmitter();
+  @Output() button4Click = new EventEmitter();
   @Input() types: string[];
   @Input() type: string;
   @Output() typeChange: EventEmitter<string> = new EventEmitter<string>();
@@ -28,13 +29,16 @@ export class FilterComponent implements OnInit {
   @Input() buttonText: string = null;
   @Input() button2Text: string = null;
   @Input() button3Text: string = null;
+  @Input() button4Text: string = null;
   @Input() buttonTooltip: string = null;
   @Input() button2Tooltip: string = null;
   @Input() button3Tooltip: string = null;
+  @Input() button4Tooltip: string = null;
   @Input() buttonIcon: string = null;
   @Input() buttonDisabled: boolean = false;
   @Input() button2Disabled: boolean = false;
   @Input() button3Disabled: boolean = false;
+  @Input() button4Disabled: boolean = false;
   @Input() set disableSearchTextBox( condition : boolean ) {
     this.disabledInitially = condition;
     if (this.filterControl) {
@@ -106,5 +110,10 @@ export class FilterComponent implements OnInit {
   button3Clicked() {
 
     this.button3Click.emit();
+  }
+
+  button4Clicked() {
+
+    this.button4Click.emit();
   }
 }

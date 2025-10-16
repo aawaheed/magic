@@ -15,6 +15,7 @@ import { MachineLearningEditTrainingSnippetComponent } from '../components/machi
 import { MachineLearningSpiceComponent } from '../components/machine-learning-spice/machine-learning-spice.component';
 import { MachineLearningImportFeedbackComponent } from '../components/machine-learning-import-feedback/machine-learning-import-feedback.component';
 import { MachineLearningAddWorkflow } from '../components/machine-learning-add-workflow/machine-learning-add-workflow.component';
+import { MachineLearningAddWidget } from '../components/machine-learning-add-widget/machine-learning-add-widget.component';
 
 /**
  * Helper component to administrate training data for OpenAI integration
@@ -157,6 +158,27 @@ export class MachineLearningTrainingDataComponent implements OnInit {
 
     this.dialog
       .open(MachineLearningAddWorkflow, {
+        width: '80vw',
+        maxWidth: '1100px',
+        data: {
+          type: this.type,
+        }
+      })
+      .afterClosed()
+      .subscribe((result: any) => {
+
+        if (result) {
+
+          // Training data was updated.
+          this.getTrainingData();
+        }
+    });
+  }
+
+  addWidget() {
+
+    this.dialog
+      .open(MachineLearningAddWidget, {
         width: '80vw',
         maxWidth: '1100px',
         data: {

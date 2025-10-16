@@ -1,0 +1,58 @@
+
+// Returns all available widgets from the backend.
+.arguments
+   private:bool
+
+// Making sure user has access to invoked endpoint.
+auth.ticket.verify:root
+
+// Contains list of widgets we find.
+.result
+
+// Listing files recursively.
+io.file.list-recursively:/modules/
+for-each:x:../*/io.file.list-recursively/*
+
+   // Checking if this is a widget file.
+   strings.split:x:@.dp/#
+      .:/
+   if
+      and
+         mte
+            get-count:x:@strings.split/*
+            .:int:3
+         eq:x:@strings.split/2
+            .:widgets
+         strings.ends-with:x:@.dp/#
+            .:.html
+      .lambda
+
+         /*
+          * This is a widget file.
+          */
+         try
+
+            strings.split:x:@.dp/#
+               .:/
+            strings.split:x:@strings.split/0/-
+               .:.
+
+            // Adding workflow to [.result].
+            unwrap:x:+/*/*/*
+            add:x:@.result
+               .
+                  .
+                     name:x:@strings.split/0
+                     file:x:@.dp/#
+
+         .catch
+
+            // Oops ...!!
+            log.error:x:@.arguments/*/message
+               file:x:@.dp/#
+            throw:Could not list available widgets, check your log for details
+               status:int:400
+               public:bool:true
+
+// Returning result to caller.
+return-nodes:x:@.result/*
