@@ -524,11 +524,32 @@
             renderer,
             tokenizer: {
               html(src) {
-                const m = src.match(/^<div[^>]*\bclass=(["'])[^"']*\bhljs_ignore\b[^"']*\1[^>]*>[\s\S]*?<\/div>/i);
-                if (m) {
-                  const raw = m[0];
-                  return { type: 'html', raw, text: raw, pre: false, block: true };
+                // 1) Verify the *opening* tag is a div whose class contains hljs_ignore
+                const openTagRe = /^<div[^>]*\bclass=(["'])(?:(?!\1).)*\bhljs_ignore\b(?:(?!\1).)*\1[^>]*>/i;
+
+                const open = src.match(openTagRe);
+                if (!open) return false;
+
+                let depth = 1;
+                let idx = open[0].length;
+
+                const divTagRe = /<\/?div\b[^>]*>/gi;
+                divTagRe.lastIndex = idx;
+
+                let m;
+                while ((m = divTagRe.exec(src))) {
+                  if (m[0][1] === '/') {
+                    depth--;
+                  } else {
+                    depth++;
+                  }
+                  if (depth === 0) {
+                    const end = divTagRe.lastIndex;
+                    const raw = src.slice(0, end);
+                    return { type: 'html', raw, text: raw, pre: false, block: true };
+                  }
                 }
+
                 return false;
               },
             },
@@ -538,10 +559,30 @@
           marked.use({
             tokenizer: {
               html(src) {
-                const m = src.match(/^<div[^>]*\bclass=(["'])[^"']*\bhljs_ignore\b[^"']*\1[^>]*>[\s\S]*?<\/div>/i);
-                if (m) {
-                  const raw = m[0];
-                  return { type: 'html', raw, text: raw, pre: false, block: true };
+                // 1) Verify the *opening* tag is a div whose class contains hljs_ignore
+                const openTagRe = /^<div[^>]*\bclass=(["'])(?:(?!\1).)*\bhljs_ignore\b(?:(?!\1).)*\1[^>]*>/i;
+
+                const open = src.match(openTagRe);
+                if (!open) return false;
+
+                let depth = 1;
+                let idx = open[0].length;
+
+                const divTagRe = /<\/?div\b[^>]*>/gi;
+                divTagRe.lastIndex = idx;
+
+                let m;
+                while ((m = divTagRe.exec(src))) {
+                  if (m[0][1] === '/') {
+                    depth--;
+                  } else {
+                    depth++;
+                  }
+                  if (depth === 0) {
+                    const end = divTagRe.lastIndex;
+                    const raw = src.slice(0, end);
+                    return { type: 'html', raw, text: raw, pre: false, block: true };
+                  }
                 }
                 return false;
               },
