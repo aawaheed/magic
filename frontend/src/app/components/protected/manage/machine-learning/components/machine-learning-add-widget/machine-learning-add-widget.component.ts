@@ -73,7 +73,7 @@ export class MachineLearningAddWidget implements OnInit {
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]:
 {
-  "filename":"/modules/tissot-checkout/widgets/tissot-checkout.html"
+  "filename":${el.file}
 }
 ___`;
 
