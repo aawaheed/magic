@@ -5,7 +5,7 @@ Magic Cloud is a software development automation platform created and maintained
 
 ![Vibe Coding with Magic](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/video-new.gif)
 
-The above is a screenshot of the integrated AI agent that allows you to.
+The above shows the integrated AI agent that allows you to.
 
 * Create and maintain your databases
 * Create and maintain APIs
