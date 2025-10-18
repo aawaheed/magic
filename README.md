@@ -33,7 +33,7 @@ Magic Cloud allows you to create AI agents with *visual* tools, or _"ChatGPT app
 
 ![AI widget injected into the chat stream](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-contact-us-form.png)
 
-Tha above is a contact us form, and it was 100% completely created using natural language, including its backend, database, API and frontend code.
+The above is a contact us form, and it was 100% completely created using natural language, including its backend, database, API and frontend code.
 
 You can watch me create the above app in the [following video](https://www.youtube.com/watch?v=Zt-XNN1mxDA), but basically it's like _"vibe coding for ChatGPT apps"_.
 
