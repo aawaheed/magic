@@ -3,7 +3,7 @@
 
 Magic Cloud is a software development automation platform created and maintained by [AINIRO.IO](https://ainiro.io) based upon AI, Low-Code, and No-Code. It's based upon [Hyperlambda](https://docs.ainiro.io/hyperlambda/), allowing you to dynamically create and orchestrate code, using meta programming and generative AI - And it's an open source Lovable. Below is the Magic dashboard allowing you to automate most of the system using the built in AI agent using _"vibe coding"_.
 
-![Vibe Coding with Magic](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/video-new.gif)
+![Vibe Coding with Magic](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/landing2.gif)
 
 The above shows the integrated AI agent that allows you to.
 
