@@ -37,8 +37,6 @@ The above is a contact us form, and it was 100% completely created using natural
 
 You can watch me create the above app in the [following video](https://www.youtube.com/watch?v=Zt-XNN1mxDA), but basically it's like _"vibe coding for ChatGPT apps"_.
 
-![Vibe Coding with Magic](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/landing2.gif)
-
 ## Hyperlambda
 
 Hyperlambda is a _"5th generation programming language"_, that is on average 10 to 50 times less verbose than traditional languages such as C#, Java, Python, GoLang, and PHP. On average it can solve most problems with 5% of the codebase compared to any traditional programming language. This makes it an extremely high level programming language, allowing you to work declaratively instead of having to implement everything imperatively. Below is a simple HTTP CRUD Read endpoint implemented in C# and Hyperlambda to illustrate what effects this might have on your codebase.
