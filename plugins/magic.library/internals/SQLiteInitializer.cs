@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using magic.lambda.sqlite;
 using magic.node.contracts;
+using System.Runtime.InteropServices;
 
 namespace magic.library.internals
 {
@@ -27,17 +28,24 @@ namespace magic.library.internals
             connection.EnableExtensions();
             using (var load = connection.CreateCommand())
             {
-              load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
-              load.Parameters.AddWithValue("$p", resolver.RuntimePath("sqlite-plugins/vector"));
-              _ = await load.ExecuteScalarAsync();
+                var plt = "";
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    plt = ".dll";
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    plt = ".so";
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    plt = ".dylib";
+                load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
+                load.Parameters.AddWithValue("$p", resolver.RuntimePath("sqlite-plugins/vector" + plt));
+                _ = await load.ExecuteScalarAsync();
             }
             using (var cmd = connection.CreateCommand())
             {
-              cmd.CommandText = "select vector_init($tbl, $col, $opts);";
-              cmd.Parameters.AddWithValue("$tbl", TableName);
-              cmd.Parameters.AddWithValue("$col", ColumnName);
-              cmd.Parameters.AddWithValue("$opts", Options);
-              _ = await cmd.ExecuteScalarAsync();
+                cmd.CommandText = "select vector_init($tbl, $col, $opts);";
+                cmd.Parameters.AddWithValue("$tbl", TableName);
+                cmd.Parameters.AddWithValue("$col", ColumnName);
+                cmd.Parameters.AddWithValue("$opts", Options);
+                _ = await cmd.ExecuteScalarAsync();
             }
         }
     }
