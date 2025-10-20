@@ -4,6 +4,7 @@
 
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
+using magic.node.contracts;
 
 namespace magic.lambda.sqlite
 {
@@ -15,7 +16,8 @@ namespace magic.lambda.sqlite
         /// <summary>
         /// Initializes the database, invoked every single time you create a new database connection.
         /// </summary>
+        /// <param name="resolver">Required to resolve absolute paths</param>
         /// <param name="connection">Recently created SQLite database connection</param>
-        Task Initialize(SqliteConnection connection);
+        Task Initialize(IRootResolver resolver, SqliteConnection connection);
     }
 }

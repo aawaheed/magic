@@ -8,6 +8,7 @@ using magic.signals.contracts;
 using magic.data.common.helpers;
 using magic.lambda.sqlite.helpers;
 using magic.data.common.contracts;
+using magic.node.contracts;
 
 namespace magic.lambda.sqlite
 {
@@ -19,14 +20,17 @@ namespace magic.lambda.sqlite
     {
         readonly IDataSettings _settings;
         readonly IInitializer _initializer;
+        readonly IRootResolver _resolver;
 
         /// <summary>
         /// Creates a new instance of your class.
         /// </summary>
+        /// <param name="resolver">Required to find the absolute path.</param>
         /// <param name="settings">Configuration settings for your application.</param>
         /// <param name="initializer">Initialiser invoked as connections are created, allowing you to dynamically load extensions, etc.</param>
-        public Connect(IDataSettings settings, IInitializer initializer)
-        {
+        public Connect(IRootResolver resolver, IDataSettings settings, IInitializer initializer)
+    {
+            _resolver = resolver;
             _settings = settings;
             _initializer = initializer;
         }
@@ -42,6 +46,7 @@ namespace magic.lambda.sqlite
             using (var shutdownLock = new ShutdownLock())
             {
                 using (var connection = new SqliteConnectionWrapper(
+                    _resolver,
                     Executor.GetConnectionString(
                         input,
                         "sqlite",

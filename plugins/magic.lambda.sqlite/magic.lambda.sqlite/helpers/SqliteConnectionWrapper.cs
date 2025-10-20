@@ -3,6 +3,7 @@
  */
 
 using System;
+using magic.node.contracts;
 using Microsoft.Data.Sqlite;
 
 namespace magic.lambda.sqlite.helpers
@@ -15,12 +16,12 @@ namespace magic.lambda.sqlite.helpers
     {
         readonly Lazy<SqliteConnection> _connection;
 
-        public SqliteConnectionWrapper(string connectionString, IInitializer initializer = null)
+        public SqliteConnectionWrapper(IRootResolver resolver, string connectionString, IInitializer initializer = null)
         {
             _connection = new Lazy<SqliteConnection>(() =>
             {
                 var connection = new SqliteConnection(connectionString);
-                initializer?.Initialize(connection);
+                initializer?.Initialize(resolver, connection);
                 return connection;
             });
         }

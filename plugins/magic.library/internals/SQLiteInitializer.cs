@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using magic.lambda.sqlite;
+using magic.node.contracts;
 
 namespace magic.library.internals
 {
@@ -16,21 +17,22 @@ namespace magic.library.internals
     {
         private static readonly SemaphoreSlim _lock = new(1, 1);
 
-        public async Task Initialize(SqliteConnection connection)
+        public async Task Initialize(IRootResolver resolver, SqliteConnection connection)
         {
             await connection.OpenAsync();
-            await EnsureVectorLoadedAsync(connection);
+            await EnsureVectorLoadedAsync(resolver, connection);
         }
 
         /*
          * Ensures serialized initialization of vector lib.
          */
-        private static async Task EnsureVectorLoadedAsync(SqliteConnection connection)
+        private static async Task EnsureVectorLoadedAsync(IRootResolver resolver, SqliteConnection connection)
         {
             await _lock.WaitAsync();
             try
-            {
-                connection.LoadExtension("./sqlite-plugins/vector");
+      {
+                connection.EnableExtensions();
+                connection.LoadExtension(resolver.RuntimePath("sqlite-plugins/vector"));
             }
             finally
             {

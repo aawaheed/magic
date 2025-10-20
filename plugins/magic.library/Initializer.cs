@@ -107,6 +107,7 @@ namespace magic.library
         public static void AddMagicData(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDataSettings, AppSettingsDataSettings>();
+            SQLitePCL.Batteries_V2.Init();
         }
 
         /// <summary>

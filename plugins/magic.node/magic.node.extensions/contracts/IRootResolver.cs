@@ -41,5 +41,12 @@ namespace magic.node.contracts
         /// <param name="path">Relative path of file or folder.</param>
         /// <returns>Absolute file or folder path.</returns>
         string AbsolutePath(string path);
+
+        /// <summary>
+        /// Returns the absolute path to the runtime given the relative path as an argument.
+        /// </summary>
+        /// <param name="path">Relative path of file or folder.</param>
+        /// <returns>Absolute file or folder path.</returns>
+        string RuntimePath(string path);
     }
 }

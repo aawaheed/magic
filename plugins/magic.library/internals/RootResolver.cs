@@ -6,6 +6,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using magic.node.contracts;
 using magic.node.extensions;
+using System.Linq;
 
 namespace magic.library.internals
 {
@@ -41,6 +42,16 @@ namespace magic.library.internals
         {
             // DynamicFiles should always end with a slash (/).
             return DynamicFiles + path.Replace("\\", "/").TrimStart('/');
+        }
+
+        public string RuntimePath(string path)
+        {
+            var entities = DynamicFiles.Split(['/'], System.StringSplitOptions.RemoveEmptyEntries).ToList();
+            entities.RemoveAt(entities.Count - 1);
+            var root = "/" + string.Join('/', entities) + "/";
+
+            // DynamicFiles should always end with a slash (/).
+            return root + path.Replace("\\", "/").TrimStart('/');
         }
     }
 }
