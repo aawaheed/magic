@@ -3,12 +3,12 @@
  * See the attached LICENSE file for details. For license inquiries email thomas@ainiro.io
  */
 
-using System.Data;
+using System;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using Microsoft.Data.Sqlite;
 using magic.lambda.sqlite;
 using magic.node.contracts;
-using System.Runtime.InteropServices;
 
 namespace magic.library.internals
 {
@@ -26,27 +26,49 @@ namespace magic.library.internals
         {
             connection.Open();
             connection.EnableExtensions();
-            using (var load = connection.CreateCommand())
+
+            var plt = GetPlatformExtension();
+            var extensionPath = resolver.RuntimePath("sqlite-plugins/vector" + plt);
+
+            int retries = 3;
+            while (retries > 0)
             {
-                var plt = "";
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    plt = ".dll";
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                    plt = ".so";
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                    plt = ".dylib";
-                load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
-                load.Parameters.AddWithValue("$p", resolver.RuntimePath("sqlite-plugins/vector" + plt));
-                load.ExecuteScalar();
+                try
+                {
+                    using (var load = connection.CreateCommand())
+                    {
+                        load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
+                        load.Parameters.AddWithValue("$p", extensionPath);
+                        load.ExecuteScalar();
+                    }
+                    break;
+                }
+                catch (SqliteException ex) when (retries > 1 && ex.SqliteErrorCode == 1)
+                {
+                    retries--;
+                    await Task.Delay(100 * (4 - retries));
+                }
             }
+
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = "select vector_init($tbl, $col, $opts);";
-                cmd.Parameters.AddWithValue("$tbl", TableName);
-                cmd.Parameters.AddWithValue("$col", ColumnName);
-                cmd.Parameters.AddWithValue("$opts", Options);
-                cmd.ExecuteScalar();
+              cmd.CommandText = "select vector_init($tbl, $col, $opts);";
+              cmd.Parameters.AddWithValue("$tbl", TableName);
+              cmd.Parameters.AddWithValue("$col", ColumnName);
+              cmd.Parameters.AddWithValue("$opts", Options);
+              cmd.ExecuteScalar();
             }
+        }
+
+        private static string GetPlatformExtension()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return ".dll";
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                return ".so";
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return ".dylib";
+            throw new NotSupportedException("Unsupported platform");
         }
     }
 }
