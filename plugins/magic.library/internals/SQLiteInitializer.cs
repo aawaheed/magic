@@ -19,7 +19,7 @@ namespace magic.library.internals
         public async Task Initialize(SqliteConnection connection)
         {
             await connection.OpenAsync();
-            await EnsureVectorLoadedAsync(connection).ConfigureAwait(false);
+            await EnsureVectorLoadedAsync(connection);
         }
 
         /*
@@ -27,7 +27,7 @@ namespace magic.library.internals
          */
         private static async Task EnsureVectorLoadedAsync(SqliteConnection connection)
         {
-            await _lock.WaitAsync().ConfigureAwait(false);
+            await _lock.WaitAsync();
             try
             {
                 connection.LoadExtension("./sqlite-plugins/vector");
