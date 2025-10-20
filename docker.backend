@@ -49,6 +49,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends libsqlite3-0 \
     fc-cache -f -v && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsqlite3-0 libsqlite3-dev libstdc++6 libgcc-s1 \
+    ttf-mscorefonts-installer fontconfig libgomp1 libatlas-base-dev liblapack-dev && \
+    fc-cache -f -v && \
+    rm -rf /var/lib/apt/lists/*
 
 # TODO: Commented out!
 # This doesn't work. I suspect the reason is that it's dynamically loading the SQLite DLL or something ...?
