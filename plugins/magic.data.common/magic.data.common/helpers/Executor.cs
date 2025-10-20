@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
 using magic.data.common.contracts;
+using magic.node.contracts;
 
 namespace magic.data.common.helpers
 {
@@ -93,6 +94,7 @@ namespace magic.data.common.helpers
         /// <param name="settings">Configuration object from where to retrieve connection string templates</param>
         /// <returns>Connection string</returns>
         public static string GetConnectionString(
+            IRootResolver resolver,
             Node input,
             string databaseType,
             string defaultCatalogue,
@@ -128,6 +130,8 @@ namespace magic.data.common.helpers
                 var generic = settings.ConnectionString("generic", databaseType);
                 connectionString = generic.Replace("{database}", connectionString);
             }
+            if (databaseType == "sqlite")
+                connectionString = connectionString.Replace("files/data/", resolver.DynamicFiles + "data/");
             return connectionString;
         }
 

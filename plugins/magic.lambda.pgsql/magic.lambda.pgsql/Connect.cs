@@ -38,6 +38,7 @@ namespace magic.lambda.pgsql
         {
             using (var connection = new PgSqlConnectionWrapper(
                 Executor.GetConnectionString(
+                    null,
                     input,
                     "pgsql",
                     "postgres",
