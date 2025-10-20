@@ -7,6 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.8" />
     <PackageReference Include="SQLitePCLRaw.bundle_sqlite3" Version="2.1.7" />
+    <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.7" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.7" ExcludeAssets="all" />
+
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="9.0.0" />
     <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
     <ProjectReference Include="..\..\magic.data.common\magic.data.common\magic.data.common.csproj" />

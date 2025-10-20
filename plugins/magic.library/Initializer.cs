@@ -107,7 +107,6 @@ namespace magic.library
         public static void AddMagicData(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDataSettings, AppSettingsDataSettings>();
-            SQLitePCL.Batteries_V2.Init();
         }
 
         /// <summary>
@@ -117,6 +116,8 @@ namespace magic.library
         /// <param name="configuration">Your configuration settings.</param>
         public static void AddMagicSQLite(this IServiceCollection services, IConfiguration configuration)
         {
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
+            SQLitePCL.Batteries_V2.Init();
             services.AddTransient<IInitializer, SQLiteInitializer>();
         }
 
