@@ -2,7 +2,6 @@
  * Magic Cloud, copyright (c) 2023 Thomas Hansen.
  * See the attached LICENSE file for details. For license inquiries email thomas@ainiro.io
  */
-
 using System;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
@@ -24,7 +23,7 @@ namespace magic.library.internals
 
         public async Task Initialize(IRootResolver resolver, SqliteConnection connection)
         {
-            connection.Open();
+            await connection.OpenAsync();
             connection.EnableExtensions();
 
             var plt = GetPlatformExtension();
@@ -39,7 +38,7 @@ namespace magic.library.internals
                     {
                         load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
                         load.Parameters.AddWithValue("$p", extensionPath);
-                        load.ExecuteScalar();
+                        await load.ExecuteScalarAsync();
                     }
                     break;
                 }
@@ -52,11 +51,11 @@ namespace magic.library.internals
 
             using (var cmd = connection.CreateCommand())
             {
-              cmd.CommandText = "select vector_init($tbl, $col, $opts);";
-              cmd.Parameters.AddWithValue("$tbl", TableName);
-              cmd.Parameters.AddWithValue("$col", ColumnName);
-              cmd.Parameters.AddWithValue("$opts", Options);
-              cmd.ExecuteScalar();
+                cmd.CommandText = "select vector_init($tbl, $col, $opts);";
+                cmd.Parameters.AddWithValue("$tbl", TableName);
+                cmd.Parameters.AddWithValue("$col", ColumnName);
+                cmd.Parameters.AddWithValue("$opts", Options);
+                await cmd.ExecuteScalarAsync();
             }
         }
 
