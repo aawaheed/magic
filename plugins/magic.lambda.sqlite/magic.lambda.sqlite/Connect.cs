@@ -59,6 +59,7 @@ namespace magic.lambda.sqlite
                         "sqlite.connect",
                         connection,
                         async () => await signaler.SignalAsync("eval", input));
+                        connection.Connection?.CloseAsync();
                     input.Value = null;
                 }
             }
