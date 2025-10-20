@@ -28,7 +28,7 @@ namespace magic.library.internals
 
             // Enable and load the extension for THIS connection (per-connection in SQLite)
             connection.EnableExtensions();
-            connection.LoadExtension(resolver.RuntimePath("sqlite-plugins/vector"));
+            connection.LoadExtension(resolver.RuntimePath("sqlite-plugins/vector"), "sqlite3_vector_init");
 
             // Always run vector_init on this connection
             using var cmd = connection.CreateCommand();
