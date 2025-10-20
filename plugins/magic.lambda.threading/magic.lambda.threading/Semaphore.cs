@@ -25,7 +25,7 @@ namespace magic.lambda.threading
         /// </summary>
         /// <param name="signaler">Signaler used to signal</param>
         /// <param name="input">Parameters passed from signaler</param>
-        /// <returns>An awaiatble task.</returns>
+        /// <returns>An awaitable task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             var key = GetKey(input);
@@ -50,7 +50,7 @@ namespace magic.lambda.threading
         static string GetKey(Node input)
         {
             return input.GetEx<string>() ??
-                throw new HyperlambdaException("A semaphore must have a value, used to uniquely identity your sempahore");
+                throw new HyperlambdaException("A semaphore must have a value, used to uniquely identity your semaphore");
         }
 
         #endregion
