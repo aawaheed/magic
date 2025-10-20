@@ -1,1 +1,0 @@
-create index idx_ml_types_type on ml_types (type);

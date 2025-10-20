@@ -23,23 +23,17 @@ namespace magic.library.internals
 
         public async Task Initialize(IRootResolver resolver, SqliteConnection connection)
         {
-            // Ensure the connection is open
             await connection.OpenAsync();
-
-            // Enable and load the extension for THIS connection (per-connection in SQLite)
             connection.EnableExtensions();
             connection.LoadExtension(resolver.RuntimePath("sqlite-plugins/vector"), "sqlite3_vector_init");
-
-            // Always run vector_init on this connection
-            using var cmd = connection.CreateCommand();
-            cmd.CommandText = "select vector_init($tbl, $col, $opts);";
-            cmd.Parameters.AddWithValue("$tbl",  TableName);
-            cmd.Parameters.AddWithValue("$col",  ColumnName);
-            cmd.Parameters.AddWithValue("$opts", Options);
-
-            // We don't care about the result payload; just ensure it runs.
-            // ExecuteScalar will step the statement and read the first row/col.
-            _ = await cmd.ExecuteScalarAsync();
+            using (var cmd = connection.CreateCommand())
+            {
+              cmd.CommandText = "select vector_init($tbl, $col, $opts);";
+              cmd.Parameters.AddWithValue("$tbl", TableName);
+              cmd.Parameters.AddWithValue("$col", ColumnName);
+              cmd.Parameters.AddWithValue("$opts", Options);
+              _ = await cmd.ExecuteScalarAsync();
+            }
         }
     }
 }
