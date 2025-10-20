@@ -25,7 +25,12 @@ namespace magic.library.internals
         {
             await connection.OpenAsync();
             connection.EnableExtensions();
-            connection.LoadExtension(resolver.RuntimePath("sqlite-plugins/vector"), "sqlite3_vector_init");
+            using (var load = connection.CreateCommand())
+            {
+              load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
+              load.Parameters.AddWithValue("$p", resolver.RuntimePath("sqlite-plugins/vector"));
+              _ = await load.ExecuteScalarAsync();
+            }
             using (var cmd = connection.CreateCommand())
             {
               cmd.CommandText = "select vector_init($tbl, $col, $opts);";
