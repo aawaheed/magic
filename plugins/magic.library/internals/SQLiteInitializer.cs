@@ -24,8 +24,7 @@ namespace magic.library.internals
         public async Task Initialize(IRootResolver resolver, SqliteConnection connection)
         {
             // Ensure the connection is open
-            if (connection.State != ConnectionState.Open)
-                await connection.OpenAsync();
+            await connection.OpenAsync();
 
             // Enable and load the extension for THIS connection (per-connection in SQLite)
             connection.EnableExtensions();
@@ -33,7 +32,7 @@ namespace magic.library.internals
 
             // Always run vector_init on this connection
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT vector_init($tbl, $col, $opts);";
+            cmd.CommandText = "select vector_init($tbl, $col, $opts);";
             cmd.Parameters.AddWithValue("$tbl",  TableName);
             cmd.Parameters.AddWithValue("$col",  ColumnName);
             cmd.Parameters.AddWithValue("$opts", Options);
