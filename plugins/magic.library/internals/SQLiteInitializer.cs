@@ -24,7 +24,7 @@ namespace magic.library.internals
 
         public async Task Initialize(IRootResolver resolver, SqliteConnection connection)
         {
-            await connection.OpenAsync();
+            connection.Open();
             connection.EnableExtensions();
             using (var load = connection.CreateCommand())
             {
@@ -37,7 +37,7 @@ namespace magic.library.internals
                     plt = ".dylib";
                 load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
                 load.Parameters.AddWithValue("$p", resolver.RuntimePath("sqlite-plugins/vector" + plt));
-                _ = await load.ExecuteScalarAsync();
+                load.ExecuteScalar();
             }
             using (var cmd = connection.CreateCommand())
             {
@@ -45,7 +45,7 @@ namespace magic.library.internals
                 cmd.Parameters.AddWithValue("$tbl", TableName);
                 cmd.Parameters.AddWithValue("$col", ColumnName);
                 cmd.Parameters.AddWithValue("$opts", Options);
-                _ = await cmd.ExecuteScalarAsync();
+                cmd.ExecuteScalar();
             }
         }
     }

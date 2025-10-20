@@ -34,7 +34,10 @@ namespace magic.lambda.sqlite.helpers
         public void Dispose()
         {
             if (_connection.IsValueCreated)
+            {
+                _connection.Value.Close();
                 _connection.Value.Dispose();
+            }
         }
     }
 }
