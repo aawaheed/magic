@@ -15,6 +15,9 @@ io.file.execute:/system/sql/magic.startup/sqlite/magic.db.sqlite.databases.hl
 // Creating our magic database.
 io.file.execute:/system/ensure-magic-database.hl
 
+// Initialising vector lib extension.
+sqlite.init_vector
+
 // Executing all magic.startup Hyperlambda files.
 io.file.list-recursively:/system/
 io.file.list-recursively:/modules/
