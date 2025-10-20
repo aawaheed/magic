@@ -118,6 +118,7 @@ namespace magic.library
         {
             SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
             SQLitePCL.Batteries_V2.Init();
+            Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
             services.AddTransient<IInitializer, SQLiteInitializer>();
         }
 
