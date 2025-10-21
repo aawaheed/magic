@@ -147,7 +147,7 @@
  * Making sure Markdown transformed to HTML displays well.
  */
 
-.ainiro *:not(.hljs_ignore):not(.hljs_ignore *) {
+.ainiro {
   color: var(--ainiro-color);
 }
 
