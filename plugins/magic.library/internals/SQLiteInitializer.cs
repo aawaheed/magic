@@ -37,14 +37,7 @@ namespace magic.library.internals
                 var plt = GetPlatformExtension();
                 var extensionPath = resolver.RuntimePath("sqlite-plugins/vector" + plt);
 
-                // Load the extension ONCE per connection (no retries for load).
-                using (var load = connection.CreateCommand())
-                {
-                    load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
-                    load.Parameters.AddWithValue("$p", extensionPath);
-                    _ = await load.ExecuteScalarAsync();
-                }
-
+                // Notice, we cannot run vector_init before we've created our magic database!!
                 if (_shouldRunVectorInit)
                 {
                     const int maxAttempts = 3;
@@ -53,6 +46,13 @@ namespace magic.library.internals
                     {
                         try
                         {
+                            // Load the extension ONCE per connection (no retries for load).
+                            using (var load = connection.CreateCommand())
+                            {
+                                load.CommandText = "select load_extension($p, 'sqlite3_vector_init')";
+                                load.Parameters.AddWithValue("$p", extensionPath);
+                                _ = await load.ExecuteScalarAsync();
+                            }
                             await RunVectorInit(connection);
                             break;
                         }
@@ -68,6 +68,10 @@ namespace magic.library.internals
                 _locker.Release();
             }
         }
+        
+        /*
+         * Private helper methods.
+         */
 
         static async Task RunVectorInit(SqliteConnection connection)
         {
