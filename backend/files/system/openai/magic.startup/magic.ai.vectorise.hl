@@ -196,6 +196,7 @@ select id, prompt, completion
                         data.connect:[generic|magic]
 
                            // Initializing ml_training_snippets.
+                           sleep:10
                            data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
 
                            data.execute:x:@.sql
