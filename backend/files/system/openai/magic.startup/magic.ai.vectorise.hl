@@ -196,6 +196,9 @@ select id, prompt, completion
                         data.connect:[generic|magic]
 
                            // Initializing ml_training_snippets.
+                           sqlite.load-extension
+                              file:sqlite-plugins/vector
+                              proc:sqlite3_vector_init
                            data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
 
                            data.execute:x:@.sql

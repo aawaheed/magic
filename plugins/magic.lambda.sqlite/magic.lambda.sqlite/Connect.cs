@@ -19,7 +19,6 @@ namespace magic.lambda.sqlite
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;
-        readonly IInitializer _initializer;
         readonly IRootResolver _resolver;
 
         /// <summary>
@@ -27,12 +26,10 @@ namespace magic.lambda.sqlite
         /// </summary>
         /// <param name="resolver">Required to find the absolute path.</param>
         /// <param name="settings">Configuration settings for your application.</param>
-        /// <param name="initializer">Initialiser invoked as connections are created, allowing you to dynamically load extensions, etc.</param>
-        public Connect(IRootResolver resolver, IDataSettings settings, IInitializer initializer)
+        public Connect(IRootResolver resolver, IDataSettings settings)
     {
             _resolver = resolver;
             _settings = settings;
-            _initializer = initializer;
         }
 
         /// <summary>
@@ -52,8 +49,7 @@ namespace magic.lambda.sqlite
                         input,
                         "sqlite",
                         "sys",
-                        _settings),
-                        _initializer))
+                        _settings)))
                 {
                     await signaler.ScopeAsync(
                         "sqlite.connect",

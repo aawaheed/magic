@@ -16,12 +16,12 @@ namespace magic.lambda.sqlite.helpers
     {
         readonly Lazy<SqliteConnection> _connection;
 
-        public SqliteConnectionWrapper(IRootResolver resolver, string connectionString, IInitializer initializer = null)
+        public SqliteConnectionWrapper(IRootResolver resolver, string connectionString)
         {
             _connection = new Lazy<SqliteConnection>(() =>
             {
                 var connection = new SqliteConnection(connectionString);
-                initializer?.Initialize(resolver, connection);
+                connection.Open();
                 return connection;
             });
         }
