@@ -17,8 +17,6 @@
    is_hashed:bool
    name:string
    email:string
-.description:Setup authentication and other parts of the system according to the arguments provided
-.type:internal
 
 // Ensures user is authorized to access endpoint.
 auth.ticket.verify:root
