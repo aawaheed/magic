@@ -116,9 +116,6 @@ namespace magic.library
         /// <param name="configuration">Your configuration settings.</param>
         public static void AddMagicSQLite(this IServiceCollection services, IConfiguration configuration)
         {
-            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
-            SQLitePCL.Batteries_V2.Init();
-            Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
             services.AddTransient<IInitializer, SQLiteInitializer>();
         }
 

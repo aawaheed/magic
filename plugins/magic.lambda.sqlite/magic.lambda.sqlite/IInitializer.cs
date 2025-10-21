@@ -3,7 +3,7 @@
  */
 
 using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
+using Ainiro.Data.Sqlite;
 using magic.node.contracts;
 
 namespace magic.lambda.sqlite
