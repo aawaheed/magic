@@ -21,6 +21,10 @@ set-value:x:@.token
 // Connecting to database.
 data.connect:[generic|magic]
 
+   // Initializing ml_training_snippets.
+   data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
+
+
    // Selecting snippet from database.
    data.read
       table:ml_training_snippets

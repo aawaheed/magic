@@ -58,6 +58,10 @@ slots.create:magic.ai.search
    // Connects to database to retrieve matching snippets
    data.connect:[generic|magic]
 
+      // Initializing ml_training_snippets.
+      data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
+
+
       // Checking if we've got a prefix-url argument, defaulting to NOT NULL.
       .prefix-url:"ts.uri is not null and "
       if

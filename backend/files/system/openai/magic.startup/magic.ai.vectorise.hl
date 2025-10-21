@@ -194,6 +194,10 @@ select id, prompt, completion
 
                         // Connecting to database again to add embeddings to existing ml_training_snippets record.
                         data.connect:[generic|magic]
+
+                           // Initializing ml_training_snippets.
+                           data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
+
                            data.execute:x:@.sql
                               @id:x:@.dp/#/*/id
 

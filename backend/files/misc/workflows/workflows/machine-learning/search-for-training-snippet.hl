@@ -72,6 +72,9 @@ floatArray2bytes:x:@http.post/*/content/*/data/0/*/embedding/*
 // Connecting to database.
 data.connect:[generic|magic]
 
+   // Initializing ml_training_snippets.
+   data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
+
    // Creating our SQL.
    strings.concat
       .:@"
@@ -84,7 +87,6 @@ select vss.rowid as id, ts.prompt, vss.distance
    data.select:x:@strings.concat
       embedding:x:@floatArray2bytes
       type:x:@.arguments/*/type
-
    .cont:bool:true
    while:x:@.cont
       lambda2hyper:x:@data.select/*

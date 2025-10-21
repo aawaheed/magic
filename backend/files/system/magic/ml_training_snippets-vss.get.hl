@@ -71,6 +71,10 @@ if
 // Opening up our database connection.
 data.connect:[generic|magic]
 
+   // Initializing ml_training_snippets.
+   data.execute:"select vector_init('ml_training_snippets', 'embeddings', 'dimension=1536,type=FLOAT32,distance=cosine')"
+
+
    .sql:@"
 select vss.distance, ts.id, ts.created, ts.type, ts.pushed, ts.uri, ts.prompt, ts.completion, ts.filename, ts.cached, ts.meta, ts.embeddings as embedding_vss
    from ml_training_snippets ts 
