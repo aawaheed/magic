@@ -5,7 +5,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Ainiro.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using System.Runtime.InteropServices;
 using magic.node;
 using magic.lambda.sqlite;

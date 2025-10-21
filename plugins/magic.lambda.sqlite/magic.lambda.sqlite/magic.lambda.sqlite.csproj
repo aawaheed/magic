@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ainiro.Data.Sqlite\Ainiro.Data.Sqlite.csproj" />
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" ExcludeAssets="all" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.10" />
     <ProjectReference Include="..\..\magic.data.common\magic.data.common\magic.data.common.csproj" />
   </ItemGroup>
 
