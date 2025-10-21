@@ -33,11 +33,15 @@ namespace magic.lambda.sqlite
             try
             {
                 var connection = signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection;
-                connection.LoadExtension(
-                    input.Children.FirstOrDefault(x => x.Name == "file")?.GetEx<string>() ?? 
-                        throw new HyperlambdaException("No [file] argument provided to [sqlite.load-extension]"),
-                    input.Children.FirstOrDefault(x => x.Name == "proc")?.GetEx<string>() ?? 
-                        throw new HyperlambdaException("No [proc] argument provided to [sqlite.load-extension]"));
+
+                var file = input.Children.FirstOrDefault(x => x.Name == "file")?.GetEx<string>() ?? 
+                    throw new HyperlambdaException("No [file] argument provided to [sqlite.load-extension]");
+                var proc = input.Children.FirstOrDefault(x => x.Name == "proc")?.GetEx<string>();
+
+                if (proc != null)
+                    connection.LoadExtension(file, proc);
+                else
+                    connection.LoadExtension(file);
             }
             finally
             {
