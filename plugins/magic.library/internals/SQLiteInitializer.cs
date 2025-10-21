@@ -3,7 +3,7 @@
  * See the attached LICENSE file for details. For license inquiries email thomas@ainiro.io
  */
 using System.Threading.Tasks;
-using Ainiro.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using magic.lambda.sqlite;
 using magic.node.contracts;
 

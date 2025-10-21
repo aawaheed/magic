@@ -4,7 +4,7 @@
 
 using System;
 using magic.node.contracts;
-using Ainiro.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 
 namespace magic.lambda.sqlite.helpers
 {
