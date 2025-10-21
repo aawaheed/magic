@@ -1,7 +1,0 @@
-<#
-    Session["ResourceFile"] = "Resources.resx";
-    Session["ResourceNamespace"] = "Ainiro.Data.Sqlite.Properties";
-    Session["NoDiagnostics"] = true;
-    Session["AccessModifier"] = "internal";
-#>
-<#@ include file="..\..\..\tools\Resources.tt" #>
