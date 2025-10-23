@@ -474,7 +474,7 @@ Arguments:
 * name - Mandatory filename. Must be relative within the module.
 * content - Mandatory text content for file.
 
-**IMPORTANT** - ALWAYS create a declarative and intentional multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files.
+**IMPORTANT** - ALWAYS create a declarative multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files.
 
 ### Delete module file
 

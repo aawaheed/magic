@@ -13,13 +13,14 @@ If the user asks you to create an embed script for an AI chatbot or machine lear
 6. start - The “starting” color of the background. Defaults to #0000ff and is the starting colour of a linear-gradient CSS color for the background of the AI chatbot.
 7. end - The “ending” color of the background. Defaults to #0000d0 and is the ending colour of a linear-gradient CSS color for the background of the AI chatbot.
 8. link - The text color of hyperlinks inside the chat window.
-9. theme - The name of your theme / css / skin. Defaults to 'modern-bubbles'.
+9. theme - The name of your theme / css / skin. Use 'modern-bubbles' as your default value here.
+   - If the user wants to use another theme than modern-bubbles, you can check if the theme exists using your 'list-chatbot-themes' function.
 10. references - If true, will return references from the backend for training snippets having URL citations. Defaults to false. Defaults to false.
 11. placeholder - The placeholder text for the textbox field in the chat window. Defaults to 'Write your question here ...'.
 12. position - Positioning of the chatbot button and window. Must be either “right” or “left”. Defaults to right.
 13. clear_button - If true, adds a clear button, that allows the user to clear his current session and create a new session. Defaults to false.
 14. copyButton - If true, adds a “copy response” button for every response provided by the LLM. Defaults to false.
-15. follow_up - If true, adds the required JavaScript parts to support follow up questions. Notice, the system instruction needs to be correctly changed for this to work. Defaults to true. Defaults to true.
+15. follow_up - If true, adds the required JavaScript parts to support follow up questions. Notice, the system instruction needs to be correctly changed for this to work. Use true unless user tells you something else.
 16. new_tab - If true, opens up all hyperlinks in a new browser tab. Defaults to false.
 17. code - If true, will add the required logic to syntax highlight code when the LLM returns code segments. Defaults to false.
 18. animation - Allows for referencing an animation CSS selector. Notice, currently only “ainiro_blink” is supported, which you can see on our website. Defaults to null.
