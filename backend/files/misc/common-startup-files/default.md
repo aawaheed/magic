@@ -120,6 +120,7 @@ An HTML widget is a small snippet of dynamically created HTML, that can be injec
    - `ainiro.$` instead of `querySelector`.
    - `ainiro.$id` instead of `getElementById`.
    - `ainiro.$$` instead of `querySelectorAll`.
+10. By default the root HTML element should have a `min-width` value of "80%", unless user tells you something different.
 
 If the user wants a widget with an API, then explicitly ask the user if he or she wants authentication on it or not, and if not, make sure you instruct the Hyperlambda generator to not add authentication requirements.
 

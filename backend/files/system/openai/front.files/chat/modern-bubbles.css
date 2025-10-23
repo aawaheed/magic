@@ -192,6 +192,7 @@ button.ainiro.ainiro_hide {
   height: calc(100% - 158px);
   padding: 15px 35px;
   overflow-y: auto;
+  box-sizing: initial;
 }
 
 /*
