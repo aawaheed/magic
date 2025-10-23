@@ -11,6 +11,22 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
+@layer reset, component, overrides;
+
+@layer reset {
+  :host, :host *, :host::before, :host::after {
+    all: revert;
+  }
+
+  :host { display: block; box-sizing: border-box; }
+
+  ::slotted(*) {
+    all: revert !important;
+  }
+}
+
+@layer component {
+
 /*
  * Common CSS and variables.
  */
@@ -697,4 +713,6 @@ div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_respons
 button.ainiro_hidden,
 html>body.ainiro_bdy button.ainiro_hidden {
   display: none !important;
+}
+
 }
