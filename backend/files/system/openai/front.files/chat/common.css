@@ -2,20 +2,12 @@
 /*
  * CSS file that contains all commonalities for all themes.
  *
- * Injected into the primary theme by replacing `.common{opacity:0}` with content from this file.
+ * Injected into the primary theme by replacing `DYNAMICALLY_REPLACED` with content from this file.
  */
 
 /*
- * Applying a sane box model.
+ * Icofont parts
  */
-.ainiro,
-.ainiro * {
-  box-sizing: border-box;
-}
-
- /*
-  * Icofont parts
-  */
 :host .ainiro-icofont,
 :host [class^="ainiro-icofont-"],
 :host [class*=" ainiro-icofont-"],
@@ -140,8 +132,6 @@
 [class^=ainiro-icofont-].ainiro-icofont-duotone:after {
   opacity: .4
 }
-
-
 
 /*
  * Making sure Markdown transformed to HTML displays well.

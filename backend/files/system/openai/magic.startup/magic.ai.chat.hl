@@ -488,7 +488,7 @@ select prompt, max(completion) as completion
                                                       // Checking we're allowed to invoke functions another time.
                                                       if
                                                          lte:x:@.iterations
-                                                            .:int:1
+                                                            .:int:0
                                                          .lambda
 
                                                             // Too many function invocations
@@ -740,7 +740,7 @@ select prompt, max(completion) as completion
       // Contains result of function invocation.
       .function-result
 
-      // Invoking OpenAI as longs as we have function invocations and have not invoked it more than a maximum of 5 times.
+      // Invoking OpenAI as longs as we have function invocations and have not invoked it more than a maximum of configured times.
       while
          mt:x:@.iterations
             .:int:0

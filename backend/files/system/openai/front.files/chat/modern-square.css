@@ -5,6 +5,7 @@
  * Making sure we use Montserrat on everything by default.
  */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :host,
 :host .ainiro,
 :host .ainiro *:not(.ainiro-icofont):not([class*="ainiro-icofont-"]):not(pre):not(code) {
@@ -16,6 +17,7 @@
 @layer reset {
   :host, :host *, :host::before, :host::after {
     all: revert;
+    box-sizing: border-box;
   }
 
   :host { display: block; box-sizing: border-box; }
@@ -30,7 +32,7 @@
 /*
  * Common CSS and variables.
  */
-.common{opacity:0}
+/* DYNAMICALLY_REPLACED */
 
 /*
  * Applying font for all elements.

@@ -29,5 +29,42 @@ select content from ml_history where session_id = @session_id"
    // Returning session items to caller.
    hyper2lambda:x:@data.select/*/*/content
    remove-nodes:x:@hyper2lambda/*/*/role/=system/.
+   for-each:x:@hyper2lambda/*/*/role/=assistant
+      .res
+      strings.split:x:@.dp/#/./*/content
+         .:"\n"
+      .in:bool:false
+      for-each:x:@strings.split/*
+         if
+            and
+               eq:x:@.in
+                  .:bool:false
+               eq:x:@.dp/#
+                  .:___
+               strings.starts-with:x:@.dp/#/+
+                  .:FUNCTION_INVOCATION[/
+            .lambda
+               set-value:x:@.in
+                  .:bool:true
+         else-if
+            and
+               eq:x:@.in
+                  .:bool:true
+               eq:x:@.dp/#
+                  .:___
+            .lambda
+               set-value:x:@.in
+                  .:bool:false
+         else-if
+            eq:x:@.in
+               .:bool:false
+            .lambda
+               set-value:x:@.res
+                  strings.concat
+                     get-value:x:@.res
+                     get-value:x:@.dp/#
+                     .:"\n"
+      set-value:x:@.dp/#/./*/content
+         get-value:x:@.res
    lambda2json:x:@hyper2lambda/*
    return:x:@lambda2json
