@@ -153,7 +153,8 @@ CREATE TABLE ml_history (
   session_id varchar(256) not null collate nocase,
   username varchar(256) not null collate nocase,
   content TEXT not null collate nocase,
-  created timestamp not null default current_timestamp, name text null,
+  created timestamp not null default current_timestamp,
+  name text null,
   primary key(session_id)
 );
 
