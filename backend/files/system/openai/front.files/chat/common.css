@@ -141,11 +141,11 @@
   color: var(--ainiro-color);
 }
 
-.ainiro_machine *:not(.hljs_ignore):not(.hljs_ignore *) a {
+.ainiro_machine a {
   color: var(--ainiro-link);
 }
 
-.ainiro_machine *:not(.hljs_ignore):not(.hljs_ignore *) img {
+.ainiro_machine img {
   max-width: 100%;
   display: block;
   max-height: 70vh;
