@@ -1,26 +1,10 @@
+
 /*
  * Bubbles modern chat CSS file.
  *
  * Making sure we use Montserrat on everything by default.
  */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-@layer reset, component, overrides;
-
-@layer reset {
-  :host, :host *, :host::before, :host::after {
-    all: revert;
-    box-sizing: border-box;
-  }
-
-  :host { display: block; }
-
-  ::slotted(*) {
-    all: revert !important;
-  }
-}
-
-@layer component {
 
 /*
  * Common CSS and variables.
@@ -713,6 +697,4 @@ button.ainiro.ainiro_hide {
 button.ainiro_hidden,
 button.ainiro_hidden {
   display: none !important;
-}
-
 }

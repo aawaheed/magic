@@ -6,33 +6,19 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*
+ * Common CSS and variables.
+ */
+/* DYNAMICALLY_REPLACED */
+
+/*
+ * Applying font for all elements.
+ */
 :host,
 :host .ainiro,
 :host .ainiro *:not(.ainiro-icofont):not([class*="ainiro-icofont-"]):not(pre):not(code) {
   font-family: 'Montserrat', sans-serif !important;
 }
-
-@layer reset, component, overrides;
-
-@layer reset {
-  :host, :host *, :host::before, :host::after {
-    all: revert;
-    box-sizing: border-box;
-  }
-
-  :host { display: block; box-sizing: border-box; }
-
-  ::slotted(*) {
-    all: revert !important;
-  }
-}
-
-@layer component {
-
-/*
- * Common CSS and variables.
- */
-/* DYNAMICALLY_REPLACED */
 
 /*
  * Applying font for all elements.
@@ -715,6 +701,4 @@ div.ainiro>div.ainiro_chat_surface>div.ainiro_machine>button.ainiro_copy_respons
 button.ainiro_hidden,
 html>body.ainiro_bdy button.ainiro_hidden {
   display: none !important;
-}
-
 }

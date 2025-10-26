@@ -5,23 +5,6 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
-@layer reset, component, overrides;
-
-@layer reset {
-  :host, :host *, :host::before, :host::after {
-    all: revert;
-    box-sizing: border-box;
-  }
-
-  :host { display: block; box-sizing: border-box; }
-
-  ::slotted(*) {
-    all: revert !important;
-  }
-}
-
-@layer component {
-
 /*
  * Common CSS and variables.
  */
@@ -808,6 +791,4 @@ button.ainiro.ainiro_hide {
 }
 button.ainiro_hidden {
   display: none !important;
-}
-
 }
