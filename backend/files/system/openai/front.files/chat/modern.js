@@ -433,7 +433,7 @@
       const wnd = this.$id('ainiro_chat_wnd');
       wnd.parentElement.removeChild(wnd);
       const btn = this.$id('ainiro_chat_btn');
-      btn.parentElement.removeChild(btn);
+      btn?.parentElement.removeChild(btn);
       sessionStorage.setItem('ainiro_state', 'closed');
     },
 
@@ -476,8 +476,10 @@
 
       // Hiding chat button.
       const btn = this.$id('ainiro_chat_btn');
-      btn.classList.add('ainiro_hide');
-      btn.classList.add('ainiro_shown');
+      if (btn) {
+        btn.classList.add('ainiro_hide');
+        btn.classList.add('ainiro_shown');
+      }
 
       this.includeResources(() => {
 
