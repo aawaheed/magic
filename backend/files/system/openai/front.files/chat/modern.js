@@ -1998,7 +1998,7 @@
   window.ask_follow_up = function(e) {
 
     // Changing value of textbox.
-    const query = window.ainiro.ainiro.shadow.getElementById('ainiro_txt');
+    const query = window.ainiro.shadow.getElementById('ainiro_txt');
     const question = e.srcElement.innerText;
     query.value = question;
 
