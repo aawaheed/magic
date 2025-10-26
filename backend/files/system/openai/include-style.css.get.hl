@@ -97,10 +97,6 @@ set-value:x:@.content
    strings.replace:x:@.content
       .:".common{opacity:0}"
       get-value:x:@.common
-set-value:x:@.content
-   strings.replace:x:@.content
-      .:"/* DYNAMICALLY_REPLACED */"
-      get-value:x:@.content
 
 // Making sure we return correct Content-Type to caller, and applying some cache.
 response.headers.set
