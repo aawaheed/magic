@@ -41,9 +41,9 @@ export class HeaderComponent implements OnInit {
     this.getSetupStatus();
     this.activeUrl = this.backendService.active.url.replace('http://', '').replace('https://', '');
 
-    // Including AI chatbot
+    // Including AI chatbot.
     const script = document.createElement('script');
-    script.src = 'https://ainiro.io/magic/system/openai/include-chatbot.js?rtl=false&clear_button=false&follow_up=true&copyButton=false&new_tab=true&code=true&references=false&position=right&type=magic-documentation&header=Ask%20about%20Hyperlambda%20or%20Magic&popup=&button=AI%20Chatbot&placeholder=Ask%20me%20about%20Hyperlambda%20...&color=%23505050&start=%23fefefe&end=%23e0e0e0&link=%23fe8464&theme=modern-square&hidden=true&v=zxcweq';
+    script.src = 'http://localhost:5000/magic/system/openai/include-chatbot.js?rtl=false&clear_button=false&follow_up=true&copyButton=false&new_tab=true&code=true&references=false&position=right&type=magic-documentation&header=Ask%20about%20Hyperlambda%20or%20Magic&popup=&button=AI%20Chatbot&placeholder=Ask%20me%20about%20Hyperlambda%20...&color=%23505050&start=%23fefefe&end=%23e0e0e0&link=%23fe8464&theme=modern-square&hidden=true&v=zxcweq';
     script.async = true;
     document.body.appendChild(script);
   }

@@ -338,7 +338,7 @@
           fileInp.value = null;
 
           // Removing text of upload file button.
-          const l2 = this.$id('ainiro_filename_label');
+          const l2 = this.shadow.getElementById('ainiro_filename_label');
           if (l2) {
             l2.innerHTML = '';
           }
@@ -366,7 +366,7 @@
 
         // We've got an existing session and user have already asked at least one question.
         chatSurface.innerHTML = sessionItems;
-        this.runScriptsIn(this.$id('ainiro_chat_surf'));
+        this.runScriptsIn(this.shadow.getElementById('ainiro_chat_surf'));
 
         // This prevents questionnaires from being shown.
         this.execQuestionnaires = false;
@@ -430,9 +430,9 @@
      */
     destroy: function() {
 
-      const wnd = this.$id('ainiro_chat_wnd');
+      const wnd = this.shadow.getElementById('ainiro_chat_wnd');
       wnd.parentElement.removeChild(wnd);
-      const btn = this.$id('ainiro_chat_btn');
+      const btn = this.shadow.getElementById('ainiro_chat_btn');
       btn?.parentElement.removeChild(btn);
       sessionStorage.setItem('ainiro_state', 'closed');
     },
@@ -475,7 +475,7 @@
     show: function(onAfter = null) {
 
       // Hiding chat button.
-      const btn = this.$id('ainiro_chat_btn');
+      const btn = this.shadow.getElementById('ainiro_chat_btn');
       if (btn) {
         btn.classList.add('ainiro_hide');
         btn.classList.add('ainiro_shown');
@@ -490,7 +490,7 @@
           }
 
           // Disabling button to avoid race conditions.
-          const sb = this.$id('ainiro_send');
+          const sb = this.shadow.getElementById('ainiro_send');
           sb.disabled = false;
 
           // Storing the fact the chatbot is open into session, in case we've got a "sticky" chatbot.
@@ -671,11 +671,11 @@
     _show: function(onAfter) {
 
       // Disabling button to avoid race conditions.
-      const btn = this.$id('ainiro_send');
+      const btn = this.shadow.getElementById('ainiro_send');
       btn.disabled = true;
 
       // Showing chat window.
-      const wnd = this.$id('ainiro_chat_wnd');
+      const wnd = this.shadow.getElementById('ainiro_chat_wnd');
       wnd.classList.add('show_ainiro_chatbot');
 
       // Making sure body element cannot scroll.
@@ -846,7 +846,7 @@
           this.chatMessageDone(this.response);
           if (this.onDone) {
             this.onDone();
-            this.runScriptsIn(this.$id('ainiro_chat_surf'));
+            this.runScriptsIn(this.shadow.getElementById('ainiro_chat_surf'));
           }
           return;
           
@@ -859,7 +859,7 @@
             const html = this.renderMarkdownWithScriptPassthrough(obj.message ?? 'An unspecified error occurred, sorry about that :/');
 
             // Updating value of last chat message.
-            const surf = this.$id('ainiro_chat_surf');
+            const surf = this.shadow.getElementById('ainiro_chat_surf');
             const msg = surf.childNodes[surf.childNodes.length - 1];
             msg.innerHTML = html;
             msg.className = 'ainiro_machine ainiro_error';
@@ -898,7 +898,7 @@
 
             default:
               this.addMessage(obj.text, 'ainiro_machine integration ' + obj.integration_type, true);
-              const surf = this.$id('ainiro_chat_surf');
+              const surf = this.shadow.getElementById('ainiro_chat_surf');
               const html = surf.innerHTML;
               sessionStorage.setItem('ainiro_chatbot.session', html);
               this.scrollToBottom(true, true);
@@ -916,7 +916,7 @@
           const html = this.renderMarkdownWithScriptPassthrough(this.response);
 
           // Updating value of last chat message.
-          const surf = this.$id('ainiro_chat_surf');
+          const surf = this.shadow.getElementById('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
 
@@ -987,7 +987,7 @@
       });
 
       // Adding conversation starters to surface.
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
       surf.appendChild(wrp);
       this.scrollToBottom(true, false);
     },
@@ -998,7 +998,7 @@
     scrollToBottom: function(smooth, force) {
 
       // Retrieving element we're supposed to scroll.
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
 
       if (force || surf.scrollTop + 50 > (surf.scrollHeight - surf.offsetHeight)) {
 
@@ -1017,7 +1017,7 @@
     maximize: function() {
 
       // Maximizing chat window.
-      const wnd = this.$id('ainiro_chat_wnd');
+      const wnd = this.shadow.getElementById('ainiro_chat_wnd');
       wnd.classList.toggle('ainiro_maximized');
     },
 
@@ -1029,7 +1029,7 @@
       // Clearing out chat window and session storage.
       sessionStorage.removeItem('ainiro_chatbot.session');
       var lst = [];
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
       surf.childNodes.forEach(el => {
         lst.push(el);
       });
@@ -1078,7 +1078,7 @@
     _showSession: function(items) {
 
       // Checking if dropdown already exists, at which point we delete it.
-      const existing = this.$('.ainiro_sessions_list');
+      const existing = this.shadow.querySelector('.ainiro_sessions_list');
       if (existing) {
         existing.parentNode.removeChild(existing);
         return;
@@ -1090,7 +1090,7 @@
       }
 
       // Figuring out height of toolbar.
-      const toolbar = this.$('.ainiro_toolbar');
+      const toolbar = this.shadow.querySelector('.ainiro_toolbar');
       const topPosition = toolbar.clientHeight + 5;
 
       // Finding parent element to inject popup into.
@@ -1126,7 +1126,7 @@
       event.preventDefault()
 
       // Making sure we destroy drop down ...
-      const existing = this.$('.ainiro_sessions_list');
+      const existing = this.shadow.querySelector('.ainiro_sessions_list');
       if (existing) {
         existing.parentNode.removeChild(existing);
       }
@@ -1151,7 +1151,7 @@
         .then((res) => {
 
           // Updating GUI ...
-          const surface = this.$id('ainiro_chat_surf');
+          const surface = this.shadow.getElementById('ainiro_chat_surf');
 
           // Deleting old items.
           const toDel = [];
@@ -1199,11 +1199,11 @@
     hide: function() {
 
       // Shows chat button.
-      const btn = this.$id('ainiro_chat_btn');
+      const btn = this.shadow.getElementById('ainiro_chat_btn');
       btn.classList.remove('ainiro_hide');
 
       // Hides chat window.
-      const wnd = this.$id('ainiro_chat_wnd');
+      const wnd = this.shadow.getElementById('ainiro_chat_wnd');
       wnd.classList.remove('show_ainiro_chatbot');
 
       // Making sure body element cannot scroll.
@@ -1236,17 +1236,17 @@
       el.className = cls;
 
       // Checking if we've got "ainiro_starter" element, at which point we insert the message *BEFORE* these.
-      const starters = this.$id('ainiro_starter');
+      const starters = this.shadow.getElementById('ainiro_starter');
       if (starters) {
 
         // Appending message to surface container.
-        const surf = this.$id('ainiro_chat_surf');
+        const surf = this.shadow.getElementById('ainiro_chat_surf');
         surf.insertBefore(el, starters);
 
       } else {
 
         // Appending message to surface container.
-        const surf = this.$id('ainiro_chat_surf');
+        const surf = this.shadow.getElementById('ainiro_chat_surf');
         surf.appendChild(el);
       }
     },
@@ -1257,17 +1257,17 @@
     submit: function() {
 
       // Making sure user provided any actual text.
-      const txtEl = this.$id('ainiro_txt');
+      const txtEl = this.shadow.getElementById('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = this.$id('ainiro_send');
+      const btn = this.shadow.getElementById('ainiro_send');
       btn.disabled = true;
 
       // Making sure we remove conversation starters if they're in the DOM.
-      const wrp = this.$$('.ainiro_starters');
+      const wrp = Array.from(this.shadow.querySelectorAll('.ainiro_starters'));
       if (wrp) {
         for (let idx = 0; idx < wrp.length; idx++) {
           wrp[idx].parentNode.removeChild(wrp[idx]);
@@ -1275,7 +1275,7 @@
       }
 
       // Removing text of upload file button.
-      const lbl = this.$id('ainiro_filename_label');
+      const lbl = this.shadow.getElementById('ainiro_filename_label');
       if (lbl) {
         lbl.innerHTML = '';
       }
@@ -1329,13 +1329,13 @@
     submitAnswer: function(token) {
 
       // Retrieving query input field and sanity checking input.
-      const txtEl = this.$id('ainiro_txt');
+      const txtEl = this.shadow.getElementById('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = this.$id('ainiro_send');
+      const btn = this.shadow.getElementById('ainiro_send');
       btn.disabled = true;
 
       // Creating our payload.
@@ -1368,7 +1368,7 @@
       }).then(() => {
 
         // Retrieving query input field and resetting its prompt.
-        const txtbox = this.$id('ainiro_txt');
+        const txtbox = this.shadow.getElementById('ainiro_txt');
         txtbox.value = '';
 
         // Storing user's answer.
@@ -1405,7 +1405,7 @@
           const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
-          const surf = this.$id('ainiro_chat_surf');
+          const surf = this.shadow.getElementById('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
           msg.className = 'ainiro_machine ainiro_error';
@@ -1502,7 +1502,7 @@
         /*
          * Removing animation CSS class from question.
          */
-        const surf = this.$id('ainiro_chat_surf');
+        const surf = this.shadow.getElementById('ainiro_chat_surf');
         surf.childNodes[surf.childNodes.length - 1].classList.remove('ainiro_question');
 
         // Checking if currently asked question was in fact a message, at which point we ask the next question.
@@ -1518,7 +1518,7 @@
             this.onQuestionnaireDone();
 
             // Enabling send button.
-            const btn = this.$id('ainiro_send');
+            const btn = this.shadow.getElementById('ainiro_send');
             btn.disabled = false;
 
             return;
@@ -1533,7 +1533,7 @@
         } else {
 
           // Enabling send button.
-          const btn = this.$id('ainiro_send');
+          const btn = this.shadow.getElementById('ainiro_send');
           btn.disabled = false;
         }
 
@@ -1546,13 +1546,13 @@
     submitQuestion: function(token) {
 
       // Retrieving query input field and disabling it.
-      const txtEl = this.$id('ainiro_txt');
+      const txtEl = this.shadow.getElementById('ainiro_txt');
       if (txtEl.value.trim() === '') {
         return;
       }
 
       // Disabling send button.
-      const btn = this.$id('ainiro_send');
+      const btn = this.shadow.getElementById('ainiro_send');
       btn.disabled = true;
 
       // Adding wait message to surface.
@@ -1635,9 +1635,9 @@
         }
 
         // Retrieving query input field and resetting its prompt.
-        const txtbox = this.$id('ainiro_txt');
+        const txtbox = this.shadow.getElementById('ainiro_txt');
         txtbox.value = '';
-        const fileInp = this.$id('ainiro_upload');
+        const fileInp = this.shadow.getElementById('ainiro_upload');
         if (fileInp) {
           fileInp.value = null;
         }
@@ -1652,7 +1652,7 @@
           const html = this.renderMarkdownWithScriptPassthrough(errObj.message);
 
           // Updating value of last chat message.
-          const surf = this.$id('ainiro_chat_surf');
+          const surf = this.shadow.getElementById('ainiro_chat_surf');
           const msg = surf.childNodes[surf.childNodes.length - 1];
           msg.innerHTML = html;
           msg.className = 'ainiro_machine ainiro_error';
@@ -1685,7 +1685,7 @@
       const html = this.renderMarkdownWithScriptPassthrough(wholeMarkdown);
 
       // Updating value of last chat message.
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
       const msg = surf.childNodes[surf.childNodes.length - 1];
       msg.innerHTML = html;
 
@@ -1852,7 +1852,7 @@
       });
 
       // Adding ul element to surface.
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
       let last = surf.childNodes[surf.childNodes.length - 1];
       if (last.classList.contains('ainiro_starters')) {
         last  = surf.childNodes[surf.childNodes.length - 2];
@@ -1872,11 +1872,11 @@
     onFinished: function() {
 
       // Enabling send button.
-      const btn = this.$id('ainiro_send');
+      const btn = this.shadow.getElementById('ainiro_send');
       btn.disabled = false;
 
       // Retrieving surface for chat messages.
-      const surf = this.$id('ainiro_chat_surf');
+      const surf = this.shadow.getElementById('ainiro_chat_surf');
 
       // Adding "copy response button", if we should.
       if (this.ainiro_settings.copyButton) {
@@ -1936,7 +1936,7 @@
       this.show(() => {
 
         // Setting query
-        const query = this.$id('ainiro_txt');
+        const query = this.shadow.getElementById('ainiro_txt');
         query.value = question;
 
         if (question && question !== '') {
@@ -1998,7 +1998,7 @@
   window.ask_follow_up = function(e) {
 
     // Changing value of textbox.
-    const query = window.ainiro.$id('ainiro_txt');
+    const query = window.ainiro.ainiro.shadow.getElementById('ainiro_txt');
     const question = e.srcElement.innerText;
     query.value = question;
 
