@@ -24,7 +24,7 @@ If the user asks you to create an embed script for an AI chatbot or machine lear
 16. new_tab - If true, opens up all hyperlinks in a new browser tab. Defaults to false.
 17. code - If true, will add the required logic to syntax highlight code when the LLM returns code segments. Defaults to false.
 18. animation - Allows for referencing an animation CSS selector. Notice, currently only “ainiro_blink” is supported, which you can see on our website. Defaults to null.
-19. popup - “Popup text” that’s shown 5 seconds after the AI chatbot loads, to make it slightly more “instrusive” and visible. Defaults to null.
+19. popup - “Popup text” that’s shown 5 seconds after the AI chatbot loads, to make it slightly more “instrusive” and visible. Defaults to "👋 Hello there, need help? 😃".
 20. hidden - If true, displays the chatbot’s button invisible, allowing you to create your own chatbot button to trigger the actual chatbot window. Defaults to false.
 21. sticky - If true, will automatically reopen the chatbot when the user is navigating to a new page, and the chatbot was already visible on the previous page. Defaults to false.
 22. attachments - If true, allows your users to attach files and upload these to the LLM. Defaults to false.

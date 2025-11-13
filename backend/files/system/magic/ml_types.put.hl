@@ -47,10 +47,10 @@ validators.integer:x:@.arguments/*/max_context_tokens
    max:40000
 validators.integer:x:@.arguments/*/max_request_tokens
    min:100
-   max:25000
+   max:12000
 validators.integer:x:@.arguments/*/max_tokens
    min:500
-   max:25000
+   max:12000
 
 // Verifying user is authorized to access endpoint.
 auth.ticket.verify:root

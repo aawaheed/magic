@@ -343,7 +343,7 @@ export class MachineLearningEditTypeComponent implements OnInit {
         if (this.data?.model) {
           this.model = this.models.filter(x => x.id === this.data.model)[0];
         } else {
-          const gpt4 = this.models.filter(x => x.id === 'gpt-4.1-2025-04-14');
+          const gpt4 = this.models.filter(x => x.id === 'gpt-5-chat-latest');
           if (gpt4.length > 0) {
             this.model = gpt4[0];
           } else {

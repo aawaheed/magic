@@ -47,7 +47,7 @@ validators.integer:x:@.arguments/*/max_context_tokens
    max:40000
 validators.integer:x:@.arguments/*/max_request_tokens
    min:100
-   max:25000
+   max:12000
 validators.integer:x:@.arguments/*/max_tokens
    min:500
    max:4000
@@ -55,7 +55,7 @@ validators.integer:x:@.arguments/*/max_tokens
 // Applying sane defaults.
 validators.default:x:@.arguments
    vector_model:text-embedding-3-small
-   model:gpt-4.1-2025-04-14
+   model:gpt-5-chat-latest
    threshold:decimal:0.3
 
 // Opening up database connection.
