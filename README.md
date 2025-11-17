@@ -45,7 +45,7 @@ Hyperlambda is a _"5th generation programming language"_, that is on average 10 
 
 The above C# code is 303 tokens. The Hyperlambda equivalent is 30 tokens. The declarative aspect of Hyperlambda makes you on average 5 to 10 times more productive, and reduces your technical debt by 80 to 90 percent.
 
-Hyperlambda has been [officially recognised by Microsoft in several articles](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda), and is currently being used by thousands of companies and individuals all over the world to solve software development backend problems. Hyperlambda is async to the bone, and have scalability and performance traits that's almost on pair with C# and .Net 9.
+Hyperlambda has been [officially recognised by Microsoft in several articles](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda), and is currently being used by thousands of companies and individuals all over the world to solve software development backend problems. Hyperlambda is also async to the bone, and have scalability and performance traits that's almost on pair with C# and .Net 9. In fact, Hyperlambda is 5% _faster_ than C# combined with Entity Framework.
 
 ## AI Agents
 
