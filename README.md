@@ -41,9 +41,9 @@ You can watch me create the above app in the [following video](https://www.youtu
 
 Hyperlambda is a _"5th generation programming language"_, that is on average 10 to 50 times less verbose than traditional languages such as C#, Java, Python, GoLang, and PHP. On average it can solve most problems with 5% of the codebase compared to any traditional programming language. This makes it an extremely high level programming language, allowing you to work declaratively instead of having to implement everything imperatively. Below is a simple HTTP CRUD Read endpoint implemented in C# and Hyperlambda to illustrate what effects this might have on your codebase.
 
-![Hyperlambda versus C#](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/csharp-versus-hyperlambda.png)
+![Hyperlambda versus C#](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/hyperlambda_csharp_tokens_read.png)
 
-The above C# code is 120 lines of code, divided into 9 different files. The Hyperlambda equivalent is 5 lines of code in one file. This declarative aspect of Hyperlambda makes you on average 20 times more productive, and reduces your technical debt by 95%.
+The above C# code is 303 tokens. The Hyperlambda equivalent is 30 tokens. The declarative aspect of Hyperlambda makes you on average 5 to 10 times more productive, and reduces your technical debt by 80 to 90 percent.
 
 Hyperlambda has been [officially recognised by Microsoft in several articles](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda), and is currently being used by thousands of companies and individuals all over the world to solve software development backend problems. Hyperlambda is async to the bone, and have scalability and performance traits that's almost on pair with C# and .Net 9.
 
