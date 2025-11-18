@@ -60,7 +60,7 @@ slots.create:magic.openid.providers.google
                      nonce:x:@.nonce
                      url:"https://accounts.google.com/o/oauth2/v2/auth"
                      client_id:x:@.client-id
-                     response_type:code
+                     response_type:id_token
                      scope:openid email profile
 
          // Returning providers to caller.
