@@ -454,6 +454,11 @@ div.ainiro_filename {
   display: flex !important;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+}
+
+.hljs_ignore * {
+  box-sizing: border-box;
 }
 
 /*
