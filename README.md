@@ -47,6 +47,10 @@ The above C# code is 303 tokens. The Hyperlambda equivalent is 30 tokens. The de
 
 Hyperlambda has been [officially recognised by Microsoft in several articles](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda), and is currently being used by thousands of companies and individuals all over the world to solve software development backend problems. Hyperlambda is also async to the bone, and have scalability and performance traits that's almost on pair with C# and .Net 9. In fact, Hyperlambda is 5% _faster_ than C# combined with Entity Framework.
 
+### Hyperlambda performance
+
+Hyperlambda is almost on pair with C#. Its overhead is tiny though, to the point where it's for instance 5 to 7 percent _faster_ than .Net and C# with Entity Framework. Compared to Python it's a _"slaughterhouse"_, with Python being 5 to 7 times slower than Hyperlambda. And if you mix in frameworks, then [Hyperlambda is 19 times faster than Fast API](https://ainiro.io/blog/hyperlambda-is-20-times-faster-than-fast-api-and-python).
+
 ## AI Agents
 
 The combination of meta programming and declarative constructs, in a homoiconic development environment, makes Hyperlambda extremely useful as a tool to create AI agents, sometimes allowing you to create highly complex AI agents, without having to write a single line of code yourself. You can see an example of this in the following video, where I create an AI agent that creates AI agents.
