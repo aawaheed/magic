@@ -34,8 +34,17 @@ namespace magic.lambda.eval
             foreach (var idx in GetNodes(input))
             {
                 // Verifying caller is allowed to invoke slot.
-                if (whitelist != null && !whitelist.Any(x => x.Name == idx.Name))
-                    throw new HyperlambdaException($"Slot [{idx.Name}] doesn't exist in currrent scope");
+                if (whitelist != null && !whitelist.Any(x => 
+                {
+                    if (x.Name == idx.Name)
+                    {
+                        if (x.Value != null && idx.Value != null && x.Get<string>() != idx.GetEx<string>())
+                              return false;
+                        return true;
+                    }
+                    return false;
+                }))
+                    throw new HyperlambdaException($"Slot [{idx.Name}] doesn't exist in currrent scope, or argument `{idx.GetEx<string>()}` not allowed");
 
                 // Invoking signal.
                 await signaler.SignalAsync(idx.Name, idx);
