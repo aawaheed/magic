@@ -159,6 +159,9 @@ namespace magic.node.extensions.hyperlambda.internals
                 case 'r':
                     return "\r";
 
+                case '@':
+                    return "\\@";
+
                 default:
                     throw new HyperlambdaException("Invalid escape sequence found in string literal");
             }

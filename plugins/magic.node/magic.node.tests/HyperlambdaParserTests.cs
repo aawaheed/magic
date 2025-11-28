@@ -116,6 +116,19 @@ namespace magic.node.tests
         }
 
         [Fact]
+        public void ParseBothWaysEscapeChars_01()
+        {
+            // Creating some lambda object.
+            var original = @".foo:x:""@.howdy/*/=\""{.dp/#/**/#text}\""""
+";
+            var lambda = HyperlambdaParser.Parse(original).Children.ToList();
+            var hl = HyperlambdaGenerator.GetHyperlambda(lambda);
+
+            // Asserts.
+            Assert.Equal(original, hl);
+        }
+
+        [Fact]
         public void EscapedStringLiteral_02()
         {
             // Creating some lambda object.
