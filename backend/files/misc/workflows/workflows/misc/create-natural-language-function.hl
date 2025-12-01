@@ -1,0 +1,65 @@
+
+/*
+ * Creates a natural language function
+ * 
+ * A natural language function allows an AI agent or chatbot to generate tools on demand, using the Hyperlambda Generator
+ * during conversations to generate code that somehow solves the user's problem, and returns the result of the execution
+ * back to the caller.
+ *
+ * Notice, a natural language function depends upon the "openai" plugin being installed.
+ */
+.arguments
+
+   // Mandatory name of machine learning type to associate function with.
+   type:string
+
+   // Mandatory name of module where file should be created.
+   module:string
+
+   // Mandatory filename to save function as.
+   filename:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/type
+validators.mandatory:x:@.arguments/*/module
+validators.mandatory:x:@.arguments/*/filename
+
+// Further santity checking invocation.
+.filename
+set-value:x:@.filename
+   strings.concat
+      .:/modules/
+      get-value:x:@.arguments/*/module
+      .:/
+if
+   not
+      io.folder.exists:x:@.filename
+   .lambda
+      throw:Module does not exist
+         status:int:500
+         public:bool:true
+
+// Creating full path.
+set-value:x:@.filename
+   strings.concat
+      get-value:x:@.filename
+      get-value:x:@.arguments/*/filename
+
+// Notice, the lambda object for a natural language function is the same for all functions.
+io.file.load:/misc/workflows/workflows/misc/natural-language-function-implementation.hl
+
+// Creating our function file.
+io.file.save:x:@.filename
+   get-value:x:@io.file.load
+
+// Associating function with machine learning type.
+execute-file:/misc/workflows/workflows/machine-learning/create-ai-function.hl
+   type:x:@.arguments/*/type
+   filename:x:@.filename
+
+// Returning success.
+return
+   result:success

@@ -333,7 +333,7 @@ Arguments:
 
 - folder - Mandatory path of folder to delete.
 
-### Create new website file
+### Create a new website file
 
 Creates a new HTML, CSS, JavaScript file, or some other website frontend file, and saves to the website folder.
 
@@ -641,6 +641,30 @@ If the user wants an API for an entity named for instance 'contact', then the co
 * contact.put.hl - Update endpoints using HTTP PUT verb ends with '.put.hl'
 * contact.delete.hl - Delete endpoints using HTTP DELETE verb ends with '.delete.hl'
 * contact.patch.hl - Patch endpoints using HTTP PATCH verb ends with '.patch.hl'
+
+### Create a natural language AI function
+
+A natural language function takes natural language as input, generates Hyperlambda code according to its input arguments on demand, executes the Hyperlambda code, and returns the result to the caller. In theory, this gives an AI agent or chatbot the capability to "grow tools" on demand, in its interaction with the user.
+
+If the user says he or she wants to create a natural language AI function, it implies he or she wants to create an AI function that takes a single natural language prompt, and returns the result of executing the code back to caller. The process is secure because of Hyperlambda's "whitelist" features, that only allows for safe code to execute. The following function allows you to create such as function.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/misc/create-natural-language-function.hl]:
+{
+  "type": "[STRING_VALUE]",
+  "module": "[STRING_VALUE]",
+  "filename": "[STRING_VALUE]"
+}
+___
+
+Arguments:
+
+* type - Mandatory argument being machine learning type to associate the function with
+* module - Mandatory name of module to save AI function in
+* filename - Mandatory relative filename to use inside of the above module
+
+Notice, the module must exist from before, and the machine learning type must already exist at this point.
+You can use the "create-module" function to create a new module if required, and the "create-type" to create a machine learning type.
 
 ### Execute SQL and return result
 
