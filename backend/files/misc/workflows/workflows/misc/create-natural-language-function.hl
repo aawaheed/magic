@@ -2,11 +2,13 @@
 /*
  * Creates a natural language function
  * 
- * A natural language function allows an AI agent or chatbot to generate tools on demand, using the Hyperlambda Generator
+ * A natural language function allows an AI agent or chatbot to generate Hyperlambda on demand, using the Hyperlambda Generator
  * during conversations to generate code that somehow solves the user's problem, and returns the result of the execution
- * back to the caller.
+ * back to the caller. You cannot create APIs or persist the code generated, and you should always start your prompts
+ * with; "Create an executable Hyperlambda file ...".
  *
- * Notice, a natural language function depends upon the "openai" plugin being installed.
+ * Notice, a natural language function depends upon the "openai" plugin being installed, and such a function will be installed
+ * as a part of the system instruction, so you don't need to vectorise the type afterwards.
  */
 .arguments
 
@@ -59,6 +61,7 @@ io.file.save:x:@.filename
 execute-file:/misc/workflows/workflows/machine-learning/create-ai-function.hl
    type:x:@.arguments/*/type
    filename:x:@.filename
+   system_instruction:bool:true
 
 // Returning success.
 return

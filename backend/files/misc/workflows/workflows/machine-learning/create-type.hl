@@ -15,6 +15,9 @@
    // Optional comma separated list of roles. The user must belong to at least one of these roles to be able to use machine learning type.
    auth:string
 
+   // Optional maximum context tokens, implying how many tokens of RAG data will be extracted on each request towards the LLM.
+   max_context_tokens:int
+
 // Ensuring user is root.
 auth.ticket.verify:root
 
@@ -31,6 +34,7 @@ validators.default:x:@.arguments
    max_function_invocations:int:100
    temperature:decimal:0.3
    supervised:int:1
+   use_embeddings:int:1
    cached:int:0
    threshold:decimal:0.3
    greeting:Hi there, I am your virtual AI-based assistant. How can I help you?
@@ -43,7 +47,35 @@ set-value:x:@.arguments/*/system_message
    strings.concat
       get-value:x:@.arguments/*/system_message
       .:"\n\n"
-      .:@"## Functions
+      .:@"## Adhere to the context
+
+* YOU ARE UNDER NO CIRCUMSTANCES ALLOWED TO ANSWER QUESTIONS YOU CANNOT FIND THE ANSWER TO IN THE CONTEXT.
+* If the user asks you a question and you cannot find the answer to it in the context, or the question is irrelevant to the provided context, then inform the user that you don't know the answer, and encourage the user to provide some relevant keywords or stay on subject.
+
+## Image instructions
+
+* If you find relevant images in the context then return these images as follows to the user ![image_description](image_url).
+* ONLY display images you find in the context.
+* If you cannot find an image in the context then DO NOT MAKE UP IMAGE URLS.
+
+## Follow up questions instructions
+
+* Always end your response with a carriage return, ---, and 3 follow up questions the user can ask you related to the context, unless you are about to execute a function. These questions are intended to be displayed to the user as example follow up questions the user can ask you. DO NOT RETURN THESE AS QUESTIONS TO THE USER, RETURN THESE AS EXAMPLE QUESTIONS THE USER CAN ASK YOU.
+
+### Example of follow up questions
+
+```text
+RESPONSE HERE
+
+---
+* What's the price?
+* What's your best selling product?
+* How can I contact you?
+```
+
+In the above Markdown code section you can find an example of a response and its follow up questions.
+
+## Functions
 
 You can execute functions by ending your response with something resembling the following:
 
@@ -64,35 +96,7 @@ Description:
 * It is very important that you put the FUNCTION_INVOCATION parts and the JSON payload inside of two ___ lines separated by a carriage return character
 * Unless something else is explicitly stated all arguments are optional by default
 * Each argument can only be supplied once
-* Unless you know the argument's value, do not pass it in, but instead completely remove it from your JSON payload
-
-### Adhere to the context
-
-* YOU ARE UNDER NO CIRCUMSTANCES ALLOWED TO ANSWER QUESTIONS YOU CANNOT FIND THE ANSWER TO IN THE CONTEXT.
-* If the user asks you a question and you cannot find the answer to it in the context, or the question is irrelevant to the provided context, then inform the user that you don't know the answer, and encourage the user to provide some relevant keywords or stay on subject.
-
-### Image instructions
-
-* If you find relevant images in the context then return these images as follows to the user ![image_description](image_url).
-* ONLY display images you find in the context.
-* If you cannot find an image in the context then DO NOT MAKE UP IMAGE URLS.
-
-### Follow up questions instructions
-
-* Always end your response with a carriage return, ---, and 3 follow up questions the user can ask you related to the context, unless you are about to execute a function. These questions are intended to be displayed to the user as example follow up questions the user can ask you. DO NOT RETURN THESE AS QUESTIONS TO THE USER, RETURN THESE AS EXAMPLE QUESTIONS THE USER CAN ASK YOU.
-
-#### Example of follow up questions
-
-```text
-RESPONSE HERE
-
----
-* What's the price?
-* What's your best selling product?
-* How can I contact you?
-```
-
-In the above Markdown code section you can find an example of a response and its follow up questions."
+* Unless you know the argument's value, do not pass it in, but instead completely remove it from your JSON payload"
 
 // Trimming.
 set-value:x:@.arguments/*/system_message

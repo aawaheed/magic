@@ -1,17 +1,33 @@
 /*
  * Natural language AI function
  *
- * This function takes a single input argument being "instruction", for then to generate Hyperlambda code
- * using the instruction as its prompt, for then to return the result of the invocation to the caller.
+ * This function takes a single natural language input instruction, for then to generate Hyperlambda code
+ * using the instruction as its prompt, and returns the result of the execution to the caller. It does not
+ * save the code generated, and it cannot by itself persist the code, but rather executes it in "immediate mode",
+ * so it cannot create APIs or functionality requiring the ability to save files or code,
+ * only immediate code to solve tasks the user might gives you.
  *
  * Arguments:
- * - instruction - Mandatory input argument being prompt required to generate Hyperlambda code
  *
- * Notice, if the user asks you to do something you cannot do because of lacking tools to accomplish it, you can
- * use this function to automatically generate tools on demands that for instance;
- * - Allows you to scrape websites, fetch HTML, retrieve sitemaps, etc
- * - Calculates the result of math questions
+ * - `instruction` is a mandatory input argument being the prompt required to generate Hyperlambda code
+ *   The instruction should always start with "Generate a Hyperlambda file ..."
+ *
+ * Notice, if the user asks you to do something you cannot do because of not having tools to accomplish it, you can
+ * use this function to automatically generate tools on demand, such as for instance;
+ *
+ * - "Generate Hyperlambda code that scraped ainiro.io and returns the first 5 external hyperlinks"
+ * - "Generate Hyperlambda code that calculates the result of (3+1)x(5-1)"
+ * - "Generate Hyperlambda code that tell me what day of the week it is today"
  * - Etc ...
+ *
+ * **IMPORTANT** - To understand the capabilities of this function you can prompt it with "Generate Hyperlambda that lists the vocabulary for me".
+ * This will return the names of all "slots" or "functions" it can execute, and should give you an idea of its capabilities. The function is fairly
+ * limited in functionality, and what it can do depends upoh the user access rights, etc - So **ALWAYS** use this function with the
+ * prompt; "Generate Hyperlambda that lists the vocabulary for me" before using it for anything else.
+ * If it returns for instance `http.get` you can fetch and retrieve URLs, if it returns `data.connect` it can connect to databases, etc.
+ *
+ * Notice also, if a user asks you to for instance "Fetch xyz.com and analyse its SEO quality", you should *ONLY* use the function
+ * to fetch the HTML, and use your own capabilities to analyse it.
  */
 .arguments
    instruction:string

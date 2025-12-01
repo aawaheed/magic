@@ -644,7 +644,7 @@ If the user wants an API for an entity named for instance 'contact', then the co
 
 ### Create a natural language AI function
 
-A natural language function takes natural language as input, generates Hyperlambda code according to its input arguments on demand, executes the Hyperlambda code, and returns the result to the caller. In theory, this gives an AI agent or chatbot the capability to "grow tools" on demand, in its interaction with the user.
+A natural language function takes natural language as input, generates Hyperlambda code according to its input arguments on demand, executes the Hyperlambda code, and returns the result to the caller. In theory, this gives an AI agent or chatbot the capability to "grow tools" on demand, in its interaction with the user. However, it cannot save Hyperlambda, only execute it in immediate mode, so you cannot create APIs or anything.
 
 If the user says he or she wants to create a natural language AI function, it implies he or she wants to create an AI function that takes a single natural language prompt, and returns the result of executing the code back to caller. The process is secure because of Hyperlambda's "whitelist" features, that only allows for safe code to execute. The following function allows you to create such as function.
 
@@ -1129,7 +1129,8 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-type.hl]:
 {
   "type": "[STRING_VALUE]",
   "system_message": "[STRING_VALUE]",
-  "auth": "[STRING_VALUE]"
+  "auth": "[STRING_VALUE]",
+  "max_context_tokens": "[INTEGER_VALUE]"
 }
 ___
 
@@ -1138,6 +1139,9 @@ Arguments;
 - [type] is mandatory name of new machine learning type
 - [system_message] is optional and the system instruction used during inference
 - [auth] is an optional comma separated list of roles.The user must belong to at least one of these roles to be able to use machine learning type.
+- [max_context_tokens] is an optional value and is maximum number of tokens of RAG data and "context" that will be sent to OpenAI during requests.
+  - If you're creating an AI agent it is typically better to set this at somewhere between 40,000 and 60,000
+  - Defaults to 12,000 tokens.
 
 If the user doesn't provide you with a name, then use the default from above.
 
@@ -1301,7 +1305,8 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-ai-function.hl]:
 {
   "type": "[STRING_VALUE]",
-  "filename": "[STRING_VALUE]"
+  "filename": "[STRING_VALUE]",
+  "system_instruction": [BOOLEAN_VALUE]
 }
 ___
 
@@ -1309,8 +1314,11 @@ Arguments;
 
 - [type] is mandatory name of machine learning type to add the function to
 - [filename] is mandatory Hyperlambda file path, to the file that's to serve as the function
+- [system_instruction] is optional. If true, will add the function declaration to the system instruction instead of as RAG data
 
 **NOTICE** - The filename above is the FULL filepath, and for a file named 'bar.md' inside of for instance some module named 'foo' that would become '/modules/foo/bar.md'. Also realise that an AI function does not need to be an HTTP invocation, so it doesn't need the HTTP verb in its filename.
+
+If you add the ai function to the system instruction it will always be available, even when the user does not provide a natural prompt that matches the RAG snippet. The default value here is `false`, but ask the user if he wants to add it to the system instruction for higher availability.
 
 ### Invoke HTTP endpoint
 

@@ -1,7 +1,7 @@
 Workflow; Create Embed Script for AI Chatbot
 WORKFLOW ==> create-embed-script
 
-This is the standard way to create an embed script for an AI chatbot, allowing the user to embed the chatbot on some website somewhere.
+This is the ONLY way to create an embed script for an AI chatbot, allowing the user to embed the chatbot on some website somewhere. There is no function, only this workflow. Just follow the recipe below and provide the user with an embed script he or she can use to embed the AI chatbot/agent on their website.
 
 If the user asks you to create an embed script for an AI chatbot or machine learning type, or asks you to "create an embed script", or something similar, then you will need the following information from the user.
 

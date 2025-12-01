@@ -10,8 +10,15 @@
    // Mandatory AI function file.
    filename:string
 
+   // Optional argument. If true, adds the AI function declaration to the system instruction.
+   system_instruction:bool
+
 // Ensuring user is root.
 auth.ticket.verify:root
+
+// Adding defaults
+validators.default:x:@.arguments
+   system_instruction:bool:false
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/type
@@ -113,26 +120,64 @@ else
          get-value:x:@.completion
          .:"\n___"
 
-// Creating meta value.
-.meta
-set-value:x:@.meta
-   strings.concat
-      .:"FUNCTION_INVOCATION ==> "
-      get-value:x:@.arguments/*/filename
+// Checking if we're to add it to the system instruction or not.
+if
+   neq:x:@.arguments/*/system_instruction
+      .:bool:true
+   .lambda
 
-// Inserting training snippet into database.
-data.connect:magic
-   data.create
-      table:ml_training_snippets
-      values
-         type:x:@.arguments/*/type
-         prompt:x:@.prompt
-         completion:x:@.completion
-         meta:x:@.meta
+      // Creating meta value.
+      .meta
+      set-value:x:@.meta
+         strings.concat
+            .:"FUNCTION_INVOCATION ==> "
+            get-value:x:@.arguments/*/filename
 
-   // Returning result to caller.
-   yield
-      result:success
-      prompt:x:@.prompt
-      completion:x:@.completion
-      id:x:@data.create
+      // Inserting training snippet into database.
+      data.connect:magic
+         data.create
+            table:ml_training_snippets
+            values
+               type:x:@.arguments/*/type
+               prompt:x:@.prompt
+               completion:x:@.completion
+               meta:x:@.meta
+
+         // Returning result to caller.
+         yield
+            result:success
+            prompt:x:@.prompt
+            completion:x:@.completion
+            id:x:@data.create
+
+else
+
+   // Adding it to the system instruction
+   data.connect:magic
+      data.read
+         table:ml_types
+         where
+            and
+               type.eq:x:@.arguments/*/type
+      if
+         not-exists:x:@data.read/*
+         .lambda
+            throw:No sych machine learning type
+               public:bool:true
+               status:int:400
+      .instruction
+      set-value:x:@.instruction
+         strings.concat
+            get-value:x:@data.read/*/*/system_message
+            .:"\r\n\r\n### "
+            get-value:x:@.prompt
+            .:"\r\n\r\n"
+            get-value:x:@.completion
+      data.update
+         table:ml_types
+         where
+            and
+               type.eq:x:@.arguments/*/type
+         values
+            system_message:x:@.instruction
+

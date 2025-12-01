@@ -44,13 +44,13 @@ validators.mandatory:x:@.arguments/*/type
 // Sanity checking invocation.
 validators.integer:x:@.arguments/*/max_context_tokens
    min:500
-   max:40000
+   max:100000
 validators.integer:x:@.arguments/*/max_request_tokens
    min:100
-   max:12000
+   max:100000
 validators.integer:x:@.arguments/*/max_tokens
    min:500
-   max:12000
+   max:100000
 
 // Verifying user is authorized to access endpoint.
 auth.ticket.verify:root
