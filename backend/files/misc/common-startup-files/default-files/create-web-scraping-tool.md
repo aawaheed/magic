@@ -1,19 +1,22 @@
-Workflow; Create web scraping tool
-WORKFLOW ==> create-web-scraping-tool
+Workflow; Scrape or crawl websites or sitemaps
+WORKFLOW ==> scrapr-or-crawl-websites-or-sitemaps
 
-**IMPORTANT** - If the user tells you he or she wants to scrape a website, sitemap, or something similar, you should offer the user to follow this workflow, and inform the user of what you can do for him using the Hyperlambda generator.
+**IMPORTANT** - If the user wants to scrape a website, crawl a sitemap, or something similar, you should offer the user to follow this workflow, and inform the user of what you can do for him using the Hyperlambda generator.
 
 You can use the Hyperlambda generator to create code on the fly for web scraping operations. You can generate the Hyperlambda using the "generate-hyperlambda" function, and execute it immediately using the "execute-hyperlambda" function, without saving it first. Below are examples of prompts that would work with the Hyperlambda generator and result in working code you can execute and use the results from.
 
 * "Crawl ainiro.io's sitemap for its first three URLs not containing '/blog/' in their URLs and return H1 headers from all page"
 * "Scrape ainiro.io/white-label and return the first 20 images you find. Return both alt values and URLs. Make sure you return absolute URLs"
 * "Get the H1, meta description, and title from www.hubspot.com"
-* "Fetch all hyperlinks with their trimmed text values from xyz.com, and return both URLs and a list of CSS classes associated with each hyperlink"
+* "Fetch all hyperlinks with their trimmed text values from xyz.com/articles/foo, and return both URLs and a list of CSS classes associated with each hyperlink"
 * "Scrape xyz.com/data/reports and return the trimmed text of all LI items having the 'product' CSS class"
 * "Crawl all hyperlinks you find at howdy.com/whatever and return their HTTP status codes, in addition to their Content-Type"
 * "Return all 404 URLs from ainiro.io's sitemap"
-* "Return all dead links from ainiro.io"
+* "Return all dead links from ainiro.io/white-label"
 * "Crawl the first 5 URLs from ainiro.io's sitemap containing '/blog/' and return the Markdown version of the first 'article' element you find, in addition to all URLs referenced inside the markdown"
+* "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta descriptin values"
+* "Crawl all URLs from ainiro.io/ai-agents and insert these into database x, table y, having columns 'url' and 'text'"
+* "Fetch all external hyperlink URLs from 'https://ainiro.io/crud-generator' and return their HTTP status codes and response headers."
 
 The above are just examples, but if you describe what you want to retrieve from any HTML page, or sitemap, or something similar, the Hyperlambda generator can typically be used to solve the problem, including crawling hyperlinks it finds on web pages, converting HTML to Markdown.
 
@@ -25,7 +28,18 @@ If the user wants to create a reusable tool, you can invoke the Hyperlambda gene
 
 If the user asks you to create web scraping tools, then follow this process, unless user explicitly tells you something else.
 
-1. Suggest to use the Hyperlambda generator to create said web scraping tools, and display the prompt(s) you intend to use to the user
-2. Generate the required Hyperlambda using the "generate-hyperlambda" function
-3. Execute the Hyperlambda in the same message, assuming the user is OK with the code you showed to him or her
-4. DO NOT execute the code before you've shown it to the user, unless the user explicitly tells you to do so
+1. Suggest to use the Hyperlambda generator to create said web scraping tools, and display the prompt(s) you intend to use to the user before running your prompts through the Hyperlambda generator.
+2. Generate the required Hyperlambda using the "generate-hyperlambda" function.
+3. Execute the Hyperlambda immediately in the same message.
+4. NEVER change the Hyperlambda code without using the Hyperlambda generator to create new code.
+
+**IMPORTANT** - If the user asks you to change the Hyperlambda code, then change your *prompt* and rerun it through the Hyperlambda generator.
+
+**NEVER** change the Hyperlambda returned by the Hyperlambda generator. If the user wants to modify the code, then modify your PROMPT and rerun it through the "generate-hyperlambda" function and use the new code returned by it instead.
+
+**CRITICAL RULE** — **DO NOT** manually modify, rewrite, or even show an edited version of Hyperlambda code. If the user requests any change to previously generated Hyperlambda (even a small one), you must:
+
+1. Create a new prompt describing the desired change.
+2. Re‑invoke the generate-hyperlambda function with that prompt.
+3. Use the new code returned by the generator.
+4. You must never manually alter, patch, or extend existing Hyperlambda code — not even for demonstration purposes. All changes must go through the Hyperlambda generator to ensure correctness, reproducibility, and compliance with Magic Cloud’s deterministic code generation policy.
