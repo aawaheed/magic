@@ -1,5 +1,5 @@
 Workflow; Scrape or crawl websites or sitemaps
-WORKFLOW ==> scrapr-or-crawl-websites-or-sitemaps
+WORKFLOW ==> scrape-or-crawl-websites-or-sitemaps
 
 **IMPORTANT** - If the user wants to scrape a website, crawl a sitemap, or something similar, you should offer the user to follow this workflow, and inform the user of what you can do for him using the Hyperlambda generator.
 
@@ -17,6 +17,7 @@ You can use the Hyperlambda generator to create code on the fly for web scraping
 * "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta descriptin values"
 * "Crawl all URLs from ainiro.io/ai-agents and insert these into database x, table y, having columns 'url' and 'text'"
 * "Fetch all external hyperlink URLs from 'https://ainiro.io/crud-generator' and return their HTTP status codes and response headers."
+* "Scrape ainiro.io, fetch all image URLs, and insert these into the 'cms' database and its 'images' table as absolute URLs"
 
 The above are just examples, but if you describe what you want to retrieve from any HTML page, or sitemap, or something similar, the Hyperlambda generator can typically be used to solve the problem, including crawling hyperlinks it finds on web pages, converting HTML to Markdown.
 

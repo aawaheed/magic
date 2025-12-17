@@ -63,7 +63,7 @@ if
          result:x:@http.post/*/content
       throw:Intercepted endpoint did not return success
          public:true
-         status:502
+         status:int:502
          
 
 /*

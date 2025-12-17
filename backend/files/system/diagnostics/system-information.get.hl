@@ -1,7 +1,6 @@
 
 // Returns system information to caller.
-.description:Returns system information to caller
-.type:internal
+.arguments
 
 // Ensures user is authorized to access endpoint.
 auth.ticket.verify:root
@@ -13,38 +12,6 @@ if
       .:THIS-IS-NOT-A-GOOD-SECRET-PLEASE-CHANGE-IT
    .lambda
 
-      // Retrieving version of Magic we're currently running.
-      version
-
-      // Retrieving number of persisted tasks.
-      tasks.count
-
-      // Counting total number of log items.
-      log.count
-
-      // Retrieving endpoints.
-      endpoints.list
-      .no-endpoints
-      set-value:x:-
-         get-count:x:@endpoints.list/*
-
-      // Retrieving last 10 log items.
-      add:x:@.lambda/*/lambda2hyper/*/last_log_items
-         log.query
-            max:10
-
-      // Retrieving slots.
-      vocabulary
-      .no-slots
-      set-value:x:-
-         get-count:x:@vocabulary/*
-
-      // Retrieving dynamic slots.
-      slots.vocabulary
-      .no-dynamic-slots
-      set-value:x:-
-         get-count:x:@slots.vocabulary/*
-
       // Retrieving default database adapter.
       .default-db
       set-value:x:-
@@ -54,9 +21,6 @@ if
       .default-timezone
       set-value:x:-
          config.get:"magic:culture:defaultTimeZone"
-
-      // Counting cache items.
-      cache.count
 
       // Verifying scheduler is turned on.
       .has-scheduler:bool:true
@@ -82,14 +46,6 @@ if
 
       // Returning result to caller.
       yield
-         version:x:@version
-         persisted_tasks:x:@tasks.count
-         has_scheduler:x:@.has-scheduler
-         log_items:x:@log.count
-         cache_items:x:@cache.count
-         endpoints:x:@.no-endpoints
-         slots:x:@.no-slots
-         dynamic_slots:x:@.no-dynamic-slots
          default_db:x:@.default-db
          default_timezone:x:@.default-timezone
          has_openai:x:@.has-openai
