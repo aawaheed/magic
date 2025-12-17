@@ -27,7 +27,7 @@ import { ConfirmationDialogComponent } from '../common/confirmation-dialog/confi
 export class DashboardComponent implements OnInit {
 
   private _isRetrievingSystemReport = false;
-  systemReport: any = null;
+  systemReport: SystemReport = null;
   userIsRoot: boolean = undefined;
   isLoading: boolean = true;
   userAsUsername: string = '';
@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
     this._isRetrievingSystemReport = true;
 
     this.diagnosticsService.getSystemReport().subscribe({
-      next: (report: SystemReport[]) => {
+      next: (report: SystemReport) => {
 
         // Allowing us to retrieve system report again.
         this._isRetrievingSystemReport = false;

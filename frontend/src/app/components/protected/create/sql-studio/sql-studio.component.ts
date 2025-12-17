@@ -21,13 +21,15 @@ import { NewTableComponent } from './components/tables-view/components/add-table
  */
 @Component({
   selector: 'app-sql-studio',
-  templateUrl: './sql-studio.component.html'
+  templateUrl: './sql-studio.component.html',
+  styleUrls: ['sql-studio.components.scss']
 })
 export class SQLStudioComponent implements OnInit {
 
   private _tables: ReplaySubject<any[]> = new ReplaySubject();
   private _hintTables: ReplaySubject<any> = new ReplaySubject();
   private _dbLoading: ReplaySubject<boolean> = new ReplaySubject();
+  waitingForAnswer: boolean = false;
 
   databaseTypes: any = [] = [
     {type: 'sqlite', name: 'SQLite'},
@@ -236,11 +238,6 @@ export class SQLStudioComponent implements OnInit {
       return;
     }
 
-    if (this.selectedDbType === 'mssql') {
-      this.generalService.showFeedback('SQL Server does not allow us to easily view DDL');
-      return;
-    }
-
     let tables = this.databases.find((db: any) => db.name === this.selectedDatabase).tables || [];
     if (tables.length === 0) {
 
@@ -257,6 +254,8 @@ export class SQLStudioComponent implements OnInit {
       return 0;
     });
 
+    this.generalService.showLoading();
+    this.waitingForAnswer = true;
     this.sqlService.exportDdl(
       this.selectedDbType,
       this.selectedConnectionString,
@@ -265,6 +264,8 @@ export class SQLStudioComponent implements OnInit {
       true).subscribe({
         next: (result: any) => {
 
+          this.generalService.hideLoading();
+          this.waitingForAnswer = false;
           this.dialog.open(ExportDdlComponent, {
             width: '80vw',
             panelClass: 'light',
@@ -291,8 +292,12 @@ export class SQLStudioComponent implements OnInit {
             }
           });
         },
-        error: (error: any) => this.generalService.showFeedback(error?.error?.message ?? error, 'errorMessage', 'Ok', 5000)
-      });
+        error: (error: any) => {
+
+         this.generalService.hideLoading();
+         this.waitingForAnswer = false;
+         this.generalService.showFeedback(error?.error?.message ?? error, 'errorMessage', 'Ok', 5000);
+        }});
   }
 
   changeDatabase() {

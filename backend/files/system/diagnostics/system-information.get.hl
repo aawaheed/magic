@@ -49,3 +49,6 @@ if
          default_db:x:@.default-db
          default_timezone:x:@.default-timezone
          has_openai:x:@.has-openai
+throw:You have not yet configured your auth secret
+   public:bool:true
+   status:int:400

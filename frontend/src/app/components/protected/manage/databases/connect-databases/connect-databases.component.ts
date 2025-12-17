@@ -8,7 +8,6 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/components/protected/common/confirmation-dialog/confirmation-dialog.component';
 import { GeneralService } from 'src/app/services/general.service';
-import { BackendService } from 'src/app/services/backend.service';
 import { CatalogNameComponent } from './components/catalog-name/catalog-name.component';
 import { ManageCatalogsComponent } from './components/manage-catalogs/manage-catalogs.component';
 import { SqlService } from 'src/app/services/sql.service';
@@ -45,7 +44,6 @@ export class ConnectComponent implements OnInit {
   displayedColumns: string[] = ['dbType', 'cStringName', 'cString', 'status', 'actions'];
 
   isLoading: boolean = true;
-  ip_address: string = 'unknown';
 
   CommonRegEx = CommonRegEx;
   CommonErrorMessages = CommonErrorMessages;
@@ -62,19 +60,12 @@ export class ConnectComponent implements OnInit {
   ngOnInit() {
 
     this.loadConfig();
-    this.getIPAddress();
   }
 
   copyConnectionString(element: any) {
 
     this.clipboard.copy(element.cString);
     this.generalService.showFeedback('Connection string can be found on your clipboard');
-  }
-
-  copyIpAddress() {
-
-    this.clipboard.copy(this.ip_address);
-    this.generalService.showFeedback('Cloudlet\'s IP address can be found on your clipboard');
   }
 
   testConnectionString(connectAfterTesting: boolean) {
@@ -235,17 +226,6 @@ export class ConnectComponent implements OnInit {
         this.generalService.showFeedback(error?.error?.message ?? error, 'errorMessage');
         this.generalService.hideLoading();
       },
-    });
-  }
-
-  private getIPAddress() {
-
-    this.diagnosticService.getSystemReport().subscribe({
-      next: (result: any) => {
-        this.ip_address = result.server_ip || 'unknown';
-        this.cdr.detectChanges();
-      },
-      error: (error: any) => this.generalService.showFeedback(error?.error?.message ?? error, 'errorMessage')
     });
   }
 

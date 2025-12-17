@@ -29,6 +29,12 @@
   }
 }
 
+::ng-deep .input-textarea {
+   .mat-form-field-wrapper {
+      padding-bottom: 0;
+   }
+}
+
 ::ng-deep p > span.ainiro-dot {
   position: relative;
   animation: jump 1s infinite;
@@ -69,8 +75,8 @@
 
 .output {
   position: relative;
-  height: calc(100vh - 415px);
-  min-height: calc(100vh - 415px);
+  height: calc(100vh - 380px);
+  min-height: calc(100vh - 380px);
   overflow-y: auto;
   margin-bottom: 0;
   font-size: 1rem;

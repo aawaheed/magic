@@ -20,6 +20,6 @@ export class DiagnosticsService {
 
   getSystemReport() {
 
-    return this.httpService.get<SystemReport[]>('/magic/system/diagnostics/system-information');
+    return this.httpService.get<SystemReport>('/magic/system/diagnostics/system-information');
   }
 }
