@@ -197,7 +197,7 @@ ORDER BY s.name, t.name;
             set-value:x:@.result
                strings.concat
                   get-value:x:@.result
-                  get-value:x:@data.select/*/*/ddl
+                  get-value:x:@data.select/0/*/ddl
                   .:"\r\n\r\n"
             .sql:@"SELECT
     'ALTER TABLE [' + s.name + '].[' + t.name + '] ADD CONSTRAINT [' + kc.name + '] PRIMARY KEY (' +
@@ -217,7 +217,7 @@ GROUP BY s.name, t.name, kc.name;
             set-value:x:@.result
                strings.concat
                   get-value:x:@.result
-                  get-value:x:@data.select/*/*/ddl
+                  get-value:x:@data.select/0/*/ddl
                   .:"\r\n\r\n"
             .sql:@"SELECT
     'ALTER TABLE [' + s.name + '].[' + t.name + '] ADD CONSTRAINT [' + fk.name + '] FOREIGN KEY ([' +
@@ -240,7 +240,7 @@ WHERE t.name = @name and s.name = @scheme;
             set-value:x:@.result
                strings.concat
                   get-value:x:@.result
-                  get-value:x:@data.select/*/*/ddl
+                  get-value:x:@data.select/0/*/ddl
                   .:"\r\n\r\n"
          unwrap:x:+/*
          return
