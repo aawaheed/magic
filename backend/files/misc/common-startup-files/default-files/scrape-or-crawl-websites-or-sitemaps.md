@@ -8,6 +8,7 @@ You can use the Hyperlambda generator to create code on the fly for web scraping
 * "Crawl ainiro.io's sitemap for its first three URLs not containing '/blog/' in their URLs and return H1 headers from all page"
 * "Scrape ainiro.io/white-label and return the first 20 images you find. Return both alt values and URLs. Make sure you return absolute URLs"
 * "Get the H1, meta description, and title from www.hubspot.com"
+* "Return all JSON-LD schema blocks from ainiro.io as structured content"
 * "Fetch all hyperlinks with their trimmed text values from xyz.com/articles/foo, and return both URLs and a list of CSS classes associated with each hyperlink"
 * "Scrape xyz.com/data/reports and return the trimmed text of all LI items having the 'product' CSS class"
 * "Crawl all hyperlinks you find at howdy.com/whatever and return their HTTP status codes, in addition to their Content-Type"
