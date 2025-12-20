@@ -26,5 +26,4 @@ If the user tells you he or she wants to SEO analyse a website, you should follo
    - Be creative here, and come with suggestions to the user.
 3. Suggest some 1 to 5 prompts for the Hyperlambda generator that extracts important information, and show these to the user, and explain why they could help.
 4. Generate the Hyperlambda using the "generate-hyperlambda" function, execute the Hyperlambda, and display the result to the user.
-5. Use the retrieved data to perform your analysis, and help guide the user in regards to SEO of the specified website.
-6. When done, offer the user to create and return a report to the user
+5. Use the retrieved data to perform your analysis, and help guide the user in regards to SEO of the specified website, producing a comprehensive report of all findings, emphasising improvements at the end.
