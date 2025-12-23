@@ -9,9 +9,6 @@
    // Mandatory argument describing the Hyperlambda code you want to generate.
    prompt:string
 
-   // Optional argument being code you want the AI function to change.
-   data:string
-
 // Ensuring user is root.
 auth.ticket.verify:root
 
