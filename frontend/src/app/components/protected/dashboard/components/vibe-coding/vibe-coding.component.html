@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <form [class]="'col-12' + (is_answering ? ' hide_input' : '')" (ngSubmit)="submit()">
+      <form [class]="'relative col-12' + (is_answering ? ' hide_input' : '')" (ngSubmit)="submit()">
 
         <mat-form-field class="w-100 input-textarea">
           <textarea
@@ -113,6 +113,32 @@
             [deletingSpeed]="10"
             [typingSpeed]="20"></textarea>
         </mat-form-field>
+
+        <button
+          *ngIf="rawFiles === null"
+          mat-icon-button
+          type="button"
+          class="upload-button"
+          (click)="fileInput.click()"
+          [disabled]="is_answering">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+
+        <div *ngIf="rawFiles" class="attachment">
+          {{ rawFiles.length }} files
+          <mat-icon
+            matTooltip="Remove files ..."
+            style="cursor:pointer;"
+            (click)="removeFiles()">cancel</mat-icon>
+        </div>
+
+        <input
+          #fileInput
+          type="file"
+          accept=".csv,.xml,.yaml,.yml,.json,.txt,.md,.html,.htm,.css,.js,.py,.rb,.ts,.scss,.sql,.pdf,.docx,.png,.jpeg,.jpg,.webp,.gif"
+          multiple
+          class="d-none"
+          (change)="onFileSelected($event)" />
 
       </form>
 

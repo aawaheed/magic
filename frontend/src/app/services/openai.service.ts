@@ -50,33 +50,41 @@ export class OpenAIService {
     session: string = null,
     data: string = null,
     stream: boolean = false,
-    systemMessage: string = null) {
+    systemMessage: string = null,
+    files: File[] = null) {
 
     // building our payload
-    const payload: any = {
-      prompt,
-    };
+    let payload = new FormData();
+    payload.append('prompt', prompt);
     if (data) {
-      payload.data = data;
+      payload.append('data', data);
     }
     if (systemMessage) {
-      payload.system_message_override = systemMessage;
+      payload.append('system_message_override', systemMessage);
+    }
+    if (files) {
+      for(let idx = 0; idx < 5 && idx < files.length; idx++) {
+        payload.append('file' + (idx === 0 ? '' : idx), files[idx]);
+      }
     }
 
     // Checking if we're dealing with hyperlambda code, at which point we use ainiro.io's generator
     if (type === 'hl') {
 
-      return this.httpClient.post<PromptResponse>(environment.hyperLambdaGeneratorUrl + '/magic/modules/hyperlambda-generator/chat', payload);
+      return this.httpClient.post<PromptResponse>(
+        environment.hyperLambdaGeneratorUrl +
+        '/magic/modules/hyperlambda-generator/chat',
+        payload);
 
     } else {
 
       if (session) {
-        payload.session = session;
+        payload.append('session', session);
       }
-      payload.references = search;
-      payload.type = type;
-      payload.user_id = this.backendService.active.username;
-      payload.stream = stream;
+      payload.append('references', search ? 'true' : 'false');
+      payload.append('type', type);
+      payload.append('user_id', this.backendService.active.username);
+      payload.append('stream', stream ? 'true' : 'false');
       return this.httpService.post<PromptResponse>(`/magic/system/openai/chat`, payload);
     }
   }

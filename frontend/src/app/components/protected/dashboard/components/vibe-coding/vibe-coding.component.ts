@@ -36,6 +36,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
   messages: any[] = [];
   is_answering: boolean = false;
   frontendUrl: string = null;
+  rawFiles: any = null;
 
   constructor(
     private openAIService: OpenAIService,
@@ -104,6 +105,20 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     }
   }
 
+  onFileSelected(e: any) {
+
+    const files = Array.from(e.target.files);
+    if (files.length > 5) {
+      this.generalService.showFeedback('You can upload a maximum of 5 files!');
+      return;
+    }
+    this.rawFiles = files;
+  }
+
+  removeFiles() {
+    this.rawFiles = null;
+  }
+
   submit() {
 
     // Making sure we've actually got a query.
@@ -129,10 +144,19 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
         message: this.waitingString,
       });
       this.generalService.showLoading();
-      this.openAIService.query(this.query, 'default', false, this.session, null, true).subscribe({
+      this.openAIService.query(
+        this.query,
+        'default',
+        false,
+        this.session,
+        null,
+        true,
+        null,
+        this.rawFiles).subscribe({
 
         next: () => {
 
+          this.rawFiles = null;
           this.query = '';
           this.generalService.hideLoading();
           this.scrollToBottom(false);
@@ -140,6 +164,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
         error: (error: any) => {
 
+          this.rawFiles = null;
           this.generalService.showFeedback(error?.error?.message ?? error, 'errorMessage');
           this.generalService.hideLoading();
         }
