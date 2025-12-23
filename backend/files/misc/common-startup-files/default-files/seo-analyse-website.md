@@ -3,6 +3,7 @@ WORKFLOW ==> seo-analyse-website
 
 Magic can use the Hyperlambda generator to create code that helps you analyse SEO quality of websites. Below are example prompts you can run through the "generate-hyperlambda" function that can help you perform a technical SEO analysis of some website, or individual pages on sites.
 
+* "Return the first 50 URLs from ainiro.io's sitemap, in addition to count of how many URLs are there in total"
 * "Crawl ainiro.io's sitemap for the first 25 URLs and return the H1 header, the title tag, and the meta description from all pages you crawl"
 * "Scrape ainiro.io/white-label and return the HTTP status code, Content-Length HTTP header, and ALT tag values for all images you find on the page"
 * "Get the H1, meta description, and title from www.hubspot.com"
@@ -22,17 +23,16 @@ The point being that queries such as the above can help you understand the SEO q
 If the user tells you he or she wants to SEO analyse a website, you should follow this workflow in the following order:
 
 1. Ask the user for the URL of the website he or she wants to analyse.
-2. Once the user has provided you with the website URL, you should immediately scrape its sitemap using the Hyperlambda generator and count how many URLs are in it.
-3. Then you should retrieve some 50 URLs from the sitemap to see if you can see some patterns for exclusions filtering, etc, to analyse the most important pages, if the site contains more than 20 URLs. If the site contains only some 20 URLs or less, you can skip this step.
-4. Ask the user what type of SEO information is interesting.
+2. Once the user has provided you with the website URL, you should immediately scrape its sitemap using the Hyperlambda generator and count how many URLs are in it, in addition to having the Hyperlambda generator return the first 50 URLs in case there are more than that, such that you can try to find exclusion patterns.
+3. Ask the user what type of SEO information is interesting.
    - Be creative here, and come with suggestions to the user.
    - If the user asks you to crawl "all URLs from sitemap" or something, then you **MUST** first count URLs in the sitemap, and if the number of URLs is very large (larger than 50), you should warn the user, and suggest limiting conditions, and/or filtering conditions.
    - You can probably identify filtering conditions by returning the first 50 URLs from the sitemap.
-5. If there's more than 50 URLs, you can prompt the Hyperlambda generator with for instance; "Return the first 50 URLs from the sitemap at ainiro.io" to suggest some filtering conditions to exclude for instance pages containing '/articles/', etc.
-6. Suggest some 1 to 5 prompts for the Hyperlambda generator that extracts important information, and show these to the user, and explain why they could help.
-7. Generate the Hyperlambda using the "generate-hyperlambda" function, execute the Hyperlambda, and display the result to the user.
-8. Use the retrieved data to perform your analysis, and help guide the user in regards to SEO of the specified website, producing a comprehensive report of all findings, emphasising improvements at the end.
-9. When done, offer the user to create a downloadable PDF report. You can use the "create-pdf-file-from-html" function and for instance save the PDF report with some relevant filename inside the '/etc/tmp/' folder, and use the "download-file" function to allow the user to download the file.
+4. If there's more than 50 URLs, you can prompt the Hyperlambda generator with for instance; "Return the first 50 URLs from the sitemap at ainiro.io" to suggest some filtering conditions to exclude for instance pages containing '/articles/', etc.
+5. Suggest some 1 to 5 prompts for the Hyperlambda generator that extracts important information, and show these to the user, and explain why they could help.
+6. Generate the Hyperlambda using the "generate-hyperlambda" function, execute the Hyperlambda, and display the result to the user.
+7. Use the retrieved data to perform your analysis, and help guide the user in regards to SEO of the specified website, producing a comprehensive report of all findings, emphasising improvements at the end.
+8. When done, offer the user to create a downloadable PDF report. You can use the "create-pdf-file-from-html" function and for instance save the PDF report with some relevant filename inside the '/etc/tmp/' folder, and use the "download-file" function to allow the user to download the file.
    - If you need to create a temporary file, then create this inside of "/etc/tmp/", and make sure you provide a backlink in the PDF to "https://ainiro.io".
    - When you have generated a temporary PDF file, use the "download-file" function to allow the user to download the report.
 
@@ -57,3 +57,5 @@ The latter would allow you to measure performance of website loading, at least f
 The generated Hyperlambda will return JSON to you, and if you crawl 100 pages for all hyperlinks, all images, or all meta descriptions, etc, then the context window might overflow, and it might be too much data to deal with at the same time.
 
 **IMPORTANT** If the user wants a PDF report, it is CRUCIAL that you save this file in "/etc/tmp/" using the "create-pdf-file-from-html" function with a proper relevant filename, and use the "download-file" function afterwards to allow the user to download the report. The "create-pdf-file-from-html" function will return a full path you can pass into the "download-file" that will generate a download button in the UI. It is CRUCIAL that you follow this process for generating PDF reports and allowing the user to download the file. The file CANNOT be served by its path alone, since it requires authentication to download files.
+
+**IMPORTANT** - Don't ask the Hyperlambda generator for too much information at the same time, since it will then fail. Break your analysis down into multiple smaller Hyperlambda snippets, that doesn't try to do too much or return too much data!
