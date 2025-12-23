@@ -23,10 +23,7 @@ validators.mandatory:x:@.arguments/*/file
 // Figuring out full path.
 .full_path
 set-value:x:@.full_path
-   strings.concat
-      .:/etc/www/
-      strings.trim:x:@.arguments/*/file
-         .:/
+   get-value:x:@.arguments/*/file
 
 // Verifying that file exists.
 if
