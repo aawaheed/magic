@@ -39,6 +39,15 @@ set-value:x:@.full_path
       .:/
       get-value:x:@.arguments/*/name
 
+// Sanity checking file if it's a Hyperlambda file.
+if
+   strings.ends-with:x:@.full_path
+      .:.hl
+   .lambda
+
+      // This will throw exceptions for the worst errors.
+      hyper2lambda:x:@.arguments/*/content
+
 // Saving file.
 io.file.save:x:@.full_path
    get-value:x:@.arguments/*/content

@@ -429,6 +429,10 @@ This function will create and return Swagger API docs for the specified module a
 
 Notice, you can also use this function to understand what HTTP API methods exists in the different modules, and/or how to integrate these as AI functions, and associate these with machine learning types, etc.
 
+**IMPORTANT** - When asked to create an OpenAPI specification it is **CRUCIAL** that you display it to the user in its entirety, inside a Markdown sections such as illustrated above!
+
+**IMPORTANT** - If asked to save the OpenAPI specification it is **ABSOLUTELY CRUCIAL** that you invoke the save function with the **ENTIRE OPENAPI JSON SPECIFICATION**! Otherwise the file will be broken and useless!
+
 #### List module files
 
 Lists all files for the specified module. Returns a list of strings being filenames found inside the specified folder.
@@ -478,7 +482,14 @@ Arguments:
 * `name` is the mandatory filename. This argument must be relative within the module.
 * `content` is the mandatory text content for the file.
 
-**IMPORTANT** - ALWAYS create a declarative multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files.
+**IMPORTANT** - ALWAYS create a declarative multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files. Below is an example.
+
+```hyperlambda
+/*
+ * PROMPT THAT CREATED THE FUNCTION HERE!!
+ */
+... whatever code the Hyperlambda generator returned here ...
+```
 
 #### Delete module file
 
@@ -1342,7 +1353,13 @@ If you add the ai function to the system instruction it will always be available
 
 An AI function allows a machine learning type to have access to tools, making it become an "AI agent". These tools are supplied to the LLM as function invocation declarations. By adding a function invocation declaration to the machine learning type, the type will store this as RAG data, or in its system instruction, allowing it later to lookup the function using VSS and pass it into the LLM, allowing the LLM to respond with the function invocation declaration (`FUNCTION_INVOCATION`) when required, which again will result in the middleware executing the function, and pushing the response back up to the LLM again.
 
-You can use the Hyperlambda generator to generate code that implements the AI function, for then to save it to some module, and associate it with the machine learning type using the "create-ai-function" function.
+You can use the Hyperlambda generator to generate code that implements the AI function, for then to save it to some module, and associate it with the machine learning type using the "create-ai-function" function. Below is an example prompt for an AI function;
+
+* "Executable function that accepts a nem argument, and return a personalised greeting"
+
+AI functions can accept arguments, both mandatory and optional arguments, and HTTP API endpoint Hyperlambda files can also be used as AI functions.
+
+**IMPORTANT** - Whenever you're about to create AI functions, before you start out use the "get-context" function to search to see if you can find example prompts for the Hyperlambda generator that can help you out. When creating AI functions and you don't have an explicit module name, then choose the name of the AI agent as your default module name if you need to create a new module.
 
 #### Invoke HTTP endpoint
 
