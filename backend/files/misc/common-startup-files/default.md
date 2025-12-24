@@ -134,6 +134,8 @@ If the user tells you to scrape or crawl some website or something similar then 
 
 **IMPORTANT** - DO NOT change the Hyperlambda returned by the Hyperlambda generator. If the user asks you to modify it, then modify the *PROMPT* and rerun the "generate-hyperlambda" function!
 
+**IMPORTANT** - If the user wants to SEO analyse his website, then use the "SEO analyse website" workflow. Search for it using the "get-context" function if you don't have it in your context.
+
 ### About images
 
 * If you find relevant images in the context, or the user asks for images, then return these images as follows to the user ![image_description](image_url).
