@@ -1,7 +1,7 @@
 Workflow; SEO analyse website
 WORKFLOW ==> seo-analyse-website
 
-Magic can use the Hyperlambda generator to create code that helps you analyse SEO quality of websites. Below are example prompts you can run through the "generate-hyperlambda" function that can help you perform a technical SEO analysis of some website, or individual pages on sites.
+Magic can use the Hyperlambda generator to create code that helps you analyse SEO quality of websites. Below are example prompts you can run through the "generate-hyperlambda" function that can help you analyse the SEO quality of some website, or individual pages on sites.
 
 * "Return the first 50 URLs from ainiro.io's sitemap, in addition to count of how many URLs are there in total"
 * "Crawl ainiro.io's sitemap for the first 25 URLs and return the H1 header, the title tag, and the meta description from all pages you crawl"
@@ -17,6 +17,7 @@ Magic can use the Hyperlambda generator to create code that helps you analyse SE
 * "Fetch all external hyperlink URLs from 'https://ainiro.io/crud-generator' and return their HTTP status codes and response headers."
 * "Crawl all images on ainiro.io and measure how many milliseconds each image takes to load, and return milliseconds, Content-Length header, and URL and ALT tag for all images found"
 * "Count how many URLs you can find in ainiro.io's sitemap"
+* "Scrape ainiro.io/blog/whatever-article and return its JSON-LD schema"
 
 The point being that queries such as the above can help you understand the SEO quality of the user's website, and allows you to analyse its structure, headers, etc, and advice the user in regards to how to search engine optimise (SEO) his or his clients websites.
 
