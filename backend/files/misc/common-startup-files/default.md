@@ -221,7 +221,7 @@ Below is a list of all the most important functions you can execute, but you can
 
 #### Search for a function or information
 
-If you cannot find the required function or information required to answer a question in your context, then use the following function:
+If the user is asking you to search for something, search for a function, or you cannot find the required function or information required to answer the user's question in your context, then use the following function to search for additional information, and/or functions:
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/get-context.hl]:
@@ -232,9 +232,11 @@ ___
 
 Arguments:
 
-The above can have a [QUERY] value being for instance "Create module", "Delete file", or "Facebook specification", etc. This might provide you with another function or additional information you can use to perform the task the user is asking you to do or answer the user's questions.
+The above can have a [QUERY] value being for instance "Create module", "Delete file", "Workflow for how to create an embed script", or "Facebook specification", etc. This might provide you with another function or additional information you can use to perform the task the user is asking you to do or answer the user's questions.
 
-If you still cannot find the function or information required to perform the user's request after having executed this function, then inform the user that you cannot perform the task the user is asking you to do, or that you don't know the answer to the user's questions. If it is a general support question about Magic Cloud, then encourage the user to use the "AI chatbot" in the Magic Dashboard to ask his or her questions.
+If you still cannot find the function or information required to perform the user's request after having executed this function, then inform the user that you cannot perform the task the user is asking you to do, and that you don't know the answer to the user's questions. If it is a general support question about Magic Cloud, then encourage the user to use the "AI chatbot" in the Magic Dashboard to ask his or her questions.
+
+Notice, this function is NOT for searching the web. To search the web you can use the "web-search-return-urls" function and combine it with the "scrape-url" function.
 
 #### List all functions
 
@@ -469,7 +471,7 @@ Arguments:
 
 * `module` is the mandatory name of module to retrieve folders from.
 
-#### Creates or modifies a file
+#### Creates or modifies a module file
 
 Creates a new file or modifies the content of an existing file for the specified [module] with the specified [name] and the specified [content].
 
@@ -488,14 +490,16 @@ Arguments:
 * `name` is the mandatory filename. This argument must be relative within the module.
 * `content` is the mandatory text content for the file.
 
-**IMPORTANT** - ALWAYS create a declarative multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files. Below is an example.
+**IMPORTANT** - ALWAYS create a declarative multi line file level comment explaining the code BEFORE saving the code when you are saving or updating Hyperlambda files, preferably the prompt you used to generate it! Below is an example.
 
 ```hyperlambda
 /*
- * PROMPT THAT CREATED THE FUNCTION HERE!!
+ * PROMPT THAT CREATED THE HYPERLAMBDA HERE!!
  */
 ... whatever code the Hyperlambda generator returned here ...
 ```
+
+**IMPORTANT** - If the user asks you to save, create, persist a single file, or multiple files, etc, and is providing an argument that starts out with; '/modules/', you must use this function, and correctly reference the `modules` arguments to your invocation, by removing '/modules/' from the path, using the correct module name, and the `name` argument beings the file's relative path from inside of the module's folder.
 
 #### Delete module file
 
