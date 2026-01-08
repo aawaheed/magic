@@ -23,7 +23,7 @@ try
                   type:default
                   model:gpt-5-chat-latest
                   max_tokens:int:12000
-                  max_context_tokens:int:24000
+                  max_context_tokens:int:50000
                   max_request_tokens:int:24000
                   max_function_invocations:int:100
                   temperature:decimal:0.1
@@ -35,6 +35,7 @@ try
                   max_session_items:int:100
                   greeting:Hi there, I am your virtual AI-based software development assistant. How can I help you?
                   system_message:x:@io.file.load
+                  use_embeddings:int:1
 
       else
 
@@ -44,7 +45,7 @@ try
             values
                model:gpt-5-chat-latest
                max_tokens:int:12000
-               max_context_tokens:int:24000
+               max_context_tokens:int:50000
                max_request_tokens:int:24000
                max_function_invocations:int:100
                temperature:decimal:0.1
@@ -55,6 +56,7 @@ try
                threshold:decimal:0.3
                max_session_items:int:100
                system_message:x:@io.file.load
+               use_embeddings:int:1
             where
                and
                   type.eq:default
