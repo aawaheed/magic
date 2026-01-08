@@ -558,7 +558,7 @@ export class IdeEditorComponent implements OnInit, OnDestroy, OnChanges {
     const selection = editor.getSelection();
     if (selection?.length > 0) {
       const el = <any>window;
-      const question = 'Explain this code \n```hyperlambda' + selection + '\n```';
+      const question = 'Explain this code \n```hyperlambda\n' + selection + '\n```';
       el.ainiro_faq_question(null, question);
     }
   }
