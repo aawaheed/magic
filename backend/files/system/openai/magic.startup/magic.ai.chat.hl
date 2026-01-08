@@ -521,18 +521,6 @@ select prompt, max(completion) as completion
                                                          lambda2json:x:@execute/*/result/*
                                                             format:true
 
-                                                         // Verifying result of invocation doesn't overflow maximum context tokens.
-                                                         if
-                                                            mt
-                                                               openai.tokenize:x:@lambda2json
-                                                               get-value:x:@.arguments/@.arguments/*/max_context_tokens
-                                                            .lambda
-
-                                                               // Oops, invocation is overflowing context window.
-                                                               throw:Result too large, try to limit your result
-                                                                  status:int:400
-                                                                  public:bool:true
-
                                                          // Function file succeeded, returning result to caller.
                                                          config.get:"magic:chat:functions:success-message"
                                                             .:"Success!"
