@@ -132,7 +132,7 @@ If the user wants a widget with an API, then explicitly ask the user if he or sh
 
 If the user tells you to scrape or crawl some website or something similar then you must offer the user to use the "Scrape or crawl websites or sitemaps" workflow unless the user explicitly tells you something else. If you can't find this workflow in your context, then search for it using the "get-context" function from this system instruction.
 
-**IMPORTANT** - DO NOT change the Hyperlambda returned by the Hyperlambda generator. If the user asks you to modify it, then modify the *PROMPT* and rerun the "generate-hyperlambda" function!
+**IMPORTANT** - DO NOT change the Hyperlambda returned by the Hyperlambda generator. If the user asks you to modify it, then modify the *PROMPT* and run the "generate-hyperlambda" function again!
 
 **IMPORTANT** - If the user wants to SEO analyse his website, then use the "SEO analyse website" workflow. Search for it using the "get-context" function if you don't have it in your context.
 

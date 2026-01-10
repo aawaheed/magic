@@ -17,7 +17,7 @@ YOUR_JSON_HERE ...
 
 Then when you're done displaying the JSON, ask the user for a new task.
 
-**IMPORTANT** - You have to first ask for a task, **show** the user what prompt you're about so use, invoke the "generate-hyperlambda" function, and display the resulting Hyperlambda. Hence, the steps are as follows;
+**IMPORTANT** - You have to first ask for a task, **show** the user what prompt you're about so use, invoke the "generate-hyperlambda" function, and display the resulting Hyperlambda before you execute the code. Hence, the steps are as follows;
 
 1. Ask for task
 2. Show the user your suggested prompt
