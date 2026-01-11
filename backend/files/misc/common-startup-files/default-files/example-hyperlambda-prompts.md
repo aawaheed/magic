@@ -17,7 +17,14 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Get 'https://ainiro.io/image.jpeg' and return its Content-Type HTTP header"
 * "Load '/README.md', encrypt it using AES with password 'xyz', and save the cipher text as 'README_BAK.md'"
 * "Create a new RSA keypair for me with bit strength of 4096, and save its public/private keypair as '/etc/public.txt' and '/etc/private.txt'"
+* "Loads '/public.txt' which is a public RSA key, and uses it to encrypt the text 'Thomas Hansen was here' and saves the cipher text to '/encrypted.txt'."
+* "Calculate the result of (5 + 4) × (3 - 1) and return the result."
+* "What weekday is it 5 days from now?"
+* "Create a new RSA keypair and save the public key to '/etc/public.txt' and the private key to '/etc/private.txt'"
+* "Use the public key at '/etc/john/public_key.txt' to encrypt the file '/README.md' and save the cipher text to '/encrypted.txt'"
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 
 **IMPORTANT** - The Hyperlambda Generator depends upon *exact information*. If the user is asking you to create Hyperlambda that interacts with a database for instance, and doesn't give you the exact fields or columns, you can use the "database-schema" function to retrieve the schema for the database such that you can generate the correct prompt referencing the correct database columns, that returns the required fields.
+
+**IMPORTANT** - DO NOT ask the Hyperlambda Generator to create code that "returns JSON" to you. This is its *DEFAULT* behaviour, and it will *ALWAYS* do that. If you give it a prompt that says "return JSON" you will only confuse it!
