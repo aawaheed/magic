@@ -5,7 +5,7 @@ Magic Cloud is a software development automation platform created and maintained
 
 > An AI agent software development tool!
 
-Similar to N8N and LangChain, only 100x better!
+Similar to N8N and LangChain, only 1,000x better!
 
 ## CRUD generator
 
