@@ -22,6 +22,10 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "What weekday is it 5 days from now?"
 * "Create a new RSA keypair and save the public key to '/etc/public.txt' and the private key to '/etc/private.txt'"
 * "Use the public key at '/etc/john/public_key.txt' to encrypt the file '/README.md' and save the cipher text to '/encrypted.txt'"
+* "HTTP endpoint that takes a [channel] argument, and emits a SignalR message to the specified channel, passing in [name] and [email] specified as input arguments to the endpoint."
+* "Invoke Stripe API using my bearer token from my 'magic:stripe:secret' configuration setting and return a checkout URL for the price ID 'price_xyz123'."
+* "Resize the image found at '/etc/profile.png' to a maximum width of 200px and overwrite the old file."
+* "Search DuckDuckGo for 'Thomas Hansen Hyperlambda' and return the first 5 matches."
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 

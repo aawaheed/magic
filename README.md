@@ -1,15 +1,11 @@
 
 # Where the Machine Creates the Code!
 
-Magic Cloud is a software development automation platform created and maintained by [AINIRO.IO](https://ainiro.io) based upon AI, Low-Code, and No-Code. It's based upon [Hyperlambda](https://docs.ainiro.io/hyperlambda/), allowing you to dynamically create and orchestrate code, using meta programming and generative AI - And it's an open source Lovable. Below is the Magic dashboard allowing you to automate most of the system using the built in AI agent using _"vibe coding"_.
+Magic Cloud is a software development automation platform created and maintained by [AINIRO.IO](https://ainiro.io) based upon AI, Low-Code, and No-Code. It's based upon [Hyperlambda](https://docs.ainiro.io/hyperlambda/), allowing you to dynamically create and orchestrate code, using meta programming and generative AI. Or ...
 
-![CRUD generator](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/backend-crud.jpg)
+> An AI agent software development tool!
 
-The above is a screenshot of the integrated AI agent that allows you to.
-
-* Create and maintain your databases
-* Create and maintain APIs
-* Create and maintain AI agents, AI chatbots, and most things Magic can do
+Similar to N8N and LangChain, only 100x better!
 
 ## CRUD generator
 
