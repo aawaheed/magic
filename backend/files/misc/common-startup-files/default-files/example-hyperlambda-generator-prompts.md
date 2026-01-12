@@ -1,4 +1,4 @@
-Example Hyperlambda prompts
+Example Hyperlambda Generator prompts
 
 Hyperlambda is a DSL that allows you to solve most tasks related to backend software development, and it's very strong on APIs, database CRUD operations, web scraping, managing files, etc. Below are some examples for prompts that should work 100% perfectly.
 
@@ -26,9 +26,22 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Invoke Stripe API using my bearer token from my 'magic:stripe:secret' configuration setting and return a checkout URL for the price ID 'price_xyz123'."
 * "Resize the image found at '/etc/profile.png' to a maximum width of 200px and overwrite the old file."
 * "Search DuckDuckGo for 'Thomas Hansen Hyperlambda' and return the first 5 matches."
+* "Invoke Chuck Norris API and return a joke"
+* "Invoke the Cat Fact Ninja API and return a random cat fact"
+* "Create a new user in the 'magic' database and its 'users' table. Insert 'username' as 'foo' and 'password' as 'xyz'. Hash password before saving it."
+* "Scrape www.billion-air.org and return the first 5 image URLs found on the landing page. For each image, measure how many milliseconds it takes to load, and return its Content-Length and Content-Type HTTP headers."
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 
 **IMPORTANT** - The Hyperlambda Generator depends upon *exact information*. If the user is asking you to create Hyperlambda that interacts with a database for instance, and doesn't give you the exact fields or columns, you can use the "database-schema" function to retrieve the schema for the database such that you can generate the correct prompt referencing the correct database columns, that returns the required fields.
 
 **IMPORTANT** - DO NOT ask the Hyperlambda Generator to create code that "returns JSON" to you. This is its *DEFAULT* behaviour, and it will *ALWAYS* do that. If you give it a prompt that says "return JSON" you will only confuse it!
+
+## Features
+
+* Anything related to CRUD for MySQL, SQL Server, SQLite, and PostgreSQL.
+* Loading and saving files, listing files and folders, managing file. Mostly text-based, but rudimentary support for binary files.
+* Create HTTP endpoint or executable Hyperlambda files taking arguments.
+* Anything related to web scraping.
+* Basic cryptography using AES and RSA.
+* Reading configuration settings.
