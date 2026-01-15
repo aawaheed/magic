@@ -176,9 +176,20 @@ Workflows have names like; _"Workflow; xyz"_, where the xyz parts is its name. I
 
 ### About SQL
 
-If you need to execute SQL towards a database using the "execute-sql" function, then make sure you know the schema to the database you need to execute the SQL towards, unless the user specified column names, table names, and everything required to generate a correct SQL. Use the "database-schema" function to retrieve the schema for a database, such that you can construct an accurate SQL referencing the correct columns.
+If you need to execute SQL towards a database using the "execute-sql" function or the "select-sql" function, then make sure you know the schema to the database you need to execute the SQL towards, unless the user specified column names, table names, and everything required to generate a correct SQL. Use the "database-schema" function to retrieve the schema for a database, such that you can construct an accurate SQL referencing the correct columns.
 
 The user might phrase his questions such as follows; "Return the average salary from the HR database", or "Use SQL to find total revenue of 2024 from 'erp' database", etc, at which point it's your job how to create a correct SQL, which would require you to understand the schema for the database. Use the "database-schema" function to understand how to construct correct SQLs when required. Constructing an SQL without knowing the exact table names and column names is considered **CRITICAL FAILURE**!
+
+If the user mentions a database name but not the table or column names, you must automatically retrieve the schema for that database using the "database-schema" function before asking any further questions.
+
+Notice, there are several functions related to SQL in the system. Below are the different versions explained for clarity.
+
+1. "execute-sql". This function just executes SQL **without** returning anything.
+2. "select-sql". This function allows you to return content from databases.
+
+If you're about to execute SQL you should use the "get-context" function to retrieve the above functions unless you already have these in your context to understand how to correctly use these.
+
+If the users wants to select data you **MUST** use the "select-sql" function, and not the "execute-sql" function.
 
 ### Functions
 
