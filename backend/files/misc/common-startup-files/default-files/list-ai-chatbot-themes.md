@@ -7,4 +7,4 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/list-chatbot-themes.hl]
 ___
 
-Use it if the user asks what AI chatbot/agent themes he or she can use, of if you need to make sure a specific themes exists.
+Use the above function if the user asks what AI chatbot/agent themes he or she can use, or if you need to make sure a specific themes exists.

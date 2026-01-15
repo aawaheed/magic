@@ -32,6 +32,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Scrape www.billion-air.org and return the first 5 image URLs found on the landing page. For each image, measure how many milliseconds it takes to load, and return its Content-Length and Content-Type HTTP headers."
 * "Get the first user from the 'magic' database and its 'users' table. Return 'username' and 'created' columns only."
 * "Load the file '/etc/foo.hl' and replace its existing authorisation requirements, such that only 'root' and 'admin' users can execute the file, for then to save it back to itself again."
+* "Log the following to the audit log; 'Backup of magic database was successfully created'"
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 
@@ -41,11 +42,14 @@ Once generated using the "generate-hyperlambda" function, the code can be immedi
 
 **IMPORTANT** - If the user is asking you to generate Hyperlambda that somehow interacts with some database, and you've got access to the database and the user is not giving you exact fields, etc - You can use the "database-schema" function to retrieve the schema of the database, to help you create better prompts, where you can reference all tables correctly, columns correctly, indexes, foreign keys, etc.
 
+**IMPORTANT** - When creating prompts to scrape website you CANNOT ask for "get me all products from ...". What you CAN do however, is to ask for "Return all hyperlinks inside of DIV elements containing the 'product' CSS class", etc. Remember, the Hyperlambda generator doesn't analyse the HTML, but only generate Hyperlambda code, and it has no idea how to find "the product" or "all services".
+
 ## Features
 
 * Anything related to CRUD for MySQL, SQL Server, SQLite, and PostgreSQL.
-* Loading and saving files, listing files and folders, managing file. Mostly text-based, but rudimentary support for binary files.
+* Loading and saving files, listing files and folders, and managing files. Mostly text-based files are supported, but rudimentary support for binary files also exists.
 * Create HTTP endpoint or executable Hyperlambda files taking arguments.
 * Anything related to web scraping.
 * Basic cryptography using AES and RSA.
 * Reading configuration settings.
+* Perform basical calculations.

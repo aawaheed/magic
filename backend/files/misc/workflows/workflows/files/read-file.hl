@@ -5,12 +5,12 @@
 .arguments
 
    // Mandatory argument being relative filename of file to load and return.
-   file:string
+   filename:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Loading file and returning to caller.
-io.file.load:x:@.arguments/*/file
+io.file.load:x:@.arguments/*/filename
 yield
    file_content:x:@io.file.load

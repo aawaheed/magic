@@ -4,13 +4,13 @@
  * 
  * Arguments:
  * 
- * - [file] being mandatory filename of the file that should be saved or created.
+ * - [filename] being mandatory filename of the file that should be saved or created.
  * - [content] being mandatory text content for file.
  */
 .arguments
 
    // Mandatory filename. Must be relative.
-   file:string
+   filename:string
 
    // Mandatory text content for file.
    content:string
@@ -19,7 +19,7 @@
 auth.ticket.verify:root
 
 // Sanity checking invocation.
-validators.mandatory:x:@.arguments/*/file
+validators.mandatory:x:@.arguments/*/filename
 validators.mandatory:x:@.arguments/*/content
 
 // Figuring out full path.
@@ -27,7 +27,7 @@ validators.mandatory:x:@.arguments/*/content
 set-value:x:@.full_path
    strings.concat
       .:/etc/www/
-      get-value:x:@.arguments/*/file
+      get-value:x:@.arguments/*/filename
 
 // Saving file.
 io.file.save:x:@.full_path
@@ -36,7 +36,7 @@ io.file.save:x:@.full_path
 // Warning user about decoding HTML.
 if
    and
-      strings.ends-with:x:@.arguments/*/file
+      strings.ends-with:x:@.arguments/*/filename
          .:.html
       strings.contains:x:@.arguments/*/content
          .:&lt;

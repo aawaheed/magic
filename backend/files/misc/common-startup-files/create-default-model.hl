@@ -61,11 +61,9 @@ try
                and
                   type.eq:default
 
-         // Deleting vectors for training snippets for 'default' type, which triggers re-vectorization of the type.
-         data.update
+         // Deleting all previously imported snippets.
+         data.delete
             table:ml_training_snippets
-            values
-               embeddings
             where
                and
                   type.eq:default
@@ -74,8 +72,8 @@ try
        * Importing all new snippets to type.
        */
       .training-data
-      io.file.list:/misc/common-startup-files/default-files/
-      for-each:x:@io.file.list/*
+      io.file.list-recursively:/misc/common-startup-files/default-files/
+      for-each:x:@io.file.list-recursively/*
          if
             strings.ends-with:x:@.dp/#
                .:.md
@@ -88,18 +86,28 @@ try
                   .:"\n"
                set-value:x:@.prompt
                   strings.trim:x:@strings.split/0
-               set-value:x:@.meta
-                  strings.trim:x:@strings.split/1
                set-value:x:@.completion
                   get-value:x:@io.file.load
                set-value:x:@.completion
                   strings.replace:x:@.completion
                      get-value:x:@.prompt
                      .:
-               set-value:x:@.completion
-                  strings.replace:x:@.completion
-                     get-value:x:@.meta
-                     .:
+               if
+                  strings.starts-with:x:@strings.split/1
+                     .:WORKFLOW ==>
+                  .lambda
+                     set-value:x:@.meta
+                        strings.trim:x:@strings.split/1
+                     set-value:x:@.completion
+                        strings.replace:x:@.completion
+                           get-value:x:@.meta
+                           .:
+               else
+                  set-value:x:@.meta
+                     strings.trim:system-imported-data
+                  set-value:x:@.prompt
+                     strings.trim:x:@.prompt
+                        .:"# "
                set-value:x:@.completion
                   strings.trim:x:@.completion
                unwrap:x:+/*/*/*
@@ -112,35 +120,13 @@ try
 
       // Looping through each new snippet and importing into type.
       for-each:x:@.training-data/*
-         data.read
+         data.create
             table:ml_training_snippets
-            columns
-               id
-            where
-               and
-                  meta.eq:x:@.dp/#/*/meta
-         if
-            not-exists:x:@data.read/*
-            .lambda
-               data.create
-                  table:ml_training_snippets
-                  values
-                     type:default
-                     meta:x:@.dp/#/*/meta
-                     prompt:x:@.dp/#/*/prompt
-                     completion:x:@.dp/#/*/completion
-
-         else
-
-            // Won't trigger re-vectorization, but OK, good enough.
-            data.update
-               table:ml_training_snippets
-               values
-                  prompt:x:@.dp/#/*/prompt
-                  completion:x:@.dp/#/*/completion
-               where
-                  and
-                     id.eq:x:@data.read/*/*/id
+            values
+               type:default
+               meta:x:@.dp/#/*/meta
+               prompt:x:@.dp/#/*/prompt
+               completion:x:@.dp/#/*/completion
 
 .catch
 

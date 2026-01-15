@@ -12,18 +12,18 @@
    _session:string
 
    // Mandatory relative path of file to download
-   file:string
+   filename:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Sanity checking invocation.
-validators.mandatory:x:@.arguments/*/file
+validators.mandatory:x:@.arguments/*/filename
 
 // Figuring out full path.
 .full_path
 set-value:x:@.full_path
-   get-value:x:@.arguments/*/file
+   get-value:x:@.arguments/*/filename
 
 // Verifying that file exists.
 if

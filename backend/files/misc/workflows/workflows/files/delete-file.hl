@@ -3,13 +3,13 @@
  *
  * Arguments:
  *
- * - [file] being mandatory relative filename that must exist within the [module] module.
+ * - [filename] being mandatory relative filename that must exist within the [module] module.
  * - [module] being mandatory name of module that contains file.
  */
 .arguments
 
    // Mandatory relative filename of file to delete.
-   file:string
+   filename:string
 
    // Mandatory name of module that contains file that should be deleted.
    module:string
@@ -21,7 +21,7 @@ auth.ticket.verify:root
 validators.mandatory:x:@.arguments/*/module
 validators.regex:x:@.arguments/*/module
    regex:"^[a-z0-9_-]+$"
-validators.mandatory:x:@.arguments/*/file
+validators.mandatory:x:@.arguments/*/filename
 
 
 // Building full file path.
@@ -31,7 +31,7 @@ set-value:x:@.full_path
       .:/modules/
       get-value:x:@.arguments/*/module
       .:/
-      get-value:x:@.arguments/*/file
+      get-value:x:@.arguments/*/filename
 
 // Verifying file exists
 if
