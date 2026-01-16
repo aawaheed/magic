@@ -13,7 +13,9 @@ ___
 
 ## Arguments
 
-* `filename` is the mandatory filename.
+* `filename` is the mandatory filename and must be a fully qualified path, such as for instance "/modules/foo/bar.hl".
 * `content` is the mandatory text content for the file.
 
 Notice, you can only save files in the "/etc/" and "/modules/" folders.
+
+If you need to create a temporary file, you can save this to "/etc/tmp/".

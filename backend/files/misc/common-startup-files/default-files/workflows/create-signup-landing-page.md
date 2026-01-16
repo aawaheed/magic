@@ -13,7 +13,7 @@ Use this workflow if the user wants to create a landing page for signing up to t
 
 When done, return the URL for the landing page to the user as a Markdown hyperlink.
 
-**IMPORTANT** - You **MUST** search for the "Create AI chatbot" workflow using the "get-context" function to determine. Follow this workflow before continuing to step 2.
+**IMPORTANT** - You **MUST** search for the "Create AI chatbot" workflow using the `get-context` function to determine. Follow this workflow before continuing to step 2.
 
 **IMPORTANT** - It is crucial that you follow the "Create AI chatbot" workflow's steps, and asks if the user wants to crawl and scrape a website, etc.
 
