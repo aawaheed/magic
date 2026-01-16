@@ -1,8 +1,9 @@
 
 /*
- * Generate or analyse Hyperlambda code
+ * Generate Hyperlambda code code
  * 
- * This function allows you to generate Hyperlambda code. The [query] argument must be the description of what code you want.
+ * This function allows you to generate Hyperlambda code.
+ * The [prompt] argument must be the description of what code you want.
  */
 .arguments
 

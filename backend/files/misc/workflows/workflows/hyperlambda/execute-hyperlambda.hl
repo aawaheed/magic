@@ -1,6 +1,6 @@
 
 /*
- * Executes the specified [hyperlambda].
+ * Executes the specified [hyperlambda] with the specified [arguments].
  * 
  * Returns result of execution to caller.
  */

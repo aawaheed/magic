@@ -17,13 +17,6 @@ auth.ticket.verify:root
 validators.mandatory:x:@.arguments/*/type
 validators.mandatory:x:@.arguments/*/query
 
-// Retrieving embeddings.
-.token
-set-value:x:@.token
-   strings.concat
-      .:"Bearer "
-      config.get:"magic:openai:key"
-
 // Figuring out model to use.
 .model
 data.connect:magic
@@ -37,7 +30,12 @@ data.connect:magic
    set-value:x:@.model
       get-value:x:@data.read/*/*/type
 
-// Retrieving embedding for prompt.
+// Retrieving embeddings.
+.token
+set-value:x:@.token
+   strings.concat
+      .:"Bearer "
+      config.get:"magic:openai:key"
 http.post:"https://api.openai.com/v1/embeddings"
    headers
       Authorization:x:@.token
@@ -96,7 +94,7 @@ select vss.rowid as id, ts.prompt, vss.distance
       if
          lt
             openai.tokenize:x:@lambda2hyper
-            .:int:4000
+            .:int:8000
          .lambda
             set-value:x:@.cont
                .:bool:false

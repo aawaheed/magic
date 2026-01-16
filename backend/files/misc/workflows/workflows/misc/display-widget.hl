@@ -18,6 +18,15 @@
 // Making sure user is allowed to execute function.
 auth.ticket.verify:root
 
+if
+   and
+      exists:x:@.arguments/*/html
+      exists:x:@.arguments/*/filename
+   .lambda
+      throw:"Supply only one of `html` or `filename`, and not both!"
+         status:int:400
+         public:bool:true
+
 // Buffer for HTML.
 .html
 if
@@ -40,6 +49,20 @@ else-if
          .lambda
             throw:"No [html] or [filename] argument provided, provide one of these"
                status:int:500
+               public:bool:true
+
+      // Sanity checking that this is an HTML file.
+      if
+         and
+            not
+               strings.ends-with:x:@.arguments/*/filename
+                  .:.htm
+            not
+               strings.ends-with:x:@.arguments/*/filename
+                  .:.html
+         .lambda
+            throw:You can only render HTML files using this function
+               status:int:400
                public:bool:true
 
       set-value:x:@.html

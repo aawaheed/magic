@@ -20,21 +20,30 @@ auth.ticket.verify:root
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/filename
 
-// Figuring out full path.
-.full_path
-set-value:x:@.full_path
-   get-value:x:@.arguments/*/filename
-
 // Verifying that file exists.
 if
    not
-      io.file.exists:x:@.full_path
+      io.file.exists:x:@.arguments/*/filename
    .lambda
 
       // Oops ...!!
       throw:File does not exist
          public:bool:true
          status:int:404
+
+// Making sure we do not try to download system files.
+if
+   and
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/etc/
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/module/
+   .lambda
+      throw:"You can only download files from the '/modules/' and '/etc/ folders'"
+         status:int:400
+         public:bool:true
 
 // We'll need a token for the download URL.
 auth.ticket.create
@@ -50,7 +59,7 @@ sockets.signal:x:@.arguments/*/_session
    roles:root
    args
       type:download_file
-      filename:x:@.full_path
+      filename:x:@.arguments/*/filename
       ticket:x:@auth.ticket.create
 
 // Returning success

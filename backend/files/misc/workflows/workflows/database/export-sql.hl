@@ -1,8 +1,9 @@
 
 /*
- * Executes the specified [sql] and exports it as a CSV file
+ * Executable Hyperlambda file that executes the specified [sql] and exports it as a CSV file
  * 
- * Connects to [database] database, and executes the specified [sql], and exports the file as a CSV vile.
+ * Connects to [database] database, and executes the specified [sql], and exports the file as a CSV file,
+ * for then to signal frontend with a download link using SignalR.
  */
 .arguments
 
@@ -18,12 +19,16 @@
    // Optional argument being database type. Can be either 'mysql', 'pgsql', 'mssql' or 'sqlite'. Defaults to 'sqlite'.
    database-type:string
 
+   // Optional argument being database type. Can be either 'mysql', 'pgsql', 'mssql' or 'sqlite'. Defaults to 'sqlite'.
+   connection-string:string
+
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Applying defaults.
 validators.default:x:@.arguments
    database-type:sqlite
+   connection-string:generic
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/sql
@@ -37,7 +42,13 @@ insert-before:x:./*/data.connect/0
    get-nodes:x:@.arguments/*/database-type
 
 // Connecting to database
-data.connect:x:@.arguments/*/database
+strings.concat
+   .:[
+   get-value:x:@.arguments/*/connection-string
+   .:|
+   get-value:x:@.arguments/*/database
+   .:]
+data.connect:x:-
 
    // Parametrizing connect
    add:x:./*/data.select

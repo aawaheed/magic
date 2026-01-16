@@ -1,10 +1,12 @@
 
 /*
- * Create database.
+ * Executable Hyperlambda file that creates a new SQLite database.
  * 
- * Creates the database specified as [name].
+ * Creates the SQLite database specified as [database].
  */
 .arguments
+
+   // Mandatory name of database. Can only contain lover case characters, '_', '-', and 0-9
    database:string
 
 // Ensuring user is root.

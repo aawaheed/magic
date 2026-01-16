@@ -1,0 +1,68 @@
+
+/*
+ * Creates a new file or modifies the content of an existing file.
+ * 
+ * Arguments:
+ * 
+ * - [filename] is the mandatory filename of the file that should be saved or created.
+ * - [content] being mandatory text content for file.
+ */
+.arguments
+
+   // Mandatory filename.
+   filename:string
+
+   // Mandatory text content for file.
+   content:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Making sure we do not overwrite system files.
+if
+   and
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/etc/
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/module/
+   .lambda
+      throw:"You can only save files to the '/modules/' and '/etc/ folders'"
+         status:int:400
+         public:bool:true
+
+// Checking if this is a temporary file, and if yes, making sure our temporary folder exists.
+if
+   and
+      strings.starts-with:x:@.arguments/*/filename
+         .:/etc/tmp/
+      not
+         io.folder.exists:/etc/tmp/
+   .lambda
+      io.folder.create:/etc/tmp/
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/filename
+
+// Checking file if it's a Hyperlambda file, and if it is we do a basic sanity check.
+if
+   strings.ends-with:x:@.arguments/*/filename
+      .:.hl
+   .lambda
+
+      try
+         // This will throw exceptions for the worst errors.
+         hyper2lambda:x:@.arguments/*/content
+      .catch
+         throw:You tried to save invalid Hyperlambda, to successfully save it you will need to re-generate it
+            public:bool:true
+            status:int:400
+
+// Saving file.
+io.file.save:x:@.arguments/*/filename
+   get-value:x:@.arguments/*/content
+
+// Returning success
+yield
+   result:success

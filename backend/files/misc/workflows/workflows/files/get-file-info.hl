@@ -1,9 +1,9 @@
 
 /*
- * Returns meta information about a specific Hyperlambda file from a module,
- * specifically its description being the file level comment (if existing).
+ * Returns meta information about a specific Hyperlambda file,
+ * specifically its description being the file level comment if it has one.
  * 
- * - [filename], mandatory filename to retrieve information about.
+ * - [filename] is the mandatory filename to retrieve information about.
  *
  * Endpoint will return description as taken from file comment, in addition to a list of arguments
  * the file can handle which are in name/type format.
@@ -22,7 +22,7 @@ if
       strings.ends-with:x:@.arguments/*/filename
          .:.hl
    .lambda
-      throw:"Endpoint can only inspect Hyperlambda files ending with '.hl'"
+      throw:"We can only inspect Hyperlambda files, implying files ending with '.hl'"
          public:bool:true
          status:int:400
 

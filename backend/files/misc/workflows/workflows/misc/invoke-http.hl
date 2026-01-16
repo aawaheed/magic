@@ -69,8 +69,6 @@ set-name:x:./*/http.xxx
    strings.concat
       .:http.
       get-value:x:@.arguments/*/verb
-lambda2hyper:x:../*
-log.info:x:-
 
 // Invoking endpoint, now correctly decorated. Notice, helper to find node afterwards.
 .helper

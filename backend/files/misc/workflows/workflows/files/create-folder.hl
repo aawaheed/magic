@@ -1,50 +1,46 @@
 
 /*
- * Creates a new sub-folder for the specified [module] with the specified [name].
+ * Creates a new folder with the path [folder].
  * 
  * Arguments:
  * 
- * - [module] being mandatory name of an existing module where the folder should be created.
- * - [name] being mandatory foldername of the folder that should be created.
+ * - [folder] is the mandatory name of the folder that should be created.
  */
 .arguments
 
-   // Mandatory name of module where file should be created.
-   module:string
-
-   // Mandatory foldername. Must be relative within the module.
-   name:string
+   // Mandatory path to folder that should be created.
+   folder:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Sanity checking invocation.
-validators.mandatory:x:@.arguments/*/module
-validators.regex:x:@.arguments/*/module
-   regex:"^[a-z0-9_-]+$"
-validators.regex:x:@.arguments/*/name
-   regex:"^[a-z0-9_-]+$"
-
-// Figuring out full path.
-.full_path
-set-value:x:@.full_path
-   strings.concat
-      .:/modules/
-      get-value:x:@.arguments/*/module
-      .:/
-      get-value:x:@.arguments/*/name
-      .:/
+validators.mandatory:x:@.arguments/*/folder
 
 // Verifying folder doesn't already exists.
 if
-   io.folder.exists:x:@.full_path
+   io.folder.exists:x:@.arguments/*/folder
    .lambda
       throw:Folder already exists
          status:int:400
          public:bool:true
 
+// Verifying folder starts with "/etc/" or "/modules/"
+if
+   and
+      not
+         strings.starts-with:x:@.arguments/*/folder
+            .:/etc/
+      not
+         strings.starts-with:x:@.arguments/*/folder
+            .:/modules/
+   .lambda
+      throw:"You can only create new folders in the '/modules/' and '/etc/ folders'"
+         public:bool:true
+         status:int:400
+
 // Creating folder.
-io.folder.create:x:@.full_path
+io.folder.create:x:@.arguments/*/folder
 
 // Returning success
 return

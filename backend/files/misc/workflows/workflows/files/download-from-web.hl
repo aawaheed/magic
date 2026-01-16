@@ -1,22 +1,47 @@
 
 /*
- * Downloads the specified [url] as a binary file, and saves to the specified [path].
+ * Downloads the specified [url] and saves to the specified [filename].
  * 
- * [path] is relative, and will have /etc/www/ prepended to ensure we can only save files in this folder.
+ * [filename] is the absolute path for where to save the file.
  * 
  * All arguments are mandatory, and user must be root to execute
  */
 .arguments
+
+   // URL to document caller wants to download.
    url:string
-   path:string
+
+   // Mandatory filename of where to save the result.
+   filename:string
+
+// Ensuring user is root.
 auth.ticket.verify:root
+
+// Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/url
 validators.mandatory:x:@.arguments/*/path
-strings.concat
-   .:/etc/www/
-   get-value:x:@.arguments/*/path
+
+// Making sure we do not overwrite system files.
+if
+   and
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/etc/
+      not
+         strings.starts-with:x:@.arguments/*/filename
+            .:/module/
+   .lambda
+      throw:"You can only save files into the '/modules/' and '/etc/ folders'"
+         status:int:400
+         public:bool:true
+
+// Retrieving file
 http.get:x:@.arguments/*/url
-io.file.save.binary:x:@strings.concat
+
+// Saving the file on local file system.
+io.file.save.binary:x:@.arguments/*/filename
    get-value:x:@http.get/*/content
+
+// Returning success to caller.
 return
    result:success

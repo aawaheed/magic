@@ -5,6 +5,8 @@
  * Installs the specified [plugin] plugin into your Magic Cloud backend.
  */
 .arguments
+
+   // Name of plugin to install.
    plugin:string
 
 // Ensuring user is root.

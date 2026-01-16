@@ -5,20 +5,24 @@
  * The resulting PDF file will be saved to the file specified by the [output_pdf] argument.
  */
 .arguments
+
+   // What HTML to transform to Markdown
    html:string
-   output_pdf:string
+
+   // Where to save the resulting PDF
+   filename:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/html
-validators.mandatory:x:@.arguments/*/output_pdf
+validators.mandatory:x:@.arguments/*/filename
 
 // Converting HTML to PDF and saving to specified file.
-io.file.save.binary:x:@.arguments/*/output_pdf
+io.file.save.binary:x:@.arguments/*/filename
    html2pdf:x:@.arguments/*/html
 
 // Returning success to caller.
 yield
-   full_path:x:@.arguments/*/output_pdf
+   full_path:x:@.arguments/*/filename

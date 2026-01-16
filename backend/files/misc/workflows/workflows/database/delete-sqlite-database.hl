@@ -1,10 +1,12 @@
 
 /*
- * Deletes SQLite database.
+ * Executable Hyperlambda file that deletes an SQLite database.
  * 
- * Deletes the database specified as [name].
+ * Deletes the database specified as [database].
  */
 .arguments
+
+   // Mandatory name of database to delete.
    database:string
 
 // Ensuring user is root.
@@ -18,7 +20,7 @@ if
    eq:x:@.arguments/*/database
       .:magic
    .lambda
-      throw:You can't delete the magic database, it is a protected system database and your system would stop working if you did.
+      throw:"You can't delete the magic database, it is a protected system database and your system will stop working if you delete it."
          status:int:400
          public:bool:true
 
