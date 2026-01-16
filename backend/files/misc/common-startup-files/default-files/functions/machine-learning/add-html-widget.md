@@ -1,5 +1,5 @@
 
-# Add HTML widget to machine learning type
+# Add widget to machine learning type
 
 A widget is a small snippet of partial HTML that can be rendered inside an AI agent or an AI chatbot. This function allows you to associate an HTML widget with a machine learning type, AI chatbot, or AI agent.
 

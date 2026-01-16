@@ -18,4 +18,11 @@ ___
 
 Notice, you can only save files in the "/etc/" and "/modules/" folders.
 
-If you need to create a temporary file, you can save this to "/etc/tmp/".
+## Rules for where to save files
+
+1. Always save normal HTML, CSS, and JavaScript files inside the "/etc/www/" folder.
+2. If you need to create a temporary file, you can save this to "/etc/tmp/".
+3. Always save hyperlambda files inside the "/modules/WHATEVER_MODULE/" folder, and make sure the module exists before you try to save files here. If the module doesn't exist, you can use the `create-module` function to create it.
+4. Always save HTML widgets inside "/modules/WHATEVER_MODULE/widgets/", and make sure the folder exists before you try to save files here.
+
+Replace "WHATEVER_MODULE" above with an actualy module name.

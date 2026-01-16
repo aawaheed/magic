@@ -1,16 +1,15 @@
-Workflow; Create AI chatbot Widget
-WORKFLOW ==> create-ai-chatbot-widget
+Workflow; Create Widget
+WORKFLOW ==> create-widget
 
-An AI chatbot widget is a reusable snippet of HTML that can be dynamically injected into the chatbot conversation by the LLM to collect data, display rich HTML to the user, etc.
+A widget is a reusable snippet of HTML that can be dynamically injected into the chatbot conversation by the LLM to collect data, display rich HTML, etc.
 
-Use this workflow if the user wants to tell you he or she wants to create an AI chatbot widget, and ask the user for the following information:
+Use this workflow if the user wants to tell you he or she wants to create a widget, and ask the user for the following information:
 
 1. What HTML should the widget contain, and what should it do.
    - If it needs an API, you can generate one using the Hyperlambda Generator. Do this first if required.
 2. Where should we save the widget's HTML
    - By default widgets are saved as HTML files into a module, in a folder named for instance "widgets", inside a module. Offer the user to create a module using the `create-module` unless the user specifies an existing module, and make sure all folders are created before attempting to save the HTML.
 3. Use the `display-widget` function to allow the user to debug the widget and test it before the HTML is saved.
-4. Return the full path to the widget when it is saved.
 
 ## Rules for saving widget
 

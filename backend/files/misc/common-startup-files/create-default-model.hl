@@ -23,7 +23,7 @@ try
                   type:default
                   model:gpt-5-chat-latest
                   max_tokens:int:12000
-                  max_context_tokens:int:50000
+                  max_context_tokens:int:5000
                   max_request_tokens:int:24000
                   max_function_invocations:int:100
                   temperature:decimal:0.1
@@ -45,7 +45,7 @@ try
             values
                model:gpt-5-chat-latest
                max_tokens:int:12000
-               max_context_tokens:int:50000
+               max_context_tokens:int:5000
                max_request_tokens:int:24000
                max_function_invocations:int:100
                temperature:decimal:0.1

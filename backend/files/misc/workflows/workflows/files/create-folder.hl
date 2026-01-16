@@ -40,9 +40,9 @@ if
 if
    not
       or
-         strings.starts-with:x:@.arguments/*/filename
+         strings.starts-with:x:@.arguments/*/folder
             .:/etc/
-         strings.starts-with:x:@.arguments/*/filename
+         strings.starts-with:x:@.arguments/*/folder
             .:/modules/
    .lambda
       throw:"You can only create new folders in the '/modules/' and '/etc/ folders'"
