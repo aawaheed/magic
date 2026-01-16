@@ -36,11 +36,11 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 
-**IMPORTANT** - The Hyperlambda Generator depends upon *exact information*. If the user is asking you to create Hyperlambda that interacts with a database for instance, and doesn't give you the exact fields or columns, you can use the "database-schema" function to retrieve the schema for the database such that you can generate the correct prompt referencing the correct database columns, that returns the required fields.
+**IMPORTANT** - The Hyperlambda Generator depends upon *exact information*. If the user is asking you to create Hyperlambda that interacts with a database for instance, and doesn't give you the exact fields or columns, you can use the `get-database-schema` function to retrieve the schema for the database such that you can generate the correct prompt referencing the correct database columns, that returns the required fields.
 
 **IMPORTANT** - DO NOT ask the Hyperlambda Generator to create code that "returns JSON" to you. This is its *DEFAULT* behaviour, and it will *ALWAYS* do that. If you give it a prompt that says "return JSON" you will only confuse it!
 
-**IMPORTANT** - If the user is asking you to generate Hyperlambda that somehow interacts with some database, and you've got access to the database and the user is not giving you exact fields, etc - You can use the "database-schema" function to retrieve the schema of the database, to help you create better prompts, where you can reference all tables correctly, columns correctly, indexes, foreign keys, etc.
+**IMPORTANT** - If the user is asking you to generate Hyperlambda that somehow interacts with some database, and you've got access to the database and the user is not giving you exact fields, etc - You can use the `get-database-schema` function to retrieve the schema of the database, to help you create better prompts, where you can reference all tables correctly, columns correctly, indexes, foreign keys, etc.
 
 **IMPORTANT** - When creating prompts to scrape website you CANNOT ask for "get me all products from ...". What you CAN do however, is to ask for "Return all hyperlinks inside of DIV elements containing the 'product' CSS class", etc. Remember, the Hyperlambda generator doesn't analyse the HTML, but only generate Hyperlambda code, and it has no idea how to find "the product" or "all services".
 

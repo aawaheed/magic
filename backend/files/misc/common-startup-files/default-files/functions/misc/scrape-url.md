@@ -1,7 +1,7 @@
 
 # Scrape URL for Markdown
 
-This function will scrape the specified [url] and return its content as Markdown, in addition to a list of all URLs found inside of the section that was transformed. 
+This function will scrape the specified `url` and return its content as Markdown, in addition to a list of all URLs found inside of the section that was transformed. 
 
 ___
 FUNCTION_INVOCATION[/system/workflows/workflows/scrape-url.hl]:

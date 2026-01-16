@@ -45,8 +45,8 @@ Replace the above [BACKEND_URL_HERE], [RTL], etc according to settings chosen by
 
 ## Finishing
 
-After you've created the embed script, offer the user to create an HTML website landing page for him where you inject the embed script. If the user confirms he or she wants a landing page, ask the user for a URL to a page to scrape, which you will scrape using the "scrape-url" function and use the information found during scraping to create an HTML landing page you can save using the "create-web-file" function. Use the name of the machine learning type as a file name and add ".html" to it unless the user explicitly tells you something else.
+After you've created the embed script, offer the user to create an HTML website landing page for him where you inject the embed script. If the user confirms he or she wants a landing page, ask the user for a URL to a page to scrape, which you will scrape using the `scrape-url` function and use the information found during scraping to create an HTML landing page you can save using the "create-file" function. Use the name of the machine learning type as a file name and add ".html" to it unless the user explicitly tells you something else.
 
-**IMPORTANT** - Create a kick ass landing page, intended as a demonstration of the chatbot, using information found from the original URL the chatbot was created from, or the URL the user supplied when asking for a URL to scrape to create a landing page. Then inject the embed script on this page, and save it using the "create-web-file" function. Use the content found at the website you scraped as you create this landing page.
+**IMPORTANT** - Create a kick ass landing page, intended as a demonstration of the chatbot, using information found from the original URL the chatbot was created from, or the URL the user supplied when asking for a URL to scrape to create a landing page. Then inject the embed script on this page, and save it using the "create-file" function. Use the content found at the website you scraped as you create this landing page.
 
 When done return the URL to the landing page as Markdown.

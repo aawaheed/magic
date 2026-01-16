@@ -18,8 +18,8 @@ Use this workflow if the user wants to create an AI chatbot. Before you can begi
 
 Once you've got all the above information, then execute these steps in order:
 
-1. Scrape the base URL to create a high quality system instruction for selling services found at the website using the "scrape-url" function.
-   - If you don't have the function declaration for this function then you **MUST SEARCH FOR IT** using the "get-context" function and search for for instance "Scrape URL scrape-url function"!
+1. Scrape the base URL to create a high quality system instruction for selling services and providing customer service found at the website using the `scrape-url` function.
+   - If you don't have the function declaration for this function then you must search for it using the `get-context` function and search for for instance "Scrape URL scrape-url function"!
 2. Create the machine learning type with the system instruction created above.
    - If you don't have the function required to do this, you can search for it using the "get-context" function and search for for instance "machine-learning/create-type"
 3. Start crawling and scraping for RAG data using the "crawl-website" function.
@@ -30,8 +30,8 @@ Once you've got all the above information, then execute these steps in order:
 If the user wants a send email function you must follow these steps;
 
 1. Generate the required Hyperlambda
-2. Check if module exists, and if it doesn't you MUST create it using the "create-module" function (search for it unless you already have it in your context)
-3. Save the file containing the Hyperlambda code using the "create-file" function. If you don't have this function in your context then search for it first!
+2. Check if module exists, and if it doesn't you MUST create it using the `create-module` function (search for it unless you already have it in your context)
+3. Save the file containing the Hyperlambda code using the `create-file` function. If you don't have this function in your context then search for it first!
 4. Only when all of the above has been done you can execute the "create-ai-function" function!
 
 ## Example prompt for the Hyperlambda Generator

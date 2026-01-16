@@ -14,4 +14,4 @@ Arguments:
 
 - `filename` is the mandatory path of file to download.
 
-Notice, if you need to generate a temporary file for download, you can save this file into the "/etc/tmp/" folder using the "save-file" function and use this function to create a "Download" button.
+Notice, if you need to generate a temporary file for download, you can save this file into the "/etc/tmp/" folder using the "create-file" function and use this function to create a "Download" button.

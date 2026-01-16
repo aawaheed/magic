@@ -16,5 +16,5 @@ validators.mandatory:x:@.arguments/*/file
 validators.mandatory:x:@.arguments/*/content
 
 // Saves the specified file.
-save-file:x:@.arguments/*/file
+create-file:x:@.arguments/*/file
    get-value:x:@.arguments/*/content

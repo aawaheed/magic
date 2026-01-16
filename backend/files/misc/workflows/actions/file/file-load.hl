@@ -9,8 +9,8 @@
 .icon:insert_drive_file
 
 // Loads the specified file.
-load-file:x:@.arguments/*/file
+read-file:x:@.arguments/*/file
 
 // Returning result of above invocation to caller.
 yield
-   content:x:@load-file
+   content:x:@read-file

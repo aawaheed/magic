@@ -5,7 +5,7 @@ WORKFLOW ==> create-crud-api
 
 After you have informed the user of the above, and the user still wants to proceed manually creating his or her CRUD API with AI, you must guide the user through the following steps.
 
-1. Ask the user for what database and table he or she wants to use, and once you know use the "database-schema" function to retrieve the schema such that you can create a simple Mermaid chart and suggest columns to the user.
+1. Ask the user for what database and table he or she wants to use, and once you know use the `get-database-schema` function to retrieve the schema such that you can create a simple Mermaid chart and suggest columns to the user.
 2. Ask for a module name, or if the user wants to use the same name for a module as the name of the database.
 3. Ask the user for what CRUD verb he or she wants to generate an API for.
    - Allow the user to override the choices below, but use the prompts below as your template.
