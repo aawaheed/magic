@@ -1,7 +1,7 @@
 
 # Schedule task
 
-The following function can be used to schedule a specific task. If the user wants to schedule a task for periodically repeating, or to be executed some time in the future, you must end your response with the following;
+The following function can be used to schedule a specific task. If the user wants to schedule a task for periodically repeating, or to be executed some time in the future, you can use this function.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/schedule-task.hl]:
@@ -27,3 +27,5 @@ The reptition pattern for scheduling a task can be populated in 3 different ways
 - `MM.dd.HH.mm.ss` where `MM` and `dd` can have multiple values separated by a `|` character.
 
 **IMPORTANT** - Never use colon (:) to separate parts of the repetition pattern, always use periods (.).
+
+Notice, this function requires the task to previously having been created using the `create-task` function. If the user wants to schedule a task in the future, you have to first make sure that the task is created using the `create-task` function.

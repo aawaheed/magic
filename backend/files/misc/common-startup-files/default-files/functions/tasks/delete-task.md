@@ -13,3 +13,5 @@ ___
 Arguments;
 
 - `name` is mandatory name or ID of task to delete
+
+**Warning**! This action is permanent and user needs to acknowledge he or she understands the consequences.
