@@ -33,6 +33,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Get the first user from the 'magic' database and its 'users' table. Return 'username' and 'created' columns only."
 * "Load the file '/etc/foo.hl' and replace its existing authorisation requirements, such that only 'root' and 'admin' users can execute the file, for then to save it back to itself again."
 * "Log the following to the audit log; 'Backup of magic database was successfully created'"
+* "Select top 20 items from the 'log_entries' table in the 'magic' database sorted by 'created' descending, convert the result to CSV and send as an attachment on email to 'thomas@ainiro.io'"
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 
