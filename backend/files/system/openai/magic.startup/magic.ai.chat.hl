@@ -9,21 +9,30 @@ slots.create:magic.ai.chat
       stream:bool:false
 
    // Retrieving relevant snippets.
-   unwrap:x:+/*
-   signal:magic.ai.get-context
-      type:x:@.arguments/*/type
-      prompt:x:@.arguments/*/prompt
-      threshold:x:@.arguments/*/threshold
-      max_tokens:x:@.arguments/*/max_context_tokens
-      api_key:x:@.arguments/*/api_key
-      search_postfix:x:@.arguments/*/search_postfix
-      session:x:@.arguments/*/session
-      session_timeout:x:@.arguments/*/session_timeout
-      meta:x:@.arguments/*/meta
+   .context-buffer
+   if
+      eq
+         convert:x:@.arguments/*/use_embeddings
+            type:int
+         .:int:1
+      .lambda
+         unwrap:x:+/*
+         signal:magic.ai.get-context
+            type:x:@.arguments/*/type
+            prompt:x:@.arguments/*/prompt
+            threshold:x:@.arguments/*/threshold
+            max_tokens:x:@.arguments/*/max_context_tokens
+            api_key:x:@.arguments/*/api_key
+            search_postfix:x:@.arguments/*/search_postfix
+            session:x:@.arguments/*/session
+            session_timeout:x:@.arguments/*/session_timeout
+            meta:x:@.arguments/*/meta
+         add:x:@.context-buffer
+            get-nodes:x:@signal/*
 
    // Checking if we've got a cached result.
    if
-      exists:x:@signal/*/cached
+      exists:x:@.context-buffer/*/cached
       .lambda
 
          // Cached result, checking if type is "supervised".
@@ -44,7 +53,7 @@ slots.create:magic.ai.chat
                      values
                         type:x:@.arguments/*/type
                         prompt:x:@.arguments/*/prompt
-                        completion:x:@signal/*/cached
+                        completion:x:@.context-buffer/*/cached
                         finish_reason:cached
                         session:x:@.arguments/*/session
                         user_id:x:@.arguments/*/user_id
@@ -53,7 +62,7 @@ slots.create:magic.ai.chat
          // Returning cached result to caller.
          unwrap:x:+/*
          return
-            result:x:@signal/*/cached
+            result:x:@.context-buffer/*/cached
             finish_reason:cached
             stream:bool:false
 
@@ -172,7 +181,7 @@ select prompt, max(completion) as completion
 
    // Checking if we've got context.
    if
-      not-null:x:@signal/*/context
+      not-null:x:@.context-buffer/*/context
       .lambda
 
          // Adding context to above [.session].
@@ -181,7 +190,7 @@ select prompt, max(completion) as completion
             .
                .
                   role:system
-                  content:x:@signal/*/context
+                  content:x:@.context-buffer/*/context
 
    // Checking if we've got a [data] argument, and if so, making sure we accommodate for token size.
    .extra-tokens:int:0
@@ -1166,7 +1175,7 @@ select prompt, max(completion) as completion
          exists:x:@.arguments/*/references
          not-null:x:@.arguments/*/references
          get-value:x:@.arguments/*/references
-         exists:x:@signal/*/snippets/*
+         exists:x:@.context-buffer/*/snippets/*
       .lambda
 
          // We've got references, returning these to caller.
@@ -1174,7 +1183,7 @@ select prompt, max(completion) as completion
             .
                references
          add:x:../*/return/*/references
-            get-nodes:x:@signal/*/snippets/*
+            get-nodes:x:@.context-buffer/*/snippets/*
 
    /*
     * Checking if we're NOT streaming, at which point we return the result
@@ -1197,5 +1206,5 @@ select prompt, max(completion) as completion
    // Returning results to caller.
    unwrap:x:./*/return/**
    return
-      db_time:x:@signal/*/db_time
+      db_time:x:@.context-buffer/*/db_time
       stream:x:@.arguments/*/stream

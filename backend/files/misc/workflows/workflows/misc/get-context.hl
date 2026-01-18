@@ -27,8 +27,8 @@ validators.mandatory:x:@.arguments/*/query
 
 // Applying defaults.
 validators.default:x:@.arguments
-   max_tokens:int:4000
-   threshold:decimal:0.3
+   max_tokens:int:10000
+   threshold:decimal:0.2
 
 /*
  * Returns context for the specified [query] from the specified [_type],
