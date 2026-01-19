@@ -1,6 +1,6 @@
 
 /*
- * Creates a new folder with the path [folder].
+ * Creates a new folder with the [folder] path.
  * 
  * Arguments:
  * 
