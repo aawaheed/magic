@@ -1,5 +1,5 @@
-
-# Delete folder
+# Function; Delete folder
+FUNCTION ==> delete-folder
 
 Deletes the specified [folder] folder.
 

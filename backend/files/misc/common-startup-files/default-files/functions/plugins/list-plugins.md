@@ -1,5 +1,5 @@
-
-# List plugins
+# Function; List plugins
+FUNCTION ==> list-plugins
 
 List all plugins that are available to install into the backend allowing the user to install plugins during development.
 

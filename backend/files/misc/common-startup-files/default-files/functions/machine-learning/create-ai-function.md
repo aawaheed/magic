@@ -1,5 +1,5 @@
-
-# Create AI function
+# Function; Create AI function
+FUNCTION ==> create-ai-function
 
 The following function can be used to create an AI function for some machine learning type, allowing the LLM to have access to it as a tool in its RAG/VSS database, or its system instruction.
 

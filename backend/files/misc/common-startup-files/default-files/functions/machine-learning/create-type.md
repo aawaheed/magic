@@ -1,5 +1,5 @@
-
-# Create machine learning type
+# Function; Create machine learning type
+FUNCTION ==> create-type
 
 The following function can be used to create a new machine learning type.
 

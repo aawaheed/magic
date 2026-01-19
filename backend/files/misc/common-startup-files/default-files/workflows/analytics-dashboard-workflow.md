@@ -1,5 +1,5 @@
 # Workflow; Create Analytics Dashboard
-WORKFLOW ==> create-analytics-dashboard
+WORKFLOW ==> analytics-dashboard-workflow
 
 ## Purpose
 Provide a guided process for building interactive analytics dashboards that visualise data from databases or APIs.

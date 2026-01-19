@@ -1,5 +1,5 @@
-
-# Search the web
+# Function; Search the web
+FUNCTION ==> search-the-web
 
 If the user asks you to search the web then end your response with the following;
 

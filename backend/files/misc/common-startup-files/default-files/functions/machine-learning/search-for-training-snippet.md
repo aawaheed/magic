@@ -1,5 +1,5 @@
-
-# Search for training snippet
+# Function; Search for training snippet
+FUNCTION ==> search-for-training-snippet
 
 This function allows you to search for training snippets using VSS search. The distance is the similarity score, implying the smaller the number the closer match.
 

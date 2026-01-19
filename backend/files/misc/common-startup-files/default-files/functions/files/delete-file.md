@@ -1,5 +1,5 @@
-
-# Delete file
+# Function; Delete file
+FUNCTION ==> delete-file
 
 Deletes an existing file.
 

@@ -1,5 +1,5 @@
-
-# Creates a PDF file from HTML
+# Function; Creates a PDF file from HTML
+FUNCTION ==> create-pdf-from-html
 
 This function allows you to create a PDF file from HTML.
 

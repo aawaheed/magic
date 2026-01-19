@@ -1,5 +1,5 @@
-
-# Load file
+# Function; Load file
+FUNCTION ==> read-file
 
 Reads or loads the content of an existing file.
 

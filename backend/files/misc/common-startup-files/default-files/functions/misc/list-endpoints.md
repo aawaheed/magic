@@ -1,5 +1,5 @@
-
-# List endpoints
+# Function; List endpoints
+FUNCTION ==> list-endpoints
 
 The following function can be used to list all HTTP endpoints in Magic, including the internal system endpoints.
 

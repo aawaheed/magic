@@ -1,5 +1,5 @@
-
-# Remove role from user
+# Function; Remove role from user
+FUNCTION ==> remove-from-role
 
 This function removes the association between the specified [username] user and the specified [role].
 

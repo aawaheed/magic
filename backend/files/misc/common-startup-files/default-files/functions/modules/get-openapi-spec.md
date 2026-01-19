@@ -1,5 +1,5 @@
-
-# OpenAPI specification
+# Function; OpenAPI specification
+FUNCTION ==> get-openapi-spec
 
 If the user asks you for an OpenAPI specification for a specific module, you can use the following function.
 

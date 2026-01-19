@@ -1,5 +1,5 @@
-List AI chatbot themes
-
+# Function; List AI chatbot themes
+FUNCTION ==> list-chatbot-themes
 
 The following function returns a list of all AI Chatbot Themes in the system.
 

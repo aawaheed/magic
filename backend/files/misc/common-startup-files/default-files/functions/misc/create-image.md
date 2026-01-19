@@ -1,5 +1,5 @@
-
-# Create image
+# Function; Create image
+FUNCTION ==> create-image
 
 This function creates an image using DALL-E 3 according to the specified [prompt], [size], and [style], and returns it to caller. The return value will be the URL for the generated image, in addition to a description of the image.
 

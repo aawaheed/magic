@@ -1,5 +1,5 @@
-
-# Delete machine learning type
+# Function; Delete machine learning type
+FUNCTION ==> delete-type
 
 The following function can be used to delete an existing machine learning type. If the user wants you to delete a machine learning type then you must end your response with the following;
 

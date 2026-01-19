@@ -93,8 +93,11 @@ try
                      get-value:x:@.prompt
                      .:
                if
-                  strings.starts-with:x:@strings.split/1
-                     .:WORKFLOW ==>
+                  or
+                     strings.starts-with:x:@strings.split/1
+                        .:WORKFLOW ==>
+                     strings.starts-with:x:@strings.split/1
+                        .:FUNCTION ==>
                   .lambda
                      set-value:x:@.meta
                         strings.trim:x:@strings.split/1
@@ -110,6 +113,9 @@ try
                         .:"# "
                set-value:x:@.completion
                   strings.trim:x:@.completion
+               set-value:x:@.prompt
+                  strings.trim:x:@.prompt
+                     .:"# "
                unwrap:x:+/*/*/*
                add:x:@.training-data
                   .

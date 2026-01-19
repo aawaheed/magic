@@ -1,7 +1,9 @@
+# Function; Execute SQL and return result
+FUNCTION ==> select-sql
 
-# Execute SQL and return result
-
-Connect to the [database] database, and executes the specified [sql], and returns the result of the SQL as a list of records. Use this function if the user needs the result of an SQL query.
+Connect to the [database] database, and executes the specified [sql],
+and returns the result of the SQL as a list of records.
+Use this function if the user needs the result of an SQL query.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/select-sql.hl]:

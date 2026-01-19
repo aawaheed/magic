@@ -1,5 +1,5 @@
-
-# Install plugin
+# Function; Install plugin
+FUNCTION ==> install-plugin
 
 Installs the specified [plugin] plugin into your backend. Notice, installation will be executed on a background thread, and it might take some time to install it. User will be notified in a message popup once done.
 

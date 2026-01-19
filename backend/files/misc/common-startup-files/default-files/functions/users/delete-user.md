@@ -1,5 +1,5 @@
-
-# Delete user
+# Function; Delete user
+FUNCTION ==> delete-user
 
 This function allows you to delete an existing user
 

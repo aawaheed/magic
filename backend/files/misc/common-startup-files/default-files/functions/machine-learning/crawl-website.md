@@ -1,5 +1,5 @@
-
-# Crawl website
+# Function; Crawl website
+FUNCTION ==> crawl-website
 
 The following function can be used to crawl a website for training data and create RAG data for a machine learning type, AI chatbot, or AI agent.
 

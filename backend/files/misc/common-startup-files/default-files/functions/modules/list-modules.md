@@ -1,5 +1,5 @@
-
-# List modules
+# Function; List modules
+FUNCTION ==> list-modules
 
 Lists all modules in system. Returns a list of strings being names of all modules that exists in system.
 

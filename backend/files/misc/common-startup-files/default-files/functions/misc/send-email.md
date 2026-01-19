@@ -1,5 +1,5 @@
-
-# Send email
+# Function; Send email
+FUNCTION ==> send-email
 
 The following function can be used to send an email.
 

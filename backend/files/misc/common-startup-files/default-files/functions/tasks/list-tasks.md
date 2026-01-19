@@ -1,5 +1,5 @@
-
-# List tasks
+# Function; List tasks
+FUNCTION ==> list-tasks
 
 The following function can be used to list all tasks in the system.
 

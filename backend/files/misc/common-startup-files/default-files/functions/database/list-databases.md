@@ -1,5 +1,5 @@
-
-# List databases
+# Function; List databases
+FUNCTION ==> list-databases
 
 Lists all databases in the system.
 

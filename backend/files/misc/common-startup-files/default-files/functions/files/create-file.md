@@ -1,5 +1,5 @@
-
-# Save file
+# Function; Save file
+FUNCTION ==> create-file
 
 Saves a new file or overwrites an existing file with the specified [content]. If the user wants you to create, modify, or save a file, then you must use this function.
 

@@ -1,7 +1,7 @@
+# Function; Delete database
+FUNCTION ==> delete-sqlite-database
 
-# Delete database
-
-Deletes the SQLite database specified as [name].
+Deletes the SQLite database specified as [database].
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/delete-sqlite-database.hl]:

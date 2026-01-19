@@ -1,5 +1,5 @@
-
-# Create role
+# Function; Create role
+FUNCTION ==> create-role
 
 Use this function if you need to create a new role.
 

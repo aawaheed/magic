@@ -1,5 +1,5 @@
-
-# Download file from the web
+# Function; Download file from the web
+FUNCTION ==> download-from-web
 
 This function allows a user to download a file from some URL and save it into some folder in his or her cloudlet.
 

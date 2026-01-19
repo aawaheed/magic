@@ -1,5 +1,5 @@
-
-# Get training snippet
+# Function; Get training snippet
+FUNCTION ==> get-training-snippet
 
 This function returns a sungle training snippet from your RAG/VSS database, and can be used if user asks to see the details for a specific snippet, or if you need it for some reasons.
 

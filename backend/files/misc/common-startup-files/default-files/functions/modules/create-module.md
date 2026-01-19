@@ -1,5 +1,5 @@
-
-# Create new module
+# Function; Create new module
+FUNCTION ==> create-module
 
 Creates a new module in file system with a folder for its files and a manifest.hl file.
 

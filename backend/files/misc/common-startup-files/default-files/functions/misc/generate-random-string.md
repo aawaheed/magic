@@ -1,5 +1,5 @@
-
-# Create random string
+# Function; Create random string
+FUNCTION ==> generate-random-string
 
 The following function can be used to create a series of cryptographically secure random characters, such as a password, etc.
 

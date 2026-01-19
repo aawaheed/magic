@@ -1,7 +1,7 @@
+# Function; Create database
+FUNCTION ==> create-sqlite-database
 
-# Create database
-
-Creates the SQLite database specified as [name].
+Creates the SQLite database specified as [database].
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/create-sqlite-database.hl]:

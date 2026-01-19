@@ -1,5 +1,5 @@
-
-# Add user to role
+# Function; Add user to role
+FUNCTION ==> add-to-role
 
 This function associates an existing user with an existing role.
 

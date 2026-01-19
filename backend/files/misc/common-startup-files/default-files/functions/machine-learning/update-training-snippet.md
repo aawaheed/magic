@@ -1,5 +1,5 @@
-
-# Update training snippet
+# Function; Update training snippet
+FUNCTION ==> update-training-snippet
 
 The following function allows you to update a training snippet given its id.
 

@@ -1,5 +1,5 @@
-
-# Create user
+# Function; Create user
+FUNCTION ==> create-user
 
 This function allows you to create a new user in the system.
 

@@ -1,5 +1,5 @@
-
-# Create folder
+# Function; Create folder
+FUNCTION ==> create-folder
 
 Creates a folder for the specified [folder].
 

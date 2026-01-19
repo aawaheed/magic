@@ -1,7 +1,10 @@
+# Function; Export SQL
+FUNCTION ==> export-sql
 
-# Export SQL
-
-Connects to the [database] database, and executes the specified [sql], for then to allow the frontend to download it as a CSV file. Use this function if the user tells you to export some database table, and/or specific SQL queries as a CSV file.
+Connects to the [database] database, and executes the specified [sql],
+for then to allow the frontend to download it as a CSV file.
+Use this function if the user tells you to export some database table,
+and/or specific SQL queries as a CSV file.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/export-sql.hl]:

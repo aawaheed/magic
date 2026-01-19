@@ -1,5 +1,5 @@
-
-# Scrape URL for Markdown
+# Function; Scrape URL for Markdown
+FUNCTION ==> scrape-url
 
 This function will scrape the specified `url` and return its content as Markdown, in addition to a list of all URLs found inside of the section that was transformed. 
 

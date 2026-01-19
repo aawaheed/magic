@@ -1,5 +1,5 @@
-
-# Create RAG training snippet for machine learning type
+# Function; Create RAG training snippet for machine learning type
+FUNCTION ==> create-rag-training-snippet
 
 The following function can be used to create RAG training data for a machine learning type. If the user wants you to create RAG or VSS data for a specific machine learning type, AI chatbot, or AI agent, then you must end your response with the following;
 

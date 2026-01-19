@@ -272,8 +272,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       if (this.messages[this.messages.length - 1].message.includes(this.waitingString)) {
         this.messages[this.messages.length - 1].message = this.messages[this.messages.length - 1].message.replace(this.waitingString, '');
       }
-      this.messages[this.messages.length - 1].message += 'Something went wrong while trying to invoke the LLM';
-      this.messages[this.messages.length - 1].type = 'error';
+      this.messages[this.messages.length - 1].message += '<span class="error-message">Something went wrong while trying to invoke the LLM</span>';
 
       this.is_answering = false;
       setTimeout(() => {

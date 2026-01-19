@@ -1,10 +1,10 @@
-
-# List roles for user
+# Function; List roles for user
+FUNCTION ==> list-users-roles
 
 This function returns a list of all roles the specified [username] belongs to.
 
 ___
-FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/list-roles.hl]:
+FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/list-users-roles.hl]:
 {
   "username": "[STRING_VALUE]"
 }

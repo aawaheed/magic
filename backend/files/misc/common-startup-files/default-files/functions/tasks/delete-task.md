@@ -1,5 +1,5 @@
-
-# Delete task
+# Function; Delete task
+FUNCTION ==> delete-task
 
 The following function can be used to delete a specific task.
 

@@ -1,5 +1,5 @@
-
-# Delete training snippet
+# Function; Delete training snippet
+FUNCTION ==> delete-training-snippet
 
 The following function allows you to delete a training snippet given its id.
 

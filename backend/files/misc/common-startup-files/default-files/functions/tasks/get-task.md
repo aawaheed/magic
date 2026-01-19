@@ -1,5 +1,5 @@
-
-# Get task
+# Function; Get task
+FUNCTION ==> get-task
 
 The following function can be used to get a specific task, including its Hyperlambda.
 

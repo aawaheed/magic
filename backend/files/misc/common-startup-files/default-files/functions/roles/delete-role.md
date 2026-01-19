@@ -1,5 +1,5 @@
-
-# Delete role
+# Function; Delete role
+FUNCTION ==> delete-role
 
 Use this function to delete a role.
 

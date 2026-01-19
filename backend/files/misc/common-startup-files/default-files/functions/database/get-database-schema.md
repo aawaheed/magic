@@ -1,5 +1,5 @@
-
-# Get database schema (DDL)
+# Function; Get database schema (DDL)
+FUNCTION ==> get-database-schema
 
 Connect to the [database] database, and returns the schema for the specified database.
 

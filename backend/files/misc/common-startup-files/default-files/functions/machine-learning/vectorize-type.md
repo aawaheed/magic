@@ -1,5 +1,5 @@
-
-# Vectorize machine learning type
+# Function; Vectorize machine learning type
+FUNCTION ==> vectorize-type
 
 This function can be used to create embeddings for a machine learning type.
 
