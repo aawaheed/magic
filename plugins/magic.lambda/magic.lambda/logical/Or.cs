@@ -32,7 +32,7 @@ namespace magic.lambda.logical
 
         void SanityCheck(Node input)
         {
-            if (input.Children.Count() < 2)
+            if (input.Children.Count() < 1)
                 throw new HyperlambdaException("[or] must have at least 2 argument nodes");
         }
 
