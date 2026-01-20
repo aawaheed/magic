@@ -7,7 +7,8 @@ Provide a guided process for building interactive analytics dashboards that visu
 ## Steps
 
 1. Ask the user which data source to use (database or API).
-   - If the user has his own CSV file here, it can be uploaded in SQL Studio
+   - If the user has his own CSV file here, it can be uploaded in SQL Studio.
+   - You have to create an API to connect to the dashboard.
 2. Retrieve the schema or data structure to understand available metrics.
 3. Let the user choose chart types (bar, line, pie, table, etc.).
 4. Generate HTML widgets using Chart.js or Mermaid for visualisation.
