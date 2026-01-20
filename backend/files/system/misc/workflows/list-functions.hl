@@ -9,8 +9,6 @@
    // Mandatory argument and the type name for which to return functions for.
    _type:string
 
-.type:public
-
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/_type
 

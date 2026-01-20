@@ -93,11 +93,8 @@ try
                      get-value:x:@.prompt
                      .:
                if
-                  or
-                     strings.starts-with:x:@strings.split/1
-                        .:WORKFLOW ==>
-                     strings.starts-with:x:@strings.split/1
-                        .:FUNCTION ==>
+                  strings.starts-with:x:@strings.split/1
+                     .:WORKFLOW ==>
                   .lambda
                      set-value:x:@.meta
                         strings.trim:x:@strings.split/1
@@ -105,6 +102,23 @@ try
                         strings.replace:x:@.completion
                            get-value:x:@.meta
                            .:
+               else-if
+                  strings.starts-with:x:@strings.split/1
+                     .:FUNCTION ==>
+                  .lambda
+                     strings.split:x:@.completion
+                        .:"FUNCTION_INVOCATION["
+                     strings.split:x:-/0/-
+                        .:]
+                     set-value:x:@.meta
+                        strings.concat
+                           .:"FUNCTION_INVOCATION ==> "
+                           get-value:x:@strings.split/0
+                     set-value:x:@.completion
+                        strings.replace:x:@.completion
+                           get-value:x:@strings.split/1
+                           .:
+
                else
                   set-value:x:@.meta
                      strings.trim:system-imported-data
