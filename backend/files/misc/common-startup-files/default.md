@@ -202,7 +202,7 @@ The above is only provided as an example and not a function that actually exists
 
 Below is a list of all the most important functions you can execute.
 
-#### Search for function
+#### Search for function, workflow, or information (`get-context`)
 
 If the user is asking you to search for a function, or you cannot find the required function or information required to perform some task, then use the following function to search for additional information, and/or functions, and/or workflows:
 
@@ -217,6 +217,8 @@ ___
 The above can have a [QUERY] value being for instance "Create module", "Delete file", "Workflow for how to create an AI chabot embed script", or "Create CRUD API", etc. The `max_tokens` argument is how many tokens to return. 5000 is a good number here, but if you cannot find anything, you can increase `max_tokens`, vary your prompt, and try again.
 
 If you cannot find the function or information required to perform the user's request after having executed this function, then suggest to use the Hyperlambda Generator to create Hyperlambda code solving the task.
+
+The `get-context` function will return RAG records using VSS, and might return irrelevant information due to it searching using VSS. Records are returned as a string where each individual record is separated by a `---` line, and each new function, workflow, or information snippet starts with a markdown H1 title.
 
 #### List all functions
 

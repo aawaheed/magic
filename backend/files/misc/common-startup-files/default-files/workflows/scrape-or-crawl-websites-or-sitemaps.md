@@ -45,3 +45,12 @@ If the user asks you to create web scraping tools, then follow this process, unl
 2. Re‑invoke the "generate-hyperlambda" function with that prompt.
 3. Use the new code returned by the generator.
 4. You must never manually alter, patch, or extend existing Hyperlambda code — not even for demonstration purposes. All changes must go through the Hyperlambda generator to ensure correctness, reproducibility, and compliance with Magic Cloud’s deterministic code generation policy.
+
+## No semantic prompts!
+
+When suggesting prompts for the Hyperlambda Generator that involve web crawling, scraping, or data extraction, you must:
+
+1. Avoid semantic terms such as "product names," "prices," or "author."
+2. Use only explicit structural selectors (e.g., HTML tags, CSS classes, or URL patterns).
+3. Never assume semantic meaning of page content — only describe how to locate it.
+4. If the user provides a semantic description, the AI must ask for the corresponding structural selectors before generating or suggesting a prompt. Alternatively, you can first generate and execute a prompt that returns the *complete HTML* and determine selectors yourself that matches the user's intentions.
