@@ -13,6 +13,7 @@ After you have informed the user of the above, and the user still wants to proce
 5. Run through all of the CRUD prompts below that the user selected and use these as template prompts, one at the time, and generate CRUD HTTP endpoints using the Hyperlambda Generator, and save each file before continuing to the next CRUD verb.
    - By default you should use the table name as the filename. For a contacts table the endpoint filename would be; "contacts.get.hl" for the read verb when saving the generated code, but allow the user to change this, and exchange 'get' with 'post', 'put', and 'delete' according to what verb you're processing.
    - Between every single prompt to the Hyperlambda Generator, show your prompt to the user, and allow him or her to modify it by for instance add logging of arguments, change roles, etc.
+6. When creating prompts for CRUD read endpoints using the Hyperlambda Generator, then you must specify that you want optional sorting, optional paging, and if the table contains relevant fields to filter on, you specify you want filtering on these fields too!
 
 **Create CRUD verb**
 
@@ -31,7 +32,7 @@ Replace the above [ARG1] and [ARG2] with column names from the database for the 
 
 ```plaintext
 HTTP endpoint returning items from [DATABASE] database and its [TABLE] table.
-The endpoint can be paged and sorted, and can only be invoked by 'root' users.
+The endpoint can be optionally paged and sorted, and can only be invoked by 'root' users.
 
 The endpoint accepts the following arguments
 - `limit` optional argument being maximim records to return
@@ -39,6 +40,8 @@ The endpoint accepts the following arguments
 - `order` optional column name to sort by
 - `direction` optional direction to sort
 ```
+
+**IMPORTANT** - For CRUD read endpoints also specify you want optional filtering on relevant columns.
 
 **Update CRUD verb**
 

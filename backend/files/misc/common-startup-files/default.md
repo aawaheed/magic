@@ -264,6 +264,7 @@ Also, you must provide the Hyperlambda Generator with all required arguments it 
     1. Create a new intentional prompt describing the desired code.
     2. Re‑invoke the generate-hyperlambda function with that prompt.
     3. Use the new code returned by the generator.
+11. When generating multiple endpoints (e.g., CRUD APIs for several tables or verbs), you must invoke the Hyperlambda Generator **once for each endpoint, file, or tool**. Each CRUD verb for each table must be generated in a separate generator call, even if the user instructs you to "continue until done" or tells you to "don’t ask for feedback".
 
 ##### About saving Hyperlambda files
 
