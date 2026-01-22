@@ -4,6 +4,24 @@
  * creates a scheduled task that creates a backup of the database once every day at 1AM UTC time.
  */
 
+// Making sure we updated connection strings to apply "Default Timeout".
+config.load
+json2lambda:x:@config.load
+if
+   not
+      strings.contains:x:@json2lambda/**/sqlite/*/generic
+         .:"Default Timeout="
+   .lambda
+      strings.trim:x:@json2lambda/**/sqlite/*/generic
+         .:";"
+      set-value:x:@json2lambda/**/sqlite/*/generic
+         strings.concat
+            strings.trim:x:@strings.trim
+               .:"; "
+            .:"; Default Timeout=5;"
+      lambda2json:x:@json2lambda/*
+      config.save:x:-
+
 // Figuring out what our default database type is.
 .db-type
 set-value:x:@.db-type
@@ -80,6 +98,7 @@ if
             // Executing create database SQL script without any special cases.
             sqlite.connect:[generic|magic]
                sqlite.execute:x:@io.file.load
+               data.execute:"PRAGMA journal_mode=WAL;PRAGMA synchronous=NORMAL;"
 
       // Magic database successfully created
       console.log:Magic databases was successfully created
@@ -103,6 +122,7 @@ else-if
           */
          data.connect:[generic|magic]
             data.select:select count(*) from log_entries
+            data.execute:"PRAGMA journal_mode=WAL;PRAGMA synchronous=NORMAL;"
 
          // Logging to console.
          console.log:Successfully connected to magic database
