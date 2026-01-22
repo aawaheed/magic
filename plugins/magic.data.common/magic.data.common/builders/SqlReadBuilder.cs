@@ -228,7 +228,7 @@ namespace magic.data.common.builders
         void AppendColumns(StringBuilder builder)
         {
             var columnsNodes = Root.Children.Where(x => x.Name == "columns");
-            if (!columnsNodes.Any())
+            if (!columnsNodes.Any() || (!columnsNodes.FirstOrDefault()?.Children.Any() ?? true))
             {
                 // Caller did not explicitly declare columns, hence defaulting to all.
                 builder.Append("*");
