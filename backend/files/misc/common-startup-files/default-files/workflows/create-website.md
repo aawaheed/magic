@@ -12,3 +12,5 @@ You will need to know the style, any images, text for the website, etc, before y
 Some pages might need a backend API. If the user wants such pages, use the Hyperlambda Generator to create your backend API. If you need an API, then generate the API first as a module.
 
 **IMPORTANT** - Always save the primary landing page directly as "index.html".
+
+Notice, if you search for "background images" using the `get-context` function, you can find background images you can copy into the web folder and use for your design.

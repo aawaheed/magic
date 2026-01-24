@@ -18,3 +18,5 @@ When done, return the URL for the landing page to the user as a Markdown hyperli
 **IMPORTANT** - It is crucial that you follow the "Create AI chatbot" workflow's steps, and asks if the user wants to crawl and scrape a website, etc.
 
 **IMPORTANT** - When creating the API make sure it **DOES NOT** require any authentication!
+
+Notice, if you search for "background images" using the `get-context` function, you can find background images you can copy into the web folder and use for your design.
