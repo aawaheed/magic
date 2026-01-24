@@ -21,3 +21,11 @@ When done, return the URL for the landing page to the user as a Markdown hyperli
 **IMPORTANT** - When creating the API make sure it **DOES NOT** require any authentication!
 
 Notice, if you search for "background images" using the `get-context` function, you can find background images you can copy into the web folder and use for your design. Unless the user specify a different image, then by default use the "blue-flower-pattern-medium-dark-background.jpg" image as a background image to fill the entire viewport.
+
+Notice, when you're assembling the landing page you need to do it in the following order.
+
+1. Create database and apply schema, if user needs a database.
+2. Create the API.
+3. Create the frontend.
+
+**IMPORTANT** - Apply some default "reset CSS" logic on all CSS you create, such as setting the default `box-sizing` attribute to "border-box", etc.
