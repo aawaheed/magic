@@ -13,3 +13,5 @@ ___
 Arguments:
 
 - `filename` is the mandatory filename of file to load, including its path.
+
+**IMPORTANT** - This function can *ONLY* read text based files, such as HTML, Markdown, txt files, etc.

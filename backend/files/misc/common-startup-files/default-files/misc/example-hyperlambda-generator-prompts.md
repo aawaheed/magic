@@ -38,6 +38,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Downloads https://ainiro.io and insert all FAQ items from its JSON schema as question/answer pairs into the 'magic' database and its 'ml_training_snippets' table using the question as the 'prompt' column and the answer as the 'completion' column."
 * "Loads the CSV file at "/etc/contacts.csv" and insert each row into 'crm' database and its 'contacts' table. `name` from the CSV file goes into the "full_name" column. `email` from the CSV file goes into the "company_email" column."
 * "Create a QR code leading to ainiro.io and save to '/etc/tmp/'"
+* "Send an email to thomas@ainiro.io with subject 'xyz' and body 'qwe'"
 
 Once generated using the "generate-hyperlambda" function, the code can be immediately executed resulting in the result from the execution being transmitted back to the LLM.
 

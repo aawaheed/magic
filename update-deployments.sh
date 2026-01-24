@@ -1,10 +1,10 @@
 for n in $(kubectl get -n cloudlets -o=name deployment)
 do
     kubectl -n cloudlets scale deployment "${n/deployment.apps\//}" --replicas 0
-    sleep 10
+    sleep 30
     # I don't know if this works, as in if it may delete used volumes, so I've commented it out for now.
     # kubectl delete volumeattachment --all
-    kubectl set image deployment/"${n/deployment.apps\//}" "${n/deployment.apps\//}"=servergardens/magic-backend:v22.4.4 --namespace=cloudlets
+    kubectl set image deployment/"${n/deployment.apps\//}" "${n/deployment.apps\//}"=servergardens/magic-backend:v22.4.8 --namespace=cloudlets
     kubectl -n cloudlets scale deployment "${n/deployment.apps\//}" --replicas 1
-    sleep 10
+    sleep 30
 done

@@ -1,0 +1,95 @@
+
+/*
+ * Copies a files from [source] to [destination]
+ * 
+ * Arguments:
+ * 
+ * - [source] is the mandatory original file
+ * - [destination] is the mandatory destination filename, with complete path
+ */
+.arguments
+
+   // Mandatory source filename.
+   source:string
+
+   // Mandatory destination filename.
+   destination:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/source
+validators.mandatory:x:@.arguments/*/destination
+
+// Prepending slash unless specified by caller.
+if
+   not
+      strings.starts-with:x:@.arguments/*/source
+         .:/
+   .lambda
+      set-value:x:@.arguments/*/source
+         strings.concat
+            .:/
+            get-value:x:@.arguments/*/source
+if
+   not
+      strings.starts-with:x:@.arguments/*/destination
+         .:/
+   .lambda
+      set-value:x:@.arguments/*/destination
+         strings.concat
+            .:/
+            get-value:x:@.arguments/*/destination
+
+// Sanity checking invocation.
+if
+   not
+      io.file.exists:x:@.arguments/*/source
+   .lambda
+      throw:Source file does not exist
+         public:bool:true
+         status:int:400
+
+// Sanity checking invocation.
+if
+   io.file.exists:x:@.arguments/*/destination
+   .lambda
+      throw:Destination file already exists
+         public:bool:true
+         status:int:400
+
+// Making sure we do not overwrite system files.
+if
+   not
+      or
+         strings.starts-with:x:@.arguments/*/destination
+            .:/etc/
+         strings.starts-with:x:@.arguments/*/destination
+            .:/modules/
+   .lambda
+      throw:"You can only save files to the '/modules/' and '/etc/ folders'"
+         status:int:400
+         public:bool:true
+
+// Checking file if it's a Hyperlambda file, and if it is we do a basic sanity check.
+if
+   strings.ends-with:x:@.arguments/*/filename
+      .:.hl
+   .lambda
+
+      try
+         // This will throw exceptions for the worst errors.
+         hyper2lambda:x:@.arguments/*/content
+      .catch
+         throw:You tried to save invalid Hyperlambda, to successfully save it you will need to re-generate it
+            public:bool:true
+            status:int:400
+
+// Saving file.
+io.file.copy:x:@.arguments/*/source
+   get-value:x:@.arguments/*/destination
+
+// Returning success
+yield
+   result:success
