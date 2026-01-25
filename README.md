@@ -39,6 +39,12 @@ In addition to this, Magic is also a web server, allowing you to _instantly depl
 
 In addition the having the ability to generate pure JS, CSS, and HTML frontends, that's immediately being served, without any deployment pipelines - The system also comes with several pre-built frontend systems out of the box, such as the [AI Expert System](https://ainiro.io/ai-expert-system), which allows you to serve password protected AI agents, and/or for that matter deliver entire SaaS AI solutions.
 
+Ths system is particularly well suited for creating AI agents, and for that matter embed AI chatbots on your webside. Below is a screenshot from Hyper IDE.
+
+![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
+
+The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
+
 ## Getting started
 
 The easiest way to get started is to use Docker and create a _"docker-compose.yaml"_ file with the following content;
