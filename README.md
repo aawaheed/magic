@@ -77,6 +77,10 @@ The system internally is using OpenAI's GPT-5.2, with some reasoning turned on -
 
 The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
 
+### Bring your own OpenAI API key
+
+Although we currently at the moment give away Hyperlambda Generator tokens for free, you still need your own OpenAI API key. You can configure this after having logged in the first time.
+
 ## Maintenance
 
 Magic Cloud and Hyperlambda is developed and maintained by [AINIRO.IO](https://ainiro.io). We offer hosting, support, and software development services on top of Magic Cloud.
