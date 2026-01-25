@@ -437,9 +437,13 @@ select prompt, max(completion) as completion
                            .lambda
 
                               // Checking if we're done.
+                              json2lambda:x:@strings.trim
                               if
-                                 eq:x:@strings.trim
-                                    .:[DONE]
+                                 or
+                                    eq:x:@strings.trim
+                                       .:[DONE]
+                                    eq:x:@json2lambda/*/type
+                                       .:response.completed
                                  .lambda
 
                                     // Checking if we're counting invocations.
@@ -618,9 +622,6 @@ select prompt, max(completion) as completion
 
                               else
 
-                                 // More data to come.
-                                 json2lambda:x:@strings.trim
-
                                  // Updating finish reason if we were given a reason.
                                  if
                                     and
@@ -638,11 +639,37 @@ select prompt, max(completion) as completion
                                           args
                                              finish_reason:x:@.finish_reason
 
+                                 else-if
+                                    eq:x:@json2lambda/*/type
+                                       .:response.output_item.done
+                                    .lambda
+
+                                       // OpenAI returned a [finish_reason].
+                                       set-value:x:@.finish_reason
+                                          get-value:stop
+
+                                       // Signaling client
+                                       unwrap:x:+/*/*
+                                       sockets.signal:x:@.session
+                                          args
+                                             finish_reason:x:@.finish_reason
+
                                  // Making sure we have a message.
+                                 .response_content
+                                 if
+                                    exists:x:@json2lambda/*/choices
+                                    .lambda
+                                       set-value:x:@.response_content
+                                          get-value:x:@json2lambda/*/choices/0/*/delta/*/content
+                                 else-if
+                                    exists:x:@json2lambda/*/delta
+                                    .lambda
+                                       set-value:x:@.response_content
+                                          get-value:x:@json2lambda/*/delta
                                  if
                                     and
-                                       not-null:x:@json2lambda/*/choices/0/*/delta/*/content
-                                       neq:x:@json2lambda/*/choices/0/*/delta/*/content
+                                       not-null:x:@.response_content
+                                       neq:x:@.response_content
                                           .:
                                     .lambda
 
@@ -650,7 +677,7 @@ select prompt, max(completion) as completion
                                        set-value:x:@.result
                                           strings.concat
                                              get-value:x:@.result
-                                             get-value:x:@json2lambda/*/choices/0/*/delta/*/content
+                                             get-value:x:@.response_content
 
                                        /*
                                         * Making sure we do NOT send FUNCTION_INVOCATION message parts to client.
@@ -669,7 +696,7 @@ select prompt, max(completion) as completion
                                              unwrap:x:+/*/*
                                              sockets.signal:x:@.session
                                                 args
-                                                   message:x:@json2lambda/*/choices/0/*/delta/*/content
+                                                   message:x:@.response_content
 
                                        else-if
                                           and
@@ -737,6 +764,16 @@ select prompt, max(completion) as completion
       // Contains result of function invocation.
       .function-result
 
+      // Making sure we get the right URL based upon model type.
+      .api_url
+      switch:x:@.arguments/*/model
+         case:gpt-5.2
+            set-value:x:@.api_url
+               .:"https://api.openai.com/v1/responses"
+         default
+            set-value:x:@.api_url
+               .:"https://api.openai.com/v1/chat/completions"
+
       // Invoking OpenAI as longs as we have function invocations and have not invoked it more than a maximum of configured times.
       while
          mt:x:@.iterations
@@ -769,8 +806,20 @@ select prompt, max(completion) as completion
                      .:max_completion_tokens
                   remove-nodes:x:@.lambda/@.lambda/*/http.post/*/payload/*/temperature
 
+            // Checking if this is an gpt-5.2 type of model.
+            if
+               eq:x:@.arguments/*/model
+                  .:gpt-5.2
+               .lambda
+
+                  // Modifying request.
+                  set-name:x:@.lambda/@.lambda/*/http.post/*/payload/*/max_tokens
+                     .:max_output_tokens
+                  set-name:x:@.lambda/././*/http.post/*/payload/*/messages
+                     .:input
+
             // Invoking OpenAI's API.
-            http.post:"https://api.openai.com/v1/chat/completions"
+            http.post:x:@.api_url
                convert:bool:true
                headers
                   Authorization:x:@.token
@@ -852,10 +901,13 @@ select prompt, max(completion) as completion
                    * since it's not being streamed using SSE.
                    */
                   set-value:x:@.result
-                     get-value:x:@http.post/*/content/*/choices/0/*/message/*/content
+                     get-first-value
+                        get-value:x:@http.post/*/content/*/choices/0/*/message/*/content
+                        get-value:x:@http.post/*/output_text
                   set-value:x:@.finish_reason
                      get-first-value
                         get-value:x:@http.post/*/content/*/choices/0/*/finish_reason
+                        get-value:x:@http.post/*/type
                         .:unknown
 
                   // We only iterate if we're streaming response.
@@ -967,7 +1019,7 @@ select prompt, max(completion) as completion
                                           Authorization:x:@.token
                                           Content-Type:application/json
                                        payload
-                                          model:x:@.arguments/*/model
+                                          model:gpt-4.1-2025-04-14
                                           max_tokens:x:@.arguments/*/max_tokens
                                           temperature:x:@.arguments/*/temperature
                                           messages

@@ -10,7 +10,7 @@ Use this workflow if the user wants to create a landing page for signing up to t
    - Ask the user what type of data he or she wants to save, and change the database design accordingly.
    - Show the design as a simplified Mermaid chart. Make it a SIMPLE Mermaid chart for MermaidJS, and obey all rules related to Mermaid charts from your system instruction.
    - When the user confirms the design, use the the `create-sqlite-database` function to create the database, and the `execute-sql` to apply the schema.
-3. Ask the user what type of design he wants for his landing page, and offer to create a futuristic design, modern design, classic design, etc.
+3. Ask the user what type of design he wants for his landing page, and offer to create a futuristic design, modern design, classic design, etc. Make "modern design with a background image and glass morphism" the default here.
 
 When done, return the URL for the landing page to the user as a Markdown hyperlink.
 
