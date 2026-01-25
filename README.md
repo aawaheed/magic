@@ -47,7 +47,7 @@ The above illustrates how Magic facilitates for _"comment driven development"_, 
 
 ## 20x times faster than Python
 
-When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions is in general on pair with C# combined with Entity Framework.
+When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework.
 
 Magic Cloud is built in C# and .Net Core.
 
