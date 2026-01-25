@@ -1,15 +1,15 @@
 
 # Magic Cloud - Fully Autonomous AI-based Software Development Assistant
 
-Built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io/hyperlambda/), a DSL specifically created to solve anything related to backend software development. Create full stack apps, in an open source environment, resembling Lovable, Bolt, or Replit, using nothing but natural language input - Hosting it on your own hardware if you wish.
+Magic is built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io/hyperlambda/), a DSL specifically created to solve anything related to backend software development, and to be the AI agent programming language of the world. Create full stack apps, in an open source environment, resembling Lovable, Bolt, or Replit, using nothing but natural language input - Hosting it on your own hardware if you wish.
 
 **No additional "backend connectors" or "database connectors" required**!
 
-Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors, that was easily tracked down and eliminated by a seasoned software developer during the process.
+Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors, correcting the LLM or giving feedback some 5 to 10 times during the process. All bugs were easily tracked down and eliminated by a seasoned software developer during the process.
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/vip-crm.png)
 
-Magic asked a handful of control questions, before it automatically generated the database, created the backend code based upon the integrated Hyperlambda Generator, before finally assembling the frontend based upon the API - Complete with authentication and authorization, 100% secure (of course!) - You can [try it out here](https://thomastest-team.us.ainiro.io/vipcrm/index).
+Magic asked a handful of control questions, before it automatically generated the database, created the backend code based upon the integrated Hyperlambda Generator, before finally assembling the frontend based upon the API - Complete with authentication and authorization, 100% secure (of course!) - You can [try it out here](https://thomastest-team.us.ainiro.io/vipcrm/index). Everything deployed locally, on the integrated and built-in webserver - So no deployment pipelines are required.
 
 * Username is "demo"
 * Password is "demodemodemo"
