@@ -3,7 +3,9 @@
 
 Built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io/hyperlambda/), a DSL specifically created to solve anything related to backend software development. Create full stack apps, in an open source environment, resembling Lovable, Bolt, or Replit, using nothing but natural language input - Hosting it on your own hardware if you wish.
 
-**No additional "backend connectors" or "database connectors" required**! Everything 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL abilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership"_.
+**No additional "backend connectors" or "database connectors" required**!
+
+Everything 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors that was easily tracked down and eliminated by a seasoned software developer during the process.
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/vip-crm.png)
 
