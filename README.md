@@ -5,7 +5,7 @@ Built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io
 
 **No additional "backend connectors" or "database connectors" required**!
 
-Everything 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors, that was easily tracked down and eliminated by a seasoned software developer during the process.
+Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors, that was easily tracked down and eliminated by a seasoned software developer during the process.
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/vip-crm.png)
 
@@ -26,7 +26,50 @@ In addition to the AI agent in its dashboard, that generates entire full stack a
 * Hyper IDE, for manually edit code in a VS code like environment
 * Task manager for administrating and scheduling tasks
 * Machine Learning component allowing you to manage AI agents and chatbots
+* Plugin repository for installing both frontend types of websites, and backend code
 * Plus many more ...
+
+## Also a web server
+
+In addition to this, Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation requirements, build processes, complex pipeline connectors, etc. So literally, the process is as follows;
+
+1. Create your prompt
+2. Press enter
+3. It's **in production**
+
+## Getting started
+
+The easiest way to get started is to use Docker and create a _"docker-compose.yaml"_ file with the following content;
+
+```yaml
+services:
+  backend:
+    image: servergardens/magic-backend:latest
+    container_name: magic_backend
+    restart: always
+    ports:
+      - "4444:4444"
+    volumes:
+      - magic_files_etc:/magic/files/etc
+      - magic_files_data:/magic/files/data
+      - magic_files_config:/magic/files/config
+      - magic_files_modules:/magic/files/modules
+  frontend:
+    image: servergardens/magic-frontend:latest
+    container_name: magic_frontend
+    depends_on:
+      - backend
+    restart: always
+    ports:
+      - "5555:80"
+volumes:
+  magic_files_etc:
+  magic_files_data:
+  magic_files_config:
+  magic_files_modules:
+```
+
+Save it somewhere, and execute `docker compose up` or something. You can [read more here](https://docs.ainiro.io/getting-started/) for alternatives, such as running the codebase directly on your own machine.
 
 ## LLM
 
