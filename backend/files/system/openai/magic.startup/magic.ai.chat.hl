@@ -829,7 +829,7 @@ select prompt, max(completion) as completion
                   add:x:@.lambda/././*/http.post/*/payload
                      .
                         reasoning
-                           effort:low
+                           effort:medium
                   remove-nodes:x:@.lambda/././*/http.post/*/payload/*/temperature
 
             // Invoking OpenAI's API.
