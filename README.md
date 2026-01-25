@@ -18,7 +18,7 @@ Below is the AI agent in Magic creating the system, 100% autonomously.
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/code-generator.png)
 
-In addition to the AI agent in its dashboard, that generates entire full stack apps using nothing but natural language input - There's a whole range of additional components in the system allowing you to automate software development. Such as for instance;
+In addition to the AI agent in its dashboard, that generates entire full stack apps using nothing but natural language input - There's a whole range of additional components in the system allowing you to automate software development, such as for instance;
 
 * CRUD generator, creating API endpoint using database meta information
 * SQL Studio, allowing you to visually design and manage your SQL databases
@@ -31,7 +31,7 @@ In addition to the AI agent in its dashboard, that generates entire full stack a
 
 ## Also a web server
 
-In addition to this, Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation requirements, build processes, complex pipeline connectors, etc. So literally, the process is as follows;
+Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation, build processes, complex pipeline connectors, etc. So literally, the process is as follows;
 
 1. Create your prompt
 2. Press enter
@@ -39,7 +39,7 @@ In addition to this, Magic is also a web server, allowing you to _instantly depl
 
 In addition to having the ability to generate pure JS, CSS, and HTML frontends, that's immediately being served, without any deployment pipelines - The system also comes with several pre-built frontend systems out of the box, such as the [AI Expert System](https://ainiro.io/ai-expert-system), which allows you to serve password protected AI agents, and/or for that matter deliver entire SaaS AI solutions.
 
-Ths system is particularly well suited for creating AI agents, and for that matter embed AI chatbots on your webside. Below is a screenshot from Hyper IDE.
+Ths system is particularly well suited for creating AI agents. Below is a screenshot from Hyper IDE.
 
 ![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
 
@@ -47,13 +47,15 @@ The above illustrates how Magic facilitates for _"comment driven development"_, 
 
 ## Deploy anywhere
 
-If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or for that matter embeddable AI chatbots, on your website.
+If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on your website. Below is our AI chatbot. You can try it [here](https://ainiro.io)
 
 ![Embeddable AI chatbot](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-chatbot.png)
 
 ## 20x times faster than Python
 
-When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework.
+When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework. Below is Hyperlambda versus, Fast API and Flask.
+
+![Python versus Hyperlambda](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/hyperlambda-performance.png)
 
 Magic Cloud is built in C# and .Net Core.
 
