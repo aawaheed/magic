@@ -28,6 +28,12 @@ In addition to the AI agent in its dashboard, that generates entire full stack a
 * Machine Learning component allowing you to manage AI agents and chatbots
 * Plus many more ...
 
+## LLM
+
+The system internally is using OpenAI's GPT-5.2, with some reasoning turned on - But everything is tunable, and you can with a little bit of effort change out the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems.
+
+The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
+
 ## Maintenance
 
 Magic Cloud and Hyperlambda is developed and maintained by [AINIRO.IO](https://ainiro.io). We offer hosting, support, and software development services on top of Magic Cloud.
