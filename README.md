@@ -69,7 +69,7 @@ volumes:
   magic_files_modules:
 ```
 
-Save it somewhere, and execute `docker compose up` or something. You can [read more here](https://docs.ainiro.io/getting-started/) for alternatives, such as running the codebase directly on your own machine.
+Save it somewhere, and execute `docker compose up` or something, visit `localhost:5555`, login with _"root"_ / _"root"_, and configure the system. You can [read more here](https://docs.ainiro.io/getting-started/) for alternatives, such as running the codebase directly on your own machine.
 
 ## LLM
 
