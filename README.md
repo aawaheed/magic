@@ -45,6 +45,12 @@ Ths system is particularly well suited for creating AI agents, and for that matt
 
 The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
 
+## Deploy anywhere
+
+If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or for that matter embeddable AI chatbots, on your website.
+
+![Embeddable AI chatbot](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-chatbot.png)
+
 ## 20x times faster than Python
 
 When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework.
