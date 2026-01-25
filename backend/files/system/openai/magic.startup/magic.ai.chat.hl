@@ -768,6 +768,7 @@ select prompt, max(completion) as completion
       .api_url
       switch:x:@.arguments/*/model
          case:gpt-5.2
+         case:gpt-5.2-pro
             set-value:x:@.api_url
                .:"https://api.openai.com/v1/responses"
          default
@@ -808,8 +809,11 @@ select prompt, max(completion) as completion
 
             // Checking if this is an gpt-5.2 type of model.
             if
-               eq:x:@.arguments/*/model
-                  .:gpt-5.2
+               or
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.2
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.2-pro
                .lambda
 
                   // Modifying request.
@@ -817,6 +821,16 @@ select prompt, max(completion) as completion
                      .:max_output_tokens
                   set-name:x:@.lambda/././*/http.post/*/payload/*/messages
                      .:input
+
+                  /*
+                   * If people are using GPT5.2 they probably want more "intelligence",
+                   * hence we turn up reasoning level to "medium".
+                   */
+                  add:x:@.lambda/././*/http.post/*/payload
+                     .
+                        reasoning
+                           effort:low
+                  remove-nodes:x:@.lambda/././*/http.post/*/payload/*/temperature
 
             // Invoking OpenAI's API.
             http.post:x:@.api_url

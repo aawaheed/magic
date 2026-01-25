@@ -42,9 +42,16 @@ if
          public:bool:true
          status:int:404
 
+// Calculating expiration time.
+math.add
+   date.now
+   time
+      minutes:20
+
 // We'll need a token for the download URL.
 auth.ticket.create
    username:service
+   expires:x:@,ath.add
    roles
       .:root
 
@@ -60,5 +67,10 @@ sockets.signal:x:@.arguments/*/_session
       ticket:x:@auth.ticket.create
 
 // Returning success
-return
-   message:Click the button to download the file
+crypto.random
+   min:10
+   max:10
+yield
+   download_id:x:@crypto.random
+   filename:x:@.arguments/*/filename
+   expires_utc:x:@math.add
