@@ -35,7 +35,7 @@ In addition to the AI agent in its dashboard, that generates entire full stack a
 
 ## Also a web server
 
-Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation, build processes, complex pipeline connectors, etc. So literally, the process is as follows;
+Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation, build processes, complex pipeline connectors, etc. So the process is as follows;
 
 1. Create your prompt
 2. Press enter
@@ -99,7 +99,7 @@ Save it somewhere, and execute `docker compose up` or something, visit `localhos
 
 ## LLM
 
-The system internally is using OpenAI's GPT-5.2, with some reasoning turned on - But everything is tunable, and you can with a little bit of effort change out the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems.
+The system internally is using OpenAI's GPT-5.2, with some reasoning turned on - But everything is tunable, and you can with a little bit of effort exchange the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems.
 
 The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
 
