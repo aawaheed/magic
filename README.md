@@ -107,10 +107,14 @@ The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's
 
 ## Technology
 
-Magic Cloud is built in .Net Core 9, soon upgrading to 10, and its dashboard is angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its core unique technology below.
+Magic Cloud is built in .Net Core 9, soon upgrading to 10, and its dashboard is angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its unique technology below.
 
 * [Make C# more Dynamic with Hyperlambda](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda)
 * [Active events, one design pattern instead of a dozen](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/march/patterns-active-events-one-design-pattern-instead-of-a-dozen)
+
+However, Hyperlambda, and hence Magic Cloud by association, was built on a unique design pattern called _"Active Events"_, or _"Slots and Signals"_, which is an in-process model for executing _"dynamic functions"_, that's 100% unique for Magic Cloud. Active Events is at the core of Hyperlambda, and completely eliminates 100% of all cross projects dependencies, resulting in 100% _"perfect"_ encapsulation and cohesion.
+
+If you can find a (security) related bug in its backend, I'll give you $100!
 
 ### Bring your own OpenAI API key
 
