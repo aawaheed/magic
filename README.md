@@ -103,6 +103,8 @@ The system internally is using OpenAI's GPT-5.2, with some reasoning turned on -
 
 The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
 
+![Natural Language API](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/natural-language-api.png)
+
 ### Bring your own OpenAI API key
 
 Although we currently at the moment give away Hyperlambda Generator tokens for free, you still need your own OpenAI API key. You can configure this after having logged in the first time.
