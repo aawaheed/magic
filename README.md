@@ -105,6 +105,13 @@ The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's
 
 ![Natural Language API](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/natural-language-api.png)
 
+## Technology
+
+Magic Cloud is built in .Net Core 9, soon upgrading to 10, and its dashboard is angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its core unique technology below.
+
+* [Make C# more Dynamic with Hyperlambda](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda)
+* [Active events, one design pattern instead of a dozen](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/march/patterns-active-events-one-design-pattern-instead-of-a-dozen)
+
 ### Bring your own OpenAI API key
 
 Although we currently at the moment give away Hyperlambda Generator tokens for free, you still need your own OpenAI API key. You can configure this after having logged in the first time.
