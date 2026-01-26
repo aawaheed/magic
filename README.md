@@ -5,7 +5,11 @@ Magic is built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://
 
 **No additional "backend connectors" or "database connectors" required**!
 
-Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL capabilities. Below is an app that was created with the following prompt; _"Create me a full stack app to manage VIP customer for a car dealership."_ The whole process took about 30 minutes in total, with less than a handful of errors, correcting the LLM or giving feedback some 5 to 10 times during the process. All bugs were easily tracked down and eliminated by a seasoned software developer during the process.
+Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL Server capabilities. Below is an app that was created with the following prompt; 
+
+> Create me a full stack app to manage VIP customer for a car dealership
+
+The whole process took about 30 minutes in total, with less than a handful of errors, correcting the LLM or giving feedback some 5 to 10 times during the process. All bugs were easily tracked down and eliminated by a seasoned software developer during the process.
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/vip-crm.png)
 
@@ -53,7 +57,7 @@ If you choose to create AI agents instead of full stack app, something the syste
 
 ## 20x times faster than Python
 
-When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework. Below is Hyperlambda versus, Fast API and Flask.
+When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework. Below is Hyperlambda versus Fast API and Flask.
 
 ![Python versus Hyperlambda](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/hyperlambda-performance.png)
 
