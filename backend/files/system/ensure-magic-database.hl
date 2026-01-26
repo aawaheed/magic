@@ -122,7 +122,6 @@ else-if
           */
          data.connect:[generic|magic]
             data.select:select count(*) from log_entries
-            data.execute:"PRAGMA journal_mode=WAL;PRAGMA synchronous=NORMAL;"
 
          // Logging to console.
          console.log:Successfully connected to magic database
