@@ -6,12 +6,14 @@ This function allows a user to download a file from some URL and save it into so
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-from-web.hl]:
 {
+  "url": "[STRING_VALUE]",
   "filename": "[STRING_VALUE]"
 }
 ___
 
 Arguments:
 
+- `url` is mandatory and the URL to download.
 - `filename` is the mandatory path of file to download.
 
 Notice, if you need to generate a temporary file for download, you can save this file into the "/etc/tmp/" folder using the "create-file" function and use this function to create a "Download" button.
