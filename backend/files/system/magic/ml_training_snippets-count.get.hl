@@ -10,8 +10,6 @@
    ml_training_snippets.completion.like:string
    ml_training_snippets.completion.eq:string
    not_embedded:bool
-.description:Endpoint counting items in your ml_training_snippets table in your magic database
-.type:crud-count
 
 // Verifying user is authorized to access endpoint.
 auth.ticket.verify:root
