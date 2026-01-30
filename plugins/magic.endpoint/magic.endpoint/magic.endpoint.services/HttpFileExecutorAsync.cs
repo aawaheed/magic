@@ -120,10 +120,10 @@ namespace magic.endpoint.services
             }
 
             // Avoiding duplicated content.
-            if (request.URL == "index")
+            if (request.URL.EndsWith("index"))
             {
                 var response = new MagicResponse { Result = 301 };
-                response.Headers["Location"] = request.Scheme + "://" + request.Host;
+                response.Headers["Location"] = request.Scheme + "://" + request.Host + "/" + request.URL.Substring(0, request.URL.Length - 6);
                 return response;
             }
 
@@ -262,15 +262,17 @@ namespace magic.endpoint.services
         {
             // Checking if this is a request for a folder, at which point we append "index.html" to it.
             if (url == "")
-                url = "/index.html";
-            else if (!url.Contains('.') && !url.EndsWith(".html"))
-                url += ".html"; // Apppending ".html" to resolve correct document.
+                url = "/index";
             if (url.StartsWith('/'))
                 url = url.Substring(1);
 
             // Trying to resolve URL as a direct filename request.
-            if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url)))
-                return "/etc/www/" + url;
+            if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url + ".html")))
+                return "/etc/www/" + url + ".html";
+
+            // File didn't exists, checking if /FOLDER/INDEX.HTML exists.
+            if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url + "/index.html")))
+                return "/etc/www/" + url + "/index.html";
 
             /*
              * Traversing upwards in folder hierarchy and returning the
