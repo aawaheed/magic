@@ -298,7 +298,6 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
 
       this.response += msg.message;
       this.messages[this.messages.length - 1].message = this.renderMarkdownWithScriptPassthrough(this.cleanHtml(this.response));
-      this.scrollToBottom(true);
 
     } else if (msg.function_waiting) {
 
