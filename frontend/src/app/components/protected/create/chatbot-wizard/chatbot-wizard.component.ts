@@ -6,7 +6,6 @@
 // Angular and system imports.
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 // Application specific imports.
 import { ConfigService } from 'src/app/services/config.service';
@@ -17,6 +16,7 @@ import { OpenAIModel, OpenAIService } from 'src/app/services/openai.service';
 import { RecaptchaDialogComponent } from 'src/app/components/protected/misc/configuration/components/recaptcha-dialog/recaptcha-dialog.component';
 import { OpenAIConfigurationDialogComponent } from 'src/app/components/protected/common/openai/openai-configuration-dialog/openai-configuration-dialog.component';
 import { MachineLearningEmbedUiComponent } from 'src/app/components/protected/manage/machine-learning/components/machine-learning-embed-ui/machine-learning-embed-ui.component';
+import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 /**
  * Helper wizard component to create a chatbot rapidly, guiding the user through all

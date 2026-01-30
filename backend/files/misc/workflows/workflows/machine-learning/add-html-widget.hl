@@ -46,7 +46,7 @@ if
 .completion
 set-value:x:@.completion
    strings.concat
-      .:"If the user is asking you to do perform an action associated with this function, then ALWAYS end your response with the following:\n\n"
+      .:"If the user is asking you to do perform an action associated with this function then respond with the following:\n\n"
       .:"___\n"
       .:"FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]:\n{\n"
       .:"  \"filename\":\""

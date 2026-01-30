@@ -396,7 +396,7 @@ select prompt, max(completion) as completion
          unwrap:x:+/+/+/*/*/.sse/*/.user-id
          unwrap:x:+/+/*/*/.sse/*/.type
          unwrap:x:+/*/*/.sse/*/.session
-         add:x:../*/.invoke/*/while/*/.lambda/*/http.post
+         add:x:../*/.invoke/*/while/*/.lambda/*/.exe/*/http.post
             .
                .sse
 
@@ -719,7 +719,7 @@ select prompt, max(completion) as completion
           * Making sure we parametrise invocation to OpenAI
           * such that it streams result.
           */
-         add:x:../*/.invoke/*/while/*/.lambda/*/http.post/*/payload
+         add:x:../*/.invoke/*/while/*/.lambda/*/.exe/*/http.post/*/payload
             .
                stream:bool:true
 
@@ -795,7 +795,7 @@ select prompt, max(completion) as completion
             .has-sent-waiting:bool:false
 
             // Invoking OpenAI now with context being either training data or previous messages.
-            add:x:./*/http.post/*/payload/*/messages
+            add:x:./*/.exe/*/http.post/*/payload/*/messages
                get-nodes:x:@.session/*
 
             // Checking if this is an o3 model.
@@ -805,9 +805,9 @@ select prompt, max(completion) as completion
                .lambda
 
                   // Modifying request.
-                  set-name:x:@.lambda/@.lambda/*/http.post/*/payload/*/max_tokens
+                  set-name:x:@.lambda/@.lambda/*/.exe/*/http.post/*/payload/*/max_tokens
                      .:max_completion_tokens
-                  remove-nodes:x:@.lambda/@.lambda/*/http.post/*/payload/*/temperature
+                  remove-nodes:x:@.lambda/@.lambda/*/.exe/*/http.post/*/payload/*/temperature
 
             // Checking if this is an gpt-5.2 type of model.
             if
@@ -819,51 +819,81 @@ select prompt, max(completion) as completion
                .lambda
 
                   // Modifying request.
-                  set-name:x:@.lambda/@.lambda/*/http.post/*/payload/*/max_tokens
+                  set-name:x:@.lambda/@.lambda/*/.exe/*/http.post/*/payload/*/max_tokens
                      .:max_output_tokens
-                  set-name:x:@.lambda/././*/http.post/*/payload/*/messages
+                  set-name:x:@.lambda/././*/.exe/*/http.post/*/payload/*/messages
                      .:input
 
                   /*
                    * If people are using GPT5.2 they probably want more "intelligence",
                    * hence we turn up reasoning level to "medium".
                    */
-                  add:x:@.lambda/././*/http.post/*/payload
+                  add:x:@.lambda/././*/.exe/*/http.post/*/payload
                      .
                         reasoning
                            effort:low
-                  remove-nodes:x:@.lambda/././*/http.post/*/payload/*/temperature
+                  remove-nodes:x:@.lambda/././*/.exe/*/http.post/*/payload/*/temperature
 
             // Invoking OpenAI's API.
-            http.post:x:@.api_url
-               convert:bool:true
-               headers
-                  Authorization:x:@.token
-                  Content-Type:application/json
-                  Accept:text/event-stream
-                  Accept-Encoding:identity
-                  Connection:close
-               payload
-                  model:x:@.arguments/*/model
-                  max_tokens:x:@.arguments/*/max_tokens
-                  temperature:x:@.arguments/*/temperature
-                  messages
+            .exe
+               http.post:x:@.api_url
+                  convert:bool:true
+                  headers
+                     Authorization:x:@.token
+                     Content-Type:application/json
+                     Accept:text/event-stream
+                     Accept-Encoding:identity
+                     Connection:close
+                  payload
+                     model:x:@.arguments/*/model
+                     max_tokens:x:@.arguments/*/max_tokens
+                     temperature:x:@.arguments/*/temperature
+                     messages
+
+            // Making sure we apply retry logic in case network flunks on us.
+            .retry:int:3
+            .wait:int:5000
+            while
+               mt:x:@.retry
+                  .:int:0
+               .lambda
+                  try
+                     .exe2
+                     add:x:@.exe2
+                        get-nodes:x:@.exe/*
+                     eval:x:@.exe2
+                     set-value:x:@.retry
+                        .:int:0
+                     remove-nodes:x:@.exe/*
+                     add:x:@.exe
+                        get-nodes:x:@.exe2/*
+                  .catch
+
+                     // In case this is a transitional error, we wait for one second before we retry.
+                     log.error:Something went wrong while invoking OpenAI
+                        message:x:@.arguments/*/message
+                     math.decrement:x:@.retry
+                     sleep:x:@.wait
+                     set-value:x:@.wait
+                        math.multiply
+                           get-value:x:@.wait
+                           get-value:x:@.wait
 
             // Sanity checking above invocation.
             if
                not
                   and
-                     mte:x:@http.post
+                     mte:x:@.exe/*/http.post
                         .:int:200
-                     lt:x:@http.post
+                     lt:x:@.exe/*/http.post
                         .:int:300
                .lambda
 
                   // Oops, error - Logging error and returning HTTP status code to caller.
-                  lambda2hyper:x:@http.post
+                  lambda2hyper:x:@.exe/*/http.post
                   log.error:Something went wrong while invoking OpenAI
-                     message:x:@http.post/*/content/*/error/*/message
-                     status:x:@http.post
+                     message:x:@.exe/*/http.post/*/content/*/error/*/message
+                     status:x:@.exe/*/http.post
                      error:x:@lambda2hyper
 
                   // We only throw exception if we're NOT streaming.
@@ -875,9 +905,9 @@ select prompt, max(completion) as completion
                      .lambda
 
                         // Not streaming, hence we're on the main thread and can safely throw exceptions.
-                        throw:x:@http.post/*/content/*/error/*/message
+                        throw:x:@.exe/*/http.post/*/content/*/error/*/message
                            public:bool:true
-                           status:x:@http.post
+                           status:x:@.exe/*/http.post
 
                   else
 
@@ -886,8 +916,8 @@ select prompt, max(completion) as completion
                      sockets.signal:x:@.arguments/*/session
                         args
                            error:bool:true
-                           status:x:@http.post
-                           message:x:@http.post/*/content/*/error/*/message
+                           status:x:@.exe/*/http.post
+                           message:x:@.exe/*/http.post/*/content/*/error/*/message
 
                      // Making sure we stop loop.
                      set-value:x:@.iterations
@@ -918,12 +948,12 @@ select prompt, max(completion) as completion
                    */
                   set-value:x:@.result
                      get-first-value
-                        get-value:x:@http.post/*/content/*/choices/0/*/message/*/content
+                        get-value:x:@.exe/*/http.post/*/content/*/choices/0/*/message/*/content
                         get-value:x:@http.post/*/output_text
                   set-value:x:@.finish_reason
                      get-first-value
-                        get-value:x:@http.post/*/content/*/choices/0/*/finish_reason
-                        get-value:x:@http.post/*/type
+                        get-value:x:@.exe/*/http.post/*/content/*/choices/0/*/finish_reason
+                        get-value:x:@.exe/*/http.post/*/type
                         .:unknown
 
                   // We only iterate if we're streaming response.

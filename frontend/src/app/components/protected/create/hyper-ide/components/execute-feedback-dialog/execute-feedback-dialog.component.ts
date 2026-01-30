@@ -5,7 +5,6 @@
 
 // Angular and system imports.
 import { Clipboard } from '@angular/cdk/clipboard';
-import { HttpTransportType, HubConnectionBuilder } from '@aspnet/signalr';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 
 // Application specific imports.
@@ -13,6 +12,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BackendService } from 'src/app/services/backend.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { EvaluatorService } from 'src/app/services/evaluator.service';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 
 /**
  * Modal dialog allowing you to view feedback during execution of some piece of Hyperlambda,

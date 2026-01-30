@@ -7,7 +7,7 @@ import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@
 import { UpdatePwaService } from 'src/app/services/update-pwa.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { BackendService } from 'src/app/services/backend.service';
-import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 @Component({
   selector: 'app-main',
@@ -57,7 +57,8 @@ export class MainComponent implements OnInit, OnDestroy {
       accessTokenFactory: () => this.backendService.active.token.token,
       skipNegotiation: true,
       transport: HttpTransportType.WebSockets,
-    }).build();
+    })
+    .build();
 
     this.hubConnection.start();
     this.hubConnection.on('magic.backend.message', (args) => {

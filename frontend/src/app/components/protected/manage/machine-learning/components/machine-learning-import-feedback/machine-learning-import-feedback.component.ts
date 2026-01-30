@@ -6,13 +6,13 @@
 // Angular and system specific imports.
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 // Application specific imports.
 import { ConfigService } from 'src/app/services/config.service';
 import { OpenAIService } from 'src/app/services/openai.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 /**
  * Helper component to view feedback as we crawl URLs.

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { HttpTransportType, HubConnectionBuilder } from '@aspnet/signalr';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 // application specific imports.
@@ -23,6 +22,7 @@ import hyperlambda from 'src/app/resources/options/hyperlambda.json';
 import json_readonly from 'src/app/resources/options/json_readonly.json';
 import markdown_readonly from 'src/app/resources/options/markdown_readonly.json';
 import hyperlambda_readonly from 'src/app/resources/options/hyperlambda_readonly.json';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 
 /*
  * Result of invocation.

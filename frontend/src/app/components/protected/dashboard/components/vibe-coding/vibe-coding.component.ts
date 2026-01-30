@@ -3,7 +3,6 @@
  */
 
 import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import mermaid from 'mermaid';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
@@ -12,6 +11,7 @@ import { ConfigService } from 'src/app/services/config.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { OpenAIService } from 'src/app/services/openai.service';
 import { TypewriterPlaceholderDirective } from 'src/app/helpers/typewriter-placeholder.directive';
+import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 /**
  * Vibe coding component, allowing the user to instruct the system using natural language.
@@ -222,6 +222,7 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
         skipNegotiation: true,
         transport: HttpTransportType.WebSockets,
       })
+      .withAutomaticReconnect()
       .build();
 
     // Subscribing to channel messages.
@@ -229,6 +230,12 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
       const obj = JSON.parse(args);
       this.handleSocketMessage(obj);
     });
+
+    // Making sure we track reconnect events
+    this.hubConnection.onreconnecting(error => {
+      console.warn('SignalR reconnecting...', error);
+    });
+
 
     // Connecting to hub
     this.hubConnection

@@ -6,12 +6,12 @@
 // Angular and system imports.
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpTransportType, HubConnectionBuilder } from '@aspnet/signalr';
 
 // Application specific imports.
 import { OpenAIService } from 'src/app/services/openai.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 
 /**
  * Helper component to create a custom system message.
