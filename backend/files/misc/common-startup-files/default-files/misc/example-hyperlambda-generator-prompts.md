@@ -58,4 +58,4 @@ Once generated using the "generate-hyperlambda" function, the code can be immedi
 * Anything related to web scraping.
 * Basic cryptography using AES and RSA.
 * Reading configuration settings.
-* Perform basical calculations.
+* Perform basic calculations.
