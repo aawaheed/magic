@@ -659,15 +659,39 @@ select prompt, max(completion) as completion
                                  // Making sure we have a message.
                                  .response_content
                                  if
-                                    exists:x:@json2lambda/*/choices
-                                    .lambda
-                                       set-value:x:@.response_content
-                                          get-value:x:@json2lambda/*/choices/0/*/delta/*/content
-                                 else-if
-                                    exists:x:@json2lambda/*/delta
+                                    eq:x:@json2lambda/*/type
+                                       .:response.output_text.delta
                                     .lambda
                                        set-value:x:@.response_content
                                           get-value:x:@json2lambda/*/delta
+                                 else-if
+                                    and
+                                       eq:x:@json2lambda/*/type
+                                          .:response.output
+                                       exists:x:@json2lambda/*/output
+                                    .lambda
+                                       for-each:x:@json2lambda/*/output/*
+                                          if
+                                             and
+                                                eq:x:@.dp/#/*/type
+                                                   .:message
+                                                exists:x:@.dp/#/*/content/*
+                                             .lambda
+                                                for-each:x:@.dp/#/*/content/*
+                                                   if
+                                                      eq:x:@.dp/#/*/type
+                                                         .:output_text
+                                                      .lambda
+                                                         set-value:x:@.response_content
+                                                            strings.concat
+                                                               get-value:x:@.response_content
+                                                               get-value:x:@.dp/#/*/text
+                                 else-if
+                                    exists:x:@json2lambda/*/choices/0/*/delta/*/content
+                                    .lambda
+                                       set-value:x:@.response_content
+                                          get-value:x:@json2lambda/*/choices/0/*/delta/*/content
+
                                  if
                                     and
                                        not-null:x:@.response_content
