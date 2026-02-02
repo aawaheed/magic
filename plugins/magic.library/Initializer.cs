@@ -559,26 +559,36 @@ namespace magic.library
             this IApplicationBuilder app,
             IConfiguration configuration)
         {
-            var origins = configuration["magic:frontend:urls"];
+            var originsConfig = configuration["magic:frontend:urls"];
 
-            /*
-             * Notice, we have no way to determine the frontend used unless we find an explicit configuration part.
-             * Hence, we've got no other options than to simply turn on everything if no frontends are declared
-             * in configuration.
-             */
-            if (!string.IsNullOrEmpty(origins))
-                app.UseCors(x => 
-                    x
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials()
-                        .WithOrigins(origins.Split(',').Select(x => x.Trim()).ToArray()));
-            else
-                app
-                    .UseCors(x => x.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .SetIsOriginAllowed(origin => true)); //NOSONAR
+            // Parse configured origins (if any)
+            var configuredOrigins = string.IsNullOrWhiteSpace(originsConfig)
+               ? Array.Empty<string>()
+               : originsConfig
+                     .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                     .Select(o => o.Trim())
+                     .ToArray();
+
+            app.UseCors(policy =>
+            {
+               policy
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowCredentials()
+                     .SetIsOriginAllowed(origin =>
+                     {
+                        if (string.IsNullOrEmpty(origin))
+                           return true;
+                        if (configuredOrigins.Length > 0)
+                        {
+                           return configuredOrigins.Any(o =>
+                                 string.Equals(o, origin, StringComparison.OrdinalIgnoreCase));
+                        }
+                        return true;
+                     });
+            });
         }
+
 
         #endregion
 

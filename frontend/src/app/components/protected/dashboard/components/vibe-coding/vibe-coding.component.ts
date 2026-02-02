@@ -219,10 +219,9 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     this.hubConnection = builder
       .withUrl(this.backendService.active.url + '/sockets', {
         accessTokenFactory: () => this.backendService.active.token.token,
-        skipNegotiation: true,
         transport: HttpTransportType.WebSockets,
       })
-      .withAutomaticReconnect()
+      .withAutomaticReconnect([0, 2000, 5000, 10000])
       .build();
 
     // Subscribing to channel messages.
@@ -234,6 +233,16 @@ export class VibeCodingComponent implements OnInit, OnDestroy {
     // Making sure we track reconnect events
     this.hubConnection.onreconnecting(error => {
       console.warn('SignalR reconnecting...', error);
+      this.hubConnection.off(this.session);
+      this.hubConnection.on(this.session, (args) => {
+         const obj = JSON.parse(args);
+         this.handleSocketMessage(obj);
+      });
+      this.hubConnection.invoke('RejoinSession', this.session);
+    });
+    this.hubConnection.onclose(error => {
+      console.error('SignalR disconnected and could not re-establish a connection');
+      console.error(error);
     });
 
 
