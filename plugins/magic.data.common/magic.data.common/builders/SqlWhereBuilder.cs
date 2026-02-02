@@ -291,9 +291,14 @@ namespace magic.data.common.builders
             foreach (var idx in new (string, string) [] {
                 ("eq", "="),
                 ("neq", "!="),
+                ("gt", ">"),
+                ("gte", ">="),
+                ("gteq", ">="),
                 ("mt", ">"),
+                ("mte", ">="),
                 ("mteq", ">="),
                 ("lt", "<"),
+                ("lte", "<="),
                 ("lteq", "<="),
                 ("like", "like"),
                 ("ilike", "ilike")})
