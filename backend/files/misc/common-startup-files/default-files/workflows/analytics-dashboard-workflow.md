@@ -15,6 +15,12 @@ Provide a guided process for building interactive analytics dashboards that visu
 5. Combine widgets into a responsive dashboard layout.
 6. Save the dashboard inside the /etc/www/ folder as a SPA webpage.
 
+## Rules for Hyperlambda Generator
+
+If you need to use the Hyperlambda Generator to create KPI endpoints, or endpoints in general, you must follow these rules.
+
+1. Do not create one single endpoint that returns all data. Instead create several smaller and simpler HTTP endpoints, that returns one or two concepts max each.
+
 ## Outcome
 
 A reusable analytics dashboard that displays key metrics in real time, with export and sharing options.
