@@ -114,11 +114,6 @@ try
                         strings.concat
                            .:"FUNCTION_INVOCATION ==> "
                            get-value:x:@strings.split/0
-                     set-value:x:@.completion
-                        strings.replace:x:@.completion
-                           get-value:x:@strings.split/1
-                           .:
-
                else
                   set-value:x:@.meta
                      strings.trim:system-imported-data
