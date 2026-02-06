@@ -27,7 +27,7 @@ validators.mandatory:x:@.arguments/*/query
 
 // Applying defaults.
 validators.default:x:@.arguments
-   max_tokens:int:10000
+   max_tokens:int:5000
    threshold:decimal:0.2
 
 // Converting to decimal to be sure.
