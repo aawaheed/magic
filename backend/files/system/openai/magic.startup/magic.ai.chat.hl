@@ -973,14 +973,16 @@ select prompt, max(completion) as completion
                    * Our HTTP POST invocation will return the actual response,
                    * since it's not being streamed using SSE.
                    */
+                  lambda2hyper:x:@.exe/*/http.post
+                  log.info:x:-
                   set-value:x:@.result
                      get-first-value
                         get-value:x:@.exe/*/http.post/*/content/*/choices/0/*/message/*/content
-                        get-value:x:@http.post/*/output_text
+                        get-value:x:@.exe/*/http.post/*/content/*/output/*/*/type/=message/./[0,1]/*/content/0/*/text
                   set-value:x:@.finish_reason
                      get-first-value
                         get-value:x:@.exe/*/http.post/*/content/*/choices/0/*/finish_reason
-                        get-value:x:@.exe/*/http.post/*/type
+                        get-value:x:@.exe/*/http.post/*/content/*/output/0/*/status
                         .:unknown
 
                   // We only iterate if we're streaming response.

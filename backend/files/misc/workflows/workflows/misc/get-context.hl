@@ -30,22 +30,23 @@ validators.default:x:@.arguments
    max_tokens:int:10000
    threshold:decimal:0.2
 
-/*
- * Returns context for the specified [query] from the specified [_type],
- * and returns to caller.
- *
- * Optionally add [threshold] and [max_tokens] to specify similarity and maximum
- * tokens to return. [_type] is a machine learning type from your ml_types database table in
- * your magic database.
- */
-execute:magic.workflows.actions.execute
-   name:openai-context-from-database
-   filename:/modules/openai/workflows/actions/openai-context-from-database.hl
-   arguments
-      type:x:@.arguments/*/_type
-      query:x:@.arguments/*/query
-      max_tokens:x:@.arguments/*/max_tokens
-      threshold:x:@.arguments/*/threshold
+// Converting to decimal to be sure.
+set-value:x:@.arguments/*/threshold
+   convert:x:@.arguments/*/threshold
+      type:decimal
 
-// Returns the result of your last action.
-return-nodes:x:@execute/*
+// Converting to decimal to be sure.
+set-value:x:@.arguments/*/max_tokens
+   convert:x:@.arguments/*/max_tokens
+      type:int
+
+// Retrieving context.
+execute:magic.ai.get-context
+   type:x:@.arguments/*/_type
+   prompt:x:@.arguments/*/query
+   threshold:x:@.arguments/*/threshold
+   max_tokens:x:@.arguments/*/max_tokens
+
+// Returning result of invocation to caller.
+yield
+   context:x:@execute/*/context
