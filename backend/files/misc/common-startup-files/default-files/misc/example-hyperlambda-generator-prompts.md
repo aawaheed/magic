@@ -34,7 +34,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "Load the file '/etc/foo.hl' and replace its existing authorisation requirements, such that only 'root' and 'admin' users can execute the file, for then to save it back to itself again."
 * "Log the following to the audit log; 'Backup of magic database was successfully created'"
 * "Select top 20 items from the 'log_entries' table in the 'magic' database sorted by 'created' descending, convert the result to CSV and send as an attachment on email to 'thomas@ainiro.io'"
-* "Select all records from 'crm' database and its 'contacts' table. For each row, send an email using the [email] and [name] column. Load the file "/etc/email.html" and applies template arguments for the '{{name}}' field on the file before using it as your body. Use "Welcome to Magic" as your subject."
+* "Select all records from 'crm' database and its 'contacts' table. For each row, send an email using the [email] and [name] column. Load the file "/etc/email.html" and applies template arguments for the '[name]' field on the file before using it as your body. Use "Welcome to Magic" as your subject."
 * "Downloads https://ainiro.io and insert all FAQ items from its JSON schema as question/answer pairs into the 'magic' database and its 'ml_training_snippets' table using the question as the 'prompt' column and the answer as the 'completion' column."
 * "Loads the CSV file at "/etc/contacts.csv" and insert each row into 'crm' database and its 'contacts' table. `name` from the CSV file goes into the "full_name" column. `email` from the CSV file goes into the "company_email" column."
 * "Create a QR code leading to ainiro.io and save to '/etc/tmp/'"

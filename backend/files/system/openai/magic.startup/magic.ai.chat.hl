@@ -795,6 +795,7 @@ select prompt, max(completion) as completion
       switch:x:@.arguments/*/model
          case:gpt-5.2
          case:gpt-5.2-pro
+         case:gpt-5.2-codex
             set-value:x:@.api_url
                .:"https://api.openai.com/v1/responses"
          default
@@ -840,6 +841,8 @@ select prompt, max(completion) as completion
                      .:gpt-5.2
                   eq:x:@.arguments/*/model
                      .:gpt-5.2-pro
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.2-codex
                .lambda
 
                   // Modifying request.
