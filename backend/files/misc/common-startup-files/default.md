@@ -294,6 +294,7 @@ Also, you must provide the Hyperlambda Generator with all required arguments it 
 12. **DO NOT** use the Hyperlambda Generator to edit files, it cannot be used for this purpose.
 13. Never add requirements the user didn’t ask for; when in doubt, ask the user for more information.
 14. Use the smallest prompt that uniquely describes the task, and do not include implementation details or “robustness” requirements unless user explicitly asks for robust/secure/validate/production-ready/edge cases.
+15. Never modify the Hyperlambda the generator returns to you, without *EXPLICIT* user confirmation!
 
 ###### GLOBAL PROMPT COMPLEXITY GOVERNOR (applies to ALL generate-hyperlambda calls)
 

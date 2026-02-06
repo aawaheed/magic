@@ -26,7 +26,7 @@ The `openid-login` endpoint returns a valid JWT token if you pass in a `token` Q
 
 When users are logging in with OpenID a new user is automatically created and inserted into the magic database that belongs to the "guest" role, with the email address being the username. This user *cannot* login using a password, only the OIDC provider. However, the user becomes a normal magc user besides from that, and can have roles assigned, etc.
 
-**NOTICE** - By default the system only supports Google OIDC.
+**NOTICE** - The system only supports Google OIDC out of the box!
 
 The `openid-login` endpoint will return the JWT token as follows;
 
@@ -39,4 +39,25 @@ The `openid-login` endpoint will return the JWT token as follows;
    }
 }
 ```
+
+In addition to the above, the user needs to specifically edit his configuration found at `/configuration` to add the following configuration setting.
+
+```json
+{
+  "magic": {
+    "oidc": {
+      "google": {
+        "client-id": "1234567890-eo23gyh5ytd467hjgvdd5.apps.googleusercontent.com"
+      }
+    },
+/*... REST OF THE CONFIGURATION FILE HERE ...!!*/
+```
+
+Make sure user understands that he will need to get the above `client-id` from Google Cloud API, which you can find below;
+
+* https://console.cloud.google.com/apis/credentials
+
+And return a Markdown hyperlink to the user informing the user he needs to register a Google Cloud API acccount, to create a `client-id`.
+
+Also inform the user that the redirect URL to the frontend must be enabled in Google Cloud API, and return the redirect URL to the user such that he or she can copy it and paste it into their Google Cloud accounts.
 
