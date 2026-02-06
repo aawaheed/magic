@@ -432,19 +432,30 @@ select prompt, max(completion) as completion
 
                         // Making sure OpenAI sent us something at all, and that it didn't send the "[DONE]" message.
                         if
-                           and
-                              neq:x:@strings.trim
-                                 .:
-                              neq:x:@strings.trim
-                                 .:[DONE]
+                           neq:x:@strings.trim
+                              .:
                            .lambda
 
-                              json2lambda:x:@strings.trim
+                              .converted:bool:false
+                              .json
+                              if
+                                 neq:x:@strings.trim
+                                    .:[DONE]
+                                 .lambda
+                                    add:x:@.json
+                                       json2lambda:x:@strings.trim
+                                    set-value:x:@.converted
+                                       .:bool:true
                               if
                                  or
-                                    eq:x:@json2lambda/*/type
-                                       .:response.completed
-                                    not-null:x:@json2lambda/*/choices/0/*/finish_reason
+                                    eq:x:@strings.trim
+                                       .:[DONE]
+                                    and
+                                       eq:x:@.converted
+                                          .:bool:true
+                                       eq:x:@.json/*/type
+                                          .:response.completed
+                                    not-null:x:@.json/*/choices/0/*/finish_reason
                                  .lambda
 
                                     // Checking if we're counting invocations.
@@ -624,16 +635,15 @@ select prompt, max(completion) as completion
                               else
 
                                  // Updating finish reason if we were given a reason.
-                                 json2lambda:x:@strings.trim
                                  if
                                     and
-                                       exists:x:@json2lambda/*/choices/0/*/finish_reason
-                                       not-null:x:@json2lambda/*/choices/0/*/finish_reason
+                                       exists:x:@.json/*/choices/0/*/finish_reason
+                                       not-null:x:@.json/*/choices/0/*/finish_reason
                                     .lambda
 
                                        // OpenAI returned a [finish_reason].
                                        set-value:x:@.finish_reason
-                                          get-value:x:@json2lambda/*/choices/0/*/finish_reason
+                                          get-value:x:@.json/*/choices/0/*/finish_reason
 
                                        // Signaling client
                                        unwrap:x:+/*/*
@@ -642,7 +652,7 @@ select prompt, max(completion) as completion
                                              finish_reason:x:@.finish_reason
 
                                  else-if
-                                    eq:x:@json2lambda/*/type
+                                    eq:x:@.json/*/type
                                        .:response.output_item.done
                                     .lambda
 
@@ -659,18 +669,18 @@ select prompt, max(completion) as completion
                                  // Making sure we have a message.
                                  .response_content
                                  if
-                                    eq:x:@json2lambda/*/type
+                                    eq:x:@.json/*/type
                                        .:response.output_text.delta
                                     .lambda
                                        set-value:x:@.response_content
-                                          get-value:x:@json2lambda/*/delta
+                                          get-value:x:@.json/*/delta
                                  else-if
                                     and
-                                       eq:x:@json2lambda/*/type
+                                       eq:x:@.json/*/type
                                           .:response.output
-                                       exists:x:@json2lambda/*/output
+                                       exists:x:@.json/*/output
                                     .lambda
-                                       for-each:x:@json2lambda/*/output/*
+                                       for-each:x:@.json/*/output/*
                                           if
                                              and
                                                 eq:x:@.dp/#/*/type
@@ -687,10 +697,10 @@ select prompt, max(completion) as completion
                                                                get-value:x:@.response_content
                                                                get-value:x:@.dp/#/*/text
                                  else-if
-                                    exists:x:@json2lambda/*/choices/0/*/delta/*/content
+                                    exists:x:@.json/*/choices/0/*/delta/*/content
                                     .lambda
                                        set-value:x:@.response_content
-                                          get-value:x:@json2lambda/*/choices/0/*/delta/*/content
+                                          get-value:x:@.json/*/choices/0/*/delta/*/content
 
                                  if
                                     and
@@ -796,6 +806,7 @@ select prompt, max(completion) as completion
          case:gpt-5.2
          case:gpt-5.2-pro
          case:gpt-5.2-codex
+         case:gpt-5.3-codex
             set-value:x:@.api_url
                .:"https://api.openai.com/v1/responses"
          default
@@ -843,6 +854,8 @@ select prompt, max(completion) as completion
                      .:gpt-5.2-pro
                   eq:x:@.arguments/*/model
                      .:gpt-5.2-codex
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.3-codex
                .lambda
 
                   // Modifying request.
@@ -973,8 +986,6 @@ select prompt, max(completion) as completion
                    * Our HTTP POST invocation will return the actual response,
                    * since it's not being streamed using SSE.
                    */
-                  lambda2hyper:x:@.exe/*/http.post
-                  log.info:x:-
                   set-value:x:@.result
                      get-first-value
                         get-value:x:@.exe/*/http.post/*/content/*/choices/0/*/message/*/content
