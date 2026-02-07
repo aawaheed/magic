@@ -119,10 +119,6 @@ However, Hyperlambda, and hence Magic Cloud by association, was built on a uniqu
 
 For instance, polymorphism is implemented at the function invocation level, and not the class or type. I'm so confident in its codebase quality, I'll give you $100 if you can find a (severe security) related bug in its backend!
 
-### Bring your own OpenAI API key
-
-Although we currently at the moment give away Hyperlambda Generator tokens for free, you still need your own OpenAI API key. You can configure this after having logged in the first time.
-
 ## Maintenance
 
 Magic Cloud and Hyperlambda is developed and maintained by [AINIRO.IO](https://ainiro.io). We offer hosting, support, and software development services on top of Magic Cloud, in addition to delivering AI agents, chatbots, and AI solutions.
