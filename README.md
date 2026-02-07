@@ -94,6 +94,12 @@ volumes:
 
 Save it somewhere, and execute `docker compose up` or something, visit `localhost:5555`, login with _"root"_ / _"root"_, and configure the system. You can [read more here](https://docs.ainiro.io/getting-started/) for alternatives, such as running the codebase directly on your own machine.
 
+### Bring your own OpenAI API key
+
+To use the system you'll need an OpenAI API key. You can create one [here](https://platform.openai.com/api-keys).
+
+**NOTICE** - To gain access to `gpt-5.2-codex`, you might have to deposit $51 into your OpenAI API account. Magic depends upon OpenAI, and without depositing money into OpenAI, you won't get access to GPT-5.2-codex, which is the default model in Magic for _"vibe coding"_. You might get GPT-4.1 to work during vibe coding, but 5.2-codex is __much better__!
+
 ## LLM
 
 The system internally is using OpenAI's GPT-5.2, with some reasoning turned on - But everything is tunable, and you can with a little bit of effort exchange the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems - Even if you were to loose the Hyperlambda Generator for some reasons.
