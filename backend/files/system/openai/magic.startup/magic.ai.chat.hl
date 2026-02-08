@@ -264,6 +264,7 @@ select prompt, max(completion) as completion
     * amount of tokens the model can handle.
     */
    .cont:bool:true
+   .finished_sent:bool:false
    while:x:@.cont
 
       lambda2hyper:x:@.session/*
@@ -529,9 +530,15 @@ select prompt, max(completion) as completion
                                                                   error:bool:true
                                                                   status:int:500
                                                                   message:Too many function invocations. Configure your type to handle more invocations or change your prompt.
-                                                            sockets.signal:x:@.session
-                                                               args
-                                                                  finished:bool:true
+                                                            if
+                                                               neq:x:@.finished_sent
+                                                                  .:bool:true
+                                                               .lambda
+                                                                  sockets.signal:x:@.session
+                                                                     args
+                                                                        finished:bool:true
+                                                                  set-value:x:@.finished_sent
+                                                                     .:bool:true
                                                       else
 
                                                          // Executing Hyperlambda function file.
@@ -626,11 +633,17 @@ select prompt, max(completion) as completion
                                     else
 
                                        // OpenAI is done.
-                                       sockets.signal:x:@.session
-                                          args
-                                             finished:bool:true
-                                       set-value:x:@.iterations
-                                          .:int:0
+                                       if
+                                          neq:x:@.finished_sent
+                                             .:bool:true
+                                          .lambda
+                                             sockets.signal:x:@.session
+                                                args
+                                                   finished:bool:true
+                                             set-value:x:@.finished_sent
+                                                .:bool:true
+                                             set-value:x:@.iterations
+                                                .:int:0
 
                               else
 
