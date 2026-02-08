@@ -407,9 +407,6 @@ select prompt, max(completion) as completion
                    */
                   .session:x:@.arguments/*/session
 
-                  // To avoid sending finish signal twice!
-                  .finished_sent:bool:false
-
                   // Extra information from client.
                   .extra:x:@.arguments/*/extra
 
@@ -891,6 +888,10 @@ select prompt, max(completion) as completion
 
             // Invoking OpenAI's API.
             .exe
+
+               // To avoid sending finish signal twice!
+               .finished_sent:bool:false
+
                http.post:x:@.api_url
                   convert:bool:true
                   headers
