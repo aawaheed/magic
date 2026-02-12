@@ -15,8 +15,6 @@ auth.ticket.verify:root
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/folder
-validators.regex:x:@.arguments/*/folder
-   regex:"^[a-z0-9_-]+$"
 
 // Verifying folder exists.
 if
