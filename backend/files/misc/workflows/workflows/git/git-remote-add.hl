@@ -1,30 +1,28 @@
 
 /*
- * Checks out an existing Git repository.
+ * Commits all changes to Git repository.
  * 
  * Arguments:
  * 
  * - [path] is mandatory folder of where repo is locally on dics.
- * - [branch] is the mandatory branch you want to checkout.
- * - [create] is an optional boolean indicating whether we should create the branch or not.
+ * - [message] is the mandatory message.
  */
 .arguments
 
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
-   // Mandatory source filename.
-   branch:string
-
-   // Mandatory destination filename.
-   create:bool
+   // Mandatory URL for upstream.
+   url:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/path
-validators.mandatory:x:@.arguments/*/branch
+validators.mandatory:x:@.arguments/*/url
+validators.default:x:@.arguments
+   name:origin
 
 // Sanity checking invocation.
 if
@@ -39,12 +37,12 @@ if
       throw:"Git repos must be in folders inside of either '/etc/' or '/modules/'"
 
 // Parametrising slot
-add:x:./*/git.checkout
-   get-nodes:x:@.arguments/*/branch
-   get-nodes:x:@.arguments/*/create
+add:x:./*/git.remote.add
+   get-nodes:x:@.arguments/*/url
+   get-nodes:x:@.arguments/*/name
 
 // Invoking slot.
-git.checkout:x:@.arguments/*/path
+git.remote.add:x:@.arguments/*/path
 
 // Returning success
 yield

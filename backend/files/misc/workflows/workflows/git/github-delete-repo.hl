@@ -1,0 +1,25 @@
+
+/*
+ * Deletes an existing GitHub repository
+ * 
+ * Arguments:
+ * 
+ * - [name] is mandatory name of GitHub project.
+ */
+.arguments
+
+   // Mandatory name of repository.
+   name:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/name
+
+// Invoking slot.
+github.repo.delete:x:@.arguments/*/name
+
+// Returning success
+yield
+   result:success

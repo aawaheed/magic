@@ -1,30 +1,32 @@
 
 /*
- * Checks out an existing Git repository.
+ * Pushes all Git changes upstreams.
  * 
  * Arguments:
  * 
  * - [path] is mandatory folder of where repo is locally on dics.
- * - [branch] is the mandatory branch you want to checkout.
- * - [create] is an optional boolean indicating whether we should create the branch or not.
+ * - [remote] is the optional remote value. Defaults to 'origin'.
+ * - [branch] is the optional branch to push. Defaults to 'main'.
  */
 .arguments
 
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
-   // Mandatory source filename.
-   branch:string
+   // Optional remote value, defaults to origin.
+   remote:string
 
-   // Mandatory destination filename.
-   create:bool
+   // Optional remote value, defaults to 'main'.
+   branch:string
 
 // Ensuring user is root.
 auth.ticket.verify:root
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/path
-validators.mandatory:x:@.arguments/*/branch
+validators.default:x:@.arguments
+   remote:origin
+   branch:main
 
 // Sanity checking invocation.
 if
@@ -39,12 +41,13 @@ if
       throw:"Git repos must be in folders inside of either '/etc/' or '/modules/'"
 
 // Parametrising slot
-add:x:./*/git.checkout
+add:x:./*/git.push
+   get-nodes:x:@.arguments/*/remote
    get-nodes:x:@.arguments/*/branch
-   get-nodes:x:@.arguments/*/create
 
 // Invoking slot.
-git.checkout:x:@.arguments/*/path
+git.push:x:@.arguments/*/path
+   set-upstream:true
 
 // Returning success
 yield

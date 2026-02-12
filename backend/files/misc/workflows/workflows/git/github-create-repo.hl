@@ -1,0 +1,26 @@
+
+/*
+ * Creates a new GitHub repository
+ * 
+ * Arguments:
+ * 
+ * - [name] is mandatory name of GitHub project.
+ */
+.arguments
+
+   // Mandatory folder to where Git repo is locally on dics.
+   name:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/name
+validators.default:x:@.arguments
+   branch:main
+
+// Invoking slot.
+github.repo.create:x:@.arguments/*/name
+
+// Returning success.
+return-nodes:x:@github.repo.create/*
