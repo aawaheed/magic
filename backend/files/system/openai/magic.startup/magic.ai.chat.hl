@@ -878,13 +878,28 @@ select prompt, max(completion) as completion
 
                   /*
                    * If people are using GPT5.2 they probably want more "intelligence",
-                   * hence we turn up reasoning level to "medium".
+                   * hence we turn up reasoning level to "low".
                    */
                   add:x:@.lambda/././*/.exe/*/http.post/*/payload
                      .
                         reasoning
                            effort:low
                   remove-nodes:x:@.lambda/././*/.exe/*/http.post/*/payload/*/temperature
+
+                  // Checking if prompt contains "think hard", at which point we increase effort to "high"
+                  strings.to-lower:x:@.arguments/*/prompt
+                  if
+                     strings.contains:x:@strings.to-lower
+                        .:think hard
+                     .lambda
+                        set-value:x:@.lambda/././*/.exe/*/http.post/*/payload/*/reasoning/*/effort
+                           .:high
+                  else-if
+                     strings.contains:x:@strings.to-lower
+                        .:think extra hard
+                     .lambda
+                        set-value:x:@.lambda/././*/.exe/*/http.post/*/payload/*/reasoning/*/effort
+                           .:xhigh
 
             // Invoking OpenAI's API.
             .exe
