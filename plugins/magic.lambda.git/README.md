@@ -87,7 +87,7 @@ Creates a commit. The repo path is the node value. The `message` child node is r
 
 ```
 git.commit:/modules/stripe/
-   message:"Initial commit"
+   message:Initial commit
 ```
 
 Optional arguments:

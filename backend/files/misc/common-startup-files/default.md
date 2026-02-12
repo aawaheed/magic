@@ -381,4 +381,4 @@ Arguments:
 
 Notice the relationship between file names and URLs. A URL to a Magic Cloud API invocation must always start with "/magic/". If you're invoking a file inside your "modules" folder using an HTTP invocation, the URL becomes as follows; "/magic/modules/MODULE_NAME/FILENAME". This would physically map to a file in "/modules/MODULE_NAME/FILENAME". The `get`, `post`, `delete`, `put`, and `patch` extensions are the HTTP verb required to use to invoke the endpoint. And the ".hl" extension implies Hyperlambda. Hence, if the filename was "contacts", the module name "crm", and the HTTP verb was GET, the full URL to the file would become; BACKEND_URL + "/magic/modules/crm/contacts".
 
-Notice, by default the LLM is using reasoning effort of "low". If you add "think hard" or "think extra hard" as a part of your prompt it will use respectively "high" and "xhigh" reasoning level.
+Notice, by default the LLM is using reasoning effort of "low". If you add "think hard" or "think extra hard" as a part of your prompt it will use respectively "high" and "xhigh" reasoning level for anything from GPT-5.2 and up.
