@@ -1,0 +1,53 @@
+
+/*
+ * Pulls an existing Git repository.
+ * 
+ * Arguments:
+ * 
+ * - [path] is mandatory folder of where repo is locally on dics.
+ * - [remote] is optional argument for a named remote such as 'origin' and defaults to 'origin'.
+ * - [branch] is optional argument for what branch to pull and defaults to 'main'.
+ */
+.arguments
+
+   // Mandatory folder to where Git repo is locally on dics.
+   path:string
+
+   // Optional argument being a named remote. Defaults to 'origin'.
+   remote:string
+
+   // Optional argument being the refspec.
+   branch:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/path
+validators.default:x:@.arguments
+   remote:origin
+   branch:main
+
+// Sanity checking invocation.
+if
+   and
+      not
+         strings.starts-with:x:@.arguments/*/path
+            .:/modules/
+      not
+         strings.starts-with:x:@.arguments/*/path
+            .:/etc/
+   .lambda
+      throw:"Git repos must be in folders inside of either '/etc/' or '/modules/'"
+
+// Parametrising slot
+add:x:./*/git.pull
+   get-nodes:x:@.arguments/*/remote
+   get-nodes:x:@.arguments/*/branch
+
+// Invoking slot.
+git.pull:x:@.arguments/*/path
+
+// Returning success
+yield
+   result:success
