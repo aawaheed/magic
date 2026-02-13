@@ -1,11 +1,14 @@
-services:
+version: "3.8"
 
+services:
   backend:
     image: servergardens/magic-backend:latest
     container_name: magic_backend
-    restart: always
+    restart: unless-stopped
+
     ports:
       - "4444:4444"
+
     volumes:
       - magic_files_etc:/magic/files/etc
       - magic_files_data:/magic/files/data
@@ -15,9 +18,12 @@ services:
   frontend:
     image: servergardens/magic-frontend:latest
     container_name: magic_frontend
+    restart: unless-stopped
+    platform: linux/amd64
+
     depends_on:
       - backend
-    restart: always
+
     ports:
       - "5555:80"
 

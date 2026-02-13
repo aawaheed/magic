@@ -1,48 +1,60 @@
-# Using .Net 9 image from Microsoft
+# =========================
+# Build stage
+# =========================
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-# Copying projects
-COPY /backend/ /backend/
-COPY /plugins/ /plugins/
+COPY backend/ /backend/
+COPY plugins/ /plugins/
 
-# Restoring and building projects (release)
 RUN dotnet restore /backend/backend.csproj
-RUN dotnet publish /backend/backend.csproj -c release -o /magic
+RUN dotnet publish /backend/backend.csproj -c Release -o /magic
 
-# Making sure we add all SQLite plugins to docker image
-ADD /backend/sqlite-plugins/ /magic/sqlite-plugins/
+ADD backend/sqlite-plugins/ /magic/sqlite-plugins/
 
-# Final stage creating image
+
+# =========================
+# Runtime stage
+# =========================
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
 WORKDIR /magic
 COPY --from=build /magic ./
 
-# Repos + packages (single consolidated block, no *-dev)
-RUN echo "deb http://deb.debian.org/debian/ bookworm main contrib" > /etc/apt/sources.list && \
-    echo "deb-src http://deb.debian.org/debian/ bookworm main contrib" >> /etc/apt/sources.list && \
-    echo "deb http://security.debian.org/ bookworm-security main contrib" >> /etc/apt/sources.list && \
-    echo "deb-src http://security.debian.org/ bookworm-security main contrib" >> /etc/apt/sources.list && \
-    apt-get update && \
+# Install runtime deps
+RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
         libsqlite3-0 \
-        libstdc++6 libgcc-s1 \
-        ttf-mscorefonts-installer fontconfig \
+        libstdc++6 \
+        libgcc-s1 \
+        ttf-mscorefonts-installer \
+        fontconfig \
         libgomp1 && \
-    ln -s /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 /usr/lib/x86_64-linux-gnu/libsqlite3.so && \
     fc-cache -f -v && \
     rm -rf /var/lib/apt/lists/*
 
+# Fix sqlite symlink in multi-arch safe way
+RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
+    ln -sf "$SQLITE_PATH" "$(dirname "$SQLITE_PATH")/libsqlite3.so"
+
 ENV LD_LIBRARY_PATH="/magic/sqlite-plugins:${LD_LIBRARY_PATH}"
 
-# Running Magic in user context.
-RUN groupadd -r magic && useradd -g magic magic
-RUN chmod -R a+rX /magic
-RUN chown -R magic:magic /magic/files
-USER magic
+# Create deterministic UID/GID (important!)
+RUN groupadd -g 1000 magic && \
+    useradd -u 1000 -g 1000 -m magic
 
-# Our entry point
+# Ensure directories exist
+RUN mkdir -p /magic/files/data \
+             /magic/files/etc \
+             /magic/files/config \
+             /magic/files/modules
+
+RUN chown -R 1000:1000 /magic
+
+USER 1000:1000
+
 EXPOSE 4444
 ENV ASPNETCORE_URLS="http://+:4444"
+
 ENTRYPOINT ["dotnet", "backend.dll"]
