@@ -21,30 +21,42 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /magic
 COPY --from=build /magic ./
 
-# Install runtime deps
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install runtime dependencies + Microsoft Fonts (CI safe)
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        debconf-utils \
+        wget \
+        ca-certificates && \
+    \
+    # Accept Microsoft EULA automatically
+    echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections && \
+    \
     apt-get install -y --no-install-recommends \
         git \
         libsqlite3-0 \
         libstdc++6 \
         libgcc-s1 \
-        ttf-mscorefonts-installer \
         fontconfig \
-        libgomp1 && \
+        libgomp1 \
+        ttf-mscorefonts-installer && \
+    \
     fc-cache -f -v && \
     rm -rf /var/lib/apt/lists/*
 
-# Fix sqlite symlink in multi-arch safe way
+# Multi-arch safe sqlite symlink
 RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
     ln -sf "$SQLITE_PATH" "$(dirname "$SQLITE_PATH")/libsqlite3.so"
 
 ENV LD_LIBRARY_PATH="/magic/sqlite-plugins:${LD_LIBRARY_PATH}"
 
-# Create deterministic UID/GID (important!)
+# Deterministic UID/GID
 RUN groupadd -g 1000 magic && \
     useradd -u 1000 -g 1000 -m magic
 
-# Ensure directories exist
+# Ensure runtime directories exist
 RUN mkdir -p /magic/files/data \
              /magic/files/etc \
              /magic/files/config \
