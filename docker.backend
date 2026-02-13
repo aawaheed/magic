@@ -36,12 +36,11 @@ RUN echo "deb http://deb.debian.org/debian/ bookworm main contrib" > /etc/apt/so
 
 ENV LD_LIBRARY_PATH="/magic/sqlite-plugins:${LD_LIBRARY_PATH}"
 
-# TODO: Commented out!
-# This doesn't work. I suspect the reason is that it's dynamically loading the SQLite DLL or something ...?
-# Making sure we run in the context of a custom user with restricted access to core operating system
-# RUN groupadd -r magic && useradd -g magic magic
-# RUN chown -R magic:magic /magic
-# USER magic
+# Running Magic in user context.
+RUN groupadd -r magic && useradd -g magic magic
+RUN chmod -R a+rX /magic
+RUN chown -R magic:magic /magic/files
+USER magic
 
 # Our entry point
 EXPOSE 4444
