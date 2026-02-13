@@ -21,19 +21,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /magic
 COPY --from=build /magic ./
 
-# Prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install runtime dependencies + Microsoft Fonts (CI safe)
+# Install required base packages
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        debconf-utils \
-        wget \
-        ca-certificates && \
-    \
-    # Accept Microsoft EULA automatically
-    echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections && \
-    \
     apt-get install -y --no-install-recommends \
         git \
         libsqlite3-0 \
@@ -41,10 +32,28 @@ RUN apt-get update && \
         libgcc-s1 \
         fontconfig \
         libgomp1 \
-        ttf-mscorefonts-installer && \
+        wget \
+        cabextract \
+        xfonts-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Microsoft core fonts manually (CI safe)
+RUN mkdir /tmp/fonts && \
+    cd /tmp/fonts && \
+    wget https://downloads.sourceforge.net/corefonts/arial32.exe && \
+    wget https://downloads.sourceforge.net/corefonts/times32.exe && \
+    wget https://downloads.sourceforge.net/corefonts/verdana32.exe && \
+    wget https://downloads.sourceforge.net/corefonts/trebuc32.exe && \
+    wget https://downloads.sourceforge.net/corefonts/georgi32.exe && \
+    wget https://downloads.sourceforge.net/corefonts/webdin32.exe && \
+    \
+    for i in *.exe; do cabextract "$i"; done && \
+    \
+    mkdir -p /usr/share/fonts/truetype/msttcorefonts && \
+    mv *.ttf /usr/share/fonts/truetype/msttcorefonts/ && \
     \
     fc-cache -f -v && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /tmp/fonts
 
 # Multi-arch safe sqlite symlink
 RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
@@ -56,7 +65,6 @@ ENV LD_LIBRARY_PATH="/magic/sqlite-plugins:${LD_LIBRARY_PATH}"
 RUN groupadd -g 1000 magic && \
     useradd -u 1000 -g 1000 -m magic
 
-# Ensure runtime directories exist
 RUN mkdir -p /magic/files/data \
              /magic/files/etc \
              /magic/files/config \
