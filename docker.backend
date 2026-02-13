@@ -23,48 +23,28 @@ COPY --from=build /magic ./
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install required base packages
+# Minimal runtime dependencies only
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
         libsqlite3-0 \
         libstdc++6 \
         libgcc-s1 \
-        fontconfig \
-        libgomp1 \
-        wget \
-        cabextract \
-        xfonts-utils && \
+        libgomp1 && \
     rm -rf /var/lib/apt/lists/*
-
-# Install Microsoft core fonts manually (CI safe)
-RUN mkdir /tmp/fonts && \
-    cd /tmp/fonts && \
-    wget https://downloads.sourceforge.net/corefonts/arial32.exe && \
-    wget https://downloads.sourceforge.net/corefonts/times32.exe && \
-    wget https://downloads.sourceforge.net/corefonts/verdana32.exe && \
-    wget https://downloads.sourceforge.net/corefonts/trebuc32.exe && \
-    wget https://downloads.sourceforge.net/corefonts/georgi32.exe && \
-    wget https://downloads.sourceforge.net/corefonts/webdin32.exe && \
-    \
-    for i in *.exe; do cabextract "$i"; done && \
-    \
-    mkdir -p /usr/share/fonts/truetype/msttcorefonts && \
-    mv *.ttf /usr/share/fonts/truetype/msttcorefonts/ && \
-    \
-    fc-cache -f -v && \
-    rm -rf /tmp/fonts
 
 # Multi-arch safe sqlite symlink
 RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
     ln -sf "$SQLITE_PATH" "$(dirname "$SQLITE_PATH")/libsqlite3.so"
 
-ENV LD_LIBRARY_PATH="/magic/sqlite-plugins:${LD_LIBRARY_PATH}"
+# Plugin path
+ENV LD_LIBRARY_PATH="/magic/sqlite-plugins"
 
 # Deterministic UID/GID
 RUN groupadd -g 1000 magic && \
     useradd -u 1000 -g 1000 -m magic
 
+# Ensure runtime directories exist
 RUN mkdir -p /magic/files/data \
              /magic/files/etc \
              /magic/files/config \
