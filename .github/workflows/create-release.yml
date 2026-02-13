@@ -71,17 +71,23 @@ jobs:
       # ==========================
       - name: Zip and upload release
         run: |
-          zip -r magic-${{ steps.get_version.outputs.VERSION }}.zip *
-          curl -X PUT \
-            -H "Content-Type: multipart/form-data" \
+          VERSION=${{ steps.get_version.outputs.VERSION }}
+
+          zip -r magic-$VERSION.zip . -x ".git/*"
+
+          curl --http1.1 --fail-with-body --location \
+            --retry 10 --retry-delay 5 --retry-all-errors \
+            -X PUT \
             -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
             -F "folder=/etc/releases/" \
-            -F "file=@magic-${{ steps.get_version.outputs.VERSION }}.zip" \
+            -F "file=@magic-$VERSION.zip" \
             "https://ainiro.io/magic/system/file-system/file"
 
-          zip -r magic.zip *
-          curl -X PUT \
-            -H "Content-Type: multipart/form-data" \
+          zip -r magic.zip . -x ".git/*"
+
+          curl --http1.1 --fail-with-body --location \
+            --retry 10 --retry-delay 5 --retry-all-errors \
+            -X PUT \
             -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
             -F "folder=/etc/releases/" \
             -F "file=@magic.zip" \
