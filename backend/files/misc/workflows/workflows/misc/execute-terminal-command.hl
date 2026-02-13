@@ -1,0 +1,32 @@
+
+/*
+ * Executes the specified terminal command with the specified arguments and returns the stdoutput as a string.
+ */
+.arguments
+
+   // Mandatory argument being command to execute.
+   command:string
+
+   // Optional argument being a string of command line arguments.
+   args:string
+
+   // Optional argument being the working directory where to execute the command.
+   working-directory:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/command
+
+// Parametrising invocation.
+add:x:./*/system.execute
+   get-nodes:x:@.arguments/*/args
+   get-nodes:x:@.arguments/*/working-directory
+
+// Executing terminal command.
+system.execute:x:@.arguments/*/command
+
+// Returning result to caller.
+yield
+   stdout:x:@system.execute

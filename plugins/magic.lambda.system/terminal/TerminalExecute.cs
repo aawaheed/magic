@@ -2,9 +2,8 @@
  * Magic Cloud, copyright (c) 2023 Thomas Hansen. See the attached LICENSE file for details. For license inquiries you can send an email to thomas@ainiro.io
  */
 
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
@@ -24,86 +23,55 @@ namespace magic.lambda.system.terminal
         /// </summary>
         /// <param name="signaler">Signaler that raised signal.</param>
         /// <param name="input">Arguments to slot.</param>
-        /// <returns>Awaitable task</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            await ExecuteAsync(signaler, input);
+            var args = GetArgs(input);
+
+            var startInfo = string.IsNullOrWhiteSpace(args.Arguments)
+                ? new ProcessStartInfo(args.Command)
+                : new ProcessStartInfo(args.Command, args.Arguments);
+
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+
+            if (!string.IsNullOrWhiteSpace(args.WorkingDirectory))
+                startInfo.WorkingDirectory = args.WorkingDirectory;
+
+            using var process = new Process { StartInfo = startInfo };
+            process.Start();
+
+            var stdoutTask = process.StandardOutput.ReadToEndAsync();
+            var stderrTask = process.StandardError.ReadToEndAsync();
+
+            await Task.WhenAll(stdoutTask, stderrTask, process.WaitForExitAsync());
+
+            if (process.ExitCode != 0)
+            {
+                var error = string.IsNullOrWhiteSpace(stderrTask.Result)
+                    ? stdoutTask.Result
+                    : stderrTask.Result;
+                throw new HyperlambdaException(error?.TrimEnd());
+            }
+
+            input.Value = stdoutTask.Result?.TrimEnd();
         }
 
         #region [ -- Private helper methods -- ]
 
-        async Task ExecuteAsync(ISignaler signaler, Node input)
+        (string Command, string Arguments, string WorkingDirectory) GetArgs(Node input)
         {
-            /*
-             * Checking if caller wants the result to be structured or not.
-             */
-            var structured = false;
-            var structureNode = input.Children.FirstOrDefault(x => x.Name == "structured");
-            if (structureNode != null)
-            {
-                structured = structureNode.GetEx<bool>();
-                structureNode.UnTie();
-            }
+            var command = input.GetEx<string>();
+            if (string.IsNullOrWhiteSpace(command))
+                throw new HyperlambdaException("Missing required argument value");
 
-            /*
-             * Executing node to make sure we're able to correctly retrieve
-             * arguments passed into execution of process.
-             */
-            await signaler.SignalAsync("eval", input);
+            var arguments = input.Children.FirstOrDefault(x => x.Name == "args")?.GetEx<string>();
+            var workingDirectory = input.Children.FirstOrDefault(x => x.Name == "working-directory")?.GetEx<string>();
 
-            // Retrieving arguments to invocation.
-            var args = input.Children.FirstOrDefault()?.GetEx<string>();
-
-            // House cleaning ...
             input.Clear();
+            input.Value = null;
 
-            // Creating and decorating process.
-            ProcessStartInfo startInfo = null;
-            if (string.IsNullOrEmpty(args))
-                startInfo = new ProcessStartInfo(input.GetEx<string>())
-                {
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                };
-            else
-                startInfo = new ProcessStartInfo(input.GetEx<string>(), args)
-                {
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                };
-
-            // Creating and starting process, making sure we clean up after ourselves.
-            using (var process = Process.Start(startInfo))
-            {
-                // Used to create returned result if caller does not want to have a structured result returned.
-                var result = new StringBuilder();
-
-                // Making sure we wait for process to finish.
-                while (!process.StandardOutput.EndOfStream)
-                {
-                    if (structured)
-                    {
-                        input.Add(new Node(".", await process.StandardOutput.ReadLineAsync()));
-                    }
-                    else
-                    {
-                        if (result.Length != 0)
-                            result.Append("\r\n");
-                        result.Append(await process.StandardOutput.ReadLineAsync());
-                    }
-                }
-
-                /*
-                 * Returning result of process execution to caller, but only
-                 * if user does not want a structured result.
-                 */
-                if (structured)
-                    input.Value = null;
-                else
-                    input.Value = result.ToString();
-            }
+            return (command, arguments, workingDirectory);
         }
-
 
         #endregion
     }
