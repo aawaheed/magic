@@ -267,6 +267,10 @@ namespace magic.endpoint.services
                 url = url.Substring(1);
 
             // Trying to resolve URL as a direct filename request.
+            if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url)))
+                return "/etc/www/" + url;
+
+            // Trying to resolve URL as a direct filename request.
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url + ".html")))
                 return "/etc/www/" + url + ".html";
 
