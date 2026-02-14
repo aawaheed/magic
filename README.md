@@ -65,26 +65,35 @@ Magic Cloud is built in C# and .Net Core.
 The easiest way to get started is to use Docker and create a _"docker-compose.yaml"_ file with the following content;
 
 ```yaml
+version: "3.8"
+
 services:
   backend:
     image: servergardens/magic-backend:latest
+    platform: linux/amd64
     container_name: magic_backend
-    restart: always
+    restart: unless-stopped
+
     ports:
       - "4444:4444"
+
     volumes:
       - magic_files_etc:/magic/files/etc
       - magic_files_data:/magic/files/data
       - magic_files_config:/magic/files/config
       - magic_files_modules:/magic/files/modules
+
   frontend:
     image: servergardens/magic-frontend:latest
     container_name: magic_frontend
+    restart: unless-stopped
+
     depends_on:
       - backend
-    restart: always
+
     ports:
       - "5555:80"
+
 volumes:
   magic_files_etc:
   magic_files_data:
