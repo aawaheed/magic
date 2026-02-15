@@ -46,6 +46,16 @@ Ths system is particularly well suited for creating AI agents. Below is a screen
 
 The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
 
+## Git integration
+
+Contrary to other vibe coding tools, Magic Cloud was built for software developers from day 1. That means among other things it's got Git integrated as an integral part of the platform. This allows you to setup any amount of pipelines you wish, using Git for code, and GitHub workflows for deployments.
+
+1. Create a new project
+2. Vibe code all the tools and even the GitHub workflow
+3. Commit and push
+
+![A comparison between Lovable, Bolt44 and Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/lovable-bolt44-versus-magic-cloud.png)
+
 ## Deploy anywhere
 
 If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on your website. Below is our AI chatbot. You can try it [here](https://ainiro.io)
