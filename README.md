@@ -56,6 +56,14 @@ Contrary to other vibe coding tools, Magic Cloud was built for software develope
 
 ![A comparison between Lovable, Bolt44 and Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/lovable-bolt44-versus-magic-cloud.png)
 
+## Python, Terminal, and C# integration
+
+Generate and execute Python scripts on the fly, and have the LLM execute these as _"tools"_. In addition, you can use BASH and the underlying terminal, and you can create Hyperlambda extension keywords using C#.
+
+Since Magic is running in a protected service account by default, this is actually quite safe - However, obviously do *not* open up endpoints allowing 3rd party users to generate and execute arbitrary Python code.
+
+You can also persist Python scripts, and reference these later as _"tools"_, permanently widening the capabilities of AI agents, or for that matter integrate Python execution into your endpoints and services.
+
 ## Deploy anywhere
 
 If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on your website. Below is our AI chatbot. You can try it [here](https://ainiro.io)
