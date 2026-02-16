@@ -1,0 +1,44 @@
+
+/*
+ * Executes the specified Python code.
+ * 
+ * The code can be specified either as a filename or raw Python code.
+ */
+.arguments
+
+   // Optional full file name and path for code to execute.
+   file:string
+
+   // Optional code to execute.
+   code:string
+
+   // Optional arguments to execution, in key/value format.
+   args:*
+
+   // Optional string passed to stdin
+   stdin:string
+
+   // Optional working directory for execution of code.
+   working-directory:string
+
+   // Optional timeout for execution. Defaults to 30 seconds.
+   timeout:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Parametrising invocation.
+add:x:./*/python.execute
+   get-nodes:x:@.arguments/*/file
+   get-nodes:x:@.arguments/*/code
+   get-nodes:x:@.arguments/*/args
+   get-nodes:x:@.arguments/*/stdin
+   get-nodes:x:@.arguments/*/timeout
+
+// Executing Python code
+python.execute
+
+// Returning result to caller.
+yield
+   result:x:@python.execute
+
