@@ -64,6 +64,8 @@ Since Magic is running in a protected service account by default, this is actual
 
 You can also persist Python scripts, and reference these later as _"tools"_, permanently widening the capabilities of AI agents, or for that matter integrate Python execution into your endpoints and services.
 
+![Executing Python from Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/executing-python-code.png)
+
 ## Deploy anywhere
 
 If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on your website. Below is our AI chatbot. You can try it [here](https://ainiro.io)

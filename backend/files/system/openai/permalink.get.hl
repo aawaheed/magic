@@ -2,8 +2,6 @@
 // Creates a permalink for current chat conversation
 .arguments
    session:string
-.description:Creates a permalink for current chat conversation
-.type:internal
 
 // Making sure user has access to invoked endpoint.
 auth.ticket.verify
