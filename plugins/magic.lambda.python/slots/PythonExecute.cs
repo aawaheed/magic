@@ -64,6 +64,7 @@ namespace magic.lambda.python
             else
             {
                 var resolvedFile = ResolvePath(file);
+                Console.WriteLine(resolvedFile);
                 startInfo.ArgumentList.Add(resolvedFile);
             }
 
@@ -206,25 +207,8 @@ namespace magic.lambda.python
         {
             if (string.IsNullOrWhiteSpace(relativePath))
                 throw new HyperlambdaException("Path is missing");
-            if (!relativePath.StartsWith("/"))
-                throw new HyperlambdaException("Paths must start with '/'");
 
-            var fullPath = Path.GetFullPath(_rootResolver.AbsolutePath(relativePath));
-            var root = EnsureTrailingSeparator(Path.GetFullPath(_rootResolver.DynamicFiles));
-
-            if (!fullPath.StartsWith(root, StringComparison.OrdinalIgnoreCase))
-                throw new HyperlambdaException("Path is outside of dynamic files root");
-
-            return fullPath;
-        }
-
-        static string EnsureTrailingSeparator(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-                return path;
-            return path.EndsWith(Path.DirectorySeparatorChar)
-                ? path
-                : path + Path.DirectorySeparatorChar;
+            return _rootResolver.AbsolutePath(relativePath);
         }
     }
 }

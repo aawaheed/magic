@@ -8,10 +8,10 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/execute-python.hl]:
 {
   "file": "[STRING_VALUE]",
   "code": "[STRING_VALUE]",
-  "args": {
-    "[KEY_1]": "[VALUE_1]",
-    "[KEY_2]": "[VALUE_2]"
-  },
+  "args": [
+    "[VALUE_1]",
+    "[VALUE_2]"
+  ],
   "stdin": "[STRING_VALUE]",
   "timeout": "[INTEGER_VALUE]",
 }
@@ -27,4 +27,4 @@ Arguments:
 
 If the user asks you to generate and execute Python code, You can use this function to accomplish your goal.
 
-**IMPORTANT** - You cannot rely upon 3rd party libs when creating Python code. You can only use stdlib.
+**IMPORTANT** - You cannot rely upon 3rd party libs when creating Python code. You can only use stdlib. And you must either pass in `code` or `file`, and not both!
