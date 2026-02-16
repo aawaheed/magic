@@ -33,13 +33,13 @@ try
                   auth:root
                   threshold:decimal:0.3
                   max_session_items:int:100
-                  greeting:Hi there, I am your virtual AI-based software development assistant. How can I help you?
+                  greeting:Where the Machine Creates the Code
                   system_message:x:@io.file.load
                   use_embeddings:int:0
 
       else
 
-         // Updating existing type
+         // Updating existing type.
          data.update
             table:ml_types
             values
@@ -53,6 +53,7 @@ try
                vector_model:text-embedding-3-small
                cached:int:0
                auth:root
+               greeting:Where the Machine Creates the Code
                threshold:decimal:0.3
                max_session_items:int:100
                system_message:x:@io.file.load
