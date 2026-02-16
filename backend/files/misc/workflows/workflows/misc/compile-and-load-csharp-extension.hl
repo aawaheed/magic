@@ -1,0 +1,42 @@
+/*
+ * Compiles C# code into a DLL byte array and loads it into the AppDomain
+ * as a Hyperlambda extension.
+ */
+.arguments
+
+   // Required C# source code.
+   code:string
+
+   // Required DLL name (e.g. my-slots.dll).
+   assembly_name:string
+
+   // Required assembly references (already loaded in AppDomain).
+   references:*
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/code
+validators.mandatory:x:@.arguments/*/assembly_name
+validators.mandatory:x:@.arguments/*/references/0
+
+// Making sure we unload previously loaded assemblies with the same name!
+try
+   system.plugin.unload:x:@.arguments/*/assembly_name
+.catch
+   log.info:Could not unload assembly since it did not exist.
+
+// Compiling C# code.
+add:x:./*/system.compile
+   get-nodes:x:@.arguments/*/references
+system.compile
+   code:x:@.arguments/*/code
+   assembly-name:x:@.arguments/*/assembly_name
+
+// Loading compiled assembly into AppDomain.
+system.plugin.load:x:@system.compile
+
+// Returning success to caller.
+yield
+   result:loaded
