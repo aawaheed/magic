@@ -4,8 +4,11 @@
  */
 .arguments
 
-   // Required C# source code.
+   // Optional C# source code.
    code:string
+
+   // Optional full file name and path for code to compile.
+   file:string
 
    // Required DLL name (e.g. my-slots.dll).
    assembly_name:string
@@ -17,7 +20,6 @@
 auth.ticket.verify:root
 
 // Sanity checking invocation.
-validators.mandatory:x:@.arguments/*/code
 validators.mandatory:x:@.arguments/*/assembly_name
 validators.mandatory:x:@.arguments/*/references/0
 
@@ -27,11 +29,27 @@ try
 .catch
    log.info:Could not unload assembly since it did not exist.
 
+// Loading file if file argument was supplied.
+.code
+if
+   and
+      exists:x:@.arguments/*/file
+      not-null:x:@.arguments/*/file
+      neq:x:@.arguments/*/file
+         .:
+   .lambda
+      io.file.load:x:@.arguments/*/file
+      set-value:x:@.arguments/*/.code
+         get-value:x:@io.file.load
+else
+   set-value:x:@.code
+      get-value:x:@.arguments/*/code
+
 // Compiling C# code.
 add:x:./*/system.compile
    get-nodes:x:@.arguments/*/references
 system.compile
-   code:x:@.arguments/*/code
+   code:x:@.code
    assembly-name:x:@.arguments/*/assembly_name
 
 // Loading compiled assembly into AppDomain.

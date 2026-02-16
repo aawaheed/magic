@@ -62,4 +62,22 @@ public class Hello : ISlot
 }
 ```
 
-**Notice**, slot names *must* be unique. And the slot is not persisted permanently into the cloudlet, but only kept in memory during the process lifetime.
+**Notice**, slot names *must* be unique. And the slot is not persisted permanently into the cloudlet, but only kept in memory during the process lifetime. To persist it as a permanent slot that will be automatically recompiled and added to the AppDomain during recycling of the process, the C# code should be persisted inside a "magic.startup" folder, inside a module, as for instance "my-function.hl". This will ensure that the file is executed as the process starts, compiling the Hyperlambda keyword, and loading it automatically. Below is an example how this Hyperlambda file must look like.
+
+```hyperlambda
+io.file.load:/WHATEVER_FOLDER_HERE/WHATEVER_FILE_NAME_HERE.cs
+system.compile
+   references
+      .:netstandard
+      .:System.Runtime
+      .:System.ComponentModel
+      .:System.Private.CoreLib
+      .:magic.node
+      .:magic.node.extensions
+      .:magic.signals.contracts
+   code:x:@io.file.load
+   assembly-name:WHATEVER_ASSEMBLY_NAME_HERE.dll
+system.plugin.load:x:@system.compile
+```
+
+If a file loading a plugin similar to the above is found in for instance "/modules/whatever/magic.startup/my-function.hl", then that file will ensure the plugin is automatically recreated as the cloudlet reboots.
