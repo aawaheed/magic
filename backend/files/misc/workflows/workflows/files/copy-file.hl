@@ -72,20 +72,6 @@ if
          status:int:400
          public:bool:true
 
-// Checking file if it's a Hyperlambda file, and if it is we do a basic sanity check.
-if
-   strings.ends-with:x:@.arguments/*/filename
-      .:.hl
-   .lambda
-
-      try
-         // This will throw exceptions for the worst errors.
-         hyper2lambda:x:@.arguments/*/content
-      .catch
-         throw:You tried to save invalid Hyperlambda, to successfully save it you will need to re-generate it
-            public:bool:true
-            status:int:400
-
 // Saving file.
 io.file.copy:x:@.arguments/*/source
    get-value:x:@.arguments/*/destination

@@ -51,7 +51,7 @@ math.add
 // We'll need a token for the download URL.
 auth.ticket.create
    username:service
-   expires:x:@,ath.add
+   expires:x:@math.add
    roles
       .:root
 

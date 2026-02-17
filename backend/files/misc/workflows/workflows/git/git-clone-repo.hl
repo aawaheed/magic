@@ -29,7 +29,8 @@ auth.ticket.verify:root
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/path
 validators.mandatory:x:@.arguments/*/url
-validators.mandatory:x:@.arguments/*/branch
+validators.default:x:@.Arguments
+   branch:main
 
 // Sanity checking invocation.
 if
