@@ -447,16 +447,23 @@ select prompt, max(completion) as completion
                                     set-value:x:@.converted
                                        .:bool:true
                               if
-                                 or
-                                    eq:x:@strings.trim
-                                       .:[DONE]
-                                    and
-                                       eq:x:@.converted
-                                          .:bool:true
-                                       eq:x:@.json/*/type
-                                          .:response.completed
-                                    not-null:x:@.json/*/choices/0/*/finish_reason
+                                 and
+                                    eq:x:@.invocations_handled
+                                       .:bool:false
+                                    or
+                                       eq:x:@strings.trim
+                                          .:[DONE]
+                                       and
+                                          eq:x:@.converted
+                                             .:bool:true
+                                          eq:x:@.json/*/type
+                                             .:response.completed
+                                       not-null:x:@.json/*/choices/0/*/finish_reason
                                  .lambda
+                                 
+                                    // Avoiding double invocations.
+                                    set-value:x:@.invocations_handled
+                                       .:bool:true
 
                                     // Checking if we're counting invocations.
                                     if
@@ -841,6 +848,9 @@ select prompt, max(completion) as completion
 
             // True if we've already sent a "waiting for function" message to client.
             .has-sent-waiting:bool:false
+
+            // True if we already have sent the invocation result back to the client.
+            .invocations_handled:bool:false
 
             // Invoking OpenAI now with context being either training data or previous messages.
             add:x:./*/.exe/*/http.post/*/payload/*/messages
