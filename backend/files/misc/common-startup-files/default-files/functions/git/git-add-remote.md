@@ -1,5 +1,5 @@
 # Function; Git Add Remote
-FUNCTION ==> git-remote-add
+FUNCTION ==> git-add-remote
 
 Adds a remote upstream to the specified local repo.
 
