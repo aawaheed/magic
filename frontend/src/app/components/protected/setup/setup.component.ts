@@ -48,6 +48,7 @@ export class SetupComponent implements OnInit {
     passwordRepeat: [''],
     name: ['', [Validators.required]],
     email: ['', [Validators.required]],
+    newsletter: [true]
   });
 
   constructor(
@@ -92,6 +93,7 @@ export class SetupComponent implements OnInit {
       password: this.configForm.controls.password.value,
       name: this.configForm.controls.name.value,
       email: this.configForm.controls.email.value,
+      subscribe: this.configForm.controls.newsletter.value,
     };
 
     this.configService.setup(payload).subscribe({

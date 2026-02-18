@@ -17,6 +17,7 @@
    is_hashed:bool
    name:string
    email:string
+   subscribe:bool
 
 // Ensures user is authorized to access endpoint.
 auth.ticket.verify:root
@@ -70,6 +71,28 @@ sleep:2000
 
 // Ensuring our magic database is correctly created.
 io.file.execute:/system/ensure-magic-database.hl
+
+/*
+ * Checking if user wants to subscribe to our newsletter, and if yes,
+ * posting email and name to AINIRO.
+ */
+if
+   eq:x:@.arguments/*/subscribe
+      .:bool:true
+   .lambda
+
+      // Sending name and email to subscribe endpoint, making sure we catch exceptions.
+      try
+         http.post:"https://ainiro.io/magic/modules/signup/register"
+            payload
+               name:x:@.arguments/*/name
+               email:x:@.arguments/*/email
+      .catch
+
+         // Silently catching to avoid aborting setup process.
+         lambda2hyper:x:../*
+         log.info:x:-
+         log.error:Could not register user for newsletter
 
 /*
  * We can start the setup process, inserting a root user, etc ...

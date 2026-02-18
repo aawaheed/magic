@@ -19,4 +19,9 @@ export interface SetupModel {
    * Email of person configuring Magic.
    */
   email: string | null,
+
+  /**
+   * True if user wants to subscribe to newsletter.
+   */
+  subscribe: boolean | null,
 }
