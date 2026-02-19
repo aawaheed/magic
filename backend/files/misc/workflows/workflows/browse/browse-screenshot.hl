@@ -24,10 +24,8 @@ validators.default:x:@.arguments
 
 puppeteer.connect
    .lambda
-      puppeteer.page
-         .lambda
-            puppeteer.goto:x:@.arguments/*/url
-            puppeteer.screenshot:x:@.arguments/*/path
-               full-page:x:@.arguments/*/full_page
+      puppeteer.goto:x:@.arguments/*/url
+      puppeteer.screenshot:x:@.arguments/*/path
+         full-page:x:@.arguments/*/full_page
 return
    result:success

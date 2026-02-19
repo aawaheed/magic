@@ -18,7 +18,6 @@ namespace magic.lambda.puppeteer
         {
             var page = PuppeteerHelpers.RequirePage(signaler);
             var content = await page.GetContentAsync();
-
             input.Clear();
             input.Value = content;
         }

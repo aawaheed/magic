@@ -23,26 +23,25 @@ validators.mandatory:x:@.arguments/*/submit_selector
 
 puppeteer.connect
    .lambda
-      puppeteer.page
+      puppeteer.goto:x:@.arguments/*/url
+
+      // Optional wait before filling.
+      if
+         exists:x:@.arguments/*/wait_for_selector
          .lambda
-            puppeteer.goto:x:@.arguments/*/url
+            puppeteer.wait-for-selector:x:@.arguments/*/wait_for_selector
+               visible:true
 
-            // Optional wait before filling.
-            if
-               exists:x:@.arguments/*/wait_for_selector
-               .lambda
-                  puppeteer.wait-for-selector:x:@.arguments/*/wait_for_selector
-                     visible:true
+      // Fill fields.
+      for-each:x:@.arguments/*/fields/*
+         puppeteer.type:x:@.dp/#/*/selector
+            text:x:@.dp/#/*/value
 
-            // Fill fields.
-            for-each:x:@.arguments/*/fields/*
-               puppeteer.type:x:@.dp/#/*/selector
-                  text:x:@.dp/#/*/value
+      // Submit.
+      puppeteer.click:x:@.arguments/*/submit_selector
 
-            // Submit.
-            puppeteer.click:x:@.arguments/*/submit_selector
+      // Making sure we wait for the response from the above invocation.
+      puppeteer.wait-for-timeout:3000
 
-            // Making sure we wait for the response from the above invocation.
-            puppeteer.wait-for-timeout:15000
 return
    result:success

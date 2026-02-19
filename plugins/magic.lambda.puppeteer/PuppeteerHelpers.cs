@@ -68,7 +68,7 @@ namespace magic.lambda.puppeteer
         public static int? GetOptionalInt(Node input, string name)
         {
             var node = input.Children.FirstOrDefault(x => x.Name == name);
-            return node == null ? null : node.GetEx<int>();
+            return node == null || node.Value == null ? null : node.GetEx<int>();
         }
 
         public static IEnumerable<string> GetArgs(Node argsNode)

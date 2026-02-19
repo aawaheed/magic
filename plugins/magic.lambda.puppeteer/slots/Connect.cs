@@ -25,22 +25,38 @@ namespace magic.lambda.puppeteer
 
             var launchOptions = BuildLaunchOptions(input);
             IBrowser browser = null;
+            IPage page = null;
 
             try
             {
                 browser = await Puppeteer.LaunchAsync(launchOptions);
+                page = await browser.NewPageAsync();
 
                 var lambda = PuppeteerHelpers.GetLambda(input);
 
                 await signaler.ScopeAsync(
                     "puppeteer.browser",
                     browser,
-                    async () => await signaler.SignalAsync("eval", lambda));
+                    async () => await signaler.ScopeAsync(
+                        "puppeteer.page",
+                        page,
+                        async () => await signaler.SignalAsync("eval", lambda)));
 
                 input.Value = null;
             }
             finally
             {
+                if (page != null && !page.IsClosed)
+                {
+                    try
+                    {
+                        await page.CloseAsync();
+                    }
+                    catch
+                    {
+                        // Best effort shutdown; ignore if already closed.
+                    }
+                }
                 if (browser != null && !browser.IsClosed)
                 {
                     try
