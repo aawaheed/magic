@@ -12,7 +12,7 @@ ___
 
 Arguments:
 
-* `database` is a mandatory argument being name of database. Notice, database must not exist from before, and database name should contain file suffix (.db), but only the name such as for instance "crm" or "erp".
+* `database` is a mandatory argument being name of database. Notice, database must not exist from before, and database name should not contain file suffix (.db), but only the name such as for instance "crm" or "erp".
 
 Databases can only contain a-z, and 0-9, "-", and "-" in their names.
 

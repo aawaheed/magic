@@ -4,7 +4,7 @@ FUNCTION ==> generate-image
 This function creates an image using DALL-E 3 according to the specified [prompt], [size], and [style], and returns it to caller. The return value will be the URL for the generated image, in addition to a description of the image.
 
 ___
-FUNCTION_INVOCATION[/modules/openai/workflows/workflows/generate-image.hl]:
+FUNCTION_INVOCATION[/misc/workflows/workflows/misc/generate-image.hl]:
 {
   "prompt": "[STRING_VALUE]",
   "size": "[STRING_VALUE]",

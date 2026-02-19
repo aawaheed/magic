@@ -11,7 +11,7 @@
 auth.ticket.verify:root
 
 // Sanity checking invocation
-validators.regex:x:@.arguments/*/name
+validators.regex:x:@.arguments/*/type
    regex:^[a-z0-9_-]+$
 if
    eq:x:@.arguments/*/type

@@ -13,3 +13,5 @@ ___
 Arguments:
 
 * `username` is mandatory and the user you want to retrieve the roles for.
+
+Notice, if user does not belong to any roles, or does not exist, an empty result will be returned.

@@ -13,4 +13,6 @@ ___
 ## Arguments
 
 * `name` is the mandatory name of your new project.
+
+The default branch for your project will automatically be set to "main".
  

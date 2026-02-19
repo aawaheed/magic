@@ -1,12 +1,12 @@
 # Function; List databases
 FUNCTION ==> list-databases
 
-Lists all databases in the system.
+Lists all databases in the system for the specified connection string and database type.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/list-databases.hl]:
 {
-  "database-type: "[STRING_VALUE]",
+  "database-type": "[STRING_VALUE]",
   "connection-string": "[STRING_VALUE]"
 }
 ___

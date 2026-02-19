@@ -23,3 +23,5 @@ Arguments:
 * `to-name` is mandatory and the receiver's full name.
 * `subject` is mandatory and the subject of the email.
 * `body` is mandatory and the body of the email. This can be markdown, at which point it will be automatically converted into HTML. It can also be HTML.
+
+The above `from` and `to` are assumed to be valid emails, and an exception will be thrown if not.

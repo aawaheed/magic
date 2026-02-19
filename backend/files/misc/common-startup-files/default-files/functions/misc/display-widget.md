@@ -16,8 +16,8 @@ Arguments;
 - `html` is a snippet of HTML to render on the frontend.
 - `filename` is a full path to a file that'll be loaded and sent to the frontend.
 
-Supply only **one** of the above arguments
+You must supply exactly one of the above arguments, but not both.
 
 **IMPORTANT** - You MUST use this function if the user asks you to show or display some HTML snippet or HTML file!
 
-**IMPORTANT** - Remember to always use absolute URLs in your JavaScript if you're invoking the backend from HTML you have generated. You can find the backend URL further up in this instruction. The widget will be injected into an already preloaded DOM structure, so don't rely upon `DOMContentReady` or similar events.
+**IMPORTANT** - Remember to always use absolute URLs in your JavaScript if you're invoking the backend from HTML you have generated. You can find the backend URL further up in this instruction. The widget will be injected into an already preloaded DOM structure, so don't rely upon `DOMContentReady` or similar events. The widget must contain `WIDGET_ID_UNIQUE_NUMBER` for its JS functions, CSS selectors, etc.

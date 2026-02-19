@@ -1,6 +1,6 @@
 
 /*
- * Commits all changes to Git repository.
+ * Adds a remote to the specified Git project.
  * 
  * Arguments:
  * 

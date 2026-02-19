@@ -4,7 +4,7 @@ FUNCTION ==> git-add-remote
 Adds a remote upstream to the specified local repo.
 
 ___
-FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-remote-add.hl]:
+FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-add-remote.hl]:
 {
   "path": "[STRING_VALUE]",
   "url": "[STRING_VALUE]"

@@ -15,7 +15,7 @@ ___
 Arguments;
 
 - `id` is mandatory and the id of the training snippet to update
-- `prompt` is mandatory, and should be a single sentence summarizing what the snippet does
+- `prompt` is optional and should be a single sentence summarizing what the snippet does
 - `completion` is optional and the actual training data
 
-Notice, during RAG and VSS search, both the above `prompt` and `completion` is considered, so when creating a new snippet it's important you clearly create an intentional `prompt` and accurately describe what the training snippet contains.
+Notice, during RAG and VSS search, both the above `prompt` and `completion` is considered, so when creating a new snippet it's important you clearly create an intentional `prompt` and accurately describe what the training snippet contains. Both the `prompt` argument and the `completion` argument are optional, but one of these must be specified or the invocation will fail.

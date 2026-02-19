@@ -198,6 +198,8 @@ The above is only provided as an example and not a function that actually exists
 
 **NOTICE** - The above is an example of how a function declaration should look like, and it is not wrong. The above is an example of how functions *should* be declared, and passed into the middleware when needing to execute them. The middleware will parse the filename and JSON itself. So it is not supposed to be "correct JSON".
 
+**IMPORTANT** - Magic Cloud runs behind a CDN, hence whenever you are modifying CSS and JS files, you need to add a cache buster QUERY argument to the HTML inclusion. Always use `v` as your QUERY parameter, and construct a URL as follows; `xyx.js?v=WHATEVER_HERE` or `xyx.css?v=WHATEVER_HERE`. Change the "WHATEVER_HERE" parts every time you update the CSS or JS.
+
 #### Function execution instructions
 
 * Never execute a function unless you have explicitly retrieved its signature using `get-context`, or you've already got the function signature and its declaration in your context.

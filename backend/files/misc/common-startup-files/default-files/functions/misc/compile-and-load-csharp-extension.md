@@ -8,6 +8,7 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/compile-and-load-csharp-extension.hl]:
 {
   "code": "[STRING_VALUE]",
+  "file": "[STRING_VALUE]",
   "assembly_name": "[STRING_VALUE]",
   "references": [
     "[VALUE_1]",
@@ -18,7 +19,8 @@ ___
 
 Arguments:
 
-- `code` is required C# source code.
+- `code` is optional C# source code.
+- `file` is optional file path to a file containing C# code to be compiled.
 - `assembly_name` is required DLL name (e.g. `my-slots.dll`).
 - `references` is required list of assembly names already loaded into the AppDomain, such as for instance `System.Text` or `System.IO`, etc.
 
@@ -39,7 +41,7 @@ public class Hello : ISlot
 }
 ```
 
-**IMPORTANT** - You must include references for `magic.node` and `magic.signals.contracts` at minimum.
+**IMPORTANT** - You must include references for `magic.node` and `magic.signals.contracts` at minimum. And one of `file` or `code` must be supplied, but not both.
 
 After invoking this function, your slot can be used as a Hyperlambda keyword.
 
