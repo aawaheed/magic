@@ -3,7 +3,6 @@
  */
 
 using System.IO;
-using System.Threading.Tasks;
 using magic.node;
 using magic.node.contracts;
 using magic.signals.contracts;
@@ -14,7 +13,7 @@ namespace magic.lambda.git
     /// [git.delete-repo] slot to delete existing repo.
     /// </summary>
     [Slot(Name = "git.delete-repo")]
-    public class GitDeleteRepo : ISlotAsync
+    public class GitDeleteRepo : ISlot
     {
         readonly IRootResolver _rootResolver;
 
@@ -23,7 +22,7 @@ namespace magic.lambda.git
             _rootResolver = rootResolver;
         }
 
-        public async Task SignalAsync(ISignaler signaler, Node input)
+        public void Signal(ISignaler signaler, Node input)
         {
             var path = GetArgs(input);
             var fullPath = GitSlotHelpers.ResolveRepoPath(_rootResolver, path);
