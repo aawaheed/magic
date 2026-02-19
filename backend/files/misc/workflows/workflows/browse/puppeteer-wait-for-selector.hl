@@ -1,0 +1,36 @@
+/*
+ * Waits until a selector appears in the DOM.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [selector] CSS selector (required)
+ * - [timeout] Timeout in milliseconds (optional)
+ * - [visible] Require selector to be visible (optional)
+ * - [hidden] Require selector to be hidden (optional)
+ */
+.arguments
+   session_id:string
+   selector:string
+   timeout:int
+   visible:bool
+   hidden:bool
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/selector
+
+// Optional arguments.
+add:x:./*/puppeteer.wait-for-selector
+   get-nodes:x:@.arguments/*/timeout
+   get-nodes:x:@.arguments/*/visible
+   get-nodes:x:@.arguments/*/hidden
+
+// Core invocation.
+puppeteer.wait-for-selector:x:@.arguments/*/session_id
+   selector:x:@.arguments/*/selector
+
+return
+   result:success

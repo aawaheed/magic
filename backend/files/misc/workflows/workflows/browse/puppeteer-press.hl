@@ -1,0 +1,34 @@
+/*
+ * Presses a key on a selector.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [selector] CSS selector (required)
+ * - [key] Key name to press (required)
+ * - [delay] Delay in milliseconds (optional)
+ */
+.arguments
+   session_id:string
+   selector:string
+   key:string
+   delay:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/selector
+validators.mandatory:x:@.arguments/*/key
+
+// Optional arguments.
+add:x:./*/puppeteer.press
+   get-nodes:x:@.arguments/*/delay
+
+// Core invocation.
+puppeteer.press:x:@.arguments/*/session_id
+   selector:x:@.arguments/*/selector
+   key:x:@.arguments/*/key
+
+return
+   result:success

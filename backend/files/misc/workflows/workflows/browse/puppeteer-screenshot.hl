@@ -1,0 +1,36 @@
+/*
+ * Saves a screenshot to disk.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [filename] Output file path (required)
+ * - [full_page] Capture full page (optional)
+ * - [type] Screenshot type (optional)
+ * - [quality] JPEG quality 0-100 (optional)
+ */
+.arguments
+   session_id:string
+   filename:string
+   full_page:bool
+   type:string
+   quality:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/filename
+
+// Optional arguments.
+add:x:./*/puppeteer.screenshot
+   get-nodes:x:@.arguments/*/full_page
+   get-nodes:x:@.arguments/*/type
+   get-nodes:x:@.arguments/*/quality
+
+// Core invocation.
+puppeteer.screenshot:x:@.arguments/*/session_id
+   filename:x:@.arguments/*/filename
+
+return
+   result:success

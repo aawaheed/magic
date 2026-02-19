@@ -1,0 +1,20 @@
+/*
+ * Returns the page title.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ */
+.arguments
+   session_id:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+
+// Core invocation.
+puppeteer.title:x:@.arguments/*/session_id
+
+return
+   title:x:@puppeteer.title

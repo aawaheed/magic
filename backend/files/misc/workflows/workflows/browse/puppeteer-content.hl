@@ -1,0 +1,20 @@
+/*
+ * Returns the page HTML.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ */
+.arguments
+   session_id:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+
+// Core invocation.
+puppeteer.content:x:@.arguments/*/session_id
+
+return
+   content:x:@puppeteer.content

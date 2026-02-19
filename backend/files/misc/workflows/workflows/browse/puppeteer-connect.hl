@@ -1,0 +1,39 @@
+/*
+ * Creates a new Puppeteer session and returns its session id.
+ *
+ * Arguments:
+ * - [headless] Boolean (optional, defaults to true)
+ * - [executable] Full path to Chromium/Chrome (optional)
+ * - [timeout] Launch timeout in milliseconds (optional)
+ * - [user_data_dir] Chromium user data directory (optional)
+ * - [args] List of Chromium args (optional)
+ * - [timeout_minutes] Sliding expiration in minutes (optional)
+ * - [max_lifetime_minutes] Max session lifetime in minutes (optional)
+ */
+.arguments
+   headless:bool
+   executable:string
+   timeout:int
+   user_data_dir:string
+   args:*
+   timeout_minutes:int
+   max_lifetime_minutes:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Optional arguments.
+add:x:./*/puppeteer.connect
+   get-nodes:x:@.arguments/*/headless
+   get-nodes:x:@.arguments/*/executable
+   get-nodes:x:@.arguments/*/timeout
+   get-nodes:x:@.arguments/*/user_data_dir
+   get-nodes:x:@.arguments/*/args
+   get-nodes:x:@.arguments/*/timeout_minutes
+   get-nodes:x:@.arguments/*/max_lifetime_minutes
+
+// Core invocation.
+puppeteer.connect
+
+return
+   session_id:x:@puppeteer.connect

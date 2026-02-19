@@ -1,0 +1,30 @@
+/*
+ * Waits until the page URL matches a specific value.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [url] URL to wait for (required)
+ * - [timeout] Timeout in milliseconds (optional)
+ */
+.arguments
+   session_id:string
+   url:string
+   timeout:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/url
+
+// Optional arguments.
+add:x:./*/puppeteer.wait-for-url
+   get-nodes:x:@.arguments/*/timeout
+
+// Core invocation.
+puppeteer.wait-for-url:x:@.arguments/*/session_id
+   url:x:@.arguments/*/url
+
+return
+   result:success

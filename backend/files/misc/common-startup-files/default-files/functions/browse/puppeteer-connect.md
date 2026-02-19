@@ -1,0 +1,29 @@
+# Function; Puppeteer connect
+FUNCTION ==> puppeteer-connect
+
+Creates a new Puppeteer session and returns its session id.
+
+___
+FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-connect.hl]:
+{
+  "headless": true,
+  "executable": "[STRING_VALUE]",
+  "timeout": 30000,
+  "user_data_dir": "[STRING_VALUE]",
+  "args": [
+    "[STRING_VALUE]"
+  ],
+  "timeout_minutes": 15,
+  "max_lifetime_minutes": 120
+}
+___
+
+Arguments:
+
+* `headless` is optional and defaults to true
+* `executable` is optional and the full path to Chromium/Chrome
+* `timeout` is optional launch timeout in milliseconds
+* `user_data_dir` is optional and sets Chromium user data directory
+* `args` is optional and is a list of Chromium args
+* `timeout_minutes` is optional sliding expiration in minutes
+* `max_lifetime_minutes` is optional max session lifetime in minutes

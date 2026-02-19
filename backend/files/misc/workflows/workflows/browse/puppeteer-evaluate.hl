@@ -1,0 +1,30 @@
+/*
+ * Evaluates a JavaScript expression in the page.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [expression] JavaScript expression (required)
+ * - [args] Optional arguments for JS function invocation
+ */
+.arguments
+   session_id:string
+   expression:string
+   args:*
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/expression
+
+// Optional arguments.
+add:x:./*/puppeteer.evaluate
+   get-nodes:x:@.arguments/*/args
+
+// Core invocation.
+puppeteer.evaluate:x:@.arguments/*/session_id
+   expression:x:@.arguments/*/expression
+
+return
+   result:x:@puppeteer.evaluate

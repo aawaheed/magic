@@ -1,0 +1,34 @@
+/*
+ * Clears and types text into a selector.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [selector] CSS selector (required)
+ * - [text] Text to type after clearing (required)
+ * - [delay] Delay between key presses in milliseconds (optional)
+ */
+.arguments
+   session_id:string
+   selector:string
+   text:string
+   delay:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/selector
+validators.mandatory:x:@.arguments/*/text
+
+// Optional arguments.
+add:x:./*/puppeteer.fill
+   get-nodes:x:@.arguments/*/delay
+
+// Core invocation.
+puppeteer.fill:x:@.arguments/*/session_id
+   selector:x:@.arguments/*/selector
+   text:x:@.arguments/*/text
+
+return
+   result:success

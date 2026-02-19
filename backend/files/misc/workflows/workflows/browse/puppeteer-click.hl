@@ -1,0 +1,36 @@
+/*
+ * Clicks a selector.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [selector] CSS selector (required)
+ * - [button] Mouse button: left, middle, right (optional)
+ * - [click_count] Number of clicks (optional)
+ * - [delay] Delay between down and up in milliseconds (optional)
+ */
+.arguments
+   session_id:string
+   selector:string
+   button:string
+   click_count:int
+   delay:int
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/selector
+
+// Optional arguments.
+add:x:./*/puppeteer.click
+   get-nodes:x:@.arguments/*/button
+   get-nodes:x:@.arguments/*/click_count
+   get-nodes:x:@.arguments/*/delay
+
+// Core invocation.
+puppeteer.click:x:@.arguments/*/session_id
+   selector:x:@.arguments/*/selector
+
+return
+   result:success

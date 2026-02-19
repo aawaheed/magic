@@ -1,0 +1,31 @@
+/*
+ * Selects option values from a selector.
+ *
+ * Arguments:
+ * - [session_id] Session id (required)
+ * - [selector] CSS selector for a select element (required)
+ * - [values] Option values to select (required)
+ */
+.arguments
+   session_id:string
+   selector:string
+   values:*
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/session_id
+validators.mandatory:x:@.arguments/*/selector
+validators.mandatory:x:@.arguments/*/values
+
+// Optional arguments.
+add:x:./*/puppeteer.select
+   get-nodes:x:@.arguments/*/values
+
+// Core invocation.
+puppeteer.select:x:@.arguments/*/session_id
+   selector:x:@.arguments/*/selector
+
+return
+   result:success
