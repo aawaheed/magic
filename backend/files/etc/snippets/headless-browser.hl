@@ -1,0 +1,11 @@
+/*
+ * Example of how to use PuppeteerSharp as a headless browser.
+ */
+.session_id
+set-value:x:@.session_id
+   puppeteer.connect
+puppeteer.goto:x:@.session_id
+   url:"https://ainiro.io"
+puppeteer.title:x:@.session_id
+puppeteer.url:x:@.session_id
+puppeteer.close:x:@.session_id

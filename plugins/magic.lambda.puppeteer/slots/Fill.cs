@@ -20,8 +20,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var selector = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.fill");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var selector = PuppeteerHelpers.GetRequiredString(input, "selector");
             var text = PuppeteerHelpers.GetOptionalString(input, "text");
             if (text == null)
                 throw new HyperlambdaException("[puppeteer.fill] requires a [text] child node");

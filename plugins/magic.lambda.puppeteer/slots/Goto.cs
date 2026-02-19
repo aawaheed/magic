@@ -19,8 +19,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var url = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.goto");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var url = PuppeteerHelpers.GetRequiredString(input, "url");
 
             var timeout = PuppeteerHelpers.GetOptionalInt(input, "timeout");
             var waitUntilValue = PuppeteerHelpers.GetOptionalString(input, "wait-until");

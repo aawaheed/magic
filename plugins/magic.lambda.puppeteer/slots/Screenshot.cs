@@ -28,8 +28,8 @@ namespace magic.lambda.puppeteer
 
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var filename = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.screenshot");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var filename = PuppeteerHelpers.GetRequiredString(input, "filename");
             var fullPath = _rootResolver.AbsolutePath(filename);
 
             var options = new ScreenshotOptions

@@ -18,8 +18,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var selector = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.select");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var selector = PuppeteerHelpers.GetRequiredString(input, "selector");
             var valuesNode = input.Children.FirstOrDefault(x => x.Name == "values");
             var values = PuppeteerHelpers.GetValues(valuesNode);
             if (values.Length == 0)

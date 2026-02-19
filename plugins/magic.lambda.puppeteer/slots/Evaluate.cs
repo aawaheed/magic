@@ -19,8 +19,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var expression = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.evaluate");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var expression = PuppeteerHelpers.GetRequiredString(input, "expression");
             var argsNode = input.Children.FirstOrDefault(x => x.Name == "args");
             var args = PuppeteerHelpers.GetArgs(argsNode).Cast<object>().ToArray();
 

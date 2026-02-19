@@ -13,17 +13,16 @@ using PuppeteerSharp;
 namespace magic.lambda.puppeteer
 {
     /// <summary>
-    /// [puppeteer.connect] slot for launching a Chromium browser instance scoped to its child lambda.
+    /// [puppeteer.connect] slot for launching a Chromium browser instance and returning a session id.
     /// </summary>
     [Slot(Name = "puppeteer.connect")]
     public class Connect : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            if (!input.Children.Any(x => x.Name == ".lambda"))
-                throw new HyperlambdaException("[puppeteer.connect] requires a [.lambda] child");
-
             var launchOptions = BuildLaunchOptions(input);
+            var timeoutMinutes = PuppeteerHelpers.GetOptionalInt(input, "timeout-minutes");
+            var maxLifetimeMinutes = PuppeteerHelpers.GetOptionalInt(input, "max-lifetime-minutes");
             IBrowser browser = null;
             IPage page = null;
 
@@ -32,42 +31,22 @@ namespace magic.lambda.puppeteer
                 browser = await Puppeteer.LaunchAsync(launchOptions);
                 page = await browser.NewPageAsync();
 
-                var lambda = PuppeteerHelpers.GetLambda(input);
+                var session = PuppeteerSessions.Create(browser, page, timeoutMinutes, maxLifetimeMinutes);
 
-                await signaler.ScopeAsync(
-                    "puppeteer.browser",
-                    browser,
-                    async () => await signaler.ScopeAsync(
-                        "puppeteer.page",
-                        page,
-                        async () => await signaler.SignalAsync("eval", lambda)));
-
-                input.Value = null;
+                input.Clear();
+                input.Value = session.Id;
             }
-            finally
+            catch
             {
                 if (page != null && !page.IsClosed)
                 {
-                    try
-                    {
-                        await page.CloseAsync();
-                    }
-                    catch
-                    {
-                        // Best effort shutdown; ignore if already closed.
-                    }
+                    try { await page.CloseAsync(); } catch { }
                 }
                 if (browser != null && !browser.IsClosed)
                 {
-                    try
-                    {
-                        await browser.CloseAsync();
-                    }
-                    catch
-                    {
-                        // Best effort shutdown; ignore if already closed.
-                    }
+                    try { await browser.CloseAsync(); } catch { }
                 }
+                throw;
             }
         }
 

@@ -9,17 +9,18 @@ using magic.signals.contracts;
 namespace magic.lambda.puppeteer
 {
     /// <summary>
-    /// [puppeteer.content] slot for returning page HTML content.
+    /// [puppeteer.close] slot for closing a Puppeteer session.
     /// </summary>
-    [Slot(Name = "puppeteer.content")]
-    public class Content : ISlotAsync
+    [Slot(Name = "puppeteer.close")]
+    public class Close : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(input);
-            var content = await page.GetContentAsync();
+            var sessionId = PuppeteerHelpers.GetRequiredSessionId(input, allowValue: true);
+            await PuppeteerSessions.CloseAsync(sessionId);
+
             input.Clear();
-            input.Value = content;
+            input.Value = null;
         }
     }
 }

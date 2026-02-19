@@ -16,7 +16,7 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
+            var page = PuppeteerHelpers.RequirePage(input);
             var title = await page.GetTitleAsync();
 
             input.Clear();

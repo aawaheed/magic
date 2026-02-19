@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using magic.node;
 using magic.node.extensions;
-using magic.signals.contracts;
 using PuppeteerSharp;
 using PuppeteerSharp.Input;
 
@@ -16,42 +15,66 @@ namespace magic.lambda.puppeteer
 {
     internal static class PuppeteerHelpers
     {
-        public static IBrowser RequireBrowser(ISignaler signaler)
+        public static PuppeteerSession RequireSession(Node input, bool allowValue = true)
         {
-            var browser = signaler.Peek<IBrowser>("puppeteer.browser");
-            if (browser == null)
-                throw new HyperlambdaException("[puppeteer.connect] must scope a browser before invoking Puppeteer slots");
-            return browser;
+            var sessionId = GetRequiredSessionId(input, allowValue);
+            return PuppeteerSessions.Get(sessionId);
         }
 
-        public static IPage RequirePage(ISignaler signaler)
+        public static IPage RequirePage(Node input)
         {
-            var page = signaler.Peek<IPage>("puppeteer.page");
-            if (page == null)
-                throw new HyperlambdaException("[puppeteer.page] must scope a page before invoking Puppeteer slots");
-            return page;
-        }
-
-        public static Node GetLambda(Node input)
-        {
-            var lambda = input.Children.FirstOrDefault(x => x.Name == ".lambda");
-            return lambda ?? input;
-        }
-
-        public static bool HasAnyChild(Node input, params string[] names)
-        {
-            if (names == null || names.Length == 0)
-                return false;
-
-            return input.Children.Any(x => names.Contains(x.Name));
+            return RequireSession(input, allowValue: true).Page;
         }
 
         public static string GetRequiredValue(Node input, string label)
         {
-            var value = input.GetEx<string>();
+            var value = GetSlotValue(input);
             if (string.IsNullOrWhiteSpace(value))
                 throw new HyperlambdaException($"[{label}] requires a non-empty value");
             return value;
+        }
+
+        public static string GetRequiredString(Node input, string name)
+        {
+            var value = GetOptionalString(input, name);
+            if (string.IsNullOrWhiteSpace(value))
+                throw new HyperlambdaException($"[{name}] is required");
+            return value;
+        }
+
+        public static string GetSlotValue(Node input)
+        {
+            if (input.Value != null)
+                return input.GetEx<string>();
+
+            return input.Children.FirstOrDefault(x => x.Name == ".")?.GetEx<string>();
+        }
+
+        public static string GetRequiredSessionId(Node input, bool allowValue = false)
+        {
+            string sessionId = null;
+            if (allowValue && input.Value != null)
+                sessionId = input.GetEx<string>();
+
+            if (string.IsNullOrWhiteSpace(sessionId))
+                sessionId = input.Children.FirstOrDefault(x => x.Name == "session_id")?.GetEx<string>();
+
+            if (string.IsNullOrWhiteSpace(sessionId))
+                throw new HyperlambdaException("[session_id] is required");
+
+            return sessionId;
+        }
+
+        public static int GetRequiredInt(Node input, string label)
+        {
+            if (input.Value != null)
+                return input.GetEx<int>();
+
+            var node = input.Children.FirstOrDefault(x => x.Name == ".");
+            if (node == null)
+                throw new HyperlambdaException($"[{label}] requires a value");
+
+            return node.GetEx<int>();
         }
 
         public static string GetOptionalString(Node input, string name)

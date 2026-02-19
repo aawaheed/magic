@@ -15,7 +15,7 @@ namespace magic.lambda.puppeteer
     {
         public void Signal(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
+            var page = PuppeteerHelpers.RequirePage(input);
 
             input.Clear();
             input.Value = page.Url;

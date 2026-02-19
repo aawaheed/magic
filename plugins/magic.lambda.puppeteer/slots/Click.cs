@@ -18,8 +18,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var selector = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.click");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var selector = PuppeteerHelpers.GetRequiredString(input, "selector");
 
             var options = new ClickOptions
             {

@@ -19,8 +19,8 @@ namespace magic.lambda.puppeteer
     {
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            var page = PuppeteerHelpers.RequirePage(signaler);
-            var selector = PuppeteerHelpers.GetRequiredValue(input, "puppeteer.press");
+            var page = PuppeteerHelpers.RequirePage(input);
+            var selector = PuppeteerHelpers.GetRequiredString(input, "selector");
             var key = PuppeteerHelpers.GetOptionalString(input, "key");
             if (string.IsNullOrWhiteSpace(key))
                 throw new HyperlambdaException("[puppeteer.press] requires a [key] child node");
