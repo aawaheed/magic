@@ -38,7 +38,7 @@ https://[BACKEND_URL]/magic/modules/[MODULE_NAME]/verify-email?token=TOKEN_HERE&
 The 'TOKEN' above is the cryptographically secure token created by hashing config secret with email, and the 'EMAIL_HERE' is the user's email.
 ```
 
-The '[DATABASE]' above is your database name, the [TABLE] is your table name, the [BACKEND_URL] is the backend URL, and the [MODULE_NAME] is the name of the module. 'TOKEN_HERE' is the hashed combination of the 'magic:auth:config' configuration setting and the user's email, and the 'EMAIL_HERE' is the email address of the user. When checking if the user's 'verified' column is 0 make sure you use the 'long' type.
+The '[DATABASE]' above is your database name, the [TABLE] is your table name, the [BACKEND_URL] is the backend URL, and the [MODULE_NAME] is the name of the module. 'TOKEN_HERE' is the hashed combination of the 'magic:auth:secret' configuration setting and the user's email, and the 'EMAIL_HERE' is the email address of the user. When checking if the user's 'verified' column is 0 make sure you use the 'long' type.
 
 ## Verify email endpoint
 
@@ -57,7 +57,7 @@ Below is a template prompt you can use to generate authenticate endpoint.
 ```plaintext
 Authenticate HTTP endpoint taking username and password. Checks if user exists in [DATABASE] database and its [TABLE] table, and if it has the value of 1 for its verified column. If it finds the record, returns a new JWT token with the username and a role of 'guest'.
 
-Notice, the password is cryptographically hashed, and must be checked as such, and the 'verfied' column is of type 'long'.
+Notice, the password is cryptographically hashed, and must be checked as such, and the 'verified' column is of type 'long'.
 ```
 
 Notice, DO NOT ask the user for a sender's email address for the register endpoint above, since the Hyperlambda generated for sending emails will by default use the server's default from email address and name.

@@ -20,7 +20,7 @@ Executable Hyperlambda file that invokes HubSpot API to insert a new contact. Ac
 - email
 ```
 
-Exchange the arguments above to match the fields supplied by the user. Then save the files as 'create-hub-spot-contact.hl' inside the module the user selected in step 2 above.
+Exchange the arguments above to match the fields supplied by the user. Then save the files as 'create-hubspot-contact.hl' inside the module the user selected in step 2 above.
 
 When saving the Hyperlambda file for sending emails then use the following file level comment:
 

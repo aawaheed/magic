@@ -34,6 +34,7 @@ add:x:./*/python.execute
    get-nodes:x:@.arguments/*/args
    get-nodes:x:@.arguments/*/stdin
    get-nodes:x:@.arguments/*/timeout
+   get-nodes:x:@.arguments/*/working-directory
 
 // Executing Python code
 python.execute

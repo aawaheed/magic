@@ -20,5 +20,5 @@ ___
 
 Notice, you can only save files in the "/etc/" and "/modules/" folders, so the `path` argument must point inside of "/etc/" or "/modules/".
 
-Notice, before pushing a repo the repo must have a remote. You can add a remote upstream using the `git.remote.add` function.
+Notice, before pushing a repo the repo must have a remote. You can add a remote upstream using the `git-add-remote` function.
  

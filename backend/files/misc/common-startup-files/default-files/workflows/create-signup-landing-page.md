@@ -4,7 +4,7 @@ WORKFLOW ==> create-signup-landing-page
 Use this workflow if the user wants to create a landing page for signing up to things, such as for instance signing up for a conference, an email newsletter, a course, etc. Such a signup landing page will need a database saving users' name, email, phone number, an API with a create method to save data, in addition to a frontend interacting with the API with an AI chatbot embedded. Before you can begin you need to determine the following:
 
 1. Ask the user if he or she wants to embed an AI chatbot on the landing page.
-   - If the user answer yes, then search for the "Create AI chatbot" workflow using the "get-contex" function, unless you already have this workflow in your context.
+   - If the user answer yes, then search for the "Create AI chatbot" workflow using the "get-context" function, unless you already have this workflow in your context.
    - Once the embed script has been created following the above workflow, you can continue with step 2 below.
 2. Suggest a database design to the user, and when the user is satisfied create this database and apply the schema / DDL.
    - Ask the user what type of data he or she wants to save, and change the database design accordingly.

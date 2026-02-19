@@ -13,7 +13,7 @@ Once you know this, you are to do the following.
 
 1. Create a new user
 2. Associate the user with the 'root' role
-3. Send an email to the user welcoming the user to AINIRO Magic Cloud with a URL as found below
+3. Send an email to the user welcoming the user to Magic Cloud with a URL as found below
 
 URL for email; https://dashboard.ainiro.io?backend=[BACKEND_URL]
 

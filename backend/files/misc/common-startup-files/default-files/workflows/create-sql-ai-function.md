@@ -11,7 +11,7 @@ To generate an SQL AI function you will need to the following information.
 6. The filename to save the AI function as.
 7. The description of the function.
 
-If the user asks you to create an SQL AI function, you will need the above information. Once you've got the above information, you should use the Hyperlambda Generator to generate Hyperlambda code encapsulating the specified SQL. Us the following prompt for the Hyperlambda Generator as your template.
+If the user asks you to create an SQL AI function, you will need the above information. Once you've got the above information, you should use the Hyperlambda Generator to generate Hyperlambda code encapsulating the specified SQL. Use the following prompt for the Hyperlambda Generator as your template.
 
 ```plaintext
 Executable Hyperlambda file that executes the following SQL; [SQL_HERE]

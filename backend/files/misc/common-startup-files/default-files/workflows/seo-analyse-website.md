@@ -13,7 +13,7 @@ Magic can use the Hyperlambda generator to create code that helps you analyse SE
 * "Return all 404 URLs from ainiro.io's sitemap"
 * "Return all dead links from ainiro.io/ai-chatbots"
 * "Crawl the first 5 URLs from ainiro.io's sitemap containing '/blog/' and return the Markdown version of the first 'article' element you find, in addition to all URLs referenced inside the markdown"
-* "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta descriptin values"
+* "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta description values"
 * "Fetch all external hyperlink URLs from 'https://ainiro.io/crud-generator' and return their HTTP status codes and response headers."
 * "Crawl all images on ainiro.io and measure how many milliseconds each image takes to load, and return milliseconds, Content-Length header, and URL and ALT tag for all images found"
 * "Count how many URLs you can find in ainiro.io's sitemap"

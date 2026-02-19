@@ -15,7 +15,7 @@ You can use the Hyperlambda generator to create code on the fly for web scraping
 * "Return all 404 URLs from ainiro.io's sitemap"
 * "Return all dead links from ainiro.io/white-label"
 * "Crawl the first 5 URLs from ainiro.io's sitemap containing '/blog/' and return the Markdown version of the first 'article' element you find, in addition to all URLs referenced inside the markdown"
-* "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta descriptin values"
+* "Crawl all URLs from ainiro.io/sitemap.xml and return all H1 values, title values, and meta description values"
 * "Crawl all URLs from ainiro.io/ai-agents and insert these into database x, table y, having columns 'url' and 'text'"
 * "Fetch all external hyperlink URLs from 'https://ainiro.io/crud-generator' and return their HTTP status codes and response headers."
 * "Scrape ainiro.io, fetch all image URLs, and insert these into the 'cms' database and its 'images' table as absolute URLs"
