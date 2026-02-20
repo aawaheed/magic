@@ -27,7 +27,8 @@ namespace magic.lambda.puppeteer
                 throw new HyperlambdaException("[puppeteer.fill] requires a [text] child node");
 
             var selectorLiteral = JsonSerializer.Serialize(selector);
-            await page.EvaluateExpressionAsync($"document.querySelector({selectorLiteral})?.value = ''");
+            var clearScript = $"if(document.querySelector({selectorLiteral})){{document.querySelector({selectorLiteral}).value = '';}}";
+            await page.EvaluateExpressionAsync(clearScript);
 
             var options = new TypeOptions
             {

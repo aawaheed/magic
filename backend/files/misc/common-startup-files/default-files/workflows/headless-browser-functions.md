@@ -22,3 +22,5 @@ Available functions:
 - `puppeteer-url` - Returns the current page URL
 - `puppeteer-screenshot` - Saves a screenshot to disk
 - `puppeteer-evaluate` - Evaluates JavaScript in the page
+
+**NOTICE** - You can only open up maximum 5 sessions at the same time, but you can reuse sessions - So keep sessions open until user tells you to close it in case the user wants to continue the session. Remind the user to tell you to close the session when done.

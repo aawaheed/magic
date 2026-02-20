@@ -8,7 +8,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-screenshot.hl]:
 {
   "session_id": "[STRING_VALUE]",
   "filename": "[STRING_VALUE]",
-  "full_page": true,
+  "full-page": true,
   "type": "png",
   "quality": 85
 }
@@ -18,7 +18,7 @@ Arguments:
 
 * `session_id` is mandatory and must be a valid Puppeteer session id
 * `filename` is mandatory and the output file path
-* `full_page` is optional and captures the full page
+* `full-page` is optional and captures the full page
 * `type` is optional and can be `png` or `jpeg`
 * `quality` is optional and is JPEG quality 0-100
 

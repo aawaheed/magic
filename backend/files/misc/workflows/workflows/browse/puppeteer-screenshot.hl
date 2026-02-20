@@ -11,7 +11,7 @@
 .arguments
    session_id:string
    filename:string
-   full_page:bool
+   full-page:bool
    type:string
    quality:int
 
@@ -24,7 +24,7 @@ validators.mandatory:x:@.arguments/*/filename
 
 // Optional arguments.
 add:x:./*/puppeteer.screenshot
-   get-nodes:x:@.arguments/*/full_page
+   get-nodes:x:@.arguments/*/full-page
    get-nodes:x:@.arguments/*/type
    get-nodes:x:@.arguments/*/quality
 
