@@ -16,5 +16,5 @@ validators.mandatory:x:@.arguments/*/session_id
 // Core invocation.
 puppeteer.url:x:@.arguments/*/session_id
 
-return
+yield
    url:x:@puppeteer.url

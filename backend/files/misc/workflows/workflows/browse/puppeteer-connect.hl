@@ -35,5 +35,5 @@ add:x:./*/puppeteer.connect
 // Core invocation.
 puppeteer.connect
 
-return
+yield
    session_id:x:@puppeteer.connect

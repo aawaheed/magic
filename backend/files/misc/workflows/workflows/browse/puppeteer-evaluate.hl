@@ -26,5 +26,5 @@ add:x:./*/puppeteer.evaluate
 puppeteer.evaluate:x:@.arguments/*/session_id
    expression:x:@.arguments/*/expression
 
-return
+yield
    result:x:@puppeteer.evaluate

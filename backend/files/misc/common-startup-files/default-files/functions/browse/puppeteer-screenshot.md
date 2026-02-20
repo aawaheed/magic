@@ -21,3 +21,5 @@ Arguments:
 * `full_page` is optional and captures the full page
 * `type` is optional and can be `png` or `jpeg`
 * `quality` is optional and is JPEG quality 0-100
+
+**NOTICE** - If the user is asking you to create a screenshot of a page, you should save it in "/etc/tmp/" with some relevant filename.
