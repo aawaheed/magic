@@ -15,9 +15,9 @@ The whole process took about 30 minutes in total, with less than a handful of er
 
 Magic asked a handful of control questions, before it automatically generated the database, created the backend code based upon the integrated Hyperlambda Generator, before finally assembling the frontend based upon the API - Complete with authentication and authorization, 100% secure (of course!) Everything deployed locally, on the integrated and built-in webserver - So no deployment pipelines are required.
 
-Below is the AI agent in Magic creating the system, 100% autonomously.
+Below is the AI agent in Magic 100% autonomously browsing the web and filling out a _"contact us"_ form.
 
-![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/code-generator.png)
+![Headless browser in Magic filling out a form](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/headless-browser-magic.png)
 
 In addition to the AI agent in its dashboard, that generates entire full stack apps using nothing but natural language input - There's a whole range of additional components in the system allowing you to automate software development, such as for instance;
 
@@ -45,6 +45,14 @@ Ths system is particularly well suited for creating AI agents. Below is a screen
 ![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
 
 The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
+
+## Headless Browser
+
+Magic contains a headless browser, PuppeteerSharp specifically, that allows you to browse the web as a human being, fill out forms, click buttons, etc. This arguably makes it become _"the secure alternative to OpenClaw"_. Example prompts you could use.
+
+* _"Go to xyz website, identify their contact us form and change URLs if required, and fill out their contact us form"_
+
+You can actually see an example of that prompt further up where I tell it to send myself an email.
 
 ## Git integration
 
