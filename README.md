@@ -52,7 +52,9 @@ Magic contains a headless browser, PuppeteerSharp specifically, that allows you 
 
 * _"Go to xyz website, identify their contact us form and change URLs if required, and fill out their contact us form"_
 
-You can actually see an example of that prompt further up where I tell it to send myself an email.
+You can see an example of that prompt in the screenshot below.
+
+![Headless browser in Magic filling out a form](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/headless-browser-magic.png)
 
 ## Git integration
 
