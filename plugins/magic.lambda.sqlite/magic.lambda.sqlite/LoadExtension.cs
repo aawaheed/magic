@@ -3,12 +3,13 @@
  */
 
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using magic.node;
 using magic.node.extensions;
 using magic.signals.contracts;
 using magic.lambda.sqlite.helpers;
-using System.Threading;
 
 namespace magic.lambda.sqlite
 {
@@ -37,6 +38,15 @@ namespace magic.lambda.sqlite
                 var file = input.Children.FirstOrDefault(x => x.Name == "file")?.GetEx<string>() ?? 
                     throw new HyperlambdaException("No [file] argument provided to [sqlite.load-extension]");
                 var proc = input.Children.FirstOrDefault(x => x.Name == "proc")?.GetEx<string>();
+
+                // Checking if we should automatically determine platform and append.
+                if (input.Children.FirstOrDefault(x => x.Name == "append-platform")?.GetEx<bool>() ?? true)
+                {
+                    if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64)
+                        file += "-arm64";
+                    else if (RuntimeInformation.ProcessArchitecture == Architecture.Arm)
+                        file += "-arm";
+                }
 
                 if (proc != null)
                     connection.LoadExtension(file, proc);

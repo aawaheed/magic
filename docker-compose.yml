@@ -3,7 +3,6 @@ version: "3.8"
 services:
   backend:
     image: servergardens/magic-backend:latest
-    platform: linux/amd64
     container_name: magic_backend
     restart: unless-stopped
 
