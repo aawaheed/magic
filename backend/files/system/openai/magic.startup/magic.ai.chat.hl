@@ -608,9 +608,13 @@ select prompt, max(completion) as completion
                                                                   get-value:x:@.new-prompt
                                                                   .:"Invocation of '"
                                                                   get-value:x:@execute/*/workflow
-                                                                  .:"' was a success."
+                                                                  .:"' was a success, but it returned nothing."
                                                                   .:"\r\n"
                                                                   .:"\r\n"
+
+                                                            // Storing result of function invocation such that we can store it in ml_requests.
+                                                            set-value:x:@.function-result
+                                                               .:Function returned nothing!
 
                                                    .catch
 
