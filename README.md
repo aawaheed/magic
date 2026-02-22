@@ -96,7 +96,7 @@ You can also persist Python scripts, and reference these later as _"tools"_, per
 
 ![Executing Python from Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/executing-python-code.png)
 
-**NOTICE** - You _obviously_ have to be logged in as root to generate and execute both Python scripts, Terminal scripts, and C# extensions. Magic has a unique security model however, that eliminates entire _axioms_ of security-related _"holes"_.
+**NOTICE** - You _obviously_ have to be logged in as root to generate and execute both Python scripts, Terminal scripts, and to create C# extensions. Magic has a unique security model however, that eliminates entire _axioms_ of security-related _"holes"_.
 
 ## Deploy anywhere
 
