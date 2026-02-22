@@ -36,6 +36,12 @@ In addition to the AI agent in its dashboard, that generates entire full stack a
 * Plugin repository for installing both frontend types of websites, and backend code
 * Plus many more ...
 
+Below is a screenshot from Hyper IDE.
+
+![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
+
+The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
+
 ## Also a web server
 
 Magic is also a web server, allowing you to _instantly deploy_ everything, without compilation, build processes, complex pipeline connectors, etc. So the process is as follows;
@@ -46,11 +52,7 @@ Magic is also a web server, allowing you to _instantly deploy_ everything, witho
 
 In addition to having the ability to generate pure JS, CSS, and HTML frontends, that's immediately being served, without any deployment pipelines - The system also comes with several pre-built frontend systems out of the box, such as the [AI Expert System](https://ainiro.io/ai-expert-system), which allows you to serve password protected AI agents, and/or for that matter deliver entire SaaS AI solutions.
 
-Ths system is particularly well suited for creating AI agents. Below is a screenshot from Hyper IDE.
-
-![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
-
-The above illustrates how Magic facilitates for _"comment driven development"_, as in provide it with a declarative comment, and have the system implement the code.
+The system is particularly well suited for creating AI agents.
 
 ## Headless Browser
 
