@@ -15,9 +15,11 @@ The whole process took about 30 minutes in total, with less than a handful of er
 
 ![CRM system for car dealership](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/vip-crm.png)
 
-Magic asked a handful of control questions, before it automatically generated the database, created the backend code based upon the integrated Hyperlambda Generator, before finally assembling the frontend based upon the API - Complete with authentication and authorization, 100% secure (of course!) Everything deployed locally, on the integrated and built-in webserver - So no deployment pipelines are required.
+Magic asked a handful of control questions, before it automatically generated the database, created the backend code based upon the integrated Hyperlambda Generator, before finally assembling the frontend based upon the API - Complete with authentication and authorization, 100% secure (of course!) Everything deployed locally, on the integrated and built-in webserver.
 
-Below is the AI agent in Magic 100% autonomously browsing the web and filling out a _"contact us"_ form.
+> Once you save the code, you can test it! No _"deployment required"_ to test code!
+
+Below is the AI agent in Magic 100% autonomously browsing the web and filling out a _"contact us"_ form. This particular example is using the integrated headless browser, that allows your AI agent to _"see"_ the web, autonomously browse it, and solve tasks.
 
 ![Headless browser in Magic filling out a form](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/headless-browser-magic.png)
 
