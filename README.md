@@ -84,7 +84,7 @@ If you choose to create AI agents instead of full stack app, something the syste
 
 ## 20x times faster than Python
 
-When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English. Hyperlambda solutions are in general on pair with C# combined with Entity Framework. Below is Hyperlambda versus Fast API and Flask.
+When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster than similar solutions built in Python, such as Fast API or Flask. Compared to LangChain, it's probably around 50 times faster, in addition to making it much easier to create workflows, due to being able to create backend code using English, instead of _"drag and drop WYWIWYG hell"_. Hyperlambda solutions are in general on pair with C# combined with Entity Framework, both on scalabaility and performance. Below is Hyperlambda versus Fast API and Flask.
 
 ![Python versus Hyperlambda](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/hyperlambda-performance.png)
 
@@ -139,13 +139,19 @@ To use the system you'll need an OpenAI API key. You can create one [here](https
 
 **NOTICE** - To gain access to `gpt-5.2-codex`, you might have to deposit $51 into your OpenAI API account. Magic depends upon OpenAI, and without depositing money into OpenAI, you won't get access to GPT-5.2-codex, which is the default model in Magic for _"vibe coding"_. You might get GPT-4.1 to work during vibe coding, but 5.2-codex is __much better__!
 
+If you are absolutely allergic to OpenAI, there are Ollama and HuggingFace plugins for the system, allowing you to _"override"_ the inference functions with Ollama or HuggingFace models and endpoints - But vectorisation still can only be done with OpenAI's embeddings API.
+
 ## LLM
 
-The system internally is using OpenAI's GPT-5.2, with some reasoning turned on - But everything is tunable, and you can with a little bit of effort exchange the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems - Even if you were to loose the Hyperlambda Generator for some reasons.
+The system internally is using OpenAI's GPT-5.2-codex, with minimum reasoning turned on - But everything is tunable, and you can with a little bit of effort exchange the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems - Even if you were to loose the Hyperlambda Generator for some reasons.
 
 The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
 
 ![Natural Language API](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/natural-language-api.png)
+
+The point about Hyperlambda, is that it's first of all running in a sandbox environment, so it doesn't have access to the file system outside of its own sandbox. In addition, it's got the ability to whitelist individual functions, according to its built-in RBAC system, allowing for your server to accept code as input, and still securely execute it - Without even knowing its origin.
+
+The above is only possible by restricting functiuon invocations at the execution level, which as far as I know, Hyperlambda is the _only_ programming language in the world that currently does.
 
 ## Technology
 
