@@ -7,7 +7,7 @@ Magic is built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://
 
 **Hence, ZERO lockin!!**
 
-Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL Server capabilities.
+Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL Server capabilities. Basically, run the whole shebang on _your own hardware_ if you wish ...
 
 ## Open Source _"Vibe Coding"_ platform
 
