@@ -155,6 +155,8 @@ volumes:
 
 Save it somewhere, and execute `docker compose up` or something, visit `localhost:5555`, login with _"root"_ / _"root"_, and configure the system. You can [read more here](https://docs.ainiro.io/getting-started/) for alternatives, such as running the codebase directly on your own machine.
 
+You can also watch me [guide you through the setup process here](https://www.youtube.com/watch?v=k6eSKxc6oM8).
+
 ### Bring your own OpenAI API key
 
 To use the system you'll need an OpenAI API key. You can create one [here](https://platform.openai.com/api-keys).
