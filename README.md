@@ -171,6 +171,8 @@ The system internally is using OpenAI's GPT-5.2-codex, with minimum reasoning tu
 
 The Hyperlambda Generator is however a fairly unique thing, due to Hyperlambda's integrated security model, something that allows for dynamically generating tools on the fly, and securely executing the generated code on the backend. Something demonstrated in our [natural language API](https://ainiro.io/natural-language-api).
 
+The following is a screenshot from a publicly available page (natural language API), where we accept input from any random visitor. The input is then transformed into Hyperlambda using our LLM, for then to be executed __in-process__ behind our DMZ in our militarized zone. We've offered hackers $100 if they can somehow exploit the endpoint to access PII or extract information using it. So far none have claimed money from us. We've had this offer out now for 3 months without any succeeding so far.
+
 ![Natural Language API](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/natural-language-api.png)
 
 The point about Hyperlambda, is that it's first of all running in a sandbox environment, so it doesn't have access to the file system outside of its own sandbox. In addition, it's got the ability to whitelist individual functions, according to its built-in RBAC system, allowing for your server to accept code as input, and still securely execute it - Without even knowing its origin.
