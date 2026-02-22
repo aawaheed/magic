@@ -1,9 +1,11 @@
 
 # Magic Cloud - Fully Autonomous AI-based Software Development Assistant
 
-Magic is built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io/hyperlambda/), a DSL specifically created to solve anything related to backend software development, and to be the _"AI agent programming language"_. Create full stack apps, in an open source environment, resembling Lovable, Bolt, or Replit. Use natural language as input, and host it on your own hardware if you wish.
+Magic is built on top of [OpenAI](https://openai.com) and [Hyperlambda](https://ainiro.io/hyperlambda/), a DSL specifically created to solve anything related to backend software development, and to be _"The AI agent programming language"_. Create full stack apps, in an open source environment, resembling Lovable, Bolt, or Replit. Use natural language as input, and host it on your own hardware if you wish.
 
 **No additional "backend connectors" or "database connectors" required**!
+
+**Hence, ZERO lockin!!**
 
 Everything is 100% integrated, thx to SQLite, with optional MySQL, PostgreSQL, and Microsoft SQL Server capabilities. Below is an app that was created with the following prompt; 
 
