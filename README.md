@@ -88,13 +88,15 @@ Below is how the integrated AI agents objectively compares Magic Cloud to Lovabl
 
 ## Python, Terminal, and C# integration
 
-Generate and execute Python scripts on the fly, and have the LLM execute these as _"tools"_. In addition, you can use BASH and the underlying terminal, and you can create Hyperlambda extension keywords using C#.
+Generate and execute Python scripts on the fly, and have the LLM use these as _"tools"_. In addition, you can use BASH and the underlying terminal, and you can create Hyperlambda extension keywords using C#.
 
 Since Magic is running in a protected service account by default, this is actually quite safe - However, obviously do *not* open up endpoints allowing 3rd party users to generate and execute arbitrary Python code.
 
 You can also persist Python scripts, and reference these later as _"tools"_, permanently widening the capabilities of AI agents, or for that matter integrate Python execution into your endpoints and services.
 
 ![Executing Python from Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/assets/images/executing-python-code.png)
+
+**NOTICE** - You _obviously_ have to be logged in as root to generate and execute both Python scripts, Terminal scripts, and C# extensions.
 
 ## Deploy anywhere
 
