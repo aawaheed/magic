@@ -19,6 +19,8 @@ Magic asked a handful of control questions, before it automatically generated th
 
 > Once you save the code, you can test it! No _"deployment required"_ to test code!
 
+## Bad ass AI Agent!
+
 Below is the AI agent in Magic 100% autonomously browsing the web and filling out a _"contact us"_ form. This particular example is using the integrated headless browser, that allows your AI agent to _"see"_ the web, autonomously browse it, and solve tasks.
 
 ![Headless browser in Magic filling out a form](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/headless-browser-magic.png)
