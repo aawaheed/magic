@@ -181,7 +181,7 @@ The above is only possible by restricting functiuon invocations at the execution
 
 ## Technology
 
-Magic Cloud is built in .Net Core 10, soon upgrading to 10, and its dashboard is Angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its unique technology below.
+Magic Cloud is built in .Net Core 10, and its dashboard is Angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its unique technology below.
 
 * [Make C# more Dynamic with Hyperlambda](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda)
 * [Active events, one design pattern instead of a dozen](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/march/patterns-active-events-one-design-pattern-instead-of-a-dozen)
