@@ -54,7 +54,7 @@ Magic is also a web server, allowing you to _instantly deploy_ everything, witho
 
 1. Create your prompt
 2. Press enter
-3. It's **in production**
+3. Test!!
 
 In addition to having the ability to generate pure JS, CSS, and HTML frontends, that's immediately being served, without any deployment pipelines - The system also comes with several pre-built frontend systems out of the box, such as the [AI Expert System](https://ainiro.io/ai-expert-system), which allows you to serve password protected AI agents, and/or for that matter deliver entire SaaS AI solutions.
 
