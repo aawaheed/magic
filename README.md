@@ -58,7 +58,7 @@ Magic is also a web server, allowing you to _instantly deploy_ everything, witho
 
 ... or use the integrated headless browser to automatically generate AI workflows that _tests your system automatically once done_!
 
-This comes in stark contrast to other less sophisticated tools, such as Lovable and Bolt44 that requires you to deploy into _2 different 3rd party providers before you can even test your code_.
+This comes in stark contrast to other less sophisticated tools, such as Lovable and Bolt44 that requires you to deploy into _2 different 3rd party providers before you can even test your code_. Hence, the development model in Magic is probably for most practical concerns roughly 10x faster and more optimised ...
 
 In addition to having the ability to generate pure JS, CSS, and HTML frontends, that's immediately being served, without any deployment pipelines - The system also comes with several pre-built frontend systems out of the box, such as the [AI Expert System](https://ainiro.io/ai-expert-system), which allows you to serve password protected AI agents, and/or for that matter deliver entire SaaS AI solutions.
 
