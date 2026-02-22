@@ -100,7 +100,7 @@ You can also persist Python scripts, and reference these later as _"tools"_, per
 
 ## Deploy anywhere
 
-If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on your website. Below is our AI chatbot. You can try it [here](https://ainiro.io)
+If you choose to create AI agents instead of full stack app, something the system is particularly well suited for, you can choose to deliver these as password protected AI expert systems, or embeddable AI chatbots, embedded on some website. Below is our AI chatbot. You can try it [here](https://ainiro.io)
 
 ![Embeddable AI chatbot](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-chatbot.png)
 
