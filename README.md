@@ -110,7 +110,7 @@ When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster
 
 ![Python versus Hyperlambda](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/hyperlambda-performance.png)
 
-Magic Cloud is built in C# and .Net Core.
+Magic Cloud is built in C# and .Net Core 10.
 
 ## Getting started
 
@@ -177,7 +177,7 @@ The above is only possible by restricting functiuon invocations at the execution
 
 ## Technology
 
-Magic Cloud is built in .Net Core 9, soon upgrading to 10, and its dashboard is Angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its unique technology below.
+Magic Cloud is built in .Net Core 10, soon upgrading to 10, and its dashboard is Angular. Hyperlambda again was entirely invented and created by yours truly, and you can find some articles about its unique technology below.
 
 * [Make C# more Dynamic with Hyperlambda](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/june/csharp-make-csharp-more-dynamic-with-hyperlambda)
 * [Active events, one design pattern instead of a dozen](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/march/patterns-active-events-one-design-pattern-instead-of-a-dozen)
