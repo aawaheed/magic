@@ -66,7 +66,7 @@ The system is particularly well suited for creating AI agents.
 
 ## Headless Browser
 
-Magic contains a headless browser, PuppeteerSharp specifically, that allows you to browse the web as a human being, fill out forms, click buttons, etc. This arguably makes it become _"the secure alternative to OpenClaw"_. Example prompts you could use.
+Magic contains a headless browser, PuppeteerSharp specifically, that allows you to browse the web as a human being, fill out forms, click buttons, etc.
 
 * _"Go to xyz website, identify their contact us form and change URLs if required, and fill out their contact us form"_
 
