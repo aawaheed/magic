@@ -188,6 +188,8 @@ Magic Cloud is built in .Net Core 10, and its dashboard is Angular. Hyperlambda 
 
 However, Hyperlambda, and hence Magic Cloud by association, was built on a unique design pattern called _"Active Events"_, or _"Slots and Signals"_, which is an in-process model for executing _"dynamic functions"_, that's 100% unique for Magic Cloud. Active Events is at the core of Hyperlambda, and completely eliminates 100% of all cross projects dependencies, resulting in 100% _"perfect"_ encapsulation and cohesion.
 
+The above design pattern, and Hyperlambda combined, is what facilitates for such extreme levels of security in Magic Cloud, where we can confidently trust that no AI-generated code does anything harmful - Simply because it doesn't have _permissions to do something malicious_ - Unless somebody explicitly gave it such permissions.
+
 For instance, polymorphism is implemented at the function invocation level, and not the class or type. I'm so confident in its codebase quality, I'll give you $100 if you can find a (severe security) related bug in its backend!
 
 ## Maintenance
