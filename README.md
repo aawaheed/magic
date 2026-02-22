@@ -29,6 +29,8 @@ Below is the AI agent in Magic 100% autonomously browsing the web and filling ou
 
 ![Headless browser in Magic filling out a form](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/headless-browser-magic.png)
 
+However, you can also vibe code AI agents integrated with your CRM system, ERP system, legacy databases, _"whatever"_. Magic fundamentally _is_ an AI agent, for building software and AI agents. What you use it for, is up to you.
+
 In addition to the AI agent in its dashboard, that generates entire full stack apps using nothing but natural language input - There's a whole range of additional components in the system allowing you to automate software development, such as for instance;
 
 * CRUD generator, creating API endpoint using database meta information
