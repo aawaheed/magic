@@ -67,8 +67,9 @@ ENV LD_LIBRARY_PATH="/magic/sqlite-plugins"
 ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
 
 # Deterministic UID/GID
-RUN groupadd -g 1000 magic && \
-    useradd -u 1000 -g 1000 -m magic
+RUN GROUP_NAME="$(getent group 1000 | cut -d: -f1)" && \
+    if [ -z "$GROUP_NAME" ]; then groupadd -g 1000 magic && GROUP_NAME=magic; fi && \
+    if ! id -u magic >/dev/null 2>&1; then useradd -u 1000 -g "$GROUP_NAME" -m magic; fi
 
 # Ensure runtime directories exist
 RUN mkdir -p /magic/files/data \
