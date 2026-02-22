@@ -76,11 +76,13 @@ You can see an example of that prompt in the screenshot below.
 
 ## Git integration
 
-Contrary to other vibe coding tools, Magic Cloud was built for software developers from day 1. That means among other things it's got Git integrated as an integral part of the platform. This allows you to setup any amount of pipelines you wish, using Git for code, and GitHub workflows for deployments.
+Contrary to other vibe coding tools, Magic Cloud was built for software developers from day 1. That means among other things it's got Git integrated as an integral part of the platform. This allows you to setup any amount of pipelines you wish, using Git for code, or GitHub workflows for deployments.
 
 1. Create a new project
-2. Vibe code all the tools and even the GitHub workflow
+2. Vibe code all the tools and even your GitHub workflows if you wish
 3. Commit and push
+
+Below is how the integrated AI agents objectively compares Magic Cloud to Lovable and Bolt44.
 
 ![A comparison between Lovable, Bolt44 and Magic Cloud](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/lovable-bolt44-versus-magic-cloud.png)
 
