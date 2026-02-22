@@ -66,10 +66,10 @@ RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
 ENV LD_LIBRARY_PATH="/magic/sqlite-plugins"
 ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
 
-# Deterministic UID/GID
-RUN GROUP_NAME="$(getent group 1000 | cut -d: -f1)" && \
-    if [ -z "$GROUP_NAME" ]; then groupadd -g 1000 magic && GROUP_NAME=magic; fi && \
-    if ! id -u magic >/dev/null 2>&1; then useradd -u 1000 -g "$GROUP_NAME" -m magic; fi
+# Deterministic UID/GID (aligned with K8S fsGroup=999)
+RUN GROUP_NAME="$(getent group 999 | cut -d: -f1)" && \
+    if [ -z "$GROUP_NAME" ]; then groupadd -g 999 magic && GROUP_NAME=magic; fi && \
+    if ! getent passwd 999 >/dev/null 2>&1; then useradd -u 999 -g "$GROUP_NAME" -m magic; fi
 
 # Ensure runtime directories exist
 RUN mkdir -p /magic/files/data \
@@ -77,9 +77,9 @@ RUN mkdir -p /magic/files/data \
              /magic/files/config \
              /magic/files/modules
 
-RUN chown -R 1000:1000 /magic
+RUN chown -R 999:999 /magic
 
-USER 1000:1000
+USER 999:999
 
 EXPOSE 4444
 ENV ASPNETCORE_URLS="http://+:4444"
