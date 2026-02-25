@@ -1,11 +1,11 @@
 /*
- * Example of how to use PuppeteerSharp as a headless browser.
+ * Uses a headless browser to navigate to ainiro.io and capture a screenshot
  */
-.session_id
-set-value:x:@.session_id
-   puppeteer.connect
-puppeteer.goto:x:@.session_id
+puppeteer.connect
+   executable-path:/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+puppeteer.goto:x:@puppeteer.connect
    url:"https://ainiro.io"
-puppeteer.title:x:@.session_id
-puppeteer.url:x:@.session_id
-puppeteer.close:x:@.session_id
+puppeteer.screenshot:x:@puppeteer.connect
+   filename:/etc/tmp/ainiro.png
+   full-page:true
+puppeteer.close:x:@puppeteer.connect

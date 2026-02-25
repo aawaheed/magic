@@ -11,9 +11,9 @@ Provide a guided process for building interactive analytics dashboards that visu
    - You have to create an API to connect to the dashboard.
 2. Retrieve the schema or data structure to understand available metrics.
 3. Let the user choose chart types (bar, line, pie, table, etc.).
-4. Generate HTML widgets using Chart.js or Mermaid for visualisation.
-5. Combine widgets into a responsive dashboard layout.
-6. Save the dashboard inside the /etc/www/ folder as a SPA webpage.
+4. Generate HTML using Chart.js, D3.js, Three.js, or Mermaid for visualisation.
+5. Combine HTML, CSS and JS into a responsive dashboard layout.
+6. Save the dashboard inside the /etc/www/UNIQUE_EXPOAINABLE_NAME folder as a SPA webpage. Choose a relevant folder name for the app.
 
 ## Rules for Hyperlambda Generator
 
@@ -23,4 +23,4 @@ If you need to use the Hyperlambda Generator to create KPI endpoints, or endpoin
 
 ## Outcome
 
-A reusable analytics dashboard that displays key metrics in real time, with export and sharing options.
+A reusable analytics dashboard that displays key metrics.

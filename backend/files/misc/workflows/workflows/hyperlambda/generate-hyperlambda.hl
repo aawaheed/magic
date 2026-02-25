@@ -16,11 +16,20 @@ auth.ticket.verify:root
 try
    add:x:./*/http.post/*/payload
       get-nodes:x:@.arguments/*
+   .start
+   set-value:x:-
+      date.now
    http.post:"https://ainiro.io/magic/modules/hyperlambda-generator/chat"
       convert:true
       payload
+   .total
+   set-value:x:-
+      math.subtract
+         date.now
+         get-value:x:@.start
    yield
       code:x:@http.post/*/content/*/result
+      time_spent:x:@.total
 
 .catch
    lambda2hyper:x:../*
