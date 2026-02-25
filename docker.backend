@@ -26,10 +26,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Minimal runtime dependencies only
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        ca-certificates \
         git \
+        gnupg \
         python3 \
         python3-pip \
-        chromium \
+        wget \
         fonts-liberation \
         fonts-noto-color-emoji \
         libasound2t64 \
@@ -56,6 +58,11 @@ RUN apt-get update && \
         libstdc++6 \
         libgcc-s1 \
         libgomp1 && \
+    wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /usr/share/keyrings/google-chrome.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
+      > /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends google-chrome-stable && \
     rm -rf /var/lib/apt/lists/*
 
 # Multi-arch safe sqlite symlink
@@ -64,7 +71,7 @@ RUN SQLITE_PATH=$(find /usr/lib -name libsqlite3.so.0 | head -n 1) && \
 
 # Plugin path
 ENV LD_LIBRARY_PATH="/magic/sqlite-plugins"
-ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
+ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/google-chrome"
 
 # Deterministic UID/GID (aligned with K8S fsGroup=999)
 RUN GROUP_NAME="$(getent group 999 | cut -d: -f1)" && \
