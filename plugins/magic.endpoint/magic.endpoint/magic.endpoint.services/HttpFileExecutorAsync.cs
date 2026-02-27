@@ -198,18 +198,36 @@ namespace magic.endpoint.services
                     if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath(codebehindFile2)))
                     {
                         var tmp = await ServeDynamicPage(request, not_found, codebehindFile2); // Codebehind file exists.
+                        tmp.Headers["Content-Type"] = "text/html";
                         tmp.Result = 404;
                         return tmp;
                     }
 
                     // No codebehind file, serving file as static content file.
                     var tmp2 = await ServeStaticFileAsync(not_found);
+                    tmp2.Headers["Content-Type"] = "text/html";
                     tmp2.Result = 404;
                     return tmp2;
                 }
-                return new MagicResponse { Content = "Not found", Result = 404 };
+                return new MagicResponse
+                {
+                    Content = "Not found",
+                    Result = 404,
+                    Headers = new Dictionary<string, string>
+                    {
+                        { "Content-Type", "text/html" }
+                    }
+                };
             }
-            return new MagicResponse { Content = "Not found", Result = 404 };
+            return new MagicResponse
+            {
+                Content = "Not found",
+                Result = 404,
+                Headers = new Dictionary<string, string>
+                {
+                    { "Content-Type", "text/html" }
+                }
+            };
         }
 
         /*

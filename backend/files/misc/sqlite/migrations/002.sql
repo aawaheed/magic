@@ -1,0 +1,1 @@
+insert into roles(name, description) values ('guest', 'Least priviledge, in addition to default OIDC role')
