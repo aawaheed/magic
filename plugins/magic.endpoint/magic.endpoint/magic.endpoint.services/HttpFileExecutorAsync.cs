@@ -172,7 +172,7 @@ namespace magic.endpoint.services
                 return await Serve404Page(request);
 
             // Checking if Hyperlambda codebehind file exists.
-            var codebehindFile = (file.Contains('.') ? file.Substring(0, file.LastIndexOf('.')) : file.Substring(0, file.Length - 6)) + ".hl";
+            var codebehindFile = (file.Contains('.') ? file.Substring(0, file.LastIndexOf('.')) : file) + ".hl";
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath(codebehindFile)))
                 return await ServeDynamicPage(request, file, codebehindFile); // Codebehind file exists.
 
@@ -260,17 +260,17 @@ namespace magic.endpoint.services
          */
         async Task<string> GetHtmlFilename(string url)
         {
-            // Checking if this is a request for a folder, at which point we append "index.html" to it.
+            // Checking if this is a request for root folder, at which point we append "index.html" to it.
             if (url == "")
-                url = "/index";
-            if (url.StartsWith('/'))
+                url = "index";
+            else if (url.StartsWith('/'))
                 url = url.Substring(1);
 
             // Trying to resolve URL as a direct filename request.
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url)))
                 return "/etc/www/" + url;
 
-            // Trying to resolve URL as a direct filename request.
+            // Trying to resolve URL as a direct filename request with HTML extension.
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath("/etc/www/" + url + ".html")))
                 return "/etc/www/" + url + ".html";
 
