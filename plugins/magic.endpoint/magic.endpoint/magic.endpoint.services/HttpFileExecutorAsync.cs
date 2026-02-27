@@ -172,7 +172,7 @@ namespace magic.endpoint.services
                 return await Serve404Page(request);
 
             // Checking if Hyperlambda codebehind file exists.
-            var codebehindFile = (file.Contains('.') ? file.Substring(0, file.LastIndexOf('.')) : file.Substring(0, file.Length - 5)) + ".hl";
+            var codebehindFile = (file.Contains('.') ? file.Substring(0, file.LastIndexOf('.')) : file.Substring(0, file.Length - 6)) + ".hl";
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath(codebehindFile)))
                 return await ServeDynamicPage(request, file, codebehindFile); // Codebehind file exists.
 
