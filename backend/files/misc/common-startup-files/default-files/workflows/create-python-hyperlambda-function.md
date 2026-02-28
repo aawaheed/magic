@@ -1,0 +1,26 @@
+# Workflow; Create Python Hyperlambda function
+WORKFLOW ==> create-python-hyperlambda-function
+
+## Purpose
+
+Allow the user to wrap Python scripts inside a Hyperlambda HTTP endpoint, and/or executable Hyperlambda file.
+
+## Steps
+
+1. Ask the user what he or she wants the Python code to actually do.
+2. Show the Python code to the user and ask the user to accept the code.
+3. Save the Python code inside of "/etc/python/" with a relevant filename using the `create-file` function.
+   - Search for the `create-file` function using `get-context` unless you already know its signature and use this function to save the Python code..
+   - Use the `create-folder` to ensure the folder already exists. Search for this function unless you already know its signature.
+4. Use the Hyperlambda Generator and its `generate-hyperlambda` function to generate Hyperlambda code that executes the Python script, and optionally returns the result to caller. You can find an example prompt below.
+   - Make sure you offer the user to secure the endpoint or Hyperlambda file such that only users belonging to some specific role(s) can execute it.
+5. Once the user is satisfied, offer the user to save the generated Hyperlambda in a module.
+
+```plaintext
+HTTP endpoint that executes the Python file found at `/etc/python/WHATEVER_FILE_NAME_HERE.py` and returns the result to caller. Accepts the following arguments it'll pass into the Python script.
+
+- `arg1` - Description of what arg1 does, and what type of argument it is.
+- `arg2` - Description of what arg2 does, and what type of argument it is.
+```
+
+Show the prompt to the user and immediately generate the Hyperlambda and show the resulting Hyperlambda to the user, and ask the user if you should save the Hyperlambda file inside a module. Notice, you'll have to ask the user what module the user wants to save the Hyperlambda file in. Offer the user to create a new module using the `create-module` function.
