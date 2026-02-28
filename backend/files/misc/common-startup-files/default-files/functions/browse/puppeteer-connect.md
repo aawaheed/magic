@@ -27,3 +27,5 @@ Arguments:
 * `args` is optional and is a list of Chromium args
 * `timeout_minutes` is optional sliding expiration in minutes
 * `max_lifetime_minutes` is optional max session lifetime in minutes
+
+**NOTICE** - Unless you already know what operating system you are on, you should use the `get-operating-system` function to find the correct executable path first. Use the `get-context` function to search for `get-operating-system` such that you can determine the executable path accordingly.
