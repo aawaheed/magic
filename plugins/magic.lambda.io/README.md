@@ -16,6 +16,7 @@ This project provides file/folder slots for Magic. More specifically, it provide
 * __[io.file.save]__ - Saves a file on disc on your server
 * __[save-file]__ - Alias for **[io.file.save]**
 * __[io.file.save.binary]__ - Saves a file on disc on your server but contrary to the above assumes content to save is binary
+* __[io.file.patch]__ - Applies a unified diff patch to a file on disc on your server
 * __[io.file.exists]__ - Returns true if file exists, otherwise false.
 * __[io.file.delete]__ - Deletes a file on your server.
 * __[io.file.copy]__ - Copies a file on your server.
@@ -129,6 +130,23 @@ io.file.save:/misc/README2.md
 ```
 
 **Notice** - If you want to save binary content you should use the **[io.file.save.binary]** override.
+
+### How to use [io.file.patch]
+
+Applies a unified diff patch to the specified file on disc. The patch is provided as the first child argument.
+This slot evaluates its children before applying the patch, which allows you to dynamically create the patch
+using other slots. The patch must target a single file.
+
+```
+io.file.patch:/misc/README2.md
+   .:@"
+@@ -1,3 +1,4 @@
+ This is line 1
+ This is line 2
+ This is line 3
++This is line 4
+"
+```
 
 ### How to use [io.file.exists]
 
