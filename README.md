@@ -165,6 +165,17 @@ To use the system you'll need an OpenAI API key. You can create one [here](https
 
 If you are absolutely allergic to OpenAI, there are Ollama and HuggingFace plugins for the system, allowing you to _"override"_ the inference functions with Ollama or HuggingFace models and endpoints - But vectorisation still can only be done with OpenAI's embeddings API.
 
+### DIY Home Cloud
+
+Magic easily installs on for instance a Mac Mini, using the Docker images. By combining it with CloudFlare tunnel, you can setup a web server in a couple of minutes, serving applications and data out of your home. The link below is running out of my house in Larnaca / Cyprus, using a CloudFlare tunnel. We've tested it from US, Norway, and a whole range of countries, and it's relatively responsive, considering the connection it's being served over.
+
+* [CRM dashboard served from DIY web server](https://home.ainiro.io/analytics-crm)
+
+Below is a screenshot of the system.
+
+![Analytucs CRM Dashboard](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/analytics-crm-screenshot.png)
+
+
 ## LLM
 
 The system internally is using OpenAI's GPT-5.2-codex, with minimum reasoning turned on - But everything is tunable, and you can with a little bit of effort exchange the integrated defaults with Ollama or Hugging Face models. However, the Hyperlambda Generator's training dataset is _not_ made public, and we have no plans to do so either. This means that worst case scenario, you're still running your already generated systems perfectly fine, without the ability to generate new systems - Even if you were to loose the Hyperlambda Generator for some reasons.
