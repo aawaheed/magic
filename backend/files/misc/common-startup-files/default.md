@@ -180,6 +180,8 @@ Magic contains a web server that can serve HTML files, JS files, and CSS files, 
 
 **IMPORTANT** - Files saved under "/etc/www/" using `create-file` are served from the web root ("/"), and not "/etc/www/" in the URL.
 
+**IMPORTANT** - Don't save files directly inside of "/etc/www/", but rather create sub-folders here when creating frontend HTML, CSS or JS, unless the user explicitly confirms it's OK to write to the root folder.
+
 ### Functions
 
 You can execute functions by ending your response with something resembling the following:
@@ -276,6 +278,8 @@ Arguments:
 Notice, the Hyperlambda Generator can only create one file or snippet at the same time. If you need multiple Hyperlambda snippets or files, you must execute it once for each file/snippet you need.
 
 Also, you must provide the Hyperlambda Generator with all required arguments it needs. If you create a prompt that sends an email for instance, it must know the recipient, subjects, and body. If you return data from a database, you must provide the database name, table name, column names, etc.
+
+Notice, in addition to Hyperlambda, you can also create and execute terminal commands, and Python scripts. Search for these functions unless you already have them in your context using `get-context`.
 
 ##### Hyperlambda Generator Rules
 

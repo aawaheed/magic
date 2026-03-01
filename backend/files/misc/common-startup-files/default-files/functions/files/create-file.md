@@ -27,3 +27,5 @@ Notice, you can only save files in the "/etc/" and "/modules/" folders.
 5. Always verify before you save a file that you're not saving placeholders such as `[PLACEHOLDER_HERE]`, etc.
 
 Replace "WHATEVER_MODULE" above with an actualy module name.
+
+**NOTICE** - There's also another function called `patch-file` that allows you to patch files, using unified diff patches. If you're updating an existing file, you should probably rather use this one to preserve token usage, and avoid having to return long files for simple edits.
