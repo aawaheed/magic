@@ -115,7 +115,7 @@ namespace magic.lambda.io.file
                     continue;
                 }
 
-                var (oldStart, oldCount, _) = ParseHunkHeader(line);
+                var (oldStart, _, _) = ParseHunkHeader(line);
                 var targetIndex = oldStart - 1;
 
                 // Copy unchanged lines before hunk.
@@ -133,10 +133,17 @@ namespace magic.lambda.io.file
                         break;
 
                     if (line.Length == 0)
-                        throw new HyperlambdaException("Invalid patch line.");
+                    {
+                        // Treat empty line as a context line.
+                        EnsureLineMatch(originalLines, originalIndex, string.Empty);
+                        output.Add(originalLines[originalIndex]);
+                        originalIndex++;
+                        patchIndex++;
+                        continue;
+                    }
 
                     var tag = line[0];
-                    var text = line.Substring(1);
+                    var text = line.Length > 1 ? line.Substring(1) : string.Empty;
                     switch (tag)
                     {
                         case ' ':
@@ -165,9 +172,7 @@ namespace magic.lambda.io.file
                     patchIndex++;
                 }
 
-                // Validate we consumed the expected number of original lines for the hunk.
-                if (oldCount >= 0 && originalIndex < targetIndex + oldCount)
-                    throw new HyperlambdaException("Patch could not be applied.");
+                // We intentionally do not enforce hunk line counts to allow standard diffs with extra context.
             }
 
             // Append remaining original lines.
