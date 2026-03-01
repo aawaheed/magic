@@ -175,6 +175,7 @@ Below is a screenshot of the system.
 
 ![Analytucs CRM Dashboard](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/analytics-crm-screenshot.png)
 
+Use such a setup to completely bypass any censorship, and or spying, allowing you to completely avoid both spying and censoring of your content or applications.
 
 ## LLM
 
