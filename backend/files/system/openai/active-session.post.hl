@@ -66,5 +66,12 @@ select content from ml_history where session_id = @session_id"
                      .:"\n"
       set-value:x:@.dp/#/./*/content
          get-value:x:@.res
-   lambda2json:x:@hyper2lambda/*
+   .response
+   for-each:x:@hyper2lambda/*
+      if
+         not-null:x:@.dp/#/*/content
+         .lambda
+            add:x:@.response
+               get-nodes:x:@.dp/#
+   lambda2json:x:@.response/*
    return:x:@lambda2json
