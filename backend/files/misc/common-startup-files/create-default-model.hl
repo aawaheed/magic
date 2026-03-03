@@ -36,6 +36,9 @@ try
                   greeting:Where the Machine Creates the Code
                   system_message:x:@io.file.load
                   use_embeddings:int:0
+                  conversation_starters:@"* What can you do?
+* List all functions
+* Create me a full stack app with a database and an API"
 
       else
 
@@ -58,6 +61,9 @@ try
                max_session_items:int:100
                system_message:x:@io.file.load
                use_embeddings:int:0
+               conversation_starters:@"* What can you do?
+* List all functions
+* Create me a full stack app with a database and an API"
             where
                and
                   type.eq:default

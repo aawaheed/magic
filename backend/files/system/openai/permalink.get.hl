@@ -63,7 +63,7 @@ data.connect:[generic|magic]
          messages
             .
                role:system
-               content:Create an SEO optimised summary of the following content intended to serve as a title
+               content:Create an SEO optimised H1 text value of the following content
             .
                role:user
                content:x:@cache.get
@@ -111,7 +111,7 @@ data.connect:[generic|magic]
          messages
             .
                role:system
-               content:Create a short and SEO optimised one sentence description of the following content intended to serve as a description for an HTML page with its content
+               content:Create a short and SEO optimised one sentence description of the following content intended to serve as a meta description for an HTML page with its content
             .
                role:user
                content:x:@cache.get
