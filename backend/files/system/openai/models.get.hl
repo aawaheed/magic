@@ -43,6 +43,8 @@ if
          message:Something went wrong while invoking OpenAI, check your log for details
 
 // Adding token count to models we know token count for.
+lambda2hyper:x:../*
+log.info:x:-
 for-each:x:@http.get/*/content/*/data/*
 
    switch:x:@.dp/#/*/id
@@ -146,6 +148,13 @@ for-each:x:@http.get/*/content/*/data/*
          add:x:@.dp/#
             .
                tokens:int:400000
+               chat:bool:true
+
+      case:gpt-5.4
+      case:gpt-5.4-pro
+         add:x:@.dp/#
+            .
+               tokens:int:1000000
                chat:bool:true
 
 /*
