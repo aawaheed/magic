@@ -203,6 +203,8 @@ slots.create:magic.ai.functions.invoke
    // Returning result of invocation to caller.
    add:x:./*/yield/*/result
       get-nodes:x:@execute-file/*
+   set-value:x:./*/yield/*/result
+      get-value:x:@execute-file
    yield
       json:x:@.json
       workflow:x:@strings.join

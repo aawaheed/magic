@@ -29,4 +29,9 @@ add:x:./*/invoke
 invoke:x:@hyper2lambda
 
 // Returning whatever our Hyperlambda returned.
-return-nodes:x:@invoke/*
+if
+   exists:x:@invoke/*
+   .lambda
+      return-nodes:x:@invoke/*
+else
+   return-value:x:@invoke

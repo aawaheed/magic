@@ -556,8 +556,18 @@ select prompt, max(completion) as completion
                                                             extra:x:@.extra
 
                                                          // Transforming result to JSON.
-                                                         lambda2json:x:@execute/*/result/*
-                                                            format:true
+                                                         .content
+
+                                                         // Checking if function returned a composite object.
+                                                         if
+                                                            exists:x:@execute/*/result/*
+                                                            .lambda
+                                                               set-value:x:@.content
+                                                                  lambda2json:x:@execute/*/result/*
+                                                                     format:true
+                                                         else
+                                                            set-value:x:@.content
+                                                               get-value:x:@execute/*/result
 
                                                          // Function file succeeded, returning result to caller.
                                                          config.get:"magic:chat:functions:success-message"
@@ -571,7 +581,7 @@ select prompt, max(completion) as completion
 
                                                          // Adding result of function invocation to [.new-prompt] buffer.
                                                          if
-                                                            exists:x:@execute/*/result/*
+                                                            not-null:x:@.content
                                                             .lambda
 
                                                                /*
@@ -583,18 +593,18 @@ select prompt, max(completion) as completion
                                                                      get-value:x:@.new-prompt
                                                                      .:"Response from '"
                                                                      get-value:x:@execute/*/workflow
-                                                                     .:"' was:\r\n```json\r\n"
-                                                                     get-value:x:@lambda2json
-                                                                     .:"\r\n"
+                                                                     .:"' was:\n```\r\n"
+                                                                     get-value:x:@.content
+                                                                     .:"\n"
                                                                      .:"```"
-                                                                     .:"\r\n"
-                                                                     .:"\r\n"
+                                                                     .:"\n"
+                                                                     .:"\n"
 
                                                                // Storing result of function invocation such that we can store it in ml_requests.
                                                                set-value:x:@.function-result
                                                                   strings.concat
                                                                      get-value:x:@.function-result
-                                                                     get-value:x:@lambda2json
+                                                                     get-value:x:@.content
                                                                      .:"\n"
 
                                                          else
