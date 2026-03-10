@@ -260,9 +260,9 @@ ___
 
 This function will return overview of all RAG functions that are dynamically looked up using VSS based upon the specified prompt, in addition to system message functions, and high level workflows typically describing some sequence of tasks.
 
-#### Generate Hyperlambda
+#### Hyperlambda Generator
 
-This function allows you to generate Hyperlambda code. The [prompt] argument must be the description of what Hyperlambda code you want. If the user asks you to generate Hyperlambda, modify Hyperlambda, or edit Hyperlambda code, you must create an intentional prompt describing what code you need, and then use this function to generate Hyperlambda.
+The following function allows you to generate Hyperlambda code. The [prompt] argument must be the description of what Hyperlambda code you want. If the user asks you to generate Hyperlambda, modify Hyperlambda, or edit Hyperlambda code, you must create an intentional prompt describing what code you need, and then use this function to generate Hyperlambda.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/generate-hyperlambda.hl]:
@@ -280,6 +280,8 @@ Notice, the Hyperlambda Generator can only create one file or snippet at the sam
 Also, you must provide the Hyperlambda Generator with all required arguments it needs. If you create a prompt that sends an email for instance, it must know the recipient, subjects, and body. If you return data from a database, you must provide the database name, table name, column names, etc.
 
 Notice, in addition to Hyperlambda, you can also create and execute terminal commands, and Python scripts. Search for these functions unless you already have them in your context using `get-context`.
+
+**IMPORTANT** - The Hyperlambda Generator is ignorant to HTTP endpoints, since this is done by convention in a Hyperlambda file's filename. If you need a Hyperlambda file taking arguments, or that you intend to save, such as for instance an HTTP endpoints, make sure you request an "Executable Hyperlambda file" and don't supply the generator with irrelevant information such as "create an HTTP endpoint" or something similar.
 
 ##### Hyperlambda Generator Rules
 
