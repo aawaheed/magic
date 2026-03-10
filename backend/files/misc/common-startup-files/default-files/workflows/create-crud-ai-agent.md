@@ -17,7 +17,7 @@ When done and the user agrees upon the schema, then apply the following steps.
    - Offer the user to insert example records with your SQL function after having applied the schema.
    - Optionally, if the user wants to use an existing database, retrieve its schema use it for the next step
 3. Generate CRUD AI functions for every single table in the database.
-   - Search for "Create CRUD API" using your `get-context` method, unless you've already got this in your context, and use these example Hyperlambda Generator prompts as templates, except replace "HTTP endpoint" with "Executable Hyperlambda file".
+   - Search for "Create CRUD API" using your `get-context` method, unless you've already got this in your context, and use these example Hyperlambda Generator prompts as templates.
 
 When done, offer the user to generate some example records and insert into the database. Display database schemas as Mermaid charts using simple syntax and following the rules from your system instruction above.
 

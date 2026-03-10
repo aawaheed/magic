@@ -61,3 +61,14 @@ And return a Markdown hyperlink to the user informing the user he needs to regis
 
 Also inform the user that the redirect URL to the frontend must be enabled in Google Cloud API, and return the redirect URL to the user such that he or she can copy it and paste it into their Google Cloud accounts.
 
+**NOTICE** - If the user wants authorized users only to access the frontend, you must make sure the primary GUI is not visible before users have logged in, create a log in form or something, and display a log out button after having logged in. Store token in localStorage. And HIDE login button/logic after users have logged in!
+
+The fromtend flow for authentication is as follows;
+
+1. Hide main app and show login UI
+2. User logs in
+3. Hide login UI and show app UI
+4. User logs out
+5. Hide app UI and show login UI
+
+**IMPORTANT** - If the user wants to use Google OIDC, then most endpoints should probably be restricted to the "guest" user by default. This is because the OIDC token exchange creates a new user and adds this user to the "guest" role, allowing him or her to access the endpoints.

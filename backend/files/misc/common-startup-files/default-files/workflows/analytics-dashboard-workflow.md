@@ -24,3 +24,18 @@ If you need to use the Hyperlambda Generator to create KPI endpoints, or endpoin
 ## Outcome
 
 A reusable analytics dashboard that displays key metrics.
+
+## Important implementation details
+
+1. If the user wants a GUI, and only authorized users accessing the frontend, you must make sure the primary GUI is invisible before users have logged in, create a log in button or login form or something, and display a log out button after having logged in.
+2. Hide login button/logic/form after users have logged in!
+3. Store token in localStorage.
+
+The frontend flow for authentication is as follows;
+
+1. Hide main app and show login UI
+2. User logs in
+3. Hide login UI and show app UI
+4. User logs out
+5. Hide app UI and show login UI
+

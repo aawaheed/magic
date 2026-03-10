@@ -3,7 +3,7 @@ WORKFLOW ==> create-python-hyperlambda-function
 
 ## Purpose
 
-Allow the user to wrap Python scripts inside a Hyperlambda HTTP endpoint, and/or executable Hyperlambda file.
+Allow the user to wrap Python scripts inside an executable Hyperlambda file.
 
 ## Steps
 
@@ -27,7 +27,7 @@ Allow the user to wrap Python scripts inside a Hyperlambda HTTP endpoint, and/or
 8. Once the user is satisfied, offer the user to save the generated Hyperlambda in a module.
 
 ```plaintext
-HTTP endpoint that executes the Python file found at `/etc/python/WHATEVER_FILE_NAME_HERE.py` and returns the result to caller.
+Executable Hyperlambda file that executes the Python file found at `/etc/python/WHATEVER_FILE_NAME_HERE.py` and returns the result to caller.
 - First argument does xyz
 - Second argument does qwe
 ```

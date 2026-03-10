@@ -6,7 +6,7 @@ Use this workflow if the user wants to create an HTTP function or executable Hyp
 By default, Magic Cloud is using SendGrid as its SMTP service. SendGrid doesn't allow to use an arbitrary from email address, but allows us to override the "reply-to" email address instead. This implies that by default when you generate Hyperlambda code that somehow is supposed to send an email, you should use a prompt resembling the following;
 
 ```plaintext
-HTTP endpoint that sends an email. The endpoint takes the following arguments;
+Executable Hyperlambda file that sends an email. The endpoint takes the following arguments;
 - name
 - email
 - subject

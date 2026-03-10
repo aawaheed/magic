@@ -3,7 +3,7 @@ WORKFLOW ==> create-terminal-hyperlambda-function
 
 ## Purpose
 
-Allow the user to wrap a terminal command inside a Hyperlambda HTTP endpoint, and/or executable Hyperlambda file.
+Allow the user to wrap a terminal command inside an executable Hyperlambda file, and/or executable Hyperlambda file.
 
 ## Steps
 
@@ -15,7 +15,7 @@ Allow the user to wrap a terminal command inside a Hyperlambda HTTP endpoint, an
 5. Once the user is satisfied, offer the user to save the generated Hyperlambda into a Hyperlambda file inside a module using the `create-file` function.
 
 ```plaintext
-HTTP endpoint that executes the following terminal command `ls -l blah, blah, blah` and returns the result to the caller.
+Executable Hyperlambda file that executes the following terminal command `ls -l blah, blah, blah` and returns the result to the caller.
 ```
 
 Optionally add a list of arguments or authorization requirements, etc.

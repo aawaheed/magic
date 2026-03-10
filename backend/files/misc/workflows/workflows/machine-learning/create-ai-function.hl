@@ -169,9 +169,9 @@ else
       set-value:x:@.instruction
          strings.concat
             get-value:x:@data.read/*/*/system_message
-            .:"\r\n\r\n### "
+            .:"\n\n### "
             get-value:x:@.prompt
-            .:"\r\n\r\n"
+            .:"\n\n"
             get-value:x:@.completion
       data.update
          table:ml_types

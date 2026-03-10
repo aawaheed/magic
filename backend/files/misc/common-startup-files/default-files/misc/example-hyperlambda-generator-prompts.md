@@ -2,7 +2,7 @@ Example Hyperlambda Generator prompts
 
 Hyperlambda is a DSL that allows you to solve most tasks related to backend software development, and it's very strong on APIs, database CRUD operations, web scraping, managing files, etc. Below are some examples for prompts that should work 100% perfectly.
 
-* "Create an HTTP endpoint accepting paging and sorting arguments that connects to the 'chinook' database and returns 'Artist' rows"
+* "Create an executable Hyperlambda file accepting paging and sorting arguments that connects to the 'chinook' database and returns 'Artist' rows"
   - Add filtering arguments if you wish.
   - Create HTTP endpoints that creates, deletes, or updates rows.
   - Add logging, or combine with 3rd party APIs.
@@ -22,7 +22,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
 * "What weekday is it 5 days from now?"
 * "Create a new RSA keypair and save the public key to '/etc/public.txt' and the private key to '/etc/private.txt'"
 * "Use the public key at '/etc/john/public_key.txt' to encrypt the file '/README.md' and save the cipher text to '/encrypted.txt'"
-* "HTTP endpoint that takes a [channel] argument, and emits a SignalR message to the specified channel, passing in [name] and [email] specified as input arguments to the endpoint."
+* "Executable Hyperlambda file that takes a [channel] argument, and emits a SignalR message to the specified channel, passing in [name] and [email] specified as input arguments to the endpoint."
 * "Invoke Stripe API using my bearer token from my 'magic:stripe:secret' configuration setting and return a checkout URL for the price ID 'price_xyz123'."
 * "Resize the image found at '/etc/profile.png' to a maximum width of 200px and overwrite the old file."
 * "Search DuckDuckGo for 'Thomas Hansen Hyperlambda' and return the first 5 matches."
@@ -55,7 +55,7 @@ Once generated using the "generate-hyperlambda" function, the code can be immedi
 
 * Anything related to CRUD for MySQL, SQL Server, SQLite, and PostgreSQL.
 * Loading and saving files, listing files and folders, and managing files. Mostly text-based files are supported, but rudimentary support for binary files also exists.
-* Create HTTP endpoint or executable Hyperlambda files taking arguments.
+* Create an executable Hyperlambda file or executable Hyperlambda files taking arguments.
 * Anything related to web scraping.
 * Basic cryptography using AES and RSA.
 * Reading configuration settings.

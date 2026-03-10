@@ -339,7 +339,7 @@ If the user wants an API for an entity named for instance "contact", then the co
 * "contact.delete.hl" - Delete endpoints using HTTP DELETE verb ends with ".delete.hl"
 * "contact.patch.hl" - Patch endpoints using HTTP PATCH verb ends with ".patch.hl"
 
-Notice, DELETE and GET *cannot* accept payloads, only PUT, POST and PATCH accepts payloads. To perematrize HTTP DELETE and GET invocations, you have to use QUERY parameters or PATH arguments.
+Notice, DELETE and GET *cannot* accept payloads, only PUT, POST and PATCH accepts payloads. To paramatrize HTTP DELETE and GET invocations, you have to use QUERY parameters or PATH arguments.
 
 #### Execute Hyperlambda
 

@@ -14,12 +14,13 @@ After you have informed the user of the above, and the user still wants to proce
 6. Run through all of the CRUD prompts below that the user selected and use these as template prompts, one at the time, and generate CRUD HTTP endpoints using the Hyperlambda Generator, and save each file before continuing to the next CRUD verb.
    - By default you should use the table name as the filename. For a contacts table the endpoint filename would be; "contacts.get.hl" for the read verb when saving the generated code, but allow the user to change this, and exchange 'get' with 'post', 'put', and 'delete' according to what verb you're processing.
    - Show the user all prompts to the Hyperlambda Generator before you generate any code.
+   - Notice, the Hyperlambda Generator doesn't differentiate between an HTTP endpoint, or an executable Hyperlambda file. Endpoints are declared according to how the file is saved, having the verb being a part of the filename. Hence, use "Generate an executable Hyperlambda file" as your prefix prompt when creating HTTP endpoints.
 7. When creating prompts for CRUD read endpoints using the Hyperlambda Generator, then you must specify that you want optional sorting, optional paging, and if the table contains relevant fields to filter on, you specify you want filtering on these fields too. However, don't create too complex prompts. Keep your prompts SIMPLE!
 
 **Create CRUD verb**
 
 ```plaintext
-HTTP endpoint creating a single item in [DATABASE] database and its [TABLE] table.
+Executable Hyperlambda file creating a single item in [DATABASE] database and its [TABLE] table.
 The endpoint can only be invoked by 'root' users and returns the ID of the newly created record.
 
 The endpoint accepts the following arguments.
@@ -32,7 +33,7 @@ Replace the above [ARG1] and [ARG2] with column names from the database for the 
 **Read CRUD verb**
 
 ```plaintext
-HTTP endpoint returning items from [DATABASE] database and its [TABLE] table.
+Executable Hyperlambda file returning items from [DATABASE] database and its [TABLE] table.
 The endpoint can be optionally paged and sorted, only be invoked by 'root' users, and returns a list of rows from the database.
 
 The endpoint accepts the following arguments
@@ -47,7 +48,7 @@ The endpoint accepts the following arguments
 **Update CRUD verb**
 
 ```plaintext
-HTTP endpoint updating a single item in [DATABASE] database and its [TABLE] table.
+Executable Hyperlambda file updating a single item in [DATABASE] database and its [TABLE] table.
 The endpoint can only be invoked by 'root' users and returns how many rows were affected.
 
 The endpoint accepts the following arguments.
@@ -61,7 +62,7 @@ Replace the above [ARG1] and [ARG2] with column names from the database for the 
 **Delete CRUD verb**
 
 ```plaintext
-HTTP endpoint deleting a single item from [DATABASE] database and its [TABLE] table.
+Executable Hyperlambda file deleting a single item from [DATABASE] database and its [TABLE] table.
 The endpoint can only be invoked by 'root' users.
 
 The endpoint accepts the following arguments.

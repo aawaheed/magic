@@ -15,7 +15,7 @@ The password must be stored as a cryptographically secure hash, and the database
 
 We will need two endpoints as follows.
 
-1. Registration HTTP endpoint that stores a new user into the database, with hashed passwords for additional security
+1. Registration an executable Hyperlambda file that stores a new user into the database, with hashed passwords for additional security
    - This endpoint should send an email to the registered user for verification purposes. Use the 'magic:auth:secret' and concatenate with the user's email address to create a 'secret token' that's used to avoid frauds from creating URLs without going through the backend's registration endpoint's logic. Also make sure you add the user's email address in your verification email, such that we can re-generate the token and make sure it matches in the verify email address endpoint. You don't need to store this token, since it can be re-generated from the email of the user, which is given to the verify endpoint.
    - The URL of the 'verify-email' endpoint should be 'https://[BACKEND_URL]/magic/modules/[MODULE_NAME]/verify-email?token=TOKEN_HERE&email=EMAIL_HERE'. Remember to correctly hash the 'magic:auth:secret' with the email during verification.
    - Make sure you generate a prompt that's referencing the correct column names. If you don't know the database schema for the table you can use the `get-database-schema` function to retrieve it.
@@ -29,7 +29,7 @@ We will need two endpoints as follows.
 Below is a template prompt you can use to generate the register endpoint.
 
 ```plaintext
-HTTP endpoint accepting username, password, name, and email - All fields are mandatory. The endpoint insert a new record into [DATABASE] database and its [TABLE] table. The password must be cryptographically hashed, and the endpoint should set the 'verified' column to 0.
+Executable Hyperlambda file accepting username, password, name, and email - All fields are mandatory. The endpoint insert a new record into [DATABASE] database and its [TABLE] table. The password must be cryptographically hashed, and the endpoint should set the 'verified' column to 0.
 
 When having inserted the user, the endpoint should send an email to the user with the following hyperlink;
 
@@ -45,7 +45,7 @@ The '[DATABASE]' above is your database name, the [TABLE] is your table name, th
 Below is a template prompt you can use to generate the verify email endpoint.
 
 ```plaintext
-HTTP endpoint taking [token] and [email] arguments. The endpoint will hash the 'magic:auth:secret' configuration value and the user's email, and search through the [DATABASE] database and its [TABLE] table for the user, only returning records having 'verified' being 0. If the endpoint finds this user, it should update its 'verified' value to 1. If not, it should throw an exception.
+Executable Hyperlambda file taking [token] and [email] arguments. The endpoint will hash the 'magic:auth:secret' configuration value and the user's email, and search through the [DATABASE] database and its [TABLE] table for the user, only returning records having 'verified' being 0. If the endpoint finds this user, it should update its 'verified' value to 1. If not, it should throw an exception.
 ```
 
 The '[DATABASE]' above is your database name, the [TABLE] is your table name. The verify endpoint must be saved as an HTTP GET endpoint.
@@ -55,7 +55,7 @@ The '[DATABASE]' above is your database name, the [TABLE] is your table name. Th
 Below is a template prompt you can use to generate authenticate endpoint.
 
 ```plaintext
-Authenticate HTTP endpoint taking username and password. Checks if user exists in [DATABASE] database and its [TABLE] table, and if it has the value of 1 for its verified column. If it finds the record, returns a new JWT token with the username and a role of 'guest'.
+Authenticate Hyperlambda file taking username and password. Checks if user exists in [DATABASE] database and its [TABLE] table, and if it has the value of 1 for its verified column. If it finds the record, returns a new JWT token with the username and a role of 'guest'.
 
 Notice, the password is cryptographically hashed, and must be checked as such, and the 'verified' column is of type 'long'.
 ```
