@@ -175,49 +175,51 @@ namespace magic.library
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(configuration["magic:trusted-certs"]))
+            services.AddHttpClient(Options.DefaultName, client =>
             {
-                services.AddHttpClient(Options.DefaultName, client => {
-                    client.Timeout = TimeSpan.FromSeconds(300);
-                }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-                {
-                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-                    ClientCertificateOptions = ClientCertificateOption.Manual,
-                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) =>
-                    {
-                        if (policyErrors == System.Net.Security.SslPolicyErrors.None)
-                            return true;
-                        var trusted = configuration["magic:trusted-certs"];
-                        if (trusted == "*")
-                            return true;
-                        if (trusted.Split(',').Select(x => x.Trim()).Contains(cert.Thumbprint))
-                            return true;
-                        return false;
-                    }
-                });
-            }
-            else
+                // Increase timeout to 5 minutes
+                client.Timeout = TimeSpan.FromSeconds(300);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
             {
-                services.AddHttpClient(Options.DefaultName, client => {
-                        client.Timeout = TimeSpan.FromSeconds(300);
-                    })
-                    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                var trusted = configuration["magic:trusted-certs"];
+
+                return new SocketsHttpHandler
                 {
+                    // Enables gzip/deflate decompression
                     AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-                    ClientCertificateOptions = ClientCertificateOption.Manual,
-                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) =>
+
+                    // Connection pool stability
+                    PooledConnectionLifetime = TimeSpan.FromMinutes(5),
+                    PooledConnectionIdleTimeout = TimeSpan.FromMinutes(1),
+                    MaxConnectionsPerServer = 100,
+
+                    // Detect half-open sockets and prevent random request hangs
+                    KeepAlivePingDelay = TimeSpan.FromSeconds(30),
+                    KeepAlivePingTimeout = TimeSpan.FromSeconds(10),
+                    KeepAlivePingPolicy = HttpKeepAlivePingPolicy.Always,
+
+                    // TLS options and custom certificate validation
+                    SslOptions = new System.Net.Security.SslClientAuthenticationOptions
                     {
-                        if (policyErrors == System.Net.Security.SslPolicyErrors.None)
-                            return true;
-                        var trusted = configuration["magic:trusted-certs"];
-                        if (trusted == "*")
-                            return true;
-                        if (trusted.Split(',').Select(x => x.Trim()).Contains(cert.Thumbprint))
-                            return true;
-                        return false;
+                        RemoteCertificateValidationCallback = (sender, cert, chain, policyErrors) =>
+                        {
+                            if (policyErrors == System.Net.Security.SslPolicyErrors.None)
+                                return true;
+
+                            if (trusted == "*")
+                                return true;
+
+                            if (!string.IsNullOrEmpty(trusted) &&
+                                trusted.Split(',').Select(x => x.Trim()).Contains(cert?.GetCertHashString()))
+                                return true;
+
+                            return false;
+                        }
                     }
-                });
-            }
+                };
+            });
+
             services.AddTransient(
                 typeof(IMagicHttp),
                 GetType(configuration["magic:http:service"] ?? "magic.lambda.http.services.MagicHttp"));
