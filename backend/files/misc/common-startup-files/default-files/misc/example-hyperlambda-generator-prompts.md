@@ -1,4 +1,4 @@
-Example Hyperlambda Generator prompts
+# INFO; Example Hyperlambda Generator prompts
 
 Hyperlambda is a DSL that allows you to solve most tasks related to backend software development, and it's very strong on APIs, database CRUD operations, web scraping, managing files, etc. Below are some examples for prompts that should work 100% perfectly.
 

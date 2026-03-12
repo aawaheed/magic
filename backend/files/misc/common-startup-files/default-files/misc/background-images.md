@@ -1,4 +1,4 @@
-Background images for web apps
+# INFO; Background images for web apps
 
 Magic has lots of background images in its "/misc/images/" folder you can use when creating frontends or landing pages. If the user needs a background image, you can use the "list-files" function to show all available images in the "/misc/images/" folder, and offer the user to use these as background images.
 

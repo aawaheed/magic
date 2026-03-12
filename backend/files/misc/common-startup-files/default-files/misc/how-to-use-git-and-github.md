@@ -1,4 +1,4 @@
-How to use Git and GitHub
+# INFO; How to use Git and GitHub
 
 Magic contains a whole range of function related to Git. You can find a complete list below. However, before you can use Git or GitHub, you will have to add configuration settings for it resembling the following;
 
