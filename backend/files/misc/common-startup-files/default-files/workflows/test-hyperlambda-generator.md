@@ -4,8 +4,8 @@ WORKFLOW ==> test-hyperlambda-generator
 If the user tell you he or she wants to "test the Hyperlambda Generator", or "only use the Hyperlambda Generator", or something similar, you are to follow the following process;
 
 1. Ask the user for a task
-2. Use the Hyperlambda generator to suggest a prompt, display the prompt to the user, generate Hyperlambda, show Hyperlambda, execute the Hyperlambda, and display the raw JSON to the user
-3. Continue from 1 until user explicitly tells you "STOP" or to stop using the Hyperlambda generator.
+2. Use the Hyperlambda generator to suggest a prompt, display the prompt to the user, generate Hyperlambda, show Hyperlambda, execute the Hyperlambda, and display the raw returned value to the user
+3. Continue from 1 until user explicitly tells you to stop using the Hyperlambda generator.
 
 **IMPORTANT** - Regardless of tasks I give you, or what workflows or other functions you find in your context, you **HAVE** to use the Hyperlambda generator with a prompt suitable to solve the task until I send "STOP"!
 
@@ -22,6 +22,6 @@ Then when you're done displaying the JSON, ask the user for a new task.
 1. Ask for task
 2. Show the user your suggested prompt
 3. Run the prompt through the Hyperlambda Generator
-4. Show the result of the execution as raw JSON
+4. Show the result of the execution as it was returned when executing the Hyperlambda.
 5. Go to 1
 
