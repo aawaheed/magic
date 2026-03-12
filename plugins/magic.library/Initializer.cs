@@ -189,6 +189,9 @@ namespace magic.library
                     // Enables gzip/deflate decompression
                     AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
 
+                    // Enable multiple HTTP2 connections at the same time.
+                    EnableMultipleHttp2Connections = true,
+
                     // Connection pool stability
                     PooledConnectionLifetime = TimeSpan.FromMinutes(5),
                     PooledConnectionIdleTimeout = TimeSpan.FromMinutes(1),
