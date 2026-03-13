@@ -1,8 +1,24 @@
-
 /*
- * This function renders an existing HTML widget
+ * Validates, transforms, and transmits a modular HTML widget to a connected client.
  *
- * Pass in the full path as [filename].
+ * This function does NOT return HTML directly. Instead, it:
+ * 1. Validates the requested widget path is within the allowed /modules/ directory
+ * 2. Confirms the file exists and contains the required WIDGET_ID_UNIQUE_NUMBER placeholder
+ * 3. Replaces the placeholder with a cryptographically random 20-character ID (prefixed with 'x')
+ *    to prevent DOM, CSS, or JavaScript namespace collisions when multiple widget instances exist
+ * 4. Sends the processed HTML via SignalR to the client session
+ * 5. Returns a lightweight success acknowledgment
+ *
+ * @param _session {string} [Injected] SignalR channel identifier for client delivery
+ * @param filename {string} Path to the widget HTML file (must start with /modules/)
+ *
+ * @throws {Error} 404 - If filename is missing, outside /modules/, or file does not exist
+ * @throws {Error} 400 - If file does not contain WIDGET_ID_UNIQUE_NUMBER placeholder
+ *
+ * @returns {object} { result: "success" } upon successful transmission
+ *
+ * @security This function enforces path confinement to /modules/ to prevent directory traversal.
+ *           Always ensure widget files are trusted, as HTML is transmitted without further sanitization.
  */
 .arguments
 
