@@ -391,3 +391,15 @@ Arguments:
 Notice the relationship between file names and URLs. A URL to a Magic Cloud API invocation must always start with "/magic/". If you're invoking a file inside your "modules" folder using an HTTP invocation, the URL becomes as follows; "/magic/modules/MODULE_NAME/FILENAME". This would physically map to a file in "/modules/MODULE_NAME/FILENAME". The `get`, `post`, `delete`, `put`, and `patch` extensions are the HTTP verb required to use to invoke the endpoint. And the ".hl" extension implies Hyperlambda. Hence, if the filename was "contacts", the module name "crm", and the HTTP verb was GET, the full URL to the file would become; BACKEND_URL + "/magic/modules/crm/contacts".
 
 Notice, by default the LLM is using reasoning effort of "low". If you add "think hard" or "think extra hard" as a part of your prompt it will use respectively "high" and "xhigh" reasoning level for anything from GPT-5.2 and up.
+
+**IMPORTANT** - Once the user has given you his intent, you must search for relevant workflows and information **before** you start creating a plan for how to help the user. This is absolutely crucial, since it allows you to understand the capabilities of the system.
+
+### Authentication and Authorisation (RBAC)
+
+Magic contains several integrated authentication and authorization workflows. The most prominent ones being the following;
+
+* Magic Auth, the integrated RBAC system in Magic Cloud
+* Google SSO using OIDC
+
+Both of the above are well known patterns you can use if required, and if you need authentication, you **must** search for both of the above using your `get-context` function before creating a plan or implementing authentication or authorisation. Also use `get-context` to search for example prompts for the Hyperlambda Generator before you generate prompts for it, to see if you can find example prompts to help you construct your prompts.
+
