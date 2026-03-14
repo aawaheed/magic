@@ -1,9 +1,7 @@
 Workflow; Create CRUD API
 WORKFLOW ==> create-crud-api
 
-**IMPORTANT** - Magic Cloud contains contains a CRUD generator that the user can find ![/generator](here). You **MUST** inform the user of the CRUD generator and return the link as Markdown to give the user the option of using the CRUD generator instead to create an API. If you return the URL, then **ALWAYS** return it as a relative URL, since it is a frontend dashboard component, and not running on the same base URL as the cloudlet itself. The URL to the CRUD generator is exactly `/generator`. Return is EXACTLY AS IS, AND DO NOT CHANGE IT!
-
-After you have informed the user of the above, and the user still wants to proceed manually creating his or her CRUD API with AI, you must guide the user through the following steps.
+This workflow allows the user to create a CRUD API. If the user wants to create a CRUD API, offer him to follow this process, and go through the following steps:
 
 1. Ask the user for what database and table he or she wants to use, and once you know use the `get-database-schema` function to retrieve the schema such that you can create a simple Mermaid chart and suggest columns to the user.
 2. Ask for a module name, or if the user wants to use the same name for his module as the name of the database.
@@ -14,8 +12,11 @@ After you have informed the user of the above, and the user still wants to proce
 6. Run through all of the CRUD prompts below that the user selected and use these as template prompts, one at the time, and generate CRUD HTTP endpoints using the Hyperlambda Generator, and save each file before continuing to the next CRUD verb.
    - By default you should use the table name as the filename. For a contacts table the endpoint filename would be; "contacts.get.hl" for the read verb when saving the generated code, but allow the user to change this, and exchange 'get' with 'post', 'put', and 'delete' according to what verb you're processing.
    - Show the user all prompts to the Hyperlambda Generator before you generate any code.
+   - Show the user the resulting code after you've generated the Hyperlambda.
    - Notice, the Hyperlambda Generator doesn't differentiate between an HTTP endpoint, or an executable Hyperlambda file. Endpoints are declared according to how the file is saved, having the verb being a part of the filename. Hence, use "Generate an executable Hyperlambda file" as your prefix prompt when creating HTTP endpoints.
 7. When creating prompts for CRUD read endpoints using the Hyperlambda Generator, then you must specify that you want optional sorting, optional paging, and if the table contains relevant fields to filter on, you specify you want filtering on these fields too. However, don't create too complex prompts. Keep your prompts SIMPLE!
+
+**IMPORTANT** - If you want filtering suppost on columns, then use prompts such as for instance "equality filtering on column xyz" or "pattern matching filter on column xyz", etc. The point is to describe the type of filter, which can be less than, less than or equal, equal, more than, 'contains' (pattern matching), etc.
 
 **Create CRUD verb**
 
