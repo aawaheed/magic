@@ -3,7 +3,10 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
@@ -79,12 +82,51 @@ namespace magic.lambda.puppeteer
 
         static string GetExecutablePath(Node input)
         {
-            var path = PuppeteerHelpers.GetOptionalString(input, "executable")
-                ?? PuppeteerHelpers.GetOptionalString(input, "executable-path")
-                ?? Environment.GetEnvironmentVariable("PUPPETEER_EXECUTABLE_PATH")
-                ?? "/usr/bin/chromium";
+            var explicitPath = PuppeteerHelpers.GetOptionalString(input, "executable")
+                ?? PuppeteerHelpers.GetOptionalString(input, "executable-path");
+            if (IsUsableExecutable(explicitPath))
+                return explicitPath;
 
-            return path;
+            var envPath = Environment.GetEnvironmentVariable("PUPPETEER_EXECUTABLE_PATH");
+            if (IsUsableExecutable(envPath))
+                return envPath;
+
+            foreach (var candidate in GetDefaultCandidates())
+            {
+                if (IsUsableExecutable(candidate))
+                    return candidate;
+            }
+
+            throw new HyperlambdaException(
+                "Could not find a Chromium/Chrome executable. " +
+                "Provide [executable] or [executable-path], or set PUPPETEER_EXECUTABLE_PATH.");
+        }
+
+        static IEnumerable<string> GetDefaultCandidates()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                yield return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+                yield return "/Applications/Chromium.app/Contents/MacOS/Chromium";
+                yield break;
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                yield return @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+                yield return @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                yield break;
+            }
+
+            // Linux and everything else.
+            yield return "/usr/bin/google-chrome";
+            yield return "/usr/bin/chromium";
+            yield return "/usr/bin/chromium-browser";
+        }
+
+        static bool IsUsableExecutable(string path)
+        {
+            return !string.IsNullOrWhiteSpace(path) && File.Exists(path);
         }
     }
 }
