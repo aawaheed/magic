@@ -193,6 +193,7 @@ namespace magic.library
                     EnableMultipleHttp2Connections = true,
 
                     // Connection pool stability
+                    ConnectTimeout = TimeSpan.FromSeconds(10),
                     PooledConnectionLifetime = TimeSpan.FromMinutes(5),
                     PooledConnectionIdleTimeout = TimeSpan.FromMinutes(1),
                     MaxConnectionsPerServer = 100,
