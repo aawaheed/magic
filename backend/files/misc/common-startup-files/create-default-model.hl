@@ -37,7 +37,7 @@ try
                   system_message:x:@io.file.load
                   use_embeddings:int:0
                   conversation_starters:@"* What can you do?
-* List all functions
+* I want to SEO analyse my website
 * Create me a full stack app with a database and an API"
 
       else
@@ -62,7 +62,7 @@ try
                system_message:x:@io.file.load
                use_embeddings:int:0
                conversation_starters:@"* What can you do?
-* List all functions
+* I want to SEO analyse my website
 * Create me a full stack app with a database and an API"
             where
                and
