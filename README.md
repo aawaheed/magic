@@ -48,7 +48,7 @@ Below is a screenshot from Hyper IDE.
 
 ![Hyper IDE](https://raw.githubusercontent.com/polterguy/polterguy.github.io/master/images/ai-generated-code.png)
 
-The above illustrates how Magic facilitates for _"comment driven development"_, as in provide _"natural language instructions"_ with a declarative comment, and have the system implement the code.
+The above illustrates how Magic facilitates for _"comment driven development"_, as in provide _"natural language instructions"_ with a declarative comment, and have the system implement the code using the built-in AI code generator.
 
 ## Also a web server
 
