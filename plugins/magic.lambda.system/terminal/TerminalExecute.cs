@@ -3,7 +3,9 @@
  */
 
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
@@ -27,9 +29,9 @@ namespace magic.lambda.system.terminal
         {
             var args = GetArgs(input);
 
-            var startInfo = string.IsNullOrWhiteSpace(args.Arguments)
-                ? new ProcessStartInfo(args.Command)
-                : new ProcessStartInfo(args.Command, args.Arguments);
+            var startInfo = new ProcessStartInfo(args.Command);
+            foreach (var arg in args.Arguments)
+                startInfo.ArgumentList.Add(arg);
 
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = true;
@@ -58,19 +60,98 @@ namespace magic.lambda.system.terminal
 
         #region [ -- Private helper methods -- ]
 
-        (string Command, string Arguments, string WorkingDirectory) GetArgs(Node input)
+        (string Command, IEnumerable<string> Arguments, string WorkingDirectory) GetArgs(Node input)
         {
             var command = input.GetEx<string>();
             if (string.IsNullOrWhiteSpace(command))
                 throw new HyperlambdaException("Missing required argument value");
 
-            var arguments = input.Children.FirstOrDefault(x => x.Name == "args")?.GetEx<string>();
+            var argsNode = input.Children.FirstOrDefault(x => x.Name == "args");
             var workingDirectory = input.Children.FirstOrDefault(x => x.Name == "working-directory")?.GetEx<string>();
 
             input.Clear();
             input.Value = null;
 
-            return (command, arguments, workingDirectory);
+            return (command, ExpandArgs(argsNode), workingDirectory);
+        }
+
+        static IEnumerable<string> ExpandArgs(Node argsNode)
+        {
+            if (argsNode == null)
+                yield break;
+
+            if (argsNode.Children.Count() > 0)
+            {
+                foreach (var child in argsNode.Children)
+                {
+                    var value = child.GetEx<string>();
+                    if (!string.IsNullOrWhiteSpace(value))
+                        yield return value;
+                }
+                yield break;
+            }
+
+            var argsText = argsNode.GetEx<string>();
+            if (string.IsNullOrWhiteSpace(argsText))
+                yield break;
+
+            foreach (var arg in SplitArgs(argsText))
+                yield return arg;
+        }
+
+        static IEnumerable<string> SplitArgs(string input)
+        {
+            var args = new List<string>();
+            var current = new StringBuilder();
+            var inQuotes = false;
+            var quoteChar = '\0';
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                var c = input[i];
+
+                if (inQuotes)
+                {
+                    if (c == quoteChar)
+                    {
+                        inQuotes = false;
+                    }
+                    else if (c == '\\' && i + 1 < input.Length && input[i + 1] == quoteChar)
+                    {
+                        current.Append(quoteChar);
+                        i++;
+                    }
+                    else
+                    {
+                        current.Append(c);
+                    }
+                    continue;
+                }
+
+                if (char.IsWhiteSpace(c))
+                {
+                    if (current.Length > 0)
+                    {
+                        args.Add(current.ToString());
+                        current.Clear();
+                    }
+                    continue;
+                }
+
+                if (c == '"' || c == '\'')
+                {
+                    inQuotes = true;
+                    quoteChar = c;
+                    continue;
+                }
+
+                current.Append(c);
+            }
+
+            if (current.Length > 0)
+                args.Add(current.ToString());
+
+            return args;
         }
 
         #endregion

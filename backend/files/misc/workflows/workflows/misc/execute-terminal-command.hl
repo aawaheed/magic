@@ -7,8 +7,8 @@
    // Mandatory argument being command to execute.
    command:string
 
-   // Optional argument being a string of command line arguments.
-   args:string
+   // Optional arguments passed to command.
+   args:*
 
    // Optional argument being the working directory where to execute the command.
    working-directory:string
