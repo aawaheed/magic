@@ -199,7 +199,7 @@ If you can hack the above API endpoint, I will give you $100!
 
 The point about Hyperlambda, is that it's first of all running in a sandbox environment, so it doesn't have access to the file system outside of its own sandbox. In addition, it's got the ability to whitelist individual functions, according to its built-in RBAC system, allowing for your server to accept code as input, and still securely execute it - Without even knowing its origin.
 
-The above is only possible by restricting functiuon invocations at the execution level, which as far as I know, Hyperlambda is the _only_ programming language in the world that currently does.
+The above is only possible by restricting function invocations at the execution level, which as far as I know, Hyperlambda is the _only_ programming language in the world that currently does.
 
 This makes Hyperlambda uniquely fit for AI agents that needs to _"generate tools on demand"_, since it allows to owner of the solution to specify a subset of the server's vocabulary as _"legal functions"_, while no other functions are allowed.
 
