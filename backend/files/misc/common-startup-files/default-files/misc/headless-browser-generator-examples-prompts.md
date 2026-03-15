@@ -8,4 +8,6 @@ Magic can use Puppeteer as a headless browser to automate web browsing. Below ar
 - "Go to www.salesforce.com using a headless browser and retrieve the HTML, then traverse the HTML for all hyperlinks, and return their anchor text and absolute URLs. Make sure you close the browser session when done."
 - "Go to www.google.com using a headless browser and return the browser session id to the caller as 'browser_session'"
 
+Etc ...
+
 Notice, the headless browser is using a lot of memory, so for most prompts you'd either want to return the browser session to reuse it, and/or close it immediately to avoid it becomes 'dangling'. And you cannot open more than 5 browser sessions at the same time. If a browser session is not used for 15 minutes, it is automatically closed (by default, this can be overridden).
