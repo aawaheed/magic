@@ -12,7 +12,7 @@
    // Optional code to execute.
    code:string
 
-   // Optional arguments to execution, in key/value format.
+   // Optional positional arguments to execution.
    args:*
 
    // Optional string passed to stdin
@@ -42,4 +42,3 @@ python.execute
 // Returning result to caller.
 yield
    result:x:@python.execute
-

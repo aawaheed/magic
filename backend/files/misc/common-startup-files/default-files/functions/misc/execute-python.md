@@ -14,7 +14,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/execute-python.hl]:
   ],
   "stdin": "[STRING_VALUE]",
   "working-directory": "[STRING_VALUE]",
-  "timeout": "[INTEGER_VALUE]",
+  "timeout": "[INTEGER_VALUE]"
 }
 ___
 
@@ -22,7 +22,7 @@ Arguments:
 
 - `file` is optional full file name and path to Python file on disc.
 - `code` is optional raw Python code to execute.
-- `args` is a list of optional key/value arguments passed into execution.
+- `args` is optional positional arguments passed into execution, either as a list of values or as a single argument string.
 - `working-directory` is an. optional working directory to use during execution.
 - `stdin` is optional stdin input to the Python execution.
 - `timeout` is optional number of seconds before execution is killed. Defaults to 30.
