@@ -19,19 +19,19 @@ Use this workflow if the user wants to create an AI chatbot. Before you can begi
 Once you've got all the above information, then execute these steps in order:
 
 1. Scrape the base URL to create a high quality system instruction for selling services and providing customer service found at the website using the `scrape-url` function.
-   - If you don't have the function declaration for this function then you must search for it using the `get-context`.
+   - If this function signature is not already in context, retrieve it using `get-context` according to the Tool lookup minimization policy.
 2. Create the machine learning type with the system instruction created above using the `create-type` function.
-   - If you don't have the function required to do this, you can search for it using the `get-context` function to search for it.
+   - If this function signature is not already in context, retrieve it using `get-context` according to the Tool lookup minimization policy.
 3. Start crawling and scraping for RAG data using the `crawl-website` function.
-   - Search for this function if you do not have it in your context!
+   - If this function signature is not already in context, retrieve it using `get-context` according to the Tool lookup minimization policy.
 
 ## About send email functions
 
 If the user wants a send email function you must follow these steps;
 
 1. Generate the required Hyperlambda
-2. Check if module exists, and if it doesn't you must create it first using the `create-module` function (search for it unless you already have it in your context)
-3. Save the file containing the Hyperlambda code using the `create-file` function. If you don't have this function in your context then search for it first.
+2. Check if module exists, and if it doesn't you must create it first using the `create-module` function (retrieve signature with `get-context` only if not already in context).
+3. Save the file containing the Hyperlambda code using the `create-file` function. Retrieve signature with `get-context` only if not already in context.
 4. Only when all of the above has been done you can execute the `create-ai-function` function!
 
 ## Example prompt for the Hyperlambda Generator
@@ -50,8 +50,8 @@ The function will send an email to '[NAME_AS_SPECIFIED_BY_USER]' / '[EMAIL_AS_SP
 
 **IMPORTANT** - When you are done with the above process, inform the user of that the machine learning type is not vectorized, and that the user needs to vectorize it before the RAG data takes effect. Then suggest to create an embed script for the user. This is a special workflow called "Create Embed Script for AI Chatbot" that helps you generate the script tag to include the AI chatbot on a website.
 
-**IMPORTANT** - If the user tells you he or she wants you to follow the "Create Embed Script for AI Chatbot" workflow, then use the `get-context` function to retrieve this workflow, unless you've already got it in your context!
+**IMPORTANT** - If the user tells you he or she wants you to follow the "Create Embed Script for AI Chatbot" workflow, retrieve it with `get-context` only if it is not already in context with exact signature and filename.
 
-**IMPORTANT** - If you don't have the `crawl-website` function in your context, then you must use the `get-context` function to retrieve it.
+**IMPORTANT** - If `crawl-website` is not already in context with exact signature and filename, retrieve it using `get-context` according to the Tool lookup minimization policy.
 
-**IMPORTANT** - If the user wants a send email function, you have to generate the function first using the Hyperlambda Generator, then make sure the module exists, for then to save the Hyperlambda file inside the module. Only when this is done you can use the `create-ai-function` function to associate the Hyperlambda file as an AI function with the machine learning type. If you do not have this function in your context you can search for it using the `get-context` function.
+**IMPORTANT** - If the user wants a send email function, you have to generate the function first using the Hyperlambda Generator, then make sure the module exists, for then to save the Hyperlambda file inside the module. Only when this is done you can use the `create-ai-function` function to associate the Hyperlambda file as an AI function with the machine learning type. Retrieve `create-ai-function` with `get-context` only if not already in context with exact signature and filename.

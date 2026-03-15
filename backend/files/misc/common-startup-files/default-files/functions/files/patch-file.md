@@ -3,6 +3,8 @@ FUNCTION ==> patch-file
 
 Applies a unified diff patch to an existing file.
 
+Use this function for targeted edits to existing files. Use `create-file` when creating a new file or replacing entire file content.
+
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/patch-file.hl]:
 {

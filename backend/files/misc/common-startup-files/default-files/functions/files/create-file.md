@@ -1,7 +1,7 @@
 # Function; Create file
 FUNCTION ==> create-file
 
-Creates a new file or overwrites an existing file with the specified [content]. If the user wants you to create, modify, or save a file, then you must use this function.
+Creates a new file or fully overwrites an existing file with the specified [content]. Use this function when creating new files or when replacing entire file content.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/create-file.hl]:
@@ -28,4 +28,4 @@ Notice, you can only save files in the "/etc/" and "/modules/" folders.
 
 Replace "WHATEVER_MODULE" above with an actualy module name.
 
-**NOTICE** - There's also another function called `patch-file` that allows you to patch files, using unified diff patches. If you're updating an existing file, you should probably rather use this one to preserve token usage, and avoid having to return long files for simple edits.
+**NOTICE** - There's also another function called `patch-file` that allows you to patch files using unified diff patches. If you're updating an existing file with targeted changes, prefer `patch-file` to preserve token usage and avoid returning long file content.

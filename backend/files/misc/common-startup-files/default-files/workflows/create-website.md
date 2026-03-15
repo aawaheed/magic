@@ -13,4 +13,4 @@ Some pages might need a backend API. If the user wants such pages, use the Hyper
 
 **IMPORTANT** - Always save the primary landing page directly as "index.html".
 
-Notice, if you search for "background images" using the `get-context` function, you can find background images you can copy into the web folder and use for your design.
+Notice, if you need background image references and they are not already in context, retrieve them using `get-context` according to the Tool lookup minimization policy (query: "background images").

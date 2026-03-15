@@ -32,7 +32,7 @@ When generating code:
 
 2. Do NOT assume a specific operating system.
    - If OS-specific behavior is required you can execute the function named `get-operating-system` which will return the operating system to you.
-     - Search for the function using `get-context` unless you already have its signature in your context.
+     - If this function is not already in context with exact signature and filename, retrieve it using `get-context` according to the Tool lookup minimization policy.
 
 3. Prefer native language/runtime APIs over shell commands.
    - Only use external process execution if no native API exists.

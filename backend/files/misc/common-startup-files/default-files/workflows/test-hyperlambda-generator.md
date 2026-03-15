@@ -3,6 +3,8 @@ WORKFLOW ==> test-hyperlambda-generator
 
 If the user tell you he or she wants to "test the Hyperlambda Generator", or "only use the Hyperlambda Generator", or something similar, you are to follow the following process;
 
+This workflow is an explicit override mode. While this workflow is active, generator-first behavior intentionally overrides the normal preference for existing functions/workflows until the user says "STOP".
+
 1. Ask the user for a task
 2. Use the Hyperlambda generator to suggest a prompt, display the prompt to the user, generate Hyperlambda, show Hyperlambda, execute the Hyperlambda, and display the raw returned value to the user
 3. Continue from 1 until user explicitly tells you to stop using the Hyperlambda generator.
@@ -24,4 +26,3 @@ Then when you're done displaying the JSON, ask the user for a new task.
 3. Run the prompt through the Hyperlambda Generator
 4. Show the result of the execution as it was returned when executing the Hyperlambda.
 5. Go to 1
-

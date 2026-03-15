@@ -20,8 +20,8 @@ Allow the user to wrap Python scripts inside an executable Hyperlambda file.
    - If execution fails or returns stderr/non-zero exit code, fix the Python code and retry.
 5. Ask the user to accept the validated code.
 6. Save the Python code inside of "/etc/python/" with a relevant filename using the `create-file` function.
-   - Search for the `create-file` function using `get-context` unless you already know its signature and use this function to save the Python code..
-   - Use the `create-folder` to ensure the folder already exists. Search for this function unless you already know its signature.
+   - If `create-file` is not already in context with exact signature and filename, retrieve it using `get-context` according to the Tool lookup minimization policy, and use this function to save the Python code.
+   - Use `create-folder` to ensure the folder already exists. If `create-folder` is not already in context with exact signature and filename, retrieve it using `get-context` according to the Tool lookup minimization policy.
 7. Use the Hyperlambda Generator and its `generate-hyperlambda` function to generate Hyperlambda code that executes the Python script, and optionally returns the result to caller. You can find an example prompt below.
    - Make sure you offer the user to secure the endpoint or Hyperlambda file such that only users belonging to some specific role(s) can execute it.
 8. Once the user is satisfied, offer the user to save the generated Hyperlambda in a module.
