@@ -167,7 +167,7 @@ You can also watch me [guide you through the setup process here](https://www.you
 
 To use the system you'll need an OpenAI API key. You can create one [here](https://platform.openai.com/api-keys).
 
-**NOTICE** - To gain access to `gpt-5.4`, you might have to deposit $51 into your OpenAI API account. Magic depends upon OpenAI, and without depositing money into OpenAI, you won't get access to gpt-5.4, which is the default model in Magic for _"vibe coding"_. You might get GPT-4.1 to work during vibe coding, but 5.2-codex is __much better__!
+**NOTICE** - To gain access to `gpt-5.4`, you might have to deposit $51 into your OpenAI API account. Magic depends upon OpenAI, and without depositing money into OpenAI, you won't get access to gpt-5.4, which is the default model in Magic for _"vibe coding"_. You might get GPT-4.1 to work during vibe coding, but 5.4 is __much better__!
 
 If you are absolutely allergic to OpenAI, there are Ollama and HuggingFace plugins for the system, allowing you to _"override"_ the inference functions with Ollama or HuggingFace models and endpoints - But vectorisation still can only be done with OpenAI's embeddings API.
 
