@@ -114,6 +114,10 @@ When we measure Hyperlambda and Magic Cloud, it's roughly around 20 times faster
 
 Magic Cloud is built in C# and .Net Core 10.
 
+On average, Magic is probably around 100 to 1,000 times faster than _"graphical workflow solutions"_, such as N8N, LangChain, Zapier, Make, etc - Due to relying upon an actual programming language instead of JSON, XML, or Markdown based _"workflow files"_. Executing a piece of Hyperlambda is around 1,000 times faster than parsing _"dynamic logic"_ from YAMNL or JSON files.
+
+Hyperlambda is almost on pair with pure C# code!
+
 ## Getting started
 
 The easiest way to get started is to use Docker and create a _"docker-compose.yaml"_ file with the following content;
