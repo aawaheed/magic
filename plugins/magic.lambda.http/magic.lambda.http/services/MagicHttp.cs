@@ -507,11 +507,12 @@ namespace magic.lambda.http.services
                 {
                     using (var reader = new StreamReader(await content.ReadAsStreamAsync()))
                     {
-                        while (!reader.EndOfStream)
+                        string line;
+                        while ((line = await reader.ReadLineAsync()) is not null)
                         {
                             var exe = sse.Clone();
                             var args = new Node(".arguments");
-                            args.Add(new Node("message", await reader.ReadLineAsync()));
+                            args.Add(new Node("message", line));
                             exe.Insert(0, args);
                             result.Add(exe);
                             await signaler.SignalAsync("eval", exe);
