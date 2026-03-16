@@ -194,8 +194,8 @@ namespace magic.library
 
                     // Connection pool stability
                     ConnectTimeout = TimeSpan.FromSeconds(20),
-                    PooledConnectionLifetime = TimeSpan.FromMinutes(5),
-                    PooledConnectionIdleTimeout = TimeSpan.FromMinutes(1),
+                    PooledConnectionLifetime = TimeSpan.FromSeconds(45),
+                    PooledConnectionIdleTimeout = TimeSpan.FromSeconds(20),
                     MaxConnectionsPerServer = 100,
 
                     // Detect half-open sockets and prevent random request hangs
