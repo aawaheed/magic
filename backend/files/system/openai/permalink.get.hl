@@ -63,7 +63,7 @@ data.connect:[generic|magic]
          messages
             .
                role:system
-               content:Create an SEO optimised H1 text value of the following content
+               content:Create a small 5 to 10 word summary of the following content
             .
                role:user
                content:x:@cache.get
