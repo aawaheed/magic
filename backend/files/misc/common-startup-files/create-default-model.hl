@@ -38,7 +38,9 @@ try
                   use_embeddings:int:0
                   conversation_starters:@"* What can you do?
 * I want to SEO analyse my website
-* Create me a full stack app with a database and an API"
+* Create me a full stack app with a database and an API
+* Help me design and create an SQL database for a CRM system
+* I want to create an AI agent"
 
       else
 
@@ -63,7 +65,9 @@ try
                use_embeddings:int:0
                conversation_starters:@"* What can you do?
 * I want to SEO analyse my website
-* Create me a full stack app with a database and an API"
+* Create me a full stack app with a database and an API
+* Help me design and create an SQL database for a CRM system
+* I want to create an AI agent"
             where
                and
                   type.eq:default
