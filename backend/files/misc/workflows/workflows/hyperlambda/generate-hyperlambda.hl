@@ -21,6 +21,7 @@ try
       date.now
    http.post:"https://ainiro.io/magic/modules/hyperlambda-generator/chat"
       convert:true
+      timeout:60
       payload
    .total
    set-value:x:-
@@ -36,5 +37,5 @@ try
    log.error:x:@.arguments/*/message
       stack:x:@lambda2hyper
    throw:x:@.arguments/*/message
-      status:int:400
+      status:int:502
       public:bool:true
