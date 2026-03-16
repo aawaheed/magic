@@ -4,9 +4,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using magic.data.common.helpers;
 
 namespace magic.backend
@@ -27,18 +27,22 @@ namespace magic.backend
                 }
             }))
             {
-                WebHost.CreateDefaultBuilder(args)
-                    .ConfigureAppConfiguration((ctx, config) =>
+                Host.CreateDefaultBuilder(args)
+                    .ConfigureWebHostDefaults(webBuilder =>
                     {
-                        config.AddJsonFile("files/config/appsettings.json", optional: false, reloadOnChange: true);
+                        webBuilder
+                            .ConfigureAppConfiguration((ctx, config) =>
+                            {
+                                config.AddJsonFile("files/config/appsettings.json", optional: false, reloadOnChange: true);
+                            })
+                            .ConfigureKestrel(options =>
+                            {
+                                options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(40);
+                                options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(40);
+                                options.Limits.MaxRequestBodySize = 6710886400; // 6.4GB
+                            })
+                            .UseStartup<Startup>();
                     })
-                    .ConfigureKestrel(options => 
-                    {
-                        options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(40);
-                        options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(40);
-                        options.Limits.MaxRequestBodySize = 6710886400; // 6.4GB
-                    })
-                    .UseStartup<Startup>()
                     .Build()
                     .Run();
             }
