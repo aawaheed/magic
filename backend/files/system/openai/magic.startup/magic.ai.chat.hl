@@ -939,6 +939,7 @@ select prompt, max(completion) as completion
 
                http.post:x:@.api_url
                   convert:bool:true
+                  timeout:180
                   headers
                      Authorization:x:@.token
                      Content-Type:application/json
@@ -978,7 +979,7 @@ select prompt, max(completion) as completion
                      set-value:x:@.wait
                         math.multiply
                            get-value:x:@.wait
-                           get-value:x:@.wait
+                           .:int:2
 
             // Sanity checking above invocation.
             if
@@ -1161,6 +1162,7 @@ select prompt, max(completion) as completion
                                  not-exists:x:@data.read/*
                                  .lambda
                                     http.post:"https://api.openai.com/v1/chat/completions"
+                                       timeout:60
                                        convert:bool:true
                                        headers
                                           Authorization:x:@.token
