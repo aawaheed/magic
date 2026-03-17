@@ -37,3 +37,38 @@ You can also post-process output, for example:
 - Do not provide both `file` and `code`.
 - Prefer JSON output from Python (`print(json.dumps(...))`) for reliable downstream parsing.
 - Keep Python dependencies to stdlib unless environment guarantees additional packages.
+
+## Documentation
+
+Below is the documentation for the Hyperlambda slots encapsulating Python execution. Knowing its features should allow you to generate high quality natural language prompts for it if required.
+
+### How to use [python.execute]
+
+You must provide either `code` or `file`.
+
+```
+python.execute
+   code:@"
+print('hello from python')
+"
+```
+
+```
+python.execute
+   file:/modules/scripts/hello.py
+   args
+      .:--name
+      .:Magic
+```
+
+Optional arguments:
+
+* __[args]__ - Either a string of arguments or child nodes (each child is one argument)
+* __[stdin]__ - String passed to stdin
+* __[working-directory]__ - Working directory (must be under `/files/`)
+* __[timeout]__ - Timeout in seconds (default 30)
+
+Notes:
+
+* File paths are resolved under `/files/` using `IRootResolver`.
+* Non-zero exit codes throw a Hyperlambda exception with stderr/stdout.

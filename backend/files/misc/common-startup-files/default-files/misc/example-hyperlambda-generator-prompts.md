@@ -13,7 +13,7 @@ Hyperlambda is a DSL that allows you to solve most tasks related to backend soft
   - Or return content from individual URLs, save content from URLs into some database, etc, etc
 * "Load the file '/README.md', transform it to Markdown, and return its OpenAI API token count, in addition to the Markdown"
 * "Crawl all URLs from ainiro.io's sitemap that contains '/blog/' in their URLs, extract trimmed H1 value and Markdown of the first ARTICLE element you find in HTML. Then insert H1 into 'prompt' and Markdown into 'completion' in the 'magic' database and its 'ml_training_snippets' table. Use 'my_chatbot' as a literal for your 'type' value during insertion."
-* "Download 'https://ainiro.io' and measure how many milliseconds it took to retrieve the page."
+* "Download 'https://ainiro.io' and measure and return how many milliseconds it took to retrieve the page."
 * "Get 'https://ainiro.io/image.jpeg' and return its Content-Type HTTP header"
 * "Load '/README.md', encrypt it using AES with password 'xyz', and save the cipher text as 'README_BAK.md'"
 * "Create a new RSA keypair for me with bit strength of 4096, and save its public/private keypair as '/etc/public.txt' and '/etc/private.txt'"

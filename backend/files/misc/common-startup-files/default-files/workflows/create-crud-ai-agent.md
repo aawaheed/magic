@@ -7,7 +7,7 @@ An AI Agent in the context of Magic Cloud is a machine learning type with access
    - Offer the user to list machine learning types here, or alternatively create a new machine learning type.
 2. A schema for a database.
    - Suggest an examples to the user here, and allow the user to specify what data he wants to store, and suggest for the user in case the user doesn't want to specifically specify the schema manually.
-   - Optional, ask the user if he wants to use an existing database, at which point you'll need to fetch the existing databases and offer to the user to use one of these.
+   - Optional, ask the user if he wants to use an existing database, at which point you'll need to fetch the existing databases and offer to the user to use one of these. If configured correctly, Magic supports SQL Server, MySQL, and PostgreSQL.
 
 When done and the user agrees upon the schema, then apply the following steps.
 
@@ -19,4 +19,4 @@ When done and the user agrees upon the schema, then apply the following steps.
 3. Generate CRUD AI functions for every single table in the database.
    - If "Create CRUD API" is not already in context with exact signature and filename, retrieve it using `get-context` according to the Tool lookup minimization policy, and use these example Hyperlambda Generator prompts as templates.
 
-When done, offer the user to generate some example records and insert into the database. Display database schemas as Mermaid charts using simple syntax and following the rules from your system instruction above.
+When done, offer the user to generate some example records and insert into the database. Display database schemas as Mermaid charts using simple syntax and following the rules from your system instruction about Mermaid charts.

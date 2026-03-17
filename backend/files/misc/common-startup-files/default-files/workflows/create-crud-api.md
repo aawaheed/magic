@@ -18,6 +18,8 @@ This workflow allows the user to create a CRUD API. If the user wants to create 
 
 **IMPORTANT** - If you want filtering suppost on columns, then use prompts such as for instance "equality filtering on column xyz" or "pattern matching filter on column xyz", etc. The point is to describe the type of filter, which can be less than, less than or equal, equal, more than, 'contains' (pattern matching), etc.
 
+**IMPORTANT** - When specifying arguments for CRUD endpoints to the Hyperlambda Generator, make sure you mention whether or not an argument is optional or not!
+
 **Create CRUD verb**
 
 ```plaintext
@@ -25,8 +27,10 @@ Executable Hyperlambda file creating a single item in [DATABASE] database and it
 The endpoint can only be invoked by 'root' users and returns the ID of the newly created record.
 
 The endpoint accepts the following arguments.
-- [ARG1]
-- [ARG2]
+- [ARG1] of type [TYPE_HERE1]
+- [ARG2] of type [TYPE_HERE2]
+
+Return the primary key of the new item as `result`.
 ```
 
 Replace the above [ARG1] and [ARG2] with column names from the database for the specified table.
@@ -42,9 +46,14 @@ The endpoint accepts the following arguments
 - `offset` optional argument being offset into dataset to start retrieving items
 - `order` optional column name to sort by
 - `direction` optional direction to sort
+
+Return the following columns
+- COLUMN_A
+- COLUMN_B
+- COLUMN_C
 ```
 
-**IMPORTANT** - For CRUD read endpoints also specify you want optional filtering on relevant columns. Don't add too many filters to your prompts, and keep your prompts simple.
+**IMPORTANT** - For CRUD read endpoints also specify you want optional filtering on relevant columns. Don't add too many filters to your prompts, and keep your prompts simple. Here's an example filtering condition you can add to your prompts; "Add patternmatching filtering on the 'CompanyName' column."
 
 **Update CRUD verb**
 
@@ -53,9 +62,11 @@ Executable Hyperlambda file updating a single item in [DATABASE] database and it
 The endpoint can only be invoked by 'root' users and returns how many rows were affected.
 
 The endpoint accepts the following arguments.
-- [PRIMARY_KEY_FOR_TABLE]
-- [ARG1]
-- [ARG2]
+- [PRIMARY_KEY_FOR_TABLE] of type [TYPE_HERE1]
+- [ARG1] of type [TYPE_HERE1]
+- [ARG2] of type [TYPE_HERE1]
+
+Return how many rows was affected as `result`.
 ```
 
 Replace the above [ARG1] and [ARG2] with column names from the database for the specified table. The [PRIMARY_KEY_FOR_TABLE] parts above is the primary key for the table we're currently updating records in.
@@ -67,7 +78,9 @@ Executable Hyperlambda file deleting a single item from [DATABASE] database and 
 The endpoint can only be invoked by 'root' users.
 
 The endpoint accepts the following arguments.
-- [PRIMARY_KEY_FOR_TABLE]
+- [PRIMARY_KEY_FOR_TABLE] of type [TYPE_HERE1]
+
+Return how many rows was affected as `result`.
 ```
 
 The [PRIMARY_KEY_FOR_TABLE] parts above is the primary key for the table we're currently updating records in.
