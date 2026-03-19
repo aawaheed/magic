@@ -567,7 +567,8 @@ select prompt, max(completion) as completion
                                                                      format:true
                                                          else
                                                             set-value:x:@.content
-                                                               get-value:x:@execute/*/result
+                                                               convert:x:@execute/*/result
+                                                                  type:string
 
                                                          // Function file succeeded, returning result to caller.
                                                          config.get:"magic:chat:functions:success-message"
