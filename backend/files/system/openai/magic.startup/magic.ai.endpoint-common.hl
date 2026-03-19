@@ -413,6 +413,16 @@ slots.create:magic.ai.endpoint-common
             .
                model_size:int:1000000
 
+      case:gpt-5.4-mini
+         add:x:@.model
+            .
+               model_size:int:400000
+
+      case:gpt-5.4-nano
+         add:x:@.model
+            .
+               model_size:int:400000
+
    // Adding defaults in case model has not been configured with max_request_tokens
    if
       or
