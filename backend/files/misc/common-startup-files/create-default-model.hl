@@ -139,12 +139,12 @@ try
                .embeddings
                strings.concat
                   get-value:x:@.dp/#
-                  .:.embeddings.obj
+                  .:.embeddings.vec_obj
                if
                   io.file.exists:x:@strings.concat
                   .lambda
                      set-value:x:@.embeddings
-                        io.file.load:x:@strings.concat
+                        io.file.load.binary:x:@strings.concat
                unwrap:x:+/*/*/*
                add:x:@.training-data
                   .
