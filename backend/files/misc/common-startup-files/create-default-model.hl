@@ -136,6 +136,15 @@ try
                set-value:x:@.prompt
                   strings.trim:x:@.prompt
                      .:"# "
+               .embeddings
+               strings.concat
+                  get-value:x:@.dp/#
+                  .:.embeddings.obj
+               if
+                  io.file.exists:x:@strings.concat
+                  .lambda
+                     set-value:x:@.embeddings
+                        io.file.load:x:@strings.concat
                unwrap:x:+/*/*/*
                add:x:@.training-data
                   .
@@ -143,6 +152,8 @@ try
                         prompt:x:@.prompt
                         meta:x:@.meta
                         completion:x:@.completion
+                        filename:x:@.dp/#
+                        embeddings:x:@.embeddings
 
       // Looping through each new snippet and importing into type.
       for-each:x:@.training-data/*
@@ -153,6 +164,8 @@ try
                meta:x:@.dp/#/*/meta
                prompt:x:@.dp/#/*/prompt
                completion:x:@.dp/#/*/completion
+               filename:x:@.dp/#/*/filename
+               embeddings:x:@.dp/#/*/embeddings
 
 .catch
 
