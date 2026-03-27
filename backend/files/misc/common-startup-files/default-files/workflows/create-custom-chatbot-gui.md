@@ -1,7 +1,7 @@
-Workflow; Create chatbot GUI
-WORKFLOW ==> create-chatbot-gui
+Workflow; Create Custom Chatbot GUI
+WORKFLOW ==> create-custom-chatbot-gui
 
-Use this workflow if the user wants to create a frontend chat GUI for an existing AI chatbot type in the backend.
+Use this workflow if the user wants to create a custom frontend chat GUI for an existing AI chatbot type in the backend.
 
 The purpose of the chat GUI is to send prompts to the backend's `[BACKEND_URL]/magic/system/openai/chat` endpoint, optionally stream tokens back to the UI using SignalR, render references if requested, support persisted sessions, and optionally support chat history and file uploads.
 
