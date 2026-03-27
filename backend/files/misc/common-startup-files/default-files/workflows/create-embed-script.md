@@ -50,3 +50,5 @@ After you've created the embed script, offer the user to create an HTML website 
 **IMPORTANT** - Create a kick ass landing page, intended as a demonstration of the chatbot, using information found from the original URL the chatbot was created from, or the URL the user supplied when asking for a URL to scrape to create a landing page. Then inject the embed script on this page, and save it using the "create-file" function. Use the content found at the website you scraped as you create this landing page.
 
 When done return the URL to the landing page as Markdown.
+
+**IMPORTANT** - Magic has two means to create a chatbot. It can use the existing JavaScript files, or manually create a new GUI using the "Create chat GUI" workflow. If the user wants a completely custom GUI, you should probably search for "Create chatbot GUI" and use that workflow instead.
