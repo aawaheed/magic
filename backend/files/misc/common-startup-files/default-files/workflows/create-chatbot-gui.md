@@ -322,6 +322,8 @@ If the machine learning type is configured to return follow up questions, it wil
 - Question 3
 ```
 
+Notice, it can also return `*` characters instead of `-`, so you have to check for both.
+
 If it does, these are follow up quesitons and not a part of its answer, and a button should be rendered for each of the above, allowing the user to click the button, which triggers the content of the button as a question, and immediately transmits it to backend as a user request.
 
 ## Important implementation rules
@@ -351,3 +353,7 @@ mcaptcha.token(function (token) {
 ```
 
 **IMPORTANT** - Magic has two means to create a chatbot. It can use the existing JavaScript files, or manually create a new GUI using this workflow. If the user wants an embeddable AI chatbot, you should probably search for "Embed AI chatbot" and use that workflow instead.
+
+**IMPORTANT** - If the user wants to follow this workflow, it implies you need to wire up everything yourself based upon the above documentation, and not reuse any of its JavaScript files, besides optionally "magic-captcha-challenge.js" if the user wants CAPTCHA support.
+
+So you have to get the user's confirmation if he wants to follow this workflow, or simply wants to embed an existing AI chatbot. If the user wants you to create a custom GUI, you have to follow this workflow instead of the embed AI chatbot workflow.
