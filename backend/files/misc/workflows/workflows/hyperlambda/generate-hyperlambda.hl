@@ -10,12 +10,15 @@
    // Mandatory argument describing the Hyperlambda code you want to generate.
    prompt:string
 
+   // Optionall filename of where to save the Hyperlambda.
+   filename:string
+
 // Ensuring user is root.
 auth.ticket.verify:root
 
 try
    add:x:./*/http.post/*/payload
-      get-nodes:x:@.arguments/*
+      get-nodes:x:@.arguments/*/prompt
    .start
    set-value:x:-
       date.now
@@ -28,6 +31,25 @@ try
       math.subtract
          date.now
          get-value:x:@.start
+   if
+      and
+         exists:x:@.arguments/*/filename
+         not-null:x:@.arguments/*/filename
+      .lambda
+
+         // Caller wants to save the file, so we sanity check it first.
+         hyper2lambda:x:@http.post/*/content/*/result
+            comments:true
+         lambda2hyper:x:-/*
+            comments:true
+         io.file.save:x:@.arguments/*/filename
+            get-value:x:@lambda2hyper
+         unwrap:x:+/*/*
+         add:x:@try/*/yield
+            .
+               saved:bool:true
+               filename:x:@.arguments/*/filename
+
    yield
       code:x:@http.post/*/content/*/result
       time_spent:x:@.total
