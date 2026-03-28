@@ -1,7 +1,7 @@
 Workflow; Create Widget
 WORKFLOW ==> create-widget
 
-A widget is a reusable snippet of HTML that can be dynamically injected into the chatbot conversation by the LLM to collect data, display rich HTML, etc.
+A widget is a reusable snippet of HTML that can be dynamically injected into the chatbot conversation by the LLM to collect data, display rich HTML, etc. Such widgets can be shown by attaching them to a machine learning type, ensuring the LLM triggers the widget using natural language instructions using the `add-html-widget` function.
 
 Use this workflow if the user wants to tell you he or she wants to create a widget, and ask the user for the following information:
 
@@ -9,7 +9,9 @@ Use this workflow if the user wants to tell you he or she wants to create a widg
    - If it needs an API, you can generate one using the Hyperlambda Generator. Do this first if required.
 2. Where should we save the widget's HTML
    - By default widgets are saved as HTML files into a module, in a folder named for instance "widgets", inside a module. Offer the user to create a module using the `create-module` unless the user specifies an existing module, and make sure all folders are created before attempting to save the HTML.
-3. Use the `display-widget` function to allow the user to debug the widget and test it before the HTML is saved.
+3. Where to save CSS and JavaScript files
+   - If the widget needs JavaScript or CSS files, these must be saved somewhere inside of '/etc/www/' to make it possible to include these into the HTML.
+4. Use the `display-widget` function to allow the user to debug the widget and test it before the HTML is saved.
 
 ## Rules for saving widget
 

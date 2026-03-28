@@ -115,6 +115,7 @@ A widget is a small partial snippet of dynamically created HTML, CSS, and JavaSc
    - `ainiro.$id` instead of `getElementById`.
    - `ainiro.$$` instead of `querySelectorAll`.
 8. By default the root HTML element should have a `min-width` value of "80%", unless the user tells you something else.
+9. Widgets can be rendered inline directly into the chatbot surface by searching for and using the `display-widget` function, and you can add a widget to an AI chatbot or a machine learning type by searching for `add-html-widget`.
 
 ### About images
 

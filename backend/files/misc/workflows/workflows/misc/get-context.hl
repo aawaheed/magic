@@ -30,12 +30,42 @@ validators.default:x:@.arguments
    max_tokens:int:5000
    threshold:decimal:0.2
 
-// Converting to decimal to be sure.
+// Checking if the caller is searching by "ID", at which point we do NOT use VSS!
+if
+   eq
+      strings.replace-not-of:x:@.arguments/*/query
+         .:abcdefghijklmnopqrstuvwxyz1234567890-
+         .:
+      get-value:x:@.arguments/*/query
+   .lambda
+
+      // Query contains only small letters, numbers, and '-' character.
+      strings.concat
+         .:%
+         get-value:x:@.arguments/*/query
+      data.connect:magic
+         data.read
+            table:ml_training_snippets
+            where
+               and
+                  meta.like:x:@strings.concat
+         if
+            exists:x:@data.read/*
+            .lambda
+               strings.concat
+                  .:"# "
+                  get-value:x:@data.read/0/*/prompt
+                  .:"\n\n"
+                  get-value:x:@data.read/0/*/completion
+               yield
+                  context:x:@strings.concat
+
+// Converting `threshold` to decimal to be sure.
 set-value:x:@.arguments/*/threshold
    convert:x:@.arguments/*/threshold
       type:decimal
 
-// Converting to decimal to be sure.
+// Converting `max_tokens` to int to be sure.
 set-value:x:@.arguments/*/max_tokens
    convert:x:@.arguments/*/max_tokens
       type:int
