@@ -47,7 +47,13 @@ namespace magic.lambda.io.file
 
             // Retrieving arguments.
             var path = _rootResolver.AbsolutePath(input.GetEx<string>());
-            var patch = input.Children.First().GetEx<string>();
+            var patchNode = input.Children.FirstOrDefault();
+            if (patchNode == null)
+                throw new HyperlambdaException("Missing patch.");
+
+            var patch = patchNode.GetEx<string>();
+            if (string.IsNullOrWhiteSpace(patch))
+                throw new HyperlambdaException("Patch is empty.");
 
             // Enforcing that the patch applies to a single file only.
             EnsureSingleFilePatch(patch);
@@ -91,7 +97,12 @@ namespace magic.lambda.io.file
             var newline = original.Contains("\r\n", StringComparison.InvariantCulture) ? "\r\n" : "\n";
             var originalLines = SplitLines(original);
             var patchLines = SplitLines(patch);
+            while (patchLines.Count > 0 && patchLines[0].Length == 0)
+                patchLines.RemoveAt(0);
+            while (patchLines.Count > 0 && patchLines[patchLines.Count - 1].Length == 0)
+                patchLines.RemoveAt(patchLines.Count - 1);
             var output = new List<string>();
+            var hasHunks = false;
 
             var originalIndex = 0;
             var patchIndex = 0;
@@ -110,13 +121,14 @@ namespace magic.lambda.io.file
                 }
 
                 if (!line.StartsWith("@@", StringComparison.InvariantCulture))
-                {
-                    patchIndex++;
-                    continue;
-                }
+                    throw new HyperlambdaException("Invalid patch.");
 
                 var (oldStart, _, _) = ParseHunkHeader(line);
                 var targetIndex = oldStart - 1;
+                if (targetIndex < originalIndex)
+                    throw new HyperlambdaException("Patch hunks are overlapping or out of order.");
+
+                hasHunks = true;
 
                 // Copy unchanged lines before hunk.
                 while (originalIndex < targetIndex && originalIndex < originalLines.Count)
@@ -133,14 +145,7 @@ namespace magic.lambda.io.file
                         break;
 
                     if (line.Length == 0)
-                    {
-                        // Treat empty line as a context line.
-                        EnsureLineMatch(originalLines, originalIndex, string.Empty);
-                        output.Add(originalLines[originalIndex]);
-                        originalIndex++;
-                        patchIndex++;
-                        continue;
-                    }
+                        throw new HyperlambdaException("Invalid patch line.");
 
                     var tag = line[0];
                     var text = line.Length > 1 ? line.Substring(1) : string.Empty;
@@ -174,6 +179,9 @@ namespace magic.lambda.io.file
 
                 // We intentionally do not enforce hunk line counts to allow standard diffs with extra context.
             }
+
+            if (!hasHunks)
+                throw new HyperlambdaException("Patch does not contain any hunks.");
 
             // Append remaining original lines.
             while (originalIndex < originalLines.Count)
