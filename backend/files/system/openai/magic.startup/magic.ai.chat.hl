@@ -320,63 +320,65 @@ select prompt, max(completion) as completion
                   role:user
                   content
                      .
-                        type:text
+                        type:input_text
                         text:x:@.arguments/*/prompt
 
          // Looping through all file arguments.
          while
             exists:x:@.arguments/*/file
             .lambda
-               io.stream.read:x:@.arguments/*/file/[0,1]/*/stream
-               .base64-content
+
+               /*
+                * Saving files locally in etc folder to expose to LLM,
+                * using a random filename to ensure unique filenames.
+                */
+               if
+                  not
+                     io.folder.exists:/etc/www/tmp/
+                  .lambda
+                     io.folder.create:/etc/www/tmp/
                strings.split:x:@.arguments/*/file/[0,1]/*/name
                   .:.
+               .filename
+               set-value:x:-
+                  strings.concat
+                     .:/etc/www/tmp/
+                     crypto.random
+                        min:10
+                        max:10
+                     .:.
+                     get-value:x:@strings.split/0/-
+               io.stream.save-file:x:@.filename
+                  get-value:x:@.arguments/*/file/[0,1]/*/stream
+               .url
+               set-value:x:-
+                  strings.concat
+                     .:"https://"
+                     request.host
+                     .:/tmp/
+                     strings.substring:x:@.filename
+                        .:13
                switch:x:@strings.split/0/-
-                  case:PDF
-                  case:pdf
-                     set-value:x:@.base64-content
-                        strings.concat
-                           .:"data:application/pdf;base64,"
-                           convert:x:@io.stream.read
-                              type:base64
-                     unwrap:x:+/*/**
-                     add:x:@.session/0/-/*/content
-                        .
-                           .
-                              type:file
-                              file
-                                 filename:x:@.arguments/*/file/[0,1]/*/name
-                                 file_data:x:@.base64-content
                   case:png
                   case:PNG
-                     set-value:x:@.base64-content
-                        strings.concat
-                           .:"data:image/png;base64,"
-                           convert:x:@io.stream.read
-                              type:base64
-                     unwrap:x:+/*/**
-                     add:x:@.session/0/-/*/content
-                        .
-                           .
-                              type:image_url
-                              image_url
-                                 url:x:@.base64-content
                   case:jpg
                   case:JPG
                   case:jpeg
                   case:JPEG
-                     set-value:x:@.base64-content
-                        strings.concat
-                           .:"data:image/jpeg;base64,"
-                           convert:x:@io.stream.read
-                              type:base64
                      unwrap:x:+/*/**
                      add:x:@.session/0/-/*/content
                         .
                            .
-                              type:image_url
-                              image_url
-                                 url:x:@.base64-content
+                              type:input_image
+                              image_url:x:@.url
+                  case:pdf
+                  case:PDF
+                     unwrap:x:+/*/**
+                     add:x:@.session/0/-/*/content
+                        .
+                           .
+                              type:input_file
+                              file_url:x:@.url
                remove-nodes:x:@.arguments/*/file/[0,1]
 
    /*
