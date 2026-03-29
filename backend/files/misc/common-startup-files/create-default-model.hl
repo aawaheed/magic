@@ -72,13 +72,6 @@ try
                and
                   type.eq:default
 
-         // Deleting all previously imported snippets.
-         data.delete
-            table:ml_training_snippets
-            where
-               and
-                  type.eq:default
-
       /*
        * Importing all new snippets to type.
        */
@@ -157,6 +150,21 @@ try
 
       // Looping through each new snippet and importing into type.
       for-each:x:@.training-data/*
+
+         // Deleting previously imported similar snippets.
+         if
+            and
+               neq:x:@.dp/#/*/meta
+                  .:
+               not-null:x:@.dp/#/*/meta
+            .lambda
+               data.delete
+                  table:ml_training_snippets
+                  where
+                     and
+                        type.eq:default
+                        meta.eq:x:@.dp/#/*/meta
+
          data.create
             table:ml_training_snippets
             values
