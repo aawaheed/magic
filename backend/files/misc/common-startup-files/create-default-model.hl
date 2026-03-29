@@ -73,6 +73,16 @@ try
                   type.eq:default
 
       /*
+       * Making sure we delete old imported data.
+       */
+      data.delete
+         table:ml_training_snippets
+         where
+            and
+               type.eq:default
+               meta.eq:system-imported-data
+
+      /*
        * Importing all new snippets to type.
        */
       .training-data
@@ -154,9 +164,12 @@ try
          // Deleting previously imported similar snippets.
          if
             and
-               neq:x:@.dp/#/*/meta
-                  .:
-               not-null:x:@.dp/#/*/meta
+               and
+                  neq:x:@.dp/#/*/meta
+                     .:
+                  not-null:x:@.dp/#/*/meta
+                  neq:x:@.dp/#/*/meta
+                     .:system-imported-data
             .lambda
                data.delete
                   table:ml_training_snippets
