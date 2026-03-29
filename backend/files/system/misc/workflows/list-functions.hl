@@ -16,17 +16,30 @@ validators.mandatory:x:@.arguments/*/_type
 data.connect:[generic|magic]
 
    // Retrieving all training snippets having a meta value starting with "FUNCTION_INVOCATION ==> "
-   data.select:"select prompt from ml_training_snippets where type = @type and meta like '%FUNCTION_INVOCATION ==> %'"
+   data.select:"select prompt, meta from ml_training_snippets where type = @type and meta like '%FUNCTION_INVOCATION ==> %'"
       @type:x:@.arguments/*/_type
 
    // Iterating through result from above invocation.
-   for-each:x:@data.select/*
+   map:x:@data.select/*
+      strings.split:x:@.dp/#/*/meta
+         .:/
+      strings.split:x:-/0/-
+         .:.
+      strings.replace:x:@.dp/#/*/prompt
+         .:"Function; "
+      yield
+         .
+            prompt:x:@strings.replace
+            name:x:@strings.split/0
+   for-each:x:-/*
 
       // Adding prompt to [return] below.
-      unwrap:x:+/*/*
+      unwrap:x:+/*/*/*
       add:x:@data.connect/*/yield/*/rag_functions
          .
-            .:x:@.dp/#/*/prompt
+            .
+               description:x:@.dp/#/*/prompt
+               id:x:@.dp/#/*/name
 
    // Retrieving system message functions.
    data.read
@@ -60,13 +73,24 @@ data.connect:[generic|magic]
                   .:x:@strings.trim
 
    // Retrieving all training snippets having a meta value starting with "WORKFLOW ==> "
-   data.select:"select prompt from ml_training_snippets where type = @type and meta like '%WORKFLOW ==> %'"
+   data.select:"select meta, prompt from ml_training_snippets where type = @type and meta like '%WORKFLOW ==> %'"
       @type:x:@.arguments/*/_type
-   for-each:x:@data.select/*
-      unwrap:x:+/*/*
+   map:x:@data.select/*
+      strings.split:x:@.dp/#/*/meta
+         .:" ==> "
+      strings.replace:x:@.dp/#/*/prompt
+         .:"Workflow; "
+      yield
+         .
+            prompt:x:@strings.replace
+            name:x:@strings.split/1
+   for-each:x:-/*
+      unwrap:x:+/*/*/*
       add:x:@data.connect/*/yield/*/workflows
          .
-            .:x:@.dp/#/*/prompt
+            .
+               prompt:x:@.dp/#/*/prompt
+               id:x:@.dp/#/*/name
 
    // Making sure we remove whatever containers doesn't contain data.
    if
