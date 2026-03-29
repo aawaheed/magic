@@ -55,7 +55,7 @@ io.file.patch:/existing.txt
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line1\nline2 updated", content);
+                    Assert.Equal("line1\nline2 updated\n", content);
                 }
             };
 
@@ -82,7 +82,7 @@ io.file.patch:/existing.txt
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line1 updated\nline2\nline3\nline4 updated", content);
+                    Assert.Equal("line1 updated\nline2\nline3\nline4 updated\n", content);
                 }
             };
 
@@ -164,6 +164,133 @@ io.file.patch:/existing.txt
 """, fileService));
 
             Assert.Equal("Invalid patch.", exception.Message);
+        }
+
+        [Fact]
+        public void PatchFile_ValidatesPatchHeadersAgainstTargetFile()
+        {
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\n",
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called for invalid patches.")
+            };
+
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+--- a/other.txt
++++ b/other.txt
+@@ -1 +1 @@
+-line1
++line2
+"
+""", fileService));
+
+            Assert.Equal("Patch targets a different file.", exception.Message);
+        }
+
+        [Fact]
+        public void PatchFile_AllowsStandardHeadersForTargetFile()
+        {
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\n",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("line2\n", content);
+                }
+            };
+
+            Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+--- a/existing.txt
++++ b/existing.txt
+@@ -1 +1 @@
+-line1
++line2
+"
+""", fileService);
+
+            Assert.True(saveInvoked);
+        }
+
+        [Fact]
+        public void PatchFile_SupportsOmittedHunkCounts()
+        {
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\nline2\n",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("line1\nline2 updated\n", content);
+                }
+            };
+
+            Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -2 +2 @@
+-line2
++line2 updated
+"
+""", fileService);
+
+            Assert.True(saveInvoked);
+        }
+
+        [Fact]
+        public void PatchFile_RejectsMismatchedHunkCounts()
+        {
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\nline2\n",
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called for invalid patches.")
+            };
+
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -1,1 +1,2 @@
+-line1
++line1 updated
+"
+""", fileService));
+
+            Assert.Equal("Invalid hunk line counts.", exception.Message);
+        }
+
+        [Fact]
+        public void PatchFile_PreservesNoNewlineAtEndOfFileMarker()
+        {
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\nline2",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("line1\nline2 updated", content);
+                }
+            };
+
+            Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -1,2 +1,2 @@
+ line1
+-line2
+\ No newline at end of file
++line2 updated
+\ No newline at end of file
+"
+""", fileService);
+
+            Assert.True(saveInvoked);
         }
     }
 }

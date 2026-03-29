@@ -62,7 +62,7 @@ namespace magic.lambda.io.file
             var original = await _service.LoadAsync(path);
 
             // Applying patch and saving file.
-            var patched = ApplyUnifiedDiff(original, patch);
+            var patched = ApplyUnifiedDiff(original, patch, path);
             await _service.SaveAsync(path, patched);
         }
 
@@ -92,18 +92,18 @@ namespace magic.lambda.io.file
         /*
          * Applies a unified diff patch to the specified content.
          */
-        static string ApplyUnifiedDiff(string original, string patch)
+        static string ApplyUnifiedDiff(string original, string patch, string targetPath)
         {
             var newline = original.Contains("\r\n", StringComparison.InvariantCulture) ? "\r\n" : "\n";
-            var originalLines = SplitLines(original);
+            var (originalLines, originalHasTrailingNewline) = SplitContentLines(original);
             var patchLines = SplitLines(patch);
             while (patchLines.Count > 0 && patchLines[0].Length == 0)
                 patchLines.RemoveAt(0);
             while (patchLines.Count > 0 && patchLines[patchLines.Count - 1].Length == 0)
                 patchLines.RemoveAt(patchLines.Count - 1);
             var output = new List<string>();
+            var outputHasTrailingNewline = originalHasTrailingNewline;
             var hasHunks = false;
-
             var originalIndex = 0;
             var patchIndex = 0;
 
@@ -112,18 +112,29 @@ namespace magic.lambda.io.file
                 var line = patchLines[patchIndex];
 
                 if (line.StartsWith("diff --git", StringComparison.InvariantCulture) ||
-                    line.StartsWith("index ", StringComparison.InvariantCulture) ||
-                    line.StartsWith("--- ", StringComparison.InvariantCulture) ||
-                    line.StartsWith("+++ ", StringComparison.InvariantCulture))
+                    line.StartsWith("index ", StringComparison.InvariantCulture))
                 {
                     patchIndex++;
                     continue;
                 }
 
+                if (line.StartsWith("--- ", StringComparison.InvariantCulture))
+                {
+                    if (patchIndex + 1 >= patchLines.Count || !patchLines[patchIndex + 1].StartsWith("+++ ", StringComparison.InvariantCulture))
+                        throw new HyperlambdaException("Invalid patch header.");
+
+                    ValidatePatchHeaders(line, patchLines[patchIndex + 1], targetPath);
+                    patchIndex += 2;
+                    continue;
+                }
+
+                if (line.StartsWith("+++ ", StringComparison.InvariantCulture))
+                    throw new HyperlambdaException("Invalid patch header.");
+
                 if (!line.StartsWith("@@", StringComparison.InvariantCulture))
                     throw new HyperlambdaException("Invalid patch.");
 
-                var (oldStart, _, _) = ParseHunkHeader(line);
+                var (oldStart, oldCount, newStart, newCount) = ParseHunkHeader(line);
                 var targetIndex = oldStart - 1;
                 if (targetIndex < originalIndex)
                     throw new HyperlambdaException("Patch hunks are overlapping or out of order.");
@@ -138,10 +149,16 @@ namespace magic.lambda.io.file
                 }
 
                 patchIndex++;
+                var consumedOldLines = 0;
+                var consumedNewLines = 0;
+                var previousOperation = '\0';
                 while (patchIndex < patchLines.Count)
                 {
                     line = patchLines[patchIndex];
-                    if (line.StartsWith("@@", StringComparison.InvariantCulture))
+                    if (line.StartsWith("@@", StringComparison.InvariantCulture) ||
+                        line.StartsWith("--- ", StringComparison.InvariantCulture) ||
+                        line.StartsWith("diff --git", StringComparison.InvariantCulture) ||
+                        line.StartsWith("index ", StringComparison.InvariantCulture))
                         break;
 
                     if (line.Length == 0)
@@ -154,30 +171,54 @@ namespace magic.lambda.io.file
                         case ' ':
                             EnsureLineMatch(originalLines, originalIndex, text);
                             output.Add(originalLines[originalIndex]);
+                            outputHasTrailingNewline = true;
                             originalIndex++;
+                            consumedOldLines++;
+                            consumedNewLines++;
                             break;
 
                         case '-':
                             EnsureLineMatch(originalLines, originalIndex, text);
                             originalIndex++;
+                            consumedOldLines++;
                             break;
 
                         case '+':
                             output.Add(text);
+                            outputHasTrailingNewline = true;
+                            consumedNewLines++;
                             break;
 
                         case '\\':
-                            // "\ No newline at end of file" - ignore.
+                            if (!string.Equals(line, "\\ No newline at end of file", StringComparison.InvariantCulture))
+                                throw new HyperlambdaException("Invalid patch line.");
+                            if (previousOperation == '\0')
+                                throw new HyperlambdaException("Invalid patch line.");
+
+                            if (previousOperation == ' ')
+                            {
+                                outputHasTrailingNewline = false;
+                            }
+                            else if (previousOperation == '+')
+                            {
+                                outputHasTrailingNewline = false;
+                            }
+                            else if (previousOperation != '-')
+                            {
+                                throw new HyperlambdaException("Invalid patch line.");
+                            }
                             break;
 
                         default:
                             throw new HyperlambdaException("Invalid patch line.");
                     }
 
+                    previousOperation = tag;
                     patchIndex++;
                 }
 
-                // We intentionally do not enforce hunk line counts to allow standard diffs with extra context.
+                if (consumedOldLines != oldCount || consumedNewLines != newCount)
+                    throw new HyperlambdaException("Invalid hunk line counts.");
             }
 
             if (!hasHunks)
@@ -187,16 +228,20 @@ namespace magic.lambda.io.file
             while (originalIndex < originalLines.Count)
             {
                 output.Add(originalLines[originalIndex]);
+                outputHasTrailingNewline = OriginalLineHasTrailingNewline(originalIndex, originalLines.Count, originalHasTrailingNewline);
                 originalIndex++;
             }
 
-            return string.Join(newline, output);
+            if (output.Count == 0)
+                return string.Empty;
+
+            return string.Join(newline, output) + (outputHasTrailingNewline ? newline : string.Empty);
         }
 
         /*
          * Parses a unified diff hunk header.
          */
-        static (int OldStart, int OldCount, int NewStart) ParseHunkHeader(string header)
+        static (int OldStart, int OldCount, int NewStart, int NewCount) ParseHunkHeader(string header)
         {
             // Format: @@ -l,s +l,s @@
             var parts = header.Split(' ');
@@ -211,8 +256,8 @@ namespace magic.lambda.io.file
                 throw new HyperlambdaException("Invalid hunk header.");
 
             var (oldStart, oldCount) = ParseRange(oldPart.Substring(1));
-            var (newStart, _) = ParseRange(newPart.Substring(1));
-            return (oldStart, oldCount, newStart);
+            var (newStart, newCount) = ParseRange(newPart.Substring(1));
+            return (oldStart, oldCount, newStart, newCount);
         }
 
         /*
@@ -222,7 +267,10 @@ namespace magic.lambda.io.file
         {
             var parts = range.Split(',');
             if (parts.Length == 1)
-                return (ParseInt(parts[0]), 1);
+            {
+                var start = ParseInt(parts[0]);
+                return (start, start == 0 ? 0 : 1);
+            }
 
             return (ParseInt(parts[0]), ParseInt(parts[1]));
         }
@@ -246,6 +294,47 @@ namespace magic.lambda.io.file
                 throw new HyperlambdaException("Patch could not be applied.");
         }
 
+        static void ValidatePatchHeaders(string oldHeader, string newHeader, string targetPath)
+        {
+            var oldPath = NormalizeHeaderPath(oldHeader.Substring(4));
+            var newPath = NormalizeHeaderPath(newHeader.Substring(4));
+
+            if (!IsHeaderPathMatch(oldPath, targetPath) && !IsHeaderPathMatch(newPath, targetPath))
+                throw new HyperlambdaException("Patch targets a different file.");
+        }
+
+        static string NormalizeHeaderPath(string value)
+        {
+            var path = value.Trim();
+            var whitespaceIndex = path.IndexOfAny(new[] { '\t', ' ' });
+            if (whitespaceIndex >= 0)
+                path = path.Substring(0, whitespaceIndex);
+            if (path.StartsWith("a/", StringComparison.InvariantCulture) ||
+                path.StartsWith("b/", StringComparison.InvariantCulture))
+                path = path.Substring(2);
+            return path.Replace("\\", "/");
+        }
+
+        static bool IsHeaderPathMatch(string headerPath, string targetPath)
+        {
+            if (string.Equals(headerPath, "/dev/null", StringComparison.InvariantCulture))
+                return true;
+
+            var normalizedTarget = targetPath.Replace("\\", "/");
+            if (string.Equals(headerPath, normalizedTarget, StringComparison.InvariantCulture))
+                return true;
+
+            if (!headerPath.StartsWith("/", StringComparison.InvariantCulture))
+                headerPath = "/" + headerPath;
+
+            return normalizedTarget.EndsWith(headerPath, StringComparison.InvariantCulture);
+        }
+
+        static bool OriginalLineHasTrailingNewline(int index, int count, bool contentHasTrailingNewline)
+        {
+            return index < count - 1 || contentHasTrailingNewline;
+        }
+
         /*
          * Splits text into lines, preserving empty lines.
          */
@@ -255,6 +344,15 @@ namespace magic.lambda.io.file
                 .Replace("\r\n", "\n")
                 .Split(new[] { '\n' }, StringSplitOptions.None)
                 .ToList();
+        }
+
+        static (List<string> Lines, bool HasTrailingNewline) SplitContentLines(string text)
+        {
+            var lines = SplitLines(text);
+            var hasTrailingNewline = lines.Count > 0 && lines[lines.Count - 1].Length == 0;
+            if (hasTrailingNewline)
+                lines.RemoveAt(lines.Count - 1);
+            return (lines, hasTrailingNewline);
         }
 
         #endregion
