@@ -28,6 +28,6 @@ Notice, you can only save files in the "/etc/" and "/modules/" folders.
 
 Replace "WHATEVER_MODULE" above with an actualy module name.
 
-**NOTICE** - There's also another function called `patch-file` that allows you to patch files using unified diff patches. If you're updating an existing file with targeted changes, prefer `patch-file` to preserve token usage and avoid returning long file content.
+**NOTICE** - There's also another function called `patch-file` that allows you to patch files using unified diff patches. Prefer `patch-file` only for small, exact edits after you have read the current file and can compute the patch metadata exactly. If you are changing a large portion of a file, updating CSS or HTML broadly, reformatting content, or are uncertain about exact hunk headers or line counts, prefer `create-file` instead.
 
 **NOTICE** - You have to check if the folder exists before you save files, unless you're previously created it or are certain it already exists. You can use the `create-folder` function to create new folders.
