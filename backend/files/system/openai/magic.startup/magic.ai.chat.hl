@@ -328,6 +328,16 @@ select prompt, max(completion) as completion
             exists:x:@.arguments/*/file
             .lambda
 
+               // Can't upload images from localhost!!
+               request.host
+               if
+                  strings.contains:x:@request.host
+                     .:localhost
+                  .lambda
+                     throw:You cannot upload images on localhost
+                        status:int:400
+                        public:bool:true
+
                /*
                 * Saving files locally in etc folder to expose to LLM,
                 * using a random filename to ensure unique filenames.
