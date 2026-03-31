@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using magic.node;
+using magic.node.contracts;
 using magic.node.extensions;
 using magic.signals.contracts;
 
@@ -20,6 +21,13 @@ namespace magic.lambda.system.terminal
     [Slot(Name = "system.execute")]
     public class TerminalExecute : ISlotAsync
     {
+        readonly IRootResolver _rootResolver;
+
+        public TerminalExecute(IRootResolver rootResolver)
+        {
+            _rootResolver = rootResolver;
+        }
+
         /// <summary>
         /// Slot implementation.
         /// </summary>
@@ -67,12 +75,22 @@ namespace magic.lambda.system.terminal
                 throw new HyperlambdaException("Missing required argument value");
 
             var argsNode = input.Children.FirstOrDefault(x => x.Name == "args");
-            var workingDirectory = input.Children.FirstOrDefault(x => x.Name == "working-directory")?.GetEx<string>();
+            var workingDirectory = input.Children
+                .FirstOrDefault(x => x.Name == "working-directory")
+                ?.GetEx<string>();
 
             input.Clear();
             input.Value = null;
 
-            return (command, ExpandArgs(argsNode), workingDirectory);
+            return (command, ExpandArgs(argsNode), ResolveWorkingDirectory(workingDirectory));
+        }
+
+        string ResolveWorkingDirectory(string workingDirectory)
+        {
+            if (string.IsNullOrWhiteSpace(workingDirectory))
+                return null;
+
+            return _rootResolver.AbsolutePath(workingDirectory);
         }
 
         static IEnumerable<string> ExpandArgs(Node argsNode)
