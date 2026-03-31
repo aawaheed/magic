@@ -43,6 +43,7 @@ if
       strings.concat
          .:%
          get-value:x:@.arguments/*/query
+         .:.hl
       data.connect:magic
          data.read
             table:ml_training_snippets
