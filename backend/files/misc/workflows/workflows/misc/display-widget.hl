@@ -16,7 +16,7 @@
    filename:string
 
    // Optional arguments used to replace {{placeholder}} tokens in widget HTML.
-   arguments
+   arguments:*
 
 // Making sure user is allowed to execute function.
 auth.ticket.verify:root
