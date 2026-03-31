@@ -22,7 +22,6 @@ namespace magic.lambda.io.file
     {
         readonly IRootResolver _rootResolver;
         readonly IFileService _service;
-
         /// <summary>
         /// Constructs a new instance of your type.
         /// </summary>
@@ -134,24 +133,11 @@ namespace magic.lambda.io.file
                 if (!line.StartsWith("@@", StringComparison.InvariantCulture))
                     throw new HyperlambdaException("Invalid patch.");
 
-                var (oldStart, oldCount, newStart, newCount) = ParseHunkHeader(line);
-                var targetIndex = oldStart - 1;
-                if (targetIndex < originalIndex)
-                    throw new HyperlambdaException("Patch hunks are overlapping or out of order.");
-
+                ParseHunkHeader(line);
                 hasHunks = true;
 
-                // Copy unchanged lines before hunk.
-                while (originalIndex < targetIndex && originalIndex < originalLines.Count)
-                {
-                    output.Add(originalLines[originalIndex]);
-                    originalIndex++;
-                }
-
                 patchIndex++;
-                var consumedOldLines = 0;
-                var consumedNewLines = 0;
-                var previousOperation = '\0';
+                var hunkLines = new List<string>();
                 while (patchIndex < patchLines.Count)
                 {
                     line = patchLines[patchIndex];
@@ -161,11 +147,27 @@ namespace magic.lambda.io.file
                         line.StartsWith("index ", StringComparison.InvariantCulture))
                         break;
 
-                    if (line.Length == 0)
+                    hunkLines.Add(line);
+                    patchIndex++;
+                }
+
+                var targetIndex = ResolveHunkTargetIndex(originalLines, originalIndex, hunkLines);
+
+                // Copy unchanged lines before hunk.
+                while (originalIndex < targetIndex && originalIndex < originalLines.Count)
+                {
+                    output.Add(originalLines[originalIndex]);
+                    originalIndex++;
+                }
+
+                var previousOperation = '\0';
+                foreach (var hunkLine in hunkLines)
+                {
+                    if (hunkLine.Length == 0)
                         throw new HyperlambdaException("Invalid patch line.");
 
-                    var tag = line[0];
-                    var text = line.Length > 1 ? line.Substring(1) : string.Empty;
+                    var tag = hunkLine[0];
+                    var text = hunkLine.Length > 1 ? hunkLine.Substring(1) : string.Empty;
                     switch (tag)
                     {
                         case ' ':
@@ -173,24 +175,20 @@ namespace magic.lambda.io.file
                             output.Add(originalLines[originalIndex]);
                             outputHasTrailingNewline = true;
                             originalIndex++;
-                            consumedOldLines++;
-                            consumedNewLines++;
                             break;
 
                         case '-':
                             EnsureLineMatch(originalLines, originalIndex, text);
                             originalIndex++;
-                            consumedOldLines++;
                             break;
 
                         case '+':
                             output.Add(text);
                             outputHasTrailingNewline = true;
-                            consumedNewLines++;
                             break;
 
                         case '\\':
-                            if (!string.Equals(line, "\\ No newline at end of file", StringComparison.InvariantCulture))
+                            if (!string.Equals(hunkLine, "\\ No newline at end of file", StringComparison.InvariantCulture))
                                 throw new HyperlambdaException("Invalid patch line.");
                             if (previousOperation == '\0')
                                 throw new HyperlambdaException("Invalid patch line.");
@@ -214,11 +212,7 @@ namespace magic.lambda.io.file
                     }
 
                     previousOperation = tag;
-                    patchIndex++;
                 }
-
-                if (consumedOldLines != oldCount || consumedNewLines != newCount)
-                    throw new HyperlambdaException("Invalid hunk line counts.");
             }
 
             if (!hasHunks)
@@ -292,6 +286,55 @@ namespace magic.lambda.io.file
         {
             if (index >= originalLines.Count || !string.Equals(originalLines[index], expected, StringComparison.InvariantCulture))
                 throw new HyperlambdaException("Patch could not be applied.");
+        }
+
+        static int ResolveHunkTargetIndex(IReadOnlyList<string> originalLines, int originalIndex, IReadOnlyList<string> hunkLines)
+        {
+            var minimumContextLines = hunkLines.Count(x => x.Length > 0 && x[0] == ' ');
+            if (minimumContextLines < 2)
+                throw new HyperlambdaException("Patch requires at least 2 context lines.");
+
+            var matches = new List<int>();
+            for (var candidate = originalIndex; candidate <= originalLines.Count; candidate++)
+            {
+                if (HunkMatchesAt(originalLines, candidate, hunkLines))
+                    matches.Add(candidate);
+            }
+
+            if (matches.Count == 1)
+                return matches[0];
+
+            throw new HyperlambdaException("Patch could not be applied.");
+        }
+
+        static bool HunkMatchesAt(IReadOnlyList<string> originalLines, int candidate, IReadOnlyList<string> hunkLines)
+        {
+            var index = candidate;
+            foreach (var hunkLine in hunkLines)
+            {
+                if (hunkLine.Length == 0)
+                    return false;
+
+                switch (hunkLine[0])
+                {
+                    case ' ':
+                    case '-':
+                        if (index >= originalLines.Count)
+                            return false;
+                        var expected = hunkLine.Length > 1 ? hunkLine.Substring(1) : string.Empty;
+                        if (!string.Equals(originalLines[index], expected, StringComparison.InvariantCulture))
+                            return false;
+                        index++;
+                        break;
+                    case '+':
+                    case '\\':
+                        break;
+                    default:
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         static void ValidatePatchHeaders(string oldHeader, string newHeader, string targetPath)

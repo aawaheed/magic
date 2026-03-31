@@ -51,21 +51,23 @@ io.file.patch:/existing.txt
             var saveInvoked = false;
             var fileService = new FileService
             {
-                LoadAction = path => "line1\nline2",
+                LoadAction = path => "line0\nline1\nline2\nline3",
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line1\nline2 updated\n", content);
+                    Assert.Equal("line0\nline1\nline2 updated\nline3\n", content);
                 }
             };
 
             Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
-@@ -1,2 +1,2 @@
+@@ -1,4 +1,4 @@
+ line0
  line1
 -line2
 +line2 updated
+ line3
 "
 """, fileService);
 
@@ -78,25 +80,28 @@ io.file.patch:/existing.txt
             var saveInvoked = false;
             var fileService = new FileService
             {
-                LoadAction = path => "line1\nline2\nline3\nline4",
+                LoadAction = path => "line0\nline1\nline2\nline3\nline4\nline5\nline6",
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line1 updated\nline2\nline3\nline4 updated\n", content);
+                    Assert.Equal("line0\nline1 updated\nline2\nline3\nline4\nline5 updated\nline6\n", content);
                 }
             };
 
             Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
-@@ -1,2 +1,2 @@
+@@ -1,4 +1,4 @@
+ line0
 -line1
 +line1 updated
  line2
-@@ -3,2 +3,2 @@
  line3
--line4
-+line4 updated
+@@ -5,3 +5,3 @@
+ line4
+-line5
++line5 updated
+ line6
 "
 """, fileService);
 
@@ -108,25 +113,28 @@ io.file.patch:/existing.txt
         {
             var fileService = new FileService
             {
-                LoadAction = path => "line1\nline2\nline3\nline4",
+                LoadAction = path => "line0\nline1\nline2\nline3\nline4\nline5\nline6\nline7",
                 SaveAction = (path, content) => Assert.True(false, "Save should not be called for invalid patches.")
             };
 
             var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
-@@ -3,2 +3,2 @@
+@@ -5,3 +5,3 @@
+ line4
+-line5
++line5 updated
+ line6
+@@ -2,4 +2,4 @@
+ line1
+-line2
++line2 updated
  line3
--line4
-+line4 updated
-@@ -1,2 +1,2 @@
--line1
-+line1 updated
- line2
+ line4
 "
 """, fileService));
 
-            Assert.Equal("Patch hunks are overlapping or out of order.", exception.Message);
+            Assert.Equal("Patch could not be applied.", exception.Message);
         }
 
         [Fact]
@@ -195,11 +203,11 @@ io.file.patch:/existing.txt
             var saveInvoked = false;
             var fileService = new FileService
             {
-                LoadAction = path => "line1\n",
+                LoadAction = path => "context above\nline1\ncontext below\n",
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line2\n", content);
+                    Assert.Equal("context above\nline2\ncontext below\n", content);
                 }
             };
 
@@ -208,9 +216,11 @@ io.file.patch:/existing.txt
    .:@"
 --- a/existing.txt
 +++ b/existing.txt
-@@ -1 +1 @@
+@@ -1,3 +1,3 @@
+ context above
 -line1
 +line2
+ context below
 "
 """, fileService);
 
@@ -220,48 +230,50 @@ io.file.patch:/existing.txt
         [Fact]
         public void PatchFile_SupportsOmittedHunkCounts()
         {
-            var saveInvoked = false;
             var fileService = new FileService
             {
                 LoadAction = path => "line1\nline2\n",
-                SaveAction = (path, content) =>
-                {
-                    saveInvoked = true;
-                    Assert.Equal("line1\nline2 updated\n", content);
-                }
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called when context is insufficient.")
             };
 
-            Common.Evaluate("""
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
 @@ -2 +2 @@
 -line2
 +line2 updated
 "
-""", fileService);
+""", fileService));
 
-            Assert.True(saveInvoked);
+            Assert.Equal("Patch requires at least 2 context lines.", exception.Message);
         }
 
         [Fact]
-        public void PatchFile_RejectsMismatchedHunkCounts()
+        public void PatchFile_IgnoresMismatchedHunkCounts()
         {
+            var saveInvoked = false;
             var fileService = new FileService
             {
-                LoadAction = path => "line1\nline2\n",
-                SaveAction = (path, content) => Assert.True(false, "Save should not be called for invalid patches.")
+                LoadAction = path => "line0\nline1\nline2\nline3\n",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("line0\nline1\nline2 updated\nline3\n", content);
+                }
             };
 
-            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+            Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
-@@ -1,1 +1,2 @@
--line1
-+line1 updated
+@@ -99,1 +99,99 @@
+ line1
+-line2
++line2 updated
+ line3
 "
-""", fileService));
+""", fileService);
 
-            Assert.Equal("Invalid hunk line counts.", exception.Message);
+            Assert.True(saveInvoked);
         }
 
         [Fact]
@@ -270,18 +282,19 @@ io.file.patch:/existing.txt
             var saveInvoked = false;
             var fileService = new FileService
             {
-                LoadAction = path => "line1\nline2",
+                LoadAction = path => "line0\nline1\nline2",
                 SaveAction = (path, content) =>
                 {
                     saveInvoked = true;
-                    Assert.Equal("line1\nline2 updated", content);
+                    Assert.Equal("line0\nline1\nline2 updated", content);
                 }
             };
 
             Common.Evaluate("""
 io.file.patch:/existing.txt
    .:@"
-@@ -1,2 +1,2 @@
+@@ -1,3 +1,3 @@
+ line0
  line1
 -line2
 \ No newline at end of file
@@ -291,6 +304,129 @@ io.file.patch:/existing.txt
 """, fileService);
 
             Assert.True(saveInvoked);
+        }
+
+        [Fact]
+        public void PatchFile_AppliesHunkUsingNearbyUniqueContext()
+        {
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                LoadAction = path => "preface\nline1\nline2\nline3\n",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("preface\nline1\nline2 updated\nline3\n", content);
+                }
+            };
+
+            Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -1,3 +1,3 @@
+ line1
+-line2
++line2 updated
+ line3
+"
+""", fileService);
+
+            Assert.True(saveInvoked);
+        }
+
+        [Fact]
+        public void PatchFile_IgnoresIncorrectLineNumbersWhenContextIsUnique()
+        {
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                LoadAction = path => "preface\nline1\nline2\nline3\nsuffix\n",
+                SaveAction = (path, content) =>
+                {
+                    saveInvoked = true;
+                    Assert.Equal("preface\nline1\nline2 updated\nline3\nsuffix\n", content);
+                }
+            };
+
+            Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -99,3 +99,3 @@
+ line1
+-line2
++line2 updated
+ line3
+"
+""", fileService);
+
+            Assert.True(saveInvoked);
+        }
+
+        [Fact]
+        public void PatchFile_RejectsPatchWhenContextIsNotUniqueInFile()
+        {
+            var fileService = new FileService
+            {
+                LoadAction = path => "prefix\nline1\nline2\nline3\nmiddle\nline1\nline2\nline3\nsuffix\n",
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called for non-unique context.")
+            };
+
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -99,3 +99,3 @@
+ line1
+-line2
++line2 updated
+ line3
+"
+""", fileService));
+
+            Assert.Equal("Patch could not be applied.", exception.Message);
+        }
+
+        [Fact]
+        public void PatchFile_RejectsAmbiguousNearbyContext()
+        {
+            var fileService = new FileService
+            {
+                LoadAction = path => "line1\nline2\nline3\nline1\nline2\nline3\n",
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called for ambiguous patches.")
+            };
+
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -1,3 +1,3 @@
+ line1
+-line2
++line2 updated
+ line3
+"
+""", fileService));
+
+            Assert.Equal("Patch could not be applied.", exception.Message);
+        }
+
+        [Fact]
+        public void PatchFile_KeepsWeakContextHunksStrict()
+        {
+            var fileService = new FileService
+            {
+                LoadAction = path => "preface\nline1\n",
+                SaveAction = (path, content) => Assert.True(false, "Save should not be called for weak-context drift.")
+            };
+
+            var exception = Assert.Throws<HyperlambdaException>(() => Common.Evaluate("""
+io.file.patch:/existing.txt
+   .:@"
+@@ -1 +1 @@
+-line1
++line1 updated
+"
+""", fileService));
+
+            Assert.Equal("Patch requires at least 2 context lines.", exception.Message);
         }
     }
 }
