@@ -25,7 +25,7 @@ validators.mandatory:x:@.arguments/*/query
 // Applying defaults.
 validators.default:x:@.arguments
    max_tokens:int:5000
-   threshold:decimal:0.2
+   threshold:decimal:0.3
 
 // Checking if the caller is searching by "ID", at which point we do NOT use VSS!
 if
@@ -58,7 +58,6 @@ if
                yield
                   context:x:@strings.concat
 
-// Converting `threshold` to decimal to be sure.
 set-value:x:@.arguments/*/threshold
    convert:x:@.arguments/*/threshold
       type:decimal

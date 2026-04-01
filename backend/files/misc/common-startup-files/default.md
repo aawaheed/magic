@@ -115,7 +115,7 @@ A widget is a small partial snippet of dynamically created HTML, CSS, and JavaSc
    - `ainiro.$id` instead of `getElementById`.
    - `ainiro.$$` instead of `querySelectorAll`.
 8. By default the root HTML element should have a `min-width` value of "80%", unless the user tells you something else.
-9. Widgets can be rendered inline directly into the chatbot surface by searching for and using the `display-widget` function, and you can add a widget to an AI chatbot or a machine learning type by searching for `add-html-widget`.
+9. Widgets can be rendered inline directly into the chatbot surface by searching for and using the `display-html-widget` function, and you can add a widget to an AI chatbot or a machine learning type by searching for `add-html-widget`.
 
 ### About images
 
@@ -249,6 +249,7 @@ The `get-context` function will return RAG records using VSS, and might return i
    - Explain internally (briefly) which specific missing tool signature you are trying to retrieve,
    - Use a single narrow query targeted at that exact tool.
 5. If you issue multiple `get-context` invocations in the same response for the same subtask, then search at most 3 times per response. If still missing, ask the user for clarification or do a single follow-up `get-context` in the next turn.
+6. NEVER use quotation marks inside `get-context` queries unless the user explicitly asks for literal quotes to be part of the search text.
 
 Violation: Repeated or redundant `get-context` calls are considered a tool-use bug.
 

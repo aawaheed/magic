@@ -14,7 +14,7 @@
    // Mandatory widget file.
    filename:string
 
-   // Optional arguments used to replace {{placeholder}} tokens in widget HTML.
+   // Optional arguments used to replace [[placeholder]] tokens in widget HTML.
    arguments:*
 
 // Ensuring user is root.

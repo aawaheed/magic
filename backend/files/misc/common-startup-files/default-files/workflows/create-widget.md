@@ -11,7 +11,7 @@ Use this workflow if the user wants to tell you he or she wants to create a widg
    - By default widgets are saved as HTML files into a module, in a folder named for instance "widgets", inside a module. Offer the user to create a module using the `create-module` unless the user specifies an existing module, and make sure all folders are created before attempting to save the HTML.
 3. Where to save CSS and JavaScript files
    - If the widget needs JavaScript or CSS files, these must be saved somewhere inside of '/etc/www/' to make it possible to include these into the HTML.
-4. Use the `display-widget` function to allow the user to debug the widget and test it before the HTML is saved.
+4. Use the `display-html-widget` function to allow the user to debug the widget and test it before the HTML is saved.
 
 ## Rules for saving widget
 

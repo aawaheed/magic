@@ -28,7 +28,7 @@
    // Mandatory filename where HTML widget can be found.
    filename:string
 
-   // Optional arguments used to replace {{placeholder}} tokens in widget HTML.
+   // Optional arguments used to replace [[placeholder]] tokens in widget HTML.
    arguments
 
 // Sanity checking invocation.
@@ -82,22 +82,22 @@ set-value:x:@.html
             max:20
 
 /*
- * Replacing widget arguments such as {{name}} and {{url}} with HTML encoded values.
+ * Replacing widget arguments such as [[name]] and [[url]] with HTML encoded values.
  */
 for-each:x:@.arguments/*/arguments/*
    set-value:x:@.html
       strings.replace:x:@.html
          strings.concat
-            .:{{
+            .:[[
             get-name:x:@.dp/#
-            .:}}
+            .:]]
          strings.html-encode:x:@.dp/#
 
 /*
  * Failing if one or more placeholders were left unresolved after replacement.
  */
 strings.matches:x:@.html
-   .:\{\{[a-zA-Z0-9_-]+\}\}
+   .:\[\[[a-zA-Z0-9_-]+\]\]
 if
    exists:x:@strings.matches/*
    .lambda
