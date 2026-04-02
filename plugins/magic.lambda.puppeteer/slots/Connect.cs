@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using magic.node;
+using magic.node.contracts;
 using magic.node.extensions;
 using magic.signals.contracts;
 using PuppeteerSharp;
@@ -21,6 +22,13 @@ namespace magic.lambda.puppeteer
     [Slot(Name = "puppeteer.connect")]
     public class Connect : ISlotAsync
     {
+        readonly IRootResolver _rootResolver;
+
+        public Connect(IRootResolver rootResolver)
+        {
+            _rootResolver = rootResolver;
+        }
+
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             var launchOptions = BuildLaunchOptions(input);
@@ -53,12 +61,12 @@ namespace magic.lambda.puppeteer
             }
         }
 
-        static LaunchOptions BuildLaunchOptions(Node input)
+        LaunchOptions BuildLaunchOptions(Node input)
         {
             var headless = PuppeteerHelpers.GetOptionalBool(input, "headless") ?? true;
             var executablePath = GetExecutablePath(input);
             var timeout = PuppeteerHelpers.GetOptionalInt(input, "timeout");
-            var userDataDir = PuppeteerHelpers.GetOptionalString(input, "user-data-dir");
+            var userDataDir = GetUserDataDir(input);
             var argsNode = input.Children.FirstOrDefault(x => x.Name == "args");
 
             var options = new LaunchOptions
@@ -78,6 +86,12 @@ namespace magic.lambda.puppeteer
                 options.Args = args;
 
             return options;
+        }
+
+        string GetUserDataDir(Node input)
+        {
+            var userDataDir = PuppeteerHelpers.GetOptionalString(input, "user-data-dir");
+            return string.IsNullOrWhiteSpace(userDataDir) ? null : _rootResolver.AbsolutePath(userDataDir);
         }
 
         static string GetExecutablePath(Node input)
