@@ -5,6 +5,8 @@ This workflow documents the available headless browser functions backed by Puppe
 
 You can use `get-context` to search for functions on demand, for example by querying function metadata at runtime and filtering for names that start with `puppeteer-`.
 
+If the user wants the browser to remember cookies, login state, or previous browsing state, use `puppeteer-connect` with a stable `user-data-dir` value and reuse the same directory in later sessions.
+
 Available functions:
 
 - `puppeteer-connect` - Creates a new headless browser session and returns a session id
