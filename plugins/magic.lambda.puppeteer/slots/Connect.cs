@@ -32,7 +32,7 @@ namespace magic.lambda.puppeteer
             try
             {
                 browser = await Puppeteer.LaunchAsync(launchOptions);
-                page = await browser.NewPageAsync();
+                page = (await browser.PagesAsync()).FirstOrDefault(x => !x.IsClosed) ?? await browser.NewPageAsync();
 
                 var session = PuppeteerSessions.Create(browser, page, timeoutMinutes, maxLifetimeMinutes);
 
