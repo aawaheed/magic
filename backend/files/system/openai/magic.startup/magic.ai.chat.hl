@@ -309,7 +309,17 @@ select prompt, max(completion) as completion
       exists:x:@.arguments/*/file
       .lambda
 
-         // Removing old message node.
+         /*
+          * We have file arguments, and need to correctly attach these.
+          * This is being done by saving the file(s) locally in the /etc/www/ folder,
+          * for then to provide the full URL to OpenAI, allowing it to download it
+          * on demand.
+          *
+          * The [.tail] node is used as a buffer for holding URLs of all files.
+          */
+         .tail:"User uploaded the following files;\n"
+
+         // Removing old message node first.
          remove-nodes:x:@.session/0/-
 
          // Adding file container message
@@ -341,12 +351,15 @@ select prompt, max(completion) as completion
                /*
                 * Saving files locally in etc folder to expose to LLM,
                 * using a random filename to ensure unique filenames.
+                *
+                * First making sure our tmp folder exists.
                 */
                if
                   not
                      io.folder.exists:/etc/www/tmp/
                   .lambda
                      io.folder.create:/etc/www/tmp/
+
                strings.split:x:@.arguments/*/file/[0,1]/*/name
                   .:.
                .filename
@@ -360,6 +373,12 @@ select prompt, max(completion) as completion
                      get-value:x:@strings.split/0/-
                io.stream.save-file:x:@.filename
                   get-value:x:@.arguments/*/file/[0,1]/*/stream
+               set-value:x:@.tail
+                  strings.concat
+                     get-value:x:@.tail
+                     .:"* "
+                     get-value:x:@.filename
+                     .:"\n"
                .url
                set-value:x:-
                   strings.concat
@@ -375,14 +394,17 @@ select prompt, max(completion) as completion
                   case:JPG
                   case:jpeg
                   case:JPEG
+                  case:webp
+                  case:WEBP
+                  case:gif
+                  case:GIF
                      unwrap:x:+/*/**
                      add:x:@.session/0/-/*/content
                         .
                            .
                               type:input_image
                               image_url:x:@.url
-                  case:pdf
-                  case:PDF
+                  default
                      unwrap:x:+/*/**
                      add:x:@.session/0/-/*/content
                         .
@@ -390,6 +412,13 @@ select prompt, max(completion) as completion
                               type:input_file
                               file_url:x:@.url
                remove-nodes:x:@.arguments/*/file/[0,1]
+
+         unwrap:x:+/*/*/*
+         insert-after:x:@.session/0/-/*/content/0
+            .
+               .
+                  type:input_text
+                  text:x:@.tail
 
    /*
     * Checking if caller wants to stream tokens.
