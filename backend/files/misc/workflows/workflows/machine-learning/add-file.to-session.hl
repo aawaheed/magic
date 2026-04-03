@@ -1,0 +1,97 @@
+
+/*
+ * Adds the specified [filename] to the current session.
+ */
+.arguments
+
+   // Mandatory session value.
+   _session:string
+
+   // Mandatory filename of file to attach.
+   filename:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Sanity checking invocation.
+validators.mandatory:x:@.arguments/*/_session
+validators.mandatory:x:@.arguments/*/filename
+
+// Making sure file exists.
+if
+   not
+      io.file.exists:x:@.arguments/*/filename
+   .lambda
+      throw:File does not exist
+         status:int:404
+         public:bool:true
+
+// Making sure is inside of /etc/www/ folder.
+if
+   not
+      strings.starts-with:x:@.arguments/*/filename
+         .:/etc/www/
+   .lambda
+      throw:We can only attach files from within the /etc/www/ folder
+         status:int:404
+         public:bool:true
+
+// Verifying we're not on localhost.
+request.host
+if
+   strings.contains:x:@request.host
+      .:localhost
+   .lambda
+      throw:You cannot upload images on localhost
+         status:int:400
+         public:bool:true
+
+// Figuring out file extension, since we have to treat images differently from other files.
+strings.split:x:@.arguments/*/filename
+   .:.
+
+// Extracting only URL parts.
+strings.concat
+   .:"https://"
+   request.host
+   strings.substring:x:@.arguments/*/filename
+      .:8
+
+// Retrieving current session object to inject the file URL.
+cache.get:x:@.arguments/*/_session
+hyper2lambda:x:-
+switch:x:@strings.split/0/-
+   case:png
+   case:PNG
+   case:jpg
+   case:JPG
+   case:jpeg
+   case:JPEG
+   case:webp
+   case:WEBP
+   case:gif
+   case:GIF
+      unwrap:x:+/*/**
+      add:x:@hyper2lambda
+         .
+            .
+               role:user
+               content
+                  .
+                     type:input_image
+                     image_url:x:@strings.concat
+   default
+      unwrap:x:+/*/**
+      add:x:@hyper2lambda
+         .
+            .
+               role:user
+               content
+                  .
+                     type:input_file
+                     file_url:x:@strings.concat
+lambda2hyper:x:../*
+log.info:x:-
+
+return
+   result:success
