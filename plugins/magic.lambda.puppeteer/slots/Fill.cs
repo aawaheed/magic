@@ -4,6 +4,7 @@
 
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using magic.node;
 using magic.node.extensions;
 using magic.signals.contracts;
@@ -18,13 +19,18 @@ namespace magic.lambda.puppeteer
     [Slot(Name = "puppeteer.fill")]
     public class Fill : ISlotAsync
     {
+        readonly IConfiguration _configuration;
+
+        public Fill(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             var page = PuppeteerHelpers.RequirePage(input);
             var selector = PuppeteerHelpers.GetRequiredString(input, "selector");
-            var text = PuppeteerHelpers.GetOptionalString(input, "text");
-            if (text == null)
-                throw new HyperlambdaException("[puppeteer.fill] requires a [text] child node");
+            var text = PuppeteerHelpers.GetRequiredTextOrConfigValue(input, _configuration, "puppeteer.fill");
 
             var selectorLiteral = JsonSerializer.Serialize(selector);
             var clearScript = $"if(document.querySelector({selectorLiteral})){{document.querySelector({selectorLiteral}).value = '';}}";

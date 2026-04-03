@@ -7,6 +7,8 @@ You can use `get-context` to search for functions on demand, for example by quer
 
 If the user wants the browser to remember cookies, login state, or previous browsing state, use `puppeteer-connect` with a stable `user-data-dir` value and reuse the same directory in later sessions.
 
+If the user needs to type a password or some other secret into a form field, prefer `puppeteer-fill` or `puppeteer-type` with `config-key` instead of inline `text`, such that the secret value can be resolved from configuration without exposing it to the LLM.
+
 Available functions:
 
 - `puppeteer-connect` - Creates a new headless browser session and returns a session id
@@ -26,3 +28,4 @@ Available functions:
 - `puppeteer-evaluate` - Evaluates JavaScript in the page
 
 **NOTICE** - You can only open up maximum 5 sessions at the same time, but you can reuse sessions - So keep sessions open until user tells you to close it in case the user wants to continue the session. Remind the user to tell you to close the session when done.
+

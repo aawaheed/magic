@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using magic.node;
 using magic.node.extensions;
 using PuppeteerSharp;
@@ -80,6 +81,28 @@ namespace magic.lambda.puppeteer
         public static string GetOptionalString(Node input, string name)
         {
             return input.Children.FirstOrDefault(x => x.Name == name)?.GetEx<string>();
+        }
+
+        public static string GetRequiredTextOrConfigValue(Node input, IConfiguration configuration, string slotName)
+        {
+            var text = GetOptionalString(input, "text");
+            var configKey = GetOptionalString(input, "config-key");
+
+            if (!string.IsNullOrWhiteSpace(text) && !string.IsNullOrWhiteSpace(configKey))
+                throw new HyperlambdaException($"[{slotName}] accepts either [text] or [config-key], not both");
+
+            if (!string.IsNullOrWhiteSpace(text))
+                return text;
+
+            if (!string.IsNullOrWhiteSpace(configKey))
+            {
+                var value = configuration[configKey];
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new HyperlambdaException($"[{slotName}] could not resolve [config-key] '{configKey}'");
+                return value;
+            }
+
+            throw new HyperlambdaException($"[{slotName}] requires either a [text] or [config-key] child node");
         }
 
         public static bool? GetOptionalBool(Node input, string name)

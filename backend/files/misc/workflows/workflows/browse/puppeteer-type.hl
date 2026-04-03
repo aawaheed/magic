@@ -4,13 +4,15 @@
  * Arguments:
  * - [session_id] Session id (required)
  * - [selector] CSS selector (required)
- * - [text] Text to type (required)
+ * - [text] Text to type (optional if [config-key] is provided)
+ * - [config-key] Configuration key resolving the text value (optional if [text] is provided)
  * - [delay] Delay between key presses in milliseconds (optional)
  */
 .arguments
    session_id:string
    selector:string
    text:string
+   config-key:string
    delay:int
 
 // Ensuring user is root.
@@ -19,16 +21,38 @@ auth.ticket.verify:root
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/session_id
 validators.mandatory:x:@.arguments/*/selector
-validators.mandatory:x:@.arguments/*/text
+if
+   and
+      exists:x:@.arguments/*/text
+      not-null:x:@.arguments/*/text
+      exists:x:@.arguments/*/config-key
+      not-null:x:@.arguments/*/config-key
+   .lambda
+      throw:Only one of [text] or [config-key] can be supplied
+         status:int:400
+         public:bool:true
+if
+   and
+      or
+         not-exists:x:@.arguments/*/text
+         null:x:@.arguments/*/text
+      or
+         not-exists:x:@.arguments/*/config-key
+         null:x:@.arguments/*/config-key
+   .lambda
+      throw:One of [text] or [config-key] must be supplied
+         status:int:400
+         public:bool:true
 
 // Optional arguments.
 add:x:./*/puppeteer.type
+   get-nodes:x:@.arguments/*/text
    get-nodes:x:@.arguments/*/delay
+   get-nodes:x:@.arguments/*/config-key
 
 // Core invocation.
 puppeteer.type:x:@.arguments/*/session_id
    selector:x:@.arguments/*/selector
-   text:x:@.arguments/*/text
 
 return
    result:success
