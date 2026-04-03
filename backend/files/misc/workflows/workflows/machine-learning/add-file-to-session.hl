@@ -36,26 +36,13 @@ if
          status:int:404
          public:bool:true
 
-// Verifying we're not on localhost.
-request.host
-if
-   strings.contains:x:@request.host
-      .:localhost
-   .lambda
-      throw:You cannot upload images on localhost
-         status:int:400
-         public:bool:true
-
 // Figuring out file extension, since we have to treat images differently from other files.
 strings.split:x:@.arguments/*/filename
    .:.
 
 // Extracting only URL parts.
-strings.concat
-   .:"https://"
-   request.host
-   strings.substring:x:@.arguments/*/filename
-      .:8
+strings.substring:x:@.arguments/*/filename
+   .:8
 
 // Retrieving current session object to inject the file URL.
 cache.get:x:@.arguments/*/_session
@@ -71,16 +58,27 @@ switch:x:@strings.split/0/-
    case:WEBP
    case:gif
    case:GIF
+      strings.concat
+         .:"User uploaded; '"
+         get-value:x:@strings.substring
+         .:"'"
       unwrap:x:+/*/**
       add:x:@hyper2lambda
          .
             .
                role:user
                content
+                  .
+                     type:input_text
+                     text:x:@strings.concat
                   .
                      type:input_image
-                     image_url:x:@strings.concat
+                     image_url:x:@strings.substring
    default
+      strings.concat
+         .:"User uploaded; '"
+         get-value:x:@strings.substring
+         .:"'"
       unwrap:x:+/*/**
       add:x:@hyper2lambda
          .
@@ -88,10 +86,16 @@ switch:x:@strings.split/0/-
                role:user
                content
                   .
+                     type:input_text
+                     text:x:@strings.concat
+                  .
                      type:input_file
-                     file_url:x:@strings.concat
-lambda2hyper:x:../*
-log.info:x:-
+                     file_url:x:@strings.substring
 
+// Updating session, now decorated with file URL.
+lambda2hyper:x:@hyper2lambda/*
+cache.set:x:@.arguments/*/_session
+   expiration:1200
+   value:x:@lambda2hyper
 return
    result:success
