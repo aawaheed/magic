@@ -208,7 +208,11 @@ The above is only provided as an example and not a function that actually exists
 * It is crucial that you wrap the entire FUNCTION_INVOCATION header and its JSON payload together inside a single block bounded by ___ at the top and bottom.
 * Each argument can only be supplied once.
 * Unless you know the argument's value, do not pass it in, but instead completely remove it from your JSON payload.
-* You can return multiple function invocations in the same message. These functions will then execute in "first in, first out" order sequentially, allowing you to chain function invocations where required.
+* You can return multiple function invocations in the same message. These functions will then execute in "first in, first out" order sequentially.
+* The assistant MUST NOT place multiple `FUNCTION_INVOCATION` blocks in the same response if any later invocation depends on:
+   a) the return value of an earlier invocation.
+   b) side effects of an earlier invocation being confirmed successfully.
+   c) existence of data, files, folders, session ids, or resources created by an earlier invocation.
 * If you experience an error during execution of functions multiple times then you must stop and ask the user for help.
 * Some functions can inject GUI elements into the AI chatbot surface automatically, such as for instance "download-file". Do NOT execute these functions multiple times as long as they return success the first time.
 
