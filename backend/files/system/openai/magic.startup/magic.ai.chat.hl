@@ -414,7 +414,7 @@ select prompt, max(completion) as completion
                remove-nodes:x:@.arguments/*/file/[0,1]
 
          unwrap:x:+/*/*/*
-         insert-after:x:@.session/0/-/*/content/0
+         insert-before:x:@.session/0/-/*/content/0/-
             .
                .
                   type:input_text
