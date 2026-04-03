@@ -433,6 +433,12 @@ select prompt, max(completion) as completion
       .lambda
 
          // We're using streaming or SSE as we're invoking OpenAI.
+         .host
+         set-value:x:-
+            strings.concat
+               .:"https://"
+               request.host
+         unwrap:x:+/+/+/+/+/*/*/.sse/*/.base_url
          unwrap:x:+/+/+/+/*/*/.sse/*/.extra
          unwrap:x:+/+/+/*/*/.sse/*/.user-id
          unwrap:x:+/+/*/*/.sse/*/.type
@@ -447,6 +453,9 @@ select prompt, max(completion) as completion
                    * about new tokens received from OpenAI.
                    */
                   .session:x:@.arguments/*/session
+
+                  // Needed in case function invocations needs to know the base URL of the server
+                  .base_url:x:@.host
 
                   // Extra information from client.
                   .extra:x:@.arguments/*/extra
@@ -595,6 +604,7 @@ select prompt, max(completion) as completion
                                                             user-id:x:@.user-id
                                                             invocation:x:@.dp/#
                                                             extra:x:@.extra
+                                                            base_url:x:@.base_url
 
                                                          // Transforming result to JSON.
                                                          .content

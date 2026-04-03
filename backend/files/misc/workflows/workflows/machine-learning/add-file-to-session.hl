@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Mandatory base URL argument.
+   _base_url:string
+
    // Mandatory session value.
    _session:string
 
@@ -41,8 +44,12 @@ strings.split:x:@.arguments/*/filename
    .:.
 
 // Extracting only URL parts.
-strings.substring:x:@.arguments/*/filename
-   .:8
+.full-path
+set-value:x:-
+   strings.concat
+      get-value:x:@.arguments/*/_base_url
+      strings.substring:x:@.arguments/*/filename
+         .:8
 
 // Retrieving current session object to inject the file URL.
 cache.get:x:@.arguments/*/_session
@@ -60,7 +67,7 @@ switch:x:@strings.split/0/-
    case:GIF
       strings.concat
          .:"User uploaded; '"
-         get-value:x:@strings.substring
+         get-value:x:@.arguments/*/filename
          .:"'"
       unwrap:x:+/*/**
       add:x:@hyper2lambda
@@ -73,11 +80,11 @@ switch:x:@strings.split/0/-
                      text:x:@strings.concat
                   .
                      type:input_image
-                     image_url:x:@strings.substring
+                     image_url:x:@.full-path
    default
       strings.concat
          .:"User uploaded; '"
-         get-value:x:@strings.substring
+         get-value:x:@.arguments/*/filename
          .:"'"
       unwrap:x:+/*/**
       add:x:@hyper2lambda
@@ -90,7 +97,7 @@ switch:x:@strings.split/0/-
                      text:x:@strings.concat
                   .
                      type:input_file
-                     file_url:x:@strings.substring
+                     file_url:x:@.full-path
 
 // Updating session, now decorated with file URL.
 lambda2hyper:x:@hyper2lambda/*

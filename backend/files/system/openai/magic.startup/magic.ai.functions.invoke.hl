@@ -115,17 +115,32 @@ slots.create:magic.ai.functions.invoke
                remove-nodes:x:@json2lambda/*/_user-id
                remove-nodes:x:@json2lambda/*/_type
                remove-nodes:x:@json2lambda/*/_extra
+               remove-nodes:x:@json2lambda/*/_base_url
 
                // Adding arguments to [execute-file].
                add:x:../*/execute-file
                   get-nodes:x:@json2lambda/*
 
    /*
-    * Loading file and transforming to lambda to see if the file requires a [_session], [_user-id] or [_type] arguments,
+    * Loading file and transforming to lambda to see if the file requires a [_session], [_user-id], [_base_url] or [_type] arguments,
     * at which point we add the current [_session] value, the current [_user-id] value and the current [_type] value to its invocation.
     */
    load-file:x:@.file
    hyper2lambda:x:@load-file
+
+   // Checking if we've got a [_base_url] argument.
+   if
+      exists:x:@hyper2lambda/*/.arguments/*/_base_url/=string
+      .lambda
+
+         /*
+          * File requires a [_base_url] and it is of type string, making sure we pass
+          * in [_base_url] argument given to invocation.
+          */
+         unwrap:x:+/*/*
+         add:x:../*/execute-file
+            .
+               _base_url:x:@.arguments/*/base_url
 
    // Checking if we've got a [_session] argument.
    if
