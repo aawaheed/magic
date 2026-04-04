@@ -16,4 +16,6 @@ Arguments:
 - `url` is mandatory and the URL to download.
 - `filename` is the mandatory path of file to download.
 
+Notice, you can only save downloaded files in the "/etc/" and "/modules/" folders.
+
 Notice, if you need to generate a temporary file for download, you can save this file into the "/etc/tmp/" folder using the "create-file" function and use this function to create a "Download" button.

@@ -26,7 +26,7 @@ Notice, you can only save files in the "/etc/" and "/modules/" folders.
 4. Always save HTML widgets inside "/modules/WHATEVER_MODULE/widgets/", and make sure the folder exists before you try to save files here.
 5. Always verify before you save a file that you're not saving placeholders such as `[PLACEHOLDER_HERE]`, etc.
 
-Replace "WHATEVER_MODULE" above with an actualy module name.
+Replace "WHATEVER_MODULE" above with an actual module name.
 
 **NOTICE** - There's also another function called `patch-file` that allows you to patch files using unified diff patches. Prefer `patch-file` only for small, exact edits after you have read the current file and can compute the patch metadata exactly. If you are changing a large portion of a file, updating CSS or HTML broadly, reformatting content, or are uncertain about exact hunk headers or line counts, prefer `create-file` instead.
 
