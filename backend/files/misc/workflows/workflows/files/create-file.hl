@@ -41,7 +41,7 @@ if
          strings.starts-with:x:@.arguments/*/filename
             .:/modules/
    .lambda
-      throw:"You can only save files to the '/modules/' and '/etc/ folders'"
+      throw:"You can only save files to the '/modules/' and '/etc/' folders"
          status:int:400
          public:bool:true
 
