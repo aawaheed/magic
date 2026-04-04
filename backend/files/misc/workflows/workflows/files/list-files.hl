@@ -25,6 +25,18 @@ if
             .:/
             get-value:x:@.arguments/*/folder
 
+// Making sure caller cannot list protected folders.
+if
+   or
+      strings.starts-with:x:@.arguments/*/folder
+         .:/config/
+      strings.starts-with:x:@.arguments/*/folder
+         .:/data/
+   .lambda
+      throw:"You cannot list files from the '/config/' and '/data/' folders"
+         status:int:400
+         public:bool:true
+
 // Listing files in folder.
 io.file.list:x:@.arguments/*/folder
 

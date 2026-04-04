@@ -36,6 +36,18 @@ if
             .:/
             get-value:x:@.arguments/*/path
 
+// Making sure caller cannot search protected folders.
+if
+   or
+      strings.starts-with:x:@.arguments/*/path
+         .:/config/
+      strings.starts-with:x:@.arguments/*/path
+         .:/data/
+   .lambda
+      throw:"You cannot search files in the '/config/' and '/data/' folders"
+         status:int:400
+         public:bool:true
+
 // Loading file and returning to caller.
 add:x:./*/io.file.search
    get-nodes:x:@.arguments/*/pattern

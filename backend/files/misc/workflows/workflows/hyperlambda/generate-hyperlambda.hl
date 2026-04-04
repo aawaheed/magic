@@ -1,6 +1,6 @@
 
 /*
- * Generate Hyperlambda code code
+ * Generate Hyperlambda code
  * 
  * This function allows you to generate Hyperlambda code.
  * The [prompt] argument must be the description of what code you want.
@@ -10,7 +10,7 @@
    // Mandatory argument describing the Hyperlambda code you want to generate.
    prompt:string
 
-   // Optionall filename of where to save the Hyperlambda.
+   // Optional filename of where to save the Hyperlambda.
    filename:string
 
 // Ensuring user is root.
