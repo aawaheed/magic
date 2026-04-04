@@ -17,7 +17,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/invoke-http.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `url` is mandatory and the URL. If you add query parameters to it, please make sure they're URL encoded
 - `verb` is the optional HTTP verb to use in invocation. Defaults to "get". Legal values are; "post", "put", "get", "patch", or "delete".

@@ -14,11 +14,11 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-type.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is the mandatory name of machine learning type to create.
 - `system_message` is optional and the system instruction used during inference.
-- `auth` is an optional comma separated list of roles.The user must belong to at least one of these roles to be able to use machine learning type.
+- `auth` is an optional comma separated list of roles. The user must belong to at least one of these roles to be able to use the machine learning type.
 - `max_context_tokens` is an optional value and is maximum number of tokens of RAG data and "context" that will be sent to OpenAI during requests.
   - If you're creating an AI agent it is typically better to set this at somewhere between 40,000 and 60,000
   - Defaults to 12,000 tokens.
@@ -26,7 +26,7 @@ Arguments;
   - For an AI chatbot intended for support, customer service, or AI assistant sales, this should typically be turned on.
   - For an AI agent, it should most of the time be turned off.
 
-If the above `use_embeddings` is `false`, the machine learning type will be created as a "native AI agent" with meta functions, allowing it to search through its RAG data for function and information on a need to know basis, instead of having "automatic RAG" associated with every single promnpt.
+If the above `use_embeddings` is `false`, the machine learning type will be created as a "native AI agent" with meta functions, allowing it to search through its RAG data for function and information on a need to know basis, instead of having "automatic RAG" associated with every single prompt.
 
 **IMPORTANT** - For an "AI agent" without much knowledge base, the above `use_embeddings` should almost always be `false`. This doesn't affect the decision whether or not the type should have its RAG data vectorised afterwards, since an AI agent is also typically created with meta search capabilities, relying upon embeddings for each individual item.
 

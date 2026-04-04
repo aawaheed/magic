@@ -15,7 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/execute-terminal-command.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `command` is mandatory and the command to execute.
 - `args` is optional arguments passed to the command. You can pass this either as a list of argument values or as a single quoted argument string.

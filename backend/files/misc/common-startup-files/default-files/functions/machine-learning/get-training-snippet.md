@@ -1,7 +1,7 @@
 # Function; Get training snippet
 FUNCTION ==> get-training-snippet
 
-This function returns a sungle training snippet from your RAG/VSS database, and can be used if user asks to see the details for a specific snippet, or if you need it for some reasons.
+This function returns a single training snippet from your RAG/VSS database, and can be used if the user asks to see the details for a specific snippet, or if you need it for some reason.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/get-training-snippet.hl]:
@@ -10,6 +10,6 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/get-training-snip
 }
 ___
 
-Arguments;
+Arguments:
 
 - `id` is mandatory and the ID of the snippet to return

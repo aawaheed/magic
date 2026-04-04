@@ -10,7 +10,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/delete-task.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `name` is mandatory name or ID of task to delete
 

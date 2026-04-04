@@ -13,7 +13,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-training-s
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type
 - `prompt` is mandatory single sentence summary of completion

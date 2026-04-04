@@ -14,7 +14,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-ai-functio
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type to add the function to.
 - `filename` is mandatory Hyperlambda file path, to the file that's to serve as the function.

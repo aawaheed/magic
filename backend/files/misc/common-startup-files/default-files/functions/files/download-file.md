@@ -1,7 +1,7 @@
 # Function; Download file
 FUNCTION ==> download-file
 
-This functions allows the user to download a file from his server. This function will render a "Download" button allowing the user to download whatever file he or she wants to download. Notice, the download button is automatically injected by the middleware even though you cannot see it.
+This function allows the user to download a file from his server. This function will render a "Download" button allowing the user to download whatever file he or she wants to download. Notice, the download button is automatically injected by the middleware even though you cannot see it.
 
 **IMPORTANT** - Using this function is necessary due to authorization requirements, and this function will associate a "download token" with the URL of the button it renders, allowing the user to download it as if authorized over a plain HTTP GET request by simply clicking the button created by this function in the UI.
 

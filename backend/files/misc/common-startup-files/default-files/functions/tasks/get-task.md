@@ -10,6 +10,6 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/get-task.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `name` is mandatory name / ID of the task to return

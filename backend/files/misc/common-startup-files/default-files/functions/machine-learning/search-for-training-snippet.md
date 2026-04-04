@@ -11,7 +11,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/search-for-traini
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type to search in
 - `query` is mandatory query to search for

@@ -10,6 +10,6 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/delete-training-s
 }
 ___
 
-Arguments;
+Arguments:
 
 - `id` is mandatory and the ID of the training snippet to delete

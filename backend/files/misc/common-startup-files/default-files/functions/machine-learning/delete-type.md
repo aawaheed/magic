@@ -10,8 +10,8 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/delete-type.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type to delete
 
-**IMPORTANT** - Warn the use that this action is permanent and have the user confirm before proceeding to delete the type.
+**IMPORTANT** - Warn the user that this action is permanent and have the user confirm before proceeding to delete the type.

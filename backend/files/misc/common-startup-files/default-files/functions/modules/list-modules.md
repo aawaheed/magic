@@ -1,7 +1,7 @@
 # Function; List modules
 FUNCTION ==> list-modules
 
-Lists all modules in system. Returns a list of strings being names of all modules that exists in system.
+Lists all modules in the system. Returns a list of strings being names of all modules that exist in the system.
 
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/modules/list-modules.hl]

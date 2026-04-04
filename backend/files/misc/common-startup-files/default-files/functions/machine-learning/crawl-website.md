@@ -12,7 +12,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/crawl-website.hl]
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type to store training data into
 - `url` is mandatory URL of website to crawl for RAG training data

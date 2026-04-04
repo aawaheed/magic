@@ -12,7 +12,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/update-training-s
 }
 ___
 
-Arguments;
+Arguments:
 
 - `id` is mandatory and the id of the training snippet to update
 - `prompt` is optional and should be a single sentence summarizing what the snippet does

@@ -10,7 +10,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-file-to-sessi
 }
 ___
 
-Arguments;
+Arguments:
 
 - `filename` is mandatory, and a filename of an existing file that must physically exist on disc.
 

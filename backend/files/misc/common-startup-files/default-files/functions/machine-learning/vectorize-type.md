@@ -10,7 +10,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/vectorize-type.hl
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory name of machine learning type to create embeddings for
 

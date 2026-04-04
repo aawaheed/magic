@@ -15,7 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-html-widget.h
 }
 ___
 
-Arguments;
+Arguments:
 
 - `type` is mandatory and the machine learning type you want the widget to be associated with
 - `prompt` is mandatory and should be a VSS friendly name, allowing us to easily match the widget towards natural English using VSS later when we should render the widget due to user requests.

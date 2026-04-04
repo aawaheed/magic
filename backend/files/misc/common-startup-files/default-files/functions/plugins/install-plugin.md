@@ -10,6 +10,6 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/plugins/install-plugin.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 * `plugin` is the mandatory argument being the name of the plugin the user wants to install

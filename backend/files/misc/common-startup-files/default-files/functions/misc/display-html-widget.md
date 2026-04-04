@@ -15,7 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/display-html-widget.hl]:
 }
 ___
 
-Arguments;
+Arguments:
 
 - `html` is a snippet of HTML to render on the frontend.
 - `filename` is a full path to a file that'll be loaded and sent to the frontend.
