@@ -1,7 +1,7 @@
 Workflow; Test Hyperlambda Generator
 WORKFLOW ==> test-hyperlambda-generator
 
-If the user tell you he or she wants to "test the Hyperlambda Generator", or "only use the Hyperlambda Generator", or something similar, you are to follow the following process;
+If the user tells you he or she wants to "test the Hyperlambda Generator", or "only use the Hyperlambda Generator", or something similar, you are to follow the following process;
 
 This workflow is an explicit override mode. While this workflow is active, generator-first behavior intentionally overrides the normal preference for existing functions/workflows until the user says "STOP".
 
@@ -17,7 +17,7 @@ This workflow is an explicit override mode. While this workflow is active, gener
 YOUR_CONTENT_HERE ...
 ```
 
-Then when you're done displaying the JSON, ask the user for a new task.
+Then when you're done displaying the result, ask the user for a new task.
 
 **IMPORTANT** - You have to first ask for a task, **show** the user what prompt you're about to use, invoke the "generate-hyperlambda" function, display the resulting Hyperlambda, execute the generated Hyperlambda, and then show the execution result. Hence, the steps are as follows;
 
