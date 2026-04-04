@@ -40,5 +40,6 @@ if
 add:x:./*/io.file.search
    get-nodes:x:@.arguments/*/pattern
    get-nodes:x:@.arguments/*/extensions
+   get-nodes:x:@.arguments/*/regex
 io.file.search:x:@.arguments/*/path
 return-nodes:x:@io.file.search/*

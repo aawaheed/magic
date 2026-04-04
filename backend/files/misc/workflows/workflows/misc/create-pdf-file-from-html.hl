@@ -2,11 +2,11 @@
 /*
  * Creates a PDF file from the specified [html] input argument.
  * 
- * The resulting PDF file will be saved to the file specified by the [output_pdf] argument.
+ * The resulting PDF file will be saved to the file specified by the [filename] argument.
  */
 .arguments
 
-   // What HTML to transform to Markdown
+   // What HTML to transform to PDF
    html:string
 
    // Where to save the resulting PDF

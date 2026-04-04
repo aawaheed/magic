@@ -24,6 +24,18 @@ if
             .:/
             get-value:x:@.arguments/*/filename
 
+// Making sure caller cannot read protected folders.
+if
+   or
+      strings.starts-with:x:@.arguments/*/filename
+         .:/config/
+      strings.starts-with:x:@.arguments/*/filename
+         .:/data/
+   .lambda
+      throw:"You cannot read files from the '/config/' and '/data/' folders"
+         status:int:400
+         public:bool:true
+
 // Loading file and returning to caller.
 io.file.load:x:@.arguments/*/filename
 yield
