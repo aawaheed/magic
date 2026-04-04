@@ -5,12 +5,14 @@ This function returns a single training snippet from your RAG/VSS database, and 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/get-training-snippet.hl]:
 {
   "id": "[NUMERIC_VALUE]"
 }
 ___
+```
 
 Arguments:
 

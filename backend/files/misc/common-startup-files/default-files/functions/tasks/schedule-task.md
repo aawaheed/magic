@@ -5,6 +5,7 @@ The following function can be used to schedule a specific task. If the user want
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/schedule-task.hl]:
 {
@@ -13,6 +14,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/schedule-task.hl]:
   "repeats": "[REPETITION_STRING]"
 }
 ___
+```
 
 Arguments:
 

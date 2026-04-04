@@ -224,6 +224,7 @@ This section describes the `get-context` function format. Decision logic for whe
 
 If the user is asking you to search for a function, or you cannot find the required function or information required to perform some task, then use the following function to search for additional information, and/or functions, and/or workflows:
 
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/get-context.hl]:
 {
@@ -231,6 +232,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/get-context.hl]:
   "max_tokens": 5000
 }
 ___
+```
 
 The above can have a [QUERY] value being for instance "Create module", "Delete file", "Workflow for how to create an AI chatbot embed script", or "Create CRUD API", etc. The `max_tokens` argument is how many tokens to return. 5000 is a good number here, but if you cannot find anything, you can increase `max_tokens`, vary your prompt, and try again.
 
@@ -261,9 +263,11 @@ Violation: Repeated or redundant `get-context` calls are considered a tool-use b
 
 If the user asks you to list all functions or workflows, or asks you what you can do for them or help them with, then you must end your response with the following function invocation.
 
+```plaintext
 ___
 FUNCTION_INVOCATION[/system/misc/workflows/list-functions.hl]
 ___
+```
 
 This function will return overview of all RAG functions, system instruction functions, and workflows.
 
@@ -273,6 +277,7 @@ The following function allows you to generate Hyperlambda code. The [prompt] arg
 
 By default, use this function for explicit Hyperlambda generation requests, workflows that explicitly require generator use, or when no existing function/workflow can solve the task.
 
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/generate-hyperlambda.hl]:
 {
@@ -280,6 +285,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/generate-hyperlambda.h
   "filename": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 
@@ -339,6 +345,7 @@ Notice, DELETE and GET *cannot* accept payloads, only PUT, POST and PATCH accept
 
 Hyperlambda code can be executed in "immediate mode" without saving it. This function executes the specified Hyperlambda without saving it and returns the result to the caller. This allows you to dynamically generate tools on demand that solves some task.
 
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/execute-hyperlambda.hl]:
 {
@@ -349,6 +356,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/execute-hyperlambda.hl
   }
 }
 ___
+```
 
 Arguments:
 
@@ -363,6 +371,7 @@ Use this function to execute Hyperlambda that only exists in memory.
 
 Executes the specified `filename` Hyperlambda file passing in the specified `args` arguments, and returns the result of the invocation to caller.
 
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/execute-file.hl]:
 {
@@ -373,6 +382,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/execute-file.hl]:
   }
 }
 ___
+```
 
 Arguments:
 

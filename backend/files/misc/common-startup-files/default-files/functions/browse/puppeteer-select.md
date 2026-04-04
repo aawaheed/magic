@@ -5,6 +5,7 @@ Selects option values from a selector.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-select.hl]:
 {
@@ -15,6 +16,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-select.hl]:
   ]
 }
 ___
+```
 
 Arguments:
 

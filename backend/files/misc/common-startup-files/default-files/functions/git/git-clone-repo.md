@@ -5,6 +5,7 @@ Clones an existing Git repository
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-clone-repo.hl]:
 {
@@ -14,6 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-clone-repo.hl]:
   "create": [BOOLEAN_VALUE]
 }
 ___
+```
 
 ## Arguments
 

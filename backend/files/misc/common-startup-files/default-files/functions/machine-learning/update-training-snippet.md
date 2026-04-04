@@ -5,6 +5,7 @@ The following function allows you to update a training snippet given its id.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/update-training-snippet.hl]:
 {
@@ -13,6 +14,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/update-training-s
   "completion": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

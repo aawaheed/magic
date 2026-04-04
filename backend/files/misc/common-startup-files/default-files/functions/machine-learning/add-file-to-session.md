@@ -5,12 +5,14 @@ You can use this function to attach a file to the current conversation, allowing
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-file-to-session.hl]:
 {
   "filename": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

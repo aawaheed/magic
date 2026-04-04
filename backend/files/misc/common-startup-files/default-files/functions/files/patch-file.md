@@ -7,6 +7,7 @@ Use this function only for small, targeted edits to an existing file after you h
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/patch-file.hl]:
 {
@@ -14,6 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/files/patch-file.hl]:
   "patch": "[STRING_VALUE]"
 }
 ___
+```
 
 ## Arguments
 

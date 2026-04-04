@@ -5,12 +5,14 @@ Creates a backup of the SQLite database specified as [database] and returns the 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/create-database-backup.hl]:
 {
   "database": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

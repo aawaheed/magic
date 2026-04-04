@@ -5,6 +5,7 @@ This function allows you to create a new user in the system.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/users/create-user.hl]:
 {
@@ -14,6 +15,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/users/create-user.hl]:
   "email": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

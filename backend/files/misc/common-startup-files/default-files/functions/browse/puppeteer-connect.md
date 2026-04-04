@@ -5,6 +5,7 @@ Creates a new Puppeteer session and returns its session id.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-connect.hl]:
 {
@@ -19,6 +20,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-connect.hl]:
   "max_lifetime_minutes": 120
 }
 ___
+```
 
 Arguments:
 

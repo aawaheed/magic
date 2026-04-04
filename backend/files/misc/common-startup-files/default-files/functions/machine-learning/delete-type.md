@@ -5,12 +5,14 @@ The following function can be used to delete an existing machine learning type. 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/delete-type.hl]:
 {
   "type": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

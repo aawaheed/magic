@@ -5,6 +5,7 @@ If the user asks you to search the web, then in the current invocation end your 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/system/workflows/workflows/web-search-return-urls.hl]:
 {
@@ -12,6 +13,7 @@ FUNCTION_INVOCATION[/system/workflows/workflows/web-search-return-urls.hl]:
   "max_urls": 20
 }
 ___
+```
 
 Arguments:
 

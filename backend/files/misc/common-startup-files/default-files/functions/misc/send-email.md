@@ -5,6 +5,7 @@ The following function can be used to send an email.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/send-email.hl]:
 {
@@ -16,6 +17,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/send-email.hl]:
   "body": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

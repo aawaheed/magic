@@ -5,6 +5,7 @@ This function associates an existing user with an existing role.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/add-to-role.hl]:
 {
@@ -12,6 +13,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/add-to-role.hl]:
   "role": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

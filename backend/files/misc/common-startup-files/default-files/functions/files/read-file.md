@@ -5,12 +5,14 @@ Reads or loads the content of an existing file.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/read-file.hl]:
 {
   "filename": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

@@ -5,12 +5,14 @@ The following function can be used to delete a specific task.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/delete-task.hl]:
 {
   "name": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

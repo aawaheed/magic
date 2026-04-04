@@ -5,6 +5,7 @@ The following function can be used to create a new machine learning type.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-type.hl]:
 {
@@ -15,6 +16,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-type.hl]:
   "use_embeddings": [BOOLEAN_VALUE]
 }
 ___
+```
 
 Arguments:
 

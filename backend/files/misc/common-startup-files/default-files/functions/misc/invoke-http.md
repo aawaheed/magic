@@ -5,6 +5,7 @@ The following function can be used to invoke an HTTP endpoint.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/invoke-http.hl]:
 {
@@ -18,6 +19,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/misc/invoke-http.hl]:
   }
 }
 ___
+```
 
 Arguments:
 

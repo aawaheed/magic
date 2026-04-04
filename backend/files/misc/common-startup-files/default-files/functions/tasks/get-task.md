@@ -5,12 +5,14 @@ The following function can be used to get a specific task, including its Hyperla
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/tasks/get-task.hl]:
 {
   "name": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

@@ -5,6 +5,7 @@ Use this function if you need to create a new role.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/roles/create-role.hl]:
 {
@@ -12,6 +13,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/roles/create-role.hl]:
   "description": "[STRING_VALUE]"
 }
 ___
+```
 
 Arguments:
 

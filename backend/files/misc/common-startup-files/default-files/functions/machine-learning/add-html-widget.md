@@ -5,6 +5,7 @@ A widget is a small snippet of partial HTML that can be rendered inside an AI ag
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-html-widget.hl]:
 {
@@ -16,6 +17,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-html-widget.h
   }
 }
 ___
+```
 
 Arguments:
 

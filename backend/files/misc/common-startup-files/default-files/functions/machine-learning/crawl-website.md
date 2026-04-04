@@ -5,6 +5,7 @@ The following function can be used to crawl a website for training data and crea
 
 
 Below is the exact function signature and JSON invocation format for this function.
+```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/crawl-website.hl]:
 {
@@ -13,6 +14,7 @@ FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/crawl-website.hl]
   "max": [INTEGER_VALUE]
 }
 ___
+```
 
 Arguments:
 
