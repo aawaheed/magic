@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-close
 
 Closes an existing Puppeteer session.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-close.hl]:
 {

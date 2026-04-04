@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-connect
 
 Creates a new Puppeteer session and returns its session id.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-connect.hl]:
 {

@@ -3,6 +3,8 @@ FUNCTION ==> list-folders
 
 Lists all folders and directories in the specified [folder].
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/list-folders.hl]:
 {

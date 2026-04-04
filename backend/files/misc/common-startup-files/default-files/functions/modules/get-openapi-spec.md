@@ -3,6 +3,8 @@ FUNCTION ==> get-openapi-spec
 
 If the user asks you for an OpenAPI specification for a specific module, you can use the following function.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/modules/get-openapi-spec.hl]:
 {

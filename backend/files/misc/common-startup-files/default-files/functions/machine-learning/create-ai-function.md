@@ -5,6 +5,8 @@ The following function can be used to create an AI function for some machine lea
 
 If the user wants to create an AI function you must end your response with the following;
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-ai-function.hl]:
 {

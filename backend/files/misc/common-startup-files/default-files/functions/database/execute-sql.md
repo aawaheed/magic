@@ -5,6 +5,8 @@ Connect to the [database] database, and executes the specified [sql].
 This function is useful for SQL that doesn't return anything,
 or where the result of the execution is not interesting, such as creating tables, and executing DDL, etc.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/execute-sql.hl]:
 {

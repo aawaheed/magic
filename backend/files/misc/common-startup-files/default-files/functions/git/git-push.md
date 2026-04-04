@@ -3,6 +3,8 @@ FUNCTION ==> git-push
 
 Pushes all changes to Git repository upstreams.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-push.hl]:
 {

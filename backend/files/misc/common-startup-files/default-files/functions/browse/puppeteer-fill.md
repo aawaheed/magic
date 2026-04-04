@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-fill
 
 Clears and types text into a selector.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-fill.hl]:
 {

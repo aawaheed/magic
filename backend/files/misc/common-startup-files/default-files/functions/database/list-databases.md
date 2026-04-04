@@ -3,6 +3,8 @@ FUNCTION ==> list-databases
 
 Lists all databases in the system for the specified connection string and database type.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/list-databases.hl]:
 {

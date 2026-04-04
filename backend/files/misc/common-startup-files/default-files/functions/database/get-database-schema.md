@@ -3,6 +3,8 @@ FUNCTION ==> get-database-schema
 
 Connect to the [database] database, and returns the schema for the specified database.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/get-database-schema.hl]:
 {

@@ -5,6 +5,8 @@ Connect to the [database] database, and executes the specified [sql],
 and returns the result of the SQL as a list of records.
 Use this function if the user needs the result of an SQL query.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/select-sql.hl]:
 {

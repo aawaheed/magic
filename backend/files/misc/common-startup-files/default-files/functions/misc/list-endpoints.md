@@ -3,6 +3,8 @@ FUNCTION ==> list-endpoints
 
 The following function can be used to list all HTTP endpoints in Magic, including the internal system endpoints.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/list-endpoints.hl]
 ___

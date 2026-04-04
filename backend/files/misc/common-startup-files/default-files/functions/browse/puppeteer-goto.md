@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-goto
 
 Navigates an existing Puppeteer session to a URL.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-goto.hl]:
 {

@@ -3,6 +3,8 @@ FUNCTION ==> add-html-widget
 
 A widget is a small snippet of partial HTML that can be rendered inside an AI agent or an AI chatbot. This function allows you to associate an HTML widget with a machine learning type, AI chatbot, or AI agent.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/add-html-widget.hl]:
 {

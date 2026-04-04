@@ -3,6 +3,8 @@ FUNCTION ==> github-create-repo
 
 Creates and initialises a new GitHub repository on GitHub's servers.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/git/github-create-repo.hl]:
 {

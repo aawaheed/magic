@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-wait-for-url
 
 Waits until the page URL matches a specific value.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-wait-for-url.hl]:
 {

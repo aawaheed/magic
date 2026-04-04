@@ -3,6 +3,8 @@ FUNCTION ==> puppeteer-evaluate
 
 Evaluates a JavaScript expression in the page.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/browse/puppeteer-evaluate.hl]:
 {

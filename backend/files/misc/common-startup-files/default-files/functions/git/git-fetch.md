@@ -3,6 +3,8 @@ FUNCTION ==> git-fetch
 
 Fetches all changes from a remote.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-fetch.hl]:
 {

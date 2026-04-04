@@ -3,6 +3,8 @@ FUNCTION ==> create-database-backup
 
 Creates a backup of the SQLite database specified as [database] and returns the full path of the backup as `backup_filename`.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/create-database-backup.hl]:
 {

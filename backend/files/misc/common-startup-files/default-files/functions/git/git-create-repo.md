@@ -3,6 +3,8 @@ FUNCTION ==> git-create-repo
 
 Creates and initialises a new Git repository locally.
 
+
+Below is the exact function signature and JSON invocation format for this function.
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/git/git-create-repo.hl]:
 {
