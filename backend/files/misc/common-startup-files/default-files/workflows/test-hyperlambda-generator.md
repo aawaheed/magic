@@ -13,8 +13,8 @@ This workflow is an explicit override mode. While this workflow is active, gener
 
 **IMPORTANT** - When you've got a result from the executed Hyperlambda code, then return this as follows;
 
-```json
-YOUR_JSON_HERE ...
+```LANGUAGE_OR_PLAINTEXT
+YOUR_CONTENT_HERE ...
 ```
 
 Then when you're done displaying the JSON, ask the user for a new task.
