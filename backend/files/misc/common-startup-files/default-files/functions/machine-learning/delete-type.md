@@ -5,6 +5,7 @@ The following function can be used to delete an existing machine learning type. 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/delete-type.hl]:
@@ -18,4 +19,4 @@ Arguments:
 
 - `type` is mandatory name of machine learning type to delete
 
-**IMPORTANT** - Warn the user that this action is permanent and have the user confirm before proceeding to delete the type.
+**IMPORTANT** - Warn the user that this action is permanent and ask the user to confirm before proceeding to delete the type.
