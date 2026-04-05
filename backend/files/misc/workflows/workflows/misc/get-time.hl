@@ -1,0 +1,14 @@
+/*
+ * Returns the current date and time
+ */
+.arguments
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Retrieving date and time.
+date.now
+
+// Return it to caller.
+yield
+   current_date_and_time:x:@date.now
