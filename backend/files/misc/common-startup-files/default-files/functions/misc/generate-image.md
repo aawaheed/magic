@@ -5,6 +5,7 @@ This function creates an image using DALL-E 3 according to the specified [prompt
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/generate-image.hl]:

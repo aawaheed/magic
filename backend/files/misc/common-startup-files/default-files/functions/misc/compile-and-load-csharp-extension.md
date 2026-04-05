@@ -6,6 +6,7 @@ Your code must include a class that implements `ISlot` (or `ISlotAsync`) and is 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/compile-and-load-csharp-extension.hl]:

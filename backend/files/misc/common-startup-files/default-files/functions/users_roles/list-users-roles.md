@@ -5,6 +5,7 @@ This function returns a list of all roles the specified [username] belongs to.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/list-users-roles.hl]:

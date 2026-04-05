@@ -5,6 +5,7 @@ Returns meta information about a specific Hyperlambda file, specifically its des
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/get-file-info.hl]:

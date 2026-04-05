@@ -5,6 +5,7 @@ The following function can be used to create a series of cryptographically secur
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/generate-random-string.hl]

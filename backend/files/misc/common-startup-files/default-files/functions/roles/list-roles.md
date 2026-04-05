@@ -5,6 +5,7 @@ Use this function to list all roles in the system.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/roles/list-roles.hl]:

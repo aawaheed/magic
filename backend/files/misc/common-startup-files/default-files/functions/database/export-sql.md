@@ -8,6 +8,7 @@ and/or specific SQL queries as a CSV file.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/database/export-sql.hl]:

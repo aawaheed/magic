@@ -5,6 +5,7 @@ Searches recursively through a folder for file containing specified pattern.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/search-files.hl]:

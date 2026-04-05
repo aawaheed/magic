@@ -5,6 +5,7 @@ The following function can be used to create RAG training data for a machine lea
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-training-snippet.hl]:

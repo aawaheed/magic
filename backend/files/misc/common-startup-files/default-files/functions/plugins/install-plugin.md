@@ -5,6 +5,7 @@ Installs the specified [plugin] plugin into your backend. Notice, installation w
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/plugins/install-plugin.hl]:

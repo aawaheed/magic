@@ -5,6 +5,7 @@ This function removes the association between the specified [username] user and 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/users_roles/remove-from-role.hl]:

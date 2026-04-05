@@ -5,6 +5,7 @@ Creates a new module in file system with a folder for its files and a manifest.h
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/modules/create-module.hl]:

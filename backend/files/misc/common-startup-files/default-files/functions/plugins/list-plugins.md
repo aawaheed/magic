@@ -7,6 +7,7 @@ If the user wants to see all available plugins, you must end your response with 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/plugins/list-plugins.hl]

@@ -5,6 +5,7 @@ This function will scrape the specified `url` and return its content as Markdown
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/system/workflows/workflows/scrape-url.hl]:

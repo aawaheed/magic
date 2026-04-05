@@ -46,14 +46,16 @@ Below is the documentation for the Hyperlambda slots encapsulating Python execut
 
 You must provide either `code` or `file`.
 
-```
+```hyperlambda
 python.execute
    code:@"
 print('hello from python')
 "
 ```
 
-```
+Below is example for file
+
+```hyperlambda
 python.execute
    file:/modules/scripts/hello.py
    args

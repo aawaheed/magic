@@ -5,6 +5,7 @@ This function allows you to search for training snippets using VSS search. The d
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/search-for-training-snippet.hl]:

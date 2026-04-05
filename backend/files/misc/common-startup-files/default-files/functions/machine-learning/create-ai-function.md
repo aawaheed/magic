@@ -7,6 +7,7 @@ If the user wants to create an AI function you must end your response with the f
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-ai-function.hl]:

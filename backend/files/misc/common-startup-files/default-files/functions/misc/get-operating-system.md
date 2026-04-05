@@ -5,6 +5,7 @@ The following function can be used to retrieve the operating system you are curr
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/get-operating-system.hl]

@@ -5,6 +5,7 @@ The following function allows you to delete a training snippet given its id.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/delete-training-snippet.hl]:

@@ -5,6 +5,7 @@ Lists all modules in the system. Returns a list of strings being names of all mo
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/modules/list-modules.hl]

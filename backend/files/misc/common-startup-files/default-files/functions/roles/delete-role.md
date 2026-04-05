@@ -5,6 +5,7 @@ Use this function to delete a role.
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/roles/delete-role.hl]:

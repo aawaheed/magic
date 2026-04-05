@@ -5,6 +5,7 @@ This function sends the specified [html] to the frontend to display it as is. Us
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/display-html-widget.hl]:

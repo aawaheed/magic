@@ -7,6 +7,7 @@ This function allows the user to download a file from his server. This function 
 
 
 Below is the exact function signature and JSON invocation format for this function.
+
 ```plaintext
 ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/files/download-file.hl]:
