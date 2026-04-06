@@ -2,12 +2,12 @@
  * Magic Cloud, copyright (c) 2023 Thomas Hansen. See the attached LICENSE file for details. For license inquiries you can send an email to thomas@ainiro.io
  */
 
-using System.Text
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using magic.node.extensions;
 
-namespace magic.lambda.strings.builder.tests
+namespace magic.lambda.strings.tests
 {
     public class AppendTests
     {
@@ -17,8 +17,8 @@ namespace magic.lambda.strings.builder.tests
             var lambda = Common.Evaluate(@"
 strings.builder
    strings.builder.append:""howdy""
-   strings.builder.append:""  world""
-get-value:x@strings.builder
+   strings.builder.append:"" world""
+get-value:x:@strings.builder
 ");
             Assert.Equal("howdy world", lambda.Children.Skip(1).First().Value);
         }
@@ -29,8 +29,8 @@ get-value:x@strings.builder
             var lambda = await Common.EvaluateAsync(@"
 strings.builder
    strings.builder.append:""howdy""
-   strings.builder.append:""  world""
-get-value:x@strings.builder
+   strings.builder.append:"" world""
+get-value:x:@strings.builder
 ");
             Assert.Equal("howdy world", lambda.Children.Skip(1).First().Value);
         }

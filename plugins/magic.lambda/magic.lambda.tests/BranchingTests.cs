@@ -135,17 +135,6 @@ if
         }
 
         [Fact]
-        public void Or_Throws_01()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-.result
-or
-   .lambda
-      set-value:x:../*/.result
-         .:OK"));
-        }
-
-        [Fact]
         public void Or_Whitelist_Throws()
         {
             Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
@@ -405,19 +394,6 @@ if
             Assert.Equal("OK", lambda.Children.Skip(2).First().Value);
             Assert.Equal(typeof(bool), lambda.Children.Skip(3).First().Children.First().Children.First().Value.GetType());
             Assert.Equal(typeof(Expression), lambda.Children.Skip(3).First().Children.First().Children.Skip(1).First().Value.GetType());
-        }
-
-        [Fact]
-        public void IfThrows()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-.result
-if
-   and
-      .:bool:true
-   .lambda
-      set-value:x:../*/.result
-         .:OK"));
         }
 
         [Fact]

@@ -205,6 +205,11 @@ jqlytqgW6l6KI/Q=
                 return DynamicFiles + path.TrimStart(new char[] { '/', '\\' });
             }
 
+            public string RuntimePath(string path)
+            {
+                return RootFolder + path.TrimStart(new char[] { '/', '\\' });
+            }
+
             public string RelativePath(string path)
             {
                 return path.Substring(DynamicFiles.Length - 1);

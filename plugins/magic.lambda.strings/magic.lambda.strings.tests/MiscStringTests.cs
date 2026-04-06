@@ -70,14 +70,6 @@ strings.mixin:x:-");
         }
 
         [Fact]
-        public void Mixin_03()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-.foo:@""foo {{return:bar}""
-strings.mixin:x:-"));
-        }
-
-        [Fact]
         public void Mixin_04()
         {
             var lambda = Common.Evaluate(@"

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using magic.node;
+using magic.lambda.logging.contracts;
 using magic.signals.services;
 using magic.signals.contracts;
 using magic.node.extensions.hyperlambda;
@@ -16,6 +17,22 @@ namespace magic.lambda.strings.tests
 {
     public static class Common
     {
+        private class NullLogger : ILogger
+        {
+            public Task DebugAsync(string content) => Task.CompletedTask;
+            public Task DebugAsync(string content, Dictionary<string, string> meta) => Task.CompletedTask;
+            public Task InfoAsync(string content) => Task.CompletedTask;
+            public Task InfoAsync(string content, Dictionary<string, string> meta) => Task.CompletedTask;
+            public Task ErrorAsync(string content) => Task.CompletedTask;
+            public Task ErrorAsync(string content, Dictionary<string, string> meta) => Task.CompletedTask;
+            public Task ErrorAsync(string content, string stackTrace) => Task.CompletedTask;
+            public Task ErrorAsync(string content, Dictionary<string, string> meta, string stackTrace) => Task.CompletedTask;
+            public Task FatalAsync(string content) => Task.CompletedTask;
+            public Task FatalAsync(string content, Dictionary<string, string> meta) => Task.CompletedTask;
+            public Task FatalAsync(string content, string stackTrace) => Task.CompletedTask;
+            public Task FatalAsync(string content, Dictionary<string, string> meta, string stackTrace) => Task.CompletedTask;
+        }
+
         static public Node Evaluate(string hl)
         {
             var services = Initialize();
@@ -40,6 +57,7 @@ namespace magic.lambda.strings.tests
         {
             var services = new ServiceCollection();
             services.AddTransient<ISignaler, Signaler>();
+            services.AddSingleton<ILogger, NullLogger>();
             var types = new SignalsProvider(InstantiateAllTypes<ISlot, ISlotAsync>(services));
             services.AddTransient<ISignalsProvider>((svc) => types);
             var provider = services.BuildServiceProvider();

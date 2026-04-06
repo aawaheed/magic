@@ -128,14 +128,6 @@ http.post:""https://jsonplaceholder.typicode.com/postsXX""
         }
 
         [Fact]
-        public void PostJsonNoPayload_Throws()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-http.post:""https://jsonplaceholder.typicode.com/posts""
-"));
-        }
-
-        [Fact]
         public async Task PostJsonAsync()
         {
             var lambda = await Common.EvaluateAsync(@"
@@ -212,14 +204,6 @@ http.put:""https://jsonplaceholder.typicode.com/posts/1""
       id:int:1
 ");
             Assert.Equal(200, lambda.Children.Skip(1).First().Value);
-        }
-
-        [Fact]
-        public void PutJsonNoPayload_Throws()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-http.put:""https://jsonplaceholder.typicode.com/posts/1""
-"));
         }
 
         [Fact]

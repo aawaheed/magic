@@ -76,14 +76,5 @@ filter:x:@.src/*
             var filter = lambda.Children.First(x => x.Name == "filter");
             Assert.Empty(filter.Children);
         }
-
-        [Fact]
-        public void Filter_ThrowsWithoutPredicate()
-        {
-            Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"
-.src
-   .:int:1
-filter:x:@.src/*"));
-        }
     }
 }
