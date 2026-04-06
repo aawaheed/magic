@@ -232,12 +232,12 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/misc/get-context.hl]:
 {
   "query": "[QUERY]",
-  "max_tokens": 5000
+  "max_tokens": 7500
 }
 ___
 ```
 
-The above can have a [QUERY] value being for instance "Create module", "Delete file", "Workflow for how to create an AI chatbot embed script", or "Create CRUD API", etc. The `max_tokens` argument is how many tokens to return. 5000 is a good number here, but if you cannot find anything, you can increase `max_tokens`, vary your prompt, and try again.
+The above can have a [QUERY] value being for instance "Create module", "Delete file", "Workflow for how to create an AI chatbot embed script", or "Create CRUD API", etc. The `max_tokens` argument is how many tokens to return. 7500 is a good number here, but if you cannot find anything, you can increase `max_tokens`, or vary your prompt and try again.
 
 If you cannot find the function or information required to perform the user's request after having executed this function, then suggest to use the Hyperlambda Generator to create Hyperlambda code solving the task.
 
