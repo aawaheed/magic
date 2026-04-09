@@ -4,8 +4,10 @@
 
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -22,6 +24,21 @@ namespace magic.lambda.http.tests
 {
     public static class Common
     {
+        private class TestHttpMessageHandler : HttpMessageHandler
+        {
+            readonly Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> _handler;
+
+            public TestHttpMessageHandler(Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> handler)
+            {
+                _handler = handler;
+            }
+
+            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                return _handler(request, cancellationToken);
+            }
+        }
+
         private class RootResolver : IRootResolver
         {
             public string DynamicFiles => AppDomain.CurrentDomain.BaseDirectory;
@@ -61,13 +78,27 @@ namespace magic.lambda.http.tests
             return lambda;
         }
 
+        static public async Task<Node> EvaluateAsync(
+            string hl,
+            Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> handler)
+        {
+            var services = Initialize(handler);
+            var lambda = HyperlambdaParser.Parse(hl);
+            var signaler = services.GetService(typeof(ISignaler)) as ISignaler;
+            await signaler.SignalAsync("eval", lambda);
+            return lambda;
+        }
+
         #region [ -- Private helper methods -- ]
 
-        static IServiceProvider Initialize()
+        static IServiceProvider Initialize(Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> handler = null)
         {
             var services = new ServiceCollection();
             services.AddTransient<ISignaler, Signaler>();
-            services.AddHttpClient();
+            if (handler == null)
+                services.AddHttpClient();
+            else
+                services.AddTransient(_ => new HttpClient(new TestHttpMessageHandler(handler)));
             var types = new SignalsProvider(InstantiateAllTypes<ISlot, ISlotAsync>(services));
             services.AddTransient<ISignalsProvider>((svc) => types);
             services.AddTransient<IRootResolver, RootResolver>();

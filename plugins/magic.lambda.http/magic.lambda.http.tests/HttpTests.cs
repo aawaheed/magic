@@ -4,6 +4,9 @@
  */
 
 using System.Linq;
+using System.Text;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 using Newtonsoft.Json.Linq;
@@ -169,6 +172,59 @@ http.post:""https://jsonplaceholder.typicode.com/posts""
       id:int:1");
             Assert.Equal(201, lambda.Children.First().Value);
             Assert.Equal(2, lambda.Children.First().Children.FirstOrDefault(x => x.Name == "content").Children.Count());
+        }
+
+        [Fact]
+        public async Task PostJsonErrorObjectAsyncAutoConvert()
+        {
+            var lambda = await Common.EvaluateAsync(@"
+http.post:""https://example.com/endpoint""
+   convert:true
+   payload
+      userId:int:1
+", (_, _) => Task.FromResult(new HttpResponseMessage(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(
+                    @"{""error"":{""message"":""bad request""}}",
+                    Encoding.UTF8,
+                    "application/json"),
+            }));
+
+            Assert.Equal(400, lambda.Children.First().Value);
+            Assert.Equal(
+                "bad request",
+                lambda
+                    .Children
+                    .First()
+                    .Children
+                    .First(x => x.Name == "content")
+                    .Children
+                    .First(x => x.Name == "error")
+                    .Children
+                    .First(x => x.Name == "message")
+                    .GetEx<string>());
+        }
+
+        [Fact]
+        public async Task PostJsonErrorStringAsyncAutoConvert()
+        {
+            var lambda = await Common.EvaluateAsync(@"
+http.post:""https://example.com/endpoint""
+   convert:true
+   payload
+      userId:int:1
+", (_, _) => Task.FromResult(new HttpResponseMessage(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(
+                    @"""bad request""",
+                    Encoding.UTF8,
+                    "application/json"),
+            }));
+
+            Assert.Equal(400, lambda.Children.First().Value);
+            Assert.Equal(
+                "bad request",
+                lambda.Children.First().Children.First(x => x.Name == "content").GetEx<string>());
         }
 
         [Fact]

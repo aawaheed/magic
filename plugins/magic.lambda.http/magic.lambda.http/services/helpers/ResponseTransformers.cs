@@ -6,6 +6,7 @@ using System.Web;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text.Json;
 using magic.node;
 using magic.signals.contracts;
 
@@ -24,9 +25,32 @@ namespace magic.lambda.http.services.helpers
             var json = await content.ReadAsStringAsync();
             if (string.IsNullOrEmpty(json))
                 return new Node("content");
-            var tmpNode = new Node("content", json);
-            signaler.Signal("json2lambda", tmpNode);
-            return tmpNode;
+
+            try
+            {
+                using var document = JsonDocument.Parse(json);
+                switch (document.RootElement.ValueKind)
+                {
+                    case JsonValueKind.Object:
+                    case JsonValueKind.Array:
+                    {
+                        var tmpNode = new Node("content", json);
+                        signaler.Signal("json2lambda", tmpNode);
+                        return tmpNode;
+                    }
+
+                    case JsonValueKind.String:
+                        return new Node("content", document.RootElement.GetString());
+
+                    default:
+                        return new Node("content", document.RootElement.GetRawText());
+                }
+            }
+            catch (JsonException)
+            {
+                // Preserve the response body even if the server mislabeled invalid content as JSON.
+                return new Node("content", json);
+            }
         }
 
         /*
