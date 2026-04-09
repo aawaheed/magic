@@ -370,7 +370,7 @@
                 </span>
                 <mat-select
                   [(ngModel)]="completion_slot"
-                  [disabled]="isLoading || !use_embeddings"
+                  [disabled]="isLoading"
                   placeholder="Completion LLM ..."
                   name="completion_slot"
                   (selectionChange)="completionSlotChanged()">
@@ -690,7 +690,7 @@
                 <input
                   matInput
                   placeholder="Max context tokens ..."
-                  [disabled]="isLoading || !use_embeddings"
+                  [disabled]="isLoading"
                   type="number"
                   min="1"
                   max="4000"
