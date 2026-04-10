@@ -96,9 +96,20 @@ namespace magic.lambda.io.file
              * Preparing arguments, if there are any, making sure we remove
              * any declarative [.arguments] first.
              */
-            lambda.Children
-                .FirstOrDefault(x => x.Name == ".arguments")?
-                .UnTie();
+            var old = lambda.Children.FirstOrDefault(x => x.Name == ".arguments");
+            if (old != null)
+            {
+                old.UnTie();
+                foreach (var idx in input.Children)
+                {
+                    var templ = old.Children.FirstOrDefault(x => x.Name == idx.Name);
+                    if (old == null)
+                        throw new HyperlambdaException($"Argument '{idx.Name}' is not declared in the Hyperlambda file '{filename}'", true, 400);
+                    var tp = templ.Get<string>();
+                    if (tp != null && tp != "*")
+                        idx.Value = Converter.ToObject(idx.Value, templ.Get<string>());
+                }
+            }
             lambda.Insert(0, new Node(".arguments", null, input.Children.ToList()));
 
             // Making sure we declare our [.filename] node in the lambda object.
