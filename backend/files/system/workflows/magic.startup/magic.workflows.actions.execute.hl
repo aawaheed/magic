@@ -14,7 +14,12 @@ slots.create:magic.workflows.actions.execute
     */
    .time
    if
-      auth.ticket.in-role:root
+      and
+         or
+            not-exists:x:@.arguments/*/feedback
+            eq:x:@.arguments/*/feedback
+               .:bool:true
+         auth.ticket.in-role:root
       .lambda
 
          // Publishing socket debug message to client.
@@ -27,8 +32,8 @@ slots.create:magic.workflows.actions.execute
                type:action
                name:x:@.arguments/*/name
                input
-         set-value:x:@.time
-            date.now
+   set-value:x:@.time
+      date.now
 
    // Making sure we're able to catch exceptions.
    try
@@ -45,7 +50,12 @@ slots.create:magic.workflows.actions.execute
        * publishing a socket message as "debug info" back to caller.
        */
       if
-         auth.ticket.in-role:root
+         and
+            or
+               not-exists:x:@.arguments/*/feedback
+               eq:x:@.arguments/*/feedback
+                  .:bool:true
+            auth.ticket.in-role:root
          .lambda
 
             // Publishing socket debug message to client.
