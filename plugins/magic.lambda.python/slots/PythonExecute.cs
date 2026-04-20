@@ -64,7 +64,6 @@ namespace magic.lambda.python
             else
             {
                 var resolvedFile = ResolvePath(file);
-                Console.WriteLine(resolvedFile);
                 startInfo.ArgumentList.Add(resolvedFile);
             }
 
