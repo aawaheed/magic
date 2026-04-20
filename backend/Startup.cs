@@ -22,10 +22,6 @@ namespace magic.backend
         public void ConfigureServices(IServiceCollection services)
         {
             // Initializing Magic.
-            services.Configure<KestrelServerOptions>(options => 
-            {
-                options.Limits.MaxRequestBodySize = int.MaxValue;
-            });
             services.AddMagic(Configuration);
         }
 
