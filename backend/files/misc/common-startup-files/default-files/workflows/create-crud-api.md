@@ -11,8 +11,6 @@ This workflow allows the user to create a CRUD API. If the user wants to create 
 5. Check if the module already exists, and if not, create the module. If the modul already exists, then pause and ask the user if he or she really wants to use the existing module.
 6. Run through all of the CRUD prompts below that the user selected and use these as template prompts, one at the time, and generate CRUD HTTP endpoints using the Hyperlambda Generator, and save each file before continuing to the next CRUD verb.
    - By default you should use the table name as the filename. For a contacts table the endpoint filename would be; "contacts.get.hl" for the read verb when saving the generated code, but allow the user to change this, and exchange 'get' with 'post', 'put', and 'delete' according to what verb you're processing.
-   - Show the user all prompts to the Hyperlambda Generator before you generate any code.
-   - Show the user the resulting code after you've generated the Hyperlambda.
    - Notice, the Hyperlambda Generator doesn't differentiate between an HTTP endpoint, or an executable Hyperlambda file. Endpoints are declared according to how the file is saved, having the verb being a part of the filename. Hence, use "Generate an executable Hyperlambda file" as your prefix prompt when creating HTTP endpoints.
 7. When creating prompts for CRUD read endpoints using the Hyperlambda Generator, then you must specify that you want optional sorting, optional paging, and if the table contains relevant fields to filter on, you specify you want filtering on these fields too. However, don't create too complex prompts. Keep your prompts SIMPLE!
 
