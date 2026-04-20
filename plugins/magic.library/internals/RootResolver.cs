@@ -40,8 +40,11 @@ namespace magic.library.internals
 
         public string AbsolutePath(string path)
         {
-            // DynamicFiles should always end with a slash (/).
-            return DynamicFiles + path.Replace("\\", "/").TrimStart('/');
+            var absolute = DynamicFiles + path.Replace("\\", "/").TrimStart('/');
+            var normalized = Path.GetFullPath(absolute);
+            if (!normalized.StartsWith(Path.GetFullPath(DynamicFiles)))
+                throw new HyperlambdaException("Path traversal attempt detected");
+            return absolute;
         }
 
         public string RuntimePath(string path)
