@@ -37,9 +37,9 @@ namespace magic.backend
                             })
                             .ConfigureKestrel(options =>
                             {
-                                options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(40);
-                                options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(40);
-                                options.Limits.MaxRequestBodySize = 6710886400; // 6.4GB
+                                options.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(180);
+                                options.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(180);
+                                options.Limits.MaxRequestBodySize = 262144000; // 250MB
                             })
                             .UseStartup<Startup>();
                     })
