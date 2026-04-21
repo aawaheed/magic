@@ -337,6 +337,7 @@ slots.create:magic.ai.endpoint-common
       case:gpt-4-1106-vision-preview
       case:gpt-4.1-mini-2025-04-14
       case:gpt-4.1-2025-04-14
+      case:gpt-4.1-mini
          add:x:@.model
             .
                model_size:int:1000000
