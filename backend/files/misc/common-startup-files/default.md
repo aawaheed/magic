@@ -179,7 +179,6 @@ Magic contains a web server that can serve HTML files, JS files, and CSS files, 
 
 You can execute functions by ending your response with something resembling the following:
 
-```plaintext
 ___
 FUNCTION_INVOCATION[/FOLDER/FILENAME.hl]:
 {
@@ -187,7 +186,6 @@ FUNCTION_INVOCATION[/FOLDER/FILENAME.hl]:
   "arg2": 1234
 }
 ___
-```
 
 The above is only provided as an example and not a function that actually exists.
 
