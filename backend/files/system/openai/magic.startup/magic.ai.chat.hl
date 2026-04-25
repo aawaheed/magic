@@ -905,6 +905,8 @@ select prompt, max(completion) as completion
          case:gpt-5.4-mini
          case:gpt-5.4-nano
          case:gpt-5.4-pro
+         case:gpt-5.5
+         case:gpt-5.5-pro
             set-value:x:@.api_url
                .:"https://api.openai.com/v1/responses"
          default
@@ -965,6 +967,10 @@ select prompt, max(completion) as completion
                      .:gpt-5.4-mini
                   eq:x:@.arguments/*/model
                      .:gpt-5.4-nano
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.5
+                  eq:x:@.arguments/*/model
+                     .:gpt-5.5-pro
                .lambda
 
                   // Modifying request.

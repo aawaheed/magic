@@ -155,6 +155,13 @@ for-each:x:@http.get/*/content/*/data/*
                tokens:int:1000000
                chat:bool:true
 
+      case:gpt-5.5
+      case:gpt-5.5-pro
+         add:x:@.dp/#
+            .
+               tokens:int:1000000
+               chat:bool:true
+
       case:gpt-5.4-mini
       case:gpt-5.4-nano
          add:x:@.dp/#
