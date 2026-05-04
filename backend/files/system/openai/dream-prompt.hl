@@ -1,0 +1,98 @@
+
+/*
+ * Compresses specified session by invoking OpenAI telling it to list all facts only.
+ */
+.arguments
+   session:string
+   items:*
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/session
+   args
+      type:floating_message
+      floating_message:Compressing working memory to save tokens
+      floating_state:success
+
+// Extracting system message.
+.sm
+set-value:x:-
+   io.file.load:/system/openai/dream-prompt-system-message.md
+
+// Getting token
+.token
+set-value:x:@.token
+   strings.concat
+      .:"Bearer "
+      config.get:"magic:openai:key"
+
+// Parametrizing HTTP invocation
+add:x:./*/http.post/*/payload/*/input
+   get-nodes:x:@.arguments/*/items/*
+unwrap:x:+/*/*/*
+insert-before:x:./*/http.post/*/payload/*/input/0
+   .
+      .
+         role:system
+         content:x:@.sm
+
+// Invoking OpenAI to compress working memory.
+http.post:"https://api.openai.com/v1/responses"
+   convert:bool:true
+   timeout:180
+   headers
+      Authorization:x:@.token
+      Content-Type:application/json
+      Connection:close
+   payload
+      model:gpt-4.1-mini
+      max_output_tokens:int:2500
+      temperature:decimal:0.3
+      input
+
+// Sanity checking result
+if
+   and
+      mte:x:@http.post
+         .:int:200
+      lt:x:@http.post
+         .:int:300
+      or
+         exists:x:@http.post/*/content/*/output/*/*/type/=message/./*/content/*/*/type/=output_text/./*/text
+         exists:x:@http.post/*/content/*/output/0/*/content/0/*/text
+   .lambda
+
+      // Making sure we return new session items
+      .summary
+      set-value:x:@.summary
+         get-first-value
+            get-value:x:@http.post/*/content/*/output/*/*/type/=message/./*/content/*/*/type/=output_text/./*/text
+            get-value:x:@http.post/*/content/*/output/0/*/content/0/*/text
+      set-value:x:@.summary
+         strings.trim:x:@.summary
+      .session
+      unwrap:x:+/*/*/*
+      add:x:@.session
+         .
+            .
+               role:system
+               content:x:@.summary
+
+      // Removing all but the 5 last items
+      while
+         mt
+            get-count:x:@.arguments/*/items/*
+            .:int:2
+         .lambda
+            remove-nodes:x:@.arguments/*/items/0
+      add:x:@.session
+         get-nodes:x:@.arguments/*/items/*
+      log.info:Dream compressions of context succeeded
+         session:x:@.arguments/*/session
+
+      // Signaling frontend
+      sockets.signal:x:@.arguments/*/session
+         args
+            type:floating_message
+            floating_message:Done with token compression
+            floating_state:success
+      return-nodes:x:@.session/*

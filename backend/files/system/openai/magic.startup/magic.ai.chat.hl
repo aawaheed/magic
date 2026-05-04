@@ -170,12 +170,39 @@ select prompt, max(completion) as completion
                convert:x:@.arguments/*/max_session_items
                   type:int
                hyper2lambda:x:@cache.get
-               while
-                  mt
+               math.multiply
+                  convert:x:@convert
+                     type:decimal
+                  .:decimal:0.8
+
+               // Checking if we're above 80% of accepted messages, at which point we start "dream consolidating memory".
+               if
+                  mte
                      get-count:x:@hyper2lambda/*
-                     get-value:x:@convert
+                     get-value:x:@math.multiply
                   .lambda
-                     remove-nodes:x:@hyper2lambda/0
+                     add:x:+/*/items
+                        get-nodes:x:@hyper2lambda/*
+                     execute-file:/system/openai/dream-prompt.hl
+                        session:x:@.arguments/*/session
+                        items
+                     if
+                        exists:x:@execute-file/*
+                        .lambda
+
+                           // Dreaming to compress memory.
+                           remove-nodes:x:@hyper2lambda/*
+                           add:x:@hyper2lambda
+                              get-nodes:x:@execute-file/*
+                     else
+
+                        // Pruning messages in case dream prompt failed.
+                        while
+                           mt
+                              get-count:x:@hyper2lambda/*
+                              get-value:x:@convert
+                           .lambda
+                              remove-nodes:x:@hyper2lambda/0
                add:x:@.session
                   get-nodes:x:@hyper2lambda/*
 
