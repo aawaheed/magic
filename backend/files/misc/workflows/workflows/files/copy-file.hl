@@ -9,6 +9,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory source filename.
    source:string
 
@@ -75,6 +78,13 @@ if
 // Saving file.
 io.file.copy:x:@.arguments/*/source
    get-value:x:@.arguments/*/destination
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:File successfully copied
+      floating_state:success
 
 // Returning success
 yield

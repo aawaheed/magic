@@ -12,6 +12,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // The URL, mandatory argument
    url:string
 
@@ -100,6 +103,13 @@ if
       throw:x:@strings.concat
          public:bool:true
          status:int:500
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:HTTP endpoint successfully invoked
+      floating_state:success
 
 // Returning the result of the invocation.
 if

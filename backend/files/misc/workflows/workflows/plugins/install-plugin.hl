@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Name of plugin to install.
    plugin:string
 
@@ -26,6 +29,13 @@ set-value:x:@.url
 execute-file:/system/bazar/install-plugin.post.hl
    name:x:@.arguments/*/plugin
    url:x:@.url
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Plugin successfully installed
+      floating_state:success
 
 // Returning message to caller.
 return

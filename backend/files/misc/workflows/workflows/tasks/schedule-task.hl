@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument being the task to retrieve
    name:string
 
@@ -25,6 +28,13 @@ add:x:./*/tasks.schedule
 
 // Scheduling our task.
 tasks.schedule:x:@.arguments/*/name
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Task successfully scheduled
+      floating_state:success
 
 // Returning success to caller.
 return

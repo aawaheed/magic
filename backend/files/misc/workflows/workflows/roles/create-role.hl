@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory
    name:string
 
@@ -28,6 +31,13 @@ data.connect:magic
       values
          name:x:@.arguments/*/name
          description:x:@.arguments/*/description
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Role successfully created
+      floating_state:success
 
 // Returning success
 return

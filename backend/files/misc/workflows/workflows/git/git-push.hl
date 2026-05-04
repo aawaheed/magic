@@ -10,6 +10,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
@@ -48,6 +51,13 @@ add:x:./*/git.push
 // Invoking slot.
 git.push:x:@.arguments/*/path
    set-upstream:true
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Git push successfully executed
+      floating_state:success
 
 // Returning success
 yield

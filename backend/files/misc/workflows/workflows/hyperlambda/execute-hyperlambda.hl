@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory Hyperlambda to execute.
    hyperlambda:string
 
@@ -27,6 +30,13 @@ add:x:./*/invoke
 
 // Executing Hyperlambda
 invoke:x:@hyper2lambda
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Hyperlambda code successfully executed
+      floating_state:success
 
 // Returning whatever our Hyperlambda returned.
 if

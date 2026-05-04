@@ -9,6 +9,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
@@ -41,6 +44,13 @@ add:x:./*/git.create-repo
 
 // Invoking slot.
 git.create-repo:x:@.arguments/*/path
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Git repo successfully created
+      floating_state:success
 
 // Returning success
 yield

@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory and is the prompt used to generate the image.
    prompt:string
 
@@ -33,6 +36,13 @@ execute:magic.workflows.actions.execute
       size:x:@.arguments/*/size
       style:x:@.arguments/*/style
       query:x:@.arguments/*/prompt
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Image was successfully generated
+      floating_state:success
 
 // Returns the result of your last action.
 return-nodes:x:@execute/*

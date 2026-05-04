@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument being the task to delete
    name:string
 
@@ -12,6 +15,13 @@ auth.ticket.verify:root
 
 // Deleting task.
 tasks.delete:x:@.arguments/*/name
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Task successfully deleted
+      floating_state:success
 
 // Returning success to caller.
 return

@@ -8,6 +8,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // URL to document caller wants to download.
    url:string
 
@@ -51,6 +54,13 @@ http.get:x:@.arguments/*/url
 // Saving the file on local file system.
 io.file.save.binary:x:@.arguments/*/filename
    get-value:x:@http.get/*/content
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:File successfully downloaded from web
+      floating_state:success
 
 // Returning success to caller.
 return

@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory relative path of file to execute.
    filename:string
 
@@ -30,6 +33,13 @@ if
 add:x:./*/execute-file
    get-nodes:x:@.arguments/*/arguments/*
 execute-file:x:@.arguments/*/filename
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Hyperlambda file successfully executed
+      floating_state:success
 
 // Returning result to caller.
 add:x:./*/return

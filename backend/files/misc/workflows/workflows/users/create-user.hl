@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory
    username:string
 
@@ -68,6 +71,13 @@ data.connect:magic
                type:email
                user:x:@.arguments/*/username
                value:x:@.arguments/*/email
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:User successfully created
+      floating_state:success
 
 // Returning success
 return

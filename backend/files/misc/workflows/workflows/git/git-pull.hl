@@ -10,6 +10,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
@@ -47,6 +50,13 @@ add:x:./*/git.pull
 
 // Invoking slot.
 git.pull:x:@.arguments/*/path
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Git pull executed successfully
+      floating_state:success
 
 // Returning success
 yield

@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument
    from:string
 
@@ -62,6 +65,13 @@ execute:magic.workflows.actions.execute
       email:x:@.arguments/*/to
       reply-to:x:@.arguments/*/from-name
       reply-to-email:x:@.arguments/*/from
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Email successfully sent
+      floating_state:success
 
 // Returning success to caller
 return

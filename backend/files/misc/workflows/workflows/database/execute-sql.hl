@@ -7,6 +7,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument being SQL to execute, unless specifically overridden the dialect should be SQLite
    sql:string
 
@@ -70,6 +73,13 @@ set-value:x:@.db
       get-value:x:@.arguments/*/database-type
       .:.generic
 cache.set:x:@.db
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:SQL successfully executed
+      floating_state:success
 
 // Returning success to caller.
 return

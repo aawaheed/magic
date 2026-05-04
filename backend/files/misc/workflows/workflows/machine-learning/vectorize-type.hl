@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -16,6 +19,13 @@ validators.mandatory:x:@.arguments/*/type
 // Executing file doing the heavy lifting.
 execute-file:/system/openai/vectorise.post.hl
    type:x:@.arguments/*/type
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Vectorization process started in the background
+      floating_state:success
 
 // Returning result to caller.
 return

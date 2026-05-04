@@ -8,6 +8,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    name:string
 
@@ -21,6 +24,13 @@ validators.default:x:@.arguments
 
 // Invoking slot.
 github.repo.create:x:@.arguments/*/name
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:GitHub project successfully created
+      floating_state:success
 
 // Returning success.
 return-nodes:x:@github.repo.create/*

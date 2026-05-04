@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Optional full file name and path for code to execute.
    file:string
 
@@ -38,6 +41,13 @@ add:x:./*/python.execute
 
 // Executing Python code
 python.execute
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Python code successfully executed
+      floating_state:success
 
 // Returning result to caller.
 yield

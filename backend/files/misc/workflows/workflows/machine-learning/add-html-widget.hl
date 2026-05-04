@@ -5,6 +5,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -90,6 +93,13 @@ data.connect:magic
          prompt:x:@.arguments/*/prompt
          completion:x:@.completion
          meta:"FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/render-html-widget.hl]"
+
+   // Signaling frontend
+   sockets.signal:x:@.arguments/*/_session
+      args
+         type:floating_message
+         floating_message:Widget successfully added to machine learning type as AI function
+         floating_state:success
 
    // Returning result to caller.
    yield

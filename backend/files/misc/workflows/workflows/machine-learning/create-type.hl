@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -211,6 +214,13 @@ data.connect:magic
    data.create
       table:ml_types
       values
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Machine learning type successfully created
+      floating_state:success
 
 // Returning result to caller.
 return

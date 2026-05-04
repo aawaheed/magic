@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -39,6 +42,14 @@ data.connect:magic
          throw:No such machine learning type
             public:bool:true
             status:int:404
+
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Machine learning type successfully deleted
+      floating_state:success
 
 // Returning result to caller.
 return

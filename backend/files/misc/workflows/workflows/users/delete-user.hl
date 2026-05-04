@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory
    username:string
 
@@ -35,6 +38,13 @@ data.connect:magic
          throw:User not found
             public:bool:true
             status:int:404
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:User successfully deleted
+      floating_state:success
 
 // Returning success
 return

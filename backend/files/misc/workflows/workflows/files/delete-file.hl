@@ -7,6 +7,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory relative filename of file to delete.
    filename:string
 
@@ -51,5 +54,13 @@ if
 
 // Deleting folder and returning success to caller.
 io.file.delete:x:@.arguments/*/filename
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:File successfully deleted
+      floating_state:success
+
 return
    result:success

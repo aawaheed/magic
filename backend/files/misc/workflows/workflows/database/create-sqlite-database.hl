@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of database. Can only contain lover case characters, '_', '-', and 0-9
    database:string
 
@@ -38,6 +41,13 @@ sqlite.connections.flush
 
 // Flushing database cache.
 cache.set:magic.sql.databases.sqlite.generic
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:SQLite database successfully created
+      floating_state:success
 
 // Returning success to caller.
 return

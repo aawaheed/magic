@@ -7,6 +7,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument describing the Hyperlambda code you want to generate.
    prompt:string
 
@@ -73,6 +76,13 @@ try
             .
                saved:bool:true
                filename:x:@.arguments/*/filename
+
+   // Signaling frontend
+   sockets.signal:x:@.arguments/*/_session
+      args
+         type:floating_message
+         floating_message:Hyperlambda successfully generated
+         floating_state:success
 
    yield
       code:x:@http.post/*/content/*/result

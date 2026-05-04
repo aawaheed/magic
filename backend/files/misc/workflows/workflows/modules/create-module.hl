@@ -8,6 +8,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of module to create.
    module:string
 
@@ -50,6 +53,13 @@ strings.concat
 lambda2hyper:x:@.manifest/*
 io.file.save:x:@strings.concat
    get-value:x:@lambda2hyper
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Module successfully created
+      floating_state:success
 
 // Returning success to caller.
 return

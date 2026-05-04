@@ -8,6 +8,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory path to folder that should be created.
    folder:string
 
@@ -51,6 +54,13 @@ if
 
 // Creating folder.
 io.folder.create:x:@.arguments/*/folder
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Folder successfully created
+      floating_state:success
 
 // Returning success
 return

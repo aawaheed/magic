@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -35,6 +38,13 @@ data.connect:magic
    data.create
       table:ml_training_snippets
       values
+
+   // Signaling frontend
+   sockets.signal:x:@.arguments/*/_session
+      args
+         type:floating_message
+         floating_message:Training snippet successfully created
+         floating_state:success
 
    // Returning result to caller.
    yield

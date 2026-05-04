@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory argument being command to execute.
    command:string
 
@@ -26,6 +29,13 @@ add:x:./*/system.execute
 
 // Executing terminal command.
 system.execute:x:@.arguments/*/command
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Terminal command successfully executed
+      floating_state:success
 
 // Returning result to caller.
 yield

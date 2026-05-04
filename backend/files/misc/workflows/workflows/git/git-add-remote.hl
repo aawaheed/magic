@@ -9,6 +9,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
@@ -43,6 +46,13 @@ add:x:./*/git.remote.add
 
 // Invoking slot.
 git.remote.add:x:@.arguments/*/path
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Git remote successfully added
+      floating_state:success
 
 // Returning success
 yield

@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Optional C# source code.
    code:string
 
@@ -54,6 +57,13 @@ system.compile
 
 // Loading compiled assembly into AppDomain.
 system.plugin.load:x:@system.compile
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:C# extension successfully compiled
+      floating_state:success
 
 // Returning success to caller.
 yield

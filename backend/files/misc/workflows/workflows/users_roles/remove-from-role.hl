@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory
    username:string
 
@@ -40,6 +43,13 @@ data.connect:magic
          throw:Role not found on user
             public:bool:true
             status:int:404
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:User successfully removed from role
+      floating_state:success
 
 // Returning success
 return

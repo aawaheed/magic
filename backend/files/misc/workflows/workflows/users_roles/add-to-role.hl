@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory
    username:string
 
@@ -28,6 +31,13 @@ data.connect:magic
       values
          user:x:@.arguments/*/username
          role:x:@.arguments/*/role
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:User successfully added to role
+      floating_state:success
 
 // Returning success
 return

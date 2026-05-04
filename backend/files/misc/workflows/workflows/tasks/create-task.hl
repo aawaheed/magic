@@ -6,6 +6,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name, can only contain characters a-z, 0-9, and '-' and '_'.
    name:string
 
@@ -33,6 +36,13 @@ add:x:./*/tasks.create/*/.lambda
 // Saving task into database.
 tasks.create:x:@.arguments/*/name
    .lambda
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Task successfully created
+      floating_state:success
 
 // Returning success to caller.
 return

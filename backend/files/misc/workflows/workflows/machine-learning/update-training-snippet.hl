@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory ID of snippet to update.
    id:long
 
@@ -34,6 +37,14 @@ data.connect:magic
       where
          and
             id.eq:x:@.arguments/*/id
+
+
+   // Signaling frontend
+   sockets.signal:x:@.arguments/*/_session
+      args
+         type:floating_message
+         floating_message:Training snippet successfully updated
+         floating_state:success
 
    // Returning result to caller.
    yield

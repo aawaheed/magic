@@ -11,6 +11,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory folder to where Git repo is locally on dics.
    path:string
 
@@ -52,6 +55,13 @@ add:x:./*/git.clone-repo
 
 // Invoking slot.
 git.clone-repo:x:@.arguments/*/url
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:Git repo successfully cloned
+      floating_state:success
 
 // Returning success
 yield

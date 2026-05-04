@@ -9,6 +9,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory filename.
    filename:string
 
@@ -58,6 +61,13 @@ if
 // Applying patch.
 io.file.patch:x:@.arguments/*/filename
    get-value:x:@.arguments/*/patch
+
+// Signaling frontend
+sockets.signal:x:@.arguments/*/_session
+   args
+      type:floating_message
+      floating_message:File was successfully patched
+      floating_state:success
 
 // Returning success
 yield

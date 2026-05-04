@@ -4,6 +4,9 @@
  */
 .arguments
 
+   // Injected by the framework.
+   _session:string
+
    // Mandatory name of type.
    type:string
 
@@ -143,6 +146,13 @@ if
                completion:x:@.completion
                meta:x:@.meta
 
+         // Signaling frontend
+         sockets.signal:x:@.arguments/*/_session
+            args
+               type:floating_message
+               floating_message:AI function successfully created as RAG snippet
+               floating_state:success
+
          // Returning result to caller.
          yield
             result:success
@@ -180,4 +190,11 @@ else
                type.eq:x:@.arguments/*/type
          values
             system_message:x:@.instruction
+
+   // Signaling frontend
+   sockets.signal:x:@.arguments/*/_session
+      args
+         type:floating_message
+         floating_message:
+         floating_state:success
 
