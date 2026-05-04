@@ -1334,13 +1334,41 @@ select prompt, max(completion) as completion
                         set-value:x:@.tmp-completion
                            get-value:x:@.result
 
+                     // Normalising finish reason across Chat Completions and Responses APIs.
+                     .db-finish-reason
+                     switch:x:@.finish_reason
+                        case:stop
+                           set-value:x:@.db-finish-reason
+                              .:stop
+                        case:length
+                           set-value:x:@.db-finish-reason
+                              .:length
+                        case:cached
+                           set-value:x:@.db-finish-reason
+                              .:cached
+                        case:lead
+                           set-value:x:@.db-finish-reason
+                              .:lead
+                        case:questionnaire
+                           set-value:x:@.db-finish-reason
+                              .:questionnaire
+                        case:completed
+                           set-value:x:@.db-finish-reason
+                              .:stop
+                        case:incomplete
+                           set-value:x:@.db-finish-reason
+                              .:length
+                        default
+                           set-value:x:@.db-finish-reason
+                              .:stop
+
                      data.create
                         table:ml_requests
                         values
                            type:x:@.arguments/*/type
                            prompt:x:@.prompt
                            completion:x:@.tmp-completion
-                           finish_reason:x:@.finish_reason
+                           finish_reason:x:@.db-finish-reason
                            session:x:@.arguments/*/session
                            user_id:x:@.arguments/*/user_id
                            referrer:x:@.arguments/*/referrer
