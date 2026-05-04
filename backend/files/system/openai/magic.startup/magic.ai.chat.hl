@@ -1010,6 +1010,14 @@ select prompt, max(completion) as completion
                // To avoid sending finish signal twice!
                .finished_sent:bool:false
 
+               // Making sure we transmit tokens to frontend.
+               lambda2json:x:./*/http.post/*/payload/*/[messages|input]/*
+               openai.tokenize:x:-
+               sockets.signal:x:@.arguments/*/session
+                  args
+                     type:input_tokens
+                     value:x:@openai.tokenize
+
                http.post:x:@.api_url
                   convert:bool:true
                   timeout:180
@@ -1153,6 +1161,11 @@ select prompt, max(completion) as completion
                         neq:x:@.result
                            .:
                      .lambda
+                        openai.tokenize:x:@.result
+                        sockets.signal:x:@.arguments/*/session
+                           args
+                              type:output_tokens
+                              value:x:@openai.tokenize
                         unwrap:x:+/*/*/*/content
                         add:x:@.session
                            .
