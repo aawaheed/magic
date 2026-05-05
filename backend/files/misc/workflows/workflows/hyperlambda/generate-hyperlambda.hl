@@ -16,6 +16,9 @@
    // Optional filename of where to save the Hyperlambda.
    filename:string
 
+   // Optional value. If true, executes code immediately and returns result instead of code.
+   immediate_mode:bool
+
 // Ensuring user is root.
 auth.ticket.verify:root
 
@@ -83,6 +86,26 @@ try
          type:floating_message
          floating_message:Hyperlambda successfully generated
          floating_state:success
+   if
+      and
+         exists:x:@.arguments/*/immediate_mode
+         eq:x:@.arguments/*/immediate_mode
+            .:bool:true
+      .lambda
+
+         // Executing code and returning result instead of code.
+         hyper2lambda:x:@http.post/*/content/*/result
+         invoke:x:-
+         if
+            not-null:x:@invoke
+            .lambda
+               return-value:x:@invoke
+         else-if
+            exists:x:@invoke/*
+            .lambda
+               return-nodes:x:@invoke/*
+         return
+            message:Code did not return anything!
 
    yield
       code:x:@http.post/*/content/*/result

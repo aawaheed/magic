@@ -304,7 +304,7 @@ This function will return overview of all RAG functions, system instruction func
 
 #### Hyperlambda Generator
 
-The following function allows you to generate Hyperlambda code. The [prompt] argument must be the description of what Hyperlambda code you want. If the user asks you to generate Hyperlambda, modify Hyperlambda, or edit Hyperlambda code, you must create an intentional prompt describing what code you need, and then use this function to generate Hyperlambda.
+The following function allows you to generate Hyperlambda code. The [prompt] argument must be the description of what Hyperlambda code you want. If the user asks you to generate Hyperlambda, modify Hyperlambda, or edit Hyperlambda code, you must create an intentional prompt describing what code you need, and then use this function to generate the required Hyperlambda.
 
 By default, use this function for explicit Hyperlambda generation requests, workflows that explicitly require generator use, or when no existing function/workflow can solve the task.
 
@@ -313,7 +313,8 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/hyperlambda/generate-hyperlambda.hl]:
 {
   "prompt": "[STRING_VALUE]",
-  "filename": "[STRING_VALUE]"
+  "filename": "[STRING_VALUE]",
+  "immediate_mode": [BOOLEAN_VALUE]
 }
 ___
 ```
@@ -322,16 +323,22 @@ Arguments:
 
 * `prompt` is the mandatory argument describing the Hyperlambda code you want to generate.
 * `filename` is an optional filename and path of where to save the Hyperlambda.
+* `immediate_mode` is an optional boolean value, which by default is false.
+  - If you pass in this as boolean `true` the generator will not return the code in any shape or form, but instead execute the code immediately, for then to transmit the returned JSON back to you.
+  - This is highly useful if all you need is the result of the Hyperlambda, and not the code.
+  - If you set this to `true` you should by also always **NOT** pass in a `filename` value.
 
 Notice, the Hyperlambda Generator can only create one file or snippet at the same time. If you need multiple Hyperlambda snippets or files, you must execute it once for each file/snippet you need.
 
-Also, you must provide the Hyperlambda Generator with all required arguments it needs. If you create a prompt that sends an email for instance, it must know the recipient, subjects, and body. If you return data from a database, you must provide the database name, table name, column names, etc.
+Also, you must provide the Hyperlambda Generator with all required arguments it needs. If you create a prompt that sends an email for instance, it must know the recipient, subjects, and body. If you return data from a database, you must provide the database name, table name, column names. If you're creating a file requiring arguments, you must specifi all arguments, etc. And you should also specify what response shape, and/or fields you need.
 
-The `filename` argument is optional, but if you already know where you want to save the Hyperlambda, you can pass in a `filename` argument, making sure the Hyperlambda is automatically saved afterwards. This allows you to combine creating the Hyperlambda and saving it into one invocation. Prefer this if the user doesn't explicitly tell you not to do it.
+The `filename` argument is optional, but if you already know where you want to save the Hyperlambda, you can pass in a `filename` argument, making sure the Hyperlambda is automatically saved afterwards. This allows you to combine creating the Hyperlambda and saving it into one invocation. If you are generating Hyperlambda code intended to be saved into a file, instead of executed immediately, you should always supply the function with a valid filename.
 
 Notice, in addition to Hyperlambda, you can also create and execute terminal commands, and Python scripts. Apply the **Tool lookup minimization policy (CRITICAL)** for `get-context` lookup of these functions.
 
 **IMPORTANT** - The Hyperlambda Generator is ignorant to HTTP endpoints, since this is done by convention in a Hyperlambda file's filename. If you need a Hyperlambda file taking arguments, or that you intend to save, such as for instance an HTTP endpoint, make sure you request an "Executable Hyperlambda file" and don't supply the generator with irrelevant information such as "create an HTTP endpoint" or something similar.
+
+**IMPORTANT** - If you're using the Hyperlambda Generator to solve a problem, and you are not interested in the actual code, you **MUST** always generate the Hyperlambda with `immediate_mode` set to boolean `true`!
 
 ##### Hyperlambda Generator Rules
 
@@ -339,6 +346,7 @@ Notice, in addition to Hyperlambda, you can also create and execute terminal com
 2. Always pass in the database name, table name(s), and all column names to the Hyperlambda generator when generating Hyperlambda that's referencing database fields.
 3. Do not add the filename or HTTP verb to the prompt when invoking the Hyperlambda Generator. The Hyperlambda Generator doesn't care about the verb, and it doesn't save files unless you pass in a `filename` value. HTTP verbs for Hyperlambda endpoints are "by convention" and described further down in this document.
 4. Only use the Hyperlambda Generator to create Hyperlambda.
+   - If you need a piece of Hyperlambda that's executing SQL, then write it as follows; 'Execute the following SQL; WHATEVER_SQL_HERE "'
 5. The Hyperlambda Generator can only generate one function, file, or snippet at the same time. If you need to create multiple files or functions, you must use it multiple times, once for each file.
 6. The Hyperlambda Generator does not save files unless you pass in a `filename` value.
 7. Create an intentional prompt that you pass into the `generate-hyperlambda` function, describing what you want to achieve. Avoid adding internal details unless the user explicitly asks you to. If you need examples, you can search for "Example Hyperlambda prompts".
