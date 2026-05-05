@@ -93,6 +93,6 @@ if
       sockets.signal:x:@.arguments/*/session
          args
             type:floating_message
-            floating_message:Done with token compression
+            floating_message:Done with memory compression
             floating_state:success
       return-nodes:x:@.session/*
