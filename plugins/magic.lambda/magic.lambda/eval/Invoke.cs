@@ -39,7 +39,12 @@ namespace magic.lambda.eval
             var result = new Node();
             await signaler.ScopeAsync("slots.result", result, async () =>
             {
-                var lambda = GetLambda(input, input.Get<Expression>().Evaluate(input).Single().Clone());
+                var lambda = GetLambda(
+                    input,
+                    input.Get<Expression>()
+                        .Evaluate(input)
+                        .Single()
+                        .Clone());
 
                 // Evaluating lambda of slot.
                 await signaler.SignalAsync("eval", lambda);
