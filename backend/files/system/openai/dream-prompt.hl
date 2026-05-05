@@ -6,11 +6,21 @@
    session:string
    items:*
 
-// Signaling frontend
+// Calculating how many tokens context used to hold.
+lambda2json:x:@.arguments/*/items/*
+.original-tokens
+set-value:x:-
+   openai.tokenize:x:@lambda2json
+
+// Signaling frontend.
+strings.concat
+   .:"Dream compressing context, current size; "
+   format:x:@.original-tokens
+      pattern:"{0:N0}"
 sockets.signal:x:@.arguments/*/session
    args
       type:floating_message
-      floating_message:Compressing working memory to save tokens
+      floating_message:x:@strings.concat
       floating_state:success
 
 // Extracting system message.
@@ -68,7 +78,9 @@ if
             get-value:x:@http.post/*/content/*/output/*/*/type/=message/./*/content/*/*/type/=output_text/./*/text
             get-value:x:@http.post/*/content/*/output/0/*/content/0/*/text
       set-value:x:@.summary
-         strings.trim:x:@.summary
+         strings.concat
+            .:"COMPRESSED CONTEXT; "
+            strings.trim:x:@.summary
       .session
       unwrap:x:+/*/*/*
       add:x:@.session
@@ -77,22 +89,37 @@ if
                role:system
                content:x:@.summary
 
-      // Removing all but the 5 last items
-      while
-         mt
-            get-count:x:@.arguments/*/items/*
-            .:int:2
-         .lambda
-            remove-nodes:x:@.arguments/*/items/0
-      add:x:@.session
-         get-nodes:x:@.arguments/*/items/*
+      // Removing all but the last items convo roundtrip
+      .cont:bool:true
+      while:x:@.cont
+         insert-after:x:@.session/0
+            get-nodes:x:@.arguments/*/items/0/-
+         if
+            eq:x:@.arguments/*/items/0/-/*/role
+               .:user
+            .lambda
+               set-value:x:@.cont
+                  .:bool:false
+         remove-nodes:x:@.arguments/*/items/0/-
+
+      // Logging.
       log.info:Dream compressions of context succeeded
          session:x:@.arguments/*/session
 
-      // Signaling frontend
+      // Calculating how many tokens context holds now.
+      lambda2json:x:@.session/*
+      .new-tokens
+      set-value:x:-
+         openai.tokenize:x:@lambda2json
+
+      // Signaling frontend.
+      strings.concat
+         .:"Dream compressions succeeded - Current size; "
+         format:x:@.new-tokens
+            pattern:"{0:N0}"
       sockets.signal:x:@.arguments/*/session
          args
             type:floating_message
-            floating_message:Done with memory compression
+            floating_message:x:@strings.concat
             floating_state:success
       return-nodes:x:@.session/*
