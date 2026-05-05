@@ -40,8 +40,12 @@ sockets.signal:x:@.arguments/*/_session
 
 // Returning whatever our Hyperlambda returned.
 if
+   not-null:x:@invoke
+   .lambda
+      return-value:x:@invoke
+else-if
    exists:x:@invoke/*
    .lambda
       return-nodes:x:@invoke/*
-else
-   return-value:x:@invoke
+return
+   message:Code did not return anything!
