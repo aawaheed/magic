@@ -1,0 +1,40 @@
+
+
+/*
+ * Compresses the working session memory
+ */
+.arguments
+
+   // Injected by the framework.
+   _session:string
+
+// Ensuring user is root.
+auth.ticket.verify:root
+
+// Parametrizing dreaming invocation.
+cache.get:x:@.arguments/*/_session
+add:x:./*/execute-file/*/items
+   hyper2lambda:x:@cache.get
+
+// Invoking dreaming function.
+execute-file:/system/openai/dream-prompt.hl
+   session:x:@.arguments/*/_session
+   items
+
+if
+   exists:x:@execute-file/*
+   .lambda
+
+      // Updating context.
+      lambda2hyper:x:@execute-file/*
+      cache.set:x:@.arguments/*/_session
+         expiration:120
+         value:x:@lambda2hyper
+
+      // Returning success
+      return
+         message:Working memory successfully compressed
+
+// Failure
+return
+   message:Memory was not successfully compressed
