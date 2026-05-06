@@ -10,7 +10,10 @@ namespace magic.signals.contracts
 {
     public sealed class ExecutionContext
     {
+        readonly object _syncRoot = new();
         int _referenceCount = 1;
+        Timer _timeoutTimer;
+        DateTime? _deadlineUtc;
 
         public ExecutionContext(string executionId, CancellationTokenSource cancellation)
         {
@@ -32,6 +35,15 @@ namespace magic.signals.contracts
 
         public int ReferenceCount => Math.Max(Volatile.Read(ref _referenceCount), 0);
 
+        public DateTime? DeadlineUtc
+        {
+            get
+            {
+                lock (_syncRoot)
+                    return _deadlineUtc;
+            }
+        }
+
         public void Cancel()
         {
             Cancellation.Cancel();
@@ -40,6 +52,32 @@ namespace magic.signals.contracts
         public void ThrowIfCancellationRequested()
         {
             Token.ThrowIfCancellationRequested();
+        }
+
+        public bool TrySetTimeout(TimeSpan timeout)
+        {
+            if (timeout <= TimeSpan.Zero)
+                throw new ArgumentOutOfRangeException(nameof(timeout), "Timeout must be greater than zero");
+
+            lock (_syncRoot)
+            {
+                if (Cancellation.IsCancellationRequested)
+                    return false;
+
+                var candidateDeadline = DateTime.UtcNow.Add(timeout);
+                if (_deadlineUtc.HasValue && _deadlineUtc.Value <= candidateDeadline)
+                    return false;
+
+                _deadlineUtc = candidateDeadline;
+
+                var dueTime = candidateDeadline - DateTime.UtcNow;
+                if (dueTime < TimeSpan.Zero)
+                    dueTime = TimeSpan.Zero;
+
+                _timeoutTimer ??= new Timer(_ => Cancel(), null, Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
+                _timeoutTimer.Change(dueTime, Timeout.InfiniteTimeSpan);
+                return true;
+            }
         }
 
         public bool AddReference()
@@ -61,6 +99,16 @@ namespace magic.signals.contracts
             if (result < 0)
                 throw new InvalidOperationException("ExecutionContext reference count dropped below zero");
             return result;
+        }
+
+        public void Cleanup()
+        {
+            lock (_syncRoot)
+            {
+                _timeoutTimer?.Dispose();
+                _timeoutTimer = null;
+                Cancellation.Dispose();
+            }
         }
     }
 }

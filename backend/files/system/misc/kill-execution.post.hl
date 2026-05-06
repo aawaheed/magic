@@ -5,8 +5,16 @@
  */
 .arguments
    execution_id:string
-auth.ticket.verify:root
+
+// Sanity checking invocation
 validators.mandatory:x:@.arguments/*/execution_id
+
+// Making sure user is authorized to access endpoint.
+auth.ticket.verify:root
+
+// Killing execution context.
 execution.kill:x:@.arguments/*/execution_id
+
+// Returning success to caller.
 return
    message:Execution successfully cancelled.

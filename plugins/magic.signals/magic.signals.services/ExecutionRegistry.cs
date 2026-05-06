@@ -23,7 +23,7 @@ namespace magic.signals.services
             var result = new MagicExecutionContext(Guid.NewGuid().ToString("N"), cts);
             if (!_executions.TryAdd(result.ExecutionId, result))
             {
-                result.Cancellation.Dispose();
+                result.Cleanup();
                 throw new InvalidOperationException("Could not register execution");
             }
             return result;
@@ -57,7 +57,7 @@ namespace magic.signals.services
                 return;
 
             if (context.Release() == 0 && _executions.TryRemove(executionId ?? string.Empty, out var removed))
-                removed.Cancellation.Dispose();
+                removed.Cleanup();
         }
     }
 }

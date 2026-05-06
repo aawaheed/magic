@@ -23,7 +23,6 @@ namespace magic.lambda.threading
         {
             var id = input.GetEx<string>();
             input.Value = _executionRegistry.TryCancel(id);
-            Console.WriteLine($"Execution {id} was successfully killed");
         }
     }
 }
