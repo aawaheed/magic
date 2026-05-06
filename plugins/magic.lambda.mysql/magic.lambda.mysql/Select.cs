@@ -37,7 +37,7 @@ namespace magic.lambda.mysql
                 async (cmd, max) =>
             {
                 MySqlConnectionWrapper.EnsureLocalTimeZone(cmd);
-                using (var reader = await cmd.ExecuteReaderAsync())
+                using (var reader = await cmd.ExecuteReaderAsync(signaler.GetCancellationToken()))
                 {
                     do
                     {
@@ -47,14 +47,14 @@ namespace magic.lambda.mysql
                             parentNode = new Node();
                             input.Add(parentNode);
                         }
-                        while (await reader.ReadAsync())
+                        while (await reader.ReadAsync(signaler.GetCancellationToken()))
                         {
                             if (!Executor.BuildResultRow(reader, parentNode, ref max, Read.GetValue))
                                 break;
                         }
-                    } while (multipleResultSets && await reader.NextResultAsync());
+                    } while (multipleResultSets && await reader.NextResultAsync(signaler.GetCancellationToken()));
                 }
-            });
+            }, signaler.GetCancellationToken());
         }
     }
 }

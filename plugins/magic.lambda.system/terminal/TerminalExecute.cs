@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using magic.node;
 using magic.node.contracts;
@@ -36,6 +37,7 @@ namespace magic.lambda.system.terminal
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             var args = GetArgs(input);
+            var cancellationToken = signaler.GetCancellationToken();
 
             var startInfo = new ProcessStartInfo(args.Command);
             foreach (var arg in args.Arguments)
@@ -49,11 +51,23 @@ namespace magic.lambda.system.terminal
 
             using var process = new Process { StartInfo = startInfo };
             process.Start();
+            using var registration = cancellationToken.Register(() =>
+            {
+                try
+                {
+                    if (!process.HasExited)
+                        process.Kill(true);
+                }
+                catch
+                {
+                    // Best effort cancellation.
+                }
+            });
 
             var stdoutTask = process.StandardOutput.ReadToEndAsync();
             var stderrTask = process.StandardError.ReadToEndAsync();
 
-            await Task.WhenAll(stdoutTask, stderrTask, process.WaitForExitAsync());
+            await Task.WhenAll(stdoutTask, stderrTask, process.WaitForExitAsync(cancellationToken));
 
             if (process.ExitCode != 0)
             {

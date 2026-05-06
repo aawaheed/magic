@@ -1552,7 +1552,9 @@ select prompt, max(completion) as completion
                finish_reason:x:@.invoke/*/.finish_reason
 
    // Returning results to caller.
+   get-context:execution-id
    unwrap:x:./*/return/**
    return
       db_time:x:@.context-buffer/*/db_time
       stream:x:@.arguments/*/stream
+      execution_id:x:@get-context

@@ -38,10 +38,10 @@ namespace magic.lambda.pgsql.crud
                 signaler.Peek<Help.Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {
-                using (var reader = await cmd.ExecuteReaderAsync())
+                using (var reader = await cmd.ExecuteReaderAsync(signaler.GetCancellationToken()))
                 {
                     input.Clear();
-                    while (await reader.ReadAsync())
+                    while (await reader.ReadAsync(signaler.GetCancellationToken()))
                     {
                         var rowNode = new Node(".");
                         for (var idxCol = 0; idxCol < reader.FieldCount; idxCol++)
@@ -52,7 +52,7 @@ namespace magic.lambda.pgsql.crud
                         input.Add(rowNode);
                     }
                 }
-            });
+            }, signaler.GetCancellationToken());
         }
     }
 }

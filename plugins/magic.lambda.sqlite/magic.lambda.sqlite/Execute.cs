@@ -32,8 +32,8 @@ namespace magic.lambda.sqlite
                     signaler.Peek<Transaction>("sqlite.transaction"),
                     async (cmd, _) =>
                 {
-                    input.Value = await cmd.ExecuteNonQueryAsync();
-                });
+                    input.Value = await cmd.ExecuteNonQueryAsync(signaler.GetCancellationToken());
+                }, signaler.GetCancellationToken());
             }
         }
     }

@@ -26,6 +26,7 @@ namespace magic.endpoint.services
         readonly IFileService _fileService;
         readonly IRootResolver _rootResolver;
         readonly IHttpArgumentsHandler _argumentsHandler;
+        readonly IExecutionRegistry _executionRegistry;
 
         /// <summary>
         /// Creates an instance of your type.
@@ -38,12 +39,14 @@ namespace magic.endpoint.services
             ISignaler signaler,
             IFileService fileService,
             IRootResolver rootResolver,
-            IHttpArgumentsHandler argumentsHandler)
+            IHttpArgumentsHandler argumentsHandler,
+            IExecutionRegistry executionRegistry)
         {
             _signaler = signaler;
             _fileService = fileService;
             _rootResolver = rootResolver;
             _argumentsHandler = argumentsHandler;
+            _executionRegistry = executionRegistry;
         }
 
         /// <inheritdoc/>
@@ -86,15 +89,23 @@ namespace magic.endpoint.services
             // Creating our result wrapper, wrapping whatever the endpoint wants to return to the client.
             var result = new Node();
             var response = new MagicResponse();
+            var execution = _executionRegistry.Create();
+            response.Headers["X-Execution-Id"] = execution.ExecutionId;
             try
             {
-                await _signaler.ScopeAsync("http.request", request, async () =>
+                await _signaler.ScopeAsync("execution.context", execution, async () =>
                 {
-                    await _signaler.ScopeAsync("http.response", response, async () =>
+                    await _signaler.ScopeAsync("dynamic.execution-id", execution.ExecutionId, async () =>
                     {
-                        await _signaler.ScopeAsync("slots.result", result, async () =>
+                        await _signaler.ScopeAsync("http.request", request, async () =>
                         {
-                            await _signaler.SignalAsync("eval", lambda);
+                            await _signaler.ScopeAsync("http.response", response, async () =>
+                            {
+                                await _signaler.ScopeAsync("slots.result", result, async () =>
+                                {
+                                    await _signaler.SignalAsync("eval", lambda);
+                                });
+                            });
                         });
                     });
                 });
@@ -108,6 +119,10 @@ namespace magic.endpoint.services
                 if (response.Content is IDisposable disposable2 && !ReferenceEquals(response.Content, result.Value))
                     disposable2.Dispose();
                 throw;
+            }
+            finally
+            {
+                _executionRegistry.Complete(execution.ExecutionId);
             }
         }
 

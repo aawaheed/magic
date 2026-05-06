@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Data.Common;
+using System.Threading;
 using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
@@ -67,7 +68,8 @@ namespace magic.data.common.helpers
             Node input,
             DbConnection connection,
             Transaction transaction,
-            Func<DbCommand, long, Task> functor)
+            Func<DbCommand, long, Task> functor,
+            CancellationToken cancellationToken = default)
         {
             using (var cmd = connection.CreateCommand())
             {
@@ -80,7 +82,25 @@ namespace magic.data.common.helpers
                 PrepareCommand(cmd, transaction, input);
 
                 // Invoking lambda callback supplied by caller.
+                CancellationTokenRegistration registration = default;
+                if (cancellationToken.CanBeCanceled)
+                {
+                    registration = cancellationToken.Register(() =>
+                    {
+                        try
+                        {
+                            cmd.Cancel();
+                        }
+                        catch
+                        {
+                            // Best effort provider cancellation.
+                        }
+                    });
+                }
+                using var _ = registration;
+                cancellationToken.ThrowIfCancellationRequested();
                 await functor(cmd, max);
+                cancellationToken.ThrowIfCancellationRequested();
             }
         }
 

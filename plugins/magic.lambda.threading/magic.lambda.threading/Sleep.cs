@@ -25,7 +25,7 @@ namespace magic.lambda.threading
         /// <returns>An awaiatble task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            await Sys.Tasks.Task.Delay(input.GetEx<int>());
+            await Sys.Tasks.Task.Delay(input.GetEx<int>(), signaler.GetCancellationToken());
         }
     }
 }

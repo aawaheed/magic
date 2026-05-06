@@ -30,8 +30,8 @@ namespace magic.lambda.mssql
                 signaler.Peek<Transaction>("mssql.transaction"),
                 async (cmd, _) =>
             {
-                input.Value = await cmd.ExecuteScalarAsync();
-            });
+                input.Value = await cmd.ExecuteScalarAsync(signaler.GetCancellationToken());
+            }, signaler.GetCancellationToken());
         }
     }
 }

@@ -1,0 +1,12 @@
+
+/*
+ * Kills the specified execution context.
+ * Useful for killing long lasting processes, such as chat requests with multiple turns, etc.
+ */
+.arguments
+   execution_id:string
+auth.ticket.verify:root
+validators.mandatory:x:@.arguments/*/execution_id
+execution.kill:x:@.arguments/*/execution_id
+return
+   message:Execution successfully cancelled.

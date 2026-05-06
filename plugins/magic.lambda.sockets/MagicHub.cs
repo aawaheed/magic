@@ -30,6 +30,7 @@ namespace magic.lambda.sockets
         readonly ILogger _logger;
         readonly IFileService _fileService;
         readonly IRootResolver _rootResolver;
+        readonly IExecutionRegistry _executionRegistry;
 
         /// <summary>
         /// Constructs an instance of your class.
@@ -44,13 +45,15 @@ namespace magic.lambda.sockets
                 IHttpArgumentsHandler argumentsHandler,
                 ILogger logger,
                 IFileService fileService,
-                IRootResolver rootResolver)
+                IRootResolver rootResolver,
+                IExecutionRegistry executionRegistry)
         {
             _signaler = signaler;  
             _argumentsHandler = argumentsHandler;   
             _logger = logger;       
             _fileService = fileService;
             _rootResolver = rootResolver;
+            _executionRegistry = executionRegistry;
         }
 
         /// <summary>
@@ -92,13 +95,27 @@ namespace magic.lambda.sockets
                 // Loading file, and creating our lambda object and attaching arguments specified as query parameters, and/or payload.
                 var lambda = HyperlambdaParser.Parse(await _fileService.LoadAsync(_rootResolver.AbsolutePath(file)));
                 _argumentsHandler.Attach(lambda, null, payload);
+                var execution = _executionRegistry.Create(Context.ConnectionAborted);
 
-                // Making sure we push the current connection information into our stack.
-                await _signaler.ScopeAsync("dynamic.sockets.connection", Context.ConnectionId, async () =>
+                try
                 {
-                    // Executing file.
-                    await _signaler.SignalAsync("eval", lambda);
-                });
+                    await _signaler.ScopeAsync("execution.context", execution, async () =>
+                    {
+                        await _signaler.ScopeAsync("dynamic.execution-id", execution.ExecutionId, async () =>
+                        {
+                            // Making sure we push the current connection information into our stack.
+                            await _signaler.ScopeAsync("dynamic.sockets.connection", Context.ConnectionId, async () =>
+                            {
+                                // Executing file.
+                                await _signaler.SignalAsync("eval", lambda);
+                            });
+                        });
+                    });
+                }
+                finally
+                {
+                    _executionRegistry.Complete(execution.ExecutionId);
+                }
             }
             catch (Exception error)
             {

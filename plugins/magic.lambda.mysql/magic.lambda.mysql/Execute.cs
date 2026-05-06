@@ -31,8 +31,8 @@ namespace magic.lambda.mysql
                 async (cmd, _) =>
             {
                 MySqlConnectionWrapper.EnsureLocalTimeZone(cmd);
-                input.Value = await cmd.ExecuteNonQueryAsync();
-            });
+                input.Value = await cmd.ExecuteNonQueryAsync(signaler.GetCancellationToken());
+            }, signaler.GetCancellationToken());
         }
     }
 }

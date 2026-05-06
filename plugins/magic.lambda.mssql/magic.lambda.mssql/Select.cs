@@ -35,7 +35,7 @@ namespace magic.lambda.mssql
                 signaler.Peek<Transaction>("mssql.transaction"),
                 async (cmd, max) =>
             {
-                using (var reader = await cmd.ExecuteReaderAsync())
+                using (var reader = await cmd.ExecuteReaderAsync(signaler.GetCancellationToken()))
                 {
                     do
                     {
@@ -45,14 +45,14 @@ namespace magic.lambda.mssql
                             parentNode = new Node();
                             input.Add(parentNode);
                         }
-                        while (await reader.ReadAsync())
+                        while (await reader.ReadAsync(signaler.GetCancellationToken()))
                         {
                             if (!Executor.BuildResultRow(reader, parentNode, ref max))
                                 break;
                         }
-                    } while (multipleResultSets && await reader.NextResultAsync());
+                    } while (multipleResultSets && await reader.NextResultAsync(signaler.GetCancellationToken()));
                 }
-            });
+            }, signaler.GetCancellationToken());
         }
     }
 }

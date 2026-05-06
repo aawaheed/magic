@@ -276,6 +276,7 @@ namespace magic.library
              * implementation.
              */
             services.AddTransient<ISignaler, Signaler>();
+            services.AddSingleton<IExecutionRegistry, ExecutionRegistry>();
             services.AddSingleton<ISignalsProvider>(new SignalsProvider(Slots(services)));
         }
 

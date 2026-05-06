@@ -40,10 +40,10 @@ namespace magic.lambda.mysql.crud
                 async (cmd, _) =>
             {
                 MySqlConnectionWrapper.EnsureLocalTimeZone(cmd);
-                using (var reader = await cmd.ExecuteReaderAsync())
+                using (var reader = await cmd.ExecuteReaderAsync(signaler.GetCancellationToken()))
                 {
                     input.Clear();
-                    while (await reader.ReadAsync())
+                    while (await reader.ReadAsync(signaler.GetCancellationToken()))
                     {
                         var rowNode = new Node(".");
                         for (var idxCol = 0; idxCol < reader.FieldCount; idxCol++)
@@ -54,7 +54,7 @@ namespace magic.lambda.mysql.crud
                         input.Add(rowNode);
                     }
                 }
-            });
+            }, signaler.GetCancellationToken());
         }
 
         #region [ -- Internal helper methods -- ]

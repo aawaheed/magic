@@ -40,27 +40,65 @@ namespace magic.lambda.threading
             // Retrieving username, roles, and claims, if these exists.
             var auth = new Node();
             signaler.Signal("auth.ticket.get", auth);
+            var execution = signaler.GetExecutionContext();
+            if (execution != null && !execution.AddReference())
+                execution = null;
 
             // Notice, NOT awaiting task, which is intentional to ensure we're creating a "fire and forget" thread.
             _ = Task.Run(async () => 
             {
                 // Notice, ISignaler is NOT thread safe, since it preserves state on a per thread individual basis.
-                using (var scope = _serviceScopeFactory.CreateScope())
+                try
                 {
-                    if (auth.Value != null)
+                    using (var scope = _serviceScopeFactory.CreateScope())
                     {
-                        // Passing in auth ticket to thread as a scoped context object.
-                        var threadSignaler = scope.ServiceProvider.GetService<ISignaler>();
-                        await threadSignaler.ScopeAsync(".auth.ticket.get", auth.Clone(), async () => {
-                            await threadSignaler.SignalAsync("eval", input.Clone());
-                        });
+                        if (auth.Value != null)
+                        {
+                            // Passing in auth ticket to thread as a scoped context object.
+                            var threadSignaler = scope.ServiceProvider.GetService<ISignaler>();
+                            await threadSignaler.ScopeAsync(".auth.ticket.get", auth.Clone(), async () =>
+                            {
+                                if (execution != null)
+                                {
+                                    await threadSignaler.ScopeAsync("execution.context", execution, async () =>
+                                    {
+                                        await threadSignaler.ScopeAsync("dynamic.execution-id", execution.ExecutionId, async () =>
+                                        {
+                                            await threadSignaler.SignalAsync("eval", input.Clone());
+                                        });
+                                    });
+                                }
+                                else
+                                {
+                                    await threadSignaler.SignalAsync("eval", input.Clone());
+                                }
+                            });
+                        }
+                        else
+                        {
+                            // No auth object.
+                            var threadSignaler = scope.ServiceProvider.GetService<ISignaler>();
+                            if (execution != null)
+                            {
+                                await threadSignaler.ScopeAsync("execution.context", execution, async () =>
+                                {
+                                    await threadSignaler.ScopeAsync("dynamic.execution-id", execution.ExecutionId, async () =>
+                                    {
+                                        await threadSignaler.SignalAsync("eval", input.Clone());
+                                    });
+                                });
+                            }
+                            else
+                            {
+                                await threadSignaler.SignalAsync("eval", input.Clone());
+                            }
+                        }
                     }
-                    else
-                    {
-                        // No auth object.
-                        var threadSignaler = scope.ServiceProvider.GetService<ISignaler>();
-                        await threadSignaler.SignalAsync("eval", input.Clone());
-                    }
+                }
+                finally
+                {
+                    if (execution != null)
+                        execution.Release();
                 }
             });
         }

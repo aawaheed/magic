@@ -63,15 +63,15 @@ namespace magic.lambda.sqlite.crud
                     */
                     if (returnId)
                     {
-                        input.Value = await cmd.ExecuteScalarAsync();
+                        input.Value = await cmd.ExecuteScalarAsync(signaler.GetCancellationToken());
                     }
                     else
                     {
-                        await cmd.ExecuteNonQueryAsync();
+                        await cmd.ExecuteNonQueryAsync(signaler.GetCancellationToken());
                         input.Value = null;
                     }
                     input.Clear();
-                });
+                }, signaler.GetCancellationToken());
             }
         }
     }

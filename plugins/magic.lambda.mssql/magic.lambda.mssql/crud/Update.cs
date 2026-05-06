@@ -38,9 +38,9 @@ namespace magic.lambda.mssql.crud
                 signaler.Peek<Help.Transaction>("mssql.transaction"),
                 async (cmd, _) =>
             {
-                input.Value = await cmd.ExecuteNonQueryAsync();
+                input.Value = await cmd.ExecuteNonQueryAsync(signaler.GetCancellationToken());
                 input.Clear();
-            });
+            }, signaler.GetCancellationToken());
         }
     }
 }

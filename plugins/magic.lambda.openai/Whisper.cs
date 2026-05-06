@@ -47,7 +47,13 @@ namespace magic.lambda.openai
 
             var language = input.Children.FirstOrDefault(x => x.Name == "language")?.GetEx<string>();
 
-            var transcriptionResult = await SendWhisperRequest(key, "whisper-1", content, type, language);
+            var transcriptionResult = await SendWhisperRequest(
+                key,
+                "whisper-1",
+                content,
+                type,
+                language,
+                signaler.GetCancellationToken());
 
             input.Clear();
             input.Value = null;
@@ -65,7 +71,8 @@ namespace magic.lambda.openai
             string model,
             byte[] content,
             string mimeType,
-            string language)
+            string language,
+            System.Threading.CancellationToken cancellationToken)
         {
             using(var formContent = new MultipartFormDataContent())
             {
@@ -86,7 +93,7 @@ namespace magic.lambda.openai
                         })
                         {
                             request.Headers.Add("Authorization", "Bearer " + apiKey);
-                            using (var response = await _httpClient.SendAsync(request))
+                            using (var response = await _httpClient.SendAsync(request, cancellationToken))
                             {
                                 var responseBody = await response.Content.ReadAsStringAsync();
 

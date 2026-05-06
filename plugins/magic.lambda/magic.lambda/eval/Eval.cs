@@ -26,6 +26,8 @@ namespace magic.lambda.eval
         /// <returns>An awaiatble task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
+            signaler.ThrowIfCancelled();
+
             // Storing termination node, to check if we should terminate early for some reasons.
             var terminate = signaler.Peek<Node>("slots.result");
             var whitelist = signaler.Peek<List<Node>>("whitelist");
@@ -46,8 +48,12 @@ namespace magic.lambda.eval
                 }))
                     throw new HyperlambdaException($"Slot [{idx.Name}] doesn't exist in currrent scope, or argument `{idx.GetEx<string>()}` not allowed");
 
+                signaler.ThrowIfCancelled();
+
                 // Invoking signal.
                 await signaler.SignalAsync(idx.Name, idx);
+
+                signaler.ThrowIfCancelled();
 
                 // Checking if execution for some reasons was terminated.
                 if (terminate != null && (terminate.Value != null || terminate.Children.Any()))

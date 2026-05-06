@@ -30,8 +30,8 @@ namespace magic.lambda.pgsql
                 signaler.Peek<Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {
-                input.Value = await cmd.ExecuteScalarAsync();
-            });
+                input.Value = await cmd.ExecuteScalarAsync(signaler.GetCancellationToken());
+            }, signaler.GetCancellationToken());
         }
     }
 }

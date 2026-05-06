@@ -28,6 +28,7 @@ namespace magic.endpoint.services
         readonly IStreamService _streamService;
         readonly IRootResolver _rootResolver;
         readonly IHttpArgumentsHandler _argumentsHandler;
+        readonly IExecutionRegistry _executionRegistry;
 
         /*
          * Registered Content-Type payload handlers, responsible for handling requests and parametrising invocation
@@ -87,13 +88,15 @@ namespace magic.endpoint.services
             IFileService fileService,
             IStreamService streamService,
             IRootResolver rootResolver,
-            IHttpArgumentsHandler argumentsHandler)
+            IHttpArgumentsHandler argumentsHandler,
+            IExecutionRegistry executionRegistry)
         {
             _signaler = signaler;
             _fileService = fileService;
             _streamService = streamService;
             _rootResolver = rootResolver;
             _argumentsHandler = argumentsHandler;
+            _executionRegistry = executionRegistry;
         }
 
         /// <inheritdoc/>
@@ -251,19 +254,34 @@ namespace magic.endpoint.services
                 // Creating our result wrapper, wrapping whatever the endpoint wants to return to the client.
                 var response = new MagicResponse();
                 var result = new Node();
+                var execution = _executionRegistry.Create();
                 response.Headers["Content-Type"] = "text/html";
-                await _signaler.ScopeAsync("http.request", request, async () =>
+                response.Headers["X-Execution-Id"] = execution.ExecutionId;
+                try
                 {
-                    await _signaler.ScopeAsync("http.response", response, async () =>
+                    await _signaler.ScopeAsync("execution.context", execution, async () =>
                     {
-                        await _signaler.ScopeAsync("slots.result", result, async () =>
+                        await _signaler.ScopeAsync("dynamic.execution-id", execution.ExecutionId, async () =>
                         {
-                            await _signaler.SignalAsync("eval", lambda);
+                            await _signaler.ScopeAsync("http.request", request, async () =>
+                            {
+                                await _signaler.ScopeAsync("http.response", response, async () =>
+                                {
+                                    await _signaler.ScopeAsync("slots.result", result, async () =>
+                                    {
+                                        await _signaler.SignalAsync("eval", lambda);
+                                    });
+                                });
+                            });
                         });
                     });
-                });
-                response.Content = result.Value;
-                return response;
+                    response.Content = result.Value;
+                    return response;
+                }
+                finally
+                {
+                    _executionRegistry.Complete(execution.ExecutionId);
+                }
             }
             catch (HyperlambdaException err)
             {

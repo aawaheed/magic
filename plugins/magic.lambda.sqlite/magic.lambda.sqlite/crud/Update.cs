@@ -40,9 +40,9 @@ namespace magic.lambda.sqlite.crud
                     signaler.Peek<Help.Transaction>("sqlite.transaction"),
                     async (cmd, _) =>
                 {
-                    input.Value = await cmd.ExecuteNonQueryAsync();
+                    input.Value = await cmd.ExecuteNonQueryAsync(signaler.GetCancellationToken());
                     input.Clear();
-                });
+                }, signaler.GetCancellationToken());
             }
         }
     }

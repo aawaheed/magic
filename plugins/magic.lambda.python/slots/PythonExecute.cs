@@ -32,6 +32,7 @@ namespace magic.lambda.python
 
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
+            var cancellationToken = signaler.GetCancellationToken();
             var code = input.Children.FirstOrDefault(x => x.Name == "code")?.GetEx<string>();
             var file = input.Children.FirstOrDefault(x => x.Name == "file")?.GetEx<string>();
             var argsNode = input.Children.FirstOrDefault(x => x.Name == "args");
@@ -89,7 +90,8 @@ namespace magic.lambda.python
             var stdoutTask = process.StandardOutput.ReadToEndAsync();
             var stderrTask = process.StandardError.ReadToEndAsync();
 
-            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutSeconds));
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(TimeSpan.FromSeconds(timeoutSeconds));
             try
             {
                 await process.WaitForExitAsync(cts.Token);
@@ -104,6 +106,8 @@ namespace magic.lambda.python
                 {
                     // Ignored - best effort kill.
                 }
+                if (cancellationToken.IsCancellationRequested)
+                    throw;
                 throw new HyperlambdaException($"Python execution timed out after {timeoutSeconds} seconds");
             }
 

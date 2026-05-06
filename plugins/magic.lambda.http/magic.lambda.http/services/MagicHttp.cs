@@ -119,6 +119,8 @@ namespace magic.lambda.http.services
             HttpMethod method,
             Node input)
         {
+            var cancellationToken = signaler.GetCancellationToken();
+
             // Sanitcy checking invocation.
             if (input.Children.Any(x =>
                 x.Name != "payload" &&
@@ -165,7 +167,8 @@ namespace magic.lambda.http.services
 
                         using (var response = await _client.SendAsync(
                             request,
-                            useSse ? HttpCompletionOption.ResponseHeadersRead : HttpCompletionOption.ResponseContentRead))
+                            useSse ? HttpCompletionOption.ResponseHeadersRead : HttpCompletionOption.ResponseContentRead,
+                            cancellationToken))
                         {
                             await GetResponse(signaler, response, input);
                         }
@@ -180,7 +183,8 @@ namespace magic.lambda.http.services
                             request.Content = content;
                             using (var response = await _client.SendAsync(
                                 request,
-                                useSse ? HttpCompletionOption.ResponseHeadersRead : HttpCompletionOption.ResponseContentRead))
+                                useSse ? HttpCompletionOption.ResponseHeadersRead : HttpCompletionOption.ResponseContentRead,
+                                cancellationToken))
                             {
                                 await GetResponse(signaler, response, input);
                             }
@@ -508,8 +512,9 @@ namespace magic.lambda.http.services
                     using (var reader = new StreamReader(await content.ReadAsStreamAsync()))
                     {
                         string line;
-                        while ((line = await reader.ReadLineAsync()) is not null)
+                        while ((line = await reader.ReadLineAsync().WaitAsync(signaler.GetCancellationToken())) is not null)
                         {
+                            signaler.ThrowIfCancelled();
                             var exe = sse.Clone();
                             var args = new Node(".arguments");
                             args.Add(new Node("message", line));
