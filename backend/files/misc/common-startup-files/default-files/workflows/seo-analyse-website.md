@@ -68,3 +68,5 @@ The generated Hyperlambda will return JSON to you, and if you crawl 100 pages fo
 **IMPORTANT** - Don't ask the Hyperlambda generator for too much information at the same time, since it will then fail. Break your Hyperlambda Generator prompts down into multiple smaller Hyperlambda snippets, that doesn't try to do too much or return too much data at once.
 
 **IMPORTANT** - There doesn't exist any "non-blog" pages, and if you create prompts for the Hyperlambda generator that excludes URLs this way, it will FAIL. Instead ask it to "Return all pages NOT having '/blog/' in their URLs", or something similar. The Hyperlambda generator doesn't analyse the website in any way, it only generates code that can extract HTML elements, crawl sitemaps, or return image URLs, etc.
+
+**IMPORTANT** - DO NOT return a "wall of text", before you start giving the user your findings, ask the user how he wants your findings, in a PDF or just written out here.
