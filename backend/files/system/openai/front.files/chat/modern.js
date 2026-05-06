@@ -838,7 +838,7 @@
               break;
 
             default:
-              alert('Unknown client-side binding; \'' + obj.type + '\'');
+              console.error('Unknown client-side binding; \'' + obj.type + '\'');
           }
         } else if (obj.finished === true) {
 
