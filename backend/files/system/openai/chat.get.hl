@@ -19,6 +19,7 @@
    referrer:string
    extra:string
    file:*
+   upload_file_only:bool
    system_message_override:string
    meta:string
 .description:@"OpenAI chat endpoint, for having conversations using 'gpt-xxx' models"
