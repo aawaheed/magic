@@ -345,8 +345,6 @@ select prompt, max(completion) as completion
                      .
                         role:system
                         content:x:@.message
-               lambda2hyper:x:../*
-               log.info:x:-
 
          else
 
