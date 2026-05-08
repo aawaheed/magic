@@ -26,6 +26,8 @@
 
 // Ensuring user is root.
 auth.ticket.verify:root
+lambda2hyper:x:../*
+log.info:x:-
 
 // Sanity checking invocation
 validators.regex:x:@.arguments/*/type
@@ -203,6 +205,12 @@ set-value:x:@.arguments/*/system_message
 set-value:x:@.arguments/*/system_message
    strings.trim:x:@.arguments/*/system_message
 
+// Storing session since we're for simplicity reasons getting rid of it.
+.session
+set-value:x:-
+   get-value:x:@.arguments/*/_session
+remove-nodes:x:@.arguments/*/_session
+
 // Connecting to our database.
 data.connect:magic
 
@@ -216,7 +224,7 @@ data.connect:magic
       values
 
 // Signaling frontend
-sockets.signal:x:@.arguments/*/_session
+sockets.signal:x:@.session
    args
       type:floating_message
       floating_message:Machine learning type successfully created

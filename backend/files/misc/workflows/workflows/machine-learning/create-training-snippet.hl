@@ -32,7 +32,10 @@ data.connect:magic
 
    // parametrizing invocation.
    add:x:./*/data.create/*/values
-      get-nodes:x:@.arguments/*
+      get-nodes:x:@.arguments/*/type
+      get-nodes:x:@.arguments/*/prompt
+      get-nodes:x:@.arguments/*/completion
+      get-nodes:x:@.arguments/*/meta
 
    // Inserting our item.
    data.create

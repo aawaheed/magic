@@ -13,6 +13,8 @@ ___
 FUNCTION_INVOCATION[/misc/workflows/workflows/machine-learning/create-ai-function.hl]:
 {
   "type": "[STRING_VALUE]",
+  "prompt": "[STRING_VALUE]",
+  "completion": "[STRING_VALUE]",
   "filename": "[STRING_VALUE]",
   "system_instruction": [BOOLEAN_VALUE]
 }
@@ -22,6 +24,8 @@ ___
 Arguments:
 
 - `type` is mandatory name of machine learning type to add the function to.
+- `prompt` is mandatory single line descriptive text of what function does.
+- `completion` is mandatory description (multi line, exhaustive) of what function does.
 - `filename` is mandatory Hyperlambda file path, to the file that's to serve as the function.
 - `system_instruction` is optional. If true, will add the function declaration to the system instruction instead of as RAG data.
 

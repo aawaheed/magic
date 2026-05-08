@@ -10,6 +10,12 @@
    // Mandatory name of type.
    type:string
 
+   // Mandatory prompt serving is single line description.
+   prompt:string
+
+   // Mandatory completion serving as more detailed description.
+   completion:string
+
    // Mandatory AI function file.
    filename:string
 
@@ -25,6 +31,8 @@ validators.default:x:@.arguments
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/type
+validators.mandatory:x:@.arguments/*/prompt
+validators.mandatory:x:@.arguments/*/completion
 validators.regex:x:@.arguments/*/type
    regex:^[a-z0-9_-]+$
 validators.mandatory:x:@.arguments/*/filename
@@ -33,39 +41,19 @@ validators.mandatory:x:@.arguments/*/filename
 execute-file:/system/workflows/get-hyperlambda-arguments.post.hl
    path:x:@.arguments/*/filename
 
-// Reteieving description and arguments to invocation.
-.description
-set-value:x:@.description
-   get-value:x:@execute-file/*/description
+// Check out signature determine what it does"
 .args
 add:x:@.args
    get-nodes:x:@execute-file/*/args/*
 
-// Creating our prompt/completion pair.
-.prompt
-.completion
-strings.split:x:@.description
-   .:"\n"
-set-value:x:@.prompt
-   strings.trim:x:@strings.split/0
-remove-nodes:x:@strings.split/0
-set-value:x:@.completion
-   strings.join:x:@strings.split/*
-      .:"\n"
-set-value:x:@.completion
-   strings.trim:x:@.completion
-
 // Adding function invocation declaration to completion.
+.completion
 set-value:x:@.completion
    strings.concat
-      get-value:x:@.completion
+      get-value:x:@.arguments/*/completion
       .:"\n\n___\nFUNCTION_INVOCATION["
       get-value:x:@.arguments/*/filename
       .:]
-
-// Trimming redundant characters from completion.
-set-value:x:@.completion
-   strings.trim:x:@.completion
 
 // Checking if function accepts arguments
 if
@@ -88,9 +76,11 @@ if
          switch:x:@.dp/#/*/type
             case:int
             case:long
-            case:date
                set-value:x:@.obj/0/-
                   .:"[NUMERIC_VALUE]"
+            case:date
+               set-value:x:@.obj/0/-
+                  .:"[ISO_DATETIME_VALUE]"
             default
                set-value:x:@.obj/0/-
                   .:"[STRING_VALUE]"
@@ -142,7 +132,7 @@ if
             table:ml_training_snippets
             values
                type:x:@.arguments/*/type
-               prompt:x:@.prompt
+               prompt:x:@.arguments/*/prompt
                completion:x:@.completion
                meta:x:@.meta
 
@@ -180,7 +170,7 @@ else
          strings.concat
             get-value:x:@data.read/*/*/system_message
             .:"\n\n### "
-            get-value:x:@.prompt
+            get-value:x:@.arguments/*/prompt
             .:"\n\n"
             get-value:x:@.completion
       data.update
