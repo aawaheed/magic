@@ -139,9 +139,9 @@ else
          .:"\n\n"
          .:@"Below you can find some functions you can use to your benefit, mot important the `get-context` function you can use to search through your RAG / VSS database for information or other functions required to accomplish your job.
 
-## List all functions
+### List all functions
 
-If the user asks you to list all functions or what you can do for them or help them with, then you kust end your response with the following.
+If the user asks you to list all functions or what you can do for them or help them with, then you must end your response with the following.
 
 ```plaintext
 ___
