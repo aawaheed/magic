@@ -51,7 +51,7 @@ add:x:@.args
 set-value:x:@.completion
    strings.concat
       get-value:x:@.arguments/*/completion
-      .:"\n\n___\nFUNCTION_INVOCATION["
+      .:"\n\n```plaintext\n___\nFUNCTION_INVOCATION["
       get-value:x:@.arguments/*/filename
       .:]
 
@@ -99,7 +99,7 @@ if
          strings.concat
             get-value:x:@.completion
             get-value:x:@lambda2json
-            .:"\n___"
+            .:"\n___\n```"
             .:"\n\n"
             get-value:x:@.tail
       set-value:x:@.completion
