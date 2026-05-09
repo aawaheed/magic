@@ -15,7 +15,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.email",
-        Description = "Validates that input is an email address")]
+        Description = "Validates that a value or resolved expression result is an email address",
+        ValueType = "string",
+        ValueDescription = "Email value or expression selecting the node or nodes to validate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateEmail : ISlot
     {
         /// <summary>

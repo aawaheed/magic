@@ -15,7 +15,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.enum",
-        Description = "Validates that input is one of the allowed options")]
+        Description = "Validates that a value or resolved expression result is one of the allowed options",
+        ValueType = "string",
+        ValueDescription = "Value or expression selecting the node or nodes to validate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateEnum : ISlot
     {
         /// <summary>

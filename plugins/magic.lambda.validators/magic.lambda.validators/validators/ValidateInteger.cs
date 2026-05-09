@@ -15,7 +15,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.integer",
-        Description = "Validates an integer range")]
+        Description = "Validates that an integer value or resolved expression result is within the allowed range",
+        ValueType = "integer",
+        ValueDescription = "Integer value or expression selecting the node or nodes to validate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateInteger : ISlot
     {
         /// <summary>

@@ -17,7 +17,11 @@ namespace magic.lambda.logging.slots
     /// </summary>
     [Slot(
         Name = "log.error",
-        Description = "Logs an error entry")]
+        Description = "Logs an error entry",
+        ValueType = "string",
+        ValueDescription = "Log message to write",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class LogError : ISlotAsync
     {
         readonly ILogger _logger;

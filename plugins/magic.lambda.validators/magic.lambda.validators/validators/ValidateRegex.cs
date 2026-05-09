@@ -16,7 +16,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.regex",
-        Description = "Validates input against a regular expression")]
+        Description = "Validates that a value or resolved expression result matches a regular expression",
+        ValueType = "string",
+        ValueDescription = "Value or expression selecting the node or nodes to validate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateRegex : ISlot
     {
         /// <summary>
