@@ -21,7 +21,7 @@ namespace magic.lambda.math.basics
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Returns the product of the supplied operands")]
+        ReturnsDescription = "Resolves to the product of the supplied operands")]
     public class Multiplication : ISlotAsync
     {
         /// <summary>

@@ -21,7 +21,7 @@ namespace magic.lambda.math.basics
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Returns the quotient of the supplied operands")]
+        ReturnsDescription = "Resolves to the quotient of the supplied operands")]
     public class Division : ISlotAsync
     {
         /// <summary>

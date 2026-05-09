@@ -22,7 +22,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the loaded file content")]
+        ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load",
         Description = "Loads a text file from the server",
@@ -32,7 +32,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the loaded file content")]
+        ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load.binary",
         Description = "Loads a binary file from the server",
@@ -42,7 +42,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Returns the loaded binary file bytes")]
+        ReturnsDescription = "Resolves to the loaded binary file bytes")]
     public class LoadFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

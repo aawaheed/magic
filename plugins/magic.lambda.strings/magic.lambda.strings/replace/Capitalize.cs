@@ -21,7 +21,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the capitalized string")]
+        ReturnsDescription = "Resolves to the capitalized string")]
     public class Capitalize : ISlot
     {
         /// <summary>

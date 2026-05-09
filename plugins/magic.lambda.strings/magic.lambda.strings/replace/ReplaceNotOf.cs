@@ -24,7 +24,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the string after replacing characters not found in the allowed set")]
+        ReturnsDescription = "Resolves to the string after replacing characters not found in the allowed set")]
     public class ReplaceNotOf : ISlotAsync
     {
         /// <summary>

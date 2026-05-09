@@ -21,7 +21,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the sorted nodes selected by the expression as child nodes")]
+        ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes")]
     public class Sort : ISlot
     {
         /// <summary>

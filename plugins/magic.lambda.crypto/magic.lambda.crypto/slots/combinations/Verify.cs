@@ -24,7 +24,7 @@ namespace magic.lambda.crypto.slots.combinations
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the verified content as text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the verified content as text or raw bytes when [raw] is true")]
     public class Verify : ISlot
     {
         /// <summary>

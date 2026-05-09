@@ -22,7 +22,7 @@ namespace magic.lambda.logging.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of log entries matching the optional query")]
+        ReturnsDescription = "Resolves to the number of log entries matching the optional query")]
     public class Count : ISlotAsync
     {
         readonly ILogQuery _query;

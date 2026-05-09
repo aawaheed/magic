@@ -25,7 +25,7 @@ namespace magic.lambda.mime
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the MIME message text in value or, when structured, MIME header and content nodes as children")]
+        ReturnsDescription = "Resolves to the MIME message text in value or, when structured, MIME header and content nodes as children")]
     public class MimeCreate : ISlotAsync
     {
         readonly IStreamService _streamService;

@@ -16,7 +16,7 @@ namespace magic.lambda.dates
         Description = "Returns the minimum DateTime value",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "DateTime",
-        ReturnsDescription = "Returns the minimum supported DateTime value")]
+        ReturnsDescription = "Resolves to the minimum supported DateTime value")]
     public class DateTimeMin : ISlot
     {
         /// <summary>

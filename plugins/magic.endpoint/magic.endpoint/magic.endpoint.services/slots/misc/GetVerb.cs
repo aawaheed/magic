@@ -16,7 +16,7 @@ namespace magic.endpoint.services.slots.misc
         Description = "Returns the current request verb",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the HTTP verb of the current request")]
+        ReturnsDescription = "Resolves to the HTTP verb of the current request")]
     public class GetVerb : ISlot
     {
         /// <summary>

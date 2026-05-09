@@ -19,7 +19,7 @@ namespace magic.lambda.branching
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Returns true if the else-if condition matched and its branch was evaluated")]
+        ReturnsDescription = "Resolves to true if the else-if condition matched and its branch was evaluated")]
     public class ElseIf : ISlot
     {
         /// <summary>

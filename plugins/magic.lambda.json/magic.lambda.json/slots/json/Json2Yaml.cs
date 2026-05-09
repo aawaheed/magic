@@ -24,7 +24,7 @@ namespace magic.lambda.json.slots.json
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated YAML string")]
+        ReturnsDescription = "Resolves to the generated YAML string")]
     public class Json2Yaml : ISlot
     {
         /// <summary>

@@ -23,7 +23,7 @@ namespace magic.lambda.xml
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the parsed lambda hierarchy as child nodes")]
+        ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes")]
     public class Xml2Lambda : ISlot
     {
         /// <summary>

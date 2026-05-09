@@ -13,7 +13,7 @@ namespace magic.signals.tests.slots
         Name = "foo.bar.async",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the input text with \"world\" appended")]
+        ReturnsDescription = "Resolves to the input text with \"world\" appended")]
     public class FooBarAsync : ISlotAsync
     {
         public Task SignalAsync(ISignaler signaler, Node input)

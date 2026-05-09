@@ -28,7 +28,7 @@ namespace magic.lambda.system.terminal
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the standard output from the executed command")]
+        ReturnsDescription = "Resolves to the standard output from the executed command")]
     public class TerminalExecute : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

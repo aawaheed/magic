@@ -18,7 +18,7 @@ namespace magic.lambda.sockets.slots
         Description = "Counts connected socket users, optionally filtered by username",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of connected socket users matching the optional filter")]
+        ReturnsDescription = "Resolves to the number of connected socket users matching the optional filter")]
     public class CountUsers : ISlot
     {
         readonly IConfiguration _configuration;

@@ -26,7 +26,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     [Slot(
         Name = "crypto.hash.sha1",
         Description = "Hashes input using the SHA1 algorithm",
@@ -36,7 +36,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     [Slot(
         Name = "crypto.hash.md5",
         Description = "Hashes input using the MD5 algorithm",
@@ -46,7 +46,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     [Slot(
         Name = "crypto.hash.sha256",
         Description = "Hashes input using the SHA256 algorithm",
@@ -56,7 +56,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     [Slot(
         Name = "crypto.hash.sha384",
         Description = "Hashes input using the SHA384 algorithm",
@@ -66,7 +66,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     [Slot(
         Name = "crypto.hash.sha512",
         Description = "Hashes input using the SHA512 algorithm",
@@ -76,7 +76,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the computed hash in the requested format")]
+        ReturnsDescription = "Resolves to the computed hash in the requested format")]
     public class Hash : ISlotAsync
     {
         readonly IStreamService _streamService;

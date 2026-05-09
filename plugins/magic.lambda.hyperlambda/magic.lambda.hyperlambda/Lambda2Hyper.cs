@@ -22,7 +22,7 @@ namespace magic.lambda.hyperlambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated Hyperlambda source")]
+        ReturnsDescription = "Resolves to the generated Hyperlambda source")]
     public class Lambda2Hyper : ISlot
     {
         /// <summary>

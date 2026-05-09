@@ -20,7 +20,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the dynamic slot lambda body as child nodes")]
+        ReturnsDescription = "Resolves to the dynamic slot lambda body as child nodes")]
     public class Get : ISlot
     {
         /// <summary>

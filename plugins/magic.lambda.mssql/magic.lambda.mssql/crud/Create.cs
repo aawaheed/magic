@@ -22,7 +22,7 @@ namespace magic.lambda.mssql.crud
         Description = "Inserts rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the created row ID when [return-id] is true, otherwise null")]
+        ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null")]
     public class Create : ISlotAsync
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace magic.lambda.io.file
         Description = "Creates a zip stream from the supplied content",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Stream",
-        ReturnsDescription = "Returns a zip stream containing the supplied entries")]
+        ReturnsDescription = "Resolves to a zip stream containing the supplied entries")]
     public class ZipContent : ISlotAsync
     {
         /// <summary>

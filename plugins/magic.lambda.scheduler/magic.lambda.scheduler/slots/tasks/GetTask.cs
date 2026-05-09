@@ -24,7 +24,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the task fields as child nodes, optionally including a [schedules] node")]
+        ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node")]
     public class GetTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

@@ -26,7 +26,7 @@ namespace magic.lambda.xml
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated XML string")]
+        ReturnsDescription = "Resolves to the generated XML string")]
     public class Lambda2Xml : ISlot
     {
         /// <summary>

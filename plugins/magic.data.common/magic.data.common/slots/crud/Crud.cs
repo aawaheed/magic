@@ -21,33 +21,31 @@ namespace magic.data.common.slots.crud
         Description = "Inserts a new row into the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the created row ID when [return-id] is true, otherwise null")]
+        ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null")]
     [Slot(
         Name = "data.read",
         Description = "Selects rows from the current open database connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns matching rows as child nodes")]
+        ReturnsDescription = "Resolves to matching rows as child nodes")]
     [Slot(
         Name = "data.update",
         Description = "Updates rows in the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected")]
     [Slot(
         Name = "data.delete",
         Description = "Deletes rows in the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected")]
     [Slot(
         Name = "data.scan",
         Description = "Scans rows from the current open database connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns scanned rows as child nodes")]
+        ReturnsDescription = "Resolves to scanned rows as child nodes")]
     public class Crud : ISlotAsync
     {
         readonly IDataSettings _settings;

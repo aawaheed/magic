@@ -21,7 +21,7 @@ namespace magic.lambda.crypto.slots.rsa
         Description = "Creates an RSA key pair",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the generated RSA key pair as child nodes")]
+        ReturnsDescription = "Resolves to the generated RSA key pair as child nodes")]
     public class CreateKey : ISlot
     {
         /// <summary>

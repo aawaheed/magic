@@ -17,7 +17,7 @@ namespace magic.lambda.logical
         Description = "Negates a boolean expression",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Returns true if the operand evaluates to false")]
+        ReturnsDescription = "Resolves to true if the operand evaluates to false")]
     public class Not : ISlot
     {
         /// <summary>

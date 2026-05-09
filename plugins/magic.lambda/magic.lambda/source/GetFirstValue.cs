@@ -23,7 +23,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the first non-null value resolved from the supplied literal, expression, or child nodes")]
+        ReturnsDescription = "Resolves to the first non-null value resolved from the supplied literal, expression, or child nodes")]
     public class GetFirstValue : ISlot
     {
         /// <summary>

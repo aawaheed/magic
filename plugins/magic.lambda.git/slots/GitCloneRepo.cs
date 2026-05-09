@@ -22,7 +22,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the git clone command output")]
+        ReturnsDescription = "Resolves to the git clone command output")]
     public class GitCloneRepo : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

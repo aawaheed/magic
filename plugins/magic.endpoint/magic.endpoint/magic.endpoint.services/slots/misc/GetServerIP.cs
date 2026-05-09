@@ -18,7 +18,7 @@ namespace magic.endpoint.services.slots.misc
         Description = "Returns the server IP address",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the server IP address for the requested IP version")]
+        ReturnsDescription = "Resolves to the server IP address for the requested IP version")]
     public class GetServerIP : ISlot
     {
         /// <summary>

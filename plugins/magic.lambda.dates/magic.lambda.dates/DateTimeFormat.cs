@@ -23,7 +23,7 @@ namespace magic.lambda.dates
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the formatted date string")]
+        ReturnsDescription = "Resolves to the formatted date string")]
     public class DateTimeFormat : ISlot
     {
         /// <summary>

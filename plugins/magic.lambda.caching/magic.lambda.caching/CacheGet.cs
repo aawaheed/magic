@@ -22,7 +22,7 @@ namespace magic.lambda.caching
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the cached value, or null if the key does not exist")]
+        ReturnsDescription = "Resolves to the cached value, or null if the key does not exist")]
     public class CacheGet : ISlotAsync
     {
         readonly IMagicCache _cache;

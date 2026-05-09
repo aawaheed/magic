@@ -24,7 +24,7 @@ namespace magic.lambda.csv
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the CSV content in value and column type nodes as children")]
+        ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children")]
     public class Lambda2Csv : ISlot
     {
         /// <summary>

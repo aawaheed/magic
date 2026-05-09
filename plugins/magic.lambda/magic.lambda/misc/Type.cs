@@ -21,7 +21,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the runtime type name of the first matching value")]
+        ReturnsDescription = "Resolves to the runtime type name of the first matching value")]
     public class Type : ISlot
     {
         /// <summary>

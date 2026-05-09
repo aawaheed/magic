@@ -20,7 +20,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of characters in the string")]
+        ReturnsDescription = "Resolves to the number of characters in the string")]
     public class Length : ISlot
     {
         /// <summary>

@@ -22,7 +22,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the formatted string")]
+        ReturnsDescription = "Resolves to the formatted string")]
     public class Format : ISlot
     {
         /// <summary>

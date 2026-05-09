@@ -21,7 +21,7 @@ namespace magic.lambda.threading
         Description = "Waits for one more more children threads ([fork] operations) to finish before proceeding",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the completed [fork] child nodes after all forks have finished")]
+        ReturnsDescription = "Resolves to the completed [fork] child nodes after all forks have finished")]
     public class Join : ISlotAsync
     {
         readonly IServiceScopeFactory _serviceScopeFactory;

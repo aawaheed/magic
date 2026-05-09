@@ -21,7 +21,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the matched destination nodes after the child lambda output has been included")]
+        ReturnsDescription = "Resolves to the matched destination nodes after the child lambda output has been included")]
     public class Include : ISlot
     {
         /// <summary>

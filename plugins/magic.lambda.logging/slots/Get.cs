@@ -23,7 +23,7 @@ namespace magic.lambda.logging.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the log entry as child nodes")]
+        ReturnsDescription = "Resolves to the log entry as child nodes")]
     public class Get : ISlotAsync
     {
         readonly ILogQuery _query;

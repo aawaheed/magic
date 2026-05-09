@@ -19,7 +19,7 @@ namespace magic.lambda.crypto.slots.misc
         Description = "Returns random bytes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns a random string, or random bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to a random string, or random bytes when [raw] is true")]
     public class Random : ISlot
     {
         const string _alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

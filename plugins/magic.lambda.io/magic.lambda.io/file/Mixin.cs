@@ -26,7 +26,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the mixed file content in value and any codebehind-produced child nodes")]
+        ReturnsDescription = "Resolves to the mixed file content in value and any codebehind-produced child nodes")]
     public class Mixin : ISlotAsync
     {
         readonly IFileService _fileService;

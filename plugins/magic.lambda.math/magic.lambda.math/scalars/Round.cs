@@ -22,7 +22,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Returns the rounded value")]
+        ReturnsDescription = "Resolves to the rounded value")]
     public class Round : ISlot
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace magic.lambda.mysql.crud
         Description = "Deletes rows through the current MySQL connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected")]
     public class Delete : ISlotAsync
     {
         /// <summary>

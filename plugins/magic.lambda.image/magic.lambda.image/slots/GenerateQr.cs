@@ -23,7 +23,7 @@ namespace magic.lambda.image.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Returns the generated QR code image bytes")]
+        ReturnsDescription = "Resolves to the generated QR code image bytes")]
     public class GenerateQr : ISlot
     {
         /// <summary>

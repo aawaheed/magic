@@ -22,7 +22,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the git init command output")]
+        ReturnsDescription = "Resolves to the git init command output")]
     public class GitCreateRepo : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

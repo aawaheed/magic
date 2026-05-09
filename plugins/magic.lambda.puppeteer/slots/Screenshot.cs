@@ -25,7 +25,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Returns the screenshot image bytes")]
+        ReturnsDescription = "Resolves to the screenshot image bytes")]
     public class Screenshot : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -17,7 +17,7 @@ namespace magic.lambda.misc
         Description = "Creates a new expression by joining the evaluated child node values",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Expression",
-        ReturnsDescription = "Returns the composed expression")]
+        ReturnsDescription = "Resolves to the composed expression")]
     public class Compose : ISlot
     {
         /// <summary>

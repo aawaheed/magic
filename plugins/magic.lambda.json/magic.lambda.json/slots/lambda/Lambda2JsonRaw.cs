@@ -21,7 +21,7 @@ namespace magic.lambda.json.slots.lambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "JContainer",
-        ReturnsDescription = "Returns the generated raw JSON container")]
+        ReturnsDescription = "Resolves to the generated raw JSON container")]
     public class Lambda2JsonRaw : ISlot
     {
         /// <summary>

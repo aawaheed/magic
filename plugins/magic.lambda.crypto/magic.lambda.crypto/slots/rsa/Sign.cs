@@ -22,7 +22,7 @@ namespace magic.lambda.crypto.slots.rsa
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the signature as base64 text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the signature as base64 text or raw bytes when [raw] is true")]
     public class Sign : ISlot
     {
         /// <summary>

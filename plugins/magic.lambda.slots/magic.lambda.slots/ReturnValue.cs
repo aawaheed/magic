@@ -20,7 +20,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns a value to the caller")]
+        ReturnsDescription = "Resolves to a value to the caller")]
     public class ReturnValue : ISlot
     {
         /// <summary>

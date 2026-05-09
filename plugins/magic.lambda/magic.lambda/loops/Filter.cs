@@ -22,7 +22,7 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the nodes for which the child lambda predicate evaluates to true")]
+        ReturnsDescription = "Resolves to the nodes for which the child lambda predicate evaluates to true")]
     public class Filter : ISlot
     {
         /// <summary>

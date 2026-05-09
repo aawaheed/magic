@@ -23,7 +23,7 @@ namespace magic.lambda.crypto.slots.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the package key fingerprint as text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the package key fingerprint as text or raw bytes when [raw] is true")]
     public class GetKey : ISlot
     {
         /// <summary>

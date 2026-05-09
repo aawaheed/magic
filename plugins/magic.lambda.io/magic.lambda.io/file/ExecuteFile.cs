@@ -25,7 +25,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the executed file's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes")]
     [Slot(
         Name = "execute-file",
         Description = "Executes a file on the server",
@@ -35,7 +35,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the executed file's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes")]
     public class ExecuteFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

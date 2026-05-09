@@ -17,7 +17,7 @@ namespace magic.data.common.slots.sql
         Description = "Builds a parameterized DELETE SQL statement",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated SQL string in value and the generated parameter nodes as children")]
+        ReturnsDescription = "Resolves to the generated SQL string in value and the generated parameter nodes as children")]
     public class Delete : ISlot
     {
         /// <summary>

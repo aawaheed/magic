@@ -12,7 +12,7 @@ namespace magic.signals.tests.slots
         Name = "foo.bar",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the input text with \"world\" appended")]
+        ReturnsDescription = "Resolves to the input text with \"world\" appended")]
     public class FooBar : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

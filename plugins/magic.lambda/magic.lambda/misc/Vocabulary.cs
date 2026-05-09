@@ -24,7 +24,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns available slot names as child nodes")]
+        ReturnsDescription = "Resolves to available slot names as child nodes")]
     public class Vocabulary : ISlot
     {
         readonly ISignalsProvider _signalProvider;

@@ -21,7 +21,7 @@ namespace magic.lambda.dates
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "DateTime",
-        ReturnsDescription = "Returns the date represented by the supplied Unix timestamp")]
+        ReturnsDescription = "Resolves to the date represented by the supplied Unix timestamp")]
     public class FromUnix : ISlot
     {
         /// <summary>

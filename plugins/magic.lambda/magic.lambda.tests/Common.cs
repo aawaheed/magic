@@ -21,7 +21,7 @@ namespace magic.lambda.tests
         Name = "foo",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the constant string \"OK\"")]
+        ReturnsDescription = "Resolves to the constant string \"OK\"")]
         public class FooSlot : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

@@ -23,7 +23,7 @@ namespace magic.lambda.eval
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the invoked lambda's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes")]
     public class Invoke : ISlotAsync
     {
         /// <summary>

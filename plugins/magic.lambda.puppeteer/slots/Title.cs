@@ -20,7 +20,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the current page title")]
+        ReturnsDescription = "Resolves to the current page title")]
     public class Title : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

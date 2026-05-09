@@ -21,7 +21,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Returns a value or child nodes to the nearest caller")]
+        ReturnsDescription = "Resolves to a value or child nodes to the nearest caller")]
     public class Return : ISlot
     {
         /// <summary>

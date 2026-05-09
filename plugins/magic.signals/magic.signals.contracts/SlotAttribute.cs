@@ -37,10 +37,9 @@ namespace magic.signals.contracts
 
         /// <summary>
         /// Indicates whether the slot's RHS value argument is required when the
-        /// slot supports and is invoked using its RHS value form. Null means the
-        /// slot does not document an RHS value contract.
+        /// slot supports and is invoked using its RHS value form.
         /// </summary>
-        public bool? ValueRequired { get; set; }
+        public bool ValueRequired { get; set; }
 
         /// <summary>
         /// Indicates how the slot's RHS value argument should be interpreted.

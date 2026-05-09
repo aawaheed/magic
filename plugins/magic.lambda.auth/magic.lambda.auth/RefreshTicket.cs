@@ -22,7 +22,7 @@ namespace magic.lambda.auth
         Description = "Refreshes an existing JWT ticket",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the refreshed JWT ticket string")]
+        ReturnsDescription = "Resolves to the refreshed JWT ticket string")]
     public class RefreshTicket : ISlot
     {
         readonly IAuthSettings _settings;

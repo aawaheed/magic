@@ -22,7 +22,7 @@ namespace magic.lambda.crypto.slots.rsa
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the encrypted package as base64 text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true")]
     public class Encrypt : ISlot
     {
         /// <summary>

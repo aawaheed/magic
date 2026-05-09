@@ -22,7 +22,7 @@ namespace magic.lambda.odbc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the scalar result of the SQL statement")]
+        ReturnsDescription = "Resolves to the scalar result of the SQL statement")]
     public class Scalar : ISlotAsync
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace magic.lambda.dates
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "long",
-        ReturnsDescription = "Returns the supplied date as a Unix timestamp")]
+        ReturnsDescription = "Resolves to the supplied date as a Unix timestamp")]
     public class Unix : ISlot
     {
         /// <summary>

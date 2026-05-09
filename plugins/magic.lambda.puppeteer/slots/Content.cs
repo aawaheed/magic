@@ -20,7 +20,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the current page HTML content")]
+        ReturnsDescription = "Resolves to the current page HTML content")]
     public class Content : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

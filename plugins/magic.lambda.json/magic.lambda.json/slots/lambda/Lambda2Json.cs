@@ -22,7 +22,7 @@ namespace magic.lambda.json.slots.lambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated JSON string")]
+        ReturnsDescription = "Resolves to the generated JSON string")]
     public class Lambda2Json : ISlot
     {
         /// <summary>

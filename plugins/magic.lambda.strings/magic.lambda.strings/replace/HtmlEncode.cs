@@ -21,7 +21,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the HTML-encoded string")]
+        ReturnsDescription = "Resolves to the HTML-encoded string")]
     public class HtmlEncode : ISlot
     {
         /// <summary>

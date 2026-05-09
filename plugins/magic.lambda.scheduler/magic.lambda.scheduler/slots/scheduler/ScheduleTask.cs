@@ -27,7 +27,7 @@ namespace magic.lambda.scheduler.slots.scheduler
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the created schedule ID")]
+        ReturnsDescription = "Resolves to the created schedule ID")]
     public class ScheduleTask : ISlotAsync
     {
         readonly ITaskScheduler _scheduler;

@@ -20,7 +20,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the lowercased string")]
+        ReturnsDescription = "Resolves to the lowercased string")]
     public class ToLower : ISlot
     {
         /// <summary>

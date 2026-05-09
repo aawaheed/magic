@@ -23,7 +23,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the string after replacing the specified substring")]
+        ReturnsDescription = "Resolves to the string after replacing the specified substring")]
     public class Replace : ISlotAsync
     {
         /// <summary>

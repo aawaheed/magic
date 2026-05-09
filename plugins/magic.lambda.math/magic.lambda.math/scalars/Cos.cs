@@ -21,7 +21,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
-        ReturnsDescription = "Returns the cosine of the supplied angle")]
+        ReturnsDescription = "Resolves to the cosine of the supplied angle")]
     public class Cos : ISlot
     {
         /// <summary>

@@ -16,7 +16,7 @@ namespace magic.lambda.sqlite
         Description = "Creates a SQLite connection factory",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "SqliteConnection",
-        ReturnsDescription = "Returns a new SQLite connection instance")]
+        ReturnsDescription = "Resolves to a new SQLite connection instance")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>

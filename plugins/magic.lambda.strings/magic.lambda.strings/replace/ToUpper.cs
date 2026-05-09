@@ -20,7 +20,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the uppercased string")]
+        ReturnsDescription = "Resolves to the uppercased string")]
     public class ToUpper : ISlot
     {
         /// <summary>

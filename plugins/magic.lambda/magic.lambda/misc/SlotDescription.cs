@@ -23,7 +23,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the description of the requested slot")]
+        ReturnsDescription = "Resolves to the description of the requested slot")]
     public class SlotDescription : ISlot
     {
         readonly ISignalsProvider _signalProvider;

@@ -22,7 +22,7 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the mapped result nodes produced by the child lambda")]
+        ReturnsDescription = "Resolves to the mapped result nodes produced by the child lambda")]
     public class Map : ISlot
     {
         /// <summary>

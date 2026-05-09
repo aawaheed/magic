@@ -17,7 +17,7 @@ namespace magic.data.common.slots.sql
         Description = "Builds a parameterized SELECT SQL statement",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the generated SQL string in value and the generated parameter nodes as children")]
+        ReturnsDescription = "Resolves to the generated SQL string in value and the generated parameter nodes as children")]
     public class Read : ISlot
     {
         /// <summary>

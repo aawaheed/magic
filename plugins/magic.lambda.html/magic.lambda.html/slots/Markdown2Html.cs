@@ -24,7 +24,7 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the HTML in value and any YAML front matter as child nodes")]
+        ReturnsDescription = "Resolves to the HTML in value and any YAML front matter as child nodes")]
     public class Markdown2Html : ISlot
     {
         /// <summary>

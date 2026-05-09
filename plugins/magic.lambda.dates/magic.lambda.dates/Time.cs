@@ -18,7 +18,7 @@ namespace magic.lambda.dates
         Description = "Constructs a TimeSpan value from child nodes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "TimeSpan",
-        ReturnsDescription = "Returns the current UTC time of day")]
+        ReturnsDescription = "Resolves to the current UTC time of day")]
     public class Time : ISlot
     {
         /// <summary>

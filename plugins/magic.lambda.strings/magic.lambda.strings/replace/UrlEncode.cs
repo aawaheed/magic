@@ -21,7 +21,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the URL-encoded string")]
+        ReturnsDescription = "Resolves to the URL-encoded string")]
     public class UrlEncode : ISlot
     {
         /// <summary>

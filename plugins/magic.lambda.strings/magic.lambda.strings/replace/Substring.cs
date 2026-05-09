@@ -23,7 +23,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the extracted substring")]
+        ReturnsDescription = "Resolves to the extracted substring")]
     public class Substring : ISlotAsync
     {
         /// <summary>

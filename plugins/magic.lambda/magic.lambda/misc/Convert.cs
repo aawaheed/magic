@@ -26,7 +26,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the value converted to the requested type")]
+        ReturnsDescription = "Resolves to the value converted to the requested type")]
     public class Convert : ISlot
     {
         /// <summary>

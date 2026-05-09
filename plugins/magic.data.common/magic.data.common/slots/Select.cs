@@ -21,7 +21,7 @@ namespace magic.data.common.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns query result rows as child nodes")]
+        ReturnsDescription = "Resolves to query result rows as child nodes")]
     public class Select : DataSlotBase
     {
         /// <summary>

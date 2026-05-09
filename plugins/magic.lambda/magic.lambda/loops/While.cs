@@ -23,7 +23,7 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the final iteration value and any returned child nodes")]
+        ReturnsDescription = "Resolves to the final iteration value and any returned child nodes")]
     public class While : ISlot
     {
         readonly LambdaSettings _settings;

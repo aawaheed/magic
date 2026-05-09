@@ -22,7 +22,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the supplied integer written as words")]
+        ReturnsDescription = "Resolves to the supplied integer written as words")]
     public class Int2Words : ISlot
     {
         static readonly string[] _unitsMap =

@@ -26,7 +26,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the requested stack value or context object")]
+        ReturnsDescription = "Resolves to the requested stack value or context object")]
     public class GetContext : ISlot
     {
         /// <summary>

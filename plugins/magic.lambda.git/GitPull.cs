@@ -24,7 +24,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the git pull command output")]
+        ReturnsDescription = "Resolves to the git pull command output")]
     public class GitPull : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

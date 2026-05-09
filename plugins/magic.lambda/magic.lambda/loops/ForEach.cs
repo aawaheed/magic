@@ -21,7 +21,7 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns the iterated nodes after the child lambda has been applied to each item")]
+        ReturnsDescription = "Resolves to the iterated nodes after the child lambda has been applied to each item")]
     public class ForEach : ISlot
     {
         /// <summary>

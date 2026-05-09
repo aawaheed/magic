@@ -21,7 +21,7 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the decoded HTML string")]
+        ReturnsDescription = "Resolves to the decoded HTML string")]
     public class HtmlDecode : ISlot
     {
         /// <summary>

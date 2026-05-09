@@ -22,7 +22,7 @@ namespace magic.lambda.strings.concat
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the concatenated string")]
+        ReturnsDescription = "Resolves to the concatenated string")]
     public class Concat : ISlotAsync
     {
         /// <summary>

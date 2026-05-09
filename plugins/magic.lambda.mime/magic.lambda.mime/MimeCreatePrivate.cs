@@ -25,7 +25,7 @@ namespace magic.lambda.mime
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "MimeEntity",
-        ReturnsDescription = "Returns the created MimeKit MIME entity")]
+        ReturnsDescription = "Resolves to the created MimeKit MIME entity")]
     public class MimeCreatePrivate : ISlotAsync
     {
         readonly IStreamService _streamService;

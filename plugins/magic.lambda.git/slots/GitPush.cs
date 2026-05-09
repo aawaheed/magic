@@ -22,7 +22,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the git push command output")]
+        ReturnsDescription = "Resolves to the git push command output")]
     public class GitPush : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

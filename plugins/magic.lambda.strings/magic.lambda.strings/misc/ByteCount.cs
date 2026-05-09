@@ -21,7 +21,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of bytes in the string")]
+        ReturnsDescription = "Resolves to the number of bytes in the string")]
     public class ByteCount : ISlot
     {
         /// <summary>

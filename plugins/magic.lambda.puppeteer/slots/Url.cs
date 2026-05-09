@@ -19,7 +19,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the current page URL")]
+        ReturnsDescription = "Resolves to the current page URL")]
     public class Url : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

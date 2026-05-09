@@ -27,7 +27,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the rendered string after applying codebehind and expressions")]
+        ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions")]
     public class Mixin : ISlotAsync
     {
         readonly ILogger _logger;

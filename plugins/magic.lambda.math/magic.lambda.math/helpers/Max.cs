@@ -21,7 +21,7 @@ namespace magic.lambda.math.basics
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Returns the largest supplied value")]
+        ReturnsDescription = "Resolves to the largest supplied value")]
     public class Max : ISlotAsync
     {
         /// <summary>

@@ -22,7 +22,7 @@ namespace magic.lambda.mssql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Returns the number of rows affected by the SQL statement")]
+        ReturnsDescription = "Resolves to the number of rows affected by the SQL statement")]
     public class Execute : ISlotAsync
     {
         /// <summary>

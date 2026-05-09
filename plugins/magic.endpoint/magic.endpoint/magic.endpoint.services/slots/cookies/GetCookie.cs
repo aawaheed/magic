@@ -21,7 +21,7 @@ namespace magic.endpoint.services.slots.cookies
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Returns the value of the named request cookie, or null if it does not exist")]
+        ReturnsDescription = "Resolves to the value of the named request cookie, or null if it does not exist")]
     public class GetCookie : ISlot
     {
         /// <summary>

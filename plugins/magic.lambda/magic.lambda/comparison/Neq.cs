@@ -20,7 +20,7 @@ namespace magic.lambda.comparison
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Returns true if the operands are not equal")]
+        ReturnsDescription = "Resolves to true if the operands are not equal")]
     public class Neq : ISlot
     {
         /// <summary>

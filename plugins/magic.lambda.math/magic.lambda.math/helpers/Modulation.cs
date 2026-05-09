@@ -21,7 +21,7 @@ namespace magic.lambda.math.helpers
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Returns the remainder of the modulo operation")]
+        ReturnsDescription = "Resolves to the remainder of the modulo operation")]
     public class Modulation : ISlotAsync
     {
         /// <summary>

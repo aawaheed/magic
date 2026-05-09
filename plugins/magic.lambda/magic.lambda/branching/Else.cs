@@ -15,7 +15,7 @@ namespace magic.lambda.branching
         Description = "Evaluates the fallback branch in a conditional block",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Returns true if the else branch was evaluated")]
+        ReturnsDescription = "Resolves to true if the else branch was evaluated")]
     public class Else : ISlot
     {
         /// <summary>

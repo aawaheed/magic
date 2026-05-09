@@ -23,7 +23,7 @@ namespace magic.lambda.config
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the configuration value, or the first child value when the key is missing")]
+        ReturnsDescription = "Resolves to the configuration value, or the first child value when the key is missing")]
     public class ConfigGet : ISlotAsync
     {
         readonly IMagicConfiguration _configuration;

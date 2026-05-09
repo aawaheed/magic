@@ -22,7 +22,7 @@ namespace magic.lambda.crypto.slots.aes
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Returns the decrypted content as text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the decrypted content as text or raw bytes when [raw] is true")]
     public class Decrypt : ISlot
     {
         /// <summary>

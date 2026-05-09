@@ -15,7 +15,7 @@ namespace magic.endpoint.services.slots.misc
         Description = "Lists registered MIME type mappings",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per registered MIME type mapping")]
+        ReturnsDescription = "Resolves to one child node per registered MIME type mapping")]
     public class GetMimeTypes : ISlot
     {
         /// <summary>
