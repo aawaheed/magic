@@ -19,7 +19,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.recaptcha",
-        Description = "Validates a reCAPTCHA response")]
+        Description = "Validates a reCAPTCHA response token",
+        ValueType = "string",
+        ValueDescription = "reCAPTCHA response token to validate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateReCaptcha : ISlotAsync
     {
         readonly HttpClient _httpClient;

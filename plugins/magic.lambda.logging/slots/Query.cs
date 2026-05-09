@@ -20,7 +20,7 @@ namespace magic.lambda.logging.slots
         Description = "Queries log entries",
         ValueType = "string",
         ValueDescription = "Optional content type filter",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Query : ISlotAsync
     {

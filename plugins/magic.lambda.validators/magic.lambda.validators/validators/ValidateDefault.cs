@@ -14,7 +14,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.default",
-        Description = "Applies a default value when input is missing")]
+        Description = "Adds default child nodes to the nodes selected by the RHS expression",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the node or nodes to apply defaults to",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class ValidateDefault : ISlot
     {
         /// <summary>

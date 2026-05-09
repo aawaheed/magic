@@ -20,7 +20,11 @@ namespace magic.lambda.mssql
     /// </summary>
     [Slot(
         Name = "mssql.execute-batch",
-        Description = "Executes a batch of SQL statements on the current SQL Server connection")]
+        Description = "Executes a batch SQL script on the current SQL Server connection",
+        ValueType = "string",
+        ValueDescription = "Batch SQL script to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ExecuteBatch : ISlotAsync
     {
         /// <summary>

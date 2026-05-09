@@ -17,7 +17,11 @@ namespace magic.lambda.threading
     /// </summary>
     [Slot(
         Name = "semaphore",
-        Description = "Creates a new named semaphore where only one thread can gain access at the same time")]
+        Description = "Evaluates the child lambda inside a named semaphore",
+        ValueType = "string",
+        ValueDescription = "Semaphore name used to serialize access",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Semaphore : ISlotAsync
     {
         static readonly ConcurrentDictionary<string, Sys.SemaphoreSlim> _semaphores = new();

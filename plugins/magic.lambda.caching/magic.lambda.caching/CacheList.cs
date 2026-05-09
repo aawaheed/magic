@@ -19,7 +19,7 @@ namespace magic.lambda.caching
         Description = "Lists cached keys matching the optional filter",
         ValueType = "string",
         ValueDescription = "Optional filter for cache keys",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class CacheList : ISlotAsync
     {

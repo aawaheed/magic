@@ -18,7 +18,7 @@ namespace magic.lambda.slots
         Description = "Lists dynamically created slots",
         ValueType = "string",
         ValueDescription = "Optional filter for dynamic slot names",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Vocabulary : ISlot
     {

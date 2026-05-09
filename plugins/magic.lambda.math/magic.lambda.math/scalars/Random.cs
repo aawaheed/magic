@@ -15,11 +15,7 @@ namespace magic.lambda.math.scalars
     /// </summary>
     [Slot(
         Name = "math.random",
-        Description = "Returns a random number",
-        ValueType = "number",
-        ValueDescription = "Optional maximum or range seed value when using RHS form",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Returns a random number from optional child-node bounds")]
     public class Random : ISlot
     {
         /// <summary>

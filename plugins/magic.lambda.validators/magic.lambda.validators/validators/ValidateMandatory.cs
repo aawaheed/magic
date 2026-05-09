@@ -13,7 +13,11 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.mandatory",
-        Description = "Validates that input is present")]
+        Description = "Validates that the RHS value or resolved expression result is present",
+        ValueType = "object",
+        ValueDescription = "Literal value or expression to validate as mandatory",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ValidateMandatory : ISlot
     {
         /// <summary>

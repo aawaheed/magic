@@ -19,7 +19,7 @@ namespace magic.lambda.auth
         Description = "Verifies that the current user is authenticated and optionally in one of the specified roles",
         ValueType = "string",
         ValueDescription = "Optional comma-separated roles to require",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class VerifyTicket : ISlot
     {

@@ -15,11 +15,7 @@ namespace magic.lambda.dates
     /// </summary>
     [Slot(
         Name = "time",
-        Description = "Constructs a TimeSpan value",
-        ValueType = "long",
-        ValueDescription = "Time value to construct when using RHS form",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Constructs a TimeSpan value from child nodes")]
     public class Time : ISlot
     {
         /// <summary>

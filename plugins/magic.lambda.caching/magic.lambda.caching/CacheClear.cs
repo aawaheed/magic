@@ -20,7 +20,7 @@ namespace magic.lambda.caching
         Description = "Clears cached items matching the optional filter",
         ValueType = "string",
         ValueDescription = "Optional filter for cache keys",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class CacheClear : ISlotAsync
     {

@@ -20,7 +20,7 @@ namespace magic.lambda.misc
         Description = "Lists available compiled slots",
         ValueType = "string",
         ValueDescription = "Optional prefix filter for slot names",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Vocabulary : ISlot
     {
