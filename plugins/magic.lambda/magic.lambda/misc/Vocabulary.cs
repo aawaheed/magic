@@ -15,7 +15,7 @@ namespace magic.lambda.misc
     /// [vocabulary] slot allowing you to dynamically retrieve the names
     /// of all slots that exists in the system.
     /// </summary>
-    [Slot(Name = "vocabulary")]
+    [Slot(Name = "vocabulary", Description = "Lists available compiled slots")]
     public class Vocabulary : ISlot
     {
         readonly ISignalsProvider _signalProvider;

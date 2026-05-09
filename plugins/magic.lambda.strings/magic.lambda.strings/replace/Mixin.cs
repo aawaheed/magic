@@ -18,7 +18,7 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.mixin] slot for mxing static strings with the result of executing Hyperlambda.
     /// </summary>
-    [Slot(Name = "strings.mixin")]
+    [Slot(Name = "strings.mixin", Description = "Applies string interpolation from child expressions")]
     public class Mixin : ISlotAsync
     {
         readonly ILogger _logger;

@@ -12,7 +12,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.update] slot that will update an existing task.
     /// </summary>
-    [Slot(Name = "tasks.update")]
+    [Slot(Name = "tasks.update", Description = "Updates a task")]
     public class UpdateTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

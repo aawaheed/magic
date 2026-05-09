@@ -14,7 +14,7 @@ namespace magic.lambda.io.stream
     /// [io.stream.read] slot for reading everything from a stream as
     /// raw byte[] content and returning to caller.
     /// </summary>
-    [Slot(Name = "io.stream.read")]
+    [Slot(Name = "io.stream.read", Description = "Reads from an open stream")]
     public class ReadStream : ISlotAsync
     {
         /// <summary>

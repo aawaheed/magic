@@ -11,7 +11,7 @@ namespace magic.lambda.io.misc
     /// <summary>
     /// [.io.folder.root] slot for returning root path of system.
     /// </summary>
-    [Slot(Name = ".io.folder.root")]
+    [Slot(Name = ".io.folder.root", Description = "Returns the root folder for dynamic files")]
     public class GetDynamicFiles : ISlot
     {
         readonly IRootResolver _rootResolver;

@@ -14,7 +14,7 @@ namespace magic.lambda.pgsql
     /// [pgsql.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "pgsql.select")]
+    [Slot(Name = "pgsql.select", Description = "Executes a SELECT query on the current PostgreSQL connection")]
     public class Select : ISlotAsync
     {
         /// <summary>

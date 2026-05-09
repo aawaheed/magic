@@ -12,7 +12,7 @@ namespace magic.lambda.pgsql
     /// [pgsql.transaction.commit] slot for committing the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "pgsql.transaction.commit")]
+    [Slot(Name = "pgsql.transaction.commit", Description = "Commits the current PostgreSQL transaction")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

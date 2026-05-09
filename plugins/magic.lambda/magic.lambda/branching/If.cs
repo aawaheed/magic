@@ -10,7 +10,7 @@ namespace magic.lambda.branching
     /// <summary>
     /// [if] slot, allowing you to branch in your code execution according to some condition.
     /// </summary>
-    [Slot(Name = "if")]
+    [Slot(Name = "if", Description = "Evaluates a conditional branch")]
     public class If : ISlot
     {
         /// <summary>

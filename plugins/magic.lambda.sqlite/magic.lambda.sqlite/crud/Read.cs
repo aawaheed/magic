@@ -15,7 +15,7 @@ namespace magic.lambda.sqlite.crud
     /// <summary>
     /// The [sqlite.read] slot class
     /// </summary>
-    [Slot(Name = "sqlite.read")]
+    [Slot(Name = "sqlite.read", Description = "Reads rows through the current SQLite connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.content] slot for returning page HTML content.
     /// </summary>
-    [Slot(Name = "puppeteer.content")]
+    [Slot(Name = "puppeteer.content", Description = "Returns the current page HTML content")]
     public class Content : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

@@ -12,7 +12,7 @@ namespace magic.lambda.change
     /// <summary>
     /// [add] slot allowing you to append nodes into some destination node.
     /// </summary>
-    [Slot(Name = "add")]
+    [Slot(Name = "add", Description = "Adds nodes to the lambda graph")]
     public class Add : ISlot
     {
         /// <summary>

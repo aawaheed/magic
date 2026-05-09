@@ -15,7 +15,7 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.connect] slot for connecting to a PostgreSQL server instance.
     /// </summary>
-    [Slot(Name = "sqlite.connect")]
+    [Slot(Name = "sqlite.connect", Description = "Opens a SQLite connection")]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

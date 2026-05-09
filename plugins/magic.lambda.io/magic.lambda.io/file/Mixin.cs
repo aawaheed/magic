@@ -17,7 +17,7 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.mixin] slot for mixing a static content file with its associated Hyperlambda file.
     /// </summary>
-    [Slot(Name = "io.file.mixin")]
+    [Slot(Name = "io.file.mixin", Description = "Loads a file and mixes its content into the current node tree")]
     public class Mixin : ISlotAsync
     {
         readonly IFileService _fileService;

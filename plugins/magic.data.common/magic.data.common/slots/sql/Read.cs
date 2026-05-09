@@ -12,7 +12,7 @@ namespace magic.data.common.slots.sql
     /// <summary>
     /// [mssql.read] slot for selecting rows from some table.
     /// </summary>
-    [Slot(Name = "sql.read")]
+    [Slot(Name = "sql.read", Description = "Builds a parameterized SELECT SQL statement")]
     public class Read : ISlot
     {
         /// <summary>

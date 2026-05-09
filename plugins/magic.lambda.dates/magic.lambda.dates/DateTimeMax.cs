@@ -11,7 +11,7 @@ namespace magic.lambda.dates
     /// <summary>
     /// [date.max] slot, returning maximum value for DateTime type.
     /// </summary>
-    [Slot(Name = "date.max")]
+    [Slot(Name = "date.max", Description = "Returns the maximum DateTime value")]
     public class DateTimeMax : ISlot
     {
         /// <summary>

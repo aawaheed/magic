@@ -9,7 +9,7 @@ using magic.signals.contracts;
 
 namespace magic.lambda.threading
 {
-    [Slot(Name = "execution.timeout")]
+    [Slot(Name = "execution.timeout", Description = "Sets a timeout in milliseconds for the current execution")]
     public class ExecutionTimeout : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

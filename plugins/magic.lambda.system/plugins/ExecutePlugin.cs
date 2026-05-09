@@ -13,7 +13,7 @@ namespace magic.lambda.system.plugins
     /// to execute dynamically loaded C# code in a scope which automatically cleans up the dynamically
     /// loaded plugin.
     /// </summary>
-    [Slot(Name = "system.plugin.execute")]
+    [Slot(Name = "system.plugin.execute", Description = "Loads, executes, and unloads a plugin in a single scope")]
     public class ExecutePlugin : ISlot
     {
         readonly IRootResolver _rootResolver;

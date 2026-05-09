@@ -11,7 +11,7 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.connections.flush] slot for flushing SQLite connections.
     /// </summary>
-    [Slot(Name = "sqlite.connections.flush")]
+    [Slot(Name = "sqlite.connections.flush", Description = "Flushes cached SQLite connections")]
     public class FlushConnections : ISlot
     {
         /// <summary>

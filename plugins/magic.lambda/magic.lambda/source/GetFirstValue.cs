@@ -14,7 +14,7 @@ namespace magic.lambda.source
     /// [get-first-value] slot that will return the first value found by evaluating its expression, and/or
     /// its children nodes.
     /// </summary>
-    [Slot(Name = "get-first-value")]
+    [Slot(Name = "get-first-value", Description = "Returns the first matching value")]
     public class GetFirstValue : ISlot
     {
         /// <summary>

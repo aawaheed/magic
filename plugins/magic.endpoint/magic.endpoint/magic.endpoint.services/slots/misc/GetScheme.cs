@@ -11,7 +11,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [request.scheme] slot for returning the scheme of the request.
     /// </summary>
-    [Slot(Name = "request.scheme")]
+    [Slot(Name = "request.scheme", Description = "Returns the current request scheme")]
     public class GetScheme : ISlot
     {
         /// <summary>

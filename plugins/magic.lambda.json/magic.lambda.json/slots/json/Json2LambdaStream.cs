@@ -18,7 +18,7 @@ namespace magic.lambda.json.slots.json
     /// <summary>
     /// [json2lambda-stream] slot for transforming a piece of JSON encapsulated in a stream into a lambda hierarchy.
     /// </summary>
-    [Slot(Name = "json2lambda-stream")]
+    [Slot(Name = "json2lambda-stream", Description = "Transforms JSON stream content into a lambda hierarchy")]
     public class Json2LambdaStream : ISlotAsync
     {
         /// <summary>

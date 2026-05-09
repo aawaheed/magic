@@ -13,7 +13,7 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP PUT verb towards some resource.
     /// </summary>
-    [Slot(Name = "http.put")]
+    [Slot(Name = "http.put", Description = "Makes an HTTP PUT request")]
     public class HttpPut : ISlotAsync
     {
         readonly IMagicHttp _service;

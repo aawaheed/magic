@@ -14,7 +14,7 @@ namespace magic.lambda.crypto.slots.misc
     /// [crypto.get-key] slot that returns the fingerprint of the encryption key
     /// that was used to encrypt a message.
     /// </summary>
-    [Slot(Name = "crypto.get-key")]
+    [Slot(Name = "crypto.get-key", Description = "Returns or derives a cryptographic key")]
     public class GetKey : ISlot
     {
         /// <summary>

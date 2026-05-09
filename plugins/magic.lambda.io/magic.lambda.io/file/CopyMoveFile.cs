@@ -13,8 +13,8 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.copy]/[io.file.move] slot for moving a file on your server.
     /// </summary>
-    [Slot(Name = "io.file.copy")]
-    [Slot(Name = "io.file.move")]
+    [Slot(Name = "io.file.copy", Description = "Copies a file on the server")]
+    [Slot(Name = "io.file.move", Description = "Moves a file on the server")]
     public class CopyMoveFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

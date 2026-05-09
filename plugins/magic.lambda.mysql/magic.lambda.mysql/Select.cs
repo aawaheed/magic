@@ -15,7 +15,7 @@ namespace magic.lambda.mysql
     /// [mysql.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "mysql.select")]
+    [Slot(Name = "mysql.select", Description = "Executes a SELECT query on the current MySQL connection")]
     public class Select : ISlotAsync
     {
         /// <summary>

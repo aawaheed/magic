@@ -13,7 +13,7 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.delete] slot for deleting a folder on server.
     /// </summary>
-    [Slot(Name = "io.folder.delete")]
+    [Slot(Name = "io.folder.delete", Description = "Deletes a folder on the server")]
     public class DeleteFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

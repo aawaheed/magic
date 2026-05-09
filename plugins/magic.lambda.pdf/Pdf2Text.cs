@@ -18,7 +18,7 @@ namespace magic.lambda.pdf
     /// <summary>
     /// [pdf2text] slot for retrieving text content from a PDF file or stream.
     /// </summary>
-    [Slot(Name = "pdf2text")]
+    [Slot(Name = "pdf2text", Description = "Extracts text from a PDF file or stream")]
     public class Pdf2Text : ISlot
     {
         readonly IRootResolver _rootResolver;

@@ -11,7 +11,7 @@ namespace magic.lambda.crypto.slots.misc
     /// <summary>
     /// [crypto.fingerprint] slot that returns the fingerprint of whatever it is given.
     /// </summary>
-    [Slot(Name = "crypto.fingerprint")]
+    [Slot(Name = "crypto.fingerprint", Description = "Creates a fingerprint from the supplied input")]
     public class Fingerprint : ISlot
     {
         /// <summary>

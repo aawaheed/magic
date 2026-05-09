@@ -14,7 +14,7 @@ namespace magic.lambda.dates
     /// <summary>
     /// [date.format] slot, allowing you to format dates.
     /// </summary>
-    [Slot(Name = "date.format")]
+    [Slot(Name = "date.format", Description = "Formats a DateTime value")]
     public class DateTimeFormat : ISlot
     {
         /// <summary>

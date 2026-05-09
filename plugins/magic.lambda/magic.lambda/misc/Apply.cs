@@ -15,7 +15,7 @@ namespace magic.lambda.misc
     /// [apply] slot allowing you to use a lambda as a template for braiding together
     /// with variables of your own choosing.
     /// </summary>
-    [Slot(Name = "apply")]
+    [Slot(Name = "apply", Description = "Applies nodes to the current context")]
     public class Apply : ISlot
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.exists] slot for figuring out if a folder exists from before or not.
     /// </summary>
-    [Slot(Name = "io.folder.exists")]
+    [Slot(Name = "io.folder.exists", Description = "Returns true if a folder exists")]
     public class FolderExists : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -12,7 +12,7 @@ namespace magic.lambda.logical
     /// <summary>
     /// [not] slot, negating the value of its first children's value.
     /// </summary>
-    [Slot(Name = "not")]
+    [Slot(Name = "not", Description = "Negates a boolean expression")]
     public class Not : ISlot
     {
         /// <summary>

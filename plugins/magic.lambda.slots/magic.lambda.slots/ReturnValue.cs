@@ -11,7 +11,7 @@ namespace magic.lambda.slots
     /// <summary>
     /// [return-value] slot for returning a piece of value from some evaluation object.
     /// </summary>
-    [Slot(Name = "return-value")]
+    [Slot(Name = "return-value", Description = "Returns a value to the caller")]
     public class ReturnValue : ISlot
     {
         /// <summary>

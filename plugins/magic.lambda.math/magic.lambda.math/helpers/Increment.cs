@@ -13,7 +13,7 @@ namespace magic.lambda.math.helpers
     /// <summary>
     /// [math.increment] slot for incrementing some value, optionally by a [step] argument.
     /// </summary>
-    [Slot(Name = "math.increment")]
+    [Slot(Name = "math.increment", Description = "Increments a numeric value")]
     public class Increment : ISlotAsync
     {
         /// <summary>

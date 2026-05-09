@@ -13,7 +13,7 @@ namespace magic.lambda.odbc
     /// <summary>
     /// [odbc.execute] slot for executing a non query SQL command towards a previously opened ODBC connection.
     /// </summary>
-    [Slot(Name = "odbc.execute")]
+    [Slot(Name = "odbc.execute", Description = "Executes SQL on the current ODBC connection")]
     public class Execute : ISlotAsync
     {
         /// <summary>

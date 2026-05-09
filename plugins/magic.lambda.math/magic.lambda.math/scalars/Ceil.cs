@@ -13,7 +13,7 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.ceil] slot for rounding numbers up.
     /// </summary>
-    [Slot(Name = "math.ceil")]
+    [Slot(Name = "math.ceil", Description = "Rounds a number up")]
     public class Ceil : ISlot
     {
         /// <summary>

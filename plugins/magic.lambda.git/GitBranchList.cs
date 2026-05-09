@@ -15,7 +15,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.branch.list] slot to list branches.
     /// </summary>
-    [Slot(Name = "git.branch.list")]
+    [Slot(Name = "git.branch.list", Description = "Lists Git branches")]
     public class GitBranchList : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

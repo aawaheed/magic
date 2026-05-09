@@ -15,7 +15,7 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.resize] slot for resizing an existing image.
     /// </summary>
-    [Slot(Name = "image.resize")]
+    [Slot(Name = "image.resize", Description = "Resizes an image")]
     public class ImageResize : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -10,7 +10,7 @@ namespace magic.lambda.branching
     /// <summary>
     /// [else] slot for matching with an [if] and/or [else-if] slot. Must come after either or the previously mentioned slots.
     /// </summary>
-    [Slot(Name = "else")]
+    [Slot(Name = "else", Description = "Evaluates the fallback branch in a conditional block")]
     public class Else : ISlot
     {
         /// <summary>

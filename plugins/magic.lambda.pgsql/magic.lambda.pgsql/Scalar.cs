@@ -13,7 +13,7 @@ namespace magic.lambda.pgsql
     /// <summary>
     /// [pgsql.scalar] slot for executing a scalar type of SQL command.
     /// </summary>
-    [Slot(Name = "pgsql.scalar")]
+    [Slot(Name = "pgsql.scalar", Description = "Executes SQL and returns a scalar value from the current PostgreSQL connection")]
     public class Scalar : ISlotAsync
     {
         /// <summary>

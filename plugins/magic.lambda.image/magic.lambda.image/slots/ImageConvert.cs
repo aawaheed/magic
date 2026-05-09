@@ -12,7 +12,7 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.convert] slot for converting an existing image to another format.
     /// </summary>
-    [Slot(Name = "image.convert")]
+    [Slot(Name = "image.convert", Description = "Converts an image to another format")]
     public class ImageConvert : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

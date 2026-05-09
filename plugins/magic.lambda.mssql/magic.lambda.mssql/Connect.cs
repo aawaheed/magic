@@ -14,7 +14,7 @@ namespace magic.lambda.mssql
     /// <summary>
     /// [mssql.connect] slot, for connecting to a MS SQL Server database instance.
     /// </summary>
-    [Slot(Name = "mssql.connect")]
+    [Slot(Name = "mssql.connect", Description = "Opens a SQL Server connection")]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

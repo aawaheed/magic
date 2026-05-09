@@ -12,7 +12,7 @@ namespace magic.data.common.slots
     /// [data.connect] slot, for connecting to a database instance,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.connect")]
+    [Slot(Name = "data.connect", Description = "Opens a database connection using the configured provider")]
     public class Connect : DataSlotBase
     {
         /// <summary>

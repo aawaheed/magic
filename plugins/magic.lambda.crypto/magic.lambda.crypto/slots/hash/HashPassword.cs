@@ -15,7 +15,7 @@ namespace magic.lambda.crypto.slots.hash
     /// salt, making it highly secure for storing passwords hashed into a database, preventing Rainbow Dictionary
     /// attacks.
     /// </summary>
-    [Slot(Name = "crypto.password.hash")]
+    [Slot(Name = "crypto.password.hash", Description = "Hashes a password")]
     public class HashPassword : ISlot
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace magic.lambda.change
     /// <summary>
     /// [remove-nodes] slot allowing you to remove nodes from your lambda graph object.
     /// </summary>
-    [Slot(Name = "remove-nodes")]
+    [Slot(Name = "remove-nodes", Description = "Removes nodes from the lambda graph")]
     public class RemoveNodes : ISlot
     {
         /// <summary>

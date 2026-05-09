@@ -13,7 +13,7 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP GET verb towards some resource.
     /// </summary>
-    [Slot(Name = "http.get")]
+    [Slot(Name = "http.get", Description = "Makes an HTTP GET request")]
     public class HttpGet : ISlotAsync
     {
         readonly IMagicHttp _service;

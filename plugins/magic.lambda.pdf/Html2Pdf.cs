@@ -14,7 +14,7 @@ namespace magic.lambda.pdf
     /// <summary>
     /// [html2pdf] slot for converting HTML to PDF.
     /// </summary>
-    [Slot(Name = "html2pdf")]
+    [Slot(Name = "html2pdf", Description = "Converts HTML into a PDF document")]
     public class Html2Pdf : ISlot
     {
         readonly IRootResolver _rootResolver;

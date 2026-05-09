@@ -12,7 +12,7 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.cos] slot for finding cosin.
     /// </summary>
-    [Slot(Name = "math.cos")]
+    [Slot(Name = "math.cos", Description = "Calculates the cosine of the specified value")]
     public class Cos : ISlot
     {
         /// <summary>

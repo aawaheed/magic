@@ -19,7 +19,7 @@ namespace magic.lambda.system.terminal
     /// [system.execute] slot that allows you to execute a system process,
     /// passing in arguments, and returning the result of the execution.
     /// </summary>
-    [Slot(Name = "system.execute")]
+    [Slot(Name = "system.execute", Description = "Executes a system process")]
     public class TerminalExecute : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

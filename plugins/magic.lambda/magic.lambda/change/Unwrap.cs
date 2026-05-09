@@ -12,7 +12,7 @@ namespace magic.lambda.change
     /// <summary>
     /// [unwrap] slot allowing you to forward evaluate expressions in your lambda graph object.
     /// </summary>
-    [Slot(Name = "unwrap")]
+    [Slot(Name = "unwrap", Description = "Unwraps expressions in the selected nodes")]
     public class Unwrap : ISlot
     {
         /// <summary>

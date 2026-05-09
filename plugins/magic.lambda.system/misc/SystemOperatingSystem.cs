@@ -11,7 +11,7 @@ namespace magic.lambda.system
     /// [system.execute] slot that allows you to execute a system process,
     /// passing in arguments, and returning the result of the execution.
     /// </summary>
-    [Slot(Name = "system.os")]
+    [Slot(Name = "system.os", Description = "Returns a description of the current operating system")]
     public class SystemOperatingSystem : ISlot
     {
         /// <summary>

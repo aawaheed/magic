@@ -15,7 +15,7 @@ namespace magic.lambda.strings.misc
     /// [strings.starts-with] slot that returns true if the specified string starts with its value
     /// from its first argument.
     /// </summary>
-    [Slot(Name = "strings.starts-with")]
+    [Slot(Name = "strings.starts-with", Description = "Returns true if a string starts with the specified text")]
     public class StartsWith : ISlotAsync
     {
         /// <summary>

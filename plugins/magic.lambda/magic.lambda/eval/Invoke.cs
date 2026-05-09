@@ -14,7 +14,7 @@ namespace magic.lambda.eval
     /// [invoke] slot, allowing you to dynamically evaluate a piece of lambda as if it was
     /// a slot, passing in arguments, and returning nodes to caller.
     /// </summary>
-    [Slot(Name = "invoke")]
+    [Slot(Name = "invoke", Description = "Invokes a lambda expression as a callable slot")]
     public class Invoke : ISlotAsync
     {
         /// <summary>

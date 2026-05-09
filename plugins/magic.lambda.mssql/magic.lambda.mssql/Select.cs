@@ -14,7 +14,7 @@ namespace magic.lambda.mssql
     /// [mssql.select] slot, for executing a select type of SQL, returning
     /// data rows to the caller.
     /// </summary>
-    [Slot(Name = "mssql.select")]
+    [Slot(Name = "mssql.select", Description = "Executes a SELECT query on the current SQL Server connection")]
     public class Select : ISlotAsync
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.capabilities] slot for returning the capabilities of the log implementation.
     /// </summary>
-    [Slot(Name = "log.capabilities")]
+    [Slot(Name = "log.capabilities", Description = "Returns capabilities of the current log provider")]
     public class Capabilities : ISlot
     {
         readonly ILogQuery _query;

@@ -14,7 +14,7 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.load-recursively] slot for loading a file on your server.
     /// </summary>
-    [Slot(Name = "io.file.load-recursively")]
+    [Slot(Name = "io.file.load-recursively", Description = "Loads files recursively from the specified folder")]
     public class LoadFileRecursively : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -15,7 +15,7 @@ namespace magic.lambda.threading
     /// [semaphore] slot, allowing you to create a semaphore,
     /// only allowing one caller entry into some lambda object at the same time.
     /// </summary>
-    [Slot(Name = "semaphore")]
+    [Slot(Name = "semaphore", Description = "Creates a new named semaphore where only one thread can gain access at the same time")]
     public class Semaphore : ISlotAsync
     {
         static readonly ConcurrentDictionary<string, Sys.SemaphoreSlim> _semaphores = new();

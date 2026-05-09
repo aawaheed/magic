@@ -19,5 +19,10 @@ namespace magic.signals.contracts
         /// Name of slot.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Description of slot.
+        /// </summary>
+        public string Description { get; set; }
     }
 }

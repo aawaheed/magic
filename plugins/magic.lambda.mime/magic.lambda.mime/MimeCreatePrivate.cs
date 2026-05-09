@@ -16,7 +16,7 @@ namespace magic.lambda.mime
     /// Notice, caller is responsible for disposing any streams created during process, but this
     /// can be easily done by using the MimeBuilder.DisposeStreams on the MimeEntity returned.
     /// </summary>
-    [Slot(Name = ".mime.create")]
+    [Slot(Name = ".mime.create", Description = "Creates a MIME message without exposing the public wrapper slot")]
     public class MimeCreatePrivate : ISlotAsync
     {
         readonly IStreamService _streamService;

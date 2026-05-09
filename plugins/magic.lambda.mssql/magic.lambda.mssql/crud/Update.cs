@@ -15,7 +15,7 @@ namespace magic.lambda.mssql.crud
     /// <summary>
     /// [mssql.update] slot for updating a record in some table.
     /// </summary>
-    [Slot(Name = "mssql.update")]
+    [Slot(Name = "mssql.update", Description = "Updates rows through the current SQL Server connection")]
     public class Update : ISlotAsync
     {
         /// <summary>

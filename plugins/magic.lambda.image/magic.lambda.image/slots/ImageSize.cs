@@ -13,7 +13,7 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.size] slot for returning the width and height of an existing image.
     /// </summary>
-    [Slot(Name = "image.size")]
+    [Slot(Name = "image.size", Description = "Returns the width and height of an image")]
     public class ImageSize : ISlot
     {
         readonly IRootResolver _rootResolver;

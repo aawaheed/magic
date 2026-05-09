@@ -14,7 +14,7 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.evaluate] slot for executing a JS expression in the page.
     /// </summary>
-    [Slot(Name = "puppeteer.evaluate")]
+    [Slot(Name = "puppeteer.evaluate", Description = "Evaluates JavaScript in the page context")]
     public class Evaluate : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

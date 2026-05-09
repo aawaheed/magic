@@ -14,7 +14,7 @@ namespace magic.lambda.odbc
     /// [odbc.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "odbc.select")]
+    [Slot(Name = "odbc.select", Description = "Executes a SELECT query on the current ODBC connection")]
     public class Select : ISlotAsync
     {
         /// <summary>

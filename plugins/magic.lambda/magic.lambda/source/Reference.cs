@@ -12,7 +12,7 @@ namespace magic.lambda.source
     /// <summary>
     /// [reference] slot that will set its own value to the specified expression's evaluated node, by reference.
     /// </summary>
-    [Slot(Name = "reference")]
+    [Slot(Name = "reference", Description = "Returns a reference to matching nodes")]
     public class Reference : ISlot
     {
         /// <summary>

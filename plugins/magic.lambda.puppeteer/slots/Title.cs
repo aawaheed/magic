@@ -11,7 +11,7 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.title] slot for returning page title.
     /// </summary>
-    [Slot(Name = "puppeteer.title")]
+    [Slot(Name = "puppeteer.title", Description = "Returns the current page title")]
     public class Title : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

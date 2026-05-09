@@ -13,7 +13,7 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [mysql.execute] slot for executing a non query SQL command.
     /// </summary>
-    [Slot(Name = "mysql.execute")]
+    [Slot(Name = "mysql.execute", Description = "Executes SQL on the current MySQL connection")]
     public class Execute : ISlotAsync
     {
         /// <summary>

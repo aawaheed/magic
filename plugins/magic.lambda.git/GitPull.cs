@@ -15,7 +15,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.pull] slot to pull updates from a remote.
     /// </summary>
-    [Slot(Name = "git.pull")]
+    [Slot(Name = "git.pull", Description = "Pulls updates from a Git remote")]
     public class GitPull : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

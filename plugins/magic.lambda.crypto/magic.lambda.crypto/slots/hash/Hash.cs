@@ -17,12 +17,12 @@ namespace magic.lambda.crypto.slots.hash
     /// <summary>
     /// [crypto.hash] slot to create a cryptographically secure hash of a piece of string.
     /// </summary>
-    [Slot(Name = "crypto.hash")]
-    [Slot(Name = "crypto.hash.sha1")]
-    [Slot(Name = "crypto.hash.md5")]
-    [Slot(Name = "crypto.hash.sha256")]
-    [Slot(Name = "crypto.hash.sha384")]
-    [Slot(Name = "crypto.hash.sha512")]
+    [Slot(Name = "crypto.hash", Description = "Hashes input using the configured hash algorithm")]
+    [Slot(Name = "crypto.hash.sha1", Description = "Hashes input using the SHA1 algorithm")]
+    [Slot(Name = "crypto.hash.md5", Description = "Hashes input using the MD5 algorithm")]
+    [Slot(Name = "crypto.hash.sha256", Description = "Hashes input using the SHA256 algorithm")]
+    [Slot(Name = "crypto.hash.sha384", Description = "Hashes input using the SHA384 algorithm")]
+    [Slot(Name = "crypto.hash.sha512", Description = "Hashes input using the SHA512 algorithm")]
     public class Hash : ISlotAsync
     {
         readonly IStreamService _streamService;

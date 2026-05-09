@@ -15,7 +15,7 @@ namespace magic.lambda.mssql.crud
     /// <summary>
     /// [mssql.delete] slot for deleting a record in some table.
     /// </summary>
-    [Slot(Name = "mssql.delete")]
+    [Slot(Name = "mssql.delete", Description = "Deletes rows through the current SQL Server connection")]
     public class Delete : ISlotAsync
     {
         /// <summary>

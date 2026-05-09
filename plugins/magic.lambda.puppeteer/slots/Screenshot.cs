@@ -16,7 +16,7 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.screenshot] slot for saving a screenshot to disk.
     /// </summary>
-    [Slot(Name = "puppeteer.screenshot")]
+    [Slot(Name = "puppeteer.screenshot", Description = "Captures a screenshot of the page")]
     public class Screenshot : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

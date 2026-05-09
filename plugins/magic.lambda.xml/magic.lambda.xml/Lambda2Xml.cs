@@ -17,7 +17,7 @@ namespace magic.lambda.xml
     /// <summary>
     /// [lambda2xml] slot for transforming a piece of lambda to an XML snippet.
     /// </summary>
-    [Slot(Name = "lambda2xml")]
+    [Slot(Name = "lambda2xml", Description = "Converts a lambda object to an XML fragment or document")]
     public class Lambda2Xml : ISlot
     {
         /// <summary>

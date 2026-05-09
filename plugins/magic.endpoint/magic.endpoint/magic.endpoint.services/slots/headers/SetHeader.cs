@@ -13,7 +13,7 @@ namespace magic.endpoint.services.slots.headers
     /// [response.headers.set] slot for adding a Response HTTP header that will be
     /// returned back to the client as an HTTP header.
     /// </summary>
-    [Slot(Name = "response.headers.set")]
+    [Slot(Name = "response.headers.set", Description = "Sets a response header")]
     public class SetHeader : ISlot
     {
         /// <summary>

@@ -18,7 +18,7 @@ namespace magic.lambda.scheduler.slots.scheduler
     /// [tasks.schedule] slot that will schedule an existing task for being executed, either
     /// according to some [repeats], or at a specific [due] date in the future.
     /// </summary>
-    [Slot(Name = "tasks.schedule")]
+    [Slot(Name = "tasks.schedule", Description = "Schedules a task")]
     public class ScheduleTask : ISlotAsync
     {
         readonly ITaskScheduler _scheduler;

@@ -14,7 +14,7 @@ namespace magic.lambda.crypto.slots.misc
     /// <summary>
     /// [crypto.random] slot to create a bunch of cryptographically secured random characters.
     /// </summary>
-    [Slot(Name = "crypto.random")]
+    [Slot(Name = "crypto.random", Description = "Returns random bytes")]
     public class Random : ISlot
     {
         const string _alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

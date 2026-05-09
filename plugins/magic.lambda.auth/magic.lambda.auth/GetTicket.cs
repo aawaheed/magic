@@ -13,7 +13,7 @@ namespace magic.lambda.auth
     /// <summary>
     /// [auth.ticket.get] slot for getting the username and roles claim(s) for currently logged in user.
     /// </summary>
-    [Slot(Name = "auth.ticket.get")]
+    [Slot(Name = "auth.ticket.get", Description = "Returns the current ticket username and roles")]
     public class GetTicket : ISlot
     {
         readonly ITicketProvider _ticketProvider;

@@ -13,7 +13,7 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.info] slot for logging informational pieces of log entries.
     /// </summary>
-    [Slot(Name = "log.info")]
+    [Slot(Name = "log.info", Description = "Logs an informational entry")]
     public class LogInfo : ISlotAsync
     {
         readonly ILogger _logger;

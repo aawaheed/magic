@@ -12,7 +12,7 @@ namespace magic.lambda.math.basics
     /// <summary>
     /// [math.max] slot for finding max value.
     /// </summary>
-    [Slot(Name = "math.max")]
+    [Slot(Name = "math.max", Description = "Returns the largest value from the supplied inputs")]
     public class Max : ISlotAsync
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace magic.lambda.source
     /// <summary>
     /// [get-name] slot that will return the name of the node found by evaluating an expression.
     /// </summary>
-    [Slot(Name = "get-name")]
+    [Slot(Name = "get-name", Description = "Returns the name of the first matching node")]
     public class GetName : ISlot
     {
         /// <summary>

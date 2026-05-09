@@ -14,7 +14,7 @@ namespace magic.lambda.pgsql
     /// <summary>
     /// [pgsql.connect] slot for connecting to a PostgreSQL server instance.
     /// </summary>
-    [Slot(Name = "pgsql.connect")]
+    [Slot(Name = "pgsql.connect", Description = "Opens a PostgreSQL connection")]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

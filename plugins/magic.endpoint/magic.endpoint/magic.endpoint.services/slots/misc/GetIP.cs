@@ -13,7 +13,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [request.ip] slot for returning the IP address the request originated from.
     /// </summary>
-    [Slot(Name = "request.ip")]
+    [Slot(Name = "request.ip", Description = "Returns the client IP address for the current request")]
     public class GetIP : ISlot
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [server.ip] slot for returning the IP address of the server.
     /// </summary>
-    [Slot(Name = "server.ip")]
+    [Slot(Name = "server.ip", Description = "Returns the server IP address")]
     public class GetServerIP : ISlot
     {
         /// <summary>

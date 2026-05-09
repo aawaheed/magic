@@ -13,7 +13,7 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.decrypt] slot to decrypt some content using a private key that was previously
     /// encrypted using a public key.
     /// </summary>
-    [Slot(Name = "crypto.rsa.decrypt")]
+    [Slot(Name = "crypto.rsa.decrypt", Description = "Decrypts RSA encrypted data")]
     public class Decrypt : ISlot
     {
         /// <summary>

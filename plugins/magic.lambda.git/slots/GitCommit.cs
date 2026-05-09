@@ -14,7 +14,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.commit] slot to create a commit in a repo.
     /// </summary>
-    [Slot(Name = "git.commit")]
+    [Slot(Name = "git.commit", Description = "Creates a Git commit")]
     public class GitCommit : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

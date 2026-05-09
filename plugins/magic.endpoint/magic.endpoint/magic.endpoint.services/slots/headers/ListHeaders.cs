@@ -16,7 +16,7 @@ namespace magic.endpoint.services.slots.headers
     /// Notice, this slot also returns the values of each HTTP headers, in addition to
     /// their names, as a key/value collection returned back to the client.
     /// </summary>
-    [Slot(Name = "request.headers.list")]
+    [Slot(Name = "request.headers.list", Description = "Lists request headers")]
     public class ListHeaders : ISlot
     {
         /// <summary>

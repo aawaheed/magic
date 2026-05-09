@@ -12,7 +12,7 @@ namespace magic.data.common.slots
     /// [data.execute] slot, for executing some SQL towards a database,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.execute")]
+    [Slot(Name = "data.execute", Description = "Executes SQL against the current database connection")]
     public class Execute : DataSlotBase
     {
         /// <summary>

@@ -14,7 +14,7 @@ namespace magic.lambda.auth
     /// [auth.ticket.in-role] slot returning true if user belongs to any of the roles supplied
     /// as a comma separated list of string values.
     /// </summary>
-    [Slot(Name = "auth.ticket.in-role")]
+    [Slot(Name = "auth.ticket.in-role", Description = "Returns true if the current ticket belongs to one of the specified roles")]
     public class InRole : ISlot
     {
         readonly ITicketProvider _ticketProvider;

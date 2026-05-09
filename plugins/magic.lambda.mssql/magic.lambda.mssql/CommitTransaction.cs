@@ -12,7 +12,7 @@ namespace magic.lambda.mysql
     /// [mssql.transaction.commit] slot for committing the top level MS SQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "mssql.transaction.commit")]
+    [Slot(Name = "mssql.transaction.commit", Description = "Commits the current SQL Server transaction")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace magic.lambda.system.plugins
     /// <summary>
     /// [system.plugin.unload] slot that will unload a previously loaded assembly.
     /// </summary>
-    [Slot(Name = "system.plugin.unload")]
+    [Slot(Name = "system.plugin.unload", Description = "Unloads a plugin assembly")]
     public class UnloadPlugin : ISlot
     {
         readonly ISignalsProvider _provider;

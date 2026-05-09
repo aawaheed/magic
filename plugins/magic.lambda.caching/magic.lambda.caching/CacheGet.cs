@@ -13,7 +13,7 @@ namespace magic.lambda.caching
     /// <summary>
     /// [cache.get] slot returning an item from the cache, if existing.
     /// </summary>
-    [Slot(Name = "cache.get")]
+    [Slot(Name = "cache.get", Description = "Returns a cached value by key")]
     public class CacheGet : ISlotAsync
     {
         readonly IMagicCache _cache;

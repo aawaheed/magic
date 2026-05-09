@@ -11,7 +11,7 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [.db-factory.connection.mysql] slot for creating a MySQL connection and returning to caller.
     /// </summary>
-    [Slot(Name = ".db-factory.connection.mysql")]
+    [Slot(Name = ".db-factory.connection.mysql", Description = "Creates a MySQL connection factory")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>

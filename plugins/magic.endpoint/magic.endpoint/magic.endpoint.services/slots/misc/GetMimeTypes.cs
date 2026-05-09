@@ -10,7 +10,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [mime.list] slot for listing all mime types registered in current installation.
     /// </summary>
-    [Slot(Name = "mime.list")]
+    [Slot(Name = "mime.list", Description = "Lists registered MIME type mappings")]
     public class GetMimeTypes : ISlot
     {
         /// <summary>

@@ -15,7 +15,7 @@ namespace magic.lambda.sqlite.crud
     /// <summary>
     /// The [sqlite.update] slot class
     /// </summary>
-    [Slot(Name = "sqlite.update")]
+    [Slot(Name = "sqlite.update", Description = "Updates rows through the current SQLite connection")]
     public class Update : ISlotAsync
     {
         /// <summary>

@@ -14,7 +14,7 @@ namespace magic.lambda.caching
     /// <summary>
     /// [cache.list] slot returning all cache items to caller.
     /// </summary>
-    [Slot(Name = "cache.list")]
+    [Slot(Name = "cache.list", Description = "Lists cached keys matching the optional filter")]
     public class CacheList : ISlotAsync
     {
         readonly IMagicCache _cache;

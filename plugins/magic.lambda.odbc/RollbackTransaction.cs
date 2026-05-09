@@ -12,7 +12,7 @@ namespace magic.lambda.odbc
     /// [odbc.transaction.rollback] slot for rolling back the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "odbc.transaction.rollback")]
+    [Slot(Name = "odbc.transaction.rollback", Description = "Rolls back the current ODBC transaction")]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

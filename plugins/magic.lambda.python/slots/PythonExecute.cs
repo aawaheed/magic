@@ -20,7 +20,7 @@ namespace magic.lambda.python
     /// <summary>
     /// [python.execute] slot for executing Python code or a Python file.
     /// </summary>
-    [Slot(Name = "python.execute")]
+    [Slot(Name = "python.execute", Description = "Executes Python code")]
     public class PythonExecute : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

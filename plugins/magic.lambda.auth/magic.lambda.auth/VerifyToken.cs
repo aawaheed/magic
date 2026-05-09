@@ -18,7 +18,7 @@ namespace magic.backend.slots
     /// <summary>
     /// [auth.token.verify] slot validating an external JWT token.
     /// </summary>
-    [Slot(Name = "auth.token.verify")]
+    [Slot(Name = "auth.token.verify", Description = "Verifies an externally created JWT token")]
     public class VerifyToken : ISlotAsync
     {
         /// <summary>

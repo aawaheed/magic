@@ -10,7 +10,7 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.url] slot for returning current URL.
     /// </summary>
-    [Slot(Name = "puppeteer.url")]
+    [Slot(Name = "puppeteer.url", Description = "Returns the current page URL")]
     public class Url : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

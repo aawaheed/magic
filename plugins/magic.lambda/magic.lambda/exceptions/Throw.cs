@@ -13,7 +13,7 @@ namespace magic.lambda.exceptions
     /// <summary>
     /// [throw] slot that throws an exception.
     /// </summary>
-    [Slot(Name = "throw")]
+    [Slot(Name = "throw", Description = "Throws an exception from Hyperlambda")]
     public class Throw : ISlot
     {
         /// <summary>

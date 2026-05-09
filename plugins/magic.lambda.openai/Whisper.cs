@@ -13,7 +13,7 @@ using magic.signals.contracts;
 
 namespace magic.lambda.openai
 {
-    [Slot(Name = "openai.whisper")]
+    [Slot(Name = "openai.whisper", Description = "Transcribes audio content using OpenAI Whisper")]
     public class Whisper : ISlotAsync
     {
         readonly HttpClient _httpClient;

@@ -13,7 +13,7 @@ namespace magic.lambda.json.slots.lambda
     /// <summary>
     /// [lambda2json] slot for transforming a lambda hierarchy to a JSON string.
     /// </summary>
-    [Slot(Name = "lambda2json")]
+    [Slot(Name = "lambda2json", Description = "Transforms a lambda hierarchy into JSON")]
     public class Lambda2Json : ISlot
     {
         /// <summary>

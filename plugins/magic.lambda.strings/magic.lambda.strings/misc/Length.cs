@@ -11,7 +11,7 @@ namespace magic.lambda.strings.misc
     /// <summary>
     /// [strings.length] slot that returns the length of its specified string argument.
     /// </summary>
-    [Slot(Name = "strings.length")]
+    [Slot(Name = "strings.length", Description = "Returns the length of a string")]
     public class Length : ISlot
     {
         /// <summary>

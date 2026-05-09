@@ -14,9 +14,9 @@ namespace magic.lambda.strings.replace
     /// [strings.trim]/[strings.trim-start]/[strings.trim-end] slot for trimming a specified string,
     /// optionally passing in a string that defines which characters to trim away.
     /// </summary>
-    [Slot(Name = "strings.trim")]
-    [Slot(Name = "strings.trim-start")]
-    [Slot(Name = "strings.trim-end")]
+    [Slot(Name = "strings.trim", Description = "Trims characters from both ends of the specified string")]
+    [Slot(Name = "strings.trim-start", Description = "Trims characters from the start of the specified string")]
+    [Slot(Name = "strings.trim-end", Description = "Trims characters from the end of the specified string")]
     public class Trim : ISlotAsync
     {
         /// <summary>

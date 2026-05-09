@@ -14,7 +14,7 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.concat] slot for concatenating two or more strings together to become one.
     /// </summary>
-    [Slot(Name = "strings.substring")]
+    [Slot(Name = "strings.substring", Description = "Returns a substring from the specified string")]
     public class Substring : ISlotAsync
     {
         /// <summary>

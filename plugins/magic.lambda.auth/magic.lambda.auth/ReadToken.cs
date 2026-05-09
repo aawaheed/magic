@@ -19,7 +19,7 @@ namespace magic.backend.slots
     /// <summary>
     /// [auth.token.read] slot validating a specified JWT token.
     /// </summary>
-    [Slot(Name = "auth.token.read")]
+    [Slot(Name = "auth.token.read", Description = "Reads claims, roles, and username from a JWT token")]
     public class ReadToken : ISlot
     {
         readonly private IConfiguration _configuration;

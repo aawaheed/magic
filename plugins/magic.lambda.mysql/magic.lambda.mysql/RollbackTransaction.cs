@@ -12,7 +12,7 @@ namespace magic.lambda.mysql
     /// [mysql.transaction.rollback] slot for rolling back the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "mysql.transaction.rollback")]
+    [Slot(Name = "mysql.transaction.rollback", Description = "Rolls back the current MySQL transaction")]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

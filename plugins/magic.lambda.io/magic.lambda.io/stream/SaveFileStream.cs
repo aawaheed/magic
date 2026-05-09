@@ -16,7 +16,7 @@ namespace magic.lambda.io.stream
     /// [io.stream.save-file] slot for saving a stream on your server
     /// to the specified filename.
     /// </summary>
-    [Slot(Name = "io.stream.save-file")]
+    [Slot(Name = "io.stream.save-file", Description = "Saves a stream to a file")]
     public class SaveFileStream : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

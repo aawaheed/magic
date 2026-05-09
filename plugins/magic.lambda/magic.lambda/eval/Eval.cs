@@ -15,7 +15,7 @@ namespace magic.lambda.eval
     /// <summary>
     /// [eval] slot, allowing you to dynamically evaluate a piece of lambda.
     /// </summary>
-    [Slot(Name = "eval")]
+    [Slot(Name = "eval", Description = "Evaluates Hyperlambda nodes")]
     public class Eval : ISlotAsync
     {
         /// <summary>

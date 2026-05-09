@@ -12,7 +12,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.delete] slot that will delete the task withthe specified ID.
     /// </summary>
-    [Slot(Name = "tasks.delete")]
+    [Slot(Name = "tasks.delete", Description = "Deletes a task")]
     public class DeleteTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

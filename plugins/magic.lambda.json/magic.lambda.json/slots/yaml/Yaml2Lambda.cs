@@ -15,7 +15,7 @@ namespace magic.lambda.json.slots.yaml
     /// <summary>
     /// [yaml2lambda] slot for transforming a piece of YAML to a lambda hierarchy.
     /// </summary>
-    [Slot(Name = "yaml2lambda")]
+    [Slot(Name = "yaml2lambda", Description = "Transforms YAML into a lambda hierarchy")]
     public class Yaml2Lambda : ISlot
     {
         /// <summary>

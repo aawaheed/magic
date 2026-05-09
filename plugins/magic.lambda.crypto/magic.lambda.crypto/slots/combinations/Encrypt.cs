@@ -19,7 +19,7 @@ namespace magic.lambda.crypto.slots.combinations
     /// This slot will first cryptographically sign the message, then encrypt it,
     /// resulting in a format you can read about in the project's README.md file.
     /// </summary>
-    [Slot(Name = "crypto.encrypt")]
+    [Slot(Name = "crypto.encrypt", Description = "Encrypts data using the configured combination algorithm")]
     public class Encrypt : ISlot
     {
         /// <summary>

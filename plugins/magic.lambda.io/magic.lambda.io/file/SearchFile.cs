@@ -17,7 +17,7 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.search] slot for searching files by content.
     /// </summary>
-    [Slot(Name = "io.file.search")]
+    [Slot(Name = "io.file.search", Description = "Searches for files on the server")]
     public class SearchFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

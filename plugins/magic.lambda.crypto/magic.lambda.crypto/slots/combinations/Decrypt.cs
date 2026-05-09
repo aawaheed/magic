@@ -18,7 +18,7 @@ namespace magic.lambda.crypto.slots.combinations
     /// 
     /// This slots assumes the message was encrypted using its [crypto.encrypt] equivalent.
     /// </summary>
-    [Slot(Name = "crypto.decrypt")]
+    [Slot(Name = "crypto.decrypt", Description = "Decrypts data using the configured combination algorithm")]
     public class Decrypt : ISlot
     {
         /// <summary>

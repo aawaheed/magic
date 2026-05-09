@@ -12,7 +12,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [mime.add] slot for associating a file extension with a MIME type.
     /// </summary>
-    [Slot(Name = "mime.add")]
+    [Slot(Name = "mime.add", Description = "Registers a MIME type mapping")]
     public class AddMimeType : ISlot
     {
         /// <summary>

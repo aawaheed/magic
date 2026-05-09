@@ -13,7 +13,7 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP POST verb towards some resource.
     /// </summary>
-    [Slot(Name = "http.post")]
+    [Slot(Name = "http.post", Description = "Makes an HTTP POST request")]
     public class HttpPost : ISlotAsync
     {
         readonly IMagicHttp _service;

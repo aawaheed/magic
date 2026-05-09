@@ -12,7 +12,7 @@ namespace magic.lambda.misc
     /// <summary>
     /// [types] slot returning all supported Hyperlambda types.
     /// </summary>
-    [Slot(Name = "types")]
+    [Slot(Name = "types", Description = "Lists known CLR types")]
     public class Types : ISlot
     {
         /// <summary>

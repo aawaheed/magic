@@ -11,7 +11,7 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.mandatory] slot, for verifying that some input was given.
     /// </summary>
-    [Slot(Name = "validators.mandatory")]
+    [Slot(Name = "validators.mandatory", Description = "Validates that input is present")]
     public class ValidateMandatory : ISlot
     {
         /// <summary>

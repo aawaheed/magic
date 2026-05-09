@@ -14,9 +14,9 @@ namespace magic.lambda.slots
     /// <summary>
     /// [signal] slot for invoking dynamically created slots, that have been created with the [slots.create] slot.
     /// </summary>
-    [Slot(Name = "signal")]
-    [Slot(Name = "execute")]
-    [Slot(Name = "try-signal")]
+    [Slot(Name = "signal", Description = "Invokes a dynamic slot")]
+    [Slot(Name = "execute", Description = "Invokes a dynamic slot after unwrapping descendant expressions")]
+    [Slot(Name = "try-signal", Description = "Invokes a dynamic slot if it exists and ignores missing slots")]
     public class SignalSlot : ISlotAsync
     {
         /// <summary>

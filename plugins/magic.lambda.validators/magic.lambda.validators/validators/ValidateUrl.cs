@@ -13,7 +13,7 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.url] slot, for verifying that some input is a valid URL.
     /// </summary>
-    [Slot(Name = "validators.url")]
+    [Slot(Name = "validators.url", Description = "Validates that input is a URL")]
     public class ValidateUrl : ISlot
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace magic.lambda.misc
     /// <summary>
     /// [byte-array] slot converting whatever values are found in its expression to a byte array.
     /// </summary>
-    [Slot(Name = "floatArray2bytes")]
+    [Slot(Name = "floatArray2bytes", Description = "Converts float values to a byte array")]
     public class FloatArray2Bytes : ISlot
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace magic.lambda.comparison
     /// <summary>
     /// [eq] slot allowing you to compare two values for equality.
     /// </summary>
-    [Slot(Name = "eq")]
+    [Slot(Name = "eq", Description = "Returns true if two values are equal")]
     public class Eq : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

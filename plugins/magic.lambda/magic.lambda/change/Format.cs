@@ -13,7 +13,7 @@ namespace magic.lambda.change
     /// <summary>
     /// [format] slot allowing you to format some value according to some pattern.
     /// </summary>
-    [Slot(Name = "format")]
+    [Slot(Name = "format", Description = "Strings formats the specified value")]
     public class Format : ISlot
     {
         /// <summary>

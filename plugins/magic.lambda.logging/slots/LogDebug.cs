@@ -13,7 +13,7 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.debug] slot for logging debug log entries.
     /// </summary>
-    [Slot(Name = "log.debug")]
+    [Slot(Name = "log.debug", Description = "Logs a debug entry")]
     public class LogDebug : ISlotAsync
     {
         readonly ILogger _logger;

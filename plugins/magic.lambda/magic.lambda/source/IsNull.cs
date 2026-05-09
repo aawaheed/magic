@@ -12,8 +12,8 @@ namespace magic.lambda.source
     /// <summary>
     /// [null] slot returning true if whatever expression it's given actually yields a result.
     /// </summary>
-    [Slot(Name = "null")]
-    [Slot(Name = "not-null")]
+    [Slot(Name = "null", Description = "Returns true if the specified node or expression is null")]
+    [Slot(Name = "not-null", Description = "Returns true if the specified node or expression is not null")]
     public class IsNull : ISlot
     {
         /// <summary>

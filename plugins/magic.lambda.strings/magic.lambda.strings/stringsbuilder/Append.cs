@@ -12,7 +12,7 @@ namespace magic.lambda.strings.builder
     /// <summary>
     /// [strings.builder.append] slot that performs the appending onto the StringBuilder of its specified string argument.
     /// </summary>
-    [Slot(Name = "strings.builder.append")]
+    [Slot(Name = "strings.builder.append", Description = "Appends text to the current string builder")]
     public class Append : ISlot
     {
         /// <summary>

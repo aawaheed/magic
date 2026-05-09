@@ -12,7 +12,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.execute] slot that will execute the task with the specified ID.
     /// </summary>
-    [Slot(Name = "tasks.execute")]
+    [Slot(Name = "tasks.execute", Description = "Executes a task immediately")]
     public class ExecuteTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

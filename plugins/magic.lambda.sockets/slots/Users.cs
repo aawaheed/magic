@@ -13,7 +13,7 @@ namespace magic.lambda.sockets.slots
     /// <summary>
     /// [sockets.users] slot that returns currently connected users.
     /// </summary>
-    [Slot(Name = "sockets.users")]
+    [Slot(Name = "sockets.users", Description = "Lists users connected to a socket group")]
     public class Users : ISlot
     {
         readonly IConfiguration _configuration;

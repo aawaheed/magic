@@ -16,7 +16,7 @@ namespace magic.lambda.mysql.crud
     /// <summary>
     /// The [mysql.read] slot class
     /// </summary>
-    [Slot(Name = "mysql.read")]
+    [Slot(Name = "mysql.read", Description = "Reads rows through the current MySQL connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

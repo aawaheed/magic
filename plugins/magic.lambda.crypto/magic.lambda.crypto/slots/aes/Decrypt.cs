@@ -13,7 +13,7 @@ namespace magic.lambda.crypto.slots.aes
     /// [crypto.aes.decrypt] slot to decrypt some content using a symmetric cryptography algorithm (AES),
     /// that was previously encrypted using the same algorithm.
     /// </summary>
-    [Slot(Name = "crypto.aes.decrypt")]
+    [Slot(Name = "crypto.aes.decrypt", Description = "Decrypts AES encrypted data")]
     public class Decrypt : ISlot
     {
         /// <summary>

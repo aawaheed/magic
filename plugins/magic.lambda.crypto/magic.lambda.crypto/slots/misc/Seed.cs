@@ -13,7 +13,7 @@ namespace magic.lambda.crypto.slots.misc
     /// <summary>
     /// [crypto.seed] slot allowing you to explicitly seed the CSRNG instance.
     /// </summary>
-    [Slot(Name = "crypto.seed")]
+    [Slot(Name = "crypto.seed", Description = "Seeds the cryptographic random generator")]
     public class Seed : ISlot
     {
         /// <summary>

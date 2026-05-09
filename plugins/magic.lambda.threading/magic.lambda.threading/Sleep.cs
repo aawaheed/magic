@@ -14,7 +14,7 @@ namespace magic.lambda.threading
     /// [semaphore] slot, allowing you to create a semaphore,
     /// only allowing one caller entry into some lambda object at the same time.
     /// </summary>
-    [Slot(Name = "sleep")]
+    [Slot(Name = "sleep", Description = "Delays execution for the specified number of milliseconds")]
     public class Sleep : ISlotAsync
     {
         /// <summary>

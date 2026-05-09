@@ -17,7 +17,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [github.repo.list] slot to list GitHub repositories.
     /// </summary>
-    [Slot(Name = "github.repo.list")]
+    [Slot(Name = "github.repo.list", Description = "Lists GitHub repositories")]
     public class GitHubRepoList : ISlotAsync
     {
         readonly HttpClient _httpClient;

@@ -12,7 +12,7 @@ namespace magic.lambda.source
     /// <summary>
     /// [get-value] slot that will return the value of the node found by evaluating an expression.
     /// </summary>
-    [Slot(Name = "get-value")]
+    [Slot(Name = "get-value", Description = "Returns the value of the first matching node")]
     public class GetValue : ISlot
     {
         /// <summary>

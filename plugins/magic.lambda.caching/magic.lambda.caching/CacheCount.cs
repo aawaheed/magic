@@ -15,7 +15,7 @@ namespace magic.lambda.caching
     /// [cache.count] slot returning the number of cacheds items matching
     /// optional filter to caller.
     /// </summary>
-    [Slot(Name = "cache.count")]
+    [Slot(Name = "cache.count", Description = "Counts cached items matching the optional filter")]
     public class CacheCount : ISlotAsync
     {
         readonly IMagicCache _cache;

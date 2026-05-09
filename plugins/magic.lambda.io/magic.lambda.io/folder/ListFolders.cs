@@ -14,8 +14,8 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.list] slot for listing folders on server.
     /// </summary>
-    [Slot(Name = "io.folder.list")]
-    [Slot(Name = "io.folder.list-recursively")]
+    [Slot(Name = "io.folder.list", Description = "Lists folders in the specified folder")]
+    [Slot(Name = "io.folder.list-recursively", Description = "Lists folders recursively in the specified folder")]
     public class ListFolders : ISlot
     {
         readonly IRootResolver _rootResolver;

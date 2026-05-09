@@ -11,7 +11,7 @@ namespace magic.lambda.system.plugins
     /// <summary>
     /// [system.plugin.list] slot returning a list of all dynamically create plugins.
     /// </summary>
-    [Slot(Name = "system.plugin.list")]
+    [Slot(Name = "system.plugin.list", Description = "Lists dynamically loaded plugins")]
     public class ListPlugins : ISlot
     {
         /// <summary>

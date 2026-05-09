@@ -14,7 +14,7 @@ namespace magic.lambda.strings.misc
     /// [strings.join] slot for joining two or more strings with
     /// a separator character in between each string joined.
     /// </summary>
-    [Slot(Name = "strings.join")]
+    [Slot(Name = "strings.join", Description = "Joins strings with a separator")]
     public class Join : ISlotAsync
     {
         /// <summary>

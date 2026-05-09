@@ -14,7 +14,7 @@ namespace magic.lambda.crypto.slots.combinations
     /// <summary>
     /// [crypto.sign] slot that signs the specified content using the spcified arguments.
     /// </summary>
-    [Slot(Name = "crypto.sign")]
+    [Slot(Name = "crypto.sign", Description = "Signs data using the configured combination algorithm")]
     public class Sign : ISlot
     {
         /// <summary>

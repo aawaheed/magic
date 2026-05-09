@@ -12,7 +12,7 @@ namespace magic.lambda.branching
     /// <summary>
     /// [switch] slot allowing you to do branching in your code.
     /// </summary>
-    [Slot(Name = "switch")]
+    [Slot(Name = "switch", Description = "Evaluates one of several branches based on the input value")]
     public class Switch : ISlot
     {
         /// <summary>

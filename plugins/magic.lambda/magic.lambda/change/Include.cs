@@ -12,7 +12,7 @@ namespace magic.lambda.change
     /// <summary>
     /// [include] slot combining [eval], [for-each], and [add] to dynamically include nodes into each node resulting from expression.
     /// </summary>
-    [Slot(Name = "include")]
+    [Slot(Name = "include", Description = "Includes nodes from another lambda source for every child of the nodes specified in the expression value of the slot")]
     public class Include : ISlot
     {
         /// <summary>

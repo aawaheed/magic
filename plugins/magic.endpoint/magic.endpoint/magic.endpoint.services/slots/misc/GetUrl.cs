@@ -11,7 +11,7 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [request.url] slot for returning the URL the request was decorated with.
     /// </summary>
-    [Slot(Name = "request.url")]
+    [Slot(Name = "request.url", Description = "Returns the current request URL")]
     public class GetUrl : ISlot
     {
         /// <summary>

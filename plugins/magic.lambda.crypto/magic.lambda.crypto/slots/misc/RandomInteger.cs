@@ -15,7 +15,7 @@ namespace magic.lambda.crypto.slots.misc
     /// <summary>
     /// [crypto.random.int] slot to create a random integer value.
     /// </summary>
-    [Slot(Name = "crypto.random.int")]
+    [Slot(Name = "crypto.random.int", Description = "Returns a random integer")]
     public class RandomInteger : ISlot
     {
         /// <summary>

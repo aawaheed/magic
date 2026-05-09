@@ -13,8 +13,8 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.copy]/[io.folder.move] slot for copying a folder on your server.
     /// </summary>
-    [Slot(Name = "io.folder.copy")]
-    [Slot(Name = "io.folder.move")]
+    [Slot(Name = "io.folder.copy", Description = "Copies a folder on the server")]
+    [Slot(Name = "io.folder.move", Description = "Moves a folder on the server")]
     public class CopyMoveFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

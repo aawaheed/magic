@@ -17,7 +17,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [github.repo.create] slot to create a GitHub repository.
     /// </summary>
-    [Slot(Name = "github.repo.create")]
+    [Slot(Name = "github.repo.create", Description = "Creates a GitHub repository")]
     public class GitHubRepoCreate : ISlotAsync
     {
         readonly HttpClient _httpClient;

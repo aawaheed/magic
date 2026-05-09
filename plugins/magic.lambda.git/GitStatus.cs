@@ -15,7 +15,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.status] slot to show repository status.
     /// </summary>
-    [Slot(Name = "git.status")]
+    [Slot(Name = "git.status", Description = "Returns Git repository status")]
     public class GitStatus : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

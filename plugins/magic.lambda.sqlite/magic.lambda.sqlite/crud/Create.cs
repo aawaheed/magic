@@ -17,7 +17,7 @@ namespace magic.lambda.sqlite.crud
     /// <summary>
     /// The [sqlite.create] slot class
     /// </summary>
-    [Slot(Name = "sqlite.create")]
+    [Slot(Name = "sqlite.create", Description = "Inserts rows through the current SQLite connection")]
     public class Create : ISlotAsync
     {
         /// <summary>

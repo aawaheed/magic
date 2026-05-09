@@ -11,7 +11,7 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.delete] slot for deleting slot that has been created with the [slots.create] slot.
     /// </summary>
-    [Slot(Name = "slots.delete")]
+    [Slot(Name = "slots.delete", Description = "Deletes a dynamic slot")]
     public class Delete : ISlot
     {
         /// <summary>

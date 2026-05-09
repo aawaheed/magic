@@ -15,7 +15,7 @@ namespace magic.lambda.pgsql.crud
     /// <summary>
     /// The [pgsql.read] slot class
     /// </summary>
-    [Slot(Name = "pgsql.read")]
+    [Slot(Name = "pgsql.read", Description = "Reads rows through the current PostgreSQL connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

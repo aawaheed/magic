@@ -11,7 +11,7 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.to-upper] slot that returns the uppercase value of its specified argument.
     /// </summary>
-    [Slot(Name = "strings.to-upper")]
+    [Slot(Name = "strings.to-upper", Description = "Transforms input text to uppercase")]
     public class ToUpper : ISlot
     {
         /// <summary>

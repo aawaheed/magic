@@ -15,7 +15,7 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.content.zip-stream] slot for zipping a bunch of files into a specified stream.
     /// </summary>
-    [Slot(Name = "io.content.zip-stream")]
+    [Slot(Name = "io.content.zip-stream", Description = "Creates a zip stream from the supplied content")]
     public class ZipContent : ISlotAsync
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace magic.lambda.branching
     /// <summary>
     /// [default] slot for [switch] slots.
     /// </summary>
-    [Slot(Name = "default")]
+    [Slot(Name = "default", Description = "Evaluates the default branch inside [switch]")]
     public class Default : ISlot
     {
         /// <summary>

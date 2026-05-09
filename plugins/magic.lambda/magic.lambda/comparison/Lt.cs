@@ -11,7 +11,7 @@ namespace magic.lambda.comparison
     /// <summary>
     /// [lt] slot returning true if its first child's value is "less than" its second child's value.
     /// </summary>
-    [Slot(Name = "lt")]
+    [Slot(Name = "lt", Description = "Returns true if the first value is less than the second value")]
     public class Lt : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

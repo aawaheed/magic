@@ -14,7 +14,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.checkout] slot to switch branches, optionally creating it.
     /// </summary>
-    [Slot(Name = "git.checkout")]
+    [Slot(Name = "git.checkout", Description = "Checks out a Git branch")]
     public class GitCheckout : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

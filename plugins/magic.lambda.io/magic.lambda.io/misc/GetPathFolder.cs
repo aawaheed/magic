@@ -14,7 +14,7 @@ namespace magic.lambda.io.misc
     /// [io.path.get-folder] slot for making it easier to retrieve only the
     /// folder parts of some specified path.
     /// </summary>
-    [Slot(Name = "io.path.get-folder")]
+    [Slot(Name = "io.path.get-folder", Description = "Returns the folder part of a path")]
     public class GetPathFolder : ISlot
     {
         /// <summary>

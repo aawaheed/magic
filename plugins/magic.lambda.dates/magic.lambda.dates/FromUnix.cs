@@ -12,7 +12,7 @@ namespace magic.lambda.dates
     /// <summary>
     /// [date.from-unix] slot, allowing you to retrieve server time in UTC timezone.
     /// </summary>
-    [Slot(Name = "date.from-unix")]
+    [Slot(Name = "date.from-unix", Description = "Converts a Unix timestamp into a DateTime value")]
     public class FromUnix : ISlot
     {
         /// <summary>

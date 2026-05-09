@@ -12,7 +12,7 @@ namespace magic.lambda.sqlite
     /// [sqlite.transaction.commit] slot for committing the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "sqlite.transaction.commit")]
+    [Slot(Name = "sqlite.transaction.commit", Description = "Commits the current SQLite transaction")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

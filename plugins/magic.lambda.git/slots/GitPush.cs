@@ -13,7 +13,7 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.push] slot to push changes to a remote.
     /// </summary>
-    [Slot(Name = "git.push")]
+    [Slot(Name = "git.push", Description = "Pushes changes to a Git remote")]
     public class GitPush : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

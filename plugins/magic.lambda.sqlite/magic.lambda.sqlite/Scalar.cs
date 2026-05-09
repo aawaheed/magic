@@ -13,7 +13,7 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.scalar] slot for executing a scalar type of SQL command.
     /// </summary>
-    [Slot(Name = "sqlite.scalar")]
+    [Slot(Name = "sqlite.scalar", Description = "Executes SQL and returns a scalar value from the current SQLite connection")]
     public class Scalar : ISlotAsync
     {
         /// <summary>

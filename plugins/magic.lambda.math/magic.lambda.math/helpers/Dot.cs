@@ -13,7 +13,7 @@ namespace magic.lambda.math
     /// <summary>
     /// [math.dot] slot for performing additions.
     /// </summary>
-    [Slot(Name = "math.dot")]
+    [Slot(Name = "math.dot", Description = "Calculates the dot product of two vectors")]
     public class Dot : ISlotAsync
     {
         /// <summary>

@@ -15,7 +15,7 @@ namespace magic.lambda.sqlite.crud
     /// <summary>
     /// The [sqlite.delete] slot class
     /// </summary>
-    [Slot(Name = "sqlite.delete")]
+    [Slot(Name = "sqlite.delete", Description = "Deletes rows through the current SQLite connection")]
     public class Delete : ISlotAsync
     {
         /// <summary>

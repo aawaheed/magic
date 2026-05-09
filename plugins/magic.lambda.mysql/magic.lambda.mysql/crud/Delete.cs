@@ -15,7 +15,7 @@ namespace magic.lambda.mysql.crud
     /// <summary>
     /// The [mysql.delete] slot class
     /// </summary>
-    [Slot(Name = "mysql.delete")]
+    [Slot(Name = "mysql.delete", Description = "Deletes rows through the current MySQL connection")]
     public class Delete : ISlotAsync
     {
         /// <summary>

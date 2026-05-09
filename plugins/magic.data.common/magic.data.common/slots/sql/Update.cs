@@ -12,7 +12,7 @@ namespace magic.data.common.slots.sql
     /// <summary>
     /// [mssql.update] slot for updating a record in some table.
     /// </summary>
-    [Slot(Name = "sql.update")]
+    [Slot(Name = "sql.update", Description = "Builds a parameterized UPDATE SQL statement")]
     public class Update : ISlot
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace magic.data.common.slots
     /// [data.scalar] slot, for executing some SQL towards a database and returning a scalar result,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.scalar")]
+    [Slot(Name = "data.scalar", Description = "Executes SQL and returns a scalar value from the current database connection")]
     public class Scalar : DataSlotBase
     {
         /// <summary>

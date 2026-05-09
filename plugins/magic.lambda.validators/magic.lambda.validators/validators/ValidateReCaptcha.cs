@@ -17,7 +17,7 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.recaptcha] slot, for using reCAPTCHA validators.
     /// </summary>
-    [Slot(Name = "validators.recaptcha")]
+    [Slot(Name = "validators.recaptcha", Description = "Validates a reCAPTCHA response")]
     public class ValidateReCaptcha : ISlotAsync
     {
         readonly HttpClient _httpClient;

@@ -14,7 +14,7 @@ namespace magic.lambda.auth
     /// [auth.ticket.verify] slot, for verifying that a user is authenticated, and optionally belongs to
     /// one of the roles supplied as a comma separated list of values.
     /// </summary>
-    [Slot(Name = "auth.ticket.verify")]
+    [Slot(Name = "auth.ticket.verify", Description = "Verifies that the current user is authenticated and optionally in one of the specified roles")]
     public class VerifyTicket : ISlot
     {
         readonly ITicketProvider _ticketProvider;

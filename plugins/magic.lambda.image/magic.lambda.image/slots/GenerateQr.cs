@@ -14,7 +14,7 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.generate-qr] slot for creating QR codes.
     /// </summary>
-    [Slot(Name = "image.generate-qr")]
+    [Slot(Name = "image.generate-qr", Description = "Creates a QR code image")]
     public class GenerateQr : ISlot
     {
         /// <summary>

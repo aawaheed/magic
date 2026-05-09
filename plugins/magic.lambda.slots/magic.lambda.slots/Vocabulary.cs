@@ -13,7 +13,7 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.vocabulary] slot that will return the names of all dynamically created slots to caller.
     /// </summary>
-    [Slot(Name = "slots.vocabulary")]
+    [Slot(Name = "slots.vocabulary", Description = "Lists dynamically created slots")]
     public class Vocabulary : ISlot
     {
         /// <summary>

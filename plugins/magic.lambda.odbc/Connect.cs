@@ -14,7 +14,7 @@ namespace magic.lambda.odbc
     /// <summary>
     /// [odbc.connect] slot for connecting to an ODBC database server instance.
     /// </summary>
-    [Slot(Name = "odbc.connect")]
+    [Slot(Name = "odbc.connect", Description = "Opens a ODBC connection")]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

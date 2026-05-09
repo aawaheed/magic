@@ -16,8 +16,8 @@ namespace magic.lambda.change
     /// If you use [set-x] any expresions in your source will not be evaluated, allowing you to set the values
     /// of nodes to become expressions.
     /// </summary>
-    [Slot(Name = "set-x")]
-    [Slot(Name = "set-value")]
+    [Slot(Name = "set-x", Description = "Sets node values without evaluating expressions in the source")]
+    [Slot(Name = "set-value", Description = "Sets node values in the lambda graph")]
     public class SetValue : ISlot
     {
         /// <summary>

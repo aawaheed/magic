@@ -13,7 +13,7 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.string] slot, for verifying that some string is between [min] and [max] in length.
     /// </summary>
-    [Slot(Name = "validators.string")]
+    [Slot(Name = "validators.string", Description = "Validates the length of a string")]
     public class ValidateString : ISlot
     {
         /// <summary>

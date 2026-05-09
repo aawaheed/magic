@@ -12,7 +12,7 @@ namespace magic.lambda.math.basics
     /// <summary>
     /// [math.max] slot for finding min value.
     /// </summary>
-    [Slot(Name = "math.min")]
+    [Slot(Name = "math.min", Description = "Returns the smallest value from the supplied inputs")]
     public class Min : ISlotAsync
     {
         /// <summary>

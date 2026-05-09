@@ -16,7 +16,7 @@ namespace magic.lambda.csv
     /// <summary>
     /// [csv2lambda] slot for transforming from CSV to a lambda object.
     /// </summary>
-    [Slot(Name = "csv2lambda")]
+    [Slot(Name = "csv2lambda", Description = "Transforms CSV into a lambda hierarchy")]
     public class Csv2Lambda : ISlot
     {
         /// <summary>

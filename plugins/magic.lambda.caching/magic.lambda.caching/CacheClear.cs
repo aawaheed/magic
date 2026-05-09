@@ -15,7 +15,7 @@ namespace magic.lambda.caching
     /// [cache.clear] slot clearing memory cache entirely, or optionally taking a filter
     /// declaring which items to clear.
     /// </summary>
-    [Slot(Name = "cache.clear")]
+    [Slot(Name = "cache.clear", Description = "Clears cached items matching the optional filter")]
     public class CacheClear : ISlotAsync
     {
         readonly IMagicCache _cache;

@@ -14,7 +14,7 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.date] slot, for verifying that some date is between [min] and [max] values.
     /// </summary>
-    [Slot(Name = "validators.date")]
+    [Slot(Name = "validators.date", Description = "Validates a date range")]
     public class ValidateDate : ISlot
     {
         /// <summary>

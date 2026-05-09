@@ -15,7 +15,7 @@ namespace magic.lambda.logging.slots
     /// [log.query] slot for listing log items sequentially according to most recent items first,
     /// optionally matching specified content type.
     /// </summary>
-    [Slot(Name = "log.query")]
+    [Slot(Name = "log.query", Description = "Queries log entries")]
     public class Query : ISlotAsync
     {
         readonly ILogQuery _query;

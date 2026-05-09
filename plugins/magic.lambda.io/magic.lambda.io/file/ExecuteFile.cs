@@ -16,8 +16,8 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.execute] slot for executing a Hyperlambda file on your server.
     /// </summary>
-    [Slot(Name = "io.file.execute")]
-    [Slot(Name = "execute-file")]
+    [Slot(Name = "io.file.execute", Description = "Executes a file on the server")]
+    [Slot(Name = "execute-file", Description = "Executes a file on the server")]
     public class ExecuteFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

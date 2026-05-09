@@ -13,7 +13,7 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [mysql.transaction.create] slot for creating a new MySQL database transaction.
     /// </summary>
-    [Slot(Name = "mysql.transaction.create")]
+    [Slot(Name = "mysql.transaction.create", Description = "Creates a MySQL transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

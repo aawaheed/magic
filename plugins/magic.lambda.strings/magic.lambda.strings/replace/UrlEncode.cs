@@ -12,7 +12,7 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.url-encode] slot that URL encodes the specified string.
     /// </summary>
-    [Slot(Name = "strings.url-encode")]
+    [Slot(Name = "strings.url-encode", Description = "URL encodes the specified string")]
     public class UrlEncode : ISlot
     {
         /// <summary>

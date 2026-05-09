@@ -12,7 +12,7 @@ namespace magic.lambda.crypto.slots.aes
     /// <summary>
     /// [crypto.aes.encrypt] slot to encrypt some content using a symmetric cryptography algorithm (AES).
     /// </summary>
-    [Slot(Name = "crypto.aes.encrypt")]
+    [Slot(Name = "crypto.aes.encrypt", Description = "Encrypts data using AES")]
     public class Encrypt : ISlot
     {
         /// <summary>
