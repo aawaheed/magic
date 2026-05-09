@@ -20,11 +20,7 @@ namespace magic.backend.slots
     /// </summary>
     [Slot(
         Name = "auth.token.verify",
-        Description = "Verifies an externally created JWT token",
-        ValueType = "string",
-        ValueDescription = "JWT token to verify",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Verifies an externally created JWT token from the required [token] child node")]
     public class VerifyToken : ISlotAsync
     {
         /// <summary>

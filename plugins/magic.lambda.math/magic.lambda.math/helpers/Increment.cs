@@ -15,11 +15,11 @@ namespace magic.lambda.math.helpers
     /// </summary>
     [Slot(
         Name = "math.increment",
-        Description = "Increments a numeric value",
-        ValueType = "number",
-        ValueDescription = "Numeric value to increment",
+        Description = "Increments the numeric nodes selected by the RHS expression",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the numeric node or nodes to increment",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.Expression)]
     public class Increment : ISlotAsync
     {
         /// <summary>

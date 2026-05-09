@@ -15,11 +15,7 @@ namespace magic.lambda.math
     /// </summary>
     [Slot(
         Name = "math.dot",
-        Description = "Calculates the dot product of two vectors",
-        ValueType = "number",
-        ValueDescription = "First vector operand",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Calculates the dot product of two vectors from child nodes")]
     public class Dot : ISlotAsync
     {
         /// <summary>

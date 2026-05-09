@@ -17,7 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Divides numeric values",
         ValueType = "number",
         ValueDescription = "First numeric operand",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Division : ISlotAsync
     {

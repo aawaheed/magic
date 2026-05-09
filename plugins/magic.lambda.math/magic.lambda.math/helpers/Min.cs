@@ -17,7 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Returns the smallest value from the supplied inputs",
         ValueType = "number",
         ValueDescription = "First numeric operand",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Min : ISlotAsync
     {

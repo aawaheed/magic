@@ -17,7 +17,7 @@ namespace magic.lambda.math.helpers
         Description = "Calculates the remainder of a division",
         ValueType = "number",
         ValueDescription = "First numeric operand",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression)]
     public class Modulation : ISlotAsync
     {
