@@ -12,8 +12,20 @@ namespace magic.lambda.source
     /// <summary>
     /// [null] slot returning true if whatever expression it's given actually yields a result.
     /// </summary>
-    [Slot(Name = "null", Description = "Returns true if the specified node or expression is null")]
-    [Slot(Name = "not-null", Description = "Returns true if the specified node or expression is not null")]
+    [Slot(
+        Name = "null",
+        Description = "Returns true if the specified node or expression is null",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the value to test for null",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
+    [Slot(
+        Name = "not-null",
+        Description = "Returns true if the specified node or expression is not null",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the value to test for null",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class IsNull : ISlot
     {
         /// <summary>

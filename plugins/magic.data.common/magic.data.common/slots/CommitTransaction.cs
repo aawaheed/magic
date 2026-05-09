@@ -12,7 +12,9 @@ namespace magic.data.common.slots
     /// [data.transaction.commit] slot, for committing a database transaction,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.transaction.commit", Description = "Commits the current database transaction using the configured provider")]
+    [Slot(
+        Name = "data.transaction.commit",
+        Description = "Commits the current database transaction using the configured provider")]
     public class CommitTransaction : DataSlotBase
     {
         /// <summary>

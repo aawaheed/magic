@@ -14,7 +14,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.press] slot for pressing a key on a selector.
     /// </summary>
-    [Slot(Name = "puppeteer.press", Description = "Sends a key press to the page")]
+    [Slot(
+        Name = "puppeteer.press",
+        Description = "Sends a key press to the page",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Press : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

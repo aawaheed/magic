@@ -12,7 +12,13 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.html-encode] slot that HTML encodes the specified string.
     /// </summary>
-    [Slot(Name = "strings.html-encode", Description = "HTML encodes the specified string")]
+    [Slot(
+        Name = "strings.html-encode",
+        Description = "HTML encodes the specified string",
+        ValueType = "string",
+        ValueDescription = "Text to encode",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class HtmlEncode : ISlot
     {
         /// <summary>

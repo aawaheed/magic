@@ -12,7 +12,9 @@ namespace magic.lambda.config
     /// <summary>
     /// [config.load] slot returning the entire contents of appsettings.json file raw to caller.
     /// </summary>
-    [Slot(Name = "config.load", Description = "Loads configuration values into the current node tree")]
+    [Slot(
+        Name = "config.load",
+        Description = "Loads configuration values into the current node tree")]
     public class LoadAppSettings : ISlotAsync
     {
         readonly IFileService _fileService;

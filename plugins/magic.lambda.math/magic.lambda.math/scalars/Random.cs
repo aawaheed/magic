@@ -13,7 +13,13 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.random] slot for creating random numbers.
     /// </summary>
-    [Slot(Name = "math.random", Description = "Returns a random number")]
+    [Slot(
+        Name = "math.random",
+        Description = "Returns a random number",
+        ValueType = "number",
+        ValueDescription = "Optional maximum or range seed value when using RHS form",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Random : ISlot
     {
         /// <summary>

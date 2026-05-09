@@ -15,7 +15,9 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.error] slot for logging error log entries.
     /// </summary>
-    [Slot(Name = "log.fatal", Description = "Logs a fatal entry")]
+    [Slot(
+        Name = "log.fatal",
+        Description = "Logs a fatal entry")]
     public class LogFatal : ISlotAsync
     {
         readonly ILogger _logger;

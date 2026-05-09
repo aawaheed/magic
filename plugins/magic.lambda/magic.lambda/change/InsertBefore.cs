@@ -13,7 +13,13 @@ namespace magic.lambda.change
     /// [insert-after] slot allowing you to insert a range of nodes before some other node
     /// in your lambda graph object.
     /// </summary>
-    [Slot(Name = "insert-before", Description = "Inserts nodes before the specified target node")]
+    [Slot(
+        Name = "insert-before",
+        Description = "Inserts nodes before the specified target node",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the target node or nodes to insert before",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class InsertBefore : ISlot
     {
         /// <summary>

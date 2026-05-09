@@ -12,7 +12,13 @@ namespace magic.lambda.change
     /// <summary>
     /// [set-name] slot allowing you to change the names of nodes in your lambda graph object.
     /// </summary>
-    [Slot(Name = "set-name", Description = "Sets the name of matching nodes")]
+    [Slot(
+        Name = "set-name",
+        Description = "Sets the name of matching nodes",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the node or nodes whose name should be changed",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class SetName : ISlot
     {
         /// <summary>

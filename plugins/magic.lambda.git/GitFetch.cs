@@ -15,7 +15,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.fetch] slot to fetch updates from a remote.
     /// </summary>
-    [Slot(Name = "git.fetch", Description = "Fetches updates from a Git remote")]
+    [Slot(
+        Name = "git.fetch",
+        Description = "Fetches updates from a Git remote",
+        ValueType = "string",
+        ValueDescription = "Repository path",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitFetch : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

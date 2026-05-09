@@ -12,8 +12,20 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.create] slot that creates a dynamic slot, that can be invoked using the [signal] slot.
     /// </summary>
-    [Slot(Name = "function", Description = "Creates a dynamic slot that can be invoked with [signal]")]
-    [Slot(Name = "slots.create", Description = "Creates a dynamic slot that can be invoked with [signal]")]
+    [Slot(
+        Name = "function",
+        Description = "Creates a dynamic slot that can be invoked with [signal]",
+        ValueType = "string",
+        ValueDescription = "Name of the dynamic slot to create",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
+    [Slot(
+        Name = "slots.create",
+        Description = "Creates a dynamic slot that can be invoked with [signal]",
+        ValueType = "string",
+        ValueDescription = "Name of the dynamic slot to create",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Create : ISlot
     {
         internal static ConcurrentDictionary<string, Node> _slots = new ();

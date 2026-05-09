@@ -15,7 +15,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.remote.add] slot to add a git remote.
     /// </summary>
-    [Slot(Name = "git.remote.add", Description = "Adds a Git remote")]
+    [Slot(
+        Name = "git.remote.add",
+        Description = "Adds a Git remote",
+        ValueType = "string",
+        ValueDescription = "Repository path",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitRemoteAdd : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

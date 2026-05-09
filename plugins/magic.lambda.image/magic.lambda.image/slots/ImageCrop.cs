@@ -16,7 +16,13 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.crop] slot for cropping an existing image.
     /// </summary>
-    [Slot(Name = "image.crop", Description = "Crops an image")]
+    [Slot(
+        Name = "image.crop",
+        Description = "Crops an image",
+        ValueType = "string|Stream",
+        ValueDescription = "Source image filename or stream to crop",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ImageCrop : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

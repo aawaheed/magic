@@ -15,7 +15,13 @@ namespace magic.lambda.sockets.slots
     /// <summary>
     /// [sockets.user.add-to-group] slot that allows you to explicitly add a user to a group.
     /// </summary>
-    [Slot(Name = "sockets.user.add-to-group", Description = "Adds a user to a socket group")]
+    [Slot(
+        Name = "sockets.user.add-to-group",
+        Description = "Adds a user to a socket group",
+        ValueType = "string",
+        ValueDescription = "Username to add to the socket group",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class AddUserToGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

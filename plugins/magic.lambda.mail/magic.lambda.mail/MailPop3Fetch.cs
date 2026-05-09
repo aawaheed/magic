@@ -18,7 +18,13 @@ namespace magic.lambda.mail
     /// <summary>
     /// Fetches all new messages from the specified POP3 server/account.
     /// </summary>
-    [Slot(Name = "mail.pop3.fetch", Description = "Fetches messages from a POP3 mailbox")]
+    [Slot(
+        Name = "mail.pop3.fetch",
+        Description = "Fetches messages from a POP3 mailbox",
+        ValueType = "string",
+        ValueDescription = "Optional mailbox filter or account identifier when using RHS form",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class MailPop3Fetch : ISlotAsync
     {
         readonly ConnectionSettingsPop3 _server;

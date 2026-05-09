@@ -13,7 +13,13 @@ namespace magic.lambda.mssql
     /// <summary>
     /// [mssql.scalar] slot, for executing a scalar type of SQL.
     /// </summary>
-    [Slot(Name = "mssql.scalar", Description = "Executes SQL and returns a scalar value from the current SQL Server connection")]
+    [Slot(
+        Name = "mssql.scalar",
+        Description = "Executes SQL and returns a scalar value from the current SQL Server connection",
+        ValueType = "string",
+        ValueDescription = "SQL statement to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Scalar : ISlotAsync
     {
         /// <summary>

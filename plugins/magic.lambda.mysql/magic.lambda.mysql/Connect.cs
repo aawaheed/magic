@@ -14,7 +14,13 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [mysql.connect] slot for connecting to a MySQL server instance.
     /// </summary>
-    [Slot(Name = "mysql.connect", Description = "Opens a MySQL connection")]
+    [Slot(
+        Name = "mysql.connect",
+        Description = "Opens a MySQL connection",
+        ValueType = "string",
+        ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

@@ -16,11 +16,21 @@ namespace magic.data.common.slots.crud
     /// [data.create] slot, for creating a record in your database,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.create", Description = "Inserts a new row into the current open database connection")]
-    [Slot(Name = "data.read", Description = "Selects rows from the current open database connection")]
-    [Slot(Name = "data.update", Description = "Updates rows in the current open database connection")]
-    [Slot(Name = "data.delete", Description = "Deletes rows from the current open database connection")]
-    [Slot(Name = "data.scan", Description = "Scans rows from the current open database connection")]
+    [Slot(
+        Name = "data.create",
+        Description = "Inserts a new row into the current open database connection")]
+    [Slot(
+        Name = "data.read",
+        Description = "Selects rows from the current open database connection")]
+    [Slot(
+        Name = "data.update",
+        Description = "Updates rows in the current open database connection")]
+    [Slot(
+        Name = "data.delete",
+        Description = "Deletes rows from the current open database connection")]
+    [Slot(
+        Name = "data.scan",
+        Description = "Scans rows from the current open database connection")]
     public class Crud : ISlotAsync
     {
         readonly IDataSettings _settings;

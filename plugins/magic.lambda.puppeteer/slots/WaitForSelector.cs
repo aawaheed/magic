@@ -12,7 +12,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.wait-for-selector] slot for waiting until a selector appears.
     /// </summary>
-    [Slot(Name = "puppeteer.wait-for-selector", Description = "Waits for a selector to appear")]
+    [Slot(
+        Name = "puppeteer.wait-for-selector",
+        Description = "Waits for a selector to appear",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class WaitForSelector : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

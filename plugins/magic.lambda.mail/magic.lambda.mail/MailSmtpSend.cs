@@ -17,7 +17,13 @@ namespace magic.lambda.mail
     /// <summary>
     /// Sends email messages through an SMTP server.
     /// </summary>
-    [Slot(Name = "mail.smtp.send", Description = "Sends an email message through SMTP")]
+    [Slot(
+        Name = "mail.smtp.send",
+        Description = "Sends an email message through SMTP",
+        ValueType = "string",
+        ValueDescription = "Optional email body when using RHS form",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class MailSmtpSend : ISlotAsync
     {
         readonly ConnectionSettingsSmtp _server;

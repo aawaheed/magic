@@ -12,7 +12,9 @@ namespace magic.data.common.slots
     /// [data.transaction.create] slot, for creating a database transaction,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.transaction.create", Description = "Creates a database transaction using the configured provider")]
+    [Slot(
+        Name = "data.transaction.create",
+        Description = "Creates a database transaction using the configured provider")]
     public class CreateTransaction : DataSlotBase
     {
         /// <summary>

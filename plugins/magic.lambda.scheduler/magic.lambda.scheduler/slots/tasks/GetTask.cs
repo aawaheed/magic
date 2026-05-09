@@ -15,7 +15,13 @@ namespace magic.lambda.scheduler.slots.tasks
     /// [tasks.get] slot that will return an existing task with the specified name,
     /// including its next due date.
     /// </summary>
-    [Slot(Name = "tasks.get", Description = "Returns a task by ID")]
+    [Slot(
+        Name = "tasks.get",
+        Description = "Returns a task by ID",
+        ValueType = "string",
+        ValueDescription = "Task ID to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GetTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

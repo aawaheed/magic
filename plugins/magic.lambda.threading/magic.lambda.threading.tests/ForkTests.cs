@@ -12,7 +12,8 @@ namespace magic.lambda.threading.tests
 {
     public class ForkTests
     {
-        [Slot(Name = "fork-slot-1")]
+        [Slot(
+        Name = "fork-slot-1")]
         public class ForkSlot1 : ISlot
         {
             static int ExecutionCount;
@@ -27,7 +28,8 @@ namespace magic.lambda.threading.tests
             }
         }
 
-        [Slot(Name = "fork-slot-2")]
+        [Slot(
+        Name = "fork-slot-2")]
         public class ForkSlot2 : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

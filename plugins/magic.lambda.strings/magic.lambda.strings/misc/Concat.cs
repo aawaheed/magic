@@ -13,7 +13,13 @@ namespace magic.lambda.strings.concat
     /// <summary>
     /// [strings.concat] slot for concatenating two or more strings together to become one.
     /// </summary>
-    [Slot(Name = "strings.concat", Description = "Concatenates strings")]
+    [Slot(
+        Name = "strings.concat",
+        Description = "Concatenates strings",
+        ValueType = "lambda",
+        ValueDescription = "Expression yielding the text segments to concatenate when not supplied as child nodes",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.Expression)]
     public class Concat : ISlotAsync
     {
         /// <summary>

@@ -13,7 +13,13 @@ namespace magic.lambda.json.slots.yaml
     /// <summary>
     /// [yaml2json] slot for transforming a piece of YAML to a JSON string.
     /// </summary>
-    [Slot(Name = "yaml2json", Description = "Transforms YAML into JSON")]
+    [Slot(
+        Name = "yaml2json",
+        Description = "Transforms YAML into JSON",
+        ValueType = "string",
+        ValueDescription = "YAML text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Yaml2Json : ISlot
     {
         /// <summary>

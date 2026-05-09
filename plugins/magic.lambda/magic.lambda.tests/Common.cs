@@ -17,7 +17,8 @@ namespace magic.lambda.tests
 {
     public static class Common
     {
-        [Slot(Name = "foo")]
+        [Slot(
+        Name = "foo")]
         public class FooSlot : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

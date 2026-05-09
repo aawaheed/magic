@@ -14,7 +14,13 @@ namespace magic.lambda.html.slots
     /// <summary>
     /// [html2markdown] slot for transforming a piece of HTML to Markdown.
     /// </summary>
-    [Slot(Name = "html2markdown", Description = "Transforms HTML into Markdown")]
+    [Slot(
+        Name = "html2markdown",
+        Description = "Transforms HTML into Markdown",
+        ValueType = "string",
+        ValueDescription = "HTML markup to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Html2Markdown : ISlot
     {
         /// <summary>

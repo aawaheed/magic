@@ -17,7 +17,13 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.patch] slot for patching a file on your server using a unified diff patch.
     /// </summary>
-    [Slot(Name = "io.file.patch", Description = "Applies a patch file to a target file")]
+    [Slot(
+        Name = "io.file.patch",
+        Description = "Applies a patch file to a target file",
+        ValueType = "string",
+        ValueDescription = "File path to patch",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class PatchFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

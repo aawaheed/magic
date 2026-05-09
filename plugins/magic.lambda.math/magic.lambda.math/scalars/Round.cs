@@ -13,7 +13,13 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.round] slot for rounding numbers.
     /// </summary>
-    [Slot(Name = "math.round", Description = "Rounds a number")]
+    [Slot(
+        Name = "math.round",
+        Description = "Rounds a number",
+        ValueType = "number",
+        ValueDescription = "Numeric value to round",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Round : ISlot
     {
         /// <summary>

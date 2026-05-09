@@ -12,7 +12,13 @@ namespace magic.endpoint.services.slots.cookies
     /// <summary>
     /// [request.cookies.get] slot for retrieving value of a cookie passed in through the request.
     /// </summary>
-    [Slot(Name = "request.cookies.get", Description = "Returns a request cookie by name")]
+    [Slot(
+        Name = "request.cookies.get",
+        Description = "Returns a request cookie by name",
+        ValueType = "string",
+        ValueDescription = "Cookie name to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GetCookie : ISlot
     {
         /// <summary>

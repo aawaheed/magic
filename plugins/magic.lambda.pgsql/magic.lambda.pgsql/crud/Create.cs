@@ -17,7 +17,9 @@ namespace magic.lambda.pgsql.crud
     /// <summary>
     /// The [pgsql.create] slot class
     /// </summary>
-    [Slot(Name = "pgsql.create", Description = "Inserts rows through the current PostgreSQL connection")]
+    [Slot(
+        Name = "pgsql.create",
+        Description = "Inserts rows through the current PostgreSQL connection")]
     public class Create : ISlotAsync
     {
         /// <summary>

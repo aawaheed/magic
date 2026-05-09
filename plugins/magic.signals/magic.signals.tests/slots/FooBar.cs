@@ -8,7 +8,8 @@ using magic.signals.contracts;
 
 namespace magic.signals.tests.slots
 {
-    [Slot(Name = "foo.bar")]
+    [Slot(
+        Name = "foo.bar")]
     public class FooBar : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

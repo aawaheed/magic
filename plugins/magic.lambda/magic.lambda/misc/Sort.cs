@@ -12,7 +12,13 @@ namespace magic.lambda.change
     /// <summary>
     /// [sort] slot allowing you to sort a list of nodes.
     /// </summary>
-    [Slot(Name = "sort", Description = "Sorts child nodes by value or expression")]
+    [Slot(
+        Name = "sort",
+        Description = "Sorts nodes selected by the RHS expression using the child lambda as a comparer",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to sort",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Sort : ISlot
     {
         /// <summary>

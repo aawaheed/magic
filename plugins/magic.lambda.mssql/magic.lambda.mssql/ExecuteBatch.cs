@@ -18,7 +18,9 @@ namespace magic.lambda.mssql
     /// A batch script is typically a create database schema SQL file, which contains "GO" commands within it.
     /// This SQL cannot be executed in Microsoft SQL server using a simple SqlCommand.
     /// </summary>
-    [Slot(Name = "mssql.execute-batch", Description = "Executes a batch of SQL statements on the current SQL Server connection")]
+    [Slot(
+        Name = "mssql.execute-batch",
+        Description = "Executes a batch of SQL statements on the current SQL Server connection")]
     public class ExecuteBatch : ISlotAsync
     {
         /// <summary>

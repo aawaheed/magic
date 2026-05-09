@@ -12,7 +12,13 @@ namespace magic.lambda.json.slots.lambda
     /// [.to-json-raw] slot for transforming to a raw Newtonsoft JSON JContainer object, without
     /// ever transforming to a string.
     /// </summary>
-    [Slot(Name = ".lambda2json-raw", Description = "Transforms a lambda hierarchy into a raw JSON container without serializing it to a string")]
+    [Slot(
+        Name = ".lambda2json-raw",
+        Description = "Transforms a lambda hierarchy into a raw JSON container without serializing it to a string",
+        ValueType = "lambda",
+        ValueDescription = "Lambda hierarchy to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Lambda2JsonRaw : ISlot
     {
         /// <summary>

@@ -16,7 +16,9 @@ namespace magic.lambda.sockets.slots
     /// [sockets.connection.enter-group] slot that allows you to associate the current
     /// SignalR connectionId with a group.
     /// </summary>
-    [Slot(Name = "sockets.connection.enter-group", Description = "Adds the current connection to a socket group")]
+    [Slot(
+        Name = "sockets.connection.enter-group",
+        Description = "Adds the current connection to a socket group")]
     public class EnterGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

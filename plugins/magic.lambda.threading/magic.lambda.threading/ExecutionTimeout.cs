@@ -9,7 +9,13 @@ using magic.signals.contracts;
 
 namespace magic.lambda.threading
 {
-    [Slot(Name = "execution.timeout", Description = "Sets a timeout in milliseconds for the current execution")]
+    [Slot(
+        Name = "execution.timeout",
+        Description = "Sets a timeout in milliseconds for the current execution",
+        ValueType = "int",
+        ValueDescription = "Timeout in milliseconds for the current execution",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ExecutionTimeout : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

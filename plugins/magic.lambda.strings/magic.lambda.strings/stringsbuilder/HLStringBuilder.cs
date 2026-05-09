@@ -12,7 +12,9 @@ namespace magic.lambda.strings.builder
     /// <summary>
     /// [strings.builder] slot, allowing you to construct a new StringBuilder.
     /// </summary>
-    [Slot(Name = "strings.builder", Description = "Creates a reusable string builder scope")]
+    [Slot(
+        Name = "strings.builder",
+        Description = "Creates a reusable string builder scope")]
     public class HLStringBuilder : ISlotAsync
     {
         /// <summary>

@@ -10,7 +10,13 @@ namespace magic.lambda.branching
     /// <summary>
     /// [else-if] slot for branching logic. Must come after either another [else-if] or an [if] slot.
     /// </summary>
-    [Slot(Name = "else-if", Description = "Evaluates an additional conditional branch")]
+    [Slot(
+        Name = "else-if",
+        Description = "Evaluates an additional conditional branch",
+        ValueType = "expression",
+        ValueDescription = "Condition expression when using RHS form",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.Expression)]
     public class ElseIf : ISlot
     {
         /// <summary>

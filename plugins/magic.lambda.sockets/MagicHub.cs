@@ -151,7 +151,7 @@ namespace magic.lambda.sockets
                     enumerable = enumerable.Where(x => x.StartsWith(filter));
                 if (offset > 0)
                     enumerable = enumerable.Skip(offset);
-                enumerable = enumerable.Take(10);
+                enumerable = enumerable.Take(limit);
 
                 // Returning results to caller.
                 return enumerable.Select(x => (x, _userConnections[x].ToArray())).ToArray();

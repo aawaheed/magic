@@ -12,7 +12,13 @@ namespace magic.lambda.math.helpers
     /// <summary>
     /// [math.modulo] slot for performing division.
     /// </summary>
-    [Slot(Name = "math.modulo", Description = "Calculates the remainder of a division")]
+    [Slot(
+        Name = "math.modulo",
+        Description = "Calculates the remainder of a division",
+        ValueType = "number",
+        ValueDescription = "First numeric operand",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Modulation : ISlotAsync
     {
         /// <summary>

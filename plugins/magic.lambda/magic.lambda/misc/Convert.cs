@@ -17,7 +17,13 @@ namespace magic.lambda.misc
     /// <summary>
     /// [convert] slot allowing you to convert values of nodes from one type to some other type.
     /// </summary>
-    [Slot(Name = "convert", Description = "Converts a value to another type")]
+    [Slot(
+        Name = "convert",
+        Description = "Converts a value to another type",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the value to convert",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Convert : ISlot
     {
         /// <summary>

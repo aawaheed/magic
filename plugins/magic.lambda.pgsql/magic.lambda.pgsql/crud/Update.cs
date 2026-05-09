@@ -15,7 +15,9 @@ namespace magic.lambda.pgsql.crud
     /// <summary>
     /// The [pgsql.update] slot class
     /// </summary>
-    [Slot(Name = "pgsql.update", Description = "Updates rows through the current PostgreSQL connection")]
+    [Slot(
+        Name = "pgsql.update",
+        Description = "Updates rows through the current PostgreSQL connection")]
     public class Update : ISlotAsync
     {
         /// <summary>

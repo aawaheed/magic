@@ -20,7 +20,9 @@ namespace magic.endpoint.services.slots.misc
     /// [endpoints.list] slot for returning all dynamica Hyperlambda endpoints
     /// for your application, in addition to their meta information.
     /// </summary>
-    [Slot(Name = "endpoints.list", Description = "Lists dynamic Hyperlambda endpoints with metadata")]
+    [Slot(
+        Name = "endpoints.list",
+        Description = "Lists dynamic Hyperlambda endpoints with metadata")]
     public class ListEndpoints : ISlotAsync
     {
         /*

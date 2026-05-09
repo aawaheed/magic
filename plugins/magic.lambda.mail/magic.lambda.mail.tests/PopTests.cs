@@ -165,7 +165,8 @@ mail.pop3.fetch
             Assert.True(connectInvoked);
         }
 
-        [Slot(Name = "RetrieveOneMessageSlot")]
+        [Slot(
+        Name = "RetrieveOneMessageSlot")]
         class RetrieveOneMessageSlot : ISlot
         {
             public static int _invocationCount = 0;
@@ -244,7 +245,8 @@ mail.pop3.fetch
             Assert.Equal(1, RetrieveOneMessageSlot._invocationCount);
         }
 
-        [Slot(Name = "RetrieveOneMessageRawSlot")]
+        [Slot(
+        Name = "RetrieveOneMessageRawSlot")]
         class RetrieveOneMessageRawSlot : ISlot
         {
             public static int _invocationCount = 0;

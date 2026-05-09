@@ -13,7 +13,13 @@ namespace magic.lambda.misc
     /// [context] slot allowing you to create a dynamic stack object context,
     /// that you can retrieve in children scopes of your lambda using [get-context].
     /// </summary>
-    [Slot(Name = "context", Description = "Creates a new stack object or 'context' object that can be referenced later")]
+    [Slot(
+        Name = "context",
+        Description = "Creates a new stack object or 'context' object that can be referenced later",
+        ValueType = "string",
+        ValueDescription = "Context name to return",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Context : ISlot
     {
         /// <summary>

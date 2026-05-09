@@ -13,7 +13,13 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.create] slot for creating a new folder on server.
     /// </summary>
-    [Slot(Name = "io.folder.create", Description = "Creates a folder on the server")]
+    [Slot(
+        Name = "io.folder.create",
+        Description = "Creates a folder on the server",
+        ValueType = "string",
+        ValueDescription = "Folder path to create",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class CreateFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

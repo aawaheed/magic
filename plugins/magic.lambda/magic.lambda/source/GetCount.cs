@@ -12,7 +12,13 @@ namespace magic.lambda.source
     /// <summary>
     /// [get-count] slot that will return the count of nodes found for an expression.
     /// </summary>
-    [Slot(Name = "get-count", Description = "Returns the number of matching nodes")]
+    [Slot(
+        Name = "get-count",
+        Description = "Returns the number of matching nodes",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to count",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class GetCount : ISlot
     {
         /// <summary>

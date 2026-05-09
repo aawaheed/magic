@@ -11,7 +11,13 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.to-lower] slot that returns the lowercase value of its specified argument.
     /// </summary>
-    [Slot(Name = "strings.to-lower", Description = "Transforms input text to lowercase")]
+    [Slot(
+        Name = "strings.to-lower",
+        Description = "Transforms input text to lowercase",
+        ValueType = "string",
+        ValueDescription = "Text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ToLower : ISlot
     {
         /// <summary>

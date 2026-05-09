@@ -14,7 +14,13 @@ namespace magic.lambda.sqlite
     /// [sqlite.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "sqlite.select", Description = "Executes a SELECT query on the current SQLite connection")]
+    [Slot(
+        Name = "sqlite.select",
+        Description = "Executes a SELECT query on the current SQLite connection",
+        ValueType = "string",
+        ValueDescription = "SQL query to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Select : ISlotAsync
     {
         /// <summary>

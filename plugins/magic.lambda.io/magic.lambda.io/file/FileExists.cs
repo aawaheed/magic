@@ -13,7 +13,13 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.exists] slot for checking if a file already exists from before or not.
     /// </summary>
-    [Slot(Name = "io.file.exists", Description = "Returns true if a file exists")]
+    [Slot(
+        Name = "io.file.exists",
+        Description = "Returns true if a file exists",
+        ValueType = "string",
+        ValueDescription = "File path to test",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class FileExists : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

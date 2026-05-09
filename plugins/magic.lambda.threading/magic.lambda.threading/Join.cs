@@ -16,7 +16,9 @@ namespace magic.lambda.threading
     /// [join] slot, waiting for all (direct) children [fork] invocations to finish their work,
     /// before allowing execution to continue.
     /// </summary>
-    [Slot(Name = "join", Description = "Waits for one more more children threads ([fork] operations) to finish before proceeding")]
+    [Slot(
+        Name = "join",
+        Description = "Waits for one more more children threads ([fork] operations) to finish before proceeding")]
     public class Join : ISlotAsync
     {
         readonly IServiceScopeFactory _serviceScopeFactory;

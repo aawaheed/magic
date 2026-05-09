@@ -11,7 +11,13 @@ namespace magic.lambda.comparison
     /// <summary>
     /// [lte] slot returning true if its first child's value is "less than or equal" to its second child's value.
     /// </summary>
-    [Slot(Name = "lte", Description = "Returns true if the first value is less than or equal to the second value")]
+    [Slot(
+        Name = "lte",
+        Description = "Returns true if the first operand is less than or equal to the second operand",
+        ValueType = "object",
+        ValueDescription = "First operand when the second operand is supplied as the only child node",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Lte : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

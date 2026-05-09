@@ -11,7 +11,9 @@ namespace magic.lambda.mssql
     /// <summary>
     /// [.db-factory.connection.mssql] slot for creating an SQL Server connection and returning to caller.
     /// </summary>
-    [Slot(Name = ".db-factory.connection.mssql", Description = "Creates a SQL Server connection factory")]
+    [Slot(
+        Name = ".db-factory.connection.mssql",
+        Description = "Creates a SQL Server connection factory")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>

@@ -15,7 +15,13 @@ namespace magic.lambda.strings.misc
     /// [strings.ends-with] slot that returns true if the specified string ends with its value
     /// from its first argument.
     /// </summary>
-    [Slot(Name = "strings.ends-with", Description = "Returns true if a string ends with the specified text")]
+    [Slot(
+        Name = "strings.ends-with",
+        Description = "Returns true if a string ends with the specified text",
+        ValueType = "string",
+        ValueDescription = "Text to inspect",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class EndsWith : ISlotAsync
     {
         /// <summary>

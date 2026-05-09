@@ -467,7 +467,8 @@ mail.smtp.send
             });
         }
 
-        [Slot(Name = ".io.folder.root")]
+        [Slot(
+        Name = ".io.folder.root")]
         class GetRootFolderSlot : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

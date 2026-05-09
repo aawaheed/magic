@@ -11,7 +11,13 @@ namespace magic.lambda.source
     /// <summary>
     /// [get-nodes] slot that will return all nodes from evaluating an expression.
     /// </summary>
-    [Slot(Name = "get-nodes", Description = "Returns matching nodes")]
+    [Slot(
+        Name = "get-nodes",
+        Description = "Returns matching nodes",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to return",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class GetNodes : ISlot
     {
         /// <summary>

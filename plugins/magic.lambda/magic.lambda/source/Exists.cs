@@ -12,8 +12,20 @@ namespace magic.lambda.source
     /// <summary>
     /// [exists] slot returning true if whatever expression it's given actually yields a result.
     /// </summary>
-    [Slot(Name = "exists", Description = "Returns true if the specified node or expression exists")]
-    [Slot(Name = "not-exists", Description = "Returns true if the specified node or expression does not exist")]
+    [Slot(
+        Name = "exists",
+        Description = "Returns true if the specified node or expression exists",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to test for",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
+    [Slot(
+        Name = "not-exists",
+        Description = "Returns true if the specified node or expression does not exist",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to test for",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Exists : ISlot
     {
         /// <summary>

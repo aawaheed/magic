@@ -14,7 +14,13 @@ namespace magic.lambda.system.plugins
     /// [system.compile] slot that allows for compiling C# code creating a CLR assembly as its output
     /// returning the assembly as an array of raw byte[].
     /// </summary>
-    [Slot(Name = "system.compile", Description = "Compiles C# code into an assembly")]
+    [Slot(
+        Name = "system.compile",
+        Description = "Compiles C# code into an assembly",
+        ValueType = "string",
+        ValueDescription = "C# source code to compile",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Compile : ISlot
     {
         /// <summary>

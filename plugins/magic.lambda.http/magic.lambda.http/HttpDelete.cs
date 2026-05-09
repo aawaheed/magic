@@ -13,7 +13,13 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP DELETE verb towards some resource.
     /// </summary>
-    [Slot(Name = "http.delete", Description = "Makes an HTTP DELETE request")]
+    [Slot(
+        Name = "http.delete",
+        Description = "Makes an HTTP DELETE request",
+        ValueType = "string",
+        ValueDescription = "URL to send the request to",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class HttpDelete : ISlotAsync
     {
         readonly IMagicHttp _service;

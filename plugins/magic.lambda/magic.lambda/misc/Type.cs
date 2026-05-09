@@ -12,7 +12,13 @@ namespace magic.lambda.misc
     /// <summary>
     /// [type] slot allowing you to retrieve Hyperlambda type information for some specified value.
     /// </summary>
-    [Slot(Name = "type", Description = "Returns the CLR type name of a value")]
+    [Slot(
+        Name = "type",
+        Description = "Returns the CLR type name of a value",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the value whose CLR type should be returned",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Type : ISlot
     {
         /// <summary>

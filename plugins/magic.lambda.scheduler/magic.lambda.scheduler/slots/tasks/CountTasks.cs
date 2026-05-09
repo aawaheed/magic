@@ -14,7 +14,13 @@ namespace magic.lambda.scheduler.slots.tasks
     /// [tasks.count] slot that will return the number of tasks in your
     /// system matching the optional filter condition.
     /// </summary>
-    [Slot(Name = "tasks.count", Description = "Counts scheduled tasks")]
+    [Slot(
+        Name = "tasks.count",
+        Description = "Counts scheduled tasks",
+        ValueType = "string",
+        ValueDescription = "Optional filter for task IDs",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class CountTasks :ISlotAsync
     {
         readonly ITaskStorage _storage;

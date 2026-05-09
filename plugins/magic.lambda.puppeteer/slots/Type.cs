@@ -15,7 +15,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.type] slot for typing into a selector.
     /// </summary>
-    [Slot(Name = "puppeteer.type", Description = "Types text into an element")]
+    [Slot(
+        Name = "puppeteer.type",
+        Description = "Types text into an element",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Type : ISlotAsync
     {
         readonly IConfiguration _configuration;

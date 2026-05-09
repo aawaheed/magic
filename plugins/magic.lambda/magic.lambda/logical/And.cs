@@ -13,7 +13,9 @@ namespace magic.lambda.logical
     /// [and] slot allowing you to group multiple comparisons (for instance), where all of these must evaluate
     /// to true, for the [and] slot as a whole to evaluate to true.
     /// </summary>
-    [Slot(Name = "and", Description = "Returns true if all children evaluate to true")]
+    [Slot(
+        Name = "and",
+        Description = "Returns true if all children evaluate to true")]
     public class And : ISlot
     {
         /// <summary>

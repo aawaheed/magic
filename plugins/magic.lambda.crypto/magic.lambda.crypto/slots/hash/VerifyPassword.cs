@@ -18,7 +18,13 @@ namespace magic.lambda.crypto.slots.hash
     /// as the value of the invocation node. Wil return true only if the password is a match to
     /// its hashed version.
     /// </summary>
-    [Slot(Name = "crypto.password.verify", Description = "Verifies a password against a hash")]
+    [Slot(
+        Name = "crypto.password.verify",
+        Description = "Verifies a password against a hash",
+        ValueType = "string",
+        ValueDescription = "Plaintext password to verify",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class VerifyPassword : ISlot
     {
         /// <summary>

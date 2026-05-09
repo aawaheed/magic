@@ -13,7 +13,13 @@ namespace magic.lambda.loops
     /// <summary>
     /// [filter] slot allowing you to filter a list of nodes, resulting from the evaluation of an expression.
     /// </summary>
-    [Slot(Name = "filter", Description = "Filters child nodes by a predicate")]
+    [Slot(
+        Name = "filter",
+        Description = "Filters nodes selected by the RHS expression using the child lambda as a predicate",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to filter",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Filter : ISlot
     {
         /// <summary>

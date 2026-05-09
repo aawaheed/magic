@@ -13,7 +13,13 @@ namespace magic.lambda.scheduler.slots.scheduler
     /// <summary>
     /// [tasks.schedule.delete] slot that will delete an existing schedule for a task by its ID.
     /// </summary>
-    [Slot(Name = "tasks.schedule.delete", Description = "Deletes a task schedule")]
+    [Slot(
+        Name = "tasks.schedule.delete",
+        Description = "Deletes a task schedule",
+        ValueType = "int",
+        ValueDescription = "Schedule ID to delete",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ScheduleDelete : ISlotAsync
     {
         readonly ITaskScheduler _scheduler;

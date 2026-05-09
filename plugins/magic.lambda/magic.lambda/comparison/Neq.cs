@@ -11,7 +11,13 @@ namespace magic.lambda.comparison
     /// <summary>
     /// [neq] slot allowing you to compare two values for not equality.
     /// </summary>
-    [Slot(Name = "neq", Description = "Returns true if two values are not equal")]
+    [Slot(
+        Name = "neq",
+        Description = "Returns true if two operands are not equal",
+        ValueType = "object",
+        ValueDescription = "First operand when the second operand is supplied as the only child node",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Neq : ISlot
     {
         /// <summary>

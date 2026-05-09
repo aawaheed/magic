@@ -11,7 +11,13 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.exists] slot that will check if a dynamic slot exists or not.
     /// </summary>
-    [Slot(Name = "slots.exists", Description = "Returns true if a dynamic slot exists")]
+    [Slot(
+        Name = "slots.exists",
+        Description = "Returns true if a dynamic slot exists",
+        ValueType = "string",
+        ValueDescription = "Name of the dynamic slot to test for",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Exists : ISlot
     {
         /// <summary>

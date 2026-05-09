@@ -16,7 +16,13 @@ namespace magic.lambda.strings.replace
     /// matches from [what] with [with] found in your source string. [what] is expected
     /// to be a valid regular expression.
     /// </summary>
-    [Slot(Name = "strings.regex-replace", Description = "Replaces text using a regular expression")]
+    [Slot(
+        Name = "strings.regex-replace",
+        Description = "Replaces text using a regular expression",
+        ValueType = "string",
+        ValueDescription = "Text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class RegexReplace : ISlotAsync
     {
         /// <summary>

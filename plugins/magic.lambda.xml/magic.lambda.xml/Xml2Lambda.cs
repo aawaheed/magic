@@ -14,7 +14,13 @@ namespace magic.lambda.xml
     /// <summary>
     /// [xml2lambda] slot for transforming a piece of XML to a lambda hierarchy.
     /// </summary>
-    [Slot(Name = "xml2lambda", Description = "Transforms XML into a lambda hierarchy")]
+    [Slot(
+        Name = "xml2lambda",
+        Description = "Transforms XML into a lambda hierarchy",
+        ValueType = "string",
+        ValueDescription = "XML text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Xml2Lambda : ISlot
     {
         /// <summary>

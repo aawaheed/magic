@@ -14,7 +14,13 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.list] slot that will return the names of all tasks in the system.
     /// </summary>
-    [Slot(Name = "tasks.list", Description = "Lists tasks")]
+    [Slot(
+        Name = "tasks.list",
+        Description = "Lists tasks",
+        ValueType = "string",
+        ValueDescription = "Optional filter for task IDs",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ListTasks : ISlotAsync
     {
         readonly ITaskStorage _storage;

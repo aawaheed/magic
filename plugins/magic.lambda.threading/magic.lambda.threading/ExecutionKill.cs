@@ -9,7 +9,13 @@ using magic.signals.contracts;
 
 namespace magic.lambda.threading
 {
-    [Slot(Name = "execution.kill", Description = "Cancels a running execution by execution ID")]
+    [Slot(
+        Name = "execution.kill",
+        Description = "Cancels a running execution by execution ID",
+        ValueType = "string",
+        ValueDescription = "Execution ID to cancel",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ExecutionKill : ISlot
     {
         readonly IExecutionRegistry _executionRegistry;

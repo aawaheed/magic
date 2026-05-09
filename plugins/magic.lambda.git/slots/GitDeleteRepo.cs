@@ -12,7 +12,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.delete-repo] slot to delete existing repo.
     /// </summary>
-    [Slot(Name = "git.delete-repo", Description = "Deletes a local Git repository")]
+    [Slot(
+        Name = "git.delete-repo",
+        Description = "Deletes a local Git repository",
+        ValueType = "string",
+        ValueDescription = "Repository path to delete",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitDeleteRepo : ISlot
     {
         readonly IRootResolver _rootResolver;

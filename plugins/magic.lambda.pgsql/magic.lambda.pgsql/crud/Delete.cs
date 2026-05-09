@@ -15,7 +15,9 @@ namespace magic.lambda.pgsql.crud
     /// <summary>
     /// The [pgsql.delete] slot class
     /// </summary>
-    [Slot(Name = "pgsql.delete", Description = "Deletes rows through the current PostgreSQL connection")]
+    [Slot(
+        Name = "pgsql.delete",
+        Description = "Deletes rows through the current PostgreSQL connection")]
     public class Delete : ISlotAsync
     {
         /// <summary>

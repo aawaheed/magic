@@ -12,7 +12,9 @@ namespace magic.lambda.pgsql
     /// [pgsql.transaction.rollback] slot for rolling back the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "pgsql.transaction.rollback", Description = "Rolls back the current PostgreSQL transaction")]
+    [Slot(
+        Name = "pgsql.transaction.rollback",
+        Description = "Rolls back the current PostgreSQL transaction")]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

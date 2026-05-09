@@ -12,7 +12,13 @@ namespace magic.lambda.math.basics
     /// <summary>
     /// [math.subtract] slot for performing subtractions.
     /// </summary>
-    [Slot(Name = "math.subtract", Description = "Subtracts numeric values")]
+    [Slot(
+        Name = "math.subtract",
+        Description = "Subtracts numeric values",
+        ValueType = "number",
+        ValueDescription = "First numeric operand",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Subtraction : ISlotAsync
     {
         /// <summary>

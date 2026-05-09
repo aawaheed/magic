@@ -14,7 +14,13 @@ namespace magic.lambda.html.slots
     /// <summary>
     /// [html2lambda] slot for transforming a piece of HTML to a lambda hierarchy.
     /// </summary>
-    [Slot(Name = "html2lambda", Description = "Transforms HTML into a lambda hierarchy")]
+    [Slot(
+        Name = "html2lambda",
+        Description = "Transforms HTML into a lambda hierarchy",
+        ValueType = "string",
+        ValueDescription = "HTML markup to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Html2Lambda : ISlot
     {
         /// <summary>

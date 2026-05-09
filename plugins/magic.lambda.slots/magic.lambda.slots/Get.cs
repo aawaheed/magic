@@ -11,7 +11,13 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.get] slot for retrieving slot that has been created with the [slots.create] slot.
     /// </summary>
-    [Slot(Name = "slots.get", Description = "Returns a dynamic slot by name")]
+    [Slot(
+        Name = "slots.get",
+        Description = "Returns a dynamic slot by name",
+        ValueType = "string",
+        ValueDescription = "Name of the dynamic slot to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Get : ISlot
     {
         /// <summary>

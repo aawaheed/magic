@@ -14,7 +14,13 @@ namespace magic.lambda.strings.misc
     /// [strings.contains] slot that will return true if your specified string contains the value
     /// found from its first argument.
     /// </summary>
-    [Slot(Name = "strings.contains", Description = "Returns true if a string contains the specified text")]
+    [Slot(
+        Name = "strings.contains",
+        Description = "Returns true if a string contains the specified text",
+        ValueType = "string",
+        ValueDescription = "Text to search",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Contains : ISlotAsync
     {
         /// <summary>

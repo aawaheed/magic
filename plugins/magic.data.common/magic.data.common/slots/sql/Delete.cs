@@ -12,7 +12,9 @@ namespace magic.data.common.slots.sql
     /// <summary>
     /// [mssql.delete] slot for deleting a record in some table.
     /// </summary>
-    [Slot(Name = "sql.delete", Description = "Builds a parameterized DELETE SQL statement")]
+    [Slot(
+        Name = "sql.delete",
+        Description = "Builds a parameterized DELETE SQL statement")]
     public class Delete : ISlot
     {
         /// <summary>

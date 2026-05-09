@@ -14,7 +14,13 @@ namespace magic.lambda.io.stream
     /// [io.stream.open-file] slot for opening a file in read only mode
     /// and returning it as a stream to caller.
     /// </summary>
-    [Slot(Name = "io.stream.open-file", Description = "Opens a file stream")]
+    [Slot(
+        Name = "io.stream.open-file",
+        Description = "Opens a file stream",
+        ValueType = "string",
+        ValueDescription = "File path to open as a stream",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class OpenFileStream : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

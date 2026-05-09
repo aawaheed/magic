@@ -24,5 +24,29 @@ namespace magic.signals.contracts
         /// Description of slot.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Optional CLR-ish type name for the slot's RHS value argument.
+        /// </summary>
+        public string ValueType { get; set; }
+
+        /// <summary>
+        /// Optional description of the slot's RHS value argument.
+        /// </summary>
+        public string ValueDescription { get; set; }
+
+        /// <summary>
+        /// Indicates whether the slot's RHS value argument is required when the
+        /// slot supports and is invoked using its RHS value form. Null means the
+        /// slot does not document an RHS value contract.
+        /// </summary>
+        public bool? ValueRequired { get; set; }
+
+        /// <summary>
+        /// Indicates how the slot's RHS value argument should be interpreted.
+        /// Defaults to <see cref="SlotValueMode.None"/> for slots without a
+        /// documented RHS value argument.
+        /// </summary>
+        public SlotValueMode ValueMode { get; set; }
     }
 }

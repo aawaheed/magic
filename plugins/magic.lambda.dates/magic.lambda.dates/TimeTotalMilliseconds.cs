@@ -12,7 +12,13 @@ namespace magic.lambda.dates
     /// <summary>
     /// [time.total-milliseconds] slot, returning how many milliseconds time object represents.
     /// </summary>
-    [Slot(Name = "time.total-milliseconds", Description = "Returns the total milliseconds for a TimeSpan value")]
+    [Slot(
+        Name = "time.total-milliseconds",
+        Description = "Returns the total milliseconds for a TimeSpan value",
+        ValueType = "TimeSpan",
+        ValueDescription = "Time span to measure",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class TimeTotalMilliseconds : ISlot
     {
         /// <summary>

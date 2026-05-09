@@ -12,7 +12,9 @@ namespace magic.endpoint.services.slots.cookies
     /// <summary>
     /// [request.cookies.list] slot for listing all cookies attached to the request.
     /// </summary>
-    [Slot(Name = "request.cookies.list", Description = "Lists request cookies")]
+    [Slot(
+        Name = "request.cookies.list",
+        Description = "Lists request cookies")]
     public class ListCookies : ISlot
     {
         /// <summary>

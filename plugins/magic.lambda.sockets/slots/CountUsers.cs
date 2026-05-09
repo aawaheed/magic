@@ -13,7 +13,9 @@ namespace magic.lambda.sockets.slots
     /// <summary>
     /// [sockets.users.count] slot that returns the number of currently connected users.
     /// </summary>
-    [Slot(Name = "sockets.users.count", Description = "Counts users connected to a socket group")]
+    [Slot(
+        Name = "sockets.users.count",
+        Description = "Counts connected socket users, optionally filtered by username")]
     public class CountUsers : ISlot
     {
         readonly IConfiguration _configuration;

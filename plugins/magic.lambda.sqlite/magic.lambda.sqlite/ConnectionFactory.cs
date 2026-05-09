@@ -11,7 +11,9 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [.db-factory.connection.sqlite] slot for creating an SQLite connection and returning to caller.
     /// </summary>
-    [Slot(Name = ".db-factory.connection.sqlite", Description = "Creates a SQLite connection factory")]
+    [Slot(
+        Name = ".db-factory.connection.sqlite",
+        Description = "Creates a SQLite connection factory")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>

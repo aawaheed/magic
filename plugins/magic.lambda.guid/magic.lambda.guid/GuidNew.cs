@@ -11,7 +11,9 @@ namespace magic.lambda.guid
     /// <summary>
     /// [guid.new] slot for generating a new guid.
     /// </summary>
-    [Slot(Name = "guid.new", Description = "Creates a new GUID")]
+    [Slot(
+        Name = "guid.new",
+        Description = "Creates a new GUID")]
     public class GuidNew : ISlot
     {
         /// <summary>

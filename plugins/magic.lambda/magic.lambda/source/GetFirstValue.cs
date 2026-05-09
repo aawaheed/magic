@@ -14,7 +14,13 @@ namespace magic.lambda.source
     /// [get-first-value] slot that will return the first value found by evaluating its expression, and/or
     /// its children nodes.
     /// </summary>
-    [Slot(Name = "get-first-value", Description = "Returns the first matching value")]
+    [Slot(
+        Name = "get-first-value",
+        Description = "Returns the first matching value from the RHS value, RHS expression, or child node evaluation",
+        ValueType = "object",
+        ValueDescription = "Literal value or expression selecting nodes where the first non-null node value is returned when not obtained from child nodes",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GetFirstValue : ISlot
     {
         /// <summary>

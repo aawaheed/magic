@@ -13,7 +13,13 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.count] slot for counting total number of log items, optionally matching specified content type.
     /// </summary>
-    [Slot(Name = "log.count", Description = "Counts log entries")]
+    [Slot(
+        Name = "log.count",
+        Description = "Counts log entries",
+        ValueType = "string",
+        ValueDescription = "Optional content type filter",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Count : ISlotAsync
     {
         readonly ILogQuery _query;

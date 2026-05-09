@@ -14,7 +14,13 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.get] slot for retrieving a single log item given a specified ID.
     /// </summary>
-    [Slot(Name = "log.get", Description = "Returns a log entry by ID")]
+    [Slot(
+        Name = "log.get",
+        Description = "Returns a log entry by ID",
+        ValueType = "object",
+        ValueDescription = "ID of the log entry to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Get : ISlotAsync
     {
         readonly ILogQuery _query;

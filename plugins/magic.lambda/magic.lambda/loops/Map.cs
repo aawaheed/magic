@@ -13,7 +13,13 @@ namespace magic.lambda.loops
     /// <summary>
     /// [map] slot allowing you to map a list of nodes into a new list, resulting from the evaluation of an expression.
     /// </summary>
-    [Slot(Name = "map", Description = "Maps input nodes into a new result set")]
+    [Slot(
+        Name = "map",
+        Description = "Maps nodes selected by the RHS expression into a new result set using the child lambda",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to map",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class Map : ISlot
     {
         /// <summary>

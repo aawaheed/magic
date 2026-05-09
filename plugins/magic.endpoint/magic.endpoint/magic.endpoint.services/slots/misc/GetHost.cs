@@ -11,7 +11,9 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [request.host] slot for returning the host the request was decorated with.
     /// </summary>
-    [Slot(Name = "request.host", Description = "Returns the current request host")]
+    [Slot(
+        Name = "request.host",
+        Description = "Returns the current request host")]
     public class GetHost : ISlot
     {
         /// <summary>

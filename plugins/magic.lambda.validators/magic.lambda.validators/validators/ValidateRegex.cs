@@ -14,7 +14,9 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.regex] slot, for verifying that some input is matching some specified regular expression found in [regex].
     /// </summary>
-    [Slot(Name = "validators.regex", Description = "Validates input against a regular expression")]
+    [Slot(
+        Name = "validators.regex",
+        Description = "Validates input against a regular expression")]
     public class ValidateRegex : ISlot
     {
         /// <summary>

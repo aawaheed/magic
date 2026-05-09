@@ -17,7 +17,9 @@ namespace magic.lambda.auth
     /// with a postponed expiration time, to avoid having users having to login every time their
     /// token expires.
     /// </summary>
-    [Slot(Name = "auth.ticket.refresh", Description = "Refreshes an existing JWT ticket")]
+    [Slot(
+        Name = "auth.ticket.refresh",
+        Description = "Refreshes an existing JWT ticket")]
     public class RefreshTicket : ISlot
     {
         readonly IAuthSettings _settings;

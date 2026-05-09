@@ -17,7 +17,13 @@ namespace magic.lambda.caching
     /// returning it as is - If item doesn't exists, the slot will invoke your [.lambda]
     /// callback, to create item, store item into cache, and return the item to the caller.
     /// </summary>
-    [Slot(Name = "cache.try-get", Description = "Returns a cached value by key if it exists, or creates a new cached item and returning ir")]
+    [Slot(
+        Name = "cache.try-get",
+        Description = "Returns a cached value by key if it exists, or creates a new cached item and returning it",
+        ValueType = "string",
+        ValueDescription = "Cache key to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class CacheTryGet : ISlotAsync
     {
         readonly IMagicCache _cache;

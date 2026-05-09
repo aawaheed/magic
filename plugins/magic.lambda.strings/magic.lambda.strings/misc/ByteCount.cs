@@ -12,7 +12,13 @@ namespace magic.lambda.strings.misc
     /// <summary>
     /// [strings.byte-count] slot that returns the length of its specified string argument in number of bytes.
     /// </summary>
-    [Slot(Name = "strings.byte-count", Description = "Returns the byte count of a string")]
+    [Slot(
+        Name = "strings.byte-count",
+        Description = "Returns the byte count of a string",
+        ValueType = "string",
+        ValueDescription = "Text to measure",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ByteCount : ISlot
     {
         /// <summary>

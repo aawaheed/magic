@@ -13,7 +13,13 @@ namespace magic.lambda.config
     /// <summary>
     /// [config.section] slot for retrieving a configuration section.
     /// </summary>
-    [Slot(Name = "config.section", Description = "Returns a configuration section")]
+    [Slot(
+        Name = "config.section",
+        Description = "Returns a configuration section",
+        ValueType = "string",
+        ValueDescription = "Configuration section to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ConfigSection : ISlot
     {
         readonly IMagicConfiguration _configuration;

@@ -13,7 +13,13 @@ namespace magic.lambda.change
     /// [insert-after] slot allowing you to insert a range of nodes after some other node
     /// in your lambda graph object.
     /// </summary>
-    [Slot(Name = "insert-after", Description = "Inserts nodes after the specified target node")]
+    [Slot(
+        Name = "insert-after",
+        Description = "Inserts nodes after the specified target node",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the target node or nodes to insert after",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class InsertAfter : ISlot
     {
         /// <summary>

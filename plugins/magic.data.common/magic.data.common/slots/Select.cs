@@ -12,7 +12,13 @@ namespace magic.data.common.slots
     /// [data.select] slot, for executing some SQL towards a database and returning a record result,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.select", Description = "Executes a query and returns rows from the current database connection")]
+    [Slot(
+        Name = "data.select",
+        Description = "Executes a query and returns rows from the current database connection",
+        ValueType = "string",
+        ValueDescription = "SQL query to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Select : DataSlotBase
     {
         /// <summary>

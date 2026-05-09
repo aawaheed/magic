@@ -16,7 +16,13 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.create] slot that will create a new task.
     /// </summary>
-    [Slot(Name = "tasks.create", Description = "Creates a task")]
+    [Slot(
+        Name = "tasks.create",
+        Description = "Creates a task",
+        ValueType = "string",
+        ValueDescription = "Task ID to create when not supplied as an [id] child node",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class CreateTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

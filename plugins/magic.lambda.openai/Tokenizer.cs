@@ -12,7 +12,13 @@ namespace magic.lambda.openai
     /// <summary>
     /// [openai.tokenize] slot for tokenizing the specified input.
     /// </summary>
-    [Slot(Name = "openai.tokenize", Description = "Tokenizes the specified input")]
+    [Slot(
+        Name = "openai.tokenize",
+        Description = "Tokenizes the specified input",
+        ValueType = "string",
+        ValueDescription = "Text to tokenize",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Tokenizer : ISlot
     {
         /// <summary>

@@ -15,7 +15,13 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.verify] slot to verify that some piece of text was cryptographically
     /// signed with a specific private key.
     /// </summary>
-    [Slot(Name = "crypto.rsa.verify", Description = "Verifies an RSA signature")]
+    [Slot(
+        Name = "crypto.rsa.verify",
+        Description = "Verifies an RSA signature",
+        ValueType = "string|byte[]",
+        ValueDescription = "Content to verify against the supplied signature",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Verify : ISlot
     {
         /// <summary>

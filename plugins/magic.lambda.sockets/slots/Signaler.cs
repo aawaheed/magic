@@ -17,7 +17,13 @@ namespace magic.lambda.sockets.slots
     /// [sockets.signal] slot that allows you to publish a message to subscribers
     /// having subscribed to the specified message over a (web) socket connection.
     /// </summary>
-    [Slot(Name = "sockets.signal", Description = "Sends a signal to connected sockets")]
+    [Slot(
+        Name = "sockets.signal",
+        Description = "Publishes a message to a socket channel",
+        ValueType = "string",
+        ValueDescription = "Socket channel to publish",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Signaler : ISlotAsync
     {
         readonly IConfiguration _configuration;

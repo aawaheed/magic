@@ -13,7 +13,9 @@ namespace magic.lambda.pgsql
     /// <summary>
     /// [pgsql.transaction.create] slot for creating a new MySQL database transaction.
     /// </summary>
-    [Slot(Name = "pgsql.transaction.create", Description = "Creates a PostgreSQL transaction")]
+    [Slot(
+        Name = "pgsql.transaction.create",
+        Description = "Creates a PostgreSQL transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

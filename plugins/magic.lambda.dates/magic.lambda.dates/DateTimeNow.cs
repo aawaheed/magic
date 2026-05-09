@@ -11,7 +11,9 @@ namespace magic.lambda.dates
     /// <summary>
     /// [date.now] slot, allowing you to retrieve server time in UTC timezone.
     /// </summary>
-    [Slot(Name = "date.now", Description = "Returns the current server time in UTC")]
+    [Slot(
+        Name = "date.now",
+        Description = "Returns the current server time in UTC")]
     public class DateTimeNow : ISlot
     {
         /// <summary>

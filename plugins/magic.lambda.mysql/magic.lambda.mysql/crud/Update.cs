@@ -15,7 +15,9 @@ namespace magic.lambda.mysql.crud
     /// <summary>
     /// The [mysql.update] slot class
     /// </summary>
-    [Slot(Name = "mysql.update", Description = "Updates rows through the current MySQL connection")]
+    [Slot(
+        Name = "mysql.update",
+        Description = "Updates rows through the current MySQL connection")]
     public class Update : ISlotAsync
     {
         /// <summary>

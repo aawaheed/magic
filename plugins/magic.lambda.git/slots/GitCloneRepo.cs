@@ -13,7 +13,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.clone-repo] slot to clone a repo.
     /// </summary>
-    [Slot(Name = "git.clone-repo", Description = "Clones a Git repository")]
+    [Slot(
+        Name = "git.clone-repo",
+        Description = "Clones a Git repository",
+        ValueType = "string",
+        ValueDescription = "Repository URL to clone",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitCloneRepo : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

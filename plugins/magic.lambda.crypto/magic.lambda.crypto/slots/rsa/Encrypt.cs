@@ -13,7 +13,13 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.encrypt] slot to encrypt some content using a public key that can only be decrypted
     /// using its public key.
     /// </summary>
-    [Slot(Name = "crypto.rsa.encrypt", Description = "Encrypts data using RSA")]
+    [Slot(
+        Name = "crypto.rsa.encrypt",
+        Description = "Encrypts data using RSA",
+        ValueType = "string|byte[]",
+        ValueDescription = "Content to encrypt",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Encrypt : ISlot
     {
         /// <summary>

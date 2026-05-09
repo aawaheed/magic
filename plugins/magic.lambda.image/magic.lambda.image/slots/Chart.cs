@@ -16,7 +16,13 @@ namespace magic.lambda.image.slots
   /// <summary>
   /// [image.chart] slot for creating charts.
   /// </summary>
-  [Slot(Name = "image.chart", Description = "Creates a chart image")]
+  [Slot(
+        Name = "image.chart",
+        Description = "Creates a chart image",
+        ValueType = "string",
+        ValueDescription = "Chart type to create, such as bars, stacked, or grouped",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Chart : ISlot
     {
         readonly IRootResolver _rootResolver;

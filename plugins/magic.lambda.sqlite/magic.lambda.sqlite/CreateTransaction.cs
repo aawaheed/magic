@@ -13,7 +13,9 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.transaction.create] slot for creating a new MySQL database transaction.
     /// </summary>
-    [Slot(Name = "sqlite.transaction.create", Description = "Creates a SQLite transaction")]
+    [Slot(
+        Name = "sqlite.transaction.create",
+        Description = "Creates a SQLite transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

@@ -11,7 +11,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.close] slot for closing a Puppeteer session.
     /// </summary>
-    [Slot(Name = "puppeteer.close", Description = "Closes a Puppeteer session")]
+    [Slot(
+        Name = "puppeteer.close",
+        Description = "Closes a Puppeteer session",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Close : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

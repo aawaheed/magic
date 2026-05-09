@@ -15,7 +15,13 @@ namespace magic.lambda.strings.misc
     /// [strings.split] slot for splitting one string into multiple
     /// strings according to some string.
     /// </summary>
-    [Slot(Name = "strings.split", Description = "Splits a string into items")]
+    [Slot(
+        Name = "strings.split",
+        Description = "Splits a string into items",
+        ValueType = "string",
+        ValueDescription = "Text to split",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Split : ISlotAsync
     {
         /// <summary>

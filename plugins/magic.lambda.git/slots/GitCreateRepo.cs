@@ -13,7 +13,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.create-repo] slot to initialise a folder as a Git repo.
     /// </summary>
-    [Slot(Name = "git.create-repo", Description = "Initializes a Git repository")]
+    [Slot(
+        Name = "git.create-repo",
+        Description = "Initializes a Git repository",
+        ValueType = "string",
+        ValueDescription = "Folder path to initialize as a repository",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitCreateRepo : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

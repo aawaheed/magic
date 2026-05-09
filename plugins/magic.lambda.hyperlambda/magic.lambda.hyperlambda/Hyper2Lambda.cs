@@ -13,7 +13,13 @@ namespace magic.lambda.hyperlambda
     /// <summary>
     /// [lambda] slot, allowing you to transform a piece of Hyperlambda to a lambda hierarchy.
     /// </summary>
-    [Slot(Name = "hyper2lambda", Description = "Transforms Hyperlambda into a lambda hierarchy")]
+    [Slot(
+        Name = "hyper2lambda",
+        Description = "Transforms Hyperlambda into a lambda hierarchy",
+        ValueType = "string",
+        ValueDescription = "Hyperlambda text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Hyper2Lambda : ISlot
     {
         /// <summary>

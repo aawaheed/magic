@@ -14,7 +14,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.goto] slot for navigating to a URL.
     /// </summary>
-    [Slot(Name = "puppeteer.goto", Description = "Navigates the current page to a URL")]
+    [Slot(
+        Name = "puppeteer.goto",
+        Description = "Navigates the current page to a URL",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Goto : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

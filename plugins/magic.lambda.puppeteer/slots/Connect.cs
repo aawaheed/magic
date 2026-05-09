@@ -19,7 +19,9 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.connect] slot for launching a Chromium browser instance and returning a session id.
     /// </summary>
-    [Slot(Name = "puppeteer.connect", Description = "Creates or reuses a Puppeteer browser session")]
+    [Slot(
+        Name = "puppeteer.connect",
+        Description = "Creates or reuses a Puppeteer browser session")]
     public class Connect : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

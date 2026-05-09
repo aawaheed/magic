@@ -15,7 +15,13 @@ namespace magic.lambda.crypto.slots.combinations
     /// [crypto.verify] slot that verifies the package was cryptographically
     /// using the specified [public-key].
     /// </summary>
-    [Slot(Name = "crypto.verify", Description = "Verifies a signature using the configured combination algorithm")]
+    [Slot(
+        Name = "crypto.verify",
+        Description = "Verifies a signature using the configured combination algorithm",
+        ValueType = "string|byte[]",
+        ValueDescription = "Signed package to verify",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Verify : ISlot
     {
         /// <summary>

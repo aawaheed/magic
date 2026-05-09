@@ -13,8 +13,12 @@ namespace magic.lambda.slots
     /// <summary>
     /// [return-nodes] slot for returning nodes from some evaluation object.
     /// </summary>
-    [Slot(Name = "return-nodes", Description = "Returns nodes to the nearest caller")]
-    [Slot(Name = "yield", Description = "Returns multiple nodes to the caller")]
+    [Slot(
+        Name = "return-nodes",
+        Description = "Returns child nodes or evaluated nodes to the nearest caller")]
+    [Slot(
+        Name = "yield",
+        Description = "Returns multiple child nodes or evaluated nodes to the caller")]
     public class ReturnNodes : ISlot
     {
         /// <summary>

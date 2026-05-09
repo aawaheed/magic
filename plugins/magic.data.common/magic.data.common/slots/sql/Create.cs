@@ -12,7 +12,9 @@ namespace magic.data.common.slots.sql
     /// <summary>
     /// [sql.create] slot for creating an insert SQL, with parameters for you.
     /// </summary>
-    [Slot(Name = "sql.create", Description = "Builds a parameterized INSERT SQL statement")]
+    [Slot(
+        Name = "sql.create",
+        Description = "Builds a parameterized INSERT SQL statement")]
     public class Create : ISlot
     {
         /// <summary>

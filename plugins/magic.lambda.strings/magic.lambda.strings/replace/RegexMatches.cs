@@ -15,7 +15,13 @@ namespace magic.lambda.strings.replace
     /// [strings.matches] slot that will find all regular expression matches from specified string and
     /// return to caller.
     /// </summary>
-    [Slot(Name = "strings.matches", Description = "Returns regular expression matches")]
+    [Slot(
+        Name = "strings.matches",
+        Description = "Returns regular expression matches",
+        ValueType = "string",
+        ValueDescription = "Text to match against the regular expression",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class RegexMatches : ISlotAsync
     {
         /// <summary>

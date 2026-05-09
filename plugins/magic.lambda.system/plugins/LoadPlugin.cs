@@ -17,7 +17,13 @@ namespace magic.lambda.system.plugins
     /// [system.plugin.load] slot that will load an assembly and inject into the current AppDomain
     /// making sure it initializes any slots found in the assembly.
     /// </summary>
-    [Slot(Name = "system.plugin.load", Description = "Loads a plugin assembly")]
+    [Slot(
+        Name = "system.plugin.load",
+        Description = "Loads a plugin assembly",
+        ValueType = "string|byte[]",
+        ValueDescription = "Plugin assembly filename or assembly bytes",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class LoadPlugin : ISlot
     {
         readonly IRootResolver _rootResolver;

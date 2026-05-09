@@ -16,7 +16,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.fill] slot for clearing and typing into a selector.
     /// </summary>
-    [Slot(Name = "puppeteer.fill", Description = "Fills an input element with text")]
+    [Slot(
+        Name = "puppeteer.fill",
+        Description = "Fills an input element with text",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Fill : ISlotAsync
     {
         readonly IConfiguration _configuration;

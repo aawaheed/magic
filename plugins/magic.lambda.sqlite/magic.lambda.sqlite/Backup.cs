@@ -15,7 +15,13 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.backup] slot for creating a backup of database.
     /// </summary>
-    [Slot(Name = "sqlite.backup", Description = "Creates a backup of a SQLite database")]
+    [Slot(
+        Name = "sqlite.backup",
+        Description = "Creates a backup of a SQLite database",
+        ValueType = "string",
+        ValueDescription = "Target SQLite database name for the backup",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Backup : ISlotAsync
     {
         /// <summary>

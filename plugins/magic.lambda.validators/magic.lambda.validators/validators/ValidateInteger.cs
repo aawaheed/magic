@@ -13,7 +13,9 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.integer] slot, for verifying that some integer number is between [min] and [max] values.
     /// </summary>
-    [Slot(Name = "validators.integer", Description = "Validates an integer range")]
+    [Slot(
+        Name = "validators.integer",
+        Description = "Validates an integer range")]
     public class ValidateInteger : ISlot
     {
         /// <summary>

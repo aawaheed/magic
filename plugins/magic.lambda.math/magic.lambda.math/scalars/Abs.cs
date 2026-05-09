@@ -12,7 +12,13 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.abs] slot for finding absolute value.
     /// </summary>
-    [Slot(Name = "math.abs", Description = "Returns the absolute value")]
+    [Slot(
+        Name = "math.abs",
+        Description = "Returns the absolute value",
+        ValueType = "number",
+        ValueDescription = "Numeric value to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Abs : ISlot
     {
         /// <summary>

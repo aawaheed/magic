@@ -13,7 +13,13 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP PATCH verb towards some resource.
     /// </summary>
-    [Slot(Name = "http.patch", Description = "Makes an HTTP PATCH request")]
+    [Slot(
+        Name = "http.patch",
+        Description = "Makes an HTTP PATCH request",
+        ValueType = "string",
+        ValueDescription = "URL to send the request to",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class HttpPatch : ISlotAsync
     {
         readonly IMagicHttp _service;

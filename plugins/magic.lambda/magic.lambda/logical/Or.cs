@@ -13,7 +13,9 @@ namespace magic.lambda.logical
     /// [or] slot allowing you to group multiple comparisons (for instance), where at least one of these must evaluate
     /// to true, for the [or] slot as a whole to evaluate to true.
     /// </summary>
-    [Slot(Name = "or", Description = "Returns true if any child expression evaluates to true")]
+    [Slot(
+        Name = "or",
+        Description = "Returns true if any child expression evaluates to true")]
     public class Or : ISlot
     {
         /// <summary>

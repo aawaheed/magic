@@ -13,7 +13,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.select] slot for selecting option values from a selector.
     /// </summary>
-    [Slot(Name = "puppeteer.select", Description = "Selects an option in a select element")]
+    [Slot(
+        Name = "puppeteer.select",
+        Description = "Selects an option in a select element",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Select : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

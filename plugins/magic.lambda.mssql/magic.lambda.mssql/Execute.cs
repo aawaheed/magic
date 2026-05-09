@@ -13,7 +13,13 @@ namespace magic.lambda.mssql
     /// <summary>
     /// [mssql.execute] slot for executing a non query type of SQL.
     /// </summary>
-    [Slot(Name = "mssql.execute", Description = "Executes SQL on the current SQL Server connection")]
+    [Slot(
+        Name = "mssql.execute",
+        Description = "Executes SQL on the current SQL Server connection",
+        ValueType = "string",
+        ValueDescription = "SQL statement to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Execute : ISlotAsync
     {
         /// <summary>

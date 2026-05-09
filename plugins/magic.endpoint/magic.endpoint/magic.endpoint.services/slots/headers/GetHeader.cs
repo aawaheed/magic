@@ -13,7 +13,13 @@ namespace magic.endpoint.services.slots.headers
     /// [request.headers.get] slot for retrieving the value of the specified HTTP header
     /// passed in by the client over the HTTP request.
     /// </summary>
-    [Slot(Name = "request.headers.get", Description = "Returns a request header by name")]
+    [Slot(
+        Name = "request.headers.get",
+        Description = "Returns a request header by name",
+        ValueType = "string",
+        ValueDescription = "Header name to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GetHeader : ISlot
     {
         /// <summary>

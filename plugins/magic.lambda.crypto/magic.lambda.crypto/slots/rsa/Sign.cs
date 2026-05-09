@@ -13,7 +13,13 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.sign] slot to cryptographically sign some piece of data with some
     /// private RSA key.
     /// </summary>
-    [Slot(Name = "crypto.rsa.sign", Description = "Signs data using RSA")]
+    [Slot(
+        Name = "crypto.rsa.sign",
+        Description = "Signs data using RSA",
+        ValueType = "string|byte[]",
+        ValueDescription = "Content to sign",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Sign : ISlot
     {
         /// <summary>

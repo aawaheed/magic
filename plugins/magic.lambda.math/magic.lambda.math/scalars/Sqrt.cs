@@ -12,7 +12,13 @@ namespace magic.lambda.math.scalars
     /// <summary>
     /// [math.sqrt] slot for finding square root.
     /// </summary>
-    [Slot(Name = "math.sqrt", Description = "Calculates the square root of the specified value")]
+    [Slot(
+        Name = "math.sqrt",
+        Description = "Calculates the square root of the specified value",
+        ValueType = "number",
+        ValueDescription = "Numeric value to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Sqrt : ISlot
     {
         /// <summary>

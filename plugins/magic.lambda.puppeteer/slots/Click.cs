@@ -13,7 +13,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.click] slot for clicking a selector.
     /// </summary>
-    [Slot(Name = "puppeteer.click", Description = "Clicks an element on the page")]
+    [Slot(
+        Name = "puppeteer.click",
+        Description = "Clicks an element on the page",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Click : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

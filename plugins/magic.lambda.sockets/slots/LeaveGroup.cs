@@ -14,7 +14,9 @@ namespace magic.lambda.sockets.slots
     /// [sockets.connection.leave-group] slot that allows you to de-associate the current
     /// SignalR connectionId with a group.
     /// </summary>
-    [Slot(Name = "sockets.connection.leave-group", Description = "Removes the current connection from a socket group")]
+    [Slot(
+        Name = "sockets.connection.leave-group",
+        Description = "Removes the current connection from a socket group")]
     public class LeaveGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

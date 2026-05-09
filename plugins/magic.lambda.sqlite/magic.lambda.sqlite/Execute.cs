@@ -13,7 +13,13 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.execute] slot for executing a non query SQL command.
     /// </summary>
-    [Slot(Name = "sqlite.execute", Description = "Executes SQL on the current SQLite connection")]
+    [Slot(
+        Name = "sqlite.execute",
+        Description = "Executes SQL on the current SQLite connection",
+        ValueType = "string",
+        ValueDescription = "SQL statement to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Execute : ISlotAsync
     {
         /// <summary>

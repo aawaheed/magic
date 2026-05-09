@@ -14,9 +14,27 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.save] slot for saving a file on your server.
     /// </summary>
-    [Slot(Name = "save-file", Description = "Saves a text file to the server")]
-    [Slot(Name = "io.file.save", Description = "Saves a text file to the server")]
-    [Slot(Name = "io.file.save.binary", Description = "Saves a binary file to the server")]
+    [Slot(
+        Name = "save-file",
+        Description = "Saves a text file to the server",
+        ValueType = "string",
+        ValueDescription = "File path to save",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
+    [Slot(
+        Name = "io.file.save",
+        Description = "Saves a text file to the server",
+        ValueType = "string",
+        ValueDescription = "File path to save",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
+    [Slot(
+        Name = "io.file.save.binary",
+        Description = "Saves a binary file to the server",
+        ValueType = "string",
+        ValueDescription = "File path to save",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class SaveFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

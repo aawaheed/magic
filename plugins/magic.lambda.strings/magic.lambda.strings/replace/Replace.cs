@@ -14,7 +14,13 @@ namespace magic.lambda.strings.replace
     /// [strings.replace] slot for replacing occurrencies of one string with another string. Pass in [what]
     /// being what to replace and [with] being its new value.
     /// </summary>
-    [Slot(Name = "strings.replace", Description = "Replaces occurrences of a substring")]
+    [Slot(
+        Name = "strings.replace",
+        Description = "Replaces occurrences of a substring",
+        ValueType = "string",
+        ValueDescription = "Text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Replace : ISlotAsync
     {
         /// <summary>

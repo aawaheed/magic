@@ -14,7 +14,13 @@ namespace magic.lambda.config
     /// <summary>
     /// [config.get] slot for retrieving a configuration key.
     /// </summary>
-    [Slot(Name = "config.get", Description = "Returns a configuration value")]
+    [Slot(
+        Name = "config.get",
+        Description = "Returns a configuration value",
+        ValueType = "string",
+        ValueDescription = "Configuration key to retrieve",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ConfigGet : ISlotAsync
     {
         readonly IMagicConfiguration _configuration;

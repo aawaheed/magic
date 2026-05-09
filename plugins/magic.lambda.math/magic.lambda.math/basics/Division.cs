@@ -12,7 +12,13 @@ namespace magic.lambda.math.basics
     /// <summary>
     /// [math.divide] slot for performing division.
     /// </summary>
-    [Slot(Name = "math.divide", Description = "Divides numeric values")]
+    [Slot(
+        Name = "math.divide",
+        Description = "Divides numeric values",
+        ValueType = "number",
+        ValueDescription = "First numeric operand",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Division : ISlotAsync
     {
         /// <summary>

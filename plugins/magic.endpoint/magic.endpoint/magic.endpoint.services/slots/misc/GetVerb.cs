@@ -11,7 +11,9 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [request.verb] slot for returning the HTTP verb the request was decorated with.
     /// </summary>
-    [Slot(Name = "request.verb", Description = "Returns the current request verb")]
+    [Slot(
+        Name = "request.verb",
+        Description = "Returns the current request verb")]
     public class GetVerb : ISlot
     {
         /// <summary>

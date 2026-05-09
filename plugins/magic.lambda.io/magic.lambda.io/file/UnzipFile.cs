@@ -17,7 +17,13 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.unzip] slot for unzipping a previously zipped file.
     /// </summary>
-    [Slot(Name = "io.file.unzip", Description = "Extracts a zip archive on the server")]
+    [Slot(
+        Name = "io.file.unzip",
+        Description = "Extracts a zip archive on the server",
+        ValueType = "string",
+        ValueDescription = "Zip archive path to extract",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class UnzipFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

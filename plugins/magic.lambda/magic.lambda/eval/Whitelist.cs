@@ -14,7 +14,9 @@ namespace magic.lambda.eval
     /// <summary>
     /// [whitelist] slot, allowing you to create sub-vocabulary of legal slots.
     /// </summary>
-    [Slot(Name = "whitelist", Description = "Restricts which slots can be invoked during evaluation")]
+    [Slot(
+        Name = "whitelist",
+        Description = "Evaluates a lambda with a restricted whitelist of allowed slots")]
     public class Whitelist : ISlotAsync
     {
         /// <summary>

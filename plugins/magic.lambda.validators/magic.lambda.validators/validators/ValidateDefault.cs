@@ -12,7 +12,9 @@ namespace magic.lambda.validators.validators
     /// [validators.default] slot, for verifying that some input was given, and if not,
     /// create a node containing some default value.
     /// </summary>
-    [Slot(Name = "validators.default", Description = "Applies a default value when input is missing")]
+    [Slot(
+        Name = "validators.default",
+        Description = "Applies a default value when input is missing")]
     public class ValidateDefault : ISlot
     {
         /// <summary>

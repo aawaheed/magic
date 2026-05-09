@@ -15,7 +15,13 @@ namespace magic.lambda.git
     /// <summary>
     /// [github.repo.delete] slot to delete a GitHub repository.
     /// </summary>
-    [Slot(Name = "github.repo.delete", Description = "Deletes a GitHub repository")]
+    [Slot(
+        Name = "github.repo.delete",
+        Description = "Deletes a GitHub repository",
+        ValueType = "string",
+        ValueDescription = "GitHub repository name",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class GitHubRepoDelete : ISlotAsync
     {
         readonly HttpClient _httpClient;

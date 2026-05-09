@@ -12,7 +12,9 @@ namespace magic.lambda.odbc
     /// [odbc.transaction.commit] slot for committing the top level ODBC
     /// database transaction.
     /// </summary>
-    [Slot(Name = "odbc.transaction.commit", Description = "Commits the current ODBC transaction")]
+    [Slot(
+        Name = "odbc.transaction.commit",
+        Description = "Commits the current ODBC transaction")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

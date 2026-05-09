@@ -12,7 +12,13 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.capitalize] slot that returns the Capitalized value of its specified argument.
     /// </summary>
-    [Slot(Name = "strings.capitalize", Description = "Capitalizes the specified string")]
+    [Slot(
+        Name = "strings.capitalize",
+        Description = "Capitalizes the specified string",
+        ValueType = "string",
+        ValueDescription = "Text to capitalize",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Capitalize : ISlot
     {
         /// <summary>

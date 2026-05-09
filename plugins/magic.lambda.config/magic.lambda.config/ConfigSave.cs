@@ -14,7 +14,13 @@ namespace magic.lambda.config
     /// <summary>
     /// [config.save] slot saving its value to your "appsettings.json" file.
     /// </summary>
-    [Slot(Name = "config.save", Description = "Saves configuration values")]
+    [Slot(
+        Name = "config.save",
+        Description = "Saves configuration values",
+        ValueType = "string",
+        ValueDescription = "Configuration content to save",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class SaveAppSettings : ISlotAsync
     {
         readonly IFileService _fileService;

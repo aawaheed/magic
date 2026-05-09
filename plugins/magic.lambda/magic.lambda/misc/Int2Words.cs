@@ -13,7 +13,13 @@ namespace magic.lambda.misc
     /// [int2words] slot allowing you to convert numbers to their word representationsm,
     /// such as 557 to 'five hundred and fifty seven' etc.
     /// </summary>
-    [Slot(Name = "int2words", Description = "Converts an integer into words")]
+    [Slot(
+        Name = "int2words",
+        Description = "Converts an integer into words",
+        ValueType = "long",
+        ValueDescription = "Integer value to convert to words",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Int2Words : ISlot
     {
         static readonly string[] _unitsMap =

@@ -13,7 +13,13 @@ namespace magic.lambda.puppeteer
     /// <summary>
     /// [puppeteer.wait-for-url] slot for waiting until the page URL matches.
     /// </summary>
-    [Slot(Name = "puppeteer.wait-for-url", Description = "Waits for the page URL to match a condition")]
+    [Slot(
+        Name = "puppeteer.wait-for-url",
+        Description = "Waits for the page URL to match a condition",
+        ValueType = "string",
+        ValueDescription = "Puppeteer session ID",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class WaitForUrl : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

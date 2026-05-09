@@ -13,7 +13,13 @@ namespace magic.lambda.dates
     /// <summary>
     /// [time] slot, allowing you to construct a new TimeSpan.
     /// </summary>
-    [Slot(Name = "time", Description = "Constructs a TimeSpan value")]
+    [Slot(
+        Name = "time",
+        Description = "Constructs a TimeSpan value",
+        ValueType = "long",
+        ValueDescription = "Time value to construct when using RHS form",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Time : ISlot
     {
         /// <summary>

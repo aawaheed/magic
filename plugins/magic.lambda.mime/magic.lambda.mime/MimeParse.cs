@@ -14,7 +14,13 @@ namespace magic.lambda.mime
     /// <summary>
     /// Parses a MIME message and returns its as a hierarchical object of lambda to caller.
     /// </summary>
-    [Slot(Name = "mime.parse", Description = "Parses a MIME message")]
+    [Slot(
+        Name = "mime.parse",
+        Description = "Parses a MIME message",
+        ValueType = "string",
+        ValueDescription = "Raw MIME message to parse",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class MimeParse : ISlot
     {
         /// <summary>

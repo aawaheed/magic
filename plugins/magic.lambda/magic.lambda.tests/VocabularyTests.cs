@@ -12,7 +12,8 @@ namespace magic.lambda.tests
 {
     public class VocabularyTests
     {
-        [Slot(Name = ".not-visible")]
+        [Slot(
+        Name = ".not-visible")]
         public class NotVisibleSlot : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

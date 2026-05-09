@@ -15,7 +15,13 @@ namespace magic.lambda.strings.replace
     /// [strings.replace-not-of] slot for replacing occurrencies of any single character not matching
     /// the specified character with some substitute character.
     /// </summary>
-    [Slot(Name = "strings.replace-not-of", Description = "Replaces characters not found in the supplied allow-list")]
+    [Slot(
+        Name = "strings.replace-not-of",
+        Description = "Replaces characters not found in the supplied allow-list",
+        ValueType = "string",
+        ValueDescription = "Text to transform",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class ReplaceNotOf : ISlotAsync
     {
         /// <summary>

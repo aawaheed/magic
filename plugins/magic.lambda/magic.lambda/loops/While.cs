@@ -14,7 +14,13 @@ namespace magic.lambda.loops
     /// <summary>
     /// [while] slot that will evaluate its lambda object as long as its condition is true.
     /// </summary>
-    [Slot(Name = "while", Description = "Repeats execution while a condition is true")]
+    [Slot(
+        Name = "while",
+        Description = "Repeats execution while a condition is true",
+        ValueType = "expression",
+        ValueDescription = "Condition expression when using RHS form",
+        ValueRequired = false,
+        ValueMode = SlotValueMode.Expression)]
     public class While : ISlot
     {
         readonly LambdaSettings _settings;

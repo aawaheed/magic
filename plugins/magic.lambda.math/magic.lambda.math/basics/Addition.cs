@@ -12,7 +12,13 @@ namespace magic.lambda.math.basics
     /// <summary>
     /// [math.add] slot for performing additions.
     /// </summary>
-    [Slot(Name = "math.add", Description = "Adds numeric values")]
+    [Slot(
+        Name = "math.add",
+        Description = "Adds numeric values",
+        ValueType = "number",
+        ValueDescription = "First numeric operand",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Addition : ISlotAsync
     {
         /// <summary>

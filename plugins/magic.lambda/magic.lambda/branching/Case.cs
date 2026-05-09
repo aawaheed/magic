@@ -11,7 +11,13 @@ namespace magic.lambda.branching
     /// <summary>
     /// [case] slot for [switch] slots.
     /// </summary>
-    [Slot(Name = "case", Description = "Evaluates a single case branch inside [switch]")]
+    [Slot(
+        Name = "case",
+        Description = "Evaluates a single case branch inside [switch]",
+        ValueType = "object",
+        ValueDescription = "Case value to match against the [switch] input value",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Case : ISlot
     {
         /// <summary>

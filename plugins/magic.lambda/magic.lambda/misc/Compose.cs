@@ -12,7 +12,9 @@ namespace magic.lambda.misc
     /// <summary>
     /// [compose] slot allowing you to dynamically compose an expression.
     /// </summary>
-    [Slot(Name = "compose", Description = "Dynamically creates a new expression")]
+    [Slot(
+        Name = "compose",
+        Description = "Creates a new expression by joining the evaluated child node values")]
     public class Compose : ISlot
     {
         /// <summary>

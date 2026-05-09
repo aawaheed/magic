@@ -16,7 +16,13 @@ namespace magic.lambda.mime
     /// <summary>
     /// Creates a MIME message and returns it as a MIME message to caller.
     /// </summary>
-    [Slot(Name = "mime.create", Description = "Creates a MIME message")]
+    [Slot(
+        Name = "mime.create",
+        Description = "Creates a MIME message",
+        ValueType = "string",
+        ValueDescription = "Primary MIME content type when using RHS form",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class MimeCreate : ISlotAsync
     {
         readonly IStreamService _streamService;

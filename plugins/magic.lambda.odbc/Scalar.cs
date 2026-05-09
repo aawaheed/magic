@@ -13,7 +13,13 @@ namespace magic.lambda.odbc
     /// <summary>
     /// [odbc.scalar] slot for executing a scalar type of SQL commands.
     /// </summary>
-    [Slot(Name = "odbc.scalar", Description = "Executes SQL and returns a scalar value from the current ODBC connection")]
+    [Slot(
+        Name = "odbc.scalar",
+        Description = "Executes SQL and returns a scalar value from the current ODBC connection",
+        ValueType = "string",
+        ValueDescription = "SQL statement to execute",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class Scalar : ISlotAsync
     {
         /// <summary>

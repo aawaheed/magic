@@ -12,7 +12,13 @@ namespace magic.lambda.io.stream
     /// <summary>
     /// [io.stream.close] slot for closing a previously opened stream.
     /// </summary>
-    [Slot(Name = "io.stream.close", Description = "Closes an open stream")]
+    [Slot(
+        Name = "io.stream.close",
+        Description = "Closes an open stream",
+        ValueType = "Stream",
+        ValueDescription = "Stream instance to close",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression)]
     public class CloseStream : ISlot
     {
         /// <summary>

@@ -14,7 +14,9 @@ namespace magic.lambda.threading
     /// <summary>
     /// [fork] slot, allowing you to create and start a new thread.
     /// </summary>
-    [Slot(Name = "fork", Description = "Creates a new thread and executes the specified lambda object on the new thread")]
+    [Slot(
+        Name = "fork",
+        Description = "Creates a new thread and executes the specified lambda object on the new thread")]
     public class Fork : ISlotAsync
     {
         readonly IServiceScopeFactory _serviceScopeFactory;

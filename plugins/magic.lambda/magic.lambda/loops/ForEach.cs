@@ -12,7 +12,13 @@ namespace magic.lambda.loops
     /// <summary>
     /// [for-each] slot allowing you to iterate through a list of node, resulting from the evaluation of an expression.
     /// </summary>
-    [Slot(Name = "for-each", Description = "Iterates over matching nodes")]
+    [Slot(
+        Name = "for-each",
+        Description = "Iterates over matching nodes",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the nodes to iterate",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.Expression)]
     public class ForEach : ISlot
     {
         /// <summary>

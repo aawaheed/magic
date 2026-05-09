@@ -15,7 +15,9 @@ namespace magic.lambda.mssql.crud
     /// <summary>
     /// [mssql.read] slot for selecting rows from some table.
     /// </summary>
-    [Slot(Name = "mssql.read", Description = "Reads rows through the current SQL Server connection")]
+    [Slot(
+        Name = "mssql.read",
+        Description = "Reads rows through the current SQL Server connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

@@ -13,7 +13,9 @@ namespace magic.lambda.exceptions
     /// [try] slot for evaluating a piece of lambda, and optionally either [.catch] or add [.finally] evaluations
     /// guaranteed to be evaluated even if some exception occurs.
     /// </summary>
-    [Slot(Name = "try", Description = "Evaluates a try-catch block")]
+    [Slot(
+        Name = "try",
+        Description = "Evaluates a try-catch block")]
     public class Try : ISlot
     {
         /// <summary>

@@ -12,7 +12,9 @@ namespace magic.data.common.slots
     /// [data.transaction.rollback] slot, for rolling back a database transaction,
     /// according to your configuration settings.
     /// </summary>
-    [Slot(Name = "data.transaction.rollback", Description = "Rolls back the current database transaction using the configured provider")]
+    [Slot(
+        Name = "data.transaction.rollback",
+        Description = "Rolls back the current database transaction using the configured provider")]
     public class RollbackTransaction : DataSlotBase
     {
         /// <summary>
