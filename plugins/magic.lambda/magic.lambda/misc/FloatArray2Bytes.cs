@@ -19,7 +19,10 @@ namespace magic.lambda.misc
         ValueType = "float[]",
         ValueDescription = "Float values to convert to bytes",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the float array converted to bytes")]
     public class FloatArray2Bytes : ISlot
     {
         /// <summary>

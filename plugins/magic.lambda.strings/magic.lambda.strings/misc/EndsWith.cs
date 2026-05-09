@@ -21,7 +21,10 @@ namespace magic.lambda.strings.misc
         ValueType = "string",
         ValueDescription = "Text to inspect",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the string ends with the supplied text")]
     public class EndsWith : ISlotAsync
     {
         /// <summary>

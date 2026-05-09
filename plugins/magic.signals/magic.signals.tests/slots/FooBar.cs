@@ -9,7 +9,10 @@ using magic.signals.contracts;
 namespace magic.signals.tests.slots
 {
     [Slot(
-        Name = "foo.bar")]
+        Name = "foo.bar",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the input text with \"world\" appended")]
     public class FooBar : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

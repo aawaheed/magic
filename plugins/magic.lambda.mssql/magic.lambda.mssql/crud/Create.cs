@@ -19,7 +19,10 @@ namespace magic.lambda.mssql.crud
     /// </summary>
     [Slot(
         Name = "mssql.create",
-        Description = "Inserts rows through the current SQL Server connection")]
+        Description = "Inserts rows through the current SQL Server connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the created row ID when [return-id] is true, otherwise null")]
     public class Create : ISlotAsync
     {
         /// <summary>

@@ -19,7 +19,8 @@ namespace magic.lambda.misc
         ValueType = "string",
         ValueDescription = "Context name to return",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Context : ISlot
     {
         /// <summary>

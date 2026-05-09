@@ -19,14 +19,16 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "Source file path",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "io.file.move",
         Description = "Moves a file on the server",
         ValueType = "string",
         ValueDescription = "Source file path",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class CopyMoveFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

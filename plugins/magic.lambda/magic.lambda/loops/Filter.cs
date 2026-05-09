@@ -19,7 +19,10 @@ namespace magic.lambda.loops
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to filter",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the nodes for which the child lambda predicate evaluates to true")]
     public class Filter : ISlot
     {
         /// <summary>

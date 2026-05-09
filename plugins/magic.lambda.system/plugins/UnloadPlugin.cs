@@ -19,7 +19,8 @@ namespace magic.lambda.system.plugins
         ValueType = "string",
         ValueDescription = "Assembly name to unload",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class UnloadPlugin : ISlot
     {
         readonly ISignalsProvider _provider;

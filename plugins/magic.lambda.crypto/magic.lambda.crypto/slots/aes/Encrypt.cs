@@ -18,7 +18,10 @@ namespace magic.lambda.crypto.slots.aes
         ValueType = "string|byte[]",
         ValueDescription = "Content to encrypt",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the encrypted package as base64 text or raw bytes when [raw] is true")]
     public class Encrypt : ISlot
     {
         /// <summary>

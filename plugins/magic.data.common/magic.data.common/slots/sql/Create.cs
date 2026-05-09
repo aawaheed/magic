@@ -14,7 +14,10 @@ namespace magic.data.common.slots.sql
     /// </summary>
     [Slot(
         Name = "sql.create",
-        Description = "Builds a parameterized INSERT SQL statement")]
+        Description = "Builds a parameterized INSERT SQL statement",
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated SQL string in value and the generated parameter nodes as children")]
     public class Create : ISlot
     {
         /// <summary>

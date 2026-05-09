@@ -20,7 +20,8 @@ namespace magic.lambda.mail
     /// </summary>
     [Slot(
         Name = "mail.pop3.fetch",
-        Description = "Fetches messages from a POP3 mailbox using child-node options and a required [.lambda] callback")]
+        Description = "Fetches messages from a POP3 mailbox using child-node options and a required [.lambda] callback",
+        ReturnsMode = SlotReturnsMode.None)]
     public class MailPop3Fetch : ISlotAsync
     {
         readonly ConnectionSettingsPop3 _server;

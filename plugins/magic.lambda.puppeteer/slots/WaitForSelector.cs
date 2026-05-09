@@ -18,7 +18,8 @@ namespace magic.lambda.puppeteer
         ValueType = "string",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class WaitForSelector : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

@@ -16,7 +16,8 @@ namespace magic.lambda.threading
     /// </summary>
     [Slot(
         Name = "fork",
-        Description = "Creates a new thread and executes the specified lambda object on the new thread")]
+        Description = "Creates a new thread and executes the specified lambda object on the new thread",
+        ReturnsMode = SlotReturnsMode.None)]
     public class Fork : ISlotAsync
     {
         readonly IServiceScopeFactory _serviceScopeFactory;

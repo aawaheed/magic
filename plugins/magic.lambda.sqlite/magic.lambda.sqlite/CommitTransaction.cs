@@ -14,7 +14,8 @@ namespace magic.lambda.sqlite
     /// </summary>
     [Slot(
         Name = "sqlite.transaction.commit",
-        Description = "Commits the current SQLite transaction")]
+        Description = "Commits the current SQLite transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CommitTransaction : ISlot
     {
         /// <summary>

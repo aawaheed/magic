@@ -15,7 +15,8 @@ namespace magic.lambda.exceptions
     /// </summary>
     [Slot(
         Name = "try",
-        Description = "Evaluates a try-catch block")]
+        Description = "Evaluates a try-catch block",
+        ReturnsMode = SlotReturnsMode.None)]
     public class Try : ISlot
     {
         /// <summary>

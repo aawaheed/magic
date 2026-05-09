@@ -23,7 +23,8 @@ namespace magic.lambda.system.plugins
         ValueType = "string|byte[]",
         ValueDescription = "Plugin assembly filename or assembly bytes",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class LoadPlugin : ISlot
     {
         readonly IRootResolver _rootResolver;

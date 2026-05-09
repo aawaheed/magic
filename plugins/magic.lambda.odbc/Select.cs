@@ -20,7 +20,10 @@ namespace magic.lambda.odbc
         ValueType = "string",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per row returned by the SELECT query")]
     public class Select : ISlotAsync
     {
         /// <summary>

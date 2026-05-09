@@ -15,7 +15,10 @@ namespace magic.lambda.logical
     /// </summary>
     [Slot(
         Name = "and",
-        Description = "Returns true if all children evaluate to true")]
+        Description = "Returns true if all children evaluate to true",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if all operands evaluate to true")]
     public class And : ISlot
     {
         /// <summary>

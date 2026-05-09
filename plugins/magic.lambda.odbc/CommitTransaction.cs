@@ -14,7 +14,8 @@ namespace magic.lambda.odbc
     /// </summary>
     [Slot(
         Name = "odbc.transaction.commit",
-        Description = "Commits the current ODBC transaction")]
+        Description = "Commits the current ODBC transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CommitTransaction : ISlot
     {
         /// <summary>

@@ -21,7 +21,10 @@ namespace magic.lambda.crypto.slots.combinations
         ValueType = "string|byte[]",
         ValueDescription = "Signed package to verify",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the verified content as text or raw bytes when [raw] is true")]
     public class Verify : ISlot
     {
         /// <summary>

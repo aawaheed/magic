@@ -20,7 +20,10 @@ namespace magic.lambda.dates
         ValueType = "TimeSpan",
         ValueDescription = "Time span to format",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the formatted time string")]
     public class TimeFormat : ISlot
     {
         /// <summary>

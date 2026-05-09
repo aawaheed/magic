@@ -19,7 +19,10 @@ namespace magic.lambda.slots
         ValueType = "string",
         ValueDescription = "Optional filter for dynamic slot names",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns available dynamic slot names as child nodes")]
     public class Vocabulary : ISlot
     {
         /// <summary>

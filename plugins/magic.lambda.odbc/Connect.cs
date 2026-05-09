@@ -20,7 +20,8 @@ namespace magic.lambda.odbc
         ValueType = "string",
         ValueDescription = "Optional connection string override",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

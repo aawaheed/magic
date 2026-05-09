@@ -15,7 +15,10 @@ namespace magic.lambda.threading
         ValueType = "string",
         ValueDescription = "Execution ID to cancel",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the execution was cancelled")]
     public class ExecutionKill : ISlot
     {
         readonly IExecutionRegistry _executionRegistry;

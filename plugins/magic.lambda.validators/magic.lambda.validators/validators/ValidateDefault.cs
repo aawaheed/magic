@@ -18,7 +18,8 @@ namespace magic.lambda.validators.validators
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes to apply defaults to",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ValidateDefault : ISlot
     {
         /// <summary>

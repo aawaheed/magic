@@ -17,7 +17,8 @@ namespace magic.lambda.comparison
         ValueType = "object",
         ValueDescription = "First operand when the second operand is supplied as the only child node",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Mt : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

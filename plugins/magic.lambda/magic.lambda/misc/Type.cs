@@ -18,7 +18,10 @@ namespace magic.lambda.misc
         ValueType = "expression",
         ValueDescription = "Expression selecting the value whose CLR type should be returned",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the runtime type name of the first matching value")]
     public class Type : ISlot
     {
         /// <summary>

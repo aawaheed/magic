@@ -13,7 +13,10 @@ namespace magic.lambda.system.plugins
     /// </summary>
     [Slot(
         Name = "system.plugin.list",
-        Description = "Lists dynamically loaded plugins")]
+        Description = "Lists dynamically loaded plugins",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per dynamically loaded plugin name")]
     public class ListPlugins : ISlot
     {
         /// <summary>

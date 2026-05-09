@@ -24,7 +24,8 @@ namespace magic.lambda.json.slots.json
         ValueType = "Stream",
         ValueDescription = "JSON stream to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Json2LambdaStream : ISlotAsync
     {
         /// <summary>

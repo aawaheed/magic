@@ -19,7 +19,10 @@ namespace magic.lambda.hyperlambda
         ValueType = "string",
         ValueDescription = "Hyperlambda text to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the parsed lambda hierarchy as child nodes")]
     public class Hyper2Lambda : ISlot
     {
         /// <summary>

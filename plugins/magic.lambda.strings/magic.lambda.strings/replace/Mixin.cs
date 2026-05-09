@@ -24,7 +24,10 @@ namespace magic.lambda.strings.replace
         ValueType = "string",
         ValueDescription = "Template text to interpolate",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the rendered string after applying codebehind and expressions")]
     public class Mixin : ISlotAsync
     {
         readonly ILogger _logger;

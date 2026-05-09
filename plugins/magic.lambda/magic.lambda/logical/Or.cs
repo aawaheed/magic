@@ -15,7 +15,10 @@ namespace magic.lambda.logical
     /// </summary>
     [Slot(
         Name = "or",
-        Description = "Returns true if any child expression evaluates to true")]
+        Description = "Returns true if any child expression evaluates to true",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if any operand evaluates to true")]
     public class Or : ISlot
     {
         /// <summary>

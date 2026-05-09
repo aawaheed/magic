@@ -20,21 +20,30 @@ namespace magic.lambda.slots
         ValueType = "string",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the invoked slot's value result and any returned child nodes")]
     [Slot(
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
         ValueType = "string",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the invoked slot's value result and any returned child nodes")]
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
         ValueType = "string",
         ValueDescription = "Name of the dynamic slot to try invoking",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the invoked slot's value result and any returned child nodes")]
     public class SignalSlot : ISlotAsync
     {
         /// <summary>

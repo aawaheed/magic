@@ -19,7 +19,8 @@ namespace magic.lambda.sockets.slots
         ValueType = "string",
         ValueDescription = "Username to remove from the socket group",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class RemoveUserFromGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

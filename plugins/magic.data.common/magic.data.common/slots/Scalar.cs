@@ -18,7 +18,10 @@ namespace magic.data.common.slots
         ValueType = "string",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns a scalar value from the current database connection")]
     public class Scalar : DataSlotBase
     {
         /// <summary>

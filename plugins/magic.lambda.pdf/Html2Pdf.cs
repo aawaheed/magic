@@ -20,7 +20,10 @@ namespace magic.lambda.pdf
         ValueType = "string",
         ValueDescription = "HTML markup to convert",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the generated PDF bytes")]
     public class Html2Pdf : ISlot
     {
         readonly IRootResolver _rootResolver;

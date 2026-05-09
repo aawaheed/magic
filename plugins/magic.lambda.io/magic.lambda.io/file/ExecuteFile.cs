@@ -22,14 +22,20 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "File path to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the executed file's value result and any returned child nodes")]
     [Slot(
         Name = "execute-file",
         Description = "Executes a file on the server",
         ValueType = "string",
         ValueDescription = "File path to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the executed file's value result and any returned child nodes")]
     public class ExecuteFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -21,7 +21,10 @@ namespace magic.lambda.strings.replace
         ValueType = "string",
         ValueDescription = "Text to match against the regular expression",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per regular expression match")]
     public class RegexMatches : ISlotAsync
     {
         /// <summary>

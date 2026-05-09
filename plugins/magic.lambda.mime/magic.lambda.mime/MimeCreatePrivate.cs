@@ -22,7 +22,10 @@ namespace magic.lambda.mime
         ValueType = "string",
         ValueDescription = "Primary MIME content type when using RHS form",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "MimeEntity",
+        ReturnsDescription = "Returns the created MimeKit MIME entity")]
     public class MimeCreatePrivate : ISlotAsync
     {
         readonly IStreamService _streamService;

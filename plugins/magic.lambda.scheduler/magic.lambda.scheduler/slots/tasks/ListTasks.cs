@@ -20,7 +20,10 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueType = "string",
         ValueDescription = "Optional filter for task IDs",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per task with its task metadata")]
     public class ListTasks : ISlotAsync
     {
         readonly ITaskStorage _storage;

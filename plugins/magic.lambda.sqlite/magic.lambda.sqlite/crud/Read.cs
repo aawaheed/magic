@@ -17,7 +17,10 @@ namespace magic.lambda.sqlite.crud
     /// </summary>
     [Slot(
         Name = "sqlite.read",
-        Description = "Reads rows through the current SQLite connection")]
+        Description = "Reads rows through the current SQLite connection",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per row read from the current SQLite connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

@@ -14,7 +14,8 @@ namespace magic.lambda.pgsql
     /// </summary>
     [Slot(
         Name = "pgsql.transaction.rollback",
-        Description = "Rolls back the current PostgreSQL transaction")]
+        Description = "Rolls back the current PostgreSQL transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

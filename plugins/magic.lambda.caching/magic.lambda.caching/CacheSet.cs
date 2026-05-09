@@ -21,7 +21,8 @@ namespace magic.lambda.caching
         ValueType = "string",
         ValueDescription = "Cache key to store",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class CacheSet : ISlotAsync
     {
         readonly IMagicCache _cache;

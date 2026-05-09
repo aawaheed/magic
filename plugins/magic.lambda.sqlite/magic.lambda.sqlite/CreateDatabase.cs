@@ -13,7 +13,8 @@ namespace magic.lambda.sqlite
     /// </summary>
     [Slot(
         Name = "sqlite.connections.flush",
-        Description = "Flushes cached SQLite connections")]
+        Description = "Flushes cached SQLite connections",
+        ReturnsMode = SlotReturnsMode.None)]
     public class FlushConnections : ISlot
     {
         /// <summary>

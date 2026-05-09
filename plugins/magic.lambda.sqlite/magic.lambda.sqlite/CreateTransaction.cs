@@ -15,7 +15,8 @@ namespace magic.lambda.sqlite
     /// </summary>
     [Slot(
         Name = "sqlite.transaction.create",
-        Description = "Creates a SQLite transaction")]
+        Description = "Creates a SQLite transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.lambda.source
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to count",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of nodes matched by the expression")]
     public class GetCount : ISlot
     {
         /// <summary>

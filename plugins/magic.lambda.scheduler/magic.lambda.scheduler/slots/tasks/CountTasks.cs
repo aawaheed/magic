@@ -20,7 +20,10 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueType = "string",
         ValueDescription = "Optional filter for task IDs",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of scheduled tasks matching the optional filter")]
     public class CountTasks :ISlotAsync
     {
         readonly ITaskStorage _storage;

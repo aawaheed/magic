@@ -20,7 +20,10 @@ namespace magic.lambda.xml
         ValueType = "string",
         ValueDescription = "XML text to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the parsed lambda hierarchy as child nodes")]
     public class Xml2Lambda : ISlot
     {
         /// <summary>

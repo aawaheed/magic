@@ -15,7 +15,8 @@ namespace magic.lambda.mysql
     /// </summary>
     [Slot(
         Name = "mssql.transaction.create",
-        Description = "Creates a SQL Server transaction")]
+        Description = "Creates a SQL Server transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

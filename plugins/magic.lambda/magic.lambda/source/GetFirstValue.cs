@@ -20,7 +20,10 @@ namespace magic.lambda.source
         ValueType = "object",
         ValueDescription = "Literal value or expression selecting nodes where the first non-null node value is returned when not obtained from child nodes",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the first non-null value resolved from the supplied literal, expression, or child nodes")]
     public class GetFirstValue : ISlot
     {
         /// <summary>

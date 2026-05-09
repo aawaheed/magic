@@ -13,7 +13,10 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "request.url",
-        Description = "Returns the current request URL")]
+        Description = "Returns the current request URL",
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the full request URL in value and the parsed query string parameters as child nodes")]
     public class GetUrl : ISlot
     {
         /// <summary>

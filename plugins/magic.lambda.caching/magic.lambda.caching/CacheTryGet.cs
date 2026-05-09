@@ -23,7 +23,10 @@ namespace magic.lambda.caching
         ValueType = "string",
         ValueDescription = "Cache key to retrieve",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the cached value, or the newly created value when the key is missing")]
     public class CacheTryGet : ISlotAsync
     {
         readonly IMagicCache _cache;

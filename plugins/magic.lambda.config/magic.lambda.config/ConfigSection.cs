@@ -19,7 +19,10 @@ namespace magic.lambda.config
         ValueType = "string",
         ValueDescription = "Configuration section to retrieve",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per key/value entry in the requested configuration section")]
     public class ConfigSection : ISlot
     {
         readonly IMagicConfiguration _configuration;

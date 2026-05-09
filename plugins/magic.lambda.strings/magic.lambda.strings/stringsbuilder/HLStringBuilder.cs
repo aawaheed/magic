@@ -14,7 +14,10 @@ namespace magic.lambda.strings.builder
     /// </summary>
     [Slot(
         Name = "strings.builder",
-        Description = "Creates a reusable string builder scope")]
+        Description = "Creates a reusable string builder scope",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "StringBuilder",
+        ReturnsDescription = "Returns the created StringBuilder instance")]
     public class HLStringBuilder : ISlotAsync
     {
         /// <summary>

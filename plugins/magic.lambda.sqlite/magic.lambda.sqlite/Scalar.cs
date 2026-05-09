@@ -19,7 +19,10 @@ namespace magic.lambda.sqlite
         ValueType = "string",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the scalar result of the SQL statement")]
     public class Scalar : ISlotAsync
     {
         /// <summary>

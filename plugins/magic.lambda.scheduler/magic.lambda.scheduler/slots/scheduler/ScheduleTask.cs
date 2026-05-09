@@ -24,7 +24,10 @@ namespace magic.lambda.scheduler.slots.scheduler
         ValueType = "string",
         ValueDescription = "Task ID to schedule when not supplied as an [id] child node",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the created schedule ID")]
     public class ScheduleTask : ISlotAsync
     {
         readonly ITaskScheduler _scheduler;

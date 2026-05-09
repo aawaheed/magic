@@ -19,7 +19,8 @@ namespace magic.lambda.exceptions
         ValueType = "string",
         ValueDescription = "Exception message to throw",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Throw : ISlot
     {
         /// <summary>

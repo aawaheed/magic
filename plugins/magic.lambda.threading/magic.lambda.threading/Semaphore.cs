@@ -21,7 +21,8 @@ namespace magic.lambda.threading
         ValueType = "string",
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Semaphore : ISlotAsync
     {
         static readonly ConcurrentDictionary<string, Sys.SemaphoreSlim> _semaphores = new();

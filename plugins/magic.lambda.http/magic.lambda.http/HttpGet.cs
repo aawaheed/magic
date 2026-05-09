@@ -19,7 +19,8 @@ namespace magic.lambda.http
         ValueType = "string",
         ValueDescription = "URL to send the request to",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class HttpGet : ISlotAsync
     {
         readonly IMagicHttp _service;

@@ -20,7 +20,10 @@ namespace magic.lambda.logging.slots
         ValueType = "object",
         ValueDescription = "ID of the log entry to retrieve",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the log entry as child nodes")]
     public class Get : ISlotAsync
     {
         readonly ILogQuery _query;

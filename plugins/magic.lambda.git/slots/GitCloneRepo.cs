@@ -19,7 +19,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "Repository URL to clone",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the git clone command output")]
     public class GitCloneRepo : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

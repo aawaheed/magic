@@ -166,7 +166,8 @@ mail.pop3.fetch
         }
 
         [Slot(
-        Name = "RetrieveOneMessageSlot")]
+        Name = "RetrieveOneMessageSlot",
+        ReturnsMode = SlotReturnsMode.None)]
         class RetrieveOneMessageSlot : ISlot
         {
             public static int _invocationCount = 0;
@@ -246,7 +247,8 @@ mail.pop3.fetch
         }
 
         [Slot(
-        Name = "RetrieveOneMessageRawSlot")]
+        Name = "RetrieveOneMessageRawSlot",
+        ReturnsMode = SlotReturnsMode.None)]
         class RetrieveOneMessageRawSlot : ISlot
         {
             public static int _invocationCount = 0;

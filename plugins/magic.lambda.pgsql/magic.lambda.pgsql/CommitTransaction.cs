@@ -14,7 +14,8 @@ namespace magic.lambda.pgsql
     /// </summary>
     [Slot(
         Name = "pgsql.transaction.commit",
-        Description = "Commits the current PostgreSQL transaction")]
+        Description = "Commits the current PostgreSQL transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CommitTransaction : ISlot
     {
         /// <summary>

@@ -20,7 +20,8 @@ namespace magic.lambda.mime
         ValueType = "string",
         ValueDescription = "Raw MIME message to parse",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class MimeParse : ISlot
     {
         /// <summary>

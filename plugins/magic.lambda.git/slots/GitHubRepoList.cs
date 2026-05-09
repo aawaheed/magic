@@ -19,7 +19,10 @@ namespace magic.lambda.git
     /// </summary>
     [Slot(
         Name = "github.repo.list",
-        Description = "Lists GitHub repositories using child-node filters")]
+        Description = "Lists GitHub repositories using child-node filters",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per GitHub repository with the projected repository metadata")]
     public class GitHubRepoList : ISlotAsync
     {
         readonly HttpClient _httpClient;

@@ -14,7 +14,8 @@ namespace magic.lambda.sqlite
     /// </summary>
     [Slot(
         Name = "sqlite.transaction.rollback",
-        Description = "Rolls back the current SQLite transaction")]
+        Description = "Rolls back the current SQLite transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

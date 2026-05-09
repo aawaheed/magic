@@ -21,7 +21,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true after the repository has been deleted")]
     public class GitHubRepoDelete : ISlotAsync
     {
         readonly HttpClient _httpClient;

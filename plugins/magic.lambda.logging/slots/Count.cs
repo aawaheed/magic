@@ -19,7 +19,10 @@ namespace magic.lambda.logging.slots
         ValueType = "string",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of log entries matching the optional query")]
     public class Count : ISlotAsync
     {
         readonly ILogQuery _query;

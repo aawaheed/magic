@@ -18,7 +18,10 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to sort",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the sorted nodes selected by the expression as child nodes")]
     public class Sort : ISlot
     {
         /// <summary>

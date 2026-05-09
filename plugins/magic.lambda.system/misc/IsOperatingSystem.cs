@@ -19,7 +19,10 @@ namespace magic.lambda.system
         ValueType = "string",
         ValueDescription = "Operating system name to compare against",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the current operating system matches the supplied name")]
     public class IsOperatingSystem : ISlot
     {
         /// <summary>

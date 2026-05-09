@@ -14,7 +14,8 @@ namespace magic.lambda.odbc
     /// </summary>
     [Slot(
         Name = "odbc.transaction.rollback",
-        Description = "Rolls back the current ODBC transaction")]
+        Description = "Rolls back the current ODBC transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

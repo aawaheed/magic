@@ -21,7 +21,8 @@ namespace magic.lambda.sqlite
         ValueType = "string",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

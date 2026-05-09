@@ -19,7 +19,10 @@ namespace magic.lambda.misc
         ValueType = "long",
         ValueDescription = "Integer value to convert to words",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the supplied integer written as words")]
     public class Int2Words : ISlot
     {
         static readonly string[] _unitsMap =

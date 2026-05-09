@@ -17,7 +17,10 @@ namespace magic.lambda.mssql.crud
     /// </summary>
     [Slot(
         Name = "mssql.update",
-        Description = "Updates rows through the current SQL Server connection")]
+        Description = "Updates rows through the current SQL Server connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of rows affected")]
     public class Update : ISlotAsync
     {
         /// <summary>

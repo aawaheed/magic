@@ -18,7 +18,8 @@ namespace magic.lambda.strings.builder
         ValueType = "string",
         ValueDescription = "Text to append to the current string builder",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Append : ISlot
     {
         /// <summary>

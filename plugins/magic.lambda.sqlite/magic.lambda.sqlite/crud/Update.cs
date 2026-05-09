@@ -17,7 +17,10 @@ namespace magic.lambda.sqlite.crud
     /// </summary>
     [Slot(
         Name = "sqlite.update",
-        Description = "Updates rows through the current SQLite connection")]
+        Description = "Updates rows through the current SQLite connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of rows affected")]
     public class Update : ISlotAsync
     {
         /// <summary>

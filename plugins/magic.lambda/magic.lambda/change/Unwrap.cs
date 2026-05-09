@@ -18,7 +18,8 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes whose expressions should be unwrapped",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Unwrap : ISlot
     {
         /// <summary>

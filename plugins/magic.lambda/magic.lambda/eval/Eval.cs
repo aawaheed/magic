@@ -21,7 +21,8 @@ namespace magic.lambda.eval
         ValueType = "lambda",
         ValueDescription = "Expression yielding the Hyperlambda nodes to evaluate when not supplied as child nodes",
         ValueRequired = false,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Eval : ISlotAsync
     {
         /// <summary>

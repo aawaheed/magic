@@ -21,7 +21,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "Repository path",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the git fetch command output")]
     public class GitFetch : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

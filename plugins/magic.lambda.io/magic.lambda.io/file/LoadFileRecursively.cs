@@ -20,7 +20,10 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "Folder path to load from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per loaded file with its content")]
     public class LoadFileRecursively : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

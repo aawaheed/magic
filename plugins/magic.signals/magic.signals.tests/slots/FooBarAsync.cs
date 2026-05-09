@@ -10,7 +10,10 @@ using magic.signals.contracts;
 namespace magic.signals.tests.slots
 {
     [Slot(
-        Name = "foo.bar.async")]
+        Name = "foo.bar.async",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the input text with \"world\" appended")]
     public class FooBarAsync : ISlotAsync
     {
         public Task SignalAsync(ISignaler signaler, Node input)

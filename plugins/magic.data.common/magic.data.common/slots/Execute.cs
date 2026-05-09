@@ -18,7 +18,10 @@ namespace magic.data.common.slots
         ValueType = "string",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the number of rows affected by the SQL statement")]
     public class Execute : DataSlotBase
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.lambda.strings.replace
         ValueType = "string",
         ValueDescription = "Text to decode",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the URL-decoded string")]
     public class UrlDecode : ISlot
     {
         /// <summary>

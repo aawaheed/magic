@@ -16,7 +16,10 @@ namespace magic.lambda.system.plugins
     /// </summary>
     [Slot(
         Name = "system.compile",
-        Description = "Compiles C# code from child nodes into an assembly")]
+        Description = "Compiles C# code from child nodes into an assembly",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the compiled assembly bytes")]
     public class Compile : ISlot
     {
         /// <summary>

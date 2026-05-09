@@ -19,7 +19,8 @@ namespace magic.lambda.math.helpers
         ValueType = "expression",
         ValueDescription = "Expression selecting the numeric node or nodes to decrement",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Decrement : ISlotAsync
     {
         /// <summary>

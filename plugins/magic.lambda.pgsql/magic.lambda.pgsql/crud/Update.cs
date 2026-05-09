@@ -17,7 +17,10 @@ namespace magic.lambda.pgsql.crud
     /// </summary>
     [Slot(
         Name = "pgsql.update",
-        Description = "Updates rows through the current PostgreSQL connection")]
+        Description = "Updates rows through the current PostgreSQL connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of rows affected")]
     public class Update : ISlotAsync
     {
         /// <summary>

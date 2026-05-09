@@ -24,7 +24,10 @@ namespace magic.lambda.pdf
         ValueType = "string|byte[]|Stream",
         ValueDescription = "PDF file path, bytes, or stream to extract text from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns extracted text in value or, when preserving pages, one child node per page")]
     public class Pdf2Text : ISlot
     {
         readonly IRootResolver _rootResolver;

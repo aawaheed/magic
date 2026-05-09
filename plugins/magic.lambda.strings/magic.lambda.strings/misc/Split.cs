@@ -21,7 +21,10 @@ namespace magic.lambda.strings.misc
         ValueType = "string",
         ValueDescription = "Text to split",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per split string item")]
     public class Split : ISlotAsync
     {
         /// <summary>

@@ -17,7 +17,10 @@ namespace magic.lambda.auth
     /// </summary>
     [Slot(
         Name = "auth.ticket.create",
-        Description = "Creates a JWT ticket")]
+        Description = "Creates a JWT ticket",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the created JWT ticket string")]
     public class CreateTicket : ISlot
     {
         readonly IAuthSettings _settings;

@@ -19,7 +19,10 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "File path to test",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the file exists")]
     public class FileExists : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

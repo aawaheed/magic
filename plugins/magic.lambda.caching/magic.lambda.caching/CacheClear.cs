@@ -21,7 +21,8 @@ namespace magic.lambda.caching
         ValueType = "string",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class CacheClear : ISlotAsync
     {
         readonly IMagicCache _cache;

@@ -23,7 +23,8 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "File path to patch",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class PatchFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

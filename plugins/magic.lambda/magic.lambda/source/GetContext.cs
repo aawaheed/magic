@@ -23,7 +23,10 @@ namespace magic.lambda.slots
         ValueType = "string",
         ValueDescription = "Context name to return",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the requested stack value or context object")]
     public class GetContext : ISlot
     {
         /// <summary>

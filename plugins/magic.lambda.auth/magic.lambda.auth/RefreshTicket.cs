@@ -19,7 +19,10 @@ namespace magic.lambda.auth
     /// </summary>
     [Slot(
         Name = "auth.ticket.refresh",
-        Description = "Refreshes an existing JWT ticket")]
+        Description = "Refreshes an existing JWT ticket",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the refreshed JWT ticket string")]
     public class RefreshTicket : ISlot
     {
         readonly IAuthSettings _settings;

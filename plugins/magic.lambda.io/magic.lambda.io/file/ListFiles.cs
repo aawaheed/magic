@@ -21,14 +21,16 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "io.file.list-recursively",
         Description = "Lists files recursively in the specified folder",
         ValueType = "string",
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ListFiles : ISlot
     {
         readonly IRootResolver _rootResolver;

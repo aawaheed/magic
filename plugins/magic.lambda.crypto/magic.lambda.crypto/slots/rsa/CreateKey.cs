@@ -18,7 +18,10 @@ namespace magic.lambda.crypto.slots.rsa
     /// </summary>
     [Slot(
         Name = "crypto.rsa.create-key",
-        Description = "Creates an RSA key pair")]
+        Description = "Creates an RSA key pair",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the generated RSA key pair as child nodes")]
     public class CreateKey : ISlot
     {
         /// <summary>

@@ -21,7 +21,10 @@ namespace magic.lambda.misc
         ValueType = "string",
         ValueDescription = "Optional prefix filter for slot names",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns available slot names as child nodes")]
     public class Vocabulary : ISlot
     {
         readonly ISignalsProvider _signalProvider;

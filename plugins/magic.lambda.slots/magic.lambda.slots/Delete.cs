@@ -17,7 +17,8 @@ namespace magic.lambda.slots
         ValueType = "string",
         ValueDescription = "Name of the dynamic slot to delete",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Delete : ISlot
     {
         /// <summary>

@@ -13,7 +13,10 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "request.scheme",
-        Description = "Returns the current request scheme")]
+        Description = "Returns the current request scheme",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the scheme of the current request, such as http or https")]
     public class GetScheme : ISlot
     {
         /// <summary>

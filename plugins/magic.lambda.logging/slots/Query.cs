@@ -21,7 +21,10 @@ namespace magic.lambda.logging.slots
         ValueType = "string",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns matching log entries as child nodes")]
     public class Query : ISlotAsync
     {
         readonly ILogQuery _query;

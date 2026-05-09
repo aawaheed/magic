@@ -20,7 +20,8 @@ namespace magic.lambda.config
         ValueType = "string",
         ValueDescription = "Configuration content to save",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SaveAppSettings : ISlotAsync
     {
         readonly IFileService _fileService;

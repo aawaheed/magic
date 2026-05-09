@@ -25,7 +25,8 @@ namespace magic.backend.slots
         ValueType = "string",
         ValueDescription = "JWT token to inspect",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ReadToken : ISlot
     {
         readonly private IConfiguration _configuration;

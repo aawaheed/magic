@@ -21,7 +21,8 @@ namespace magic.lambda.crypto.slots.rsa
         ValueType = "string|byte[]",
         ValueDescription = "Content to verify against the supplied signature",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Verify : ISlot
     {
         /// <summary>

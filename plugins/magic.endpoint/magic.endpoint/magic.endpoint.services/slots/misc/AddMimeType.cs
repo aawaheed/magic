@@ -18,7 +18,8 @@ namespace magic.endpoint.services.slots.misc
         ValueType = "string",
         ValueDescription = "File extension or MIME type key to register",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class AddMimeType : ISlot
     {
         /// <summary>

@@ -20,7 +20,10 @@ namespace magic.lambda.auth
         ValueType = "string",
         ValueDescription = "Comma-separated roles to test for",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the current ticket contains the specified role")]
     public class InRole : ISlot
     {
         readonly ITicketProvider _ticketProvider;

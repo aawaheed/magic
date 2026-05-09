@@ -19,7 +19,10 @@ namespace magic.lambda.loops
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to map",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the mapped result nodes produced by the child lambda")]
     public class Map : ISlot
     {
         /// <summary>

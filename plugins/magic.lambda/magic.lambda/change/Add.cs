@@ -18,7 +18,8 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the destination node or nodes to append to",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Add : ISlot
     {
         /// <summary>

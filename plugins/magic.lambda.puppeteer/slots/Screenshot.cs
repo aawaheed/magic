@@ -22,7 +22,10 @@ namespace magic.lambda.puppeteer
         ValueType = "string",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the screenshot image bytes")]
     public class Screenshot : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

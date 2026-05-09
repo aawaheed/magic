@@ -20,7 +20,10 @@ namespace magic.lambda.dates
         ValueType = "DateTime",
         ValueDescription = "Date value to format",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the formatted date string")]
     public class DateTimeFormat : ISlot
     {
         /// <summary>

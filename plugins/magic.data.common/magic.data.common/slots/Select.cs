@@ -18,7 +18,10 @@ namespace magic.data.common.slots
         ValueType = "string",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns query result rows as child nodes")]
     public class Select : DataSlotBase
     {
         /// <summary>

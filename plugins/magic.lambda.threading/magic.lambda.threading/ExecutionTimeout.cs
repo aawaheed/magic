@@ -15,7 +15,10 @@ namespace magic.lambda.threading
         ValueType = "int",
         ValueDescription = "Timeout in milliseconds for the current execution",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the timeout was applied")]
     public class ExecutionTimeout : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

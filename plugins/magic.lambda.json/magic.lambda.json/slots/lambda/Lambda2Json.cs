@@ -19,7 +19,10 @@ namespace magic.lambda.json.slots.lambda
         ValueType = "lambda",
         ValueDescription = "Lambda hierarchy to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated JSON string")]
     public class Lambda2Json : ISlot
     {
         /// <summary>

@@ -20,14 +20,16 @@ namespace magic.lambda.io.folder
         ValueType = "string",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "io.folder.list-recursively",
         Description = "Lists folders recursively in the specified folder",
         ValueType = "string",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ListFolders : ISlot
     {
         readonly IRootResolver _rootResolver;

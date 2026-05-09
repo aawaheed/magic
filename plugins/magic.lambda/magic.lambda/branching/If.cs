@@ -16,7 +16,10 @@ namespace magic.lambda.branching
         ValueType = "expression",
         ValueDescription = "Condition expression when using RHS form",
         ValueRequired = false,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the if condition matched and its branch was evaluated")]
     public class If : ISlot
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.lambda.math.helpers
         ValueType = "number",
         ValueDescription = "First numeric operand",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "number",
+        ReturnsDescription = "Returns the remainder of the modulo operation")]
     public class Modulation : ISlotAsync
     {
         /// <summary>

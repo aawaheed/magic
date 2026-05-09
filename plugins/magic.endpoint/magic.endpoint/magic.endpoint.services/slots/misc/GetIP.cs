@@ -15,7 +15,10 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "request.ip",
-        Description = "Returns the client IP address for the current request")]
+        Description = "Returns the client IP address for the current request",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the client IP address for the requested IP version")]
     public class GetIP : ISlot
     {
         /// <summary>

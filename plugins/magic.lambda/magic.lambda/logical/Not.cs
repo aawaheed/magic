@@ -14,7 +14,10 @@ namespace magic.lambda.logical
     /// </summary>
     [Slot(
         Name = "not",
-        Description = "Negates a boolean expression")]
+        Description = "Negates a boolean expression",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the operand evaluates to false")]
     public class Not : ISlot
     {
         /// <summary>

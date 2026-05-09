@@ -18,7 +18,8 @@ namespace magic.lambda.mime
         ValueType = "MimeEntity",
         ValueDescription = "MIME entity to parse",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class MimeParsePrivate : ISlot
     {
         /// <summary>

@@ -8,7 +8,10 @@ using magic.signals.contracts;
 namespace magic.signals.tests.slots
 {
     [Slot(
-        Name = "stack.test")]
+        Name = "stack.test",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the stored stack value")]
     public class StackTest : ISlot
     {
         public void Signal(ISignaler signaler, Node input)
@@ -18,7 +21,10 @@ namespace magic.signals.tests.slots
     }
 
     [Slot(
-        Name = "stack.test.dispose")]
+        Name = "stack.test.dispose",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the stored disposable stack value converted to a string")]
     public class StackTestDispose : ISlot
     {
         public void Signal(ISignaler signaler, Node input)

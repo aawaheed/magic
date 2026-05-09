@@ -22,14 +22,16 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "set-value",
         Description = "Sets node values in the lambda graph",
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SetValue : ISlot
     {
         /// <summary>

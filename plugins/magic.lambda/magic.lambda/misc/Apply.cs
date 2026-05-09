@@ -21,7 +21,10 @@ namespace magic.lambda.misc
         ValueType = "object",
         ValueDescription = "Value to apply to the current context",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the transformed template nodes after applying the supplied arguments")]
     public class Apply : ISlot
     {
         /// <summary>

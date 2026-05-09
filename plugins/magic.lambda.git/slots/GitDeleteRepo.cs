@@ -18,7 +18,8 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "Repository path to delete",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class GitDeleteRepo : ISlot
     {
         readonly IRootResolver _rootResolver;

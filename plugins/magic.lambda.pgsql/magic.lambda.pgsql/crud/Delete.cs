@@ -17,7 +17,10 @@ namespace magic.lambda.pgsql.crud
     /// </summary>
     [Slot(
         Name = "pgsql.delete",
-        Description = "Deletes rows through the current PostgreSQL connection")]
+        Description = "Deletes rows through the current PostgreSQL connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of rows affected")]
     public class Delete : ISlotAsync
     {
         /// <summary>

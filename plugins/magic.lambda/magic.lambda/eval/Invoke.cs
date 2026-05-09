@@ -20,7 +20,10 @@ namespace magic.lambda.eval
         ValueType = "lambda",
         ValueDescription = "Expression yielding the single lambda node to invoke",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the invoked lambda's value result and any returned child nodes")]
     public class Invoke : ISlotAsync
     {
         /// <summary>

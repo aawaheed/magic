@@ -23,7 +23,10 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "Path to the static file to mix with its same-named .hl codebehind file",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the mixed file content in value and any codebehind-produced child nodes")]
     public class Mixin : ISlotAsync
     {
         readonly IFileService _fileService;

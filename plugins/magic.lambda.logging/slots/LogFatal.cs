@@ -21,7 +21,8 @@ namespace magic.lambda.logging.slots
         ValueType = "string",
         ValueDescription = "Log message to write",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class LogFatal : ISlotAsync
     {
         readonly ILogger _logger;

@@ -12,7 +12,8 @@ namespace magic.lambda.tests
     public class ForEachTests
     {
         [Slot(
-        Name = "foo2")]
+        Name = "foo2",
+        ReturnsMode = SlotReturnsMode.None)]
         public class Foo2Slot : ISlot
         {
             static int ExecutionCount;

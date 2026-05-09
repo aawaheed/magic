@@ -17,7 +17,10 @@ namespace magic.lambda.crypto.slots.misc
     /// </summary>
     [Slot(
         Name = "crypto.random.int",
-        Description = "Returns a random integer")]
+        Description = "Returns a random integer",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns a random integer less than the optional [max] value")]
     public class RandomInteger : ISlot
     {
         /// <summary>

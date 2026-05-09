@@ -21,7 +21,8 @@ namespace magic.lambda.sqlite
         ValueType = "string",
         ValueDescription = "Target SQLite database name for the backup",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Backup : ISlotAsync
     {
         /// <summary>

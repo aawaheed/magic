@@ -18,7 +18,10 @@ namespace magic.lambda.source
         ValueType = "expression",
         ValueDescription = "Expression selecting the node whose name should be returned",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the name of the first matching node")]
     public class GetName : ISlot
     {
         /// <summary>

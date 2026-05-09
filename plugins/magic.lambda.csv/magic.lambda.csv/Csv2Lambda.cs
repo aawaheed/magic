@@ -22,7 +22,10 @@ namespace magic.lambda.csv
         ValueType = "string",
         ValueDescription = "CSV text to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the parsed lambda hierarchy as child nodes")]
     public class Csv2Lambda : ISlot
     {
         /// <summary>

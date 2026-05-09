@@ -18,7 +18,8 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes to remove",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class RemoveNodes : ISlot
     {
         /// <summary>

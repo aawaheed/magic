@@ -14,7 +14,8 @@ namespace magic.lambda.mysql
     /// </summary>
     [Slot(
         Name = "mssql.transaction.commit",
-        Description = "Commits the current SQL Server transaction")]
+        Description = "Commits the current SQL Server transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CommitTransaction : ISlot
     {
         /// <summary>

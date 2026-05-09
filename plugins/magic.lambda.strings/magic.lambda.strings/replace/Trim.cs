@@ -20,21 +20,30 @@ namespace magic.lambda.strings.replace
         ValueType = "string",
         ValueDescription = "Text to trim",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the trimmed string")]
     [Slot(
         Name = "strings.trim-start",
         Description = "Trims characters from the start of the specified string",
         ValueType = "string",
         ValueDescription = "Text to trim",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the string with leading characters removed")]
     [Slot(
         Name = "strings.trim-end",
         Description = "Trims characters from the end of the specified string",
         ValueType = "string",
         ValueDescription = "Text to trim",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the string with trailing characters removed")]
     public class Trim : ISlotAsync
     {
         /// <summary>

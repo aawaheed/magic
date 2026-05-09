@@ -18,7 +18,10 @@ namespace magic.lambda.source
         ValueType = "expression",
         ValueDescription = "Expression selecting the node to reference",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns a reference to the first matching node value")]
     public class Reference : ISlot
     {
         /// <summary>

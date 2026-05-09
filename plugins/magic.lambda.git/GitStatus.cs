@@ -21,7 +21,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "Repository path",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns Git status text in value or, when structured, one child node per status line")]
     public class GitStatus : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

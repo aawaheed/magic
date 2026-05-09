@@ -18,7 +18,10 @@ namespace magic.lambda.math.scalars
         ValueType = "number",
         ValueDescription = "Numeric value to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "double",
+        ReturnsDescription = "Returns the square root of the supplied value")]
     public class Sqrt : ISlot
     {
         /// <summary>

@@ -21,7 +21,10 @@ namespace magic.lambda.json.slots.yaml
         ValueType = "string",
         ValueDescription = "YAML text to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the parsed lambda hierarchy as child nodes")]
     public class Yaml2Lambda : ISlot
     {
         /// <summary>

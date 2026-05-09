@@ -20,21 +20,24 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "File path to save",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "io.file.save",
         Description = "Saves a text file to the server",
         ValueType = "string",
         ValueDescription = "File path to save",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     [Slot(
         Name = "io.file.save.binary",
         Description = "Saves a binary file to the server",
         ValueType = "string",
         ValueDescription = "File path to save",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SaveFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

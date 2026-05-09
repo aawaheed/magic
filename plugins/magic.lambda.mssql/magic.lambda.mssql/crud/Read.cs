@@ -17,7 +17,10 @@ namespace magic.lambda.mssql.crud
     /// </summary>
     [Slot(
         Name = "mssql.read",
-        Description = "Reads rows through the current SQL Server connection")]
+        Description = "Reads rows through the current SQL Server connection",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per row read from the current SQL Server connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

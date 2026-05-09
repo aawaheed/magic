@@ -14,7 +14,10 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "compose",
-        Description = "Creates a new expression by joining the evaluated child node values")]
+        Description = "Creates a new expression by joining the evaluated child node values",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "Expression",
+        ReturnsDescription = "Returns the composed expression")]
     public class Compose : ISlot
     {
         /// <summary>

@@ -20,7 +20,10 @@ namespace magic.lambda.io.stream
         ValueType = "string",
         ValueDescription = "File path to open as a stream",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "Stream",
+        ReturnsDescription = "Returns an open file stream")]
     public class OpenFileStream : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

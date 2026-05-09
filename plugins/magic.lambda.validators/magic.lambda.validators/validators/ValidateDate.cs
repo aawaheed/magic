@@ -20,7 +20,8 @@ namespace magic.lambda.validators.validators
         ValueType = "DateTime",
         ValueDescription = "Date value or expression selecting the node or nodes to validate",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ValidateDate : ISlot
     {
         /// <summary>

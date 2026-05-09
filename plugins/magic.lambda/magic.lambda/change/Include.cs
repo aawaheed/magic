@@ -18,7 +18,10 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the destination node or nodes to include into",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the matched destination nodes after the child lambda output has been included")]
     public class Include : ISlot
     {
         /// <summary>

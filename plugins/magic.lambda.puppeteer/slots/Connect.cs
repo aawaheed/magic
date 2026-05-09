@@ -21,7 +21,10 @@ namespace magic.lambda.puppeteer
     /// </summary>
     [Slot(
         Name = "puppeteer.connect",
-        Description = "Creates or reuses a Puppeteer browser session")]
+        Description = "Creates or reuses a Puppeteer browser session",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the created Puppeteer session ID")]
     public class Connect : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

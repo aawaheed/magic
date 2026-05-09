@@ -13,7 +13,10 @@ namespace magic.lambda.dates
     /// </summary>
     [Slot(
         Name = "date.now",
-        Description = "Returns the current server time in UTC")]
+        Description = "Returns the current server time in UTC",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "DateTime",
+        ReturnsDescription = "Returns the current UTC date and time")]
     public class DateTimeNow : ISlot
     {
         /// <summary>

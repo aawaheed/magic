@@ -19,7 +19,10 @@ namespace magic.lambda.io.folder
         ValueType = "string",
         ValueDescription = "Folder path to test",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the folder exists")]
     public class FolderExists : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

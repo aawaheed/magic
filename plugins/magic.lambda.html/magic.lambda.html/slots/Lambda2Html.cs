@@ -19,7 +19,10 @@ namespace magic.lambda.html.slots
         ValueType = "lambda",
         ValueDescription = "Lambda hierarchy to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated HTML markup")]
     public class Lambda2Html : ISlot
     {
         /// <summary>

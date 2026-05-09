@@ -48,5 +48,26 @@ namespace magic.signals.contracts
         /// documented RHS value argument.
         /// </summary>
         public SlotValueMode ValueMode { get; set; }
+
+        /// <summary>
+        /// Indicates the slot's primary documented return shape.
+        /// Defaults to <see cref="SlotReturnsMode.None"/> for slots without a
+        /// documented return contract.
+        /// </summary>
+        public SlotReturnsMode ReturnsMode { get; set; }
+
+        /// <summary>
+        /// Optional CLR-ish type name for the slot's documented return payload.
+        /// For <see cref="SlotReturnsMode.Value"/> this describes
+        /// <see cref="magic.node.Node.Value"/>, and for
+        /// <see cref="SlotReturnsMode.Lambda"/> it describes the child-node
+        /// payload returned from the slot.
+        /// </summary>
+        public string ReturnsType { get; set; }
+
+        /// <summary>
+        /// Optional description of the slot's documented return payload.
+        /// </summary>
+        public string ReturnsDescription { get; set; }
     }
 }

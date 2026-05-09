@@ -18,14 +18,20 @@ namespace magic.lambda.source
         ValueType = "expression",
         ValueDescription = "Expression selecting the value to test for null",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the expression resolves to a null value")]
     [Slot(
         Name = "not-null",
         Description = "Returns true if the specified node or expression is not null",
         ValueType = "expression",
         ValueDescription = "Expression selecting the value to test for null",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the expression resolves to a non-null value")]
     public class IsNull : ISlot
     {
         /// <summary>

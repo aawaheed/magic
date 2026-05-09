@@ -24,7 +24,10 @@ namespace magic.lambda.mssql
         ValueType = "string",
         ValueDescription = "Batch SQL script to execute",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per batch execution result")]
     public class ExecuteBatch : ISlotAsync
     {
         /// <summary>

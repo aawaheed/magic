@@ -21,7 +21,10 @@ namespace magic.lambda.csv
         ValueType = "lambda",
         ValueDescription = "Lambda hierarchy to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the CSV content in value and column type nodes as children")]
     public class Lambda2Csv : ISlot
     {
         /// <summary>

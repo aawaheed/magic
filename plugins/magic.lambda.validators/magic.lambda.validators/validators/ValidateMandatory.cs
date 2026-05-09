@@ -17,7 +17,8 @@ namespace magic.lambda.validators.validators
         ValueType = "object",
         ValueDescription = "Literal value or expression to validate as mandatory",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ValidateMandatory : ISlot
     {
         /// <summary>

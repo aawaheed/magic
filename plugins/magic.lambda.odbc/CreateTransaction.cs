@@ -15,7 +15,8 @@ namespace magic.lambda.odbc
     /// </summary>
     [Slot(
         Name = "odbc.transaction.create",
-        Description = "Creates a ODBC transaction")]
+        Description = "Creates a ODBC transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

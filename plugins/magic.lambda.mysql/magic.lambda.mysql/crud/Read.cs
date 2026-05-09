@@ -18,7 +18,10 @@ namespace magic.lambda.mysql.crud
     /// </summary>
     [Slot(
         Name = "mysql.read",
-        Description = "Reads rows through the current MySQL connection")]
+        Description = "Reads rows through the current MySQL connection",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per row read from the current MySQL connection")]
     public class Read : ISlotAsync
     {
         /// <summary>

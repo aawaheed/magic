@@ -19,7 +19,8 @@ namespace magic.lambda.mail
     /// </summary>
     [Slot(
         Name = "mail.smtp.send",
-        Description = "Sends one or more email messages through SMTP from child [message] nodes")]
+        Description = "Sends one or more email messages through SMTP from child [message] nodes",
+        ReturnsMode = SlotReturnsMode.None)]
     public class MailSmtpSend : ISlotAsync
     {
         readonly ConnectionSettingsSmtp _server;

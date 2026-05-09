@@ -19,7 +19,10 @@ namespace magic.lambda.json.slots.yaml
         ValueType = "string",
         ValueDescription = "YAML text to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated JSON string")]
     public class Yaml2Json : ISlot
     {
         /// <summary>

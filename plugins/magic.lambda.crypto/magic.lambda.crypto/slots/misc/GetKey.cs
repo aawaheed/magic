@@ -20,7 +20,10 @@ namespace magic.lambda.crypto.slots.misc
         ValueType = "string|byte[]",
         ValueDescription = "Encrypted package to extract the key fingerprint from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the package key fingerprint as text or raw bytes when [raw] is true")]
     public class GetKey : ISlot
     {
         /// <summary>

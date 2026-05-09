@@ -23,7 +23,8 @@ namespace magic.lambda.io.file
         ValueType = "string",
         ValueDescription = "Zip archive path to extract",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class UnzipFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

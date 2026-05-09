@@ -19,7 +19,10 @@ namespace magic.lambda.math.scalars
         ValueType = "number",
         ValueDescription = "Numeric value to round",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "number",
+        ReturnsDescription = "Returns the rounded value")]
     public class Round : ISlot
     {
         /// <summary>

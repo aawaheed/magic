@@ -20,7 +20,10 @@ namespace magic.lambda.crypto.slots.combinations
         ValueType = "string|byte[]",
         ValueDescription = "Content to sign",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the signed package as base64 text or raw bytes when [raw] is true")]
     public class Sign : ISlot
     {
         /// <summary>

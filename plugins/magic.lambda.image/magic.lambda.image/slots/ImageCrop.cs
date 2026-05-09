@@ -22,7 +22,8 @@ namespace magic.lambda.image.slots
         ValueType = "string|Stream",
         ValueDescription = "Source image filename or stream to crop",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ImageCrop : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

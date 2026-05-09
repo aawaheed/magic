@@ -18,7 +18,10 @@ namespace magic.lambda.dates
         ValueType = "TimeSpan",
         ValueDescription = "Time span to measure",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "double",
+        ReturnsDescription = "Returns the total number of milliseconds in the supplied time span")]
     public class TimeTotalMilliseconds : ISlot
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.endpoint.services.slots.headers
     /// </summary>
     [Slot(
         Name = "request.headers.list",
-        Description = "Lists request headers")]
+        Description = "Lists request headers",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per request header, with the header name as the node name and its value as the node value")]
     public class ListHeaders : ISlot
     {
         /// <summary>

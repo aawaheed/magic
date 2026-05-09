@@ -23,7 +23,8 @@ namespace magic.lambda.sockets.slots
         ValueType = "string",
         ValueDescription = "Socket channel to publish",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Signaler : ISlotAsync
     {
         readonly IConfiguration _configuration;

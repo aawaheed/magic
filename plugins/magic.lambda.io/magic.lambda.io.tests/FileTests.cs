@@ -1087,7 +1087,10 @@ io.file.exists:/existing.txt
             Assert.False(lambda.Children.Skip(3).First().Get<bool>());
         }
 
-        [Slot(Name = "foo")]
+        [Slot(Name = "foo",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the constant string \"success\"")]
         public class EventSource : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

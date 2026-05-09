@@ -15,7 +15,8 @@ namespace magic.lambda.mysql
     /// </summary>
     [Slot(
         Name = "mysql.transaction.create",
-        Description = "Creates a MySQL transaction")]
+        Description = "Creates a MySQL transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

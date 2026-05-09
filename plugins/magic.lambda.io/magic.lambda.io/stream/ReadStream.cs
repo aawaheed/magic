@@ -20,7 +20,10 @@ namespace magic.lambda.io.stream
         ValueType = "Stream",
         ValueDescription = "Stream instance to read from",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the bytes read from the stream")]
     public class ReadStream : ISlotAsync
     {
         /// <summary>

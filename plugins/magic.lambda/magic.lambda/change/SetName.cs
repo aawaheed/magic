@@ -18,7 +18,8 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes whose name should be changed",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SetName : ISlot
     {
         /// <summary>

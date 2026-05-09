@@ -20,7 +20,10 @@ namespace magic.lambda.config
         ValueType = "string",
         ValueDescription = "Configuration key to retrieve",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the configuration value, or the first child value when the key is missing")]
     public class ConfigGet : ISlotAsync
     {
         readonly IMagicConfiguration _configuration;

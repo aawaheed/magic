@@ -468,7 +468,10 @@ mail.smtp.send
         }
 
         [Slot(
-        Name = ".io.folder.root")]
+        Name = ".io.folder.root",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the absolute dynamic files root folder")]
         class GetRootFolderSlot : ISlot
         {
             public void Signal(ISignaler signaler, Node input)

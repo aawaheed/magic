@@ -15,7 +15,8 @@ namespace magic.lambda.pgsql
     /// </summary>
     [Slot(
         Name = "pgsql.transaction.create",
-        Description = "Creates a PostgreSQL transaction")]
+        Description = "Creates a PostgreSQL transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

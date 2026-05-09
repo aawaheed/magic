@@ -17,7 +17,10 @@ namespace magic.lambda.mysql.crud
     /// </summary>
     [Slot(
         Name = "mysql.update",
-        Description = "Updates rows through the current MySQL connection")]
+        Description = "Updates rows through the current MySQL connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of rows affected")]
     public class Update : ISlotAsync
     {
         /// <summary>

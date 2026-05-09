@@ -21,7 +21,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "Repository path",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per git branch name")]
     public class GitBranchList : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

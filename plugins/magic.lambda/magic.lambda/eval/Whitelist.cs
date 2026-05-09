@@ -16,7 +16,10 @@ namespace magic.lambda.eval
     /// </summary>
     [Slot(
         Name = "whitelist",
-        Description = "Evaluates a lambda with a restricted whitelist of allowed slots")]
+        Description = "Evaluates a lambda with a restricted whitelist of allowed slots",
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the evaluated lambda's value result and any returned child nodes")]
     public class Whitelist : ISlotAsync
     {
         /// <summary>

@@ -20,7 +20,10 @@ namespace magic.lambda.image.slots
         ValueType = "string",
         ValueDescription = "Text or URL to encode in the QR code",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the generated QR code image bytes")]
     public class GenerateQr : ISlot
     {
         /// <summary>

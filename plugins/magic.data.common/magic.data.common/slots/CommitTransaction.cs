@@ -14,7 +14,8 @@ namespace magic.data.common.slots
     /// </summary>
     [Slot(
         Name = "data.transaction.commit",
-        Description = "Commits the current database transaction using the configured provider")]
+        Description = "Commits the current database transaction using the configured provider",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CommitTransaction : DataSlotBase
     {
         /// <summary>

@@ -15,10 +15,16 @@ namespace magic.lambda.slots
     /// </summary>
     [Slot(
         Name = "return-nodes",
-        Description = "Returns child nodes or evaluated nodes to the nearest caller")]
+        Description = "Returns child nodes or evaluated nodes to the nearest caller",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns child nodes to the nearest caller")]
     [Slot(
         Name = "yield",
-        Description = "Returns multiple child nodes or evaluated nodes to the caller")]
+        Description = "Returns multiple child nodes or evaluated nodes to the caller",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns child nodes to the caller")]
     public class ReturnNodes : ISlot
     {
         /// <summary>

@@ -20,7 +20,10 @@ namespace magic.lambda.html.slots
         ValueType = "string",
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated Markdown")]
     public class Html2Markdown : ISlot
     {
         /// <summary>

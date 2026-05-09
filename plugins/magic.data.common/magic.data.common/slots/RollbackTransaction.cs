@@ -14,7 +14,8 @@ namespace magic.data.common.slots
     /// </summary>
     [Slot(
         Name = "data.transaction.rollback",
-        Description = "Rolls back the current database transaction using the configured provider")]
+        Description = "Rolls back the current database transaction using the configured provider",
+        ReturnsMode = SlotReturnsMode.None)]
     public class RollbackTransaction : DataSlotBase
     {
         /// <summary>

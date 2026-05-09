@@ -19,7 +19,10 @@ namespace magic.lambda.strings.concat
         ValueType = "lambda",
         ValueDescription = "Expression yielding the text segments to concatenate when not supplied as child nodes",
         ValueRequired = false,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the concatenated string")]
     public class Concat : ISlotAsync
     {
         /// <summary>

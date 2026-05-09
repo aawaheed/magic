@@ -19,7 +19,10 @@ namespace magic.lambda.image.slots
         ValueType = "string",
         ValueDescription = "Image filename to inspect",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns [width] and [height] child nodes for the image dimensions")]
     public class ImageSize : ISlot
     {
         readonly IRootResolver _rootResolver;

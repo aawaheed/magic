@@ -19,7 +19,10 @@ namespace magic.lambda.pgsql.crud
     /// </summary>
     [Slot(
         Name = "pgsql.create",
-        Description = "Inserts rows through the current PostgreSQL connection")]
+        Description = "Inserts rows through the current PostgreSQL connection",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the created row ID when [return-id] is true, otherwise null")]
     public class Create : ISlotAsync
     {
         /// <summary>

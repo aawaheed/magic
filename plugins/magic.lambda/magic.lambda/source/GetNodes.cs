@@ -17,7 +17,10 @@ namespace magic.lambda.source
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to return",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the nodes matched by the expression as child nodes")]
     public class GetNodes : ISlot
     {
         /// <summary>

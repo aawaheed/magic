@@ -22,7 +22,8 @@ namespace magic.lambda.io.stream
         ValueType = "string",
         ValueDescription = "File path to save the stream to",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SaveFileStream : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

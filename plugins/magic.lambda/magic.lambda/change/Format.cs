@@ -19,7 +19,10 @@ namespace magic.lambda.change
         ValueType = "object",
         ValueDescription = "Value to format",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the formatted string")]
     public class Format : ISlot
     {
         /// <summary>

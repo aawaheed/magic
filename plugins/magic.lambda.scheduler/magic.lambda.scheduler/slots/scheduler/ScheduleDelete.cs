@@ -19,7 +19,8 @@ namespace magic.lambda.scheduler.slots.scheduler
         ValueType = "int",
         ValueDescription = "Schedule ID to delete",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ScheduleDelete : ISlotAsync
     {
         readonly ITaskScheduler _scheduler;

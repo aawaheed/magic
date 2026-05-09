@@ -20,7 +20,8 @@ namespace magic.lambda.auth
         ValueType = "string",
         ValueDescription = "Optional comma-separated roles to require",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class VerifyTicket : ISlot
     {
         readonly ITicketProvider _ticketProvider;

@@ -19,7 +19,8 @@ namespace magic.lambda.crypto.slots.misc
         ValueType = "string",
         ValueDescription = "Seed value for the random generator",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Seed : ISlot
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.lambda.openai
         ValueType = "string",
         ValueDescription = "Text to tokenize",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of tokens in the supplied text")]
     public class Tokenizer : ISlot
     {
         /// <summary>

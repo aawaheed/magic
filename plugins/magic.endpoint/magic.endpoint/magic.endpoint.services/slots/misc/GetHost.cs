@@ -13,7 +13,10 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "request.host",
-        Description = "Returns the current request host")]
+        Description = "Returns the current request host",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the host name from the current request")]
     public class GetHost : ISlot
     {
         /// <summary>

@@ -20,7 +20,10 @@ namespace magic.lambda.caching
         ValueType = "string",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per cached key matching the optional filter")]
     public class CacheList : ISlotAsync
     {
         readonly IMagicCache _cache;

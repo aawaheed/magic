@@ -20,7 +20,10 @@ namespace magic.lambda.misc
         ValueType = "string",
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the description of the requested slot")]
     public class SlotDescription : ISlot
     {
         readonly ISignalsProvider _signalProvider;

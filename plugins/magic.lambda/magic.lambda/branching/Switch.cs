@@ -18,7 +18,8 @@ namespace magic.lambda.branching
         ValueType = "object",
         ValueDescription = "Value to compare against the child [case] values",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Switch : ISlot
     {
         /// <summary>

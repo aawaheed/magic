@@ -18,7 +18,10 @@ namespace magic.lambda.strings.misc
         ValueType = "string",
         ValueDescription = "Text to measure",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "int",
+        ReturnsDescription = "Returns the number of bytes in the string")]
     public class ByteCount : ISlot
     {
         /// <summary>

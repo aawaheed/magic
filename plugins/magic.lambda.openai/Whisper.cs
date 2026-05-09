@@ -15,7 +15,10 @@ namespace magic.lambda.openai
 {
     [Slot(
         Name = "openai.whisper",
-        Description = "Transcribes audio content using OpenAI Whisper")]
+        Description = "Transcribes audio content using OpenAI Whisper",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the transcribed text")]
     public class Whisper : ISlotAsync
     {
         readonly HttpClient _httpClient;

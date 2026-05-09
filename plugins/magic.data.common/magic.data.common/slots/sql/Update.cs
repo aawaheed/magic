@@ -14,7 +14,10 @@ namespace magic.data.common.slots.sql
     /// </summary>
     [Slot(
         Name = "sql.update",
-        Description = "Builds a parameterized UPDATE SQL statement")]
+        Description = "Builds a parameterized UPDATE SQL statement",
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the generated SQL string in value and the generated parameter nodes as children")]
     public class Update : ISlot
     {
         /// <summary>

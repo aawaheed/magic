@@ -18,7 +18,10 @@ namespace magic.lambda.dates
         ValueType = "long",
         ValueDescription = "Unix timestamp to convert",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "DateTime",
+        ReturnsDescription = "Returns the date represented by the supplied Unix timestamp")]
     public class FromUnix : ISlot
     {
         /// <summary>

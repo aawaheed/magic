@@ -18,7 +18,8 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueType = "string",
         ValueDescription = "Task ID to delete when not supplied as an [id] child node",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class DeleteTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

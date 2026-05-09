@@ -20,7 +20,10 @@ namespace magic.lambda.strings.misc
         ValueType = "lambda",
         ValueDescription = "Expression yielding the values to join",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the joined string")]
     public class Join : ISlotAsync
     {
         /// <summary>

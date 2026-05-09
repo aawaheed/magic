@@ -20,7 +20,10 @@ namespace magic.lambda.puppeteer
         ValueType = "string",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns the result of the evaluated JavaScript expression")]
     public class Evaluate : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

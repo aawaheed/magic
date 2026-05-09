@@ -15,7 +15,8 @@ namespace magic.endpoint.services.slots.headers
     /// </summary>
     [Slot(
         Name = "response.headers.set",
-        Description = "Sets one or more response headers from key/value child nodes")]
+        Description = "Sets one or more response headers from key/value child nodes",
+        ReturnsMode = SlotReturnsMode.None)]
     public class SetHeader : ISlot
     {
         /// <summary>

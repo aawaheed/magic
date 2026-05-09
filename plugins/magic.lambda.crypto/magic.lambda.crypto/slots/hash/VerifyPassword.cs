@@ -24,7 +24,10 @@ namespace magic.lambda.crypto.slots.hash
         ValueType = "string",
         ValueDescription = "Plaintext password to verify",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the password matches the supplied hash")]
     public class VerifyPassword : ISlot
     {
         /// <summary>

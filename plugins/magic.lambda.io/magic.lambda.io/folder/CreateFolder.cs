@@ -19,7 +19,8 @@ namespace magic.lambda.io.folder
         ValueType = "string",
         ValueDescription = "Folder path to create",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

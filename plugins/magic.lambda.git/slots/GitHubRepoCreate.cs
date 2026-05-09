@@ -23,7 +23,10 @@ namespace magic.lambda.git
         ValueType = "string",
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns the created GitHub repository as child nodes projected from the API response")]
     public class GitHubRepoCreate : ISlotAsync
     {
         readonly HttpClient _httpClient;

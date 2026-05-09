@@ -19,7 +19,8 @@ namespace magic.lambda.validators.validators
         ValueType = "integer",
         ValueDescription = "Integer value or expression selecting the node or nodes to validate",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ValidateInteger : ISlot
     {
         /// <summary>

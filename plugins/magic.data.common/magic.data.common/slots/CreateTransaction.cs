@@ -14,7 +14,8 @@ namespace magic.data.common.slots
     /// </summary>
     [Slot(
         Name = "data.transaction.create",
-        Description = "Creates a database transaction using the configured provider")]
+        Description = "Creates a database transaction using the configured provider",
+        ReturnsMode = SlotReturnsMode.None)]
     public class CreateTransaction : DataSlotBase
     {
         /// <summary>

@@ -18,7 +18,10 @@ namespace magic.lambda.slots
         ValueType = "object",
         ValueDescription = "Value to return to the nearest caller",
         ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "object",
+        ReturnsDescription = "Returns a value or child nodes to the nearest caller")]
     public class Return : ISlot
     {
         /// <summary>

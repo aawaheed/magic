@@ -15,7 +15,10 @@ namespace magic.lambda.auth
     /// </summary>
     [Slot(
         Name = "auth.ticket.get",
-        Description = "Returns the current ticket username, roles, and claims")]
+        Description = "Returns the current ticket username, roles, and claims",
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the username in value and roles and claims as child nodes")]
     public class GetTicket : ISlot
     {
         readonly ITicketProvider _ticketProvider;

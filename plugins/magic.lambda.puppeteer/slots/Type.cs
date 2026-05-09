@@ -21,7 +21,8 @@ namespace magic.lambda.puppeteer
         ValueType = "string",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Type : ISlotAsync
     {
         readonly IConfiguration _configuration;

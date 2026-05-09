@@ -19,7 +19,8 @@ namespace magic.lambda.change
         ValueType = "expression",
         ValueDescription = "Expression selecting the target node or nodes to insert after",
         ValueRequired = true,
-        ValueMode = SlotValueMode.Expression)]
+        ValueMode = SlotValueMode.Expression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class InsertAfter : ISlot
     {
         /// <summary>

@@ -20,7 +20,8 @@ namespace magic.endpoint.services.slots.cookies
         ValueType = "string",
         ValueDescription = "Cookie name to set",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class SetCookie : ISlot
     {
         /// <summary>

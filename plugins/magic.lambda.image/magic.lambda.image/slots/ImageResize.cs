@@ -21,7 +21,8 @@ namespace magic.lambda.image.slots
         ValueType = "string|Stream",
         ValueDescription = "Source image filename or stream to resize",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ImageResize : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

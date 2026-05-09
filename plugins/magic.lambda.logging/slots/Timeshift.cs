@@ -23,7 +23,10 @@ namespace magic.lambda.logging.slots
         ValueType = "string",
         ValueDescription = "Content type or search value to aggregate",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per day with [when] and [count] values for the time bucket")]
     public class Timeshift : ISlotAsync
     {
         readonly ILogQuery _query;

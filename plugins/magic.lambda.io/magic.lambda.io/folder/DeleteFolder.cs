@@ -19,7 +19,8 @@ namespace magic.lambda.io.folder
         ValueType = "string",
         ValueDescription = "Folder path to delete",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class DeleteFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

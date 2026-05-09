@@ -14,7 +14,10 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "types",
-        Description = "Lists known CLR types")]
+        Description = "Lists known CLR types",
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one child node per known CLR type name")]
     public class Types : ISlot
     {
         /// <summary>

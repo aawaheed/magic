@@ -14,7 +14,8 @@ namespace magic.lambda.mysql
     /// </summary>
     [Slot(
         Name = "mysql.transaction.rollback",
-        Description = "Rolls back the current MySQL transaction")]
+        Description = "Rolls back the current MySQL transaction",
+        ReturnsMode = SlotReturnsMode.None)]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

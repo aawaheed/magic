@@ -17,7 +17,8 @@ namespace magic.lambda.branching
         ValueType = "object",
         ValueDescription = "Case value to match against the [switch] input value",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class Case : ISlot
     {
         /// <summary>

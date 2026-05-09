@@ -20,7 +20,10 @@ namespace magic.lambda.io.misc
         ValueType = "string",
         ValueDescription = "Path to inspect",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Returns the folder portion of the supplied path")]
     public class GetPathFolder : ISlot
     {
         /// <summary>

@@ -22,7 +22,10 @@ namespace magic.lambda.image.slots
         ValueType = "string",
         ValueDescription = "Chart type to create, such as bars, stacked, or grouped",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "byte[]",
+        ReturnsDescription = "Returns the generated chart image bytes")]
     public class Chart : ISlot
     {
         readonly IRootResolver _rootResolver;

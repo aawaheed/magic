@@ -12,7 +12,10 @@ namespace magic.lambda.branching
     /// </summary>
     [Slot(
         Name = "else",
-        Description = "Evaluates the fallback branch in a conditional block")]
+        Description = "Evaluates the fallback branch in a conditional block",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Returns true if the else branch was evaluated")]
     public class Else : ISlot
     {
         /// <summary>

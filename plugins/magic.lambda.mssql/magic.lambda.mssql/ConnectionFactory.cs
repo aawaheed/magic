@@ -13,7 +13,10 @@ namespace magic.lambda.mssql
     /// </summary>
     [Slot(
         Name = ".db-factory.connection.mssql",
-        Description = "Creates a SQL Server connection factory")]
+        Description = "Creates a SQL Server connection factory",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "SqlConnection",
+        ReturnsDescription = "Returns a new SQL Server connection instance")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>
