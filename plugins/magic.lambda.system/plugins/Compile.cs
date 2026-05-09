@@ -16,11 +16,7 @@ namespace magic.lambda.system.plugins
     /// </summary>
     [Slot(
         Name = "system.compile",
-        Description = "Compiles C# code into an assembly",
-        ValueType = "string",
-        ValueDescription = "C# source code to compile",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Compiles C# code from child nodes into an assembly")]
     public class Compile : ISlot
     {
         /// <summary>

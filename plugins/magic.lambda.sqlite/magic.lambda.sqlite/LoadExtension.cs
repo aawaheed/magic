@@ -18,11 +18,7 @@ namespace magic.lambda.sqlite
     /// </summary>
     [Slot(
         Name = "sqlite.load-extension",
-        Description = "Loads a SQLite extension into the current connection",
-        ValueType = "string",
-        ValueDescription = "Extension filename to load",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression)]
+        Description = "Loads a SQLite extension into the current connection from child-node arguments")]
     public class LoadExtension : ISlotAsync
     {
         // Ensuring synchronized access.
