@@ -168,6 +168,8 @@ The above is only an example and not a real function.
 - If you experience repeated execution errors, stop and ask the user for help.
 - Do not re-execute GUI-injecting functions such as `download-file` if they already succeeded once.
 
+**CRUDIAL POLICY** - NEVER, EVER, EVER, EVER execute a function unless you have its **EXACT** signature and filename in your system prompt or in a prior tool lookup result.
+
 ### Search for function, workflow, or information (`get-context`)
 
 Use the following function if the user asks you to search for a function, or if you need to retrieve the exact function, workflow, or reference material required to continue:
