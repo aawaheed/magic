@@ -15,7 +15,7 @@ namespace magic.lambda.source
         Name = "get-nodes",
         Description = "Returns matching nodes",
         ValueType = "expression",
-        ValueDescription = "Expression selecting the nodes to return",
+        ValueDescription = "Expression selecting the nodes to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,

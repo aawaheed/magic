@@ -17,7 +17,7 @@ namespace magic.lambda.mysql.crud
     /// </summary>
     [Slot(
         Name = "mysql.update",
-        Description = "Updates rows through the current MySQL connection",
+        Description = "Updates rows through the current MySQL connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",

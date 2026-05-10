@@ -628,7 +628,7 @@ namespace magic.data.common.signatures
             {
                 Name = "multiple-result-sets",
                 Type = "bool",
-                Description = "Whether multiple result sets should be returned as separate child result containers",
+                Description = "Whether multiple SELECT statements in the SQL input should be returned as separate child result containers",
                 Required = false,
                 DefaultValue = "false",
                 Mode = SlotChildMode.ValueOrExpression,

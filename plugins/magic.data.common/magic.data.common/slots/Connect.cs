@@ -20,6 +20,8 @@ namespace magic.data.common.slots
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "data.connection",
+        ScopeDescription = "Creates an open database connection scope for data.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DataConnectSignature))]
     public class Connect : DataSlotBase
     {

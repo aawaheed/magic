@@ -486,7 +486,7 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "lambda",
-                Description = "Source container evaluated before its child nodes are cloned into the selected destination",
+                Description = "Source container or node-producing slot evaluated before its child nodes are applied to the selected target location",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.OneOrMore,

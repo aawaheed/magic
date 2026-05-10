@@ -22,6 +22,9 @@ namespace magic.data.common.slots
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Resolves to query result rows as child nodes",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataSelectSignature))]
     public class Select : DataSlotBase
     {

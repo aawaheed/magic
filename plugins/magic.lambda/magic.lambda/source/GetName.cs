@@ -16,7 +16,7 @@ namespace magic.lambda.source
         Name = "get-name",
         Description = "Returns the name of the first matching node",
         ValueType = "expression",
-        ValueDescription = "Expression selecting the node whose name should be returned",
+        ValueDescription = "Expression selecting the node whose name should be retrieved",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,

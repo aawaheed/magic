@@ -17,7 +17,7 @@ namespace magic.lambda.sqlite.crud
     /// </summary>
     [Slot(
         Name = "sqlite.update",
-        Description = "Updates rows through the current SQLite connection",
+        Description = "Updates rows through the current SQLite connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",

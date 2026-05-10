@@ -22,6 +22,9 @@ namespace magic.data.common.slots.crud
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataCreateSignature))]
     [Slot(
         Name = "data.read",
@@ -29,20 +32,29 @@ namespace magic.data.common.slots.crud
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Resolves to matching rows as child nodes",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataReadSignature))]
     [Slot(
         Name = "data.update",
-        Description = "Updates rows in the current open database connection",
+        Description = "Updates rows in the current open database connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataUpdateSignature))]
     [Slot(
         Name = "data.delete",
-        Description = "Deletes rows in the current open database connection",
+        Description = "Deletes rows in the current open database connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataDeleteSignature))]
     [Slot(
         Name = "data.scan",
@@ -50,6 +62,9 @@ namespace magic.data.common.slots.crud
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Resolves to scanned rows as child nodes",
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataReadSignature))]
     public class Crud : ISlotAsync
     {

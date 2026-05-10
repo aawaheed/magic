@@ -22,6 +22,8 @@ namespace magic.lambda.mssql
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "mssql.connection",
+        ScopeDescription = "Creates an open SQL Server connection scope for mssql.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {

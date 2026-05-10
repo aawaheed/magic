@@ -23,6 +23,8 @@ namespace magic.lambda.sqlite
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "sqlite.connection",
+        ScopeDescription = "Creates an open SQLite connection scope for sqlite.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {

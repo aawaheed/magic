@@ -18,6 +18,8 @@ namespace magic.lambda.strings.builder
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsDescription = "Resolves to the text appended inside the builder scope",
+        ProvidesScope = "strings.builder",
+        ScopeDescription = "Creates a string builder scope for [strings.builder.append]",
         SignatureType = typeof(global::magic.lambda.strings.signatures.StringBuilderSignature))]
     public class HLStringBuilder : ISlotAsync
     {

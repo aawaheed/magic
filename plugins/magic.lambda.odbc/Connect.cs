@@ -22,6 +22,8 @@ namespace magic.lambda.odbc
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "odbc.connection",
+        ScopeDescription = "Creates an open ODBC connection scope for odbc.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {

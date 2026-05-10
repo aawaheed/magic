@@ -74,6 +74,8 @@ namespace magic.lambda.misc
                 if (provider.Constraints.Any())
                     input.Add(CreateConstraintsNode(provider.Constraints));
             }
+            if (HasScope(signature))
+                input.Add(CreateScopeNode(signature));
             if (HasOutput(signature))
                 input.Add(CreateOutputNode(signature));
         }
@@ -112,6 +114,19 @@ namespace magic.lambda.misc
         }
 
         /*
+         * Returns true if the slot documents runtime scope contracts.
+         */
+        static bool HasScope(SlotAttribute signature)
+        {
+            return
+                !string.IsNullOrEmpty(signature.ProvidesScope) ||
+                !string.IsNullOrEmpty(signature.RequiresScope) ||
+                !string.IsNullOrEmpty(signature.ScopeProvider) ||
+                !string.IsNullOrEmpty(signature.ScopeKey) ||
+                !string.IsNullOrEmpty(signature.ScopeDescription);
+        }
+
+        /*
          * Creates the [input] node describing the slot's value contract.
          */
         static Node CreateInputNode(SlotAttribute signature)
@@ -133,6 +148,25 @@ namespace magic.lambda.misc
             result.Add(new Node("mode", signature.ReturnsMode.ToString()));
             result.Add(new Node("type", signature.ReturnsType));
             result.Add(new Node("description", signature.ReturnsDescription));
+            return result;
+        }
+
+        /*
+         * Creates the [scope] node describing runtime scope contracts.
+         */
+        static Node CreateScopeNode(SlotAttribute signature)
+        {
+            var result = new Node("scope");
+            if (!string.IsNullOrEmpty(signature.ProvidesScope))
+                result.Add(new Node("provides", signature.ProvidesScope));
+            if (!string.IsNullOrEmpty(signature.RequiresScope))
+                result.Add(new Node("requires", signature.RequiresScope));
+            if (!string.IsNullOrEmpty(signature.ScopeProvider))
+                result.Add(new Node("provider", signature.ScopeProvider));
+            if (!string.IsNullOrEmpty(signature.ScopeKey))
+                result.Add(new Node("key", signature.ScopeKey));
+            if (!string.IsNullOrEmpty(signature.ScopeDescription))
+                result.Add(new Node("description", signature.ScopeDescription));
             return result;
         }
 

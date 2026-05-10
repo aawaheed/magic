@@ -14,9 +14,9 @@ namespace magic.lambda.change
     /// </summary>
     [Slot(
         Name = "add",
-        Description = "Adds nodes to the lambda graph",
+        Description = "Appends source nodes to selected destination containers",
         ValueType = "expression",
-        ValueDescription = "Expression selecting the destination node or nodes to append to",
+        ValueDescription = "Expression selecting destination container node or nodes whose children should receive the source nodes",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.None,

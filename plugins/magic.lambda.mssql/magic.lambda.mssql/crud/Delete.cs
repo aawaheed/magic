@@ -17,7 +17,7 @@ namespace magic.lambda.mssql.crud
     /// </summary>
     [Slot(
         Name = "mssql.delete",
-        Description = "Deletes rows through the current SQL Server connection",
+        Description = "Deletes rows through the current SQL Server connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",

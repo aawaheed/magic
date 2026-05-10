@@ -22,6 +22,8 @@ namespace magic.lambda.pgsql
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "pgsql.connection",
+        ScopeDescription = "Creates an open PostgreSQL connection scope for pgsql.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {

@@ -22,6 +22,8 @@ namespace magic.lambda.mysql
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "mysql.connection",
+        ScopeDescription = "Creates an open MySQL connection scope for mysql.* slots",
         SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {

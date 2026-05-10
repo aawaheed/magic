@@ -21,6 +21,9 @@ namespace magic.lambda.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "context",
+        ScopeKey = "input",
+        ScopeDescription = "Creates a named context scope retrievable by [get-context] using the same input value",
         SignatureType = typeof(global::magic.lambda.signatures.ContextSignature))]
     public class Context : ISlot
     {

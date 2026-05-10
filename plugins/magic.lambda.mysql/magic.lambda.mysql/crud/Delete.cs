@@ -17,7 +17,7 @@ namespace magic.lambda.mysql.crud
     /// </summary>
     [Slot(
         Name = "mysql.delete",
-        Description = "Deletes rows through the current MySQL connection",
+        Description = "Deletes rows through the current MySQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",

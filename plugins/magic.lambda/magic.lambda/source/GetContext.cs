@@ -21,12 +21,16 @@ namespace magic.lambda.slots
         Name = "get-context",
         Description = "Returns a stack value or context object from the current execution context",
         ValueType = "string",
-        ValueDescription = "Context name to return",
+        ValueDescription = "Context name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the requested stack value or context object")]
+        ReturnsDescription = "Resolves to the requested stack value or context object",
+        RequiresScope = "context",
+        ScopeProvider = "context",
+        ScopeKey = "input",
+        ScopeDescription = "Requires a named context created by [context] using the same input value")]
     public class GetContext : ISlot
     {
         /// <summary>

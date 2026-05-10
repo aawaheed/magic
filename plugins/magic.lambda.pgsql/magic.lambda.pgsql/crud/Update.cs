@@ -17,7 +17,7 @@ namespace magic.lambda.pgsql.crud
     /// </summary>
     [Slot(
         Name = "pgsql.update",
-        Description = "Updates rows through the current PostgreSQL connection",
+        Description = "Updates rows through the current PostgreSQL connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",

@@ -73,5 +73,32 @@ namespace magic.signals.contracts
         /// accepted by the slot.
         /// </summary>
         public Type SignatureType { get; set; }
+
+        /// <summary>
+        /// Optional runtime scope provided by this slot while evaluating its
+        /// executable child lambda.
+        /// </summary>
+        public string ProvidesScope { get; set; }
+
+        /// <summary>
+        /// Optional runtime scope required for this slot to be meaningful.
+        /// </summary>
+        public string RequiresScope { get; set; }
+
+        /// <summary>
+        /// Optional slot that creates the required runtime scope.
+        /// </summary>
+        public string ScopeProvider { get; set; }
+
+        /// <summary>
+        /// Optional source for the scope key, for instance "input" when the
+        /// provider and consumer must use the same input value.
+        /// </summary>
+        public string ScopeKey { get; set; }
+
+        /// <summary>
+        /// Optional human-readable description of the runtime scope contract.
+        /// </summary>
+        public string ScopeDescription { get; set; }
     }
 }

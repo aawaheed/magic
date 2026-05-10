@@ -17,7 +17,7 @@ namespace magic.lambda.pgsql.crud
     /// </summary>
     [Slot(
         Name = "pgsql.delete",
-        Description = "Deletes rows through the current PostgreSQL connection",
+        Description = "Deletes rows through the current PostgreSQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",
