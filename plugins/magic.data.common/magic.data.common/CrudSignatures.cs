@@ -308,7 +308,7 @@ namespace magic.data.common.signatures
             {
                 Name = "limit",
                 Type = "long",
-                Description = "Maximum number of rows to return; use -1 to suppress the generated limit clause",
+                Description = "Maximum number of rows to return; omitted defaults to 25 and -1 suppresses the generated limit clause",
                 Required = false,
                 DefaultValue = "25",
                 Mode = SlotChildMode.ValueOrExpression,

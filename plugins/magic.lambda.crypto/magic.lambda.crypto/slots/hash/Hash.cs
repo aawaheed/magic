@@ -19,69 +19,69 @@ namespace magic.lambda.crypto.slots.hash
     /// </summary>
     [Slot(
         Name = "crypto.hash",
-        Description = "Hashes input using the configured hash algorithm",
+        Description = "Hashes input using SHA256 by default, or the supplied [algorithm] child",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
-        SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.ConfigurableHashSignature))]
     [Slot(
         Name = "crypto.hash.sha1",
         Description = "Hashes input using the SHA1 algorithm",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
         Name = "crypto.hash.md5",
         Description = "Hashes input using the MD5 algorithm",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
         Name = "crypto.hash.sha256",
         Description = "Hashes input using the SHA256 algorithm",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
         Name = "crypto.hash.sha384",
         Description = "Hashes input using the SHA384 algorithm",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
         Name = "crypto.hash.sha512",
         Description = "Hashes input using the SHA512 algorithm",
         ValueType = "string|byte[]",
-        ValueDescription = "Input content to hash",
+        ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the computed hash in the requested format",
+        ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     public class Hash : ISlotAsync
     {

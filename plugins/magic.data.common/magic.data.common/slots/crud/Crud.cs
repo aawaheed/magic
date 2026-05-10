@@ -28,7 +28,7 @@ namespace magic.data.common.slots.crud
         SignatureType = typeof(global::magic.data.common.signatures.DataCreateSignature))]
     [Slot(
         Name = "data.read",
-        Description = "Selects rows from the current open database connection",
+        Description = "Selects rows from the current open database connection; returns all columns unless [columns] is supplied and limits to 25 rows unless [limit] is supplied",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Resolves to matching rows as child nodes",
@@ -58,7 +58,7 @@ namespace magic.data.common.slots.crud
         SignatureType = typeof(global::magic.data.common.signatures.DataDeleteSignature))]
     [Slot(
         Name = "data.scan",
-        Description = "Scans rows from the current open database connection",
+        Description = "Scans rows from the current open database connection; returns all columns unless [columns] is supplied and limits to 25 rows unless [limit] is supplied",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Resolves to scanned rows as child nodes",

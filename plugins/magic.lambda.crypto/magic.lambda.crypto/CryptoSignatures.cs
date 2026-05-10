@@ -89,6 +89,7 @@ namespace magic.lambda.crypto.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("filename", "string", "File to hash when no input content is supplied"),
+            Option("format", "string", "Hash output format: text, raw, or fingerprint", defaultValue: "text"),
         };
 
         public override IEnumerable<SlotConstraint> Constraints
@@ -104,6 +105,16 @@ namespace magic.lambda.crypto.signatures
                 return new[] { result };
             }
         }
+    }
+
+    public class ConfigurableHashSignature : HashSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("algorithm", "string", "Hash algorithm: md5, sha1, sha256, sha384, or sha512", defaultValue: "sha256"),
+            Option("filename", "string", "File to hash when no input content is supplied"),
+            Option("format", "string", "Hash output format: text, raw, or fingerprint", defaultValue: "text"),
+        };
     }
 
     public class VerifyPasswordSignature : CryptoSignature
