@@ -19,7 +19,8 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to create",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.slots.signatures.CreateSlotSignature))]
     [Slot(
         Name = "slots.create",
         Description = "Creates a dynamic slot that can be invoked with [signal]",
@@ -27,7 +28,8 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to create",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.slots.signatures.CreateSlotSignature))]
     public class Create : ISlot
     {
         internal static ConcurrentDictionary<string, Node> _slots = new ();

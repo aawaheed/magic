@@ -19,12 +19,13 @@ namespace magic.lambda.csv
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
         ValueType = "lambda",
-        ValueDescription = "Lambda hierarchy to transform",
+        ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children")]
+        ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children",
+        SignatureType = typeof(global::magic.lambda.csv.signatures.Lambda2CsvSignature))]
     public class Lambda2Csv : ISlot
     {
         /// <summary>

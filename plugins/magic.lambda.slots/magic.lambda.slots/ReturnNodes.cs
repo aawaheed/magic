@@ -18,13 +18,15 @@ namespace magic.lambda.slots
         Description = "Returns child nodes or evaluated nodes to the nearest caller",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns child nodes to the nearest caller")]
+        ReturnsDescription = "Returns child nodes to the nearest caller",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnNodesSignature))]
     [Slot(
         Name = "yield",
         Description = "Returns multiple child nodes or evaluated nodes to the caller",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns child nodes to the caller")]
+        ReturnsDescription = "Returns child nodes to the caller",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.YieldSignature))]
     public class ReturnNodes : ISlot
     {
         /// <summary>

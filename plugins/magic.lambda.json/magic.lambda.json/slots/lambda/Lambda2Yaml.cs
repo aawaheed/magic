@@ -19,12 +19,13 @@ namespace magic.lambda.json.slots.lambda
         Name = "lambda2yaml",
         Description = "Transforms a lambda hierarchy into YAML",
         ValueType = "lambda",
-        ValueDescription = "Lambda hierarchy to transform",
+        ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the generated YAML string")]
+        ReturnsDescription = "Resolves to the generated YAML string",
+        SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2YamlSignature))]
     public class Lambda2Yaml : ISlot
     {
         /// <summary>

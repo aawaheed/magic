@@ -22,7 +22,8 @@ namespace magic.lambda.hyperlambda
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes")]
+        ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes",
+        SignatureType = typeof(global::magic.lambda.hyperlambda.signatures.Hyper2LambdaSignature))]
     public class Hyper2Lambda : ISlot
     {
         /// <summary>

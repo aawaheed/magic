@@ -26,7 +26,8 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the value converted to the requested type")]
+        ReturnsDescription = "Resolves to the value converted to the requested type",
+        SignatureType = typeof(global::magic.lambda.signatures.ConvertSignature))]
     public class Convert : ISlot
     {
         /// <summary>

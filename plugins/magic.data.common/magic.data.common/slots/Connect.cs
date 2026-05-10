@@ -17,9 +17,10 @@ namespace magic.data.common.slots
         Description = "Opens a database connection using the configured provider",
         ValueType = "string",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.data.common.signatures.DataConnectSignature))]
     public class Connect : DataSlotBase
     {
         /// <summary>

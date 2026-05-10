@@ -14,7 +14,8 @@ namespace magic.lambda.branching
     [Slot(
         Name = "default",
         Description = "Evaluates the default branch inside [switch]",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.DefaultSignature))]
     public class Default : ISlot
     {
         /// <summary>

@@ -15,13 +15,10 @@ namespace magic.lambda.math.basics
     [Slot(
         Name = "math.multiply",
         Description = "Multiplies numeric values",
-        ValueType = "number",
-        ValueDescription = "First numeric operand",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Resolves to the product of the supplied operands")]
+        ReturnsDescription = "Resolves to the product of the supplied operands",
+        SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Multiplication : ISlotAsync
     {
         /// <summary>

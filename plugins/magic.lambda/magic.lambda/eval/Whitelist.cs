@@ -19,7 +19,8 @@ namespace magic.lambda.eval
         Description = "Evaluates a lambda with a restricted whitelist of allowed slots",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the evaluated lambda's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the evaluated lambda's value result and any returned child nodes",
+        SignatureType = typeof(global::magic.lambda.signatures.WhitelistSignature))]
     public class Whitelist : ISlotAsync
     {
         /// <summary>

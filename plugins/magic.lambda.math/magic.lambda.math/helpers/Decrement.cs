@@ -15,12 +15,13 @@ namespace magic.lambda.math.helpers
     /// </summary>
     [Slot(
         Name = "math.decrement",
-        Description = "Decrements the numeric nodes selected by the RHS expression",
+        Description = "Decrements the numeric nodes selected by the input expression",
         ValueType = "expression",
         ValueDescription = "Expression selecting the numeric node or nodes to decrement",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.math.signatures.IncrementDecrementSignature))]
     public class Decrement : ISlotAsync
     {
         /// <summary>

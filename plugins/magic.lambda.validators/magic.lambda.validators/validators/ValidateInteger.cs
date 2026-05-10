@@ -15,12 +15,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.integer",
-        Description = "Validates that an integer value or resolved expression result is within the allowed range",
+        Description = "Validates that an integer value or resolved expression result is within the allowed range, throwing if validation fails",
         ValueType = "integer",
         ValueDescription = "Integer value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.MinMaxIntSignature))]
     public class ValidateInteger : ISlot
     {
         /// <summary>

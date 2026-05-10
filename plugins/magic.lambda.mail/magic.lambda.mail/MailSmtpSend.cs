@@ -20,7 +20,8 @@ namespace magic.lambda.mail
     [Slot(
         Name = "mail.smtp.send",
         Description = "Sends one or more email messages through SMTP from child [message] nodes",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.mail.signatures.MailSmtpSendSignature))]
     public class MailSmtpSend : ISlotAsync
     {
         readonly ConnectionSettingsSmtp _server;

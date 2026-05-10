@@ -17,12 +17,13 @@ namespace magic.lambda.threading
     /// </summary>
     [Slot(
         Name = "semaphore",
-        Description = "Evaluates the child lambda inside a named semaphore",
+        Description = "Evaluates the child lambda object inside a named semaphore",
         ValueType = "string",
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.threading.signatures.SemaphoreSignature))]
     public class Semaphore : ISlotAsync
     {
         static readonly ConcurrentDictionary<string, Sys.SemaphoreSlim> _semaphores = new();

@@ -15,12 +15,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.enum",
-        Description = "Validates that a value or resolved expression result is one of the allowed options",
+        Description = "Validates that a value or resolved expression result is one of the allowed options, throwing if validation fails",
         ValueType = "string",
         ValueDescription = "Value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.EnumValidatorSignature))]
     public class ValidateEnum : ISlot
     {
         /// <summary>

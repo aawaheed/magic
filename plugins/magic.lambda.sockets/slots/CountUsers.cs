@@ -18,7 +18,8 @@ namespace magic.lambda.sockets.slots
         Description = "Counts connected socket users, optionally filtered by username",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of connected socket users matching the optional filter")]
+        ReturnsDescription = "Resolves to the number of connected socket users matching the optional filter",
+        SignatureType = typeof(global::magic.lambda.sockets.signatures.SocketCountUsersSignature))]
     public class CountUsers : ISlot
     {
         readonly IConfiguration _configuration;

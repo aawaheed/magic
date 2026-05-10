@@ -17,7 +17,8 @@ namespace magic.lambda.threading
     [Slot(
         Name = "fork",
         Description = "Creates a new thread and executes the specified lambda object on the new thread",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.threading.signatures.ForkSignature))]
     public class Fork : ISlotAsync
     {
         readonly IServiceScopeFactory _serviceScopeFactory;

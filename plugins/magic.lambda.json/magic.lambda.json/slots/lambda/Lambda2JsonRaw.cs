@@ -15,13 +15,10 @@ namespace magic.lambda.json.slots.lambda
     [Slot(
         Name = ".lambda2json-raw",
         Description = "Transforms a lambda hierarchy into a raw JSON container without serializing it to a string",
-        ValueType = "lambda",
-        ValueDescription = "Lambda hierarchy to transform",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "JContainer",
-        ReturnsDescription = "Resolves to the generated raw JSON container")]
+        ReturnsDescription = "Resolves to the generated raw JSON container",
+        SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2JsonRawSignature))]
     public class Lambda2JsonRaw : ISlot
     {
         /// <summary>

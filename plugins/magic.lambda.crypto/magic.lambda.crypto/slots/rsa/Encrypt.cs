@@ -22,7 +22,8 @@ namespace magic.lambda.crypto.slots.rsa
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaPublicKeySignature))]
     public class Encrypt : ISlot
     {
         /// <summary>

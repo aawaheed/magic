@@ -6,6 +6,7 @@ using System.Linq;
 using Xunit;
 using magic.node;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.csv.tests
 {
@@ -20,6 +21,20 @@ Thomas,55");
             signaler.Signal("csv2lambda", node);
             Assert.Equal("name", node.Children.First().Children.First().Name);
             Assert.Equal("Thomas", node.Children.First().Children.First().Value);
+        }
+
+        [Fact]
+        public void Lambda2CsvSignatureRequiresExpressionInput()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2csv");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+            var children = result.Children.First(x => x.Name == "children");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Contains(children.Children, x => x.Name == "null-value");
+            Assert.DoesNotContain(children.Children, x => x.Name == "*");
         }
 
         [Fact]

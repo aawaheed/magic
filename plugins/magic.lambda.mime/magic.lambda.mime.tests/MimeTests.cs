@@ -8,6 +8,7 @@ using Xunit;
 using MimeKit;
 using magic.node;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.mime.tests
 {
@@ -41,6 +42,19 @@ namespace magic.lambda.mime.tests
             Assert.Equal("text/plain", lambda.GetEx<string>());
             Assert.Equal("content", lambda.Children.First().Name);
             Assert.Equal("Hello World!", lambda.Children.First().GetEx<string>());
+        }
+
+        [Fact]
+        public void ParseSignatureDocumentsOutput()
+        {
+            var lambda = Common.Evaluate("slot.signature:mime.parse");
+            var output = lambda.Children.First().Children.First(x => x.Name == "output");
+
+            Assert.Equal(SlotReturnsMode.Both.ToString(), output.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal("lambda", output.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal(
+                "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities",
+                output.Children.First(x => x.Name == "description").GetEx<string>());
         }
 
         [Fact]

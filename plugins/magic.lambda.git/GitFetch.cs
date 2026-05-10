@@ -24,7 +24,8 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the git fetch command output")]
+        ReturnsDescription = "Resolves to the git fetch command output",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitFetchSignature))]
     public class GitFetch : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

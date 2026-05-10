@@ -23,7 +23,8 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the joined string")]
+        ReturnsDescription = "Resolves to the joined string",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.JoinSignature))]
     public class Join : ISlotAsync
     {
         /// <summary>

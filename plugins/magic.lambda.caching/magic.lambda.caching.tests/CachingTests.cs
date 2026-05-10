@@ -266,6 +266,39 @@ cache.list:foo");
         }
 
         [Fact]
+        public void CacheClearSignatureDocumentsInputOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:cache.clear");
+            var result = lambda.Children.First();
+
+            Assert.Contains(result.Children, x => x.Name == "input");
+            Assert.DoesNotContain(result.Children, x => x.Name == "children");
+        }
+
+        [Fact]
+        public void CacheCountSignatureDocumentsInputAndOutputOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:cache.count");
+            var result = lambda.Children.First();
+
+            Assert.Contains(result.Children, x => x.Name == "input");
+            Assert.Contains(result.Children, x => x.Name == "output");
+            Assert.DoesNotContain(result.Children, x => x.Name == "children");
+        }
+
+        [Fact]
+        public void CacheListSignatureDoesNotDocumentDuplicateFilterChild()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:cache.list");
+            var result = lambda.Children.First();
+            var children = result.Children.First(x => x.Name == "children");
+
+            Assert.Contains(children.Children, x => x.Name == "offset");
+            Assert.Contains(children.Children, x => x.Name == "limit");
+            Assert.DoesNotContain(children.Children, x => x.Name == "filter");
+        }
+
+        [Fact]
         public void CacheSetThrows_01()
         {
             Assert.Throws<HyperlambdaException>(() => Common.Evaluate(@"

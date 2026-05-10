@@ -23,7 +23,8 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     [Slot(
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
@@ -33,7 +34,8 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.ExecuteSignature))]
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
@@ -43,7 +45,8 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes")]
+        ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     public class SignalSlot : ISlotAsync
     {
         /// <summary>

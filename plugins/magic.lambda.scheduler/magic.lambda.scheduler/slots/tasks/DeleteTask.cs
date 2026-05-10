@@ -16,7 +16,7 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.delete",
         Description = "Deletes a task",
         ValueType = "string",
-        ValueDescription = "Task ID to delete when not supplied as an [id] child node",
+        ValueDescription = "Task ID to delete",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None)]

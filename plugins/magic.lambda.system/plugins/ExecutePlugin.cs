@@ -20,7 +20,8 @@ namespace magic.lambda.system.plugins
         ValueDescription = "Plugin assembly filename or assembly bytes",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.system.plugins.signatures.ExecutePluginSignature))]
     public class ExecutePlugin : ISlot
     {
         readonly IRootResolver _rootResolver;

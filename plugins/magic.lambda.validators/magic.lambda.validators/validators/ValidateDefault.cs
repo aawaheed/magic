@@ -14,12 +14,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.default",
-        Description = "Adds default child nodes to the nodes selected by the RHS expression",
+        Description = "Adds default child nodes to the nodes selected by the input expression",
         ValueType = "expression",
         ValueDescription = "Expression selecting the node or nodes to apply defaults to",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.DefaultValidatorSignature))]
     public class ValidateDefault : ISlot
     {
         /// <summary>

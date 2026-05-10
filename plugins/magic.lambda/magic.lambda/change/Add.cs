@@ -19,7 +19,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the destination node or nodes to append to",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.SourceContainerSignature))]
     public class Add : ISlot
     {
         /// <summary>

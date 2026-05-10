@@ -2,6 +2,7 @@
  * Magic Cloud, copyright (c) 2023 Thomas Hansen. See the attached LICENSE file for details. For license inquiries you can send an email to thomas@ainiro.io
  */
 
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using magic.node;
@@ -65,6 +66,14 @@ namespace magic.lambda.misc
             input.Value = null;
             if (HasInput(signature))
                 input.Add(CreateInputNode(signature));
+            if (HasSignatureProvider(signature))
+            {
+                var provider = CreateProvider(signature);
+                if (provider.Children.Any())
+                    input.Add(CreateChildrenNode(provider));
+                if (provider.Constraints.Any())
+                    input.Add(CreateConstraintsNode(provider.Constraints));
+            }
             if (HasOutput(signature))
                 input.Add(CreateOutputNode(signature));
         }
@@ -72,7 +81,7 @@ namespace magic.lambda.misc
         #region [ -- Private helper methods -- ]
 
         /*
-         * Returns true if the slot documents any RHS value input contract.
+         * Returns true if the slot documents any input value contract.
          */
         static bool HasInput(SlotAttribute signature)
         {
@@ -95,7 +104,15 @@ namespace magic.lambda.misc
         }
 
         /*
-         * Creates the [input] node describing the slot's RHS value contract.
+         * Returns true if the slot documents child node contracts.
+         */
+        static bool HasSignatureProvider(SlotAttribute signature)
+        {
+            return signature.SignatureType != null;
+        }
+
+        /*
+         * Creates the [input] node describing the slot's value contract.
          */
         static Node CreateInputNode(SlotAttribute signature)
         {
@@ -116,6 +133,88 @@ namespace magic.lambda.misc
             result.Add(new Node("mode", signature.ReturnsMode.ToString()));
             result.Add(new Node("type", signature.ReturnsType));
             result.Add(new Node("description", signature.ReturnsDescription));
+            return result;
+        }
+
+        /*
+         * Creates the [children] node describing child nodes accepted by the slot.
+         */
+        static ISlotSignature CreateProvider(SlotAttribute signature)
+        {
+            return Activator.CreateInstance(signature.SignatureType) as ISlotSignature ??
+                throw new HyperlambdaException($"Signature type '{signature.SignatureType.FullName}' does not implement {nameof(ISlotSignature)}");
+        }
+
+        /*
+         * Creates the [children] node describing child nodes accepted by the slot.
+         */
+        static Node CreateChildrenNode(ISlotSignature provider)
+        {
+            var result = new Node("children");
+            result.AddRange(provider.Children.Select(CreateChildNode));
+            return result;
+        }
+
+        /*
+         * Creates a child signature node recursively.
+         */
+        static Node CreateChildNode(SlotChild child)
+        {
+            var result = new Node(child.Name);
+            result.Add(new Node("type", child.Type));
+            result.Add(new Node("description", child.Description));
+            result.Add(new Node("required", child.Required));
+            result.Add(new Node("mode", child.Mode.ToString()));
+            result.Add(new Node("cardinality", child.Cardinality.ToString()));
+            if (!string.IsNullOrEmpty(child.DefaultValue))
+                result.Add(new Node("default", child.DefaultValue));
+            if (!string.IsNullOrEmpty(child.ExclusiveWith))
+                result.Add(new Node("exclusive-with", child.ExclusiveWith));
+            if (child.Preprocess != SlotChildPreprocess.None)
+                result.Add(new Node("preprocess", child.Preprocess.ToString()));
+            if (child.Role != SlotChildRole.None)
+                result.Add(new Node("role", child.Role.ToString()));
+            if (child.Evaluation != SlotChildEvaluation.None)
+                result.Add(new Node("evaluation", child.Evaluation.ToString()));
+            if (child.Projection != SlotChildProjection.None)
+                result.Add(new Node("projection", child.Projection.ToString()));
+            if (child.Constraints.Any())
+                result.Add(CreateConstraintsNode(child.Constraints));
+            if (child.Children.Any())
+            {
+                var children = new Node("children");
+                children.AddRange(child.Children.Select(CreateChildNode));
+                result.Add(children);
+            }
+            return result;
+        }
+
+        /*
+         * Creates a [constraints] node.
+         */
+        static Node CreateConstraintsNode(IEnumerable<SlotConstraint> constraints)
+        {
+            var result = new Node("constraints");
+            result.AddRange(constraints.Select(CreateConstraintNode));
+            return result;
+        }
+
+        /*
+         * Creates a single constraint node.
+         */
+        static Node CreateConstraintNode(SlotConstraint constraint)
+        {
+            var result = new Node(constraint.Kind.ToString());
+            if (!string.IsNullOrEmpty(constraint.Target))
+                result.Add(new Node("target", constraint.Target));
+            if (!string.IsNullOrEmpty(constraint.Description))
+                result.Add(new Node("description", constraint.Description));
+            if (constraint.Values.Any())
+            {
+                var values = new Node("values");
+                values.AddRange(constraint.Values.Select(x => new Node(".", x)));
+                result.Add(values);
+            }
             return result;
         }
 

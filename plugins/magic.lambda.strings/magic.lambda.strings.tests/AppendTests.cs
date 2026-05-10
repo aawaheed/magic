@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.strings.tests
 {
@@ -33,6 +34,22 @@ strings.builder
 get-value:x:@strings.builder
 ");
             Assert.Equal("howdy world", lambda.Children.Skip(1).First().Value);
+        }
+
+        [Fact]
+        public void BuilderSignatureDocumentsScopedAppendBody()
+        {
+            var result = Common.Evaluate("slot.signature:strings.builder");
+            var signature = result.Children.First();
+            var children = signature.Children.First(x => x.Name == "children");
+            var body = children.Children.First();
+            var output = signature.Children.First(x => x.Name == "output");
+
+            Assert.Equal("string", output.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("*", body.Name);
+            Assert.Equal(SlotChildMode.ExecutableLambda.ToString(), body.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(SlotChildRole.ExecutableBody.ToString(), body.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildEvaluation.EvalSelf.ToString(), body.Children.First(x => x.Name == "evaluation").GetEx<string>());
         }
     }
 }

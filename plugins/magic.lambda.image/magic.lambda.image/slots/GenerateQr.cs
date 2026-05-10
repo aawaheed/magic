@@ -23,7 +23,8 @@ namespace magic.lambda.image.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Resolves to the generated QR code image bytes")]
+        ReturnsDescription = "Resolves to the generated QR code image bytes",
+        SignatureType = typeof(global::magic.lambda.image.signatures.QrSignature))]
     public class GenerateQr : ISlot
     {
         /// <summary>

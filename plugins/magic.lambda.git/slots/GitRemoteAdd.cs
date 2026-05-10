@@ -24,7 +24,8 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the git remote add command output")]
+        ReturnsDescription = "Resolves to the git remote add command output",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitRemoteAddSignature))]
     public class GitRemoteAdd : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

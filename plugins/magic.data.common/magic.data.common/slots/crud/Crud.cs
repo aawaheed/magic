@@ -21,31 +21,36 @@ namespace magic.data.common.slots.crud
         Description = "Inserts a new row into the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null")]
+        ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
+        SignatureType = typeof(global::magic.data.common.signatures.DataCreateSignature))]
     [Slot(
         Name = "data.read",
         Description = "Selects rows from the current open database connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to matching rows as child nodes")]
+        ReturnsDescription = "Resolves to matching rows as child nodes",
+        SignatureType = typeof(global::magic.data.common.signatures.DataReadSignature))]
     [Slot(
         Name = "data.update",
         Description = "Updates rows in the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected",
+        SignatureType = typeof(global::magic.data.common.signatures.DataUpdateSignature))]
     [Slot(
         Name = "data.delete",
         Description = "Deletes rows in the current open database connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected",
+        SignatureType = typeof(global::magic.data.common.signatures.DataDeleteSignature))]
     [Slot(
         Name = "data.scan",
         Description = "Scans rows from the current open database connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to scanned rows as child nodes")]
+        ReturnsDescription = "Resolves to scanned rows as child nodes",
+        SignatureType = typeof(global::magic.data.common.signatures.DataReadSignature))]
     public class Crud : ISlotAsync
     {
         readonly IDataSettings _settings;

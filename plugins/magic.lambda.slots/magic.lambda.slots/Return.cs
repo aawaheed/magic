@@ -14,14 +14,15 @@ namespace magic.lambda.slots
     /// </summary>
     [Slot(
         Name = "return",
-        Description = "Returns a value or list from the current slot",
+        Description = "Returns a value, expression result, or child nodes to the nearest caller",
         ValueType = "object",
-        ValueDescription = "Value to return to the nearest caller",
+        ValueDescription = "Value or expression to return when no child nodes are supplied; one expression match returns its value, multiple matches return cloned nodes",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to a value or child nodes to the nearest caller")]
+        ReturnsDescription = "Resolves to the supplied value and/or returned child nodes captured by the nearest caller",
+        SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnSignature))]
     public class Return : ISlot
     {
         /// <summary>

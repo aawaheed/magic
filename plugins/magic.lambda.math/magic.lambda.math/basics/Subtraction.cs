@@ -15,13 +15,10 @@ namespace magic.lambda.math.basics
     [Slot(
         Name = "math.subtract",
         Description = "Subtracts numeric values",
-        ValueType = "number",
-        ValueDescription = "First numeric operand",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Resolves to the difference of the supplied operands")]
+        ReturnsDescription = "Resolves to the difference of the supplied operands",
+        SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Subtraction : ISlotAsync
     {
         /// <summary>

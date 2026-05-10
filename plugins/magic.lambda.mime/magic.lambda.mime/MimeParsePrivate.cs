@@ -19,7 +19,9 @@ namespace magic.lambda.mime
         ValueDescription = "MIME entity to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities")]
     public class MimeParsePrivate : ISlot
     {
         /// <summary>

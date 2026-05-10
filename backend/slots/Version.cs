@@ -10,7 +10,12 @@ namespace magic.backend.slots
     /// <summary>
     /// [version] slot returning the version of Magic that is currently being used.
     /// </summary>
-    [Slot(Name = "version", Description = "Returns the Magic Cloud version to the caller")]
+    [Slot(
+        Name = "version",
+        Description = "Returns the Magic Cloud version to the caller",
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "string",
+        ReturnsDescription = "Resolves to the Magic Cloud version")]
     public class Version : ISlot
     {
         /// <summary>

@@ -21,7 +21,9 @@ namespace magic.lambda.mime
         ValueDescription = "Raw MIME message to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities")]
     public class MimeParse : ISlot
     {
         /// <summary>

@@ -17,12 +17,13 @@ namespace magic.lambda.hyperlambda
         Name = "lambda2hyper",
         Description = "Transforms a lambda hierarchy into Hyperlambda",
         ValueType = "lambda",
-        ValueDescription = "Lambda hierarchy to transform",
+        ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the generated Hyperlambda source")]
+        ReturnsDescription = "Resolves to the generated Hyperlambda source",
+        SignatureType = typeof(global::magic.lambda.hyperlambda.signatures.Lambda2HyperSignature))]
     public class Lambda2Hyper : ISlot
     {
         /// <summary>

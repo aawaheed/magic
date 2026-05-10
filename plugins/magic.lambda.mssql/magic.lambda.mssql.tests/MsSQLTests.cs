@@ -4,11 +4,79 @@
 
 using System.Linq;
 using Xunit;
+using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.mssql.tests
 {
     public class MsSQLTests
     {
+        [Fact]
+        public void ConnectSignatureDocumentsExecutableBody()
+        {
+            var lambda = Common.Evaluate("slot.signature:mssql.connect");
+            var signature = lambda.Children.First();
+            var input = signature.Children.First(x => x.Name == "input");
+            var children = signature.Children.First(x => x.Name == "children");
+            var body = children.Children.First();
+
+            Assert.False(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal("*", body.Name);
+            Assert.Equal(SlotChildMode.ExecutableLambda.ToString(), body.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(SlotChildCardinality.ZeroOrMore.ToString(), body.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal(SlotChildRole.ExecutableBody.ToString(), body.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildEvaluation.EvalSelf.ToString(), body.Children.First(x => x.Name == "evaluation").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Self.ToString(), body.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Fact]
+        public void ExecuteSignatureDocumentsSqlParameters()
+        {
+            var lambda = Common.Evaluate("slot.signature:mssql.execute");
+            var children = lambda.Children.First().Children.First(x => x.Name == "children");
+            var parameter = children.Children.First();
+
+            Assert.Equal("*", parameter.Name);
+            Assert.Equal("SQL parameter value; child name is used as the parameter name referenced by the SQL statement", parameter.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal(SlotChildMode.ValueOrExpression.ToString(), parameter.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(SlotChildCardinality.ZeroOrMore.ToString(), parameter.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal(SlotChildRole.Arguments.ToString(), parameter.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Value.ToString(), parameter.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Fact]
+        public void ScalarSignatureDocumentsSqlParameters()
+        {
+            var lambda = Common.Evaluate("slot.signature:mssql.scalar");
+            var children = lambda.Children.First().Children.First(x => x.Name == "children");
+            var parameter = children.Children.First();
+
+            Assert.Equal("*", parameter.Name);
+            Assert.Equal("SQL parameter value; child name is used as the parameter name referenced by the SQL statement", parameter.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal(SlotChildMode.ValueOrExpression.ToString(), parameter.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(SlotChildCardinality.ZeroOrMore.ToString(), parameter.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal(SlotChildRole.Arguments.ToString(), parameter.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Value.ToString(), parameter.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Fact]
+        public void SelectSignatureDocumentsOptionsAndSqlParameters()
+        {
+            var lambda = Common.Evaluate("slot.signature:mssql.select");
+            var children = lambda.Children.First().Children.First(x => x.Name == "children");
+            var max = children.Children.First(x => x.Name == "max");
+            var multipleResultSets = children.Children.First(x => x.Name == "multiple-result-sets");
+            var parameter = children.Children.First(x => x.Name == "*");
+
+            Assert.Equal("long", max.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("-1", max.Children.First(x => x.Name == "default").GetEx<string>());
+            Assert.Equal("bool", multipleResultSets.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("false", multipleResultSets.Children.First(x => x.Name == "default").GetEx<string>());
+            Assert.Equal("SQL parameter value; child name is used as the parameter name referenced by the SQL statement", parameter.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal(SlotChildRole.Arguments.ToString(), parameter.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Value.ToString(), parameter.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
         [Fact]
         public void SelectSQL_01()
         {

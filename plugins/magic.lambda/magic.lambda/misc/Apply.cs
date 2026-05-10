@@ -17,14 +17,15 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "apply",
-        Description = "Applies nodes to the current context",
-        ValueType = "object",
-        ValueDescription = "Value to apply to the current context",
+        Description = "Transforms template nodes by replacing named placeholders",
+        ValueType = "expression",
+        ValueDescription = "Expression selecting the template node or nodes to transform",
         ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression,
+        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the transformed template nodes after applying the supplied arguments")]
+        ReturnsDescription = "Resolves to the transformed template nodes after applying the supplied arguments",
+        SignatureType = typeof(global::magic.lambda.signatures.ApplySignature))]
     public class Apply : ISlot
     {
         /// <summary>

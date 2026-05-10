@@ -25,7 +25,8 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Resolves to the screenshot image bytes")]
+        ReturnsDescription = "Resolves to the screenshot image bytes",
+        SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerScreenshotSignature))]
     public class Screenshot : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

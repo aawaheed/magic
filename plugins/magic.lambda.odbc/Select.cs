@@ -23,7 +23,8 @@ namespace magic.lambda.odbc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per row returned by the SELECT query")]
+        ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {
         /// <summary>

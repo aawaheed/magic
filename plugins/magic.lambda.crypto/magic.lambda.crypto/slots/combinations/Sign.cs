@@ -23,7 +23,8 @@ namespace magic.lambda.crypto.slots.combinations
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the signed package as base64 text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the signed package as base64 text or raw bytes when [raw] is true",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationSignSignature))]
     public class Sign : ISlot
     {
         /// <summary>

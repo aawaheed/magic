@@ -17,10 +17,10 @@ namespace magic.lambda.eval
     /// </summary>
     [Slot(
         Name = "eval",
-        Description = "Evaluates Hyperlambda nodes from child nodes or an RHS expression",
+        Description = "Evaluates Hyperlambda nodes selected by an expression",
         ValueType = "lambda",
-        ValueDescription = "Expression yielding the Hyperlambda nodes to evaluate when not supplied as child nodes",
-        ValueRequired = false,
+        ValueDescription = "Expression selecting the Hyperlambda nodes to evaluate",
+        ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.None)]
     public class Eval : ISlotAsync

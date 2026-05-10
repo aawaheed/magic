@@ -20,7 +20,8 @@ namespace magic.lambda.pgsql.crud
         Description = "Reads rows through the current PostgreSQL connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per row read from the current PostgreSQL connection")]
+        ReturnsDescription = "Returns one child node per row read from the current PostgreSQL connection",
+        SignatureType = typeof(global::magic.data.common.signatures.DbReadSignature))]
     public class Read : ISlotAsync
     {
         /// <summary>

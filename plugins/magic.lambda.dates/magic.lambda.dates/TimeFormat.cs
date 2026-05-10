@@ -23,7 +23,8 @@ namespace magic.lambda.dates
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the formatted time string")]
+        ReturnsDescription = "Resolves to the formatted time string",
+        SignatureType = typeof(global::magic.lambda.dates.signatures.DateFormatSignature))]
     public class TimeFormat : ISlot
     {
         /// <summary>

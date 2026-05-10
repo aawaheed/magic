@@ -60,6 +60,34 @@ io.file.exists:/existing.txt
         }
 
         [Fact]
+        public void SaveFileAlias()
+        {
+            #region [ -- Setting up mock service(s) -- ]
+
+            var saveInvoked = false;
+            var fileService = new FileService
+            {
+                SaveAction = (path, content) =>
+                {
+                    Assert.Equal("foo", content);
+                    Assert.Equal(
+                        AppDomain.CurrentDomain.BaseDirectory.Replace("\\", "/").TrimEnd('/')
+                        + "/" +
+                        "existing.txt", path);
+                    saveInvoked = true;
+                },
+            };
+
+            #endregion
+
+            Common.Evaluate(@"
+save-file:existing.txt
+   .:foo
+", fileService);
+            Assert.True(saveInvoked);
+        }
+
+        [Fact]
         public void SaveAndLoadFile()
         {
             #region [ -- Setting up mock service(s) -- ]

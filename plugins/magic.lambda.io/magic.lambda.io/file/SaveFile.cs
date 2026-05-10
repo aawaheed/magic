@@ -21,7 +21,8 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
     [Slot(
         Name = "io.file.save",
         Description = "Saves a text file to the server",
@@ -29,7 +30,8 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
     [Slot(
         Name = "io.file.save.binary",
         Description = "Saves a binary file to the server",
@@ -37,7 +39,8 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.BinaryFileSaveSignature))]
     public class SaveFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;
@@ -69,6 +72,7 @@ namespace magic.lambda.io.file
             switch (input.Name)
             {
                 // Text content.
+                case "save-file":
                 case "io.file.save":
                     var strArgs = GetArgs<string>(input);
                     await _service.SaveAsync(strArgs.Path, strArgs.Content);

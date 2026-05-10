@@ -14,14 +14,15 @@ namespace magic.lambda.change
     /// </summary>
     [Slot(
         Name = "sort",
-        Description = "Sorts nodes selected by the RHS expression using the child lambda as a comparer",
+        Description = "Sorts selected nodes using the child lambda as a comparer",
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to sort",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes")]
+        ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes",
+        SignatureType = typeof(global::magic.lambda.signatures.SortSignature))]
     public class Sort : ISlot
     {
         /// <summary>

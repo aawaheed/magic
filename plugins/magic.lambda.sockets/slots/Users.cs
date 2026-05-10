@@ -18,7 +18,8 @@ namespace magic.lambda.sockets.slots
         Description = "Lists connected socket users, optionally filtered by username",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per connected socket user matching the optional filter")]
+        ReturnsDescription = "Returns one child node per connected socket user matching the optional filter",
+        SignatureType = typeof(global::magic.lambda.sockets.signatures.SocketUsersSignature))]
     public class Users : ISlot
     {
         readonly IConfiguration _configuration;

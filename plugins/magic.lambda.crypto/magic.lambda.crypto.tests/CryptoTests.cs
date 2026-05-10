@@ -5,6 +5,7 @@
 using System.Linq;
 using Xunit;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.crypto.tests
 {
@@ -51,6 +52,18 @@ crypto.password.verify:WRONG"));
             Assert.Equal(
                 "d70b-eb83-530d-c0c9-65fe-075c-57eb-7065-72a0-5d5d-3d3e-117c-45fe-8236-900e-80dd",
                 lambda.Children.First().Get<string>());
+        }
+
+        [Fact]
+        public void FingerprintSignatureDocumentsBase64Input()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:crypto.fingerprint");
+            var input = lambda.Children.First().Children.First(x => x.Name == "input");
+            var output = lambda.Children.First().Children.First(x => x.Name == "output");
+
+            Assert.Equal("Base64 encoded content or raw byte[] content to fingerprint", input.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal(SlotValueMode.ValueOrExpression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal("Resolves to the SHA256 hash of the supplied content formatted as a fingerprint", output.Children.First(x => x.Name == "description").GetEx<string>());
         }
 
         [Fact]

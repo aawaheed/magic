@@ -19,7 +19,8 @@ namespace magic.lambda.sockets.slots
     [Slot(
         Name = "sockets.connection.enter-group",
         Description = "Adds the current connection to a socket group",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.sockets.signatures.SocketGroupSignature))]
     public class EnterGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

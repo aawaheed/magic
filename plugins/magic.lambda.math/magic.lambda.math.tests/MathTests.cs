@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.math.tests
 {
@@ -331,6 +332,82 @@ math.dot
    get-nodes:x:@.list1/*
    get-nodes:x:@.list2/*");
             Assert.Equal(0.936D, lambda.Children.Skip(2).First().Value);
+        }
+
+        [Theory]
+        [InlineData("math.add")]
+        [InlineData("math.subtract")]
+        [InlineData("math.multiply")]
+        [InlineData("math.divide")]
+        [InlineData("math.modulo")]
+        [InlineData("math.max")]
+        [InlineData("math.min")]
+        public void ArithmeticSignaturesDocumentChildOperandsOnly(string slotName)
+        {
+            var lambda = Common.Evaluate($"slot.signature:{slotName}");
+            var signature = lambda.Children.First();
+            var children = signature.Children.First(x => x.Name == "children");
+            var operand = children.Children.First();
+
+            Assert.DoesNotContain(signature.Children, x => x.Name == "input");
+            Assert.Equal("*", operand.Name);
+            Assert.Equal(SlotChildCardinality.TwoOrMore.ToString(), operand.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal(SlotChildMode.ExecutableLambda.ToString(), operand.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(SlotChildRole.Operand.ToString(), operand.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildEvaluation.EvalSelf.ToString(), operand.Children.First(x => x.Name == "evaluation").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Value.ToString(), operand.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Fact]
+        public void DotSignatureDocumentsExactlyTwoVectorOperands()
+        {
+            var lambda = Common.Evaluate("slot.signature:math.dot");
+            var operand = lambda.Children.First().Children.First(x => x.Name == "children").Children.First();
+
+            Assert.Equal("*", operand.Name);
+            Assert.Equal(SlotChildCardinality.ExactlyTwo.ToString(), operand.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Children.ToString(), operand.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Theory]
+        [InlineData("math.increment")]
+        [InlineData("math.decrement")]
+        public void IncrementDecrementSignaturesDocumentOptionalStep(string slotName)
+        {
+            var lambda = Common.Evaluate($"slot.signature:{slotName}");
+            var signature = lambda.Children.First();
+            var children = signature.Children.First(x => x.Name == "children");
+            var step = children.Children.First();
+
+            Assert.Equal("step", step.Name);
+            Assert.Equal("number", step.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.False(step.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotChildCardinality.ZeroOrOne.ToString(), step.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Equal("1", step.Children.First(x => x.Name == "default").GetEx<string>());
+            Assert.Equal(SlotChildProjection.Value.ToString(), step.Children.First(x => x.Name == "projection").GetEx<string>());
+        }
+
+        [Fact]
+        public void RandomSignatureDocumentsNamedBounds()
+        {
+            var lambda = Common.Evaluate("slot.signature:math.random");
+            var signature = lambda.Children.First();
+            var children = signature.Children.First(x => x.Name == "children");
+            var min = children.Children.First();
+            var max = children.Children.Skip(1).First();
+            var requires = signature.Children
+                .First(x => x.Name == "constraints")
+                .Children
+                .First(x => x.Name == SlotConstraintKind.Requires.ToString());
+
+            Assert.Equal("min", min.Name);
+            Assert.Equal("max", max.Name);
+            Assert.Equal("int", min.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("int", max.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.False(min.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.False(max.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal("min", requires.Children.First(x => x.Name == "target").GetEx<string>());
+            Assert.Equal("max", requires.Children.First(x => x.Name == "values").Children.First().GetEx<string>());
         }
     }
 }

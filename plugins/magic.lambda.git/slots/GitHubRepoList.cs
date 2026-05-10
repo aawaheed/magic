@@ -22,7 +22,8 @@ namespace magic.lambda.git
         Description = "Lists GitHub repositories using child-node filters",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per GitHub repository with the projected repository metadata")]
+        ReturnsDescription = "Returns one child node per GitHub repository with the projected repository metadata",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoListSignature))]
     public class GitHubRepoList : ISlotAsync
     {
         readonly HttpClient _httpClient;

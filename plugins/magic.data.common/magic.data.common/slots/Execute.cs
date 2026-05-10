@@ -21,7 +21,8 @@ namespace magic.data.common.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the number of rows affected by the SQL statement")]
+        ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
+        SignatureType = typeof(global::magic.data.common.signatures.DataExecuteSignature))]
     public class Execute : DataSlotBase
     {
         /// <summary>

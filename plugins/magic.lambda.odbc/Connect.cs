@@ -19,9 +19,10 @@ namespace magic.lambda.odbc
         Description = "Opens a ODBC connection",
         ValueType = "string",
         ValueDescription = "Optional connection string override",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

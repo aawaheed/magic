@@ -15,12 +15,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.string",
-        Description = "Validates that a string value or resolved expression result is within the allowed length range",
+        Description = "Validates that a string value or resolved expression result is within the allowed length range, throwing if validation fails",
         ValueType = "string",
         ValueDescription = "String value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.MinMaxStringSignature))]
     public class ValidateString : ISlot
     {
         /// <summary>

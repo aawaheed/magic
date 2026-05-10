@@ -21,7 +21,8 @@ namespace magic.data.common.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to a scalar value from the current database connection")]
+        ReturnsDescription = "Resolves to a scalar value from the current database connection",
+        SignatureType = typeof(global::magic.data.common.signatures.DataExecuteSignature))]
     public class Scalar : DataSlotBase
     {
         /// <summary>

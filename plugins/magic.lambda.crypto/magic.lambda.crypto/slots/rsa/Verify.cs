@@ -22,7 +22,8 @@ namespace magic.lambda.crypto.slots.rsa
         ValueDescription = "Content to verify against the supplied signature",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaVerifySignature))]
     public class Verify : ISlot
     {
         /// <summary>

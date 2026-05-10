@@ -23,7 +23,10 @@ namespace magic.lambda.image.slots
         ValueDescription = "Source image filename or stream to crop",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "Stream",
+        ReturnsDescription = "Resolves to the cropped image stream unless [dest] is supplied, in which case the cropped image is saved to disk",
+        SignatureType = typeof(global::magic.lambda.image.signatures.ImageCropSignature))]
     public class ImageCrop : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

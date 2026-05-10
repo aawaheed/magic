@@ -24,7 +24,8 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per git branch name")]
+        ReturnsDescription = "Returns one child node per git branch name",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitBranchListSignature))]
     public class GitBranchList : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -21,7 +21,10 @@ namespace magic.lambda.io.folder
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one unnamed child node per relative folder path",
+        SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
         Name = "io.folder.list-recursively",
         Description = "Lists folders recursively in the specified folder",
@@ -29,7 +32,10 @@ namespace magic.lambda.io.folder
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one unnamed child node per relative folder path, recursively",
+        SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     public class ListFolders : ISlot
     {
         readonly IRootResolver _rootResolver;

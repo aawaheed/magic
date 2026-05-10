@@ -26,7 +26,8 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the created GitHub repository as child nodes projected from the API response")]
+        ReturnsDescription = "Resolves to the created GitHub repository as child nodes projected from the API response",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoCreateSignature))]
     public class GitHubRepoCreate : ISlotAsync
     {
         readonly HttpClient _httpClient;

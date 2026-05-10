@@ -20,7 +20,8 @@ namespace magic.lambda.http
         ValueDescription = "URL to send the request to",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.http.signatures.HttpEmptyRequestSignature))]
     public class HttpDelete : ISlotAsync
     {
         readonly IMagicHttp _service;

@@ -20,7 +20,8 @@ namespace magic.lambda.pgsql.crud
         Description = "Deletes rows through the current PostgreSQL connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected",
+        SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync
     {
         /// <summary>

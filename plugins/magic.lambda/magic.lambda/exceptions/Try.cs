@@ -16,7 +16,8 @@ namespace magic.lambda.exceptions
     [Slot(
         Name = "try",
         Description = "Evaluates a try-catch block",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.TrySignature))]
     public class Try : ISlot
     {
         /// <summary>

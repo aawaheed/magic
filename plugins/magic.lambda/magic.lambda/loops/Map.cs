@@ -15,14 +15,15 @@ namespace magic.lambda.loops
     /// </summary>
     [Slot(
         Name = "map",
-        Description = "Maps nodes selected by the RHS expression into a new result set using the child lambda",
+        Description = "Maps selected nodes into a new result set using the child lambda",
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to map",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the mapped result nodes produced by the child lambda")]
+        ReturnsDescription = "Resolves to one mapped output item per selected node, using the value or nodes returned by the child lambda",
+        SignatureType = typeof(global::magic.lambda.signatures.MapSignature))]
     public class Map : ISlot
     {
         /// <summary>

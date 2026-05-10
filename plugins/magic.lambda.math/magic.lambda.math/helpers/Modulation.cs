@@ -15,13 +15,10 @@ namespace magic.lambda.math.helpers
     [Slot(
         Name = "math.modulo",
         Description = "Calculates the remainder of a division",
-        ValueType = "number",
-        ValueDescription = "First numeric operand",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Resolves to the remainder of the modulo operation")]
+        ReturnsDescription = "Resolves to the remainder of the modulo operation",
+        SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Modulation : ISlotAsync
     {
         /// <summary>

@@ -22,7 +22,10 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one unnamed child node per relative file path",
+        SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
         Name = "io.file.list-recursively",
         Description = "Lists files recursively in the specified folder",
@@ -30,7 +33,10 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Returns one unnamed child node per relative file path, recursively",
+        SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     public class ListFiles : ISlot
     {
         readonly IRootResolver _rootResolver;

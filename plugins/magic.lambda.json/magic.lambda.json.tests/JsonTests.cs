@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using magic.node;
 using magic.node.extensions;
 using magic.node.extensions.hyperlambda;
+using magic.signals.contracts;
 
 namespace magic.lambda.json.tests
 {
@@ -21,6 +22,47 @@ namespace magic.lambda.json.tests
             signaler.Signal("json2lambda", node);
             Assert.Equal("foo", node.Children.First().Name);
             Assert.Equal(5L, node.Children.First().Value);
+        }
+
+        [Fact]
+        public void Lambda2JsonSignatureDocumentsExpressionAndFormatOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2json");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+            var children = result.Children.First(x => x.Name == "children");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Contains(children.Children, x => x.Name == "format");
+            Assert.DoesNotContain(children.Children, x => x.Name == "*");
+        }
+
+        [Fact]
+        public void Lambda2YamlSignatureDocumentsExpressionOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2yaml");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.DoesNotContain(result.Children, x => x.Name == "children");
+        }
+
+        [Fact]
+        public void Lambda2JsonRawSignatureDocumentsChildrenOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:.lambda2json-raw");
+            var result = lambda.Children.First();
+            var root = result.Children
+                .First(x => x.Name == "children")
+                .Children
+                .First(x => x.Name == "*");
+
+            Assert.DoesNotContain(result.Children, x => x.Name == "input");
+            Assert.Equal(SlotChildRole.StructuredObject.ToString(), root.Children.First(x => x.Name == "role").GetEx<string>());
+            Assert.Equal(SlotChildProjection.StructuredTree.ToString(), root.Children.First(x => x.Name == "projection").GetEx<string>());
         }
 
         [Fact]

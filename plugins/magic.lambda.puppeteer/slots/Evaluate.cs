@@ -23,7 +23,8 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the result of the evaluated JavaScript expression")]
+        ReturnsDescription = "Resolves to the result of the evaluated JavaScript expression",
+        SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerEvaluateSignature))]
     public class Evaluate : ISlotAsync
     {
         public async Task SignalAsync(ISignaler signaler, Node input)

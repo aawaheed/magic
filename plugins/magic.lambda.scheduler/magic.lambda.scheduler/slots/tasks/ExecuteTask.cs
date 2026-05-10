@@ -16,7 +16,7 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.execute",
         Description = "Executes a task immediately",
         ValueType = "string",
-        ValueDescription = "Task ID to execute when not supplied as an [id] child node",
+        ValueDescription = "Task ID to execute",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None)]

@@ -21,7 +21,9 @@ namespace magic.lambda.html.slots
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Lambda,
+        ReturnsType = "lambda",
+        ReturnsDescription = "Resolves to the parsed HTML hierarchy as child nodes")]
     public class Html2Lambda : ISlot
     {
         /// <summary>

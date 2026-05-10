@@ -20,7 +20,8 @@ namespace magic.lambda.io.folder
         ValueDescription = "Source folder path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.CopyMoveSignature))]
     [Slot(
         Name = "io.folder.move",
         Description = "Moves a folder on the server",
@@ -28,7 +29,8 @@ namespace magic.lambda.io.folder
         ValueDescription = "Source folder path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.CopyMoveSignature))]
     public class CopyMoveFolder : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

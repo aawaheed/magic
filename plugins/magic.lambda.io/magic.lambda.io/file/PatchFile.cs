@@ -24,7 +24,8 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to patch",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.PatchFileSignature))]
     public class PatchFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

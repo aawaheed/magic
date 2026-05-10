@@ -27,7 +27,8 @@ namespace magic.lambda.pdf
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns extracted text in value or, when preserving pages, one child node per page")]
+        ReturnsDescription = "Returns extracted text in value or, when preserving pages, one child node per page",
+        SignatureType = typeof(global::magic.lambda.pdf.signatures.Pdf2TextSignature))]
     public class Pdf2Text : ISlot
     {
         readonly IRootResolver _rootResolver;

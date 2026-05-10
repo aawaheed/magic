@@ -5,27 +5,27 @@
 namespace magic.signals.contracts
 {
     /// <summary>
-    /// Describes how a slot's RHS value argument should be interpreted.
+    /// Describes how a slot's input value argument should be interpreted.
     /// </summary>
     public enum SlotValueMode
     {
         /// <summary>
-        /// Slot does not document any RHS value argument.
+        /// Slot does not document any input value argument.
         /// </summary>
         None,
 
         /// <summary>
-        /// RHS should be interpreted as a literal value.
+        /// Input should be interpreted as a literal value.
         /// </summary>
         Value,
 
         /// <summary>
-        /// RHS should be interpreted as an expression.
+        /// Input should be interpreted as an expression.
         /// </summary>
         Expression,
 
         /// <summary>
-        /// RHS may be either a literal value or an expression.
+        /// Input may be either a literal value or an expression.
         /// </summary>
         ValueOrExpression,
     }

@@ -14,13 +14,10 @@ namespace magic.lambda.comparison
     [Slot(
         Name = "neq",
         Description = "Returns true if two operands are not equal",
-        ValueType = "object",
-        ValueDescription = "First operand when the second operand is supplied as the only child node",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Resolves to true if the operands are not equal")]
+        ReturnsDescription = "Resolves to true if the operands are not equal",
+        SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Neq : ISlot
     {
         /// <summary>

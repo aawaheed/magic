@@ -22,7 +22,8 @@ namespace magic.lambda.sqlite
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of rows affected by the SQL statement")]
+        ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
+        SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync
     {
         /// <summary>

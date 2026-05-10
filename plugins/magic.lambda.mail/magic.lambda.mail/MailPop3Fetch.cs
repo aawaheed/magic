@@ -21,7 +21,8 @@ namespace magic.lambda.mail
     [Slot(
         Name = "mail.pop3.fetch",
         Description = "Fetches messages from a POP3 mailbox using child-node options and a required [.lambda] callback",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.mail.signatures.MailPop3FetchSignature))]
     public class MailPop3Fetch : ISlotAsync
     {
         readonly ConnectionSettingsPop3 _server;

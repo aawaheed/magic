@@ -24,7 +24,8 @@ namespace magic.lambda.crypto.slots.combinations
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the verified content as text or raw bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to the verified content as text or raw bytes when [raw] is true",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationVerifySignature))]
     public class Verify : ISlot
     {
         /// <summary>

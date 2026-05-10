@@ -26,7 +26,8 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the mixed file content in value and any codebehind-produced child nodes")]
+        ReturnsDescription = "Resolves to the mixed file content in value and any codebehind-produced child nodes",
+        SignatureType = typeof(global::magic.lambda.io.signatures.FileMixinSignature))]
     public class Mixin : ISlotAsync
     {
         readonly IFileService _fileService;

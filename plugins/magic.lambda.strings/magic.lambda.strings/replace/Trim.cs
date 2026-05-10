@@ -23,7 +23,8 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the trimmed string")]
+        ReturnsDescription = "Resolves to the trimmed string",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.OptionalStringArgumentSignature))]
     [Slot(
         Name = "strings.trim-start",
         Description = "Trims characters from the start of the specified string",
@@ -33,7 +34,8 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the string with leading characters removed")]
+        ReturnsDescription = "Resolves to the string with leading characters removed",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.OptionalStringArgumentSignature))]
     [Slot(
         Name = "strings.trim-end",
         Description = "Trims characters from the end of the specified string",
@@ -43,7 +45,8 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the string with trailing characters removed")]
+        ReturnsDescription = "Resolves to the string with trailing characters removed",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.OptionalStringArgumentSignature))]
     public class Trim : ISlotAsync
     {
         /// <summary>

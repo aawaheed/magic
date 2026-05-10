@@ -16,7 +16,8 @@ namespace magic.endpoint.services.slots.headers
     [Slot(
         Name = "response.headers.set",
         Description = "Sets one or more response headers from key/value child nodes",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.endpoint.services.signatures.ResponseHeadersSetSignature))]
     public class SetHeader : ISlot
     {
         /// <summary>

@@ -16,12 +16,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.date",
-        Description = "Validates that a date value or resolved expression result is within the allowed range",
+        Description = "Validates that a date value or resolved expression result is within the allowed range, throwing if validation fails",
         ValueType = "DateTime",
         ValueDescription = "Date value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.MinMaxDateSignature))]
     public class ValidateDate : ISlot
     {
         /// <summary>

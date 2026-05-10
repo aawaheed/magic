@@ -25,7 +25,8 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the string after applying the regular-expression replacement")]
+        ReturnsDescription = "Resolves to the string after applying the regular-expression replacement",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceTwoArgsSignature))]
     public class RegexReplace : ISlotAsync
     {
         /// <summary>

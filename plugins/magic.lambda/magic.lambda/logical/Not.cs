@@ -17,7 +17,8 @@ namespace magic.lambda.logical
         Description = "Negates a boolean expression",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Resolves to true if the operand evaluates to false")]
+        ReturnsDescription = "Resolves to true if the operand evaluates to false",
+        SignatureType = typeof(global::magic.lambda.signatures.SingleLogicalOperandSignature))]
     public class Not : ISlot
     {
         /// <summary>

@@ -13,13 +13,10 @@ namespace magic.lambda.branching
     [Slot(
         Name = "if",
         Description = "Evaluates a conditional branch",
-        ValueType = "expression",
-        ValueDescription = "Condition expression when using RHS form",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Resolves to true if the if condition matched and its branch was evaluated")]
+        ReturnsDescription = "Resolves to true if the if condition matched and its branch was evaluated",
+        SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class If : ISlot
     {
         /// <summary>

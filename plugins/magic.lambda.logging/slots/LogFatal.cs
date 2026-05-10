@@ -22,7 +22,8 @@ namespace magic.lambda.logging.slots
         ValueDescription = "Log message to write",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.logging.signatures.LogErrorWriteSignature))]
     public class LogFatal : ISlotAsync
     {
         readonly ILogger _logger;

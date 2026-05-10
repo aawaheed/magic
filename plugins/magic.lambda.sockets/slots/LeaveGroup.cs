@@ -17,7 +17,8 @@ namespace magic.lambda.sockets.slots
     [Slot(
         Name = "sockets.connection.leave-group",
         Description = "Removes the current connection from a socket group",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.sockets.signatures.SocketGroupSignature))]
     public class LeaveGroup : ISlotAsync
     {
         readonly IConfiguration _configuration;

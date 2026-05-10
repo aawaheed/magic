@@ -15,14 +15,15 @@ namespace magic.lambda.loops
     /// </summary>
     [Slot(
         Name = "filter",
-        Description = "Filters nodes selected by the RHS expression using the child lambda as a predicate",
+        Description = "Filters selected nodes using the child lambda as a predicate",
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to filter",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the nodes for which the child lambda predicate evaluates to true")]
+        ReturnsDescription = "Resolves to clones of the selected nodes whose predicate body returns true",
+        SignatureType = typeof(global::magic.lambda.signatures.FilterSignature))]
     public class Filter : ISlot
     {
         /// <summary>

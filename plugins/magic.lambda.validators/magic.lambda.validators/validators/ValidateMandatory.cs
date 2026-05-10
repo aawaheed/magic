@@ -13,7 +13,7 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.mandatory",
-        Description = "Validates that the RHS value or resolved expression result is present",
+        Description = "Validates that the input value or resolved expression result is present, throwing if validation fails",
         ValueType = "object",
         ValueDescription = "Literal value or expression to validate as mandatory",
         ValueRequired = true,

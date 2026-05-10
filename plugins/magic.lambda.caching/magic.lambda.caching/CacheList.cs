@@ -23,7 +23,8 @@ namespace magic.lambda.caching
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per cached key matching the optional filter")]
+        ReturnsDescription = "Returns one child node per cached key matching the optional filter",
+        SignatureType = typeof(global::magic.lambda.caching.signatures.CacheListSignature))]
     public class CacheList : ISlotAsync
     {
         readonly IMagicCache _cache;

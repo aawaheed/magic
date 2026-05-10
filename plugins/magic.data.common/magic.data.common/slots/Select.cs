@@ -21,7 +21,8 @@ namespace magic.data.common.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to query result rows as child nodes")]
+        ReturnsDescription = "Resolves to query result rows as child nodes",
+        SignatureType = typeof(global::magic.data.common.signatures.DataSelectSignature))]
     public class Select : DataSlotBase
     {
         /// <summary>

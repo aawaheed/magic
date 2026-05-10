@@ -15,7 +15,8 @@ namespace magic.lambda.branching
         Description = "Evaluates the fallback branch in a conditional block",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Resolves to true if the else branch was evaluated")]
+        ReturnsDescription = "Resolves to true if the else branch was evaluated",
+        SignatureType = typeof(global::magic.lambda.signatures.ElseSignature))]
     public class Else : ISlot
     {
         /// <summary>

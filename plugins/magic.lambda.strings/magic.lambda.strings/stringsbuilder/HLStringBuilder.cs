@@ -14,10 +14,11 @@ namespace magic.lambda.strings.builder
     /// </summary>
     [Slot(
         Name = "strings.builder",
-        Description = "Creates a reusable string builder scope",
+        Description = "Creates a string builder scope for [strings.builder.append]",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "StringBuilder",
-        ReturnsDescription = "Resolves to the created StringBuilder instance")]
+        ReturnsType = "string",
+        ReturnsDescription = "Resolves to the text appended inside the builder scope",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.StringBuilderSignature))]
     public class HLStringBuilder : ISlotAsync
     {
         /// <summary>

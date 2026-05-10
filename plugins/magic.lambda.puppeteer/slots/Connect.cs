@@ -24,7 +24,8 @@ namespace magic.lambda.puppeteer
         Description = "Creates or reuses a Puppeteer browser session",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the created Puppeteer session ID")]
+        ReturnsDescription = "Resolves to the created Puppeteer session ID",
+        SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerConnectSignature))]
     public class Connect : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

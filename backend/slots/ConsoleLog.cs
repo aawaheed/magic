@@ -12,7 +12,14 @@ namespace magic.backend.slots
     /// <summary>
     /// [console.log] for writing entries to the console.
     /// </summary>
-    [Slot(Name = "console.log")]
+    [Slot(
+        Name = "console.log",
+        Description = "Writes a message to the server console",
+        ValueType = "string",
+        ValueDescription = "Message to write to the server console",
+        ValueRequired = true,
+        ValueMode = SlotValueMode.ValueOrExpression,
+        ReturnsMode = SlotReturnsMode.None)]
     public class ConsoleLog : ISlot
     {
         /// <summary>

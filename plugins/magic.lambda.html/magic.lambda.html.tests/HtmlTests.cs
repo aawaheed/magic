@@ -5,6 +5,7 @@
 using System.Linq;
 using Xunit;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.html.tests
 {
@@ -24,6 +25,30 @@ html2lambda:@""<html>
 </html>""");
             Assert.Equal("Foo", new Expression("**/html2lambda/*/*/*/title/*/\\#text").Evaluate(result).First().Value);
             Assert.Equal("howdy", new Expression("**/html2lambda/*/*/*/p/*/\\@class").Evaluate(result).First().Value);
+        }
+
+        [Fact]
+        public void Lambda2HtmlSignatureDocumentsExpressionOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2html");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.DoesNotContain(result.Children, x => x.Name == "children");
+        }
+
+        [Fact]
+        public void Html2LambdaSignatureDocumentsLambdaOutput()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:html2lambda");
+            var result = lambda.Children.First();
+            var output = result.Children.First(x => x.Name == "output");
+
+            Assert.Equal(SlotReturnsMode.Lambda.ToString(), output.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal("lambda", output.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("Resolves to the parsed HTML hierarchy as child nodes", output.Children.First(x => x.Name == "description").GetEx<string>());
         }
 
         [Fact]

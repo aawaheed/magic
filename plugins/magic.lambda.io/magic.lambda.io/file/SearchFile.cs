@@ -26,7 +26,8 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per matching file path")]
+        ReturnsDescription = "Returns one child node per matching file path",
+        SignatureType = typeof(global::magic.lambda.io.signatures.SearchFileSignature))]
     public class SearchFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

@@ -106,6 +106,28 @@ slots.vocabulary:not-foo");
         }
 
         [Fact]
+        public void SlotSignature_Return_IsPrecise()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:return");
+            var signature = lambda.Children.First();
+            var input = signature.Children.First(x => x.Name == "input");
+            var children = signature.Children.First(x => x.Name == "children");
+            var payload = children.Children.First(x => x.Name == "*");
+            var output = signature.Children.First(x => x.Name == "output");
+
+            Assert.Equal(
+                "Value or expression to return when no child nodes are supplied; one expression match returns its value, multiple matches return cloned nodes",
+                input.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal(
+                "Child node forwarded to the nearest caller without evaluation; when children exist, all children are returned as-is",
+                payload.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.Equal("SourceLambda", payload.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal(
+                "Resolves to the supplied value and/or returned child nodes captured by the nearest caller",
+                output.Children.First(x => x.Name == "description").GetEx<string>());
+        }
+
+        [Fact]
         public void CreateSlotVocabularyWhitelist()
         {
             var lambda = Common.Evaluate(@"

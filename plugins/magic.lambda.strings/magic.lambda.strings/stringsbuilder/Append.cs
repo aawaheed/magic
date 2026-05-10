@@ -14,9 +14,9 @@ namespace magic.lambda.strings.builder
     /// </summary>
     [Slot(
         Name = "strings.builder.append",
-        Description = "Appends text to the current string builder",
+        Description = "Appends text to the current [strings.builder] scope",
         ValueType = "string",
-        ValueDescription = "Text to append to the current string builder",
+        ValueDescription = "Text to append to the current [strings.builder] scope",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None)]

@@ -20,9 +20,10 @@ namespace magic.lambda.sqlite
         Description = "Opens a SQLite connection",
         ValueType = "string",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
-        ValueRequired = true,
+        ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.data.common.signatures.DbConnectSignature))]
     public class Connect : ISlotAsync
     {
         readonly IDataSettings _settings;

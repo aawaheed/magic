@@ -5,6 +5,7 @@
 using System.Linq;
 using Xunit;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.xml.tests
 {
@@ -28,6 +29,30 @@ namespace magic.lambda.xml.tests
 xml2lambda:x:@.xml");
             Assert.Equal("Bloodroot", new Expression("**/xml2lambda/*/*/*/COMMON/*/\\#text").Evaluate(result).First().Value);
             Assert.Equal("qwertyuio", new Expression("**/xml2lambda/*/*/*/COMMON/*/\\@a").Evaluate(result).First().Value);
+        }
+
+        [Fact]
+        public void Lambda2XmlSignatureDocumentsExpressionOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2xml");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.DoesNotContain(result.Children, x => x.Name == "children");
+        }
+
+        [Fact]
+        public void Xml2LambdaSignatureDocumentsAttributeAndTextShape()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:xml2lambda");
+            var result = lambda.Children.First();
+            var output = result.Children.First(x => x.Name == "output");
+
+            Assert.Equal(
+                "Resolves to the parsed XML hierarchy as child nodes; attributes are emitted as @name child nodes, text as #text child nodes, and comments/whitespace-only text nodes are omitted",
+                output.Children.First(x => x.Name == "description").GetEx<string>());
         }
 
         [Fact]

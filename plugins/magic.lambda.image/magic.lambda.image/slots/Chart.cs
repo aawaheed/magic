@@ -25,7 +25,8 @@ namespace magic.lambda.image.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsDescription = "Resolves to the generated chart image bytes")]
+        ReturnsDescription = "Resolves to the generated chart image bytes",
+        SignatureType = typeof(global::magic.lambda.image.signatures.ChartSignature))]
     public class Chart : ISlot
     {
         readonly IRootResolver _rootResolver;

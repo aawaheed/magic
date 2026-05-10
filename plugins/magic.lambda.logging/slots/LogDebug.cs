@@ -20,7 +20,8 @@ namespace magic.lambda.logging.slots
         ValueDescription = "Log message to write",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.logging.signatures.LogWriteSignature))]
     public class LogDebug : ISlotAsync
     {
         readonly ILogger _logger;

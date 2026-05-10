@@ -15,13 +15,10 @@ namespace magic.lambda.math.basics
     [Slot(
         Name = "math.max",
         Description = "Returns the largest value from the supplied inputs",
-        ValueType = "number",
-        ValueDescription = "First numeric operand",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Resolves to the largest supplied value")]
+        ReturnsDescription = "Resolves to the largest supplied value",
+        SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Max : ISlotAsync
     {
         /// <summary>

@@ -27,7 +27,8 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions")]
+        ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions",
+        SignatureType = typeof(global::magic.lambda.strings.signatures.StringMixinSignature))]
     public class Mixin : ISlotAsync
     {
         readonly ILogger _logger;

@@ -19,7 +19,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the node or nodes whose name should be changed",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.SourceExpressionSignature))]
     public class SetName : ISlot
     {
         /// <summary>

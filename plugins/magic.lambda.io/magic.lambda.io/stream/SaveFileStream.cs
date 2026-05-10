@@ -23,7 +23,8 @@ namespace magic.lambda.io.stream
         ValueDescription = "File path to save the stream to",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.SaveStreamToFileSignature))]
     public class SaveFileStream : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

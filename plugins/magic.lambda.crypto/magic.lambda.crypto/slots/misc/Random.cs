@@ -19,7 +19,8 @@ namespace magic.lambda.crypto.slots.misc
         Description = "Returns random bytes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to a random string, or random bytes when [raw] is true")]
+        ReturnsDescription = "Resolves to a random string, or random bytes when [raw] is true",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.CryptoRandomSignature))]
     public class Random : ISlot
     {
         const string _alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

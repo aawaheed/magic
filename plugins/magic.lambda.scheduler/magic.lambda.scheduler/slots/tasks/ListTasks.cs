@@ -23,7 +23,8 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per task with its task metadata")]
+        ReturnsDescription = "Returns one child node per task with its task metadata",
+        SignatureType = typeof(global::magic.lambda.scheduler.signatures.ListTasksSignature))]
     public class ListTasks : ISlotAsync
     {
         readonly ITaskStorage _storage;

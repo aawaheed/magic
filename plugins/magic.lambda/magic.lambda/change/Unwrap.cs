@@ -19,7 +19,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the node or nodes whose expressions should be unwrapped",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.UnwrapSignature))]
     public class Unwrap : ISlot
     {
         /// <summary>

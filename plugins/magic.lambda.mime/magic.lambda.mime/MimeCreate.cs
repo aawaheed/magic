@@ -20,12 +20,13 @@ namespace magic.lambda.mime
         Name = "mime.create",
         Description = "Creates a MIME message",
         ValueType = "string",
-        ValueDescription = "Primary MIME content type when using RHS form",
+        ValueDescription = "Primary MIME content type",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Resolves to the MIME message text in value or, when structured, MIME header and content nodes as children")]
+        ReturnsDescription = "Resolves to the MIME message text in value or, when structured, MIME header and content nodes as children",
+        SignatureType = typeof(global::magic.lambda.mime.signatures.MimeCreateSignature))]
     public class MimeCreate : ISlotAsync
     {
         readonly IStreamService _streamService;

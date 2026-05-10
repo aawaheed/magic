@@ -14,11 +14,10 @@ namespace magic.lambda.comparison
     [Slot(
         Name = "eq",
         Description = "Returns true if two operands are equal",
-        ValueType = "object",
-        ValueDescription = "First operand when the second operand is supplied as the only child node",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Resolves to true if the operands are equal",
+        SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Eq : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

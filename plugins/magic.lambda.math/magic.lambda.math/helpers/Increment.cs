@@ -15,12 +15,13 @@ namespace magic.lambda.math.helpers
     /// </summary>
     [Slot(
         Name = "math.increment",
-        Description = "Increments the numeric nodes selected by the RHS expression",
+        Description = "Increments the numeric nodes selected by the input expression",
         ValueType = "expression",
         ValueDescription = "Expression selecting the numeric node or nodes to increment",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.math.signatures.IncrementDecrementSignature))]
     public class Increment : ISlotAsync
     {
         /// <summary>

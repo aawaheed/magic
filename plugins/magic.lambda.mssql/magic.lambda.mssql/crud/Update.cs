@@ -20,7 +20,8 @@ namespace magic.lambda.mssql.crud
         Description = "Updates rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to the number of rows affected")]
+        ReturnsDescription = "Resolves to the number of rows affected",
+        SignatureType = typeof(global::magic.data.common.signatures.DbUpdateSignature))]
     public class Update : ISlotAsync
     {
         /// <summary>

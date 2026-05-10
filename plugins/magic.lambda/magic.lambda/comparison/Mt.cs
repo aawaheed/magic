@@ -14,11 +14,10 @@ namespace magic.lambda.comparison
     [Slot(
         Name = "mt",
         Description = "Returns true if the first operand is greater than the second operand",
-        ValueType = "object",
-        ValueDescription = "First operand when the second operand is supplied as the only child node",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.Value,
+        ReturnsType = "bool",
+        ReturnsDescription = "Resolves to true if the first operand is greater than the second operand",
+        SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Mt : BaseComparison
     {
         private static bool IsDecimal(object o) => o is decimal;

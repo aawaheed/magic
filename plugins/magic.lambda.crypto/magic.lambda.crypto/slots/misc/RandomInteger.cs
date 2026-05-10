@@ -20,7 +20,8 @@ namespace magic.lambda.crypto.slots.misc
         Description = "Returns a random integer",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsDescription = "Resolves to a random integer less than the optional [max] value")]
+        ReturnsDescription = "Resolves to a random integer less than the optional [max] value",
+        SignatureType = typeof(global::magic.lambda.crypto.signatures.CryptoRandomIntegerSignature))]
     public class RandomInteger : ISlot
     {
         /// <summary>

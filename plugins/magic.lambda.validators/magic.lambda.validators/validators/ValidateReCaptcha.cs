@@ -19,12 +19,13 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.recaptcha",
-        Description = "Validates a reCAPTCHA response token",
+        Description = "Validates a reCAPTCHA response token, throwing if validation fails",
         ValueType = "string",
         ValueDescription = "reCAPTCHA response token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.validators.signatures.RecaptchaValidatorSignature))]
     public class ValidateReCaptcha : ISlotAsync
     {
         readonly HttpClient _httpClient;

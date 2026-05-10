@@ -17,13 +17,10 @@ namespace magic.lambda.loops
     [Slot(
         Name = "while",
         Description = "Repeats execution while a condition is true",
-        ValueType = "expression",
-        ValueDescription = "Condition expression when using RHS form",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the final iteration value and any returned child nodes")]
+        ReturnsDescription = "Resolves to the final iteration value and any returned child nodes",
+        SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class While : ISlot
     {
         readonly LambdaSettings _settings;

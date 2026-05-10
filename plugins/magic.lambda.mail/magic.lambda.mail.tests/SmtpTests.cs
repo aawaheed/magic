@@ -48,6 +48,24 @@ mail.smtp.send
         }
 
         [Fact]
+        public void SmtpSendSignatureDocumentsOnlyStructuredAddresses()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:mail.smtp.send");
+            var message = lambda.Children.First()
+                .Children.First(x => x.Name == "children")
+                .Children.First(x => x.Name == "message");
+            var to = message.Children.First(x => x.Name == "children")
+                .Children.First(x => x.Name == "to");
+            var addressChildren = to.Children.First(x => x.Name == "children");
+            var structured = addressChildren.Children.First(x => x.Name == ".");
+
+            Assert.DoesNotContain(addressChildren.Children, x => x.Name == "*");
+            Assert.True(structured.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotChildCardinality.OneOrMore.ToString(), structured.Children.First(x => x.Name == "cardinality").GetEx<string>());
+            Assert.Contains(structured.Children.First(x => x.Name == "children").Children, x => x.Name == "email");
+        }
+
+        [Fact]
         public async Task ConnectWithConfig_01()
         {
             var connectInvoked = false;

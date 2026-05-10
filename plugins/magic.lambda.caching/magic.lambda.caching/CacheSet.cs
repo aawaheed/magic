@@ -22,7 +22,8 @@ namespace magic.lambda.caching
         ValueDescription = "Cache key to store",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.caching.signatures.CacheSetSignature))]
     public class CacheSet : ISlotAsync
     {
         readonly IMagicCache _cache;

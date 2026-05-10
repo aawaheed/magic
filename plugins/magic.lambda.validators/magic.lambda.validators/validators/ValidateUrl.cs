@@ -15,7 +15,7 @@ namespace magic.lambda.validators.validators
     /// </summary>
     [Slot(
         Name = "validators.url",
-        Description = "Validates that a value or resolved expression result is a URL",
+        Description = "Validates that a value or resolved expression result is a URL, throwing if validation fails",
         ValueType = "string",
         ValueDescription = "URL value or expression selecting the node or nodes to validate",
         ValueRequired = true,

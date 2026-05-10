@@ -16,10 +16,11 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.update",
         Description = "Updates a task",
         ValueType = "string",
-        ValueDescription = "Task ID to update when not supplied as an [id] child node",
+        ValueDescription = "Task ID to update",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.scheduler.signatures.CreateTaskSignature))]
     public class UpdateTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

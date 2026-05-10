@@ -18,7 +18,8 @@ namespace magic.lambda.branching
         ValueDescription = "Case value to match against the [switch] input value",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.CaseSignature))]
     public class Case : ISlot
     {
         /// <summary>

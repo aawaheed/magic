@@ -26,7 +26,8 @@ namespace magic.backend.slots
         ValueDescription = "JWT token to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.auth.signatures.ReadTokenSignature))]
     public class ReadToken : ISlot
     {
         readonly private IConfiguration _configuration;

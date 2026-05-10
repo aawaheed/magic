@@ -24,7 +24,8 @@ namespace magic.lambda.io.file
         ValueDescription = "Zip archive path to extract",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.io.signatures.UnzipFileSignature))]
     public class UnzipFile : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

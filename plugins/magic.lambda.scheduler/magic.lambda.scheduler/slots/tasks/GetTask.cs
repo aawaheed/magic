@@ -24,7 +24,8 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node")]
+        ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node",
+        SignatureType = typeof(global::magic.lambda.scheduler.signatures.GetTaskSignature))]
     public class GetTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

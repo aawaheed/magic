@@ -20,7 +20,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the target node or nodes to insert after",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.SourceContainerSignature))]
     public class InsertAfter : ISlot
     {
         /// <summary>

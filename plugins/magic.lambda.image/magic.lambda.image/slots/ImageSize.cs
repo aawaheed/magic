@@ -22,7 +22,7 @@ namespace magic.lambda.image.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns [width] and [height] child nodes for the image dimensions")]
+        ReturnsDescription = "Returns [width:int] and [height:int] child nodes for the image dimensions")]
     public class ImageSize : ISlot
     {
         readonly IRootResolver _rootResolver;

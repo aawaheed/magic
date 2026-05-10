@@ -24,7 +24,8 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsDescription = "Returns true after the repository has been deleted")]
+        ReturnsDescription = "Returns true after the repository has been deleted",
+        SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoDeleteSignature))]
     public class GitHubRepoDelete : ISlotAsync
     {
         readonly HttpClient _httpClient;

@@ -20,7 +20,8 @@ namespace magic.lambda.exceptions
         ValueDescription = "Exception message to throw",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.ThrowSignature))]
     public class Throw : ISlot
     {
         /// <summary>

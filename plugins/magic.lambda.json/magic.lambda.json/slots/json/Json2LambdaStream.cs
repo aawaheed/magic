@@ -25,7 +25,8 @@ namespace magic.lambda.json.slots.json
         ValueDescription = "JSON stream to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.json.signatures.JsonStreamSignature))]
     public class Json2LambdaStream : ISlotAsync
     {
         /// <summary>

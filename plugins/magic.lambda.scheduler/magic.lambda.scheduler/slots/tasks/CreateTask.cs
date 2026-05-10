@@ -20,10 +20,11 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.create",
         Description = "Creates a task",
         ValueType = "string",
-        ValueDescription = "Task ID to create when not supplied as an [id] child node",
+        ValueDescription = "Task ID to create",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.scheduler.signatures.CreateTaskSignature))]
     public class CreateTask : ISlotAsync
     {
         readonly ITaskStorage _storage;

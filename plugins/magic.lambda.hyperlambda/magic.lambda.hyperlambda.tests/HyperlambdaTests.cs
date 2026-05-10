@@ -8,6 +8,7 @@ using System.Globalization;
 using Xunit;
 using magic.node;
 using magic.node.extensions;
+using magic.signals.contracts;
 using magic.node.extensions.hyperlambda;
 
 namespace magic.lambda.hyperlambda.tests
@@ -19,6 +20,34 @@ namespace magic.lambda.hyperlambda.tests
         {
             var result = HyperlambdaParser.Parse("").Children.ToList();
             Assert.Empty(result);
+        }
+
+        [Fact]
+        public void Hyper2LambdaSignatureDocumentsCommentNodes()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:hyper2lambda");
+            var result = lambda.Children.First();
+            var comments = result.Children
+                .First(x => x.Name == "children")
+                .Children
+                .First(x => x.Name == "comments");
+
+            Assert.Equal("Whether parser comment nodes should be preserved as [..] nodes with the comment text as value", comments.Children.First(x => x.Name == "description").GetEx<string>());
+        }
+
+        [Fact]
+        public void Lambda2HyperSignatureDocumentsExpressionAndCommentsOnly()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:lambda2hyper");
+            var result = lambda.Children.First();
+            var input = result.Children.First(x => x.Name == "input");
+            var children = result.Children.First(x => x.Name == "children");
+            var comments = children.Children.First(x => x.Name == "comments");
+
+            Assert.True(input.Children.First(x => x.Name == "required").GetEx<bool>());
+            Assert.Equal(SlotValueMode.Expression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
+            Assert.Equal("Whether generated Hyperlambda should include comments", comments.Children.First(x => x.Name == "description").GetEx<string>());
+            Assert.DoesNotContain(children.Children, x => x.Name == "*");
         }
 
         [Fact]

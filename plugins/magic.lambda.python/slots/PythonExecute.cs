@@ -25,7 +25,8 @@ namespace magic.lambda.python
         Description = "Executes Python code or a Python file",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsDescription = "Returns stdout in value and stderr and exit code as child nodes")]
+        ReturnsDescription = "Returns stdout in value and stderr and exit code as child nodes",
+        SignatureType = typeof(global::magic.lambda.python.signatures.PythonExecuteSignature))]
     public class PythonExecute : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

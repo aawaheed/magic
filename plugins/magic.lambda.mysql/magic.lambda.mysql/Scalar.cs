@@ -23,7 +23,8 @@ namespace magic.lambda.mysql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the scalar result of the SQL statement")]
+        ReturnsDescription = "Resolves to the scalar result of the SQL statement",
+        SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync
     {
         /// <summary>

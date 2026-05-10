@@ -21,7 +21,8 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the iterated nodes after the child lambda has been applied to each item")]
+        ReturnsDescription = "Resolves to the iterated nodes after the child lambda has been applied to each item",
+        SignatureType = typeof(global::magic.lambda.signatures.IteratorBodySignature))]
     public class ForEach : ISlot
     {
         /// <summary>

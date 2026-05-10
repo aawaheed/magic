@@ -23,7 +23,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.SourceExpressionSignature))]
     [Slot(
         Name = "set-value",
         Description = "Sets node values in the lambda graph",
@@ -31,7 +32,8 @@ namespace magic.lambda.change
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        SignatureType = typeof(global::magic.lambda.signatures.SourceExpressionSignature))]
     public class SetValue : ISlot
     {
         /// <summary>

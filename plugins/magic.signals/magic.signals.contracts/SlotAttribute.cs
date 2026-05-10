@@ -26,25 +26,24 @@ namespace magic.signals.contracts
         public string Description { get; set; }
 
         /// <summary>
-        /// Optional CLR-ish type name for the slot's RHS value argument.
+        /// Optional CLR-ish type name for the slot's input value argument.
         /// </summary>
         public string ValueType { get; set; }
 
         /// <summary>
-        /// Optional description of the slot's RHS value argument.
+        /// Optional description of the slot's input value argument.
         /// </summary>
         public string ValueDescription { get; set; }
 
         /// <summary>
-        /// Indicates whether the slot's RHS value argument is required when the
-        /// slot supports and is invoked using its RHS value form.
+        /// Indicates whether the slot's input value argument is required.
         /// </summary>
         public bool ValueRequired { get; set; }
 
         /// <summary>
-        /// Indicates how the slot's RHS value argument should be interpreted.
+        /// Indicates how the slot's input value argument should be interpreted.
         /// Defaults to <see cref="SlotValueMode.None"/> for slots without a
-        /// documented RHS value argument.
+        /// documented input value argument.
         /// </summary>
         public SlotValueMode ValueMode { get; set; }
 
@@ -68,5 +67,11 @@ namespace magic.signals.contracts
         /// Optional description of the slot's documented return payload.
         /// </summary>
         public string ReturnsDescription { get; set; }
+
+        /// <summary>
+        /// Optional type providing structured documentation for child nodes
+        /// accepted by the slot.
+        /// </summary>
+        public Type SignatureType { get; set; }
     }
 }

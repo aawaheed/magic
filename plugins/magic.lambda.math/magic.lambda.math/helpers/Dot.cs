@@ -18,7 +18,8 @@ namespace magic.lambda.math
         Description = "Calculates the dot product of two vectors from child nodes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsDescription = "Resolves to the dot product of the two supplied vectors")]
+        ReturnsDescription = "Resolves to the dot product of the two supplied vectors",
+        SignatureType = typeof(global::magic.lambda.math.signatures.DotProductSignature))]
     public class Dot : ISlotAsync
     {
         /// <summary>

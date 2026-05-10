@@ -14,14 +14,15 @@ namespace magic.lambda.change
     /// </summary>
     [Slot(
         Name = "include",
-        Description = "Evaluates the child lambda and includes its returned nodes into each node matched by the RHS expression",
+        Description = "Evaluates child slots and includes all returned nodes into each selected node",
         ValueType = "expression",
         ValueDescription = "Expression selecting the destination node or nodes to include into",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Resolves to the matched destination nodes after the child lambda output has been included")]
+        ReturnsDescription = "Resolves to the matched destination nodes after all returned child nodes have been included",
+        SignatureType = typeof(global::magic.lambda.signatures.IncludeSignature))]
     public class Include : ISlot
     {
         /// <summary>

@@ -16,14 +16,11 @@ namespace magic.lambda.source
     /// </summary>
     [Slot(
         Name = "get-first-value",
-        Description = "Returns the first matching value from the RHS value, RHS expression, or child node evaluation",
-        ValueType = "object",
-        ValueDescription = "Literal value or expression selecting nodes where the first non-null node value is returned when not obtained from child nodes",
-        ValueRequired = false,
-        ValueMode = SlotValueMode.ValueOrExpression,
+        Description = "Returns the first non-null value produced by candidate child nodes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsDescription = "Resolves to the first non-null value resolved from the supplied literal, expression, or child nodes")]
+        ReturnsDescription = "Resolves to the first non-null value produced by the candidate child nodes",
+        SignatureType = typeof(global::magic.lambda.signatures.GetFirstValueSignature))]
     public class GetFirstValue : ISlot
     {
         /// <summary>
