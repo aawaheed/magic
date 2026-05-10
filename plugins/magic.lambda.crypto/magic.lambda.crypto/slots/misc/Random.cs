@@ -16,7 +16,7 @@ namespace magic.lambda.crypto.slots.misc
     /// </summary>
     [Slot(
         Name = "crypto.random",
-        Description = "Returns random bytes",
+        Description = "Returns a cryptographically secure random string or random bytes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsDescription = "Resolves to a random string, or random bytes when [raw] is true",

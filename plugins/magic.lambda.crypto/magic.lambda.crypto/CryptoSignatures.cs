@@ -11,6 +11,8 @@ namespace magic.lambda.crypto.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
+        public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
+
         protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
         {
             return new SlotChild
@@ -88,13 +90,27 @@ namespace magic.lambda.crypto.signatures
         {
             Option("filename", "string", "File to hash when no input content is supplied"),
         };
+
+        public override IEnumerable<SlotConstraint> Constraints
+        {
+            get
+            {
+                var result = new SlotConstraint
+                {
+                    Kind = SlotConstraintKind.ExactlyOneOf,
+                    Description = "Provide either input content or [filename]",
+                };
+                result.Values.AddRange(new[] { "input", "filename" });
+                return new[] { result };
+            }
+        }
     }
 
     public class VerifyPasswordSignature : CryptoSignature
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("hash", "string", "Password hash to verify against", true),
+            Option("hash", "string", "BCrypt password hash produced by [crypto.password.hash]", true),
         };
     }
 

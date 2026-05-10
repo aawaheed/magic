@@ -16,9 +16,9 @@ namespace magic.lambda.config
     /// </summary>
     [Slot(
         Name = "config.save",
-        Description = "Saves configuration values",
+        Description = "Saves JSON configuration values to appsettings.json",
         ValueType = "string",
-        ValueDescription = "Configuration content to save",
+        ValueDescription = "Valid JSON object content to save to appsettings.json",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None)]

@@ -21,9 +21,9 @@ namespace magic.backend.slots
     /// </summary>
     [Slot(
         Name = "auth.token.read",
-        Description = "Reads claims, roles, and username from a JWT token",
+        Description = "Validates a JWT token and verifies that it contains one of the required roles",
         ValueType = "string",
-        ValueDescription = "JWT token to inspect",
+        ValueDescription = "JWT token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
