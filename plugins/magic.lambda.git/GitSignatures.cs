@@ -76,6 +76,54 @@ namespace magic.lambda.git.signatures
         };
     }
 
+    public class GitCloneRepoSignature : GitSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("path", "string", "Destination repository folder"),
+            Option("branch", "string", "Branch to clone"),
+            Option("depth", "int", "Shallow clone depth"),
+        };
+    }
+
+    public class GitCreateRepoSignature : GitSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("branch", "string", "Initial branch name"),
+            Option("bare", "bool", "Create a bare repository", defaultValue: "false"),
+        };
+    }
+
+    public class GitCommitSignature : GitSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("message", "string", "Commit message", true),
+            Option("all", "bool", "Stage all changed files before committing", defaultValue: "true"),
+            Option("amend", "bool", "Amend the previous commit", defaultValue: "false"),
+        };
+    }
+
+    public class GitPushSignature : GitSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("remote", "string", "Remote to push to", defaultValue: "origin"),
+            Option("branch", "string", "Branch to push"),
+            Option("set-upstream", "bool", "Set upstream while pushing", defaultValue: "false"),
+        };
+    }
+
+    public class GitCheckoutSignature : GitSignature
+    {
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Option("branch", "string", "Branch to check out", true),
+            Option("create", "bool", "Create the branch while checking it out", defaultValue: "false"),
+        };
+    }
+
     public class GitHubRepoCreateSignature : GitSignature
     {
         public override IEnumerable<SlotChild> Children => new[]

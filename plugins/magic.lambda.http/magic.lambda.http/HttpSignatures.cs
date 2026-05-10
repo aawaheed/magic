@@ -33,6 +33,13 @@ namespace magic.lambda.http.signatures
 
         internal static SlotChild DynamicMap(string name, string description)
         {
+            var childDescription = name switch
+            {
+                "query" => "Query parameter value",
+                "url-params" => "URL placeholder replacement value",
+                "headers" => "HTTP header value",
+                _ => "Named value",
+            };
             return new SlotChild
             {
                 Name = name,
@@ -49,7 +56,7 @@ namespace magic.lambda.http.signatures
                     {
                         Name = "*",
                         Type = "string",
-                        Description = "Named value",
+                        Description = childDescription,
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
                         Cardinality = SlotChildCardinality.ZeroOrMore,

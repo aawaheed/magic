@@ -21,6 +21,9 @@ namespace magic.lambda.mysql.crud
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected",
+        RequiresScope = "mysql.connection",
+        ScopeProvider = "mysql.connect",
+        ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync
     {

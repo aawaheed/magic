@@ -24,6 +24,9 @@ namespace magic.lambda.odbc
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        RequiresScope = "odbc.connection",
+        ScopeProvider = "odbc.connect",
+        ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {

@@ -24,6 +24,9 @@ namespace magic.lambda.mysql
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
+        RequiresScope = "mysql.connection",
+        ScopeProvider = "mysql.connect",
+        ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync
     {

@@ -21,6 +21,9 @@ namespace magic.lambda.sqlite.crud
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row read from the current SQLite connection",
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbReadSignature))]
     public class Read : ISlotAsync
     {

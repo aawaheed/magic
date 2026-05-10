@@ -23,6 +23,9 @@ namespace magic.lambda.mssql
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
+        RequiresScope = "mssql.connection",
+        ScopeProvider = "mssql.connect",
+        ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync
     {

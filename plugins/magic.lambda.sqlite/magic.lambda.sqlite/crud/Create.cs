@@ -23,6 +23,9 @@ namespace magic.lambda.sqlite.crud
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbCreateSignature))]
     public class Create : ISlotAsync
     {

@@ -13,14 +13,10 @@ namespace magic.lambda.dates
     /// </summary>
     [Slot(
         Name = "date.unix",
-        Description = "Converts a DateTime value into a Unix timestamp",
-        ValueType = "DateTime",
-        ValueDescription = "Date value to convert",
-        ValueRequired = true,
-        ValueMode = SlotValueMode.ValueOrExpression,
+        Description = "Returns the current UTC time as a Unix timestamp",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "long",
-        ReturnsDescription = "Resolves to the supplied date as a Unix timestamp")]
+        ReturnsDescription = "Resolves to the current UTC Unix timestamp in milliseconds")]
     public class Unix : ISlot
     {
         /// <summary>

@@ -24,6 +24,9 @@ namespace magic.lambda.mssql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        RequiresScope = "mssql.connection",
+        ScopeProvider = "mssql.connect",
+        ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {

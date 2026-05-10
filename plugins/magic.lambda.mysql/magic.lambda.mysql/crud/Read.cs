@@ -22,6 +22,9 @@ namespace magic.lambda.mysql.crud
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row read from the current MySQL connection",
+        RequiresScope = "mysql.connection",
+        ScopeProvider = "mysql.connect",
+        ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbReadSignature))]
     public class Read : ISlotAsync
     {

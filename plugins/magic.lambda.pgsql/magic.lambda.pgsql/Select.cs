@@ -24,6 +24,9 @@ namespace magic.lambda.pgsql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        RequiresScope = "pgsql.connection",
+        ScopeProvider = "pgsql.connect",
+        ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {

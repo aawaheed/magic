@@ -24,6 +24,9 @@ namespace magic.lambda.sqlite
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {

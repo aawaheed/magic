@@ -22,7 +22,10 @@ namespace magic.lambda.sqlite
         ValueDescription = "Target SQLite database filename under files/data/",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]")]
     public class Backup : ISlotAsync
     {
         /// <summary>

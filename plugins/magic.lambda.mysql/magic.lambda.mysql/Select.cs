@@ -25,6 +25,9 @@ namespace magic.lambda.mysql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
+        RequiresScope = "mysql.connection",
+        ScopeProvider = "mysql.connect",
+        ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync
     {

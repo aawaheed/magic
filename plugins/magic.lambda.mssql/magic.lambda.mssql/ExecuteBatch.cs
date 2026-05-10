@@ -27,7 +27,10 @@ namespace magic.lambda.mssql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsDescription = "Returns one child node per batch execution result")]
+        ReturnsDescription = "Returns one child node per batch execution result",
+        RequiresScope = "mssql.connection",
+        ScopeProvider = "mssql.connect",
+        ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]")]
     public class ExecuteBatch : ISlotAsync
     {
         /// <summary>

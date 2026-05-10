@@ -23,6 +23,9 @@ namespace magic.lambda.odbc
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
+        RequiresScope = "odbc.connection",
+        ScopeProvider = "odbc.connect",
+        ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync
     {
