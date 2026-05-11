@@ -50,9 +50,11 @@ strings.length:x:-");
         public void Mixin_01()
         {
             var lambda = Common.Evaluate(@"
-.foo:@""foo {{return:bar}}""
-strings.mixin:x:-");
-            Assert.Equal("foo bar", lambda.Children.Skip(1).First().Value);
+.foo:@""vendor {{*/id}} changed to {{*/status}}""
+strings.mixin:x:-
+   id:int:50
+   status:pending");
+            Assert.Equal("vendor 50 changed to pending", lambda.Children.Skip(1).First().Value);
         }
 
         [Fact]

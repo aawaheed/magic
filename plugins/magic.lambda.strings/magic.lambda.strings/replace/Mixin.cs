@@ -90,10 +90,10 @@ namespace magic.lambda.strings.replace
                                             case '}':
                                                 if ((char)reader.Peek() == '}')
                                                 {
-                                                    // Done finding Hyperlambda.
+                                                    // Done finding mixin expression or Hyperlambda.
                                                     reader.Read();
                                                     if (!strip)
-                                                        builder.Append(await ExecuteHyperlambda(signaler, input, snippet.ToString()));
+                                                        builder.Append(await ResolveMixin(signaler, input, snippet.ToString()));
                                                     cont = false;
                                                 }
                                                 else
@@ -125,10 +125,13 @@ namespace magic.lambda.strings.replace
 
         #region [ -- Private helper methods -- ]
 
-        private async Task<string> ExecuteHyperlambda(ISignaler signaler, Node args, string hl)
+        private async Task<string> ResolveMixin(ISignaler signaler, Node args, string hl)
         {
             try
             {
+                if (!hl.Contains('\n') && !hl.Contains('\r'))
+                    return ExecuteExpression(args, hl.Trim());
+
                 var lambda = HyperlambdaParser.Parse(hl);
                 lambda.Name = ".exe";
                 var exe = new Node("invoke", new Expression("@.exe"));
@@ -146,6 +149,21 @@ namespace magic.lambda.strings.replace
                 await _logger.ErrorAsync(ex.Message);
                 return "{{" + hl + "}}";
             }
+        }
+
+        private static string ExecuteExpression(Node args, string expression)
+        {
+            var arguments = new Node(
+                ".arguments",
+                null,
+                args.Children
+                    .Where(x => x.Name != "strip")
+                    .Select(x => x.Clone())
+                    .ToList());
+            var result = new Expression(expression).Evaluate(arguments).ToList();
+            if (result.Count > 1)
+                throw new HyperlambdaException("Multiple resulting nodes from mixin expression.");
+            return result.FirstOrDefault()?.GetEx<string>() ?? "";
         }
 
         #endregion
