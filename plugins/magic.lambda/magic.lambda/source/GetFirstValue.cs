@@ -19,6 +19,7 @@ namespace magic.lambda.source
         Description = "Returns the first non-null value produced by candidate child nodes",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "value",
         ReturnsDescription = "Resolves to the first non-null value produced by the candidate child nodes",
         SignatureType = typeof(global::magic.lambda.signatures.GetFirstValueSignature))]
     public class GetFirstValue : ISlot

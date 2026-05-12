@@ -15,6 +15,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.to-lower",
         Description = "Transforms input text to lowercase",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

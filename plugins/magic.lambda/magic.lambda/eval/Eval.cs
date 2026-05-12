@@ -19,6 +19,7 @@ namespace magic.lambda.eval
         Name = "eval",
         Description = "Evaluates Hyperlambda nodes selected by an expression",
         ValueType = "lambda",
+        ValueKind = "lambda-object",
         ValueDescription = "Expression selecting the Hyperlambda nodes to evaluate",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

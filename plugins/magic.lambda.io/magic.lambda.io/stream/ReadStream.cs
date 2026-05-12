@@ -18,6 +18,7 @@ namespace magic.lambda.io.stream
         Name = "io.stream.read",
         Description = "Reads from an open stream",
         ValueType = "Stream",
+        ValueKind = "stream",
         ValueDescription = "Stream instance to read from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

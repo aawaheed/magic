@@ -4,6 +4,8 @@
 
 using System.Linq;
 using Xunit;
+using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.tests
 {
@@ -41,6 +43,17 @@ format:x:-
    culture:nb-NO");
             Assert.Equal("57,00", lambda.Children.Skip(1).First().Value);
             Assert.Empty(lambda.Children.Skip(1).First().Children);
+        }
+
+        [Fact]
+        public void FormatSignatureDocumentsFormattableValueKind()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:format");
+            var input = lambda.Children.First().Children.First(x => x.Name == "input");
+
+            Assert.Equal("object", input.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("formattable-value", input.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal(SlotValueMode.ValueOrExpression.ToString(), input.Children.First(x => x.Name == "mode").GetEx<string>());
         }
     }
 }

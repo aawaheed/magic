@@ -22,7 +22,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "html",
+        ReturnsKind = "html-encoded",
         ReturnsDescription = "Resolves to the HTML-encoded string")]
     public class HtmlEncode : ISlot
     {

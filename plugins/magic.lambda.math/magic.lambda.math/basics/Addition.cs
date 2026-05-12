@@ -17,6 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Adds numeric values",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the sum of the supplied operands",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Addition : ISlotAsync

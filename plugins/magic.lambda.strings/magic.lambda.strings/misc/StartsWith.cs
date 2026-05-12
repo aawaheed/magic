@@ -19,6 +19,7 @@ namespace magic.lambda.strings.misc
         Name = "strings.starts-with",
         Description = "Returns true if a string starts with the specified text",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

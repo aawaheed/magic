@@ -17,11 +17,13 @@ namespace magic.lambda.math.scalars
         Name = "math.ceil",
         Description = "Rounds a number up",
         ValueType = "number",
+        ValueKind = "number",
         ValueDescription = "Numeric value to round",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the rounded-up value")]
     public class Ceil : ISlot
     {

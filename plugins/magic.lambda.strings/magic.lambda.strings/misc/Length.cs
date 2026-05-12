@@ -15,6 +15,7 @@ namespace magic.lambda.strings.misc
         Name = "strings.length",
         Description = "Returns the length of a string",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -29,6 +29,7 @@ namespace magic.lambda.strings.signatures
             {
                 Name = name,
                 Type = type,
+                Kind = type == "string" ? "text" : null,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ExecutableLambda,

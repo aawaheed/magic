@@ -39,6 +39,7 @@ namespace magic.data.common.signatures
             {
                 Name = "database-type",
                 Type = "string",
+                Kind = "database-type",
                 Description = "Database adapter to use instead of the configured default",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,

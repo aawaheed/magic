@@ -25,6 +25,8 @@ namespace magic.lambda.io.folder
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "folder-path-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "folder-path",
         ReturnsDescription = "Returns one unnamed child node per relative folder path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
@@ -38,6 +40,8 @@ namespace magic.lambda.io.folder
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "folder-path-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "folder-path",
         ReturnsDescription = "Returns one unnamed child node per relative folder path, recursively",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     public class ListFolders : ISlot

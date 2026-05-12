@@ -19,12 +19,15 @@ namespace magic.lambda.strings.misc
         Name = "strings.split",
         Description = "Splits a string into items",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to split",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "string-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "string",
         ReturnsDescription = "Returns one child node per split string item",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SplitSignature))]
     public class Split : ISlotAsync

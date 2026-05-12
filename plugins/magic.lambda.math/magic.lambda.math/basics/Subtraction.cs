@@ -17,6 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Subtracts numeric values",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the difference of the supplied operands",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Subtraction : ISlotAsync

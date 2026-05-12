@@ -24,6 +24,7 @@ namespace magic.lambda.mail.signatures
             {
                 Name = "message",
                 Type = "lambda",
+                Kind = "mail-message",
                 Description = "Email message to send",
                 Required = true,
                 Mode = SlotChildMode.StructuredArguments,
@@ -32,7 +33,7 @@ namespace magic.lambda.mail.signatures
                 Projection = SlotChildProjection.StructuredTree,
                 Children =
                 {
-                    Option("subject", "string", "Message subject", false, "mail-subject"),
+                    Option("subject", "string", "Message subject", false, "mail-subject,text"),
                     Addresses("to", true),
                     Addresses("from", false),
                     Addresses("cc", false),
@@ -65,6 +66,7 @@ namespace magic.lambda.mail.signatures
             {
                 Name = name,
                 Type = "lambda",
+                Kind = "mail-address-list",
                 Description = "Email address collection",
                 Required = required,
                 Mode = SlotChildMode.StructuredArguments,
@@ -77,6 +79,7 @@ namespace magic.lambda.mail.signatures
                     {
                         Name = ".",
                         Type = "lambda",
+                        Kind = "mail-address",
                         Description = "Structured address containing [email] and optional [name]",
                         Required = required,
                         Mode = SlotChildMode.StructuredArguments,
@@ -85,7 +88,7 @@ namespace magic.lambda.mail.signatures
                         Projection = SlotChildProjection.StructuredTree,
                         Children =
                         {
-                            Option("name", "string", "Display name", false, "display-name"),
+                            Option("name", "string", "Display name", false, "display-name,text"),
                             Option("email", "string", "Email address", true, "email"),
                         },
                     },
@@ -99,6 +102,7 @@ namespace magic.lambda.mail.signatures
             {
                 Name = "entity",
                 Type = "lambda",
+                Kind = "mime-entity",
                 Description = "MIME entity declaration for the message body",
                 Required = true,
                 Mode = SlotChildMode.StructuredArguments,

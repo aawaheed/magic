@@ -16,6 +16,7 @@ namespace magic.lambda.slots
         Name = "return",
         Description = "Returns a value, expression result, or child nodes to the nearest caller",
         ValueType = "object",
+        ValueKind = "return-value,node-list",
         ValueDescription = "Value or expression to return when no child nodes are supplied; one expression match returns its value, multiple matches return cloned nodes",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -74,6 +74,16 @@ namespace magic.signals.contracts
         public string ReturnsKind { get; set; }
 
         /// <summary>
+        /// Optional CLR-ish type name for elements returned as child nodes.
+        /// </summary>
+        public string ReturnsElementType { get; set; }
+
+        /// <summary>
+        /// Optional semantic kind for elements returned as child nodes.
+        /// </summary>
+        public string ReturnsElementKind { get; set; }
+
+        /// <summary>
         /// Optional description of the slot's documented return payload.
         /// </summary>
         public string ReturnsDescription { get; set; }

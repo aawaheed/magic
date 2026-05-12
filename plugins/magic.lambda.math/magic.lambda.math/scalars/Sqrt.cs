@@ -16,11 +16,13 @@ namespace magic.lambda.math.scalars
         Name = "math.sqrt",
         Description = "Calculates the square root of the specified value",
         ValueType = "number",
+        ValueKind = "number",
         ValueDescription = "Numeric value to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the square root of the supplied value")]
     public class Sqrt : ISlot
     {

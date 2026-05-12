@@ -37,6 +37,7 @@ namespace magic.data.common.signatures
                 {
                     Name = "as",
                     Type = "string",
+                    Kind = "table-alias",
                     Description = "Optional table alias",
                     Required = false,
                     Mode = SlotChildMode.ValueOrExpression,
@@ -63,6 +64,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "*",
                         Type = "object",
+                        Kind = "text,number,boolean,date,guid,content,value",
                         Description = "Column name and value",
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -119,6 +121,7 @@ namespace magic.data.common.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "text,number,boolean,date,guid,content,value",
                 Description = "Column condition; suffix the name with .eq, .neq, .gt, .gte, .lt, .lte, .like, .ilike, or .in to select an operator",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -129,6 +132,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "*",
                         Type = "object",
+                        Kind = "text,number,boolean,date,guid,content,value",
                         Description = "Value item used by operators such as .in",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -144,6 +148,7 @@ namespace magic.data.common.signatures
             {
                 Name = "join",
                 Type = "string",
+                Kind = "table-name",
                 Description = "Joined table name",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -154,6 +159,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "type",
                         Type = "string",
+                        Kind = "join-type",
                         Description = "Join type: inner, left, right, or full",
                         Required = false,
                         DefaultValue = "inner",
@@ -164,6 +170,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "as",
                         Type = "string",
+                        Kind = "table-alias",
                         Description = "Optional joined table alias",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -225,6 +232,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "column-name,aggregate-expression",
                         Description = "Column name or aggregate expression; optional [as] child declares an alias",
                         Required = false,
                         Mode = SlotChildMode.Value,
@@ -235,6 +243,7 @@ namespace magic.data.common.signatures
                             {
                                 Name = "as",
                                 Type = "string",
+                                Kind = "column-alias",
                                 Description = "Column alias",
                                 Required = false,
                                 Mode = SlotChildMode.ValueOrExpression,
@@ -262,6 +271,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "column-name,aggregate-expression",
                         Description = "Column name or aggregate expression",
                         Required = false,
                         Mode = SlotChildMode.Value,
@@ -277,6 +287,7 @@ namespace magic.data.common.signatures
             {
                 Name = "order",
                 Type = "string",
+                Kind = "column-name,aggregate-expression",
                 Description = "Column, comma-separated columns, or aggregate expression to order by",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -294,6 +305,7 @@ namespace magic.data.common.signatures
             {
                 Name = "direction",
                 Type = "string",
+                Kind = "sort-direction",
                 Description = description,
                 Required = false,
                 DefaultValue = "asc",
@@ -336,6 +348,7 @@ namespace magic.data.common.signatures
             {
                 Name = "@*",
                 Type = "object",
+                Kind = "text,number,boolean,date,guid,content,value",
                 Description = "Explicit SQL parameter supplied by name for generated statements that reference it",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -488,6 +501,7 @@ namespace magic.data.common.signatures
             {
                 Name = "database-type",
                 Type = "string",
+                Kind = "database-type",
                 Description = "Database adapter to use instead of the configured default",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -568,6 +582,7 @@ namespace magic.data.common.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "text,number,boolean,date,guid,content,value",
                 Description = "SQL parameter value; child name is used as the parameter name referenced by the SQL statement",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,

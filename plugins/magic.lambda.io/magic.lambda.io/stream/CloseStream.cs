@@ -16,6 +16,7 @@ namespace magic.lambda.io.stream
         Name = "io.stream.close",
         Description = "Closes an open stream",
         ValueType = "Stream",
+        ValueKind = "stream",
         ValueDescription = "Stream instance to close",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

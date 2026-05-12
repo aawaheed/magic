@@ -29,6 +29,7 @@ namespace magic.lambda.system.plugins.signatures
                     {
                         Name = ".",
                         Type = "string",
+                        Kind = "assembly-reference",
                         Description = "Assembly reference",
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,

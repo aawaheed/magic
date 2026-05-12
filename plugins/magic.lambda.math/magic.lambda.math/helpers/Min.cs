@@ -17,6 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Returns the smallest value from the supplied inputs",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the smallest supplied value",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Min : ISlotAsync

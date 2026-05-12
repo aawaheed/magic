@@ -74,6 +74,21 @@ namespace magic.lambda.puppeteer.signatures
             Option("executable", "string", "Browser executable path", kind: "executable-path"),
             Option("executable-path", "string", "Browser executable path", kind: "executable-path"),
         };
+
+        public override IEnumerable<SlotConstraint> Constraints
+        {
+            get
+            {
+                var result = new SlotConstraint
+                {
+                    Kind = SlotConstraintKind.AtMostOneOf,
+                    Description = "[executable] and [executable-path] are aliases; supply at most one",
+                };
+                result.Values.Add("executable");
+                result.Values.Add("executable-path");
+                return new[] { result };
+            }
+        }
     }
 
     public class PuppeteerSelectorSignature : PuppeteerSignature

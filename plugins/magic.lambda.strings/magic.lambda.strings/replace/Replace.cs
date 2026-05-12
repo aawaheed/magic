@@ -18,6 +18,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.replace",
         Description = "Replaces occurrences of a substring",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

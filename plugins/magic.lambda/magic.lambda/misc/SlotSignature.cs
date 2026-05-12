@@ -156,6 +156,10 @@ namespace magic.lambda.misc
             result.Add(new Node("type", signature.ReturnsType));
             if (!string.IsNullOrEmpty(signature.ReturnsKind))
                 result.Add(new Node("kind", signature.ReturnsKind));
+            if (!string.IsNullOrEmpty(signature.ReturnsElementType))
+                result.Add(new Node("element-type", signature.ReturnsElementType));
+            if (!string.IsNullOrEmpty(signature.ReturnsElementKind))
+                result.Add(new Node("element-kind", signature.ReturnsElementKind));
             result.Add(new Node("description", signature.ReturnsDescription));
             if (provider?.OutputChildren?.Any() ?? false)
             {
@@ -211,9 +215,12 @@ namespace magic.lambda.misc
         {
             var result = new Node(child.Name);
             result.Add(new Node("type", child.Type));
-            var kind = ChildKind(child);
-            if (!string.IsNullOrEmpty(kind))
-                result.Add(new Node("kind", kind));
+            if (!string.IsNullOrEmpty(child.Kind))
+                result.Add(new Node("kind", child.Kind));
+            if (!string.IsNullOrEmpty(child.ElementType))
+                result.Add(new Node("element-type", child.ElementType));
+            if (!string.IsNullOrEmpty(child.ElementKind))
+                result.Add(new Node("element-kind", child.ElementKind));
             result.Add(new Node("description", child.Description));
             result.Add(new Node("required", child.Required));
             result.Add(new Node("mode", child.Mode.ToString()));
@@ -239,102 +246,6 @@ namespace magic.lambda.misc
                 result.Add(children);
             }
             return result;
-        }
-
-        /*
-         * Returns explicit or obvious semantic kind for a child node.
-         */
-        static string ChildKind(SlotChild child)
-        {
-            if (!string.IsNullOrEmpty(child.Kind))
-                return child.Kind;
-
-            var name = child.Name ?? string.Empty;
-            var description = (child.Description ?? string.Empty).ToLowerInvariant();
-
-            if (description.Contains("remote url") || description.Contains("repository url"))
-                return "git-url";
-            if (description.Contains("homepage url") || description.Contains("url"))
-                return "url";
-            if (description.Contains("cookie name"))
-                return "cookie-name";
-            if (description.Contains("cookie") && description.Contains("value"))
-                return "cookie-value";
-            if (description.Contains("header") && description.Contains("value"))
-                return "http-header-value";
-            if (description.Contains("header name"))
-                return "http-header-name";
-            if (description.Contains("content type") || description.Contains("mime type"))
-                return "content-type";
-            if (description.Contains("plugin assembly") || description.Contains("assembly filename") || description.Contains("assembly bytes"))
-                return "plugin-assembly";
-            if (description.Contains("assembly name"))
-                return "plugin-assembly-name";
-            if (description.Contains("hyperlambda file"))
-                return "hyperlambda-file";
-            if (description.Contains("image") && (description.Contains("filename") || description.Contains("file path")))
-                return "image-file";
-            if (description.Contains("file path") || description.Contains("filename") || description.Contains("file to"))
-                return description.Contains("hyperlambda") ? "hyperlambda-file" : "file-path";
-            if (description.Contains("folder") || description.Contains("directory"))
-                return "folder-path";
-            if (description.Contains("repository path"))
-                return "git-repo-path";
-            if (description.Contains("remote") && !description.Contains("request"))
-                return "git-remote";
-            if (description.Contains("branch"))
-                return "git-branch";
-            if (description.Contains("commit message"))
-                return "commit-message";
-            if (description.Contains("sql parameter"))
-                return "sql-parameter";
-            if (description.Contains("table name"))
-                return "table-name";
-            if (description.Contains("column"))
-                return "column-name";
-            if (description.Contains("cache key"))
-                return "cache-key";
-            if (description.Contains("username"))
-                return "username";
-            if (description.Contains("role"))
-                return "role";
-            if (description.Contains("password"))
-                return "password";
-            if (description.Contains("fingerprint"))
-                return "fingerprint";
-            if (description.Contains("public key") || description.Contains("verification key") || description.Contains("encryption key"))
-                return "public-key";
-            if (description.Contains("private key") || description.Contains("signing key") || description.Contains("decryption key"))
-                return "private-key";
-            if (description.Contains("format string"))
-                return "format-pattern";
-            if (description.Contains("regex") || description.Contains("regular expression"))
-                return "regex";
-            if (description.Contains("culture"))
-                return "culture";
-            if (description.Contains("css selector"))
-                return "css-selector";
-            if (description.Contains("javascript expression") || description.Contains("javascript function"))
-                return "javascript";
-            if (description.Contains("puppeteer session id"))
-                return "puppeteer-session";
-            if (description.Contains("execution id"))
-                return "execution-id";
-            if (description.Contains("socket group"))
-                return "socket-group";
-            if (description.Contains("connection id"))
-                return "socket-connection-id";
-            if (description.Contains("ip version"))
-                return "ip-version";
-            if (description.Contains("dynamic slot") || description.Contains("slot name"))
-                return "dynamic-slot-name";
-            if (string.Equals(name, "limit", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(name, "offset", StringComparison.OrdinalIgnoreCase))
-                return "pagination";
-            if (string.Equals(name, "timeout", StringComparison.OrdinalIgnoreCase))
-                return description.Contains("millisecond") ? "timeout-ms" : "timeout-seconds";
-
-            return null;
         }
 
         /*

@@ -27,6 +27,16 @@ namespace magic.signals.contracts
         public string Kind { get; set; }
 
         /// <summary>
+        /// Optional CLR-ish element type for expression/list/tree payloads.
+        /// </summary>
+        public string ElementType { get; set; }
+
+        /// <summary>
+        /// Optional semantic element kind for expression/list/tree payloads.
+        /// </summary>
+        public string ElementKind { get; set; }
+
+        /// <summary>
         /// Description of the child node.
         /// </summary>
         public string Description { get; set; }

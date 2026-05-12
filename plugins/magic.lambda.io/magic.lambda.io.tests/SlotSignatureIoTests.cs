@@ -20,12 +20,27 @@ namespace magic.lambda.io.tests
             var children = result.Children.First(x => x.Name == "children");
             var pattern = children.Children.First(x => x.Name == "pattern");
             var regex = children.Children.First(x => x.Name == "regex");
+            var extensions = children.Children.First(x => x.Name == "extensions");
+            var output = result.Children.First(x => x.Name == "output");
+            var outputItem = output.Children.First(x => x.Name == "children").Children.First(x => x.Name == ".");
+            var outputItemChildren = outputItem.Children.First(x => x.Name == "children");
+            var file = outputItemChildren.Children.First(x => x.Name == "file");
+            var lines = outputItemChildren.Children.First(x => x.Name == "lines");
+            var line = lines.Children.First(x => x.Name == "children").Children.First(x => x.Name == ".");
 
             Assert.Equal("string", pattern.Children.First(x => x.Name == "type").GetEx<string>());
             Assert.True(pattern.Children.First(x => x.Name == "required").GetEx<bool>());
             Assert.Equal(SlotChildMode.ValueOrExpression.ToString(), pattern.Children.First(x => x.Name == "mode").GetEx<string>());
             Assert.Equal(SlotChildCardinality.ExactlyOne.ToString(), pattern.Children.First(x => x.Name == "cardinality").GetEx<string>());
             Assert.Equal("false", regex.Children.First(x => x.Name == "default").GetEx<string>());
+            Assert.Equal("text-file-extension-list", extensions.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal("file-search-result-list", output.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal("lambda", output.Children.First(x => x.Name == "element-type").GetEx<string>());
+            Assert.Equal("file-search-result", output.Children.First(x => x.Name == "element-kind").GetEx<string>());
+            Assert.Equal("file-search-result", outputItem.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal("file-path", file.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal("line-number-list", lines.Children.First(x => x.Name == "kind").GetEx<string>());
+            Assert.Equal("line-number", line.Children.First(x => x.Name == "kind").GetEx<string>());
         }
 
         [Fact]
@@ -39,9 +54,23 @@ namespace magic.lambda.io.tests
                 .First(x => x.Name == "*");
 
             Assert.Equal("string", child.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("text-file-content,text", child.Children.First(x => x.Name == "kind").GetEx<string>());
             Assert.True(child.Children.First(x => x.Name == "required").GetEx<bool>());
             Assert.Equal(SlotChildMode.ExecutableLambda.ToString(), child.Children.First(x => x.Name == "mode").GetEx<string>());
             Assert.Equal(SlotChildCardinality.ExactlyOne.ToString(), child.Children.First(x => x.Name == "cardinality").GetEx<string>());
+        }
+
+        [Fact]
+        public void ReturnsLoadFileOutputAsTextFileContentAndText()
+        {
+            var lambda = Common.Evaluate(@"slot.signature:io.file.load");
+            var output = lambda.Children
+                .First()
+                .Children
+                .First(x => x.Name == "output");
+
+            Assert.Equal("string", output.Children.First(x => x.Name == "type").GetEx<string>());
+            Assert.Equal("text-file-content,text", output.Children.First(x => x.Name == "kind").GetEx<string>());
         }
 
         [Fact]

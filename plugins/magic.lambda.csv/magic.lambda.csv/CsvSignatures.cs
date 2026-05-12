@@ -17,6 +17,7 @@ namespace magic.lambda.csv.signatures
             {
                 Name = "null-value",
                 Type = "string",
+                Kind = "null-value",
                 Description = "String used to represent null values",
                 Required = false,
                 DefaultValue = "[NULL]",
@@ -48,6 +49,7 @@ namespace magic.lambda.csv.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "type-name",
                         Description = "Type name for the column",
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,

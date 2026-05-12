@@ -16,11 +16,13 @@ namespace magic.lambda.math.scalars
         Name = "math.cos",
         Description = "Calculates the cosine of the specified value",
         ValueType = "number",
+        ValueKind = "number",
         ValueDescription = "Numeric value to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the cosine of the supplied angle")]
     public class Cos : ISlot
     {

@@ -16,11 +16,13 @@ namespace magic.lambda.math.scalars
         Name = "math.abs",
         Description = "Returns the absolute value",
         ValueType = "number",
+        ValueKind = "number",
         ValueDescription = "Numeric value to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the absolute value")]
     public class Abs : ISlot
     {

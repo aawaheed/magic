@@ -21,6 +21,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "value",
         ReturnsDescription = "Resolves to the value of the first matching node")]
     public class GetValue : ISlot
     {

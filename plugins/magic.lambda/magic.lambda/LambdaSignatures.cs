@@ -181,6 +181,7 @@ namespace magic.lambda.signatures
             {
                 Name = "case",
                 Type = "object",
+                Kind = "switch-value",
                 Description = "Case branch matching the switch value",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -336,6 +337,7 @@ namespace magic.lambda.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "dynamic-slot-name",
                         Description = "Allowed slot name",
                         Required = true,
                         Mode = SlotChildMode.Value,
@@ -418,6 +420,7 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "string",
+                Kind = "expression-segment",
                 Description = "Expression segment evaluated and joined into the resulting expression",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -441,6 +444,7 @@ namespace magic.lambda.signatures
             {
                 Name = "type",
                 Type = "string",
+                Kind = "type-name",
                 Description = "Target Hyperlambda type name",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -664,7 +668,7 @@ namespace magic.lambda.signatures
                 Role = SlotChildRole.Option,
                 Projection = SlotChildProjection.Value,
             },
-            ThrowSignature.Option("culture", "string", "Optional culture name used when formatting"),
+            ThrowSignature.Option("culture", "string", "Optional culture name used when formatting", kind: "culture-name"),
         };
     }
 

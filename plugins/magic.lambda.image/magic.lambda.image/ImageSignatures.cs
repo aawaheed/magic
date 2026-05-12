@@ -28,9 +28,9 @@ namespace magic.lambda.image.signatures
             };
         }
 
-        protected static SlotChild Type()
+        protected static SlotChild Type(bool required = false)
         {
-            return Option("type", "string", "Output image format: png, jpeg, bmp, gif, tga, pbm, tiff, or webp", defaultValue: "png", kind: "image-format");
+            return Option("type", "string", "Output image format: png, jpeg, bmp, gif, tga, pbm, tiff, or webp", required, "png", "image-format");
         }
 
         protected static SlotChild Dest()
@@ -67,7 +67,7 @@ namespace magic.lambda.image.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Type(),
+            Type(true),
             Dest(),
         };
     }

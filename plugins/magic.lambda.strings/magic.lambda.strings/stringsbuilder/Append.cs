@@ -16,6 +16,7 @@ namespace magic.lambda.strings.builder
         Name = "strings.builder.append",
         Description = "Appends text to the current [strings.builder] scope",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to append to the current [strings.builder] scope",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

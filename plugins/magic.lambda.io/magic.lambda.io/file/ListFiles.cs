@@ -26,6 +26,8 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "file-path-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "file-path",
         ReturnsDescription = "Returns one unnamed child node per relative file path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
@@ -39,6 +41,8 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "file-path-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "file-path",
         ReturnsDescription = "Returns one unnamed child node per relative file path, recursively",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     public class ListFiles : ISlot

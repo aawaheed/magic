@@ -15,6 +15,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.to-upper",
         Description = "Transforms input text to uppercase",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

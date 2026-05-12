@@ -27,8 +27,10 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "file-path-list",
-        ReturnsDescription = "Returns one child node per matching file path",
+        ReturnsKind = "file-search-result-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "file-search-result",
+        ReturnsDescription = "Returns one child node per matching file, each containing [file] with the relative file path and [lines] with matching line numbers",
         SignatureType = typeof(global::magic.lambda.io.signatures.SearchFileSignature))]
     public class SearchFile : ISlotAsync
     {

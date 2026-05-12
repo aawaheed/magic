@@ -17,12 +17,13 @@ namespace magic.lambda.change
         Name = "format",
         Description = "Strings formats the specified value",
         ValueType = "object",
+        ValueKind = "formattable-value",
         ValueDescription = "Value to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "formatted-string",
+        ReturnsKind = "formatted-text,text",
         ReturnsDescription = "Resolves to the formatted string",
         SignatureType = typeof(global::magic.lambda.signatures.FormatSignature))]
     public class Format : ISlot

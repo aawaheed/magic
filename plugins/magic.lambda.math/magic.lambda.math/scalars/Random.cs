@@ -18,6 +18,7 @@ namespace magic.lambda.math.scalars
         Description = "Returns a random number from optional child-node bounds",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to a random double, or a random integer when bounds are supplied",
         SignatureType = typeof(global::magic.lambda.math.signatures.RandomSignature))]
     public class Random : ISlot

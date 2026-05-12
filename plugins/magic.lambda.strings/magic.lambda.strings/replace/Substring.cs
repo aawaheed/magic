@@ -18,6 +18,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.substring",
         Description = "Returns a substring from the specified string",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

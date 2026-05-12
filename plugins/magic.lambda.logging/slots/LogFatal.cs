@@ -19,7 +19,7 @@ namespace magic.lambda.logging.slots
         Name = "log.fatal",
         Description = "Logs a fatal entry",
         ValueType = "string",
-        ValueKind = "log-message",
+        ValueKind = "log-message,text",
         ValueDescription = "Log message to write",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

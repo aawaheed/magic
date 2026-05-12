@@ -16,6 +16,7 @@ namespace magic.lambda.strings.misc
         Name = "strings.byte-count",
         Description = "Returns the byte count of a string",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

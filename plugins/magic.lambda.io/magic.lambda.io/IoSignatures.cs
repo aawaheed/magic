@@ -13,16 +13,19 @@ namespace magic.lambda.io.signatures
     public abstract class SingleContentSignature : ISlotSignature
     {
         readonly string _type;
+        readonly string _kind;
         readonly string _description;
 
         /// <summary>
         /// Creates a child signature for one content node.
         /// </summary>
         /// <param name="type">Documented content type.</param>
+        /// <param name="kind">Semantic kind of the child value.</param>
         /// <param name="description">Documented content description.</param>
-        protected SingleContentSignature(string type, string description)
+        protected SingleContentSignature(string type, string kind, string description)
         {
             _type = type;
+            _kind = kind;
             _description = description;
         }
 
@@ -33,7 +36,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = _type,
-                Kind = _description.Contains("Destination path") ? "path" : null,
+                Kind = _kind,
                 Description = _description,
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -51,7 +54,7 @@ namespace magic.lambda.io.signatures
         /// Creates an instance of the signature.
         /// </summary>
         public TextFileSaveSignature()
-            : base("string", "Child node yielding the text content to save")
+            : base("string", "text-file-content,text", "Child node yielding the text content to save")
         { }
     }
 
@@ -64,7 +67,7 @@ namespace magic.lambda.io.signatures
         /// Creates an instance of the signature.
         /// </summary>
         public BinaryFileSaveSignature()
-            : base("byte[]", "Child node yielding the binary content to save")
+            : base("byte[]", "binary-file-content", "Child node yielding the binary content to save")
         { }
     }
 
@@ -77,7 +80,33 @@ namespace magic.lambda.io.signatures
         /// Creates an instance of the signature.
         /// </summary>
         public CopyMoveSignature()
-            : base("string", "Destination path")
+            : base("string", "file-path", "Destination path")
+        { }
+    }
+
+    /// <summary>
+    /// Child signature for file copy/move slots.
+    /// </summary>
+    public class FileCopyMoveSignature : SingleContentSignature
+    {
+        /// <summary>
+        /// Creates an instance of the signature.
+        /// </summary>
+        public FileCopyMoveSignature()
+            : base("string", "file-path", "Destination path")
+        { }
+    }
+
+    /// <summary>
+    /// Child signature for folder copy/move slots.
+    /// </summary>
+    public class FolderCopyMoveSignature : SingleContentSignature
+    {
+        /// <summary>
+        /// Creates an instance of the signature.
+        /// </summary>
+        public FolderCopyMoveSignature()
+            : base("string", "folder-path", "Destination path")
         { }
     }
 
@@ -93,6 +122,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "display-hidden",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether hidden files or folders should be included",
                 Required = false,
                 DefaultValue = "false",
@@ -103,6 +133,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "display-system",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether system folders such as /system/, /misc/, /data/, and /config/ should be included",
                 Required = false,
                 DefaultValue = "true",
@@ -121,7 +152,7 @@ namespace magic.lambda.io.signatures
         /// Creates an instance of the signature.
         /// </summary>
         public PatchFileSignature()
-            : base("string", "Unified diff patch content to apply")
+            : base("string", "unified-diff", "Unified diff patch content to apply")
         { }
     }
 
@@ -137,6 +168,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "value",
                 Description = "Named argument passed to the executed file as a child of [.arguments]",
                 Required = false,
                 Mode = SlotChildMode.Arguments,
@@ -159,6 +191,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "value",
                 Description = "Named argument passed to the executed file as a child of [.arguments]",
                 Required = false,
                 Mode = SlotChildMode.Arguments,
@@ -192,6 +225,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "regex",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether [pattern] should be interpreted as a regular expression",
                 Required = false,
                 DefaultValue = "false",
@@ -202,6 +236,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "case-sensitive",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether matching should be case-sensitive",
                 Required = false,
                 DefaultValue = "false",
@@ -212,11 +247,70 @@ namespace magic.lambda.io.signatures
             {
                 Name = "extensions",
                 Type = "string",
-                Kind = "file-extension-list",
+                Kind = "text-file-extension-list",
                 Description = "Optional comma-separated file extensions to include",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.ZeroOrOne,
+            },
+        };
+
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "file-search-result",
+                Description = "Search result object for one matching file",
+                Required = false,
+                Mode = SlotChildMode.None,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "file",
+                        Type = "string",
+                        Kind = "file-path",
+                        Description = "Relative path to the matching file",
+                        Required = true,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                    new SlotChild
+                    {
+                        Name = "lines",
+                        Type = "lambda",
+                        Kind = "line-number-list",
+                        Description = "Line numbers containing matches in the file",
+                        Required = true,
+                        Mode = SlotChildMode.None,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.StructuredObject,
+                        Projection = SlotChildProjection.Children,
+                        Children =
+                        {
+                            new SlotChild
+                            {
+                                Name = ".",
+                                Type = "int",
+                                Kind = "line-number",
+                                Description = "One matching line number",
+                                Required = false,
+                                Mode = SlotChildMode.Value,
+                                Cardinality = SlotChildCardinality.ZeroOrMore,
+                                Role = SlotChildRole.Option,
+                                Projection = SlotChildProjection.Value,
+                            },
+                        },
+                    },
+                },
             },
         };
     }
@@ -243,6 +337,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "overwrite",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether existing extracted files should be overwritten",
                 Required = false,
                 DefaultValue = "false",
@@ -298,6 +393,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "overwrite",
                 Type = "bool",
+                Kind = "boolean",
                 Description = "Whether an existing file should be overwritten",
                 Required = false,
                 DefaultValue = "true",
@@ -308,6 +404,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = "Stream",
+                Kind = "stream",
                 Description = "Child node yielding the stream to save",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -328,6 +425,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "value",
                 Description = "Optional argument available to codebehind lambda loaded for the mixed file",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,

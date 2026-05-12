@@ -23,7 +23,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text-file-content",
+        ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load",
@@ -35,7 +35,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text-file-content",
+        ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load.binary",

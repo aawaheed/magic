@@ -18,6 +18,7 @@ namespace magic.lambda.strings.misc
         Name = "strings.contains",
         Description = "Returns true if a string contains the specified text",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to search",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

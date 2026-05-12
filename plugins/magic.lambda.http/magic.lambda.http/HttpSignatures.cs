@@ -92,11 +92,18 @@ namespace magic.lambda.http.signatures
                 "headers" => "http-header-value",
                 _ => null,
             };
+            var kind = name switch
+            {
+                "query" => "query-parameter-list",
+                "url-params" => "url-parameter-list",
+                "headers" => "http-header-list",
+                _ => null,
+            };
             return new SlotChild
             {
                 Name = name,
                 Type = "lambda",
-                Kind = name == "headers" ? "http-header-list" : null,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.DynamicNamedValues,
@@ -127,6 +134,7 @@ namespace magic.lambda.http.signatures
             {
                 Name = ".sse",
                 Type = "lambda",
+                Kind = "sse-callback",
                 Description = "Callback executed once per server-sent event line with [.arguments/message]",
                 Required = false,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -145,8 +153,8 @@ namespace magic.lambda.http.signatures
                 DynamicMap("url-params", "Named replacements for {placeholders} in the URL"),
                 DynamicMap("headers", "HTTP request headers"),
                 Option("token", "string", "Bearer token to add as Authorization header", kind: "bearer-token"),
-                Option("timeout", "int", "Request timeout in seconds"),
-                Option("convert", "bool", "Whether to convert known response content types to lambda", "false"),
+                Option("timeout", "int", "Request timeout in seconds", kind: "timeout-seconds"),
+                Option("convert", "bool", "Whether to convert known response content types to lambda", "false", "boolean"),
                 Sse(),
             };
         }
@@ -177,6 +185,7 @@ namespace magic.lambda.http.signatures
                     {
                         Name = "payload",
                         Type = "object|lambda",
+                        Kind = "http-request-payload",
                         Description = "Request payload value or structured payload transformed according to Content-Type",
                         Required = false,
                         Mode = SlotChildMode.SourceLambda,
