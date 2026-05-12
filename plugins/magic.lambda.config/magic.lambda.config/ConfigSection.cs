@@ -17,11 +17,13 @@ namespace magic.lambda.config
         Name = "config.section",
         Description = "Returns a configuration section",
         ValueType = "string",
+        ValueKind = "config-key",
         ValueDescription = "Configuration section to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "config-section",
         ReturnsDescription = "Returns one child node per key/value entry in the requested configuration section")]
     public class ConfigSection : ISlot
     {

@@ -17,6 +17,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.wait-for-url",
         Description = "Waits for the page URL to match a condition",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

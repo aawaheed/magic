@@ -22,6 +22,11 @@ namespace magic.signals.contracts
         public string Type { get; set; }
 
         /// <summary>
+        /// Optional semantic kind for the child node's value or projected payload.
+        /// </summary>
+        public string Kind { get; set; }
+
+        /// <summary>
         /// Description of the child node.
         /// </summary>
         public string Description { get; set; }

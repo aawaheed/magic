@@ -19,11 +19,13 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.get",
         Description = "Returns a task by ID",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "task",
         ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node",
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.GetTaskSignature))]
     public class GetTask : ISlotAsync

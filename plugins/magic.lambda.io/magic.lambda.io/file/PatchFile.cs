@@ -21,6 +21,7 @@ namespace magic.lambda.io.file
         Name = "io.file.patch",
         Description = "Applies a patch file to a target file",
         ValueType = "string",
+        ValueKind = "file-path",
         ValueDescription = "File path to patch",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

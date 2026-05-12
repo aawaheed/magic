@@ -21,6 +21,7 @@ namespace magic.lambda.io.file
         Name = "io.file.unzip",
         Description = "Extracts a zip archive on the server",
         ValueType = "string",
+        ValueKind = "file-path",
         ValueDescription = "Zip archive path to extract",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

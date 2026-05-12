@@ -20,6 +20,7 @@ namespace magic.lambda.sqlite.crud
         Description = "Deletes rows through the current SQLite connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
+        ReturnsKind = "count",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "sqlite.connection",
         ScopeProvider = "sqlite.connect",

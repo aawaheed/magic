@@ -19,6 +19,7 @@ namespace magic.lambda.sqlite
         Name = "sqlite.connect",
         Description = "Opens a SQLite connection",
         ValueType = "string",
+        ValueKind = "database-name,connection-string",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

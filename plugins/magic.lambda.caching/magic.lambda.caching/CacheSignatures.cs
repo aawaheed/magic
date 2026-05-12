@@ -15,12 +15,13 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public abstract IEnumerable<SlotChild> Children { get; }
 
-        internal static SlotChild Option(string name, string type, string description, string defaultValue = null)
+        internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,
@@ -40,7 +41,7 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("value", "string", "Value to store; omitted or null removes the cached item"),
+            Option("value", "string", "Value to store; omitted or null removes the cached item", kind: "cache-value"),
             Option("expiration", "long", "Expiration in seconds", "5"),
         };
     }
@@ -77,7 +78,7 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("filter", "string", "Optional cache key filter"),
+            Option("filter", "string", "Optional cache key filter", kind: "cache-key"),
         };
     }
 

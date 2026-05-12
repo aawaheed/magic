@@ -19,11 +19,13 @@ namespace magic.lambda.logging.slots
         Name = "log.query",
         Description = "Queries log entries",
         ValueType = "string",
+        ValueKind = "content-type",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "log-entry-list",
         ReturnsDescription = "Returns matching log entries as child nodes",
         SignatureType = typeof(global::magic.lambda.logging.signatures.LogQuerySignature))]
     public class Query : ISlotAsync

@@ -16,15 +16,16 @@ namespace magic.lambda.system.terminal.signatures
         public IEnumerable<SlotChild> Children => new[]
         {
             Args(),
-            Option("working-directory", "string", "Working directory for the process"),
+            Option("working-directory", "string", "Working directory for the process", "folder-path"),
         };
 
-        static SlotChild Option(string name, string type, string description)
+        static SlotChild Option(string name, string type, string description, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -40,6 +41,7 @@ namespace magic.lambda.system.terminal.signatures
             {
                 Name = "args",
                 Type = "string|lambda",
+                Kind = "terminal-arguments",
                 Description = "Process arguments as a shell-like string or child values",
                 Required = false,
                 Mode = SlotChildMode.StructuredArguments,
@@ -52,6 +54,7 @@ namespace magic.lambda.system.terminal.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "terminal-argument",
                         Description = "Single process argument",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,

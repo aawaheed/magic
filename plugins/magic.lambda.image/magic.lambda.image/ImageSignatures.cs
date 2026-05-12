@@ -11,12 +11,13 @@ namespace magic.lambda.image.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,
@@ -29,12 +30,12 @@ namespace magic.lambda.image.signatures
 
         protected static SlotChild Type()
         {
-            return Option("type", "string", "Output image format: png, jpeg, bmp, gif, tga, pbm, tiff, or webp", defaultValue: "png");
+            return Option("type", "string", "Output image format: png, jpeg, bmp, gif, tga, pbm, tiff, or webp", defaultValue: "png", kind: "image-format");
         }
 
         protected static SlotChild Dest()
         {
-            return Option("dest", "string", "Optional destination filename; when supplied, the image is saved to disk instead of returned as a stream");
+            return Option("dest", "string", "Optional destination filename; when supplied, the image is saved to disk instead of returned as a stream", kind: "image-file");
         }
     }
 
@@ -85,7 +86,7 @@ namespace magic.lambda.image.signatures
         {
             Option("width", "int", "Chart width in pixels", true),
             Option("height", "int", "Chart height in pixels", true),
-            Option("filename", "string", "Optional destination filename"),
+            Option("filename", "string", "Optional destination filename", kind: "image-file"),
             new SlotChild
             {
                 Name = "bars",
@@ -127,6 +128,7 @@ namespace magic.lambda.image.signatures
                     {
                         Name = ".",
                         Type = "string",
+                        Kind = "chart-legend-label",
                         Description = "Legend label",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,

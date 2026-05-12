@@ -17,6 +17,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.select",
         Description = "Selects an option in a select element",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

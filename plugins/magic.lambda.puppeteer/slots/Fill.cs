@@ -20,6 +20,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.fill",
         Description = "Fills an input element with text",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

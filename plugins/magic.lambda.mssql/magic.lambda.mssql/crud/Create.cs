@@ -22,6 +22,7 @@ namespace magic.lambda.mssql.crud
         Description = "Inserts rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "row-id",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

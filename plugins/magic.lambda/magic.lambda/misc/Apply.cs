@@ -24,6 +24,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the transformed template nodes after applying the supplied arguments",
         SignatureType = typeof(global::magic.lambda.signatures.ApplySignature))]
     public class Apply : ISlot

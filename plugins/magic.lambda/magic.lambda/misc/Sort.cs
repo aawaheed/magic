@@ -21,6 +21,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes",
         SignatureType = typeof(global::magic.lambda.signatures.SortSignature))]
     public class Sort : ISlot

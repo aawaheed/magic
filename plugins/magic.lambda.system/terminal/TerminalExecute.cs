@@ -23,11 +23,13 @@ namespace magic.lambda.system.terminal
         Name = "system.execute",
         Description = "Executes a system process",
         ValueType = "string",
+        ValueKind = "terminal-command",
         ValueDescription = "Command to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "terminal-output",
         ReturnsDescription = "Resolves to the standard output from the executed command",
         SignatureType = typeof(global::magic.lambda.system.terminal.signatures.TerminalExecuteSignature))]
     public class TerminalExecute : ISlotAsync

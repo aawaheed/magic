@@ -18,6 +18,7 @@ namespace magic.lambda.validators.validators
         Name = "validators.regex",
         Description = "Validates that a value or resolved expression result matches a regular expression, throwing if validation fails",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

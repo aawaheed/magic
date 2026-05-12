@@ -16,6 +16,7 @@ namespace magic.endpoint.services.slots.misc
         Name = "response.status.set",
         Description = "Sets the HTTP response status code",
         ValueType = "int",
+        ValueKind = "http-status-code",
         ValueDescription = "HTTP status code to set",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

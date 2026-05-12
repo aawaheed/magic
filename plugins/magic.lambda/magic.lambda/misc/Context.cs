@@ -17,6 +17,7 @@ namespace magic.lambda.misc
         Name = "context",
         Description = "Creates a named stack context object retrievable with [get-context] while evaluating a lambda block",
         ValueType = "string",
+        ValueKind = "context-name",
         ValueDescription = "Context name to create on the stack while evaluating the lambda block",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -18,11 +18,13 @@ namespace magic.lambda.xml
         Name = "xml2lambda",
         Description = "Transforms XML into a lambda hierarchy",
         ValueType = "string",
+        ValueKind = "xml",
         ValueDescription = "XML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "xml-tree",
         ReturnsDescription = "Resolves to the parsed XML hierarchy as child nodes; attributes are emitted as @name child nodes, text as #text child nodes, and comments/whitespace-only text nodes are omitted")]
     public class Xml2Lambda : ISlot
     {

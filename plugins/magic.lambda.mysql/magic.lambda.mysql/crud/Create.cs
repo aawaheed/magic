@@ -22,6 +22,7 @@ namespace magic.lambda.mysql.crud
         Description = "Inserts rows through the current MySQL connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "row-id",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

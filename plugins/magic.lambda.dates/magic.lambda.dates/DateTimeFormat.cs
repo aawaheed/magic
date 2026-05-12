@@ -18,11 +18,13 @@ namespace magic.lambda.dates
         Name = "date.format",
         Description = "Formats a DateTime value",
         ValueType = "DateTime",
+        ValueKind = "date",
         ValueDescription = "Date value to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "formatted-date",
         ReturnsDescription = "Resolves to the formatted date string",
         SignatureType = typeof(global::magic.lambda.dates.signatures.DateFormatSignature))]
     public class DateTimeFormat : ISlot

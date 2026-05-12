@@ -22,11 +22,13 @@ namespace magic.lambda.strings.replace
         Name = "strings.mixin",
         Description = "Applies string interpolation from child expressions",
         ValueType = "string",
+        ValueKind = "mixin-template",
         ValueDescription = "Template text to interpolate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions",
         SignatureType = typeof(global::magic.lambda.strings.signatures.StringMixinSignature))]
     public class Mixin : ISlotAsync

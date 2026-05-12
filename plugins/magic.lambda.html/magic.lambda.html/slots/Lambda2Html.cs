@@ -17,11 +17,13 @@ namespace magic.lambda.html.slots
         Name = "lambda2html",
         Description = "Transforms a lambda hierarchy into HTML",
         ValueType = "lambda",
+        ValueKind = "html-tree",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "html",
         ReturnsDescription = "Resolves to the generated HTML markup",
         SignatureType = typeof(global::magic.lambda.html.signatures.Lambda2HtmlSignature))]
     public class Lambda2Html : ISlot

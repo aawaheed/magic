@@ -15,12 +15,13 @@ namespace magic.lambda.validators.signatures
         /// <inheritdoc />
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,
@@ -63,7 +64,7 @@ namespace magic.lambda.validators.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("regex", "string", "Regular expression pattern the value must match", true),
+            Option("regex", "string", "Regular expression pattern the value must match", true, kind: "regex"),
         };
     }
 
@@ -75,6 +76,7 @@ namespace magic.lambda.validators.signatures
             {
                 Name = ".",
                 Type = "string",
+                Kind = "enum-value",
                 Description = "Accepted enum value",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -107,8 +109,8 @@ namespace magic.lambda.validators.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("site-key", "string", "reCAPTCHA site key", true),
-            Option("secret", "string", "reCAPTCHA secret key", true),
+            Option("site-key", "string", "reCAPTCHA site key", true, kind: "recaptcha-site-key"),
+            Option("secret", "string", "reCAPTCHA secret key", true, kind: "recaptcha-secret"),
             Option("min", "decimal", "Minimum acceptable reCAPTCHA score", true),
         };
     }

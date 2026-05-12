@@ -19,6 +19,7 @@ namespace magic.lambda.loops
         Description = "Repeats execution while a condition is true",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the final iteration value and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class While : ISlot

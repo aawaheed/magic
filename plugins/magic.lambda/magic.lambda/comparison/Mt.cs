@@ -16,6 +16,7 @@ namespace magic.lambda.comparison
         Description = "Returns true if the first operand is greater than the second operand",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if the first operand is greater than the second operand",
         SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Mt : BaseComparison

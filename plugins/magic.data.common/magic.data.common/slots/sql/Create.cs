@@ -17,6 +17,7 @@ namespace magic.data.common.slots.sql
         Description = "Builds a parameterized INSERT SQL statement",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
+        ReturnsKind = "sql-insert",
         ReturnsDescription = "Resolves to the generated SQL string in value and the generated parameter nodes as children",
         SignatureType = typeof(global::magic.data.common.signatures.SqlCreateSignature))]
     public class Create : ISlot

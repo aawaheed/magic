@@ -18,11 +18,13 @@ namespace magic.lambda.strings.misc
         Name = "strings.join",
         Description = "Joins strings with a separator",
         ValueType = "lambda",
+        ValueKind = "string-list",
         ValueDescription = "Expression yielding the values to join",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the joined string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.JoinSignature))]
     public class Join : ISlotAsync

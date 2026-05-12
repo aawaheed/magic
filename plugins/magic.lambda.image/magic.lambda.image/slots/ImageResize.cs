@@ -19,11 +19,13 @@ namespace magic.lambda.image.slots
         Name = "image.resize",
         Description = "Resizes an image",
         ValueType = "string|Stream",
+        ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to resize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Stream",
+        ReturnsKind = "image",
         ReturnsDescription = "Resolves to the resized image stream unless [dest] is supplied, in which case the resized image is saved to disk",
         SignatureType = typeof(global::magic.lambda.image.signatures.ImageResizeSignature))]
     public class ImageResize : ISlotAsync

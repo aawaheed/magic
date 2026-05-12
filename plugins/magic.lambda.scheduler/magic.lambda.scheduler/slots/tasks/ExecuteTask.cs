@@ -16,6 +16,7 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.execute",
         Description = "Executes a task immediately",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to execute",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -19,11 +19,13 @@ namespace magic.lambda.crypto.slots.hash
         Name = "crypto.password.hash",
         Description = "Hashes a password",
         ValueType = "string",
+        ValueKind = "password",
         ValueDescription = "Password to hash",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "hash",
         ReturnsDescription = "Resolves to the password hash")]
     public class HashPassword : ISlot
     {

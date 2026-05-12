@@ -16,11 +16,13 @@ namespace magic.lambda.html.slots
         Name = "html-decode",
         Description = "HTML decodes the specified string",
         ValueType = "string",
+        ValueKind = "html",
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the decoded HTML string")]
     public class HtmlDecode : ISlot
     {

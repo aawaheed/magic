@@ -17,11 +17,13 @@ namespace magic.endpoint.services.slots.headers
         Name = "request.headers.get",
         Description = "Returns a request header by name",
         ValueType = "string",
+        ValueKind = "http-header-name",
         ValueDescription = "Header name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "http-header-value",
         ReturnsDescription = "Resolves to the value of the named request header, or null if it does not exist")]
     public class GetHeader : ISlot
     {

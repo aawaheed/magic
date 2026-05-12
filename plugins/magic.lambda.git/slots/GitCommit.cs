@@ -18,11 +18,13 @@ namespace magic.lambda.git
         Name = "git.commit",
         Description = "Creates a Git commit",
         ValueType = "string",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "git-output",
         ReturnsDescription = "Resolves to the git commit command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitCommitSignature))]
     public class GitCommit : ISlotAsync

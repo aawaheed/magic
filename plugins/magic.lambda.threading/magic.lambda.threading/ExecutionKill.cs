@@ -13,11 +13,13 @@ namespace magic.lambda.threading
         Name = "execution.kill",
         Description = "Cancels a running execution by execution ID",
         ValueType = "string",
+        ValueKind = "execution-id",
         ValueDescription = "Execution ID to cancel",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the execution was cancelled")]
     public class ExecutionKill : ISlot
     {

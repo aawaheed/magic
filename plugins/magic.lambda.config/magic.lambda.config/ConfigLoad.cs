@@ -17,6 +17,7 @@ namespace magic.lambda.config
         Description = "Loads configuration values into the current node tree",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "json",
         ReturnsDescription = "Resolves to the raw appsettings.json content")]
     public class LoadAppSettings : ISlotAsync
     {

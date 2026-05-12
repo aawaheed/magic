@@ -22,6 +22,7 @@ namespace magic.lambda.loops
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to one mapped output item per selected node, using the value or nodes returned by the child lambda",
         SignatureType = typeof(global::magic.lambda.signatures.MapSignature))]
     public class Map : ISlot

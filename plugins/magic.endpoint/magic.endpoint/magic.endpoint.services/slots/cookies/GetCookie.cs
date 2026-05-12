@@ -16,11 +16,13 @@ namespace magic.endpoint.services.slots.cookies
         Name = "request.cookies.get",
         Description = "Returns a request cookie by name",
         ValueType = "string",
+        ValueKind = "cookie-name",
         ValueDescription = "Cookie name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "cookie-value",
         ReturnsDescription = "Resolves to the value of the named request cookie, or null if it does not exist")]
     public class GetCookie : ISlot
     {

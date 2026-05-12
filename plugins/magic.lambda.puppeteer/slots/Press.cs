@@ -18,6 +18,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.press",
         Description = "Sends a key press to the page",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

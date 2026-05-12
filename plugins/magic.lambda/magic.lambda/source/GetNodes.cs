@@ -20,6 +20,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the nodes matched by the expression as child nodes")]
     public class GetNodes : ISlot
     {

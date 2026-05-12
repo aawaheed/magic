@@ -19,11 +19,13 @@ namespace magic.lambda.git
         Name = "git.remote.add",
         Description = "Adds a Git remote",
         ValueType = "string",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "git-output",
         ReturnsDescription = "Resolves to the git remote add command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitRemoteAddSignature))]
     public class GitRemoteAdd : ISlotAsync

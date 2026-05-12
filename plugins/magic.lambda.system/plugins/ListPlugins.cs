@@ -16,6 +16,7 @@ namespace magic.lambda.system.plugins
         Description = "Lists dynamically loaded plugins",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "plugin-assembly-list",
         ReturnsDescription = "Returns one child node per dynamically loaded plugin name")]
     public class ListPlugins : ISlot
     {

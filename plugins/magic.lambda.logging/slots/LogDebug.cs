@@ -17,6 +17,7 @@ namespace magic.lambda.logging.slots
         Name = "log.debug",
         Description = "Logs a debug entry",
         ValueType = "string",
+        ValueKind = "log-message",
         ValueDescription = "Log message to write",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

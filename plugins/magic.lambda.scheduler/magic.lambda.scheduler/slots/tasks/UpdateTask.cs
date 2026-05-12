@@ -16,6 +16,7 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.update",
         Description = "Updates a task",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to update",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

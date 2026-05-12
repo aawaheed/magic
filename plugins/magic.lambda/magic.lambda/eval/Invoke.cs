@@ -18,11 +18,13 @@ namespace magic.lambda.eval
         Name = "invoke",
         Description = "Invokes a lambda expression as a callable slot",
         ValueType = "lambda",
+        ValueKind = "lambda-object",
         ValueDescription = "Expression yielding the single lambda node to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.signatures.InvokeSignature))]
     public class Invoke : ISlotAsync

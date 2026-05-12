@@ -16,6 +16,7 @@ namespace magic.lambda.mysql
         Description = "Creates a MySQL connection factory",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "MySqlConnection",
+        ReturnsKind = "database-connection",
         ReturnsDescription = "Resolves to a new MySQL connection instance")]
     public class ConnectionFactory : ISlot
     {

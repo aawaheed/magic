@@ -18,11 +18,13 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.list",
         Description = "Lists tasks",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Optional filter for task IDs",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "task-list",
         ReturnsDescription = "Returns one child node per task with its task metadata",
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.ListTasksSignature))]
     public class ListTasks : ISlotAsync

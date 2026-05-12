@@ -21,11 +21,13 @@ namespace magic.lambda.xml
         Name = "lambda2xml",
         Description = "Converts a lambda object to an XML fragment or document",
         ValueType = "lambda",
+        ValueKind = "xml-tree",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "xml",
         ReturnsDescription = "Resolves to the generated XML string",
         SignatureType = typeof(global::magic.lambda.xml.signatures.Lambda2XmlSignature))]
     public class Lambda2Xml : ISlot

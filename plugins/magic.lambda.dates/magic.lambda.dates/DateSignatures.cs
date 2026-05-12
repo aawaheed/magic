@@ -11,12 +11,13 @@ namespace magic.lambda.dates.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,
@@ -32,7 +33,7 @@ namespace magic.lambda.dates.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("format", "string", "Format string", true),
+            Option("format", "string", "Format string", true, kind: "date-format"),
         };
     }
 

@@ -18,11 +18,13 @@ namespace magic.lambda.html.slots
         Name = "html2lambda",
         Description = "Transforms HTML into a lambda hierarchy",
         ValueType = "string",
+        ValueKind = "html",
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "html-tree",
         ReturnsDescription = "Resolves to the parsed HTML hierarchy as child nodes")]
     public class Html2Lambda : ISlot
     {

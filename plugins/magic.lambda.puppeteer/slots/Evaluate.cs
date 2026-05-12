@@ -18,11 +18,13 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.evaluate",
         Description = "Evaluates JavaScript in the page context",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "javascript-result",
         ReturnsDescription = "Resolves to the result of the evaluated JavaScript expression",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerEvaluateSignature))]
     public class Evaluate : ISlotAsync

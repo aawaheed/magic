@@ -18,11 +18,13 @@ namespace magic.lambda.config
         Name = "config.get",
         Description = "Returns a configuration value",
         ValueType = "string",
+        ValueKind = "config-key",
         ValueDescription = "Configuration key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "config-value",
         ReturnsDescription = "Resolves to the configuration value, or the first child value when the key is missing",
         SignatureType = typeof(global::magic.lambda.config.signatures.ConfigGetSignature))]
     public class ConfigGet : ISlotAsync

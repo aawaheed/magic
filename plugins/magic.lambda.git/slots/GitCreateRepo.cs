@@ -17,11 +17,13 @@ namespace magic.lambda.git
         Name = "git.create-repo",
         Description = "Initializes a Git repository",
         ValueType = "string",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to initialize as a repository",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "git-output",
         ReturnsDescription = "Resolves to the git init command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitCreateRepoSignature))]
     public class GitCreateRepo : ISlotAsync

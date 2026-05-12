@@ -11,8 +11,8 @@ namespace magic.lambda.system.plugins.signatures
     {
         public IEnumerable<SlotChild> Children => new[]
         {
-            Option("code", "string", "C# source code to compile", true),
-            Option("assembly-name", "string", "Name of the generated assembly", true),
+            Option("code", "string", "C# source code to compile", true, "csharp-code"),
+            Option("assembly-name", "string", "Name of the generated assembly", true, "plugin-assembly-name"),
             new SlotChild
             {
                 Name = "references",
@@ -40,12 +40,13 @@ namespace magic.lambda.system.plugins.signatures
             },
         };
 
-        static SlotChild Option(string name, string type, string description, bool required)
+        static SlotChild Option(string name, string type, string description, bool required, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ValueOrExpression,

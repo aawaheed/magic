@@ -18,6 +18,7 @@ namespace magic.lambda.threading
         Name = "sleep",
         Description = "Delays execution for the specified number of milliseconds",
         ValueType = "int",
+        ValueKind = "timeout-ms",
         ValueDescription = "Delay in milliseconds",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

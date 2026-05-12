@@ -11,12 +11,13 @@ namespace magic.lambda.sockets.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,
@@ -32,7 +33,7 @@ namespace magic.lambda.sockets.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("group", "string", "Socket group name", true),
+            Option("group", "string", "Socket group name", true, kind: "socket-group"),
         };
     }
 
@@ -40,7 +41,7 @@ namespace magic.lambda.sockets.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("filter", "string", "Username filter"),
+            Option("filter", "string", "Username filter", kind: "username"),
             Option("offset", "int", "Number of matching users to skip", defaultValue: "0"),
             Option("limit", "int", "Maximum number of users to return", defaultValue: "10"),
         };
@@ -50,7 +51,7 @@ namespace magic.lambda.sockets.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("filter", "string", "Username filter"),
+            Option("filter", "string", "Username filter", kind: "username"),
         };
     }
 
@@ -70,10 +71,10 @@ namespace magic.lambda.sockets.signatures
                 Evaluation = SlotChildEvaluation.UnwrapDescendants,
                 Projection = SlotChildProjection.StructuredTree,
             },
-            Option("roles", "string", "Comma-separated roles receiving the message"),
-            Option("users", "string", "Comma-separated users receiving the message"),
-            Option("groups", "string", "Comma-separated groups receiving the message"),
-            Option("clients", "string", "Comma-separated connection IDs receiving the message"),
+            Option("roles", "string", "Comma-separated roles receiving the message", kind: "role"),
+            Option("users", "string", "Comma-separated users receiving the message", kind: "username"),
+            Option("groups", "string", "Comma-separated groups receiving the message", kind: "socket-group"),
+            Option("clients", "string", "Comma-separated connection IDs receiving the message", kind: "socket-connection-id"),
         };
     }
 }

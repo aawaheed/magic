@@ -22,6 +22,7 @@ namespace magic.lambda.auth
         Description = "Refreshes an existing JWT ticket",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "jwt",
         ReturnsDescription = "Resolves to the refreshed JWT ticket string",
         SignatureType = typeof(global::magic.lambda.auth.signatures.RefreshTicketSignature))]
     public class RefreshTicket : ISlot

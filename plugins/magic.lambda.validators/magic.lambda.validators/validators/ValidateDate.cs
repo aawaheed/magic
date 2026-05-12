@@ -18,6 +18,7 @@ namespace magic.lambda.validators.validators
         Name = "validators.date",
         Description = "Validates that a date value or resolved expression result is within the allowed range, throwing if validation fails",
         ValueType = "DateTime",
+        ValueKind = "date",
         ValueDescription = "Date value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

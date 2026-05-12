@@ -18,6 +18,7 @@ namespace magic.endpoint.services.slots.cookies
         Name = "response.cookies.set",
         Description = "Sets a response cookie",
         ValueType = "string",
+        ValueKind = "cookie-name",
         ValueDescription = "Cookie name to set",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

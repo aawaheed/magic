@@ -17,11 +17,13 @@ namespace magic.lambda.caching
         Name = "cache.get",
         Description = "Returns a cached value by key",
         ValueType = "string",
+        ValueKind = "cache-key",
         ValueDescription = "Cache key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "cache-value",
         ReturnsDescription = "Resolves to the cached value, or null if the key does not exist")]
     public class CacheGet : ISlotAsync
     {

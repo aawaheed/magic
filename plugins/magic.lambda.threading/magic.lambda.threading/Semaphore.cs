@@ -19,6 +19,7 @@ namespace magic.lambda.threading
         Name = "semaphore",
         Description = "Evaluates the child lambda object inside a named semaphore",
         ValueType = "string",
+        ValueKind = "semaphore-name",
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

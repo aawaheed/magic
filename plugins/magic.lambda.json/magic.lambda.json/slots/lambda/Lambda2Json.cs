@@ -17,11 +17,13 @@ namespace magic.lambda.json.slots.lambda
         Name = "lambda2json",
         Description = "Transforms a lambda hierarchy into JSON",
         ValueType = "lambda",
+        ValueKind = "lambda-tree",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "json",
         ReturnsDescription = "Resolves to the generated JSON string",
         SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2JsonSignature))]
     public class Lambda2Json : ISlot

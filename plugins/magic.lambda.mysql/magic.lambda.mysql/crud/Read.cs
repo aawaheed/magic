@@ -21,6 +21,7 @@ namespace magic.lambda.mysql.crud
         Description = "Reads rows through the current MySQL connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "row-list",
         ReturnsDescription = "Returns one child node per row read from the current MySQL connection",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

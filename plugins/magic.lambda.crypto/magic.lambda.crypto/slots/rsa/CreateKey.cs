@@ -21,6 +21,7 @@ namespace magic.lambda.crypto.slots.rsa
         Description = "Creates an RSA key pair",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "rsa-key-pair",
         ReturnsDescription = "Resolves to the generated RSA key pair as child nodes",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaCreateKeySignature))]
     public class CreateKey : ISlot

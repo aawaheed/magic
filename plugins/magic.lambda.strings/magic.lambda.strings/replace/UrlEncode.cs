@@ -16,11 +16,13 @@ namespace magic.lambda.strings.replace
         Name = "strings.url-encode",
         Description = "URL encodes the specified string",
         ValueType = "string",
+        ValueKind = "url-component",
         ValueDescription = "Text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "url-encoded",
         ReturnsDescription = "Resolves to the URL-encoded string")]
     public class UrlEncode : ISlot
     {

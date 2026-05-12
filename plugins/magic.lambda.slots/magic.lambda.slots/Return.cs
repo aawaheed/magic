@@ -21,6 +21,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
+        ReturnsKind = "return-value,node-list",
         ReturnsDescription = "Resolves to the supplied value and/or returned child nodes captured by the nearest caller",
         SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnSignature))]
     public class Return : ISlot

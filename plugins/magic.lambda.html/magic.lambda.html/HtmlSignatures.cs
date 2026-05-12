@@ -11,12 +11,13 @@ namespace magic.lambda.html.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,
@@ -32,7 +33,7 @@ namespace magic.lambda.html.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("url", "string", "Base URL used when resolving links"),
+            Option("url", "string", "Base URL used when resolving links", kind: "url"),
             Option("images", "bool", "Whether images should be emitted", "true"),
             Option("code", "bool", "Whether code blocks should be emitted", "true"),
             Option("lists", "bool", "Whether lists should be emitted", "true"),

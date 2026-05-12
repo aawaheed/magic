@@ -20,11 +20,13 @@ namespace magic.lambda.strings.replace
         Name = "strings.regex-replace",
         Description = "Replaces text using a regular expression",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after applying the regular-expression replacement",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceTwoArgsSignature))]
     public class RegexReplace : ISlotAsync

@@ -18,11 +18,13 @@ namespace magic.lambda.crypto.slots.combinations
         Name = "crypto.sign",
         Description = "Signs data using the configured combination algorithm",
         ValueType = "string|byte[]",
+        ValueKind = "content,binary-content",
         ValueDescription = "Content to sign",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "crypto-signature",
         ReturnsDescription = "Resolves to the signed package as base64 text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationSignSignature))]
     public class Sign : ISlot

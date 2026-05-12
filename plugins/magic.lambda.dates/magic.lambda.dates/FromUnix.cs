@@ -16,11 +16,13 @@ namespace magic.lambda.dates
         Name = "date.from-unix",
         Description = "Converts a Unix timestamp into a DateTime value",
         ValueType = "long",
+        ValueKind = "unix-timestamp",
         ValueDescription = "Unix timestamp to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "DateTime",
+        ReturnsKind = "date",
         ReturnsDescription = "Resolves to the date represented by the supplied Unix timestamp")]
     public class FromUnix : ISlot
     {

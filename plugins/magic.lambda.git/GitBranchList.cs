@@ -19,11 +19,13 @@ namespace magic.lambda.git
         Name = "git.branch.list",
         Description = "Lists Git branches",
         ValueType = "string",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "git-branch-list",
         ReturnsDescription = "Returns one child node per git branch name",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitBranchListSignature))]
     public class GitBranchList : ISlotAsync

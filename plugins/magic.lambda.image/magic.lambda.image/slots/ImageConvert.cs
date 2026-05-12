@@ -16,11 +16,13 @@ namespace magic.lambda.image.slots
         Name = "image.convert",
         Description = "Converts an image to another format",
         ValueType = "string|Stream",
+        ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Stream",
+        ReturnsKind = "image",
         ReturnsDescription = "Resolves to the converted image stream unless [dest] is supplied, in which case the converted image is saved to disk",
         SignatureType = typeof(global::magic.lambda.image.signatures.ImageTransformSignature))]
     public class ImageConvert : ISlotAsync

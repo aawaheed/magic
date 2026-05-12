@@ -16,6 +16,7 @@ namespace magic.lambda.comparison
         Description = "Returns true if two operands are equal",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if the operands are equal",
         SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Eq : BaseComparison

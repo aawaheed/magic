@@ -33,6 +33,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = _type,
+                Kind = _description.Contains("Destination path") ? "path" : null,
                 Description = _description,
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -181,6 +182,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "pattern",
                 Type = "string",
+                Kind = "search-pattern",
                 Description = "Text or regular expression pattern to search for",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -210,6 +212,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "extensions",
                 Type = "string",
+                Kind = "file-extension-list",
                 Description = "Optional comma-separated file extensions to include",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -230,6 +233,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "folder",
                 Type = "string",
+                Kind = "folder-path",
                 Description = "Destination folder; defaults to the zip file's folder",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -260,6 +264,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "*",
                 Type = "string",
+                Kind = "zip-entry-path",
                 Description = "ZIP entry path",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -270,6 +275,7 @@ namespace magic.lambda.io.signatures
                     {
                         Name = "*",
                         Type = "string|byte[]",
+                        Kind = "zip-entry-content",
                         Description = "Entry content",
                         Required = true,
                         Mode = SlotChildMode.ExecutableLambda,

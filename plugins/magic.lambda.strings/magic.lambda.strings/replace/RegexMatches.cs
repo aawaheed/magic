@@ -19,11 +19,13 @@ namespace magic.lambda.strings.replace
         Name = "strings.matches",
         Description = "Returns regular expression matches",
         ValueType = "string",
+        ValueKind = "text",
         ValueDescription = "Text to match against the regular expression",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "regex-match-list",
         ReturnsDescription = "Returns one child node per regular expression match",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]
     public class RegexMatches : ISlotAsync

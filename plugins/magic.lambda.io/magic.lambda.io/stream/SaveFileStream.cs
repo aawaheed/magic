@@ -20,6 +20,7 @@ namespace magic.lambda.io.stream
         Name = "io.stream.save-file",
         Description = "Saves a stream to a file",
         ValueType = "string",
+        ValueKind = "file-path",
         ValueDescription = "File path to save the stream to",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

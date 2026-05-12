@@ -17,11 +17,13 @@ namespace magic.lambda.slots
         Name = "slots.vocabulary",
         Description = "Lists dynamically created slots",
         ValueType = "string",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Optional filter for dynamic slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "dynamic-slot-name-list",
         ReturnsDescription = "Resolves to available dynamic slot names as child nodes")]
     public class Vocabulary : ISlot
     {

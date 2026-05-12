@@ -11,12 +11,13 @@ namespace magic.endpoint.services.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -35,6 +36,7 @@ namespace magic.endpoint.services.signatures
             {
                 Name = "*",
                 Type = "string",
+                Kind = "http-header-value",
                 Description = "Response header name and value",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -49,13 +51,13 @@ namespace magic.endpoint.services.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("value", "string", "Cookie value", true),
+            Option("value", "string", "Cookie value", true, "cookie-value"),
             Option("expires", "DateTime", "Cookie expiration"),
             Option("http-only", "bool", "Whether the cookie is HTTP-only"),
             Option("secure", "bool", "Whether the cookie is secure"),
-            Option("domain", "string", "Cookie domain"),
-            Option("path", "string", "Cookie path"),
-            Option("same-site", "string", "Cookie SameSite mode"),
+            Option("domain", "string", "Cookie domain", kind: "cookie-domain"),
+            Option("path", "string", "Cookie path", kind: "cookie-path"),
+            Option("same-site", "string", "Cookie SameSite mode: Strict, Lax, None, or Unspecified", kind: "cookie-same-site"),
         };
     }
 
@@ -67,6 +69,7 @@ namespace magic.endpoint.services.signatures
             {
                 Name = ".",
                 Type = "string",
+                Kind = "mime-type",
                 Description = "MIME type value for the extension/key",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -82,7 +85,7 @@ namespace magic.endpoint.services.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("version", "string", "IP version to return, either ipv4 or ipv6"),
+            Option("version", "string", "IP version to return, either ipv4 or ipv6", kind: "ip-version"),
         };
     }
 }

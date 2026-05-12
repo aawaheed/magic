@@ -15,7 +15,7 @@ namespace magic.lambda.auth.signatures
         /// <inheritdoc />
         public IEnumerable<SlotChild> Children => new[]
         {
-            Option("username", "string", "Username to put in the ticket", true),
+            Option("username", "string", "Username to put in the ticket", true, "username"),
             List("roles", "string", "Roles to put in the ticket"),
             Map("claims", "string", "Claims to put in the ticket"),
             Option("expires", "DateTime", "Absolute UTC expiration time"),
@@ -37,12 +37,13 @@ namespace magic.lambda.auth.signatures
             }
         }
 
-        internal static SlotChild Option(string name, string type, string description, bool required = false)
+        internal static SlotChild Option(string name, string type, string description, bool required = false, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -54,10 +55,12 @@ namespace magic.lambda.auth.signatures
 
         internal static SlotChild List(string name, string type, string description)
         {
+            var kind = name == "roles" ? "role-list" : null;
             return new SlotChild
             {
                 Name = name,
                 Type = "lambda",
+                Kind = kind,
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.StructuredArguments,
@@ -70,6 +73,7 @@ namespace magic.lambda.auth.signatures
                     {
                         Name = "*",
                         Type = type,
+                        Kind = name == "roles" ? "role" : null,
                         Description = "List item",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -123,7 +127,7 @@ namespace magic.lambda.auth.signatures
     {
         public IEnumerable<SlotChild> Children => new[]
         {
-            CreateTicketSignature.Option("roles", "string", "Comma-separated roles required by the token", true),
+            CreateTicketSignature.Option("roles", "string", "Comma-separated roles required by the token", true, "role"),
         };
     }
 
@@ -134,7 +138,7 @@ namespace magic.lambda.auth.signatures
     {
         public IEnumerable<SlotChild> Children => new[]
         {
-            CreateTicketSignature.Option("token", "string", "External JWT token to verify", true),
+            CreateTicketSignature.Option("token", "string", "External JWT token to verify", true, "jwt"),
         };
     }
 }

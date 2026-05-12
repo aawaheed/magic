@@ -17,11 +17,13 @@ namespace magic.lambda.image.slots
         Name = "image.size",
         Description = "Returns the width and height of an image",
         ValueType = "string",
+        ValueKind = "image-file",
         ValueDescription = "Image filename to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "image-dimensions",
         ReturnsDescription = "Returns [width:int] and [height:int] child nodes for the image dimensions")]
     public class ImageSize : ISlot
     {

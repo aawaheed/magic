@@ -19,11 +19,13 @@ namespace magic.lambda.caching
         Name = "cache.count",
         Description = "Counts cached items matching the optional filter",
         ValueType = "string",
+        ValueKind = "cache-key",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
+        ReturnsKind = "count",
         ReturnsDescription = "Resolves to the number of cached items matching the optional filter")]
     public class CacheCount : ISlotAsync
     {

@@ -23,11 +23,13 @@ namespace magic.lambda.crypto.slots.combinations
         Name = "crypto.encrypt",
         Description = "Encrypts data using the configured combination algorithm",
         ValueType = "string|byte[]",
+        ValueKind = "content,binary-content",
         ValueDescription = "Content to sign and encrypt",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "crypto-encrypted-package",
         ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationEncryptSignature))]
     public class Encrypt : ISlot

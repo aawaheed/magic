@@ -19,6 +19,7 @@ namespace magic.lambda.crypto.slots.combinations
         Name = "crypto.verify",
         Description = "Verifies a signature using the configured combination algorithm",
         ValueType = "string|byte[]",
+        ValueKind = "crypto-signature",
         ValueDescription = "Signed package to verify",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -20,6 +20,7 @@ namespace magic.lambda.sqlite.crud
         Description = "Reads rows through the current SQLite connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "row-list",
         ReturnsDescription = "Returns one child node per row read from the current SQLite connection",
         RequiresScope = "sqlite.connection",
         ScopeProvider = "sqlite.connect",

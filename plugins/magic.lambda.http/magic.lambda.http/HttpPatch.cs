@@ -17,10 +17,14 @@ namespace magic.lambda.http
         Name = "http.patch",
         Description = "Makes an HTTP PATCH request",
         ValueType = "string",
+        ValueKind = "url",
         ValueDescription = "URL to send the request to",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
-        ReturnsMode = SlotReturnsMode.None,
+        ReturnsMode = SlotReturnsMode.Both,
+        ReturnsType = "lambda",
+        ReturnsKind = "http-response",
+        ReturnsDescription = "Resolves to the HTTP status code in value and response headers and content as child nodes",
         SignatureType = typeof(global::magic.lambda.http.signatures.HttpPayloadRequestSignature))]
     public class HttpPatch : ISlotAsync
     {

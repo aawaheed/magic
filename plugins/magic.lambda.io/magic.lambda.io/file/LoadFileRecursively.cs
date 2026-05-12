@@ -18,11 +18,13 @@ namespace magic.lambda.io.file
         Name = "io.file.load-recursively",
         Description = "Loads files recursively from the specified folder",
         ValueType = "string",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to load from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "file-path-list",
         ReturnsDescription = "Returns one child node per loaded file with its content")]
     public class LoadFileRecursively : ISlotAsync
     {

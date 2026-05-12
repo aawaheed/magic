@@ -24,6 +24,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string starts with the supplied text",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]
     public class StartsWith : ISlotAsync

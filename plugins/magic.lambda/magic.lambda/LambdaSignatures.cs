@@ -190,7 +190,7 @@ namespace magic.lambda.signatures
                 Projection = SlotChildProjection.Self,
                 Children =
                 {
-                    ExecutableBody("Branch body executed when the case matches"),
+                    ExecutableBody("Branch body executed when the case matches", SlotChildCardinality.OneOrMore),
                 },
             },
             new SlotChild
@@ -206,7 +206,7 @@ namespace magic.lambda.signatures
                 Projection = SlotChildProjection.Self,
                 Children =
                 {
-                    ExecutableBody("Fallback branch body"),
+                    ExecutableBody("Fallback branch body", SlotChildCardinality.OneOrMore),
                 },
             },
         };
@@ -226,7 +226,7 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Case branch body executed by the parent [switch]"),
+            ExecutableBody("Case branch body executed by the parent [switch]", SlotChildCardinality.OneOrMore),
         };
 
         /// <inheritdoc />
@@ -244,7 +244,7 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Default branch body executed by the parent [switch]"),
+            ExecutableBody("Default branch body executed by the parent [switch]", SlotChildCardinality.OneOrMore),
         };
 
         /// <inheritdoc />
@@ -623,15 +623,16 @@ namespace magic.lambda.signatures
         {
             Option("public", "bool", "Whether the exception message may be returned to clients", "false"),
             Option("status", "int", "HTTP status code associated with the exception", "500"),
-            Option("field", "string", "Optional field name associated with the exception"),
+            Option("field", "string", "Optional form field or control ID associated with the exception", kind: "form-field-id"),
         };
 
-        internal static SlotChild Option(string name, string type, string description, string defaultValue = null)
+        internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,
@@ -655,6 +656,7 @@ namespace magic.lambda.signatures
             {
                 Name = "pattern",
                 Type = "string",
+                Kind = "format-pattern",
                 Description = "Composite format string",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,

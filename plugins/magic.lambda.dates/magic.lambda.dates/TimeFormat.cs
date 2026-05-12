@@ -18,11 +18,13 @@ namespace magic.lambda.dates
         Name = "time.format",
         Description = "Formats a TimeSpan value",
         ValueType = "TimeSpan",
+        ValueKind = "timespan",
         ValueDescription = "Time span to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "formatted-time",
         ReturnsDescription = "Resolves to the formatted time string",
         SignatureType = typeof(global::magic.lambda.dates.signatures.DateFormatSignature))]
     public class TimeFormat : ISlot

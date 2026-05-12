@@ -22,6 +22,7 @@ namespace magic.lambda.pgsql.crud
         Description = "Inserts rows through the current PostgreSQL connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
+        ReturnsKind = "row-id",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "pgsql.connection",
         ScopeProvider = "pgsql.connect",

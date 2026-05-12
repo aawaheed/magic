@@ -20,22 +20,26 @@ namespace magic.lambda.io.file
         Name = "io.file.execute",
         Description = "Executes a file on the server",
         ValueType = "string",
+        ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
+        ReturnsKind = "hyperlambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
     [Slot(
         Name = "execute-file",
         Description = "Executes a file on the server",
         ValueType = "string",
+        ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
+        ReturnsKind = "hyperlambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileUnwrapSignature))]
     public class ExecuteFile : ISlotAsync

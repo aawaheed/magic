@@ -16,6 +16,7 @@ namespace magic.lambda.comparison
         Description = "Returns true if two operands are not equal",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if the operands are not equal",
         SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Neq : ISlot

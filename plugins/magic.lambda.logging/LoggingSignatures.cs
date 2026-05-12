@@ -20,6 +20,7 @@ namespace magic.lambda.logging.signatures
             {
                 Name = "*",
                 Type = "string",
+                Kind = "log-metadata",
                 Description = "Metadata entry stored with the log item when the slot has an input value; otherwise evaluated content fragment",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -36,15 +37,16 @@ namespace magic.lambda.logging.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Meta(),
-            Option("exception", "string", "Exception text attached to error and fatal log entries"),
+            Option("exception", "string", "Exception text attached to error and fatal log entries", "exception-text"),
         };
 
-        static SlotChild Option(string name, string type, string description)
+        static SlotChild Option(string name, string type, string description, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,

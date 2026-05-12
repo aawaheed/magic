@@ -21,11 +21,13 @@ namespace magic.lambda.io.file
         Name = "io.file.search",
         Description = "Searches for files on the server",
         ValueType = "string",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to search from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "file-path-list",
         ReturnsDescription = "Returns one child node per matching file path",
         SignatureType = typeof(global::magic.lambda.io.signatures.SearchFileSignature))]
     public class SearchFile : ISlotAsync

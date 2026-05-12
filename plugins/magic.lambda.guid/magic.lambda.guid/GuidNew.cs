@@ -16,6 +16,7 @@ namespace magic.lambda.guid
         Description = "Creates a new GUID",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "guid",
         ReturnsDescription = "Resolves to a new GUID string")]
     public class GuidNew : ISlot
     {

@@ -19,6 +19,7 @@ namespace magic.lambda.caching
         Name = "cache.set",
         Description = "Stores a value in the cache",
         ValueType = "string",
+        ValueKind = "cache-key",
         ValueDescription = "Cache key to store",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

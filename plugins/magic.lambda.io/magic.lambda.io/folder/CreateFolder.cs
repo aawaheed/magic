@@ -17,6 +17,7 @@ namespace magic.lambda.io.folder
         Name = "io.folder.create",
         Description = "Creates a folder on the server",
         ValueType = "string",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to create",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -18,11 +18,13 @@ namespace magic.lambda.io.stream
         Name = "io.stream.open-file",
         Description = "Opens a file stream",
         ValueType = "string",
+        ValueKind = "file-path",
         ValueDescription = "File path to open as a stream",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Stream",
+        ReturnsKind = "stream",
         ReturnsDescription = "Resolves to an open file stream")]
     public class OpenFileStream : ISlotAsync
     {

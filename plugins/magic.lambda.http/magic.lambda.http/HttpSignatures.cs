@@ -15,12 +15,57 @@ namespace magic.lambda.http.signatures
         /// <inheritdoc />
         public abstract IEnumerable<SlotChild> Children { get; }
 
-        internal static SlotChild Option(string name, string type, string description, string defaultValue = null)
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = "headers",
+                Type = "lambda",
+                Kind = "http-header-list",
+                Description = "HTTP response headers returned by the server",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "*",
+                        Type = "string",
+                        Kind = "http-header-value",
+                        Description = "HTTP response header value; child name is the header name",
+                        Required = false,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            },
+            new SlotChild
+            {
+                Name = "content",
+                Type = "string|byte[]|lambda",
+                Kind = "http-response-content",
+                Description = "HTTP response body; text responses are returned as string, binary responses as byte[], and converted known content types as child nodes when [convert] is true",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Role = SlotChildRole.Payload,
+                Projection = SlotChildProjection.Self,
+            },
+        };
+
+        internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,
@@ -40,10 +85,18 @@ namespace magic.lambda.http.signatures
                 "headers" => "HTTP header value",
                 _ => "Named value",
             };
+            var childKind = name switch
+            {
+                "query" => "query-parameter-value",
+                "url-params" => "url-parameter-value",
+                "headers" => "http-header-value",
+                _ => null,
+            };
             return new SlotChild
             {
                 Name = name,
                 Type = "lambda",
+                Kind = name == "headers" ? "http-header-list" : null,
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.DynamicNamedValues,
@@ -56,6 +109,7 @@ namespace magic.lambda.http.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = childKind,
                         Description = childDescription,
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -90,7 +144,7 @@ namespace magic.lambda.http.signatures
                 DynamicMap("query", "Query string parameters"),
                 DynamicMap("url-params", "Named replacements for {placeholders} in the URL"),
                 DynamicMap("headers", "HTTP request headers"),
-                Option("token", "string", "Bearer token to add as Authorization header"),
+                Option("token", "string", "Bearer token to add as Authorization header", kind: "bearer-token"),
                 Option("timeout", "int", "Request timeout in seconds"),
                 Option("convert", "bool", "Whether to convert known response content types to lambda", "false"),
                 Sse(),
@@ -131,7 +185,7 @@ namespace magic.lambda.http.signatures
                         Evaluation = SlotChildEvaluation.UnwrapDescendants,
                         Projection = SlotChildProjection.StructuredTree,
                     },
-                    Option("filename", "string", "File path to stream as the request payload"),
+                    Option("filename", "string", "File path to stream as the request payload", kind: "file-path"),
                 };
                 return result;
             }

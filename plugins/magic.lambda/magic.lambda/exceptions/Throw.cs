@@ -17,6 +17,7 @@ namespace magic.lambda.exceptions
         Name = "throw",
         Description = "Throws a Hyperlambda exception",
         ValueType = "string",
+        ValueKind = "exception-message",
         ValueDescription = "Exception message to throw",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

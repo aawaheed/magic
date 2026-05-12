@@ -19,6 +19,7 @@ namespace magic.lambda.sqlite
         Name = "sqlite.backup",
         Description = "Creates a backup of the current SQLite connection",
         ValueType = "string",
+        ValueKind = "file-path",
         ValueDescription = "Target SQLite database filename under files/data/",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

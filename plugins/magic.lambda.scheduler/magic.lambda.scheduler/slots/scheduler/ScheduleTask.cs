@@ -22,11 +22,13 @@ namespace magic.lambda.scheduler.slots.scheduler
         Name = "tasks.schedule",
         Description = "Schedules a task",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to schedule",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "schedule-id",
         ReturnsDescription = "Resolves to the created schedule ID",
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.ScheduleTaskSignature))]
     public class ScheduleTask : ISlotAsync

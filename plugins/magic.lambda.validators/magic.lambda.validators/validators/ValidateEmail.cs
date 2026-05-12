@@ -17,6 +17,7 @@ namespace magic.lambda.validators.validators
         Name = "validators.email",
         Description = "Validates that a value or resolved expression result is an email address, throwing if validation fails",
         ValueType = "string",
+        ValueKind = "email",
         ValueDescription = "Email value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

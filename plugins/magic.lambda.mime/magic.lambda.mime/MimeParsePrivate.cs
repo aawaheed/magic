@@ -16,11 +16,13 @@ namespace magic.lambda.mime
         Name = ".mime.parse",
         Description = "Parses a MIME message without exposing the public wrapper slot",
         ValueType = "MimeEntity",
+        ValueKind = "mime-entity",
         ValueDescription = "MIME entity to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "lambda",
+        ReturnsKind = "mime-tree",
         ReturnsDescription = "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities")]
     public class MimeParsePrivate : ISlot
     {

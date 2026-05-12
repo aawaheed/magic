@@ -17,6 +17,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.click",
         Description = "Clicks an element on the page",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

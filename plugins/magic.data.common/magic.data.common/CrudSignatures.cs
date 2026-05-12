@@ -25,6 +25,7 @@ namespace magic.data.common.signatures
             {
                 Name = "table",
                 Type = "string",
+                Kind = "table-name",
                 Description = "Table name to use in the SQL statement",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,

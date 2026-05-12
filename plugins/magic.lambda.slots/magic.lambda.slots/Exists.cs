@@ -15,11 +15,13 @@ namespace magic.lambda.slots
         Name = "slots.exists",
         Description = "Returns true if a dynamic slot exists",
         ValueType = "string",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to test for",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the slot exists")]
     public class Exists : ISlot
     {

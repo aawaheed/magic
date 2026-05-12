@@ -13,12 +13,13 @@ namespace magic.lambda.puppeteer.signatures
 
         public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
 
-        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        protected static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,
@@ -47,6 +48,7 @@ namespace magic.lambda.puppeteer.signatures
                     {
                         Name = ".",
                         Type = "string",
+                        Kind = "javascript-argument",
                         Description = "Argument value",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -68,9 +70,9 @@ namespace magic.lambda.puppeteer.signatures
             Option("headless", "bool", "Whether the browser should run headless", defaultValue: "true"),
             Option("timeout", "int", "Browser launch timeout in milliseconds"),
             Args("args", "Browser launch arguments"),
-            Option("user-data-dir", "string", "Browser user data directory"),
-            Option("executable", "string", "Browser executable path"),
-            Option("executable-path", "string", "Browser executable path"),
+            Option("user-data-dir", "string", "Browser user data directory", kind: "folder-path"),
+            Option("executable", "string", "Browser executable path", kind: "executable-path"),
+            Option("executable-path", "string", "Browser executable path", kind: "executable-path"),
         };
     }
 
@@ -78,7 +80,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
         };
     }
 
@@ -86,8 +88,8 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
-            Option("button", "string", "Mouse button to click", defaultValue: "left"),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
+            Option("button", "string", "Mouse button to click", defaultValue: "left", kind: "mouse-button"),
             Option("click-count", "int", "Number of clicks"),
             Option("delay", "int", "Delay in milliseconds between mouse down and up"),
         };
@@ -97,9 +99,9 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
-            Option("text", "string", "Text to send"),
-            Option("config-key", "string", "Configuration key resolving the text to send"),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
+            Option("text", "string", "Text to send", kind: "form-text"),
+            Option("config-key", "string", "Configuration key resolving the text to send", kind: "config-key"),
             Option("delay", "int", "Delay in milliseconds between key presses"),
         };
 
@@ -118,9 +120,9 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("url", "string", "URL to navigate to", true),
+            Option("url", "string", "URL to navigate to", true, kind: "url"),
             Option("timeout", "int", "Navigation timeout in milliseconds"),
-            Option("wait-until", "string", "Navigation completion condition"),
+            Option("wait-until", "string", "Navigation completion condition: load, domcontentloaded, networkidle0, or networkidle2", kind: "puppeteer-wait-until"),
         };
     }
 
@@ -128,7 +130,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
             Option("timeout", "int", "Wait timeout in milliseconds"),
             Option("visible", "bool", "Wait until selector is visible"),
             Option("hidden", "bool", "Wait until selector is hidden"),
@@ -139,7 +141,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("url", "string", "URL pattern to wait for", true),
+            Option("url", "string", "URL pattern to wait for", true, kind: "url"),
             Option("timeout", "int", "Wait timeout in milliseconds"),
         };
     }
@@ -148,7 +150,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("expression", "string", "JavaScript expression or function", true),
+            Option("expression", "string", "JavaScript expression or function", true, kind: "javascript"),
             Args("args", "Arguments passed to the JavaScript function"),
         };
     }
@@ -157,7 +159,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
             Args("values", "Option values to select"),
         };
     }
@@ -166,9 +168,9 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("filename", "string", "Destination filename", true),
+            Option("filename", "string", "Destination filename", true, kind: "image-file"),
             Option("full-page", "bool", "Whether to capture the full page", defaultValue: "false"),
-            Option("type", "string", "Image type"),
+            Option("type", "string", "Image type", kind: "image-format"),
             Option("quality", "int", "JPEG/WebP image quality"),
         };
     }
@@ -177,8 +179,8 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("selector", "string", "CSS selector", true),
-            Option("key", "string", "Key to press"),
+            Option("selector", "string", "CSS selector", true, kind: "css-selector"),
+            Option("key", "string", "Key to press", kind: "keyboard-key"),
             Option("delay", "int", "Delay in milliseconds between key down and up"),
         };
     }

@@ -15,6 +15,7 @@ namespace magic.lambda.config.signatures
             {
                 Name = "*",
                 Type = "string",
+                Kind = "config-default",
                 Description = "Default value source evaluated and returned when the configuration key does not exist",
                 Required = false,
                 Mode = SlotChildMode.ExecutableLambda,

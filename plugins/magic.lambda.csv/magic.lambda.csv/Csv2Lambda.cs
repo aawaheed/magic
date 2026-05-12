@@ -20,11 +20,13 @@ namespace magic.lambda.csv
         Name = "csv2lambda",
         Description = "Transforms CSV into a lambda hierarchy",
         ValueType = "string",
+        ValueKind = "csv",
         ValueDescription = "CSV text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "csv-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Csv2LambdaSignature))]
     public class Csv2Lambda : ISlot

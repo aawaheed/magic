@@ -15,11 +15,13 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.content",
         Description = "Returns the current page HTML content",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "html",
         ReturnsDescription = "Resolves to the current page HTML content")]
     public class Content : ISlotAsync
     {

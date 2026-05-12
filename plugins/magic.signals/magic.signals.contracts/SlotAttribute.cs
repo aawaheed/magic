@@ -31,6 +31,11 @@ namespace magic.signals.contracts
         public string ValueType { get; set; }
 
         /// <summary>
+        /// Optional semantic kind for the slot's input value argument.
+        /// </summary>
+        public string ValueKind { get; set; }
+
+        /// <summary>
         /// Optional description of the slot's input value argument.
         /// </summary>
         public string ValueDescription { get; set; }
@@ -62,6 +67,11 @@ namespace magic.signals.contracts
         /// payload returned from the slot.
         /// </summary>
         public string ReturnsType { get; set; }
+
+        /// <summary>
+        /// Optional semantic kind for the slot's documented return payload.
+        /// </summary>
+        public string ReturnsKind { get; set; }
 
         /// <summary>
         /// Optional description of the slot's documented return payload.

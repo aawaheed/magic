@@ -16,11 +16,13 @@ namespace magic.lambda.dates
         Name = "time.total-milliseconds",
         Description = "Returns the total milliseconds for a TimeSpan value",
         ValueType = "TimeSpan",
+        ValueKind = "timespan",
         ValueDescription = "Time span to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
+        ReturnsKind = "duration-ms",
         ReturnsDescription = "Resolves to the total number of milliseconds in the supplied time span")]
     public class TimeTotalMilliseconds : ISlot
     {

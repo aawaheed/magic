@@ -23,6 +23,7 @@ namespace magic.backend.slots
         Description = "Verifies an externally created JWT token from the required [token] child node",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "jwt-claims",
         ReturnsDescription = "Returns token claims as child nodes such as [issuer], [email], and optional [name] and [nonce]",
         SignatureType = typeof(global::magic.lambda.auth.signatures.VerifyTokenSignature))]
     public class VerifyToken : ISlotAsync

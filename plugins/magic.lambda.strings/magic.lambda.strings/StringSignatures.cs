@@ -15,6 +15,9 @@ namespace magic.lambda.strings.signatures
         /// <inheritdoc />
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
+
         protected static SlotChild Arg(
             string name,
             string type,
@@ -133,6 +136,17 @@ namespace magic.lambda.strings.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Arg(".", "string", "Text segment to concatenate", false, SlotChildCardinality.ZeroOrMore),
+        };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotConstraint> Constraints => new[]
+        {
+            new SlotConstraint
+            {
+                Kind = SlotConstraintKind.ExactlyOneOf,
+                Description = "Provide either expression input or child text segments",
+                Values = { "input", "." },
+            },
         };
     }
 

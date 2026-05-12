@@ -16,6 +16,7 @@ namespace magic.lambda.dates
         Description = "Returns the maximum DateTime value",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "DateTime",
+        ReturnsKind = "date",
         ReturnsDescription = "Resolves to the maximum supported DateTime value")]
     public class DateTimeMax : ISlot
     {

@@ -16,6 +16,7 @@ namespace magic.lambda.comparison
         Description = "Returns true if the first operand is less than or equal to the second operand",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if the first operand is less than or equal to the second operand",
         SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]
     public class Lte : BaseComparison

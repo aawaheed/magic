@@ -20,6 +20,7 @@ namespace magic.lambda.mysql.crud
         Description = "Deletes rows through the current MySQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
+        ReturnsKind = "count",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

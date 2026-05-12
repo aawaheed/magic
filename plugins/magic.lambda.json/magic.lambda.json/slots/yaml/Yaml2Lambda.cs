@@ -19,11 +19,13 @@ namespace magic.lambda.json.slots.yaml
         Name = "yaml2lambda",
         Description = "Transforms YAML into a lambda hierarchy",
         ValueType = "string",
+        ValueKind = "yaml",
         ValueDescription = "YAML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "yaml-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes")]
     public class Yaml2Lambda : ISlot
     {

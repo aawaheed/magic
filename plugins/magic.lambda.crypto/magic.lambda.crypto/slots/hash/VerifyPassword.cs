@@ -22,11 +22,13 @@ namespace magic.lambda.crypto.slots.hash
         Name = "crypto.password.verify",
         Description = "Verifies a password against a hash",
         ValueType = "string",
+        ValueKind = "password",
         ValueDescription = "Plaintext password to verify",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the password matches the supplied hash",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.VerifyPasswordSignature))]
     public class VerifyPassword : ISlot

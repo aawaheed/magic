@@ -15,12 +15,13 @@ namespace magic.lambda.scheduler.signatures
         /// <inheritdoc />
         public abstract IEnumerable<SlotChild> Children { get; }
 
-        internal static SlotChild Option(string name, string type, string description, bool required = false)
+        internal static SlotChild Option(string name, string type, string description, bool required = false, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -66,9 +67,9 @@ namespace magic.lambda.scheduler.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("description", "string", "Optional task description"),
+            Option("description", "string", "Optional task description", kind: "task-description"),
             Option("due", "DateTime", "Optional one-time due date"),
-            Option("repeats", "string", "Optional repeat pattern"),
+            Option("repeats", "string", "Optional repeat pattern", kind: "task-repeat-pattern"),
             Lambda(),
         };
     }
@@ -82,7 +83,7 @@ namespace magic.lambda.scheduler.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("due", "DateTime", "One-time due date"),
-            Option("repeats", "string", "Repeat pattern"),
+            Option("repeats", "string", "Repeat pattern", kind: "task-repeat-pattern"),
         };
 
         /// <inheritdoc />

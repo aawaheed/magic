@@ -21,6 +21,7 @@ namespace magic.lambda.system.plugins
         Name = "system.plugin.load",
         Description = "Loads a plugin assembly",
         ValueType = "string|byte[]",
+        ValueKind = "plugin-assembly,binary-content",
         ValueDescription = "Plugin assembly filename or assembly bytes",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

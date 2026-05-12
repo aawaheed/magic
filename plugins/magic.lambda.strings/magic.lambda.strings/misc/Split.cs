@@ -24,6 +24,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "string-list",
         ReturnsDescription = "Returns one child node per split string item",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SplitSignature))]
     public class Split : ISlotAsync

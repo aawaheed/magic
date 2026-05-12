@@ -11,15 +11,16 @@ namespace magic.lambda.json.signatures
     {
         public IEnumerable<SlotChild> Children => new[]
         {
-            Option("encoding", "string", "Text encoding used to read the JSON stream", "utf-8"),
+            Option("encoding", "string", "Text encoding used to read the JSON stream", "utf-8", "text-encoding"),
         };
 
-        static SlotChild Option(string name, string type, string description, string defaultValue)
+        static SlotChild Option(string name, string type, string description, string defaultValue, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,

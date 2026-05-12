@@ -17,6 +17,7 @@ namespace magic.lambda.crypto.slots.misc
         Name = "crypto.seed",
         Description = "Seeds the cryptographic random generator",
         ValueType = "string",
+        ValueKind = "crypto-seed",
         ValueDescription = "Seed value for the random generator",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

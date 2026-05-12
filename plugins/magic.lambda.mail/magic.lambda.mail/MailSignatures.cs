@@ -32,7 +32,7 @@ namespace magic.lambda.mail.signatures
                 Projection = SlotChildProjection.StructuredTree,
                 Children =
                 {
-                    Option("subject", "string", "Message subject", false),
+                    Option("subject", "string", "Message subject", false, "mail-subject"),
                     Addresses("to", true),
                     Addresses("from", false),
                     Addresses("cc", false),
@@ -43,12 +43,13 @@ namespace magic.lambda.mail.signatures
             };
         }
 
-        static internal SlotChild Option(string name, string type, string description, bool required)
+        static internal SlotChild Option(string name, string type, string description, bool required, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -84,8 +85,8 @@ namespace magic.lambda.mail.signatures
                         Projection = SlotChildProjection.StructuredTree,
                         Children =
                         {
-                            Option("name", "string", "Display name", false),
-                            Option("email", "string", "Email address", true),
+                            Option("name", "string", "Display name", false, "display-name"),
+                            Option("email", "string", "Email address", true, "email"),
                         },
                     },
                 },

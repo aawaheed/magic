@@ -17,11 +17,13 @@ namespace magic.lambda.strings.concat
         Name = "strings.concat",
         Description = "Concatenates strings",
         ValueType = "lambda",
+        ValueKind = "string-list",
         ValueDescription = "Expression yielding the text segments to concatenate when not supplied as child nodes",
         ValueRequired = false,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the concatenated string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ConcatSignature))]
     public class Concat : ISlotAsync

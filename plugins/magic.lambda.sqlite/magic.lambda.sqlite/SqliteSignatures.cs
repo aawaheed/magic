@@ -11,17 +11,18 @@ namespace magic.lambda.sqlite.signatures
     {
         public IEnumerable<SlotChild> Children => new[]
         {
-            Option("file", "string", "SQLite extension filename", true),
-            Option("proc", "string", "Optional extension entry point"),
+            Option("file", "string", "SQLite extension filename", true, kind: "sqlite-extension-file"),
+            Option("proc", "string", "Optional extension entry point", kind: "sqlite-entry-point"),
             Option("append-platform", "bool", "Whether to append the current platform suffix", false, "true"),
         };
 
-        static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null)
+        static SlotChild Option(string name, string type, string description, bool required = false, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = required,
                 DefaultValue = defaultValue,

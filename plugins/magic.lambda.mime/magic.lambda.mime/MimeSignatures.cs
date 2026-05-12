@@ -37,12 +37,13 @@ namespace magic.lambda.mime.signatures
             }
         }
 
-        internal static SlotChild Option(string name, string type, string description, string defaultValue = null)
+        internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
+                Kind = kind,
                 Description = description,
                 Required = false,
                 DefaultValue = defaultValue,
@@ -59,6 +60,7 @@ namespace magic.lambda.mime.signatures
             {
                 Name = "headers",
                 Type = "lambda",
+                Kind = "mime-header-list",
                 Description = "MIME headers",
                 Required = false,
                 Mode = SlotChildMode.DynamicNamedValues,
@@ -71,6 +73,7 @@ namespace magic.lambda.mime.signatures
                     {
                         Name = "*",
                         Type = "string",
+                        Kind = "mime-header-value",
                         Description = "Header name and value",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -84,15 +87,15 @@ namespace magic.lambda.mime.signatures
 
         internal static SlotChild Content()
         {
-            var result = Option("content", "string", "Inline MIME part content");
-            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding"));
+            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content");
+            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
             return result;
         }
 
         internal static SlotChild Filename()
         {
-            var result = Option("filename", "string", "File path to use as MIME part content");
-            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding"));
+            var result = Option("filename", "string", "File path to use as MIME part content", kind: "file-path");
+            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
             return result;
         }
 

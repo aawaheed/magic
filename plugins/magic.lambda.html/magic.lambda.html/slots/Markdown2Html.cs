@@ -19,11 +19,13 @@ namespace magic.lambda.html.slots
         Name = "markdown2html",
         Description = "Transforms Markdown into HTML",
         ValueType = "string",
+        ValueKind = "markdown",
         ValueDescription = "Markdown text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
+        ReturnsKind = "html",
         ReturnsDescription = "Resolves to the HTML in value and any YAML front matter as child nodes",
         SignatureType = typeof(global::magic.lambda.html.signatures.Markdown2HtmlSignature))]
     public class Markdown2Html : ISlot

@@ -14,6 +14,7 @@ namespace magic.lambda.io.misc
     [Slot(Name = ".io.folder.root", Description = "Returns the root folder for dynamic files",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "folder-path",
         ReturnsDescription = "Resolves to the absolute dynamic files root folder")]
     public class GetDynamicFiles : ISlot
     {

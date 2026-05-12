@@ -20,6 +20,7 @@ namespace magic.lambda.mssql.crud
         Description = "Reads rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "row-list",
         ReturnsDescription = "Returns one child node per row read from the current SQL Server connection",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

@@ -21,6 +21,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the matched destination nodes after all returned child nodes have been included",
         SignatureType = typeof(global::magic.lambda.signatures.IncludeSignature))]
     public class Include : ISlot

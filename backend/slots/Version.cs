@@ -15,6 +15,7 @@ namespace magic.backend.slots
         Description = "Returns the Magic Cloud version to the caller",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
+        ReturnsKind = "version",
         ReturnsDescription = "Resolves to the Magic Cloud version")]
     public class Version : ISlot
     {

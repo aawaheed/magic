@@ -17,6 +17,7 @@ namespace magic.data.common.slots.sql
         Description = "Builds a parameterized DELETE SQL statement; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
+        ReturnsKind = "sql-delete",
         ReturnsDescription = "Resolves to the generated SQL string in value and the generated parameter nodes as children",
         SignatureType = typeof(global::magic.data.common.signatures.SqlDeleteSignature))]
     public class Delete : ISlot

@@ -18,11 +18,13 @@ namespace magic.lambda.image.slots
         Name = "image.generate-qr",
         Description = "Creates a QR code image",
         ValueType = "string",
+        ValueKind = "text,url",
         ValueDescription = "Text or URL to encode in the QR code",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
+        ReturnsKind = "image",
         ReturnsDescription = "Resolves to the generated QR code image bytes",
         SignatureType = typeof(global::magic.lambda.image.signatures.QrSignature))]
     public class GenerateQr : ISlot

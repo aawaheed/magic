@@ -15,11 +15,13 @@ namespace magic.lambda.slots
         Name = "slots.get",
         Description = "Returns a dynamic slot by name",
         ValueType = "string",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        ReturnsKind = "dynamic-slot-lambda",
         ReturnsDescription = "Resolves to the dynamic slot lambda body as child nodes")]
     public class Get : ISlot
     {

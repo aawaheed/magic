@@ -20,11 +20,13 @@ namespace magic.lambda.mime
         Name = ".mime.create",
         Description = "Creates a MIME message without exposing the public wrapper slot",
         ValueType = "string",
+        ValueKind = "content-type",
         ValueDescription = "Primary MIME content type",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "MimeEntity",
+        ReturnsKind = "mime-message",
         ReturnsDescription = "Resolves to the created MimeKit MIME entity")]
     public class MimeCreatePrivate : ISlotAsync
     {

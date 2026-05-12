@@ -18,6 +18,7 @@ namespace magic.lambda.odbc
         Name = "odbc.connect",
         Description = "Opens a ODBC connection",
         ValueType = "string",
+        ValueKind = "connection-string",
         ValueDescription = "Optional connection string override",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

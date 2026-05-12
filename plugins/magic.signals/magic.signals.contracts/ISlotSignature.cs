@@ -18,6 +18,11 @@ namespace magic.signals.contracts
         IEnumerable<SlotChild> Children { get; }
 
         /// <summary>
+        /// Child nodes returned by the slot.
+        /// </summary>
+        IEnumerable<SlotChild> OutputChildren => new List<SlotChild>();
+
+        /// <summary>
         /// Structural constraints applying to the slot invocation.
         /// </summary>
         IEnumerable<SlotConstraint> Constraints => new List<SlotConstraint>();

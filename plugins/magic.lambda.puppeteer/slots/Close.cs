@@ -15,6 +15,7 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.close",
         Description = "Closes a Puppeteer session",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

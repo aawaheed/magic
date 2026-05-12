@@ -18,6 +18,7 @@ namespace magic.lambda.auth
         Name = "auth.ticket.verify",
         Description = "Verifies that the current user is authenticated and optionally in one of the specified roles",
         ValueType = "string",
+        ValueKind = "role",
         ValueDescription = "Optional comma-separated roles to require",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -20,6 +20,7 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.create",
         Description = "Creates a task",
         ValueType = "string",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to create",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -20,11 +20,13 @@ namespace magic.lambda.puppeteer
         Name = "puppeteer.screenshot",
         Description = "Captures a screenshot of the page",
         ValueType = "string",
+        ValueKind = "puppeteer-session",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
+        ReturnsKind = "image",
         ReturnsDescription = "Resolves to the screenshot image bytes",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerScreenshotSignature))]
     public class Screenshot : ISlotAsync
