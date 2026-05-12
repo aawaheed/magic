@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Newtonsoft.Json.Linq;
 using magic.node.extensions;
+using magic.signals.contracts;
 
 namespace magic.lambda.http.tests
 {
@@ -29,6 +30,21 @@ http.get:""https://jsonplaceholder.typicode.com/users/1""
             Assert.Equal("content", lambda.Children.First().Children.Skip(1).First().Name);
             var json = JObject.Parse(lambda.Children.First().Children.Skip(1).First().Get<string>());
             Assert.NotNull(json);
+        }
+
+        [Fact]
+        public void PostSignatureDocumentsPayloadAndFilenameAsAlternatives()
+        {
+            var lambda = Common.Evaluate("slot.signature:http.post");
+            var signature = lambda.Children.First();
+            var constraint = signature.Children
+                .First(x => x.Name == "constraints")
+                .Children
+                .First(x => x.Name == SlotConstraintKind.AtMostOneOf.ToString());
+            var values = constraint.Children.First(x => x.Name == "values").Children.Select(x => x.GetEx<string>()).ToList();
+
+            Assert.Contains("payload", values);
+            Assert.Contains("filename", values);
         }
 
         [Fact]

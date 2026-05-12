@@ -16,6 +16,9 @@ namespace magic.lambda.http.signatures
         public abstract IEnumerable<SlotChild> Children { get; }
 
         /// <inheritdoc />
+        public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
+
+        /// <inheritdoc />
         public virtual IEnumerable<SlotChild> OutputChildren => new[]
         {
             new SlotChild
@@ -197,6 +200,22 @@ namespace magic.lambda.http.signatures
                     Option("filename", "string", "File path to stream as the request payload", kind: "file-path"),
                 };
                 return result;
+            }
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotConstraint> Constraints
+        {
+            get
+            {
+                var result = new SlotConstraint
+                {
+                    Kind = SlotConstraintKind.AtMostOneOf,
+                    Description = "Provide either [payload] or [filename] as the request body source",
+                };
+                result.Values.Add("payload");
+                result.Values.Add("filename");
+                return new[] { result };
             }
         }
     }
