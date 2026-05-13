@@ -18,7 +18,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueType = "string",
         ValueKind = "task-id",
         ValueDescription = "Task ID to execute",
-        ValueRequired = false,
+        ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None)]
     public class ExecuteTask : ISlotAsync

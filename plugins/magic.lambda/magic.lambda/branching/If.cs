@@ -13,10 +13,7 @@ namespace magic.lambda.branching
     [Slot(
         Name = "if",
         Description = "Evaluates a conditional branch",
-        ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
-        ReturnsKind = "boolean",
-        ReturnsDescription = "Resolves to true if the if condition matched and its branch was evaluated",
+        ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class If : ISlot
     {

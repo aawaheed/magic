@@ -16,7 +16,11 @@ namespace magic.lambda.pgsql
     [Slot(
         Name = "pgsql.transaction.create",
         Description = "Creates a PostgreSQL transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "pgsql.connection",
+        ScopeProvider = "pgsql.connect",
+        ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
+        ProvidesScope = "pgsql.transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

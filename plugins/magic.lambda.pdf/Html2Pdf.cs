@@ -24,7 +24,7 @@ namespace magic.lambda.pdf
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsKind = "pdf",
+        ReturnsKind = "pdf-content",
         ReturnsDescription = "Resolves to the generated PDF bytes")]
     public class Html2Pdf : ISlot
     {

@@ -45,8 +45,8 @@ namespace magic.lambda.image.signatures
         {
             Type(),
             Dest(),
-            Option("width", "int", "Target width in pixels"),
-            Option("height", "int", "Target height in pixels"),
+            Option("width", "int", "Target width in pixels", kind: "image-dimensions"),
+            Option("height", "int", "Target height in pixels", kind: "image-dimensions"),
         };
     }
 
@@ -56,10 +56,10 @@ namespace magic.lambda.image.signatures
         {
             Type(),
             Dest(),
-            Option("left", "int", "Pixels to crop from the left edge", defaultValue: "0"),
-            Option("top", "int", "Pixels to crop from the top edge", defaultValue: "0"),
-            Option("right", "int", "Pixels to crop from the right edge", defaultValue: "0"),
-            Option("bottom", "int", "Pixels to crop from the bottom edge", defaultValue: "0"),
+            Option("left", "int", "Pixels to crop from the left edge", defaultValue: "0", kind: "image-crop-pixels"),
+            Option("top", "int", "Pixels to crop from the top edge", defaultValue: "0", kind: "image-crop-pixels"),
+            Option("right", "int", "Pixels to crop from the right edge", defaultValue: "0", kind: "image-crop-pixels"),
+            Option("bottom", "int", "Pixels to crop from the bottom edge", defaultValue: "0", kind: "image-crop-pixels"),
         };
     }
 

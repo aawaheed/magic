@@ -78,7 +78,7 @@ namespace magic.lambda.openai
             string model,
             byte[] content,
             string mimeType,
-            string language,
+            string? language,
             System.Threading.CancellationToken cancellationToken)
         {
             using(var formContent = new MultipartFormDataContent())

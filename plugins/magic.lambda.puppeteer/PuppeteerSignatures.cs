@@ -156,7 +156,7 @@ namespace magic.lambda.puppeteer.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("url", "string", "URL pattern to wait for", true, kind: "url"),
+            Option("url", "string", "URL pattern to wait for", true, kind: "url-pattern"),
             Option("timeout", "int", "Wait timeout in milliseconds"),
         };
     }

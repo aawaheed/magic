@@ -18,6 +18,9 @@ namespace magic.lambda.slots.signatures
         /// <inheritdoc />
         public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
 
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new SlotChild[0];
+
         internal static SlotChild ArgumentBag(string description, SlotChildPreprocess preprocess = SlotChildPreprocess.None)
         {
             return new SlotChild
@@ -49,6 +52,22 @@ namespace magic.lambda.slots.signatures
                 Projection = SlotChildProjection.Children,
             };
         }
+
+        internal static SlotChild ResultNode(string kind, string description)
+        {
+            return new SlotChild
+            {
+                Name = "*",
+                Type = "lambda",
+                Kind = kind,
+                Description = description,
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.Payload,
+                Projection = SlotChildProjection.Self,
+            };
+        }
     }
 
     /// <summary>
@@ -61,6 +80,12 @@ namespace magic.lambda.slots.signatures
         {
             ArgumentBag("Named argument passed to the dynamic slot as a child of [.arguments]"),
         };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            ResultNode("dynamic-slot-result-node", "Returned child node produced by the invoked dynamic slot"),
+        };
     }
 
     /// <summary>
@@ -72,6 +97,12 @@ namespace magic.lambda.slots.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             ArgumentBag("Named argument passed to the dynamic slot as a child of [.arguments]", SlotChildPreprocess.UnwrapExpressions),
+        };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            ResultNode("dynamic-slot-result-node", "Returned child node produced by the invoked dynamic slot after descendant expressions are unwrapped"),
         };
     }
 

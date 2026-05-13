@@ -19,7 +19,7 @@ namespace magic.lambda.dates
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "TimeSpan",
         ReturnsKind = "timespan",
-        ReturnsDescription = "Resolves to the current UTC time of day",
+        ReturnsDescription = "Resolves to the constructed TimeSpan value",
         SignatureType = typeof(global::magic.lambda.dates.signatures.TimeSignature))]
     public class Time : ISlot
     {

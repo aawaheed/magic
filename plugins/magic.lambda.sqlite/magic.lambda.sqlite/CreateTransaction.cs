@@ -16,7 +16,11 @@ namespace magic.lambda.sqlite
     [Slot(
         Name = "sqlite.transaction.create",
         Description = "Creates a SQLite transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
+        ProvidesScope = "sqlite.transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

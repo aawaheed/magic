@@ -69,7 +69,7 @@ namespace magic.lambda.crypto.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("strength", "int", "RSA key strength in bits", defaultValue: "2048"),
+            Option("strength", "int", "RSA key strength in bits", defaultValue: "2048", kind: "rsa-key-strength"),
             Option("seed", "string|byte[]", "Optional deterministic seed", kind: "crypto-seed"),
             Raw(),
         };

@@ -16,7 +16,11 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mysql.transaction.create",
         Description = "Creates a MySQL transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "mysql.connection",
+        ScopeProvider = "mysql.connect",
+        ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
+        ProvidesScope = "mysql.transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

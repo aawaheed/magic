@@ -22,7 +22,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueType = "string",
         ValueKind = "task-id",
         ValueDescription = "Task ID to create",
-        ValueRequired = false,
+        ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.CreateTaskSignature))]

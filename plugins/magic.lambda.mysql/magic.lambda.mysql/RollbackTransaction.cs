@@ -15,7 +15,10 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mysql.transaction.rollback",
         Description = "Rolls back the current MySQL transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "mysql.transaction",
+        ScopeProvider = "mysql.transaction.create",
+        ScopeDescription = "Requires an active MySQL transaction created by [mysql.transaction.create]")]
     public class RollbackTransaction : ISlot
     {
         /// <summary>

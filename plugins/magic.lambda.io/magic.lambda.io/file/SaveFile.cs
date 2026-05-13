@@ -38,7 +38,7 @@ namespace magic.lambda.io.file
         Name = "io.file.save.binary",
         Description = "Saves a binary file to the server",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "binary-file",
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

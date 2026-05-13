@@ -68,7 +68,7 @@ namespace magic.lambda.scheduler.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("description", "string", "Optional task description", kind: "task-description"),
-            Option("due", "DateTime", "Optional one-time due date"),
+            Option("due", "DateTime", "Optional one-time due date", kind: "date"),
             Option("repeats", "string", "Optional repeat pattern", kind: "task-repeat-pattern"),
             Lambda(),
         };
@@ -82,7 +82,7 @@ namespace magic.lambda.scheduler.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("due", "DateTime", "One-time due date"),
+            Option("due", "DateTime", "One-time due date", kind: "date"),
             Option("repeats", "string", "Repeat pattern", kind: "task-repeat-pattern"),
         };
 

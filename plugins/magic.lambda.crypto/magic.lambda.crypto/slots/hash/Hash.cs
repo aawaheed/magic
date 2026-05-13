@@ -27,7 +27,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.ConfigurableHashSignature))]
     [Slot(
@@ -40,7 +40,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
@@ -53,7 +53,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
@@ -66,7 +66,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
@@ -79,7 +79,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     [Slot(
@@ -92,7 +92,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "hash,fingerprint,binary-content",
+        ReturnsKind = "hash,fingerprint,hash-bytes",
         ReturnsDescription = "Resolves to the computed hash as text, raw bytes, or fingerprint according to [format]",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.HashSignature))]
     public class Hash : ISlotAsync

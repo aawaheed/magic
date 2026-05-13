@@ -13,10 +13,7 @@ namespace magic.lambda.branching
     [Slot(
         Name = "else-if",
         Description = "Evaluates an additional conditional branch",
-        ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
-        ReturnsKind = "boolean",
-        ReturnsDescription = "Resolves to true if the else-if condition matched and its branch was evaluated",
+        ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.ElseIfSignature))]
     public class ElseIf : ISlot
     {

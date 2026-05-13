@@ -15,7 +15,7 @@ namespace magic.lambda.crypto.slots.misc
         Name = "crypto.fingerprint",
         Description = "Creates a fingerprint from the supplied input",
         ValueType = "string|byte[]",
-        ValueKind = "content,binary-content",
+        ValueKind = "fingerprint-source",
         ValueDescription = "Base64 encoded content or raw byte[] content to fingerprint",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

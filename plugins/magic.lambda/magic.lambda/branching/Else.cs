@@ -13,10 +13,7 @@ namespace magic.lambda.branching
     [Slot(
         Name = "else",
         Description = "Evaluates the fallback branch in a conditional block",
-        ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
-        ReturnsKind = "boolean",
-        ReturnsDescription = "Resolves to true if the else branch was evaluated",
+        ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.ElseSignature))]
     public class Else : ISlot
     {

@@ -16,7 +16,11 @@ namespace magic.lambda.odbc
     [Slot(
         Name = "odbc.transaction.create",
         Description = "Creates a ODBC transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "odbc.connection",
+        ScopeProvider = "odbc.connect",
+        ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
+        ProvidesScope = "odbc.transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

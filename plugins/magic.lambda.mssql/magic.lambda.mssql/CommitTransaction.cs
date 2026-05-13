@@ -15,7 +15,10 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mssql.transaction.commit",
         Description = "Commits the current SQL Server transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "mssql.transaction",
+        ScopeProvider = "mssql.transaction.create",
+        ScopeDescription = "Requires an active SQL Server transaction created by [mssql.transaction.create]")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

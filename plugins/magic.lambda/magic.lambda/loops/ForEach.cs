@@ -19,10 +19,7 @@ namespace magic.lambda.loops
         ValueDescription = "Expression selecting the nodes to iterate",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
-        ReturnsKind = "node-list",
-        ReturnsDescription = "Resolves to the iterated nodes after the child lambda has been applied to each item",
+        ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.IteratorBodySignature))]
     public class ForEach : ISlot
     {

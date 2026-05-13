@@ -177,6 +177,23 @@ namespace magic.lambda.io.signatures
                 Projection = SlotChildProjection.ArgumentBag,
             },
         };
+
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = "*",
+                Type = "lambda",
+                Kind = "hyperlambda-result-node",
+                Description = "Returned child node produced by the executed Hyperlambda file",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.Payload,
+                Projection = SlotChildProjection.Self,
+            },
+        };
     }
 
     /// <summary>
@@ -225,7 +242,7 @@ namespace magic.lambda.io.signatures
             {
                 Name = "regex",
                 Type = "bool",
-                Kind = "boolean",
+                Kind = "search-regex-mode",
                 Description = "Whether [pattern] should be interpreted as a regular expression",
                 Required = false,
                 DefaultValue = "false",

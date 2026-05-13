@@ -27,6 +27,8 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
         ReturnsKind = "hyperlambda-result",
+        ReturnsElementType = "object",
+        ReturnsElementKind = "hyperlambda-result-node",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
     [Slot(
@@ -40,6 +42,8 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
         ReturnsKind = "hyperlambda-result",
+        ReturnsElementType = "object",
+        ReturnsElementKind = "hyperlambda-result-node",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileUnwrapSignature))]
     public class ExecuteFile : ISlotAsync

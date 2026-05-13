@@ -42,7 +42,7 @@ namespace magic.lambda.caching.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("value", "string", "Value to store; omitted or null removes the cached item", kind: "cache-value"),
-            Option("expiration", "long", "Expiration in seconds", "5"),
+            Option("expiration", "long", "Expiration in seconds", "5", "duration-seconds"),
         };
     }
 
@@ -54,7 +54,7 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("expiration", "long", "Expiration in seconds for newly created value", "5"),
+            Option("expiration", "long", "Expiration in seconds for newly created value", "5", "duration-seconds"),
             new SlotChild
             {
                 Name = ".lambda",

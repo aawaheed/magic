@@ -29,6 +29,8 @@ namespace magic.lambda.mssql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "sql-batch-result-list",
+        ReturnsElementType = "object",
+        ReturnsElementKind = "row",
         ReturnsDescription = "Returns one child node per batch execution result",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

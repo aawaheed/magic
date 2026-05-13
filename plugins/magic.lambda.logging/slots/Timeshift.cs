@@ -21,13 +21,15 @@ namespace magic.lambda.logging.slots
         Name = "log.timeshift",
         Description = "Aggregates log entries into time buckets",
         ValueType = "string",
-        ValueKind = "content-type",
-        ValueDescription = "Content type or search value to aggregate",
+        ValueKind = "log-search",
+        ValueDescription = "Search string or log entry type to aggregate over the last two weeks",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "count",
+        ReturnsKind = "log-timeshift-list",
+        ReturnsElementType = "object",
+        ReturnsElementKind = "log-timeshift-bucket",
         ReturnsDescription = "Returns one child node per day with [when] and [count] values for the time bucket")]
     public class Timeshift : ISlotAsync
     {

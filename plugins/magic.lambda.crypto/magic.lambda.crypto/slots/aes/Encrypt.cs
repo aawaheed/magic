@@ -22,7 +22,7 @@ namespace magic.lambda.crypto.slots.aes
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "aes-encrypted-package",
+        ReturnsKind = "aes-encrypted-package,fingerprint-source",
         ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.AesSignature))]
     public class Encrypt : ISlot

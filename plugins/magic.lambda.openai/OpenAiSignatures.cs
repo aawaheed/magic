@@ -12,12 +12,12 @@ namespace magic.lambda.openai.signatures
         public IEnumerable<SlotChild> Children => new[]
         {
             Option("key", "string", "OpenAI API key", true, "openai-api-key"),
-            Option("content", "byte[]", "Audio content bytes", true),
-            Option("type", "string", "Audio MIME type", true, "audio-mime-type"),
+            Option("content", "byte[]", "Audio content bytes", true, "binary-content"),
+            Option("type", "string", "Audio MIME type", true, "content-type"),
             Option("language", "string", "Optional language hint", kind: "language-code"),
         };
 
-        static SlotChild Option(string name, string type, string description, bool required = false, string kind = null)
+        static SlotChild Option(string name, string type, string description, bool required = false, string kind = "")
         {
             return new SlotChild
             {

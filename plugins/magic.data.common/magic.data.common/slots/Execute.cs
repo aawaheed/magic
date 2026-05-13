@@ -21,7 +21,7 @@ namespace magic.data.common.slots
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
+        ReturnsType = "int",
         ReturnsKind = "count",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "data.connection",

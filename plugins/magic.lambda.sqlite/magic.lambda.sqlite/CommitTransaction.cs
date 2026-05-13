@@ -15,7 +15,10 @@ namespace magic.lambda.sqlite
     [Slot(
         Name = "sqlite.transaction.commit",
         Description = "Commits the current SQLite transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "sqlite.transaction",
+        ScopeProvider = "sqlite.transaction.create",
+        ScopeDescription = "Requires an active SQLite transaction created by [sqlite.transaction.create]")]
     public class CommitTransaction : ISlot
     {
         /// <summary>

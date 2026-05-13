@@ -26,7 +26,7 @@ namespace magic.lambda.csv
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "csv-tree",
+        ReturnsKind = "csv-tree,lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Csv2LambdaSignature))]
     public class Csv2Lambda : ISlot

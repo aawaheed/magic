@@ -15,7 +15,11 @@ namespace magic.data.common.slots
     [Slot(
         Name = "data.transaction.create",
         Description = "Creates a database transaction using the configured provider",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "data.connection",
+        ScopeProvider = "data.connect",
+        ScopeDescription = "Requires an open database connection created by [data.connect]",
+        ProvidesScope = "data.transaction")]
     public class CreateTransaction : DataSlotBase
     {
         /// <summary>

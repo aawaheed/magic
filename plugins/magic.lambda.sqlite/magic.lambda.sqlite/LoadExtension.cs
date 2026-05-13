@@ -20,6 +20,9 @@ namespace magic.lambda.sqlite
         Name = "sqlite.load-extension",
         Description = "Loads a SQLite extension into the current connection from child-node arguments",
         ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "sqlite.connection",
+        ScopeProvider = "sqlite.connect",
+        ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.lambda.sqlite.signatures.LoadExtensionSignature))]
     public class LoadExtension : ISlotAsync
     {

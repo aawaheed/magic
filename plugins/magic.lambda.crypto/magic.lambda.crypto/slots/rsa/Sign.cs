@@ -23,7 +23,7 @@ namespace magic.lambda.crypto.slots.rsa
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "rsa-signature",
+        ReturnsKind = "rsa-signature,fingerprint-source",
         ReturnsDescription = "Resolves to the signature as base64 text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaPrivateKeySignature))]
     public class Sign : ISlot

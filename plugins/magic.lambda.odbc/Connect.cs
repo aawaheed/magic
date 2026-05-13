@@ -19,7 +19,7 @@ namespace magic.lambda.odbc
         Description = "Opens a ODBC connection",
         ValueType = "string",
         ValueKind = "connection-string",
-        ValueDescription = "Optional connection string override",
+        ValueDescription = "Optional ODBC connection string override; ODBC does not use the database-name shorthand supported by other database providers",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,

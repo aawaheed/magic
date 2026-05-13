@@ -16,7 +16,11 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mssql.transaction.create",
         Description = "Creates a SQL Server transaction",
-        ReturnsMode = SlotReturnsMode.None)]
+        ReturnsMode = SlotReturnsMode.None,
+        RequiresScope = "mssql.connection",
+        ScopeProvider = "mssql.connect",
+        ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
+        ProvidesScope = "mssql.transaction")]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

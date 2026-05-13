@@ -17,7 +17,7 @@ namespace magic.lambda.misc
         Name = "int2words",
         Description = "Converts an integer into words",
         ValueType = "long",
-        ValueKind = "number",
+        ValueKind = "integer,count",
         ValueDescription = "Integer value to convert to words",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

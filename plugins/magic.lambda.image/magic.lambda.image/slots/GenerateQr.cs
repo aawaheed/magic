@@ -18,7 +18,7 @@ namespace magic.lambda.image.slots
         Name = "image.generate-qr",
         Description = "Creates a QR code image",
         ValueType = "string",
-        ValueKind = "text,url",
+        ValueKind = "qr-content,url",
         ValueDescription = "Text or URL to encode in the QR code",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -64,7 +64,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "*",
                         Type = "object",
-                        Kind = "text,number,boolean,date,guid,content,value",
+                        Kind = "sql-column-value,text,number,boolean,date,guid,content,value",
                         Description = "Column name and value",
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -80,6 +80,7 @@ namespace magic.data.common.signatures
             {
                 Name = "where",
                 Type = "lambda",
+                Kind = "sql-predicate-root",
                 Description = "Optional boolean predicate tree",
                 Required = false,
                 Mode = SlotChildMode.StructuredArguments,
@@ -98,6 +99,7 @@ namespace magic.data.common.signatures
             {
                 Name = name,
                 Type = "lambda",
+                Kind = "sql-predicate-group",
                 Description = $"Boolean {name.ToUpperInvariant()} group",
                 Required = false,
                 Mode = SlotChildMode.StructuredArguments,
@@ -121,7 +123,7 @@ namespace magic.data.common.signatures
             {
                 Name = "*",
                 Type = "object",
-                Kind = "text,number,boolean,date,guid,content,value",
+                Kind = "sql-column-condition,text,number,boolean,date,guid,content,value",
                 Description = "Column condition; suffix the name with .eq, .neq, .gt, .gte, .lt, .lte, .like, .ilike, or .in to select an operator",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -180,6 +182,7 @@ namespace magic.data.common.signatures
                     {
                         Name = "on",
                         Type = "lambda",
+                        Kind = "sql-predicate-root",
                         Description = "Join predicate tree comparing columns or explicit parameters",
                         Required = true,
                         Mode = SlotChildMode.StructuredArguments,
@@ -348,7 +351,7 @@ namespace magic.data.common.signatures
             {
                 Name = "@*",
                 Type = "object",
-                Kind = "text,number,boolean,date,guid,content,value",
+                Kind = "sql-parameter-value,text,number,boolean,date,guid,content,value",
                 Description = "Explicit SQL parameter supplied by name for generated statements that reference it",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -582,7 +585,7 @@ namespace magic.data.common.signatures
             {
                 Name = "*",
                 Type = "object",
-                Kind = "text,number,boolean,date,guid,content,value",
+                Kind = "sql-parameter-value,text,number,boolean,date,guid,content,value",
                 Description = "SQL parameter value; child name is used as the parameter name referenced by the SQL statement",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,

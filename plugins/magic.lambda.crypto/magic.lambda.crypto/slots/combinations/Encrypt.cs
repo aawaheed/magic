@@ -29,7 +29,7 @@ namespace magic.lambda.crypto.slots.combinations
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "crypto-encrypted-package",
+        ReturnsKind = "crypto-encrypted-package,fingerprint-source",
         ReturnsDescription = "Resolves to the encrypted package as base64 text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationEncryptSignature))]
     public class Encrypt : ISlot

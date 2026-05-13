@@ -89,7 +89,7 @@ namespace magic.lambda.strings.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Arg(".", "string", "Separator to split on", true, SlotChildCardinality.OneOrMore),
+            Arg(".", "string", "Separator to split on", true, SlotChildCardinality.OneOrMore, "string-separator"),
         };
     }
 
@@ -101,7 +101,7 @@ namespace magic.lambda.strings.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Arg(".", "string", "Separator to place between joined values", false, SlotChildCardinality.ZeroOrOne),
+            Arg(".", "string", "Separator to place between joined values", false, SlotChildCardinality.ZeroOrOne, "string-separator"),
         };
     }
 

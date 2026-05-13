@@ -19,7 +19,7 @@ namespace magic.lambda.csv
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
         ValueType = "lambda",
-        ValueKind = "lambda-tree",
+        ValueKind = "csv-tree,row,record,object",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

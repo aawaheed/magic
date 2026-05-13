@@ -47,7 +47,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsKind = "binary-file-content",
+        ReturnsKind = "binary-file-content,fingerprint-source",
         ReturnsDescription = "Resolves to the loaded binary file bytes")]
     public class LoadFile : ISlotAsync
     {

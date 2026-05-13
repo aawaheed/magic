@@ -24,7 +24,7 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "html-tree",
+        ReturnsKind = "html-tree,lambda-tree",
         ReturnsDescription = "Resolves to the parsed HTML hierarchy as child nodes")]
     public class Html2Lambda : ISlot
     {
