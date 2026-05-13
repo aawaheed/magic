@@ -210,8 +210,8 @@ namespace magic.lambda.http.signatures
             {
                 var result = new SlotConstraint
                 {
-                    Kind = SlotConstraintKind.AtMostOneOf,
-                    Description = "Provide either [payload] or [filename] as the request body source",
+                    Kind = SlotConstraintKind.ExactlyOneOf,
+                    Description = "Provide exactly one of [payload] or [filename] as the request body source",
                 };
                 result.Values.Add("payload");
                 result.Values.Add("filename");

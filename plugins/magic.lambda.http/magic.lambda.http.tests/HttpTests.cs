@@ -40,7 +40,7 @@ http.get:""https://jsonplaceholder.typicode.com/users/1""
             var constraint = signature.Children
                 .First(x => x.Name == "constraints")
                 .Children
-                .First(x => x.Name == SlotConstraintKind.AtMostOneOf.ToString());
+                .First(x => x.Name == SlotConstraintKind.ExactlyOneOf.ToString());
             var values = constraint.Children.First(x => x.Name == "values").Children.Select(x => x.GetEx<string>()).ToList();
 
             Assert.Contains("payload", values);

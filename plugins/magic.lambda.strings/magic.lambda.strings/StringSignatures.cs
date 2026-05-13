@@ -23,13 +23,14 @@ namespace magic.lambda.strings.signatures
             string type,
             string description,
             bool required = true,
-            SlotChildCardinality cardinality = SlotChildCardinality.ExactlyOne)
+            SlotChildCardinality cardinality = SlotChildCardinality.ExactlyOne,
+            string kind = null)
         {
             return new SlotChild
             {
                 Name = name,
                 Type = type,
-                Kind = type == "string" ? "text" : null,
+                Kind = kind ?? (type == "string" ? "text" : null),
                 Description = description,
                 Required = required,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -125,6 +126,18 @@ namespace magic.lambda.strings.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Arg(".", "string", "Optional string argument", false, SlotChildCardinality.ZeroOrOne),
+        };
+    }
+
+    /// <summary>
+    /// Signature for trim slots taking an optional character set argument.
+    /// </summary>
+    public class TrimSignature : StringSignature
+    {
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Arg(".", "string", "Optional characters to trim", false, SlotChildCardinality.ZeroOrOne, "trim-characters"),
         };
     }
 

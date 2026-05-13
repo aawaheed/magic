@@ -120,4 +120,95 @@ namespace magic.lambda.mime.signatures
             };
         }
     }
+
+    /// <summary>
+    /// Signature for parsed MIME entity trees.
+    /// </summary>
+    public class MimeParseSignature : ISlotSignature
+    {
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> Children => new SlotChild[0];
+
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> OutputChildren => ParsedEntityChildren(2);
+
+        static IEnumerable<SlotChild> ParsedEntityChildren(int depth)
+        {
+            var result = new List<SlotChild>
+            {
+                ParsedHeaders(),
+                ParsedContent(),
+            };
+            if (depth > 0)
+                result.Add(ParsedEntity(depth - 1));
+            return result;
+        }
+
+        static SlotChild ParsedHeaders()
+        {
+            return new SlotChild
+            {
+                Name = "headers",
+                Type = "lambda",
+                Kind = "mime-header-list",
+                Description = "MIME headers from the parsed entity, excluding Content-Type because the entity content type is returned as the node value",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "*",
+                        Type = "string",
+                        Kind = "mime-header-value",
+                        Description = "Parsed MIME header value; child name is the header name",
+                        Required = false,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            };
+        }
+
+        static SlotChild ParsedContent()
+        {
+            return new SlotChild
+            {
+                Name = "content",
+                Type = "string|byte[]",
+                Kind = "mime-content,binary-content",
+                Description = "Decoded MIME part content; text parts return string content and binary parts return byte[] content",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Role = SlotChildRole.Payload,
+                Projection = SlotChildProjection.Value,
+            };
+        }
+
+        static SlotChild ParsedEntity(int depth)
+        {
+            var result = new SlotChild
+            {
+                Name = "entity",
+                Type = "lambda",
+                Kind = "mime-tree",
+                ElementType = "object",
+                ElementKind = "mime-tree-node",
+                Description = "Nested parsed MIME entity; node value is the nested entity content type",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+            };
+            result.Children.AddRange(ParsedEntityChildren(depth));
+            return result;
+        }
+    }
 }

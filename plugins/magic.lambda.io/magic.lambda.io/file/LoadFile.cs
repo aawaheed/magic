@@ -41,7 +41,7 @@ namespace magic.lambda.io.file
         Name = "io.file.load.binary",
         Description = "Loads a binary file from the server",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "binary-file",
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

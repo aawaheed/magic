@@ -421,7 +421,7 @@ namespace magic.lambda.http.services
             // If no [content] was given we check if caller supplied a [filename] argument.
             var filename = input.Children.FirstOrDefault(x => x.Name == "filename")?.GetEx<string>();
             if (filename == null)
-              return "";
+                throw new HyperlambdaException($"Supply either [payload] or [filename] to [{input.Name}]");
 
             // Caller supplied a [filename] argument, hence using it as a stream content object.
             if (await _fileService.ExistsAsync(_rootResolver.AbsolutePath(filename)))
