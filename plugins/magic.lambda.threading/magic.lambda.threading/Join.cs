@@ -23,6 +23,7 @@ namespace magic.lambda.threading
         ReturnsType = "lambda",
         ReturnsKind = "fork-result-list",
         ReturnsDescription = "Resolves to the completed [fork] child nodes with evaluated body node values and children preserved",
+        ProvidesScope = "join",
         SignatureType = typeof(global::magic.lambda.threading.signatures.JoinSignature))]
     public class Join : ISlotAsync
     {

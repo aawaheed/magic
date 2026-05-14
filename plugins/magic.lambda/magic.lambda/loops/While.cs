@@ -21,6 +21,7 @@ namespace magic.lambda.loops
         ReturnsType = "object",
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the final iteration value and any returned child nodes",
+        ProvidesScope = "while",
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class While : ISlot
     {

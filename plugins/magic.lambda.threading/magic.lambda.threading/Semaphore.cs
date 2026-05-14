@@ -24,6 +24,7 @@ namespace magic.lambda.threading
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "semaphore",
         SignatureType = typeof(global::magic.lambda.threading.signatures.SemaphoreSignature))]
     public class Semaphore : ISlotAsync
     {

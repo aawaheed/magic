@@ -14,6 +14,7 @@ namespace magic.lambda.branching
         Name = "if",
         Description = "Evaluates a conditional branch",
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesScope = "if",
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class If : ISlot
     {
