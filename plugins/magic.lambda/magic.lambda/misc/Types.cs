@@ -18,6 +18,8 @@ namespace magic.lambda.misc
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "type-name-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "type-name",
         ReturnsDescription = "Resolves to one child node per known CLR type name")]
     public class Types : ISlot
     {

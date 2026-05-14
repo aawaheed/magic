@@ -25,6 +25,8 @@ namespace magic.lambda.mssql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "row-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "row-object",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

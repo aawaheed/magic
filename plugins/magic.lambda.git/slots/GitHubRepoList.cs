@@ -23,6 +23,8 @@ namespace magic.lambda.git
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "github-repository-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "github-repository",
         ReturnsDescription = "Returns one child node per GitHub repository with the projected repository metadata",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoListSignature))]
     public class GitHubRepoList : ISlotAsync

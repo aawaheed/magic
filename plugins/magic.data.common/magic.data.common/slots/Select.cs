@@ -23,6 +23,8 @@ namespace magic.data.common.slots
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "row-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "row-object",
         ReturnsDescription = "Resolves to query result rows as child nodes",
         RequiresScope = "data.connection",
         ScopeProvider = "data.connect",

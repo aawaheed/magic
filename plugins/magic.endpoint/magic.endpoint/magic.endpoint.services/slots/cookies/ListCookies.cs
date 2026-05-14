@@ -18,6 +18,8 @@ namespace magic.endpoint.services.slots.cookies
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "cookie-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "cookie-value",
         ReturnsDescription = "Resolves to one child node per request cookie, with the cookie name as the node name and its value as the node value")]
     public class ListCookies : ISlot
     {

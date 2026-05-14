@@ -25,7 +25,9 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "file-path-list",
-        ReturnsDescription = "Returns one child node per loaded file with its content")]
+        ReturnsElementType = "string",
+        ReturnsElementKind = "file-content",
+        ReturnsDescription = "Returns one named child node per loaded file, where the child name is the relative file path and the value is the file's content")]
     public class LoadFileRecursively : ISlotAsync
     {
         readonly IRootResolver _rootResolver;

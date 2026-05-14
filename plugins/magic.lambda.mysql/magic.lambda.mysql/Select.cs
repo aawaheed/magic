@@ -26,6 +26,8 @@ namespace magic.lambda.mysql
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "row-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "row-object",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

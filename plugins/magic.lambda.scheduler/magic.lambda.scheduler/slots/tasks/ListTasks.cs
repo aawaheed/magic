@@ -25,6 +25,8 @@ namespace magic.lambda.scheduler.slots.tasks
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "task-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "task",
         ReturnsDescription = "Returns one child node per task with its task metadata",
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.ListTasksSignature))]
     public class ListTasks : ISlotAsync

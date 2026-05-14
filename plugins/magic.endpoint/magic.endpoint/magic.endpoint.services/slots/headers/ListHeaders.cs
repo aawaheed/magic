@@ -22,6 +22,8 @@ namespace magic.endpoint.services.slots.headers
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "http-header-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "http-header-value",
         ReturnsDescription = "Resolves to one child node per request header, with the header name as the node name and its value as the node value")]
     public class ListHeaders : ISlot
     {

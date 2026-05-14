@@ -25,7 +25,9 @@ namespace magic.lambda.caching
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "cache-key-list",
-        ReturnsDescription = "Returns one child node per cached key matching the optional filter",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "cache-entry",
+        ReturnsDescription = "Returns one child node per cached key matching the optional filter, each with [key] and [value] children",
         SignatureType = typeof(global::magic.lambda.caching.signatures.CacheListSignature))]
     public class CacheList : ISlotAsync
     {

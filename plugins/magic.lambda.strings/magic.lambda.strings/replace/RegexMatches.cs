@@ -26,6 +26,8 @@ namespace magic.lambda.strings.replace
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "regex-match-list",
+        ReturnsElementType = "string",
+        ReturnsElementKind = "regex-match",
         ReturnsDescription = "Returns one child node per regular expression match",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]
     public class RegexMatches : ISlotAsync
