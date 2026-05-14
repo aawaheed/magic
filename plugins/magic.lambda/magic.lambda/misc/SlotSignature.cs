@@ -268,6 +268,8 @@ namespace magic.lambda.misc
                 result.Add(new Node("target", constraint.Target));
             if (!string.IsNullOrEmpty(constraint.Description))
                 result.Add(new Node("description", constraint.Description));
+            if (!string.IsNullOrEmpty(constraint.ValuePattern))
+                result.Add(new Node("value-pattern", constraint.ValuePattern));
             if (constraint.Values.Any())
             {
                 var values = new Node("values");

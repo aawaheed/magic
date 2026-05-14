@@ -23,21 +23,9 @@ namespace magic.lambda.mime.signatures
         };
 
         /// <inheritdoc />
-        public IEnumerable<SlotConstraint> Constraints
-        {
-            get
-            {
-                var leaf = new SlotConstraint
-                {
-                    Kind = SlotConstraintKind.ExactlyOneOf,
-                    Description = "Leaf MIME parts require either [content] or [filename]",
-                };
-                leaf.Values.AddRange(new[] { "content", "filename" });
-                return new[] { leaf };
-            }
-        }
+        public IEnumerable<SlotConstraint> Constraints => EntityShapeConstraints();
 
-        internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
+        public static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
             {
@@ -54,7 +42,7 @@ namespace magic.lambda.mime.signatures
             };
         }
 
-        internal static SlotChild Headers()
+        public static SlotChild Headers()
         {
             return new SlotChild
             {
@@ -85,29 +73,36 @@ namespace magic.lambda.mime.signatures
             };
         }
 
-        internal static SlotChild Content()
+        public static SlotChild Content()
         {
             var result = Option("content", "string", "Inline MIME part content", kind: "mime-content");
             result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
             return result;
         }
 
-        internal static SlotChild Filename()
+        public static SlotChild Filename()
         {
             var result = Option("filename", "string", "File path to use as MIME part content", kind: "file-path");
             result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
             return result;
         }
 
-        internal static SlotChild Entity()
+        public static SlotChild Entity()
         {
-            return new SlotChild
+            return Entity(2);
+        }
+
+        // Depth-limited recursion so the schema can describe nested multiparts while staying finite.
+        static SlotChild Entity(int depth)
+        {
+            var result = new SlotChild
             {
                 Name = "entity",
-                Type = "lambda",
-                Description = "Nested MIME entity used by multipart content",
-                Required = false,
-                Mode = SlotChildMode.StructuredArguments,
+                Type = "string",
+                Kind = "content-type",
+                Description = "Nested MIME entity content type; same leaf-vs-multipart shape as the parent [mime.create] value",
+                Required = true,
+                Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.ZeroOrMore,
                 Role = SlotChildRole.StructuredObject,
                 Projection = SlotChildProjection.StructuredTree,
@@ -118,6 +113,51 @@ namespace magic.lambda.mime.signatures
                     Filename(),
                 },
             };
+            if (depth > 0)
+                result.Children.Add(Entity(depth - 1));
+            foreach (var c in EntityShapeConstraints())
+                result.Constraints.Add(c);
+            return result;
+        }
+
+        // Same leaf-vs-multipart shape constraints as the top-level slot, evaluated against the
+        // entity node's value (its MIME content type). Reusable so [mail.smtp.send] can attach
+        // them to its own [message/entity] child.
+        public static IEnumerable<SlotConstraint> EntityShapeConstraints()
+        {
+            var leaf = new SlotConstraint
+            {
+                Kind = SlotConstraintKind.ExactlyOneOf,
+                Description = "Leaf MIME parts require either [content] or [filename]",
+                ValuePattern = @"^(?!multipart/).+/.+$",
+            };
+            leaf.Values.AddRange(new[] { "content", "filename" });
+
+            var leafExcludesEntity = new SlotConstraint
+            {
+                Kind = SlotConstraintKind.Excludes,
+                Description = "Leaf MIME parts must not contain nested [entity] children",
+                ValuePattern = @"^(?!multipart/).+/.+$",
+            };
+            leafExcludesEntity.Values.Add("entity");
+
+            var multipart = new SlotConstraint
+            {
+                Kind = SlotConstraintKind.AtLeastOneOf,
+                Description = "Multipart MIME parts require one or more [entity] children",
+                ValuePattern = @"^multipart/.+$",
+            };
+            multipart.Values.Add("entity");
+
+            var multipartExcludesLeaf = new SlotConstraint
+            {
+                Kind = SlotConstraintKind.Excludes,
+                Description = "Multipart MIME parts must not contain [content] or [filename]",
+                ValuePattern = @"^multipart/.+$",
+            };
+            multipartExcludesLeaf.Values.AddRange(new[] { "content", "filename" });
+
+            return new[] { leaf, leafExcludesEntity, multipart, multipartExcludesLeaf };
         }
     }
 
@@ -196,11 +236,9 @@ namespace magic.lambda.mime.signatures
             var result = new SlotChild
             {
                 Name = "entity",
-                Type = "lambda",
-                Kind = "mime-tree",
-                ElementType = "object",
-                ElementKind = "mime-tree-node",
-                Description = "Nested parsed MIME entity; node value is the nested entity content type",
+                Type = "string",
+                Kind = "content-type",
+                Description = "Nested parsed MIME entity; node value is the nested entity content type, and children carry headers, content, and any deeper entities",
                 Required = false,
                 Mode = SlotChildMode.Value,
                 Cardinality = SlotChildCardinality.ZeroOrMore,

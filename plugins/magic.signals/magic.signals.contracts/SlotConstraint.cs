@@ -30,5 +30,12 @@ namespace magic.signals.contracts
         /// Names used by the constraint.
         /// </summary>
         public List<string> Values { get; } = new List<string>();
+
+        /// <summary>
+        /// Optional regex pattern that the slot's value must match for the constraint to apply.
+        /// When null or empty the constraint applies unconditionally. Lets a single slot describe
+        /// value-dependent shapes (e.g. [mime.create] with leaf-vs-multipart child structure).
+        /// </summary>
+        public string ValuePattern { get; set; }
     }
 }

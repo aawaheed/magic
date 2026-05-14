@@ -23,11 +23,11 @@ namespace magic.lambda.mime
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "lambda",
-        ReturnsKind = "mime-tree",
+        ReturnsType = "string",
+        ReturnsKind = "content-type",
         ReturnsElementType = "object",
         ReturnsElementKind = "mime-tree-node",
-        ReturnsDescription = "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities",
+        ReturnsDescription = "Resolves to the parsed MIME entity content type as the node value, and headers, content, and nested entities as child nodes",
         SignatureType = typeof(global::magic.lambda.mime.signatures.MimeParseSignature))]
     public class MimeParse : ISlot
     {

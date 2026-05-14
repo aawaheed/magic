@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using magic.signals.contracts;
+using MimeSig = magic.lambda.mime.signatures.MimeCreateSignature;
 
 namespace magic.lambda.mail.signatures
 {
@@ -96,21 +97,18 @@ namespace magic.lambda.mail.signatures
             };
         }
 
+        // The message body's [entity] is consumed by the runtime via [.mime.create], so it must
+        // mirror that slot's MIME entity shape exactly (content-type value plus leaf or multipart
+        // children). Reuse the shared declaration so meta stays in sync — every constraint, child
+        // and kind hint from [mime.create] applies here too.
         static SlotChild Entity()
         {
-            return new SlotChild
-            {
-                Name = "entity",
-                Type = "lambda",
-                Kind = "mime-entity",
-                Description = "MIME entity declaration for the message body",
-                Required = true,
-                Mode = SlotChildMode.StructuredArguments,
-                Cardinality = SlotChildCardinality.ExactlyOne,
-                Role = SlotChildRole.Payload,
-                Evaluation = SlotChildEvaluation.UnwrapDescendants,
-                Projection = SlotChildProjection.StructuredTree,
-            };
+            var entity = MimeSig.Entity();
+            entity.Description = "MIME entity declaration for the message body; node value is the MIME content type";
+            entity.Cardinality = SlotChildCardinality.ExactlyOne;
+            entity.Role = SlotChildRole.Payload;
+            entity.Evaluation = SlotChildEvaluation.UnwrapDescendants;
+            return entity;
         }
     }
 
