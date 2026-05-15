@@ -76,6 +76,18 @@ namespace magic.data.common.signatures
 
         internal static SlotChild Where()
         {
+            // The SQL builder concatenates top-level boolean groups under
+            // [where] with no joiner between them (see SqlWhereBuilder
+            // .AppendBooleanLevel) — only ONE [and] OR [or] is valid at the
+            // top level, even though deeper nesting freely accepts multiples.
+            // Override the recursive BooleanLevel cardinality to ZeroOrOne at
+            // the top level and add an ExactlyOneOf constraint so consumers
+            // (and the synthesizer) emit a single, well-formed predicate
+            // root.
+            var and = BooleanLevel("and", 1);
+            var or = BooleanLevel("or", 1);
+            and.Cardinality = SlotChildCardinality.ZeroOrOne;
+            or.Cardinality = SlotChildCardinality.ZeroOrOne;
             return new SlotChild
             {
                 Name = "where",
@@ -85,10 +97,15 @@ namespace magic.data.common.signatures
                 Required = false,
                 Mode = SlotChildMode.StructuredArguments,
                 Cardinality = SlotChildCardinality.ZeroOrOne,
-                Children =
+                Children = { and, or },
+                Constraints =
                 {
-                    BooleanLevel("and", 1),
-                    BooleanLevel("or", 1),
+                    new SlotConstraint
+                    {
+                        Kind = SlotConstraintKind.ExactlyOneOf,
+                        Description = "Where clause renders one top-level boolean group",
+                        Values = { "and", "or" },
+                    },
                 },
             };
         }
@@ -146,6 +163,14 @@ namespace magic.data.common.signatures
 
         internal static SlotChild Join(int depth)
         {
+            // Top-level [and]/[or] inside [on] are ZeroOrOne (same reason as
+            // Where() — the SQL builder can render exactly one top-level
+            // boolean group). ExactlyOneOf constraint forces the [on] body to
+            // emit precisely one group; nested levels stay ZeroOrMore.
+            var onAnd = BooleanLevel("and", 1);
+            var onOr = BooleanLevel("or", 1);
+            onAnd.Cardinality = SlotChildCardinality.ZeroOrOne;
+            onOr.Cardinality = SlotChildCardinality.ZeroOrOne;
             var result = new SlotChild
             {
                 Name = "join",
@@ -187,17 +212,13 @@ namespace magic.data.common.signatures
                         Required = true,
                         Mode = SlotChildMode.StructuredArguments,
                         Cardinality = SlotChildCardinality.ExactlyOne,
-                        Children =
-                        {
-                            BooleanLevel("and", 1),
-                            BooleanLevel("or", 1),
-                        },
+                        Children = { onAnd, onOr },
                         Constraints =
                         {
                             new SlotConstraint
                             {
-                                Kind = SlotConstraintKind.AtLeastOneOf,
-                                Description = "Join predicate must contain at least one boolean group",
+                                Kind = SlotConstraintKind.ExactlyOneOf,
+                                Description = "Join predicate renders one top-level boolean group",
                                 Values = { "and", "or" },
                             },
                         },
