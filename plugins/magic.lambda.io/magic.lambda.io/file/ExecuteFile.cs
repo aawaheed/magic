@@ -18,7 +18,7 @@ namespace magic.lambda.io.file
     /// </summary>
     [Slot(
         Name = "io.file.execute",
-        Description = "Executes a file on the server",
+        Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
         ValueType = "string",
         ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",
@@ -33,7 +33,7 @@ namespace magic.lambda.io.file
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
     [Slot(
         Name = "execute-file",
-        Description = "Executes a file on the server",
+        Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
         ValueType = "string",
         ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",

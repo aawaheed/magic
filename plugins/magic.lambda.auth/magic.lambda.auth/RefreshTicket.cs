@@ -19,7 +19,7 @@ namespace magic.lambda.auth
     /// </summary>
     [Slot(
         Name = "auth.ticket.refresh",
-        Description = "Refreshes an existing JWT ticket",
+        Description = "Issues a new JWT with an extended expiration based on the current ticket, so active users don't get logged out",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsKind = "jwt",

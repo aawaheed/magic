@@ -14,7 +14,7 @@ namespace magic.lambda.strings.replace
     /// </summary>
     [Slot(
         Name = "strings.capitalize",
-        Description = "Capitalizes the specified string",
+        Description = "Returns the input with its first character upper-cased; remainder is left untouched",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to capitalize",

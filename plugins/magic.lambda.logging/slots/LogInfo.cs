@@ -15,7 +15,7 @@ namespace magic.lambda.logging.slots
     /// </summary>
     [Slot(
         Name = "log.info",
-        Description = "Logs an informational entry",
+        Description = "Writes an informational log entry capturing routine, non-error events of interest",
         ValueType = "string",
         ValueKind = "log-message,text",
         ValueDescription = "Log message to write",

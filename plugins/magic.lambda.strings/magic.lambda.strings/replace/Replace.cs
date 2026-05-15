@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
     /// </summary>
     [Slot(
         Name = "strings.replace",
-        Description = "Replaces occurrences of a substring",
+        Description = "Returns the text with every occurrence of [what] swapped for [with]; pass an empty [with] to strip matches",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",

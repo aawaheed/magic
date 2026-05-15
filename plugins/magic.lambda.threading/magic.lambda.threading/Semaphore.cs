@@ -17,7 +17,7 @@ namespace magic.lambda.threading
     /// </summary>
     [Slot(
         Name = "semaphore",
-        Description = "Evaluates the child lambda object inside a named semaphore",
+        Description = "Serializes access to a critical section by name; only one thread at a time can enter a given semaphore",
         ValueType = "string",
         ValueKind = "semaphore-name",
         ValueDescription = "Semaphore name used to serialize access",

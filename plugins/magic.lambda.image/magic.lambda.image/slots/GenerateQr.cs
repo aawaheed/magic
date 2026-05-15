@@ -16,7 +16,7 @@ namespace magic.lambda.image.slots
     /// </summary>
     [Slot(
         Name = "image.generate-qr",
-        Description = "Creates a QR code image",
+        Description = "Renders the supplied text or URL into a PNG QR code; commonly used for links and payment codes",
         ValueType = "string",
         ValueKind = "qr-content,url",
         ValueDescription = "Text or URL to encode in the QR code",

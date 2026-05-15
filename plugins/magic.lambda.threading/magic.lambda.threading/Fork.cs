@@ -16,7 +16,7 @@ namespace magic.lambda.threading
     /// </summary>
     [Slot(
         Name = "fork",
-        Description = "Creates a new thread and executes the specified lambda object on the new thread",
+        Description = "Spawns a fire-and-forget background thread that evaluates the child lambda; the parent continues immediately",
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "fork",
         SignatureType = typeof(global::magic.lambda.threading.signatures.ForkSignature))]

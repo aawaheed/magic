@@ -13,7 +13,7 @@ namespace magic.lambda.source
     /// </summary>
     [Slot(
         Name = "get-nodes",
-        Description = "Returns matching nodes",
+        Description = "Returns clones of every node matching the expression as children of the current node",
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to retrieve",
         ValueRequired = true,

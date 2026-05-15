@@ -16,7 +16,7 @@ namespace magic.lambda.io.stream
     /// </summary>
     [Slot(
         Name = "io.stream.open-file",
-        Description = "Opens a file stream",
+        Description = "Opens a file as a read-only stream so large files can be processed without loading them into memory; close with [io.stream.close]",
         ValueType = "string",
         ValueKind = "file-path",
         ValueDescription = "File path to open as a stream",

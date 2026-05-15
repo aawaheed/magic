@@ -17,7 +17,7 @@ namespace magic.lambda.strings.misc
     /// </summary>
     [Slot(
         Name = "strings.split",
-        Description = "Splits a string into items",
+        Description = "Splits a string at every occurrence of the separator and returns each segment as an unnamed child node",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to split",

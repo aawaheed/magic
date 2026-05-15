@@ -15,7 +15,7 @@ namespace magic.lambda.config
     /// </summary>
     [Slot(
         Name = "config.section",
-        Description = "Returns a configuration section",
+        Description = "Reads an entire appsettings.json section by key, returning its keys and nested values as child nodes",
         ValueType = "string",
         ValueKind = "config-key",
         ValueDescription = "Configuration section to retrieve",

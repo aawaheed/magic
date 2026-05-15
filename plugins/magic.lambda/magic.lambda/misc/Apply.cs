@@ -17,7 +17,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "apply",
-        Description = "Transforms template nodes by replacing named placeholders",
+        Description = "Stamps a template lambda with values from child argument nodes, producing one fully-substituted output per [.dp]",
         ValueType = "expression",
         ValueDescription = "Expression selecting the template node or nodes to transform",
         ValueRequired = true,

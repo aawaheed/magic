@@ -15,7 +15,7 @@ namespace magic.lambda.http
     /// </summary>
     [Slot(
         Name = "http.post",
-        Description = "Makes an HTTP POST request",
+        Description = "Issues an HTTP POST to the specified URL with payload from [payload] or [filename]; returns the response body and headers",
         ValueType = "string",
         ValueKind = "url-template",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",

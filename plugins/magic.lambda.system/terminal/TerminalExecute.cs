@@ -21,7 +21,7 @@ namespace magic.lambda.system.terminal
     /// </summary>
     [Slot(
         Name = "system.execute",
-        Description = "Executes a system process",
+        Description = "Spawns a shell process with the given command and arguments and returns its captured output",
         ValueType = "string",
         ValueKind = "terminal-command",
         ValueDescription = "Command to execute",

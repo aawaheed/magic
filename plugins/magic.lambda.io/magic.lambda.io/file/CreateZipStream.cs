@@ -17,7 +17,7 @@ namespace magic.lambda.io.file
     /// </summary>
     [Slot(
         Name = "io.content.zip-stream",
-        Description = "Creates a zip stream from the supplied content",
+        Description = "Builds an in-memory zip stream from child entries; useful for returning an archive over HTTP without writing to disk",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Stream",
         ReturnsKind = "zip-stream",

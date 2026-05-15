@@ -17,7 +17,7 @@ namespace magic.lambda.crypto.slots.misc
     /// </summary>
     [Slot(
         Name = "crypto.random.int",
-        Description = "Returns a random integer",
+        Description = "Returns a cryptographically secure random integer; use the optional [max] to cap the upper bound",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
         ReturnsKind = "random-number",

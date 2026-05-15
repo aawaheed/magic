@@ -14,7 +14,7 @@ namespace magic.lambda.openai
     /// </summary>
     [Slot(
         Name = "openai.tokenize",
-        Description = "Tokenizes the specified input",
+        Description = "Counts how many OpenAI tokens the given text consumes; useful for estimating cost or staying under context limits",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to tokenize",

@@ -17,7 +17,7 @@ namespace magic.lambda.logging.slots
     /// </summary>
     [Slot(
         Name = "log.query",
-        Description = "Queries log entries",
+        Description = "Returns recent log entries with most-recent-first ordering; supports optional content-type filtering and pagination",
         ValueType = "string",
         ValueKind = "content-type",
         ValueDescription = "Optional content type filter",

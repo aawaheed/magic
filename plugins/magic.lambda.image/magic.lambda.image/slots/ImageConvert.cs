@@ -14,7 +14,7 @@ namespace magic.lambda.image.slots
     /// </summary>
     [Slot(
         Name = "image.convert",
-        Description = "Converts an image to another format",
+        Description = "Re-encodes an image into a different format (e.g. PNG to JPEG) preserving its pixel content",
         ValueType = "string|Stream",
         ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to convert",

@@ -14,7 +14,7 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "mime.add",
-        Description = "Registers a MIME type mapping",
+        Description = "Associates a file extension with a MIME content-type so the server returns the correct Content-Type header for matching responses",
         ValueType = "string",
         ValueKind = "content-type",
         ValueDescription = "File extension or MIME type key to register",

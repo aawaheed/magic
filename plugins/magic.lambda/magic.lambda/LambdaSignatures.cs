@@ -610,8 +610,8 @@ namespace magic.lambda.signatures
         {
             new SlotConstraint
             {
-                Kind = SlotConstraintKind.NextSiblingMayBeOneOf,
-                Description = "May be followed by [.catch] and/or [.finally]",
+                Kind = SlotConstraintKind.NextSiblingMustBeOneOf,
+                Description = "Must be followed by [.catch] and/or [.finally]; a bare [try] is a no-op because uncaught exceptions re-throw and [.finally] alone would run regardless",
                 Values = { ".catch", ".finally" },
             },
         };

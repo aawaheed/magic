@@ -13,7 +13,7 @@ namespace magic.lambda.guid
     /// </summary>
     [Slot(
         Name = "guid.new",
-        Description = "Creates a new GUID",
+        Description = "Generates a random version-4 GUID for use as a unique identifier",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsKind = "guid",

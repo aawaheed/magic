@@ -15,7 +15,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "floatArray2bytes",
-        Description = "Converts float values to a byte array",
+        Description = "Serializes a sequence of float values into raw bytes; useful for embedding vectors or feeding binary APIs",
         ValueType = "float[]",
         ValueKind = "float-list",
         ValueDescription = "Float values to convert to bytes",

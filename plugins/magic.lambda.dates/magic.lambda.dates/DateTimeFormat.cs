@@ -16,7 +16,7 @@ namespace magic.lambda.dates
     /// </summary>
     [Slot(
         Name = "date.format",
-        Description = "Formats a DateTime value",
+        Description = "Formats a DateTime using a .NET format string (e.g. yyyy-MM-dd HH:mm) for display or logging",
         ValueType = "DateTime",
         ValueKind = "date",
         ValueDescription = "Date value to format",

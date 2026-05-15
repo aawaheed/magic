@@ -17,7 +17,7 @@ namespace magic.lambda.crypto.slots.hash
     /// </summary>
     [Slot(
         Name = "crypto.password.hash",
-        Description = "Hashes a password",
+        Description = "Hashes a plaintext password with bcrypt and a per-user salt; check candidates later with [crypto.password.verify]",
         ValueType = "string",
         ValueKind = "password",
         ValueDescription = "Password to hash",

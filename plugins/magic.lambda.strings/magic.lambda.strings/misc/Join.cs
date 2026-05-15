@@ -16,7 +16,7 @@ namespace magic.lambda.strings.misc
     /// </summary>
     [Slot(
         Name = "strings.join",
-        Description = "Joins strings with a separator",
+        Description = "Concatenates the values yielded by the expression, inserting the separator between adjacent items",
         ValueType = "lambda",
         ValueKind = "string-list",
         ValueDescription = "Expression yielding the values to join",

@@ -18,7 +18,7 @@ namespace magic.lambda.image.slots
   /// </summary>
   [Slot(
         Name = "image.chart",
-        Description = "Creates a chart image",
+        Description = "Renders a bar, stacked, or grouped chart from the supplied series data as a PNG image",
         ValueType = "string",
         ValueKind = "chart-type",
         ValueDescription = "Chart type to create, such as bars, stacked, or grouped",

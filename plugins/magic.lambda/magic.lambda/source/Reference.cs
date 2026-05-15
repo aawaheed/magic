@@ -14,7 +14,7 @@ namespace magic.lambda.source
     /// </summary>
     [Slot(
         Name = "reference",
-        Description = "Returns a reference to matching nodes",
+        Description = "Returns the first matched node as a live reference so callers can mutate it in place rather than copy its value",
         ValueType = "expression",
         ValueDescription = "Expression selecting the node to reference",
         ValueRequired = true,

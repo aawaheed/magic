@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
     /// </summary>
     [Slot(
         Name = "strings.substring",
-        Description = "Returns a substring from the specified string",
+        Description = "Extracts a portion of a string starting at the given offset and optional length; out-of-range bounds throw",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",

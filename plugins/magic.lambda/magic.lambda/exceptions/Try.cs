@@ -15,7 +15,7 @@ namespace magic.lambda.exceptions
     /// </summary>
     [Slot(
         Name = "try",
-        Description = "Evaluates a try-catch block",
+        Description = "Evaluates the protected body; pair with [.catch] to handle exceptions and/or [.finally] to always run cleanup",
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "try",
         SignatureType = typeof(global::magic.lambda.signatures.TrySignature))]

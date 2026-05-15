@@ -14,7 +14,7 @@ namespace magic.lambda.strings.misc
     /// </summary>
     [Slot(
         Name = "strings.byte-count",
-        Description = "Returns the byte count of a string",
+        Description = "Returns the UTF-8 byte length of a string; useful for size checks where multi-byte characters matter",
         ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to measure",

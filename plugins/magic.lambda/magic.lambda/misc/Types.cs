@@ -14,7 +14,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "types",
-        Description = "Lists known CLR types",
+        Description = "Lists every CLR type name recognized by Hyperlambda; useful when [convert] or [type] needs a valid target",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "type-name-list",

@@ -12,7 +12,7 @@ namespace magic.lambda.branching
     /// </summary>
     [Slot(
         Name = "else-if",
-        Description = "Evaluates an additional conditional branch",
+        Description = "Evaluates the child lambda when its condition is true and no preceding [if]/[else-if] branch matched",
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.ElseIfSignature))]
     public class ElseIf : ISlot

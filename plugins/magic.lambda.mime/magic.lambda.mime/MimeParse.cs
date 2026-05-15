@@ -16,7 +16,7 @@ namespace magic.lambda.mime
     /// </summary>
     [Slot(
         Name = "mime.parse",
-        Description = "Parses a MIME message",
+        Description = "Parses a raw MIME message into a lambda tree of headers and body parts; commonly used for email or multipart payloads",
         ValueType = "string",
         ValueKind = "mime-message",
         ValueDescription = "Raw MIME message to parse",

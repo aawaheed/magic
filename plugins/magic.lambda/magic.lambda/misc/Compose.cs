@@ -14,7 +14,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "compose",
-        Description = "Creates a new expression by joining the evaluated child node values",
+        Description = "Builds an expression at runtime by concatenating the evaluated child node values; useful for dynamic node selection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "Expression",
         ReturnsKind = "expression",

@@ -17,7 +17,7 @@ namespace magic.lambda.auth
     /// </summary>
     [Slot(
         Name = "auth.ticket.create",
-        Description = "Creates a JWT ticket",
+        Description = "Issues a signed JWT carrying the supplied username, roles, and claims; typically returned after a successful login",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsKind = "jwt",

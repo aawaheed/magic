@@ -17,7 +17,7 @@ namespace magic.lambda.logging.slots
     /// </summary>
     [Slot(
         Name = "log.error",
-        Description = "Logs an error entry",
+        Description = "Writes an error-level log entry; use for caught exceptions or failed operations that need follow-up",
         ValueType = "string",
         ValueKind = "log-message,text",
         ValueDescription = "Log message to write",

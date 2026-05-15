@@ -15,7 +15,7 @@ namespace magic.lambda.logging.slots
     /// </summary>
     [Slot(
         Name = "log.debug",
-        Description = "Logs a debug entry",
+        Description = "Writes a debug-level log entry; useful during development for high-volume diagnostic detail",
         ValueType = "string",
         ValueKind = "log-message,text",
         ValueDescription = "Log message to write",

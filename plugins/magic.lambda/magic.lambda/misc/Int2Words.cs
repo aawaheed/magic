@@ -15,7 +15,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "int2words",
-        Description = "Converts an integer into words",
+        Description = "Spells an integer out in English words (e.g. 557 becomes 'five hundred and fifty seven'); handy for invoices and cheques",
         ValueType = "long",
         ValueKind = "integer,count",
         ValueDescription = "Integer value to convert to words",

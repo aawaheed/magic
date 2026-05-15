@@ -17,7 +17,7 @@ namespace magic.lambda.eval
     /// </summary>
     [Slot(
         Name = "eval",
-        Description = "Evaluates Hyperlambda nodes selected by an expression",
+        Description = "Executes a lambda block; use it to run a node tree dynamically or to scope a group of statements",
         ValueType = "lambda",
         ValueKind = "lambda-object",
         ValueDescription = "Expression selecting the Hyperlambda nodes to evaluate",

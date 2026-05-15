@@ -13,7 +13,7 @@ namespace magic.endpoint.services.slots.misc
     /// </summary>
     [Slot(
         Name = "request.verb",
-        Description = "Returns the current request verb",
+        Description = "Returns the HTTP verb (get, post, put, delete, etc.) of the current incoming request",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsKind = "http-method",

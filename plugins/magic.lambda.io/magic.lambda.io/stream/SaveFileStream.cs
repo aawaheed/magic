@@ -18,7 +18,7 @@ namespace magic.lambda.io.stream
     /// </summary>
     [Slot(
         Name = "io.stream.save-file",
-        Description = "Saves a stream to a file",
+        Description = "Writes a stream's contents to disk under the given path; commonly used after uploads or [http.get] downloads",
         ValueType = "string",
         ValueKind = "file-path",
         ValueDescription = "File path to save the stream to",

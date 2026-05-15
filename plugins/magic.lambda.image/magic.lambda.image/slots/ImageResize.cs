@@ -17,7 +17,7 @@ namespace magic.lambda.image.slots
     /// </summary>
     [Slot(
         Name = "image.resize",
-        Description = "Resizes an image",
+        Description = "Resizes an image to the specified width and height; useful for generating thumbnails or fitting screen sizes",
         ValueType = "string|Stream",
         ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to resize",

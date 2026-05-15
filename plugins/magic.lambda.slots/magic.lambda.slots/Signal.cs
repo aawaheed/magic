@@ -16,7 +16,7 @@ namespace magic.lambda.slots
     /// </summary>
     [Slot(
         Name = "signal",
-        Description = "Invokes a dynamic slot",
+        Description = "Invokes a dynamic slot created with [slots.create], passing child nodes as its arguments",
         ValueType = "string",
         ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to invoke",

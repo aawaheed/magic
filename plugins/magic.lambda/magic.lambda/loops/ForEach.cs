@@ -14,7 +14,7 @@ namespace magic.lambda.loops
     /// </summary>
     [Slot(
         Name = "for-each",
-        Description = "Iterates over matching nodes",
+        Description = "Iterates over the nodes matching the expression and evaluates the child lambda once per node as [.dp]",
         ValueType = "expression",
         ValueDescription = "Expression selecting the nodes to iterate",
         ValueRequired = true,

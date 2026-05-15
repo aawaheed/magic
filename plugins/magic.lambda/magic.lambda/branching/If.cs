@@ -12,7 +12,7 @@ namespace magic.lambda.branching
     /// </summary>
     [Slot(
         Name = "if",
-        Description = "Evaluates a conditional branch",
+        Description = "Evaluates the child lambda only if the condition is true; chain with [else-if] and [else] for additional branches",
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "if",
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]

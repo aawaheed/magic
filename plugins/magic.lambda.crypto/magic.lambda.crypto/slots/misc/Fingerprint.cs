@@ -13,7 +13,7 @@ namespace magic.lambda.crypto.slots.misc
     /// </summary>
     [Slot(
         Name = "crypto.fingerprint",
-        Description = "Creates a fingerprint from the supplied input",
+        Description = "Returns a SHA256 fingerprint of the input, formatted as colon-separated hex; useful for identifying public keys",
         ValueType = "string|byte[]",
         ValueKind = "fingerprint-source",
         ValueDescription = "Base64 encoded content or raw byte[] content to fingerprint",

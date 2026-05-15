@@ -13,6 +13,12 @@ namespace magic.signals.contracts
         ParentMustBe,
         PreviousSiblingMustBeOneOf,
         NextSiblingMayBeOneOf,
+        /// <summary>
+        /// At least one node named by Values must follow this slot as a sibling.
+        /// Used for slots whose semantics require a paired structural neighbour
+        /// (e.g. [try] needs [.catch] and/or [.finally] to be meaningful).
+        /// </summary>
+        NextSiblingMustBeOneOf,
         OnlyChildren,
         ExactlyOneOf,
         AtLeastOneOf,

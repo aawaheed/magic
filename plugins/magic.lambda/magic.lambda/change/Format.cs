@@ -15,7 +15,7 @@ namespace magic.lambda.change
     /// </summary>
     [Slot(
         Name = "format",
-        Description = "Strings formats the specified value",
+        Description = "Formats a value using a .NET format string and optional culture; useful for currencies, dates, and number rendering",
         ValueType = "object",
         ValueKind = "formattable-value",
         ValueDescription = "Value to format",

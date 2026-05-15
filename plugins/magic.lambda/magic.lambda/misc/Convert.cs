@@ -19,7 +19,7 @@ namespace magic.lambda.misc
     /// </summary>
     [Slot(
         Name = "convert",
-        Description = "Converts a value to another type",
+        Description = "Coerces a value to a different CLR type; useful for parsing strings into numbers, dates, booleans, or other strongly-typed values",
         ValueType = "expression",
         ValueDescription = "Expression selecting the value to convert",
         ValueRequired = true,

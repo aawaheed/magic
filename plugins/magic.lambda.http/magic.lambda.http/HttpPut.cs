@@ -15,7 +15,7 @@ namespace magic.lambda.http
     /// </summary>
     [Slot(
         Name = "http.put",
-        Description = "Makes an HTTP PUT request",
+        Description = "Issues an HTTP PUT to the specified URL with a payload; commonly used to replace a remote resource in full",
         ValueType = "string",
         ValueKind = "url-template",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",

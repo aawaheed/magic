@@ -16,7 +16,7 @@ namespace magic.lambda.io.misc
     /// </summary>
     [Slot(
         Name = "io.path.get-folder",
-        Description = "Returns the folder part of a path",
+        Description = "Strips the filename from a path and returns just its folder portion (e.g. '/foo/bar/baz.txt' becomes '/foo/bar/')",
         ValueType = "string",
         ValueKind = "file-path",
         ValueDescription = "Path to inspect",

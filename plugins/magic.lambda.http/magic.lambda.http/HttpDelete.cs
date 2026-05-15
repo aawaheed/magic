@@ -15,7 +15,7 @@ namespace magic.lambda.http
     /// </summary>
     [Slot(
         Name = "http.delete",
-        Description = "Makes an HTTP DELETE request",
+        Description = "Issues an HTTP DELETE to the specified URL; used to remove a remote resource",
         ValueType = "string",
         ValueKind = "url-template",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",

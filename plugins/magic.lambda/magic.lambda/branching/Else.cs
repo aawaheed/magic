@@ -12,7 +12,7 @@ namespace magic.lambda.branching
     /// </summary>
     [Slot(
         Name = "else",
-        Description = "Evaluates the fallback branch in a conditional block",
+        Description = "Evaluates its child lambda when every preceding [if] and [else-if] condition was false",
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "if",
         SignatureType = typeof(global::magic.lambda.signatures.ElseSignature))]

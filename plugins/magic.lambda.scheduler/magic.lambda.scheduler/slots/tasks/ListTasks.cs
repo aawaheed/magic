@@ -16,7 +16,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// </summary>
     [Slot(
         Name = "tasks.list",
-        Description = "Lists tasks",
+        Description = "Returns all stored tasks; supports an optional ID filter and pagination via [limit] and [offset]",
         ValueType = "string",
         ValueKind = "task-id",
         ValueDescription = "Optional filter for task IDs",

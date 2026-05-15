@@ -14,7 +14,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// </summary>
     [Slot(
         Name = "tasks.delete",
-        Description = "Deletes a task",
+        Description = "Removes a stored task by ID along with any of its scheduled future runs",
         ValueType = "string",
         ValueKind = "task-id",
         ValueDescription = "Task ID to delete",

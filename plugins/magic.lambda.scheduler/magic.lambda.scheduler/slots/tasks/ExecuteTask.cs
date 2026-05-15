@@ -14,7 +14,7 @@ namespace magic.lambda.scheduler.slots.tasks
     /// </summary>
     [Slot(
         Name = "tasks.execute",
-        Description = "Executes a task immediately",
+        Description = "Runs a stored task synchronously right now, ignoring its schedule; handy for ad-hoc invocations or testing",
         ValueType = "string",
         ValueKind = "task-id",
         ValueDescription = "Task ID to execute",

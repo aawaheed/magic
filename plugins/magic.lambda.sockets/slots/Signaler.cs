@@ -19,7 +19,7 @@ namespace magic.lambda.sockets.slots
     /// </summary>
     [Slot(
         Name = "sockets.signal",
-        Description = "Publishes a message to a socket channel",
+        Description = "Pushes a SignalR message to clients subscribed to the channel; use to broadcast events from server to browsers",
         ValueType = "string",
         ValueKind = "socket-channel",
         ValueDescription = "Socket channel to publish",

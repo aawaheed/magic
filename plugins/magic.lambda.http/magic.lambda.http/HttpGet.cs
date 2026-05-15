@@ -15,7 +15,7 @@ namespace magic.lambda.http
     /// </summary>
     [Slot(
         Name = "http.get",
-        Description = "Makes an HTTP GET request",
+        Description = "Issues an HTTP GET to the specified URL and returns the response body, status code, and headers",
         ValueType = "string",
         ValueKind = "url-template",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",
