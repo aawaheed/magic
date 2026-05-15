@@ -25,6 +25,9 @@ namespace magic.lambda.mime.signatures
         /// <inheritdoc />
         public IEnumerable<SlotConstraint> Constraints => EntityShapeConstraints();
 
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> OutputChildren => MimeParseSignature.ParsedEntityChildren(2);
+
         public static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
@@ -75,16 +78,12 @@ namespace magic.lambda.mime.signatures
 
         public static SlotChild Content()
         {
-            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content");
-            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
-            return result;
+            return Option("content", "string", "Inline MIME part content", kind: "mime-content");
         }
 
         public static SlotChild Filename()
         {
-            var result = Option("filename", "string", "File path to use as MIME part content", kind: "file-path");
-            result.Children.Add(Option("Content-Encoding", "string", "Optional MIME content transfer encoding", kind: "mime-transfer-encoding"));
-            return result;
+            return Option("filename", "string", "File path to use as MIME part content", kind: "file-path");
         }
 
         public static SlotChild Entity()
@@ -95,6 +94,13 @@ namespace magic.lambda.mime.signatures
         // Depth-limited recursion so the schema can describe nested multiparts while staying finite.
         // At the innermost level (depth==0) the schema has no nested [entity] child, so the value
         // must be a leaf MIME type — a different description routes the value picker to a leaf-only catalog.
+        //
+        // Cardinality intentionally = TwoOrMore on the entity SlotChild itself. This expresses the
+        // runtime invariant "multipart needs ≥ 2 parts" at the contract level — BuildChildren's
+        // CountFor reads it as 2-3 for non-excluded values, and the leaf-vs-multipart EXCLUDES
+        // constraint below zeros it out for leaf MIME types (which must not nest entities at all).
+        // Keeping the lower bound on the SlotChild means the pipeline path overlay can re-enforce
+        // it generically via member.Cardinality without needing slot-name knowledge.
         static SlotChild Entity(int depth)
         {
             var result = new SlotChild
@@ -107,7 +113,7 @@ namespace magic.lambda.mime.signatures
                     "Innermost MIME leaf entity content type; must be a leaf type because no further [entity] nesting is permitted here",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Cardinality = SlotChildCardinality.TwoOrMore,
                 Role = SlotChildRole.StructuredObject,
                 Projection = SlotChildProjection.StructuredTree,
                 Children =
@@ -176,7 +182,7 @@ namespace magic.lambda.mime.signatures
         /// <inheritdoc />
         public IEnumerable<SlotChild> OutputChildren => ParsedEntityChildren(2);
 
-        static IEnumerable<SlotChild> ParsedEntityChildren(int depth)
+        internal static IEnumerable<SlotChild> ParsedEntityChildren(int depth)
         {
             var result = new List<SlotChild>
             {

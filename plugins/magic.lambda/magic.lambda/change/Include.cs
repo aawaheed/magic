@@ -23,6 +23,8 @@ namespace magic.lambda.change
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the matched destination nodes after all returned child nodes have been included",
+        ProvidesIterationPointer = true,
+        ScopeRequiresStrictExit = true,
         SignatureType = typeof(global::magic.lambda.signatures.IncludeSignature))]
     public class Include : ISlot
     {

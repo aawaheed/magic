@@ -24,6 +24,8 @@ namespace magic.lambda.loops
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to one mapped output item per selected node, using the value or nodes returned by the child lambda",
+        ProvidesIterationPointer = true,
+        ScopeRequiresStrictExit = true,
         SignatureType = typeof(global::magic.lambda.signatures.MapSignature))]
     public class Map : ISlot
     {

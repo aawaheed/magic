@@ -22,7 +22,9 @@ namespace magic.lambda.slots
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
         ReturnsKind = "return-value",
-        ReturnsDescription = "Resolves to a value to the caller")]
+        ReturnsDescription = "Resolves to a value to the caller",
+        IsBlockTerminator = true,
+        PipelineOutputUsable = false)]
     public class ReturnValue : ISlot
     {
         /// <summary>

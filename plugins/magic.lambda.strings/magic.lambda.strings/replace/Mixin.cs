@@ -30,6 +30,7 @@ namespace magic.lambda.strings.replace
         ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions",
+        BodyShape = SlotBodyShape.MixinTemplate,
         SignatureType = typeof(global::magic.lambda.strings.signatures.StringMixinSignature))]
     public class Mixin : ISlotAsync
     {

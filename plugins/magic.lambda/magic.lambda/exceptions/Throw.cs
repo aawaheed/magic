@@ -22,6 +22,8 @@ namespace magic.lambda.exceptions
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        IsBlockTerminator = true,
+        PipelineOutputUsable = false,
         SignatureType = typeof(global::magic.lambda.signatures.ThrowSignature))]
     public class Throw : ISlot
     {

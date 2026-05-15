@@ -21,6 +21,7 @@ namespace magic.lambda.branching
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        BodyShape = SlotBodyShape.SwitchCase,
         SignatureType = typeof(global::magic.lambda.signatures.SwitchSignature))]
     public class Switch : ISlot
     {

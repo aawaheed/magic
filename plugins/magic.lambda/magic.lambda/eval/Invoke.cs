@@ -27,6 +27,8 @@ namespace magic.lambda.eval
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes",
         ClonesLambda = true,
+        BodyShape = SlotBodyShape.InvokeCall,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         SignatureType = typeof(global::magic.lambda.signatures.InvokeSignature))]
     public class Invoke : ISlotAsync
     {

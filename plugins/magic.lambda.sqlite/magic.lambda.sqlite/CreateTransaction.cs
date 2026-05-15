@@ -20,7 +20,8 @@ namespace magic.lambda.sqlite
         RequiresScope = "sqlite.connection",
         ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
-        ProvidesScope = "sqlite.transaction")]
+        ProvidesScope = "sqlite.transaction",
+        ScopeRequiresStrictExit = true)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

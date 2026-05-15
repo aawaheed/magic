@@ -30,6 +30,7 @@ namespace magic.lambda.scheduler.slots.scheduler
         ReturnsType = "string",
         ReturnsKind = "schedule-id",
         ReturnsDescription = "Resolves to the created schedule ID",
+        PipelineOutputUsable = false,
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.ScheduleTaskSignature))]
     public class ScheduleTask : ISlotAsync
     {

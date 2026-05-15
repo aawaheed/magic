@@ -127,7 +127,7 @@ namespace magic.data.common.signatures
                 Description = "Column condition; suffix the name with .eq, .neq, .gt, .gte, .lt, .lte, .like, .ilike, or .in to select an operator",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.OneOrMore,
+                Cardinality = SlotChildCardinality.TwoOrMore,
                 Children =
                 {
                     new SlotChild
@@ -218,6 +218,45 @@ namespace magic.data.common.signatures
             Offset(),
             ExplicitArgument(),
         };
+
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new[] { RowList() };
+
+        // Row-list output shape: every read/select slot returns one unnamed
+        // child per row, each row carrying the selected columns as named
+        // children. Column names are derived at synthesis time from the
+        // statement (column list, aggregate aliases, etc.), so the per-row
+        // child set is declared as a wildcard.
+        internal static SlotChild RowList()
+        {
+            return new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "row",
+                Description = "One row returned by the read; child nodes carry the selected column values, with each child's name being the column name or alias from the SELECT statement",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "*",
+                        Type = "string",
+                        Kind = "column-value",
+                        Description = "Column value; child name is the column name (or alias) declared in the read",
+                        Required = false,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            };
+        }
 
         internal static SlotChild Columns()
         {
@@ -579,6 +618,12 @@ namespace magic.data.common.signatures
             SqlParameter(),
         };
 
+        /// <inheritdoc />
+        // Declared virtual so [data.select] / dialect select slots can override
+        // with the row-list shape without falling into DIM-shadow (the class
+        // member would otherwise be hidden from `ISlotSignature` dispatch).
+        public virtual IEnumerable<SlotChild> OutputChildren => new SlotChild[0];
+
         internal static SlotChild SqlParameter()
         {
             return new SlotChild
@@ -621,6 +666,9 @@ namespace magic.data.common.signatures
             MultipleResultSets(),
             SqlParameter(),
         };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> OutputChildren => new[] { SqlReadSignature.RowList() };
 
         internal static SlotChild Max()
         {

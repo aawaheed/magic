@@ -19,7 +19,8 @@ namespace magic.data.common.slots
         RequiresScope = "data.connection",
         ScopeProvider = "data.connect",
         ScopeDescription = "Requires an open database connection created by [data.connect]",
-        ProvidesScope = "data.transaction")]
+        ProvidesScope = "data.transaction",
+        ScopeRequiresStrictExit = true)]
     public class CreateTransaction : DataSlotBase
     {
         /// <summary>

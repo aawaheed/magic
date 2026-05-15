@@ -113,7 +113,10 @@ namespace magic.lambda.mime.helpers
         }
 
         /*
-         * Creates ContentObject from value found in node.
+         * Creates ContentObject from value found in node. Transfer encoding is
+         * controlled exclusively through the standard MIME `Content-Transfer-Encoding`
+         * header inside the [headers] block — DecorateEntityHeaders writes it to
+         * entity.Headers, and MimeKit picks up the encoding from there when serializing.
          */
         static async Task CreateContentObjectFromObjectAsync(Node contentNode, MimePart part)
         {
@@ -124,16 +127,13 @@ namespace magic.lambda.mime.helpers
             await writer.WriteAsync(content);
             await writer.FlushAsync();
             stream.Position = 0;
-
-            var encoding = ContentEncoding.Default;
-            var encodingNode = contentNode.Children.FirstOrDefault(x => x.Name == "Content-Encoding");
-            if (encodingNode != null)
-                encoding = (ContentEncoding)Enum.Parse(typeof(ContentEncoding), encodingNode.GetEx<string>(), true);
-            part.Content = new MimeContent(stream, encoding);
+            part.Content = new MimeContent(stream, ContentEncoding.Default);
         }
 
         /*
-         * Creates ContentObject from filename.
+         * Creates ContentObject from filename. Transfer encoding is controlled
+         * exclusively through the standard MIME `Content-Transfer-Encoding` header
+         * inside the [headers] block.
          */
         static async Task CreateContentObjectFromFilenameAsync(
             Node contentNode,
@@ -142,12 +142,6 @@ namespace magic.lambda.mime.helpers
             IRootResolver rootResolver)
         {
             var filename = contentNode.GetEx<string>() ?? throw new HyperlambdaException("No [filename] value provided");
-
-            // Checking if explicit encoding was supplied.
-            ContentEncoding encoding = ContentEncoding.Default;
-            var encodingNode = contentNode.Children.FirstOrDefault(x => x.Name == "Content-Encoding");
-            if (encodingNode != null)
-                encoding = (ContentEncoding)Enum.Parse(typeof(ContentEncoding), encodingNode.GetEx<string>(), true);
 
             // Checking if explicit disposition was specified.
             if (part.ContentDisposition == null)
@@ -161,7 +155,7 @@ namespace magic.lambda.mime.helpers
             part.Content = new MimeContent(
                 await streamService.OpenFileAsync(
                     rootResolver.AbsolutePath(filename.TrimStart('/'))),
-                    encoding);
+                    ContentEncoding.Default);
         }
 
         /*

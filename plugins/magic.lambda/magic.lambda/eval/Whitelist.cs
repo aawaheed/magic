@@ -23,6 +23,7 @@ namespace magic.lambda.eval
         ReturnsDescription = "Resolves to the evaluated lambda's value result and any returned child nodes",
         ProvidesScope = "whitelist",
         ClonesLambda = true,
+        RequiresInvokedSlotInventoryChild = "vocabulary",
         SignatureType = typeof(global::magic.lambda.signatures.WhitelistSignature))]
     public class Whitelist : ISlotAsync
     {

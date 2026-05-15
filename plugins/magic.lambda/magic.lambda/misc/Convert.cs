@@ -28,6 +28,8 @@ namespace magic.lambda.misc
         ReturnsType = "object",
         ReturnsKind = "converted-value",
         ReturnsDescription = "Resolves to the value converted to the requested type",
+        BodyShape = SlotBodyShape.ConvertWithPrelude,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         SignatureType = typeof(global::magic.lambda.signatures.ConvertSignature))]
     public class Convert : ISlot
     {

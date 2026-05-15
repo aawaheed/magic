@@ -287,7 +287,7 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Executable operand returning a boolean value", SlotChildCardinality.OneOrMore),
+            ExecutableBody("Executable operand returning a boolean value", SlotChildCardinality.TwoOrMore),
         };
     }
 

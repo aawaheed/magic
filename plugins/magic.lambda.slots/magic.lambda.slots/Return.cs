@@ -24,6 +24,8 @@ namespace magic.lambda.slots
         ReturnsType = "object",
         ReturnsKind = "return-value,node-list",
         ReturnsDescription = "Resolves to the supplied value and/or returned child nodes captured by the nearest caller",
+        IsBlockTerminator = true,
+        PipelineOutputUsable = false,
         SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnSignature))]
     public class Return : ISlot
     {

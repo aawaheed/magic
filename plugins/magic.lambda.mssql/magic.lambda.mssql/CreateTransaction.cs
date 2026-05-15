@@ -20,7 +20,8 @@ namespace magic.lambda.mysql
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
-        ProvidesScope = "mssql.transaction")]
+        ProvidesScope = "mssql.transaction",
+        ScopeRequiresStrictExit = true)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

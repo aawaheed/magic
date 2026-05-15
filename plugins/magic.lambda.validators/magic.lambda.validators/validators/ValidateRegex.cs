@@ -23,6 +23,7 @@ namespace magic.lambda.validators.validators
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        AcceptsPipelineInput = false,
         SignatureType = typeof(global::magic.lambda.validators.signatures.RegexValidatorSignature))]
     public class ValidateRegex : ISlot
     {

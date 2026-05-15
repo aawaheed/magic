@@ -20,6 +20,8 @@ namespace magic.lambda.loops
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.None,
+        ProvidesIterationPointer = true,
+        ScopeRequiresStrictExit = true,
         SignatureType = typeof(global::magic.lambda.signatures.IteratorBodySignature))]
     public class ForEach : ISlot
     {

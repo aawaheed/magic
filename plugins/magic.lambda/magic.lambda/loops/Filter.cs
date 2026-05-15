@@ -24,6 +24,9 @@ namespace magic.lambda.loops
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to clones of the selected nodes whose predicate body returns true",
+        ProvidesIterationPointer = true,
+        ScopeRequiresStrictExit = true,
+        BodyShape = SlotBodyShape.BooleanPredicate,
         SignatureType = typeof(global::magic.lambda.signatures.FilterSignature))]
     public class Filter : ISlot
     {

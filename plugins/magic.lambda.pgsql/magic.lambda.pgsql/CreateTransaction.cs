@@ -20,7 +20,8 @@ namespace magic.lambda.pgsql
         RequiresScope = "pgsql.connection",
         ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
-        ProvidesScope = "pgsql.transaction")]
+        ProvidesScope = "pgsql.transaction",
+        ScopeRequiresStrictExit = true)]
     public class CreateTransaction : ISlotAsync
     {
         /// <summary>

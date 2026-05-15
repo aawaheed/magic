@@ -20,6 +20,8 @@ namespace magic.lambda.slots
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Returns child nodes to the nearest caller",
+        IsBlockTerminator = true,
+        PipelineOutputUsable = false,
         SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnNodesSignature))]
     [Slot(
         Name = "yield",

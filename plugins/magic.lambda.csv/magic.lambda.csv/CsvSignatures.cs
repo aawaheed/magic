@@ -11,6 +11,10 @@ namespace magic.lambda.csv.signatures
     {
         public virtual IEnumerable<SlotChild> Children => new SlotChild[0];
 
+        // Virtual so [csv2lambda] can declare its row-list output without being
+        // shadowed by ISlotSignature's default-interface-member.
+        public virtual IEnumerable<SlotChild> OutputChildren => new SlotChild[0];
+
         protected static SlotChild NullValue()
         {
             return new SlotChild
@@ -60,6 +64,40 @@ namespace magic.lambda.csv.signatures
                 },
             },
             NullValue(),
+        };
+
+        // Row-list output: each line in the CSV body becomes an unnamed child
+        // whose children are the column values keyed by the header row's
+        // column names (resolved at synthesis time from the CSV input).
+        public override IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "row",
+                Description = "One CSV record returned as a child node; column values appear as named children keyed by the header column name",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "*",
+                        Type = "string",
+                        Kind = "column-value",
+                        Description = "CSV column value; child name is the header column name",
+                        Required = false,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            },
         };
     }
 
