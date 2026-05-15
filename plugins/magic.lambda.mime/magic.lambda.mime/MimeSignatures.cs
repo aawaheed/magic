@@ -15,7 +15,7 @@ namespace magic.lambda.mime.signatures
         /// <inheritdoc />
         public IEnumerable<SlotChild> Children => new[]
         {
-            Option("structured", "bool", "Whether to return structured headers and content nodes", "false"),
+            Option("structured", "bool", "When true returns the MIME tree as [headers] and [content] children; when false (default) returns the serialized MIME message text in the slot value", "false"),
             Headers(),
             Content(),
             Filename(),
@@ -93,6 +93,8 @@ namespace magic.lambda.mime.signatures
         }
 
         // Depth-limited recursion so the schema can describe nested multiparts while staying finite.
+        // At the innermost level (depth==0) the schema has no nested [entity] child, so the value
+        // must be a leaf MIME type — a different description routes the value picker to a leaf-only catalog.
         static SlotChild Entity(int depth)
         {
             var result = new SlotChild
@@ -100,7 +102,9 @@ namespace magic.lambda.mime.signatures
                 Name = "entity",
                 Type = "string",
                 Kind = "content-type",
-                Description = "Nested MIME entity content type; same leaf-vs-multipart shape as the parent [mime.create] value",
+                Description = depth > 0 ?
+                    "Nested MIME entity content type; same leaf-vs-multipart shape as the parent [mime.create] value" :
+                    "Innermost MIME leaf entity content type; must be a leaf type because no further [entity] nesting is permitted here",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.ZeroOrMore,
