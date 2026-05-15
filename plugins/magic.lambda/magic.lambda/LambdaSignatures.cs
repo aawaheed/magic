@@ -513,10 +513,10 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "object",
-                Description = "Single source child evaluated before its value is consumed",
-                Required = true,
+                Description = "Single source child evaluated before its value is consumed; omit to set the destination to null",
+                Required = false,
                 Mode = SlotChildMode.ExecutableLambda,
-                Cardinality = SlotChildCardinality.ExactlyOne,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
                 Role = SlotChildRole.SourceExpression,
                 Evaluation = SlotChildEvaluation.EvalSelf,
                 Projection = SlotChildProjection.Value,
