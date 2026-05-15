@@ -25,6 +25,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.CreateTaskSignature))]
     public class CreateTask : ISlotAsync
     {

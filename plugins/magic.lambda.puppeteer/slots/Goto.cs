@@ -24,7 +24,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "url",
+        ReturnsKind = "url,puppeteer-page-loaded",
         ReturnsDescription = "Resolves to the resolved page URL after navigation",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerGotoSignature))]
     public class Goto : ISlotAsync

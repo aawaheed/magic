@@ -17,6 +17,7 @@ namespace magic.lambda.puppeteer
         Description = "Waits for a selector to appear",
         ValueType = "string",
         ValueKind = "puppeteer-session",
+        Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

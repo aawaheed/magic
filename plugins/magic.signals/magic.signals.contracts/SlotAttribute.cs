@@ -120,5 +120,27 @@ namespace magic.signals.contracts
         /// Optional human-readable description of the runtime scope contract.
         /// </summary>
         public string ScopeDescription { get; set; }
+
+        /// <summary>
+        /// True if this slot clones its [.lambda] body before evaluating it.
+        /// Cloned lambdas are detached from their original parent tree, so
+        /// expressions inside the body cannot resolve nodes that live outside
+        /// the [.lambda] block (siblings of this slot, ancestor preludes, etc.).
+        /// The synthesizer uses this to keep generated body content self-contained.
+        /// </summary>
+        public bool ClonesLambda { get; set; }
+
+        /// <summary>
+        /// Optional comma-separated list of state kinds that must have been
+        /// established by an earlier sibling slot before this slot is meaningful.
+        /// Each kind is matched against the <see cref="ReturnsKind"/> of other
+        /// slots; the synthesizer chains the establishing slots into the prelude.
+        ///
+        /// Use this for sequential state contracts where the relationship is NOT
+        /// structural (i.e. parent/child nesting via <see cref="RequiresScope"/>)
+        /// but ordering — e.g. a Puppeteer page-read slot requires that a
+        /// previous sibling has navigated the page via [puppeteer.goto].
+        /// </summary>
+        public string Preconditions { get; set; }
     }
 }

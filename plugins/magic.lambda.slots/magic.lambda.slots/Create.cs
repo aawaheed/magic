@@ -21,6 +21,7 @@ namespace magic.lambda.slots
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.CreateSlotSignature))]
     [Slot(
         Name = "slots.create",
@@ -31,6 +32,7 @@ namespace magic.lambda.slots
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.CreateSlotSignature))]
     public class Create : ISlot
     {

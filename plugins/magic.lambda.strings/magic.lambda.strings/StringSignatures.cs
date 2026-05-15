@@ -118,6 +118,18 @@ namespace magic.lambda.strings.signatures
     }
 
     /// <summary>
+    /// Signature for regex slots taking a regular-expression pattern argument.
+    /// </summary>
+    public class RegexStringArgumentSignature : StringSignature
+    {
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Arg(".", "string", "Regular expression pattern to match against the source string", kind: "regex-pattern"),
+        };
+    }
+
+    /// <summary>
     /// Signature for string slots taking an optional character set argument.
     /// </summary>
     public class OptionalStringArgumentSignature : StringSignature

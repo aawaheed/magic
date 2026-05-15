@@ -26,6 +26,7 @@ namespace magic.lambda.eval
         ReturnsType = "object",
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes",
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.signatures.InvokeSignature))]
     public class Invoke : ISlotAsync
     {

@@ -29,7 +29,7 @@ namespace magic.lambda.strings.replace
         ReturnsElementType = "string",
         ReturnsElementKind = "regex-match",
         ReturnsDescription = "Returns one child node per regular expression match",
-        SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]
+        SignatureType = typeof(global::magic.lambda.strings.signatures.RegexStringArgumentSignature))]
     public class RegexMatches : ISlotAsync
     {
         /// <summary>
