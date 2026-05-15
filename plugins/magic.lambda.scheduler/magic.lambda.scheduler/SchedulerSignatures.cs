@@ -116,7 +116,7 @@ namespace magic.lambda.scheduler.signatures
         };
 
         /// <inheritdoc />
-        public override IEnumerable<SlotChild> OutputChildren => new[]
+        public IEnumerable<SlotChild> OutputChildren => new[]
         {
             new SlotChild
             {
