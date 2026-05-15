@@ -28,6 +28,7 @@ namespace magic.lambda.slots
         ReturnsElementType = "object",
         ReturnsElementKind = "dynamic-slot-result-node",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     [Slot(
         Name = "execute",
@@ -58,6 +59,7 @@ namespace magic.lambda.slots
         ReturnsElementType = "object",
         ReturnsElementKind = "dynamic-slot-result-node",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     public class SignalSlot : ISlotAsync
     {

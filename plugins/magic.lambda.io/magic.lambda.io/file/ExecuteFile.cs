@@ -30,6 +30,7 @@ namespace magic.lambda.io.file
         ReturnsElementType = "object",
         ReturnsElementKind = "hyperlambda-result-node",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
+        ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
     [Slot(
         Name = "execute-file",
