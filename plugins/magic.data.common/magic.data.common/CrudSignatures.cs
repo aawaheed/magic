@@ -192,6 +192,15 @@ namespace magic.data.common.signatures
                             BooleanLevel("and", 1),
                             BooleanLevel("or", 1),
                         },
+                        Constraints =
+                        {
+                            new SlotConstraint
+                            {
+                                Kind = SlotConstraintKind.AtLeastOneOf,
+                                Description = "Join predicate must contain at least one boolean group",
+                                Values = { "and", "or" },
+                            },
+                        },
                     },
                 },
             };
