@@ -114,5 +114,58 @@ namespace magic.lambda.scheduler.signatures
             Option("offset", "long", "Number of tasks to skip"),
             Option("limit", "long", "Maximum number of tasks to return"),
         };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "task",
+                Description = "One task record returned by [tasks.list]",
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "id",
+                        Type = "string",
+                        Kind = "task-id",
+                        Description = "Task identifier",
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                    new SlotChild
+                    {
+                        Name = "created",
+                        Type = "date",
+                        Kind = "date",
+                        Description = "Task creation timestamp",
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                    new SlotChild
+                    {
+                        Name = "description",
+                        Type = "string",
+                        Kind = "text",
+                        Description = "Optional task description",
+                        Required = false,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ZeroOrOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            },
+        };
     }
 }
