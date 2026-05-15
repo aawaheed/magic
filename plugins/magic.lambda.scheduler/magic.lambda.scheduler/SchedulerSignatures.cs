@@ -15,6 +15,16 @@ namespace magic.lambda.scheduler.signatures
         /// <inheritdoc />
         public abstract IEnumerable<SlotChild> Children { get; }
 
+        /// <inheritdoc />
+        // Declared on the base so derived classes can `override`. Without this
+        // explicit declaration, derived properties only hide the interface's
+        // default-interface-member when accessed via the class reference — code
+        // that reads constraints through ISlotSignature gets the empty default.
+        public virtual IEnumerable<SlotConstraint> Constraints => new List<SlotConstraint>();
+
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new List<SlotChild>();
+
         internal static SlotChild Option(string name, string type, string description, bool required = false, string kind = null)
         {
             return new SlotChild
@@ -87,7 +97,7 @@ namespace magic.lambda.scheduler.signatures
         };
 
         /// <inheritdoc />
-        public IEnumerable<SlotConstraint> Constraints => new[]
+        public override IEnumerable<SlotConstraint> Constraints => new[]
         {
             AtLeastOneSchedule(),
         };
@@ -116,7 +126,7 @@ namespace magic.lambda.scheduler.signatures
         };
 
         /// <inheritdoc />
-        public IEnumerable<SlotChild> OutputChildren => new[]
+        public override IEnumerable<SlotChild> OutputChildren => new[]
         {
             new SlotChild
             {
