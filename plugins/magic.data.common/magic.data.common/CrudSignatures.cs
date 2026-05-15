@@ -127,7 +127,7 @@ namespace magic.data.common.signatures
                 Description = "Column condition; suffix the name with .eq, .neq, .gt, .gte, .lt, .lte, .like, .ilike, or .in to select an operator",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.TwoOrMore,
+                Cardinality = SlotChildCardinality.OneOrMore,
                 Children =
                 {
                     new SlotChild
