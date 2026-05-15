@@ -111,6 +111,62 @@ namespace magic.lambda.io.signatures
     }
 
     /// <summary>
+    /// Child signature for [io.file.load-recursively]. No input children; OutputChildren
+    /// describes the wrapper-per-file return shape so consumers iterating the result
+    /// know how to address [name] and [content] children rather than the wrapper's
+    /// (null) value.
+    /// </summary>
+    public class LoadFilesRecursivelySignature : ISlotSignature
+    {
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> Children => new List<SlotChild>();
+
+        /// <inheritdoc />
+        public IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "loaded-file",
+                Description = "One loaded file entry; access fields via the [name] and [content] children",
+                Required = false,
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "name",
+                        Type = "string",
+                        Kind = "file-path",
+                        Description = "Relative file path of the loaded file",
+                        Required = true,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                    new SlotChild
+                    {
+                        Name = "content",
+                        Type = "string",
+                        Kind = "text-file-content",
+                        Description = "Loaded file content as text",
+                        Required = true,
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Payload,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            },
+        };
+    }
+
+    /// <summary>
     /// Child signature for file and folder list slots.
     /// </summary>
     public class ListDirectorySignature : ISlotSignature

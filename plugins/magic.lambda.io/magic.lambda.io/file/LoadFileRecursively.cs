@@ -24,10 +24,11 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "file-path-list",
-        ReturnsElementType = "string",
-        ReturnsElementKind = "file-content",
-        ReturnsDescription = "Returns one named child node per loaded file, where the child name is the relative file path and the value is the file's content")]
+        ReturnsKind = "loaded-file-list",
+        ReturnsElementType = "lambda",
+        ReturnsElementKind = "loaded-file",
+        ReturnsDescription = "Returns one unnamed child node per loaded file; each entry has a [name] child (relative file path) and a [content] child (file content as string)",
+        SignatureType = typeof(global::magic.lambda.io.signatures.LoadFilesRecursivelySignature))]
     public class LoadFileRecursively : ISlotAsync
     {
         readonly IRootResolver _rootResolver;
