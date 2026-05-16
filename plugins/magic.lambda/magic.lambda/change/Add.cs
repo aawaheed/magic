@@ -16,6 +16,7 @@ namespace magic.lambda.change
         Name = "add",
         Description = "Appends source nodes to selected destination containers",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting destination container node or nodes whose children should receive the source nodes",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

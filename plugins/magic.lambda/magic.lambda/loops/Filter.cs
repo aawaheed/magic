@@ -17,6 +17,7 @@ namespace magic.lambda.loops
         Name = "filter",
         Description = "Filters selected nodes using the child lambda as a predicate",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to filter",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

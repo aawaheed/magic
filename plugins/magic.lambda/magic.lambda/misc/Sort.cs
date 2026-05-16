@@ -16,6 +16,7 @@ namespace magic.lambda.change
         Name = "sort",
         Description = "Sorts selected nodes using the child lambda as a comparer",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to sort",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
@@ -23,6 +24,7 @@ namespace magic.lambda.change
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes",
+        PreservesInputShape = true,
         SignatureType = typeof(global::magic.lambda.signatures.SortSignature))]
     public class Sort : ISlot
     {

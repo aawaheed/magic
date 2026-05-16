@@ -15,6 +15,7 @@ namespace magic.lambda.math.signatures
             {
                 Name = "*",
                 Type = "number",
+                Kind = "number",
                 Description = "Numeric operand evaluated before calculating the result",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,

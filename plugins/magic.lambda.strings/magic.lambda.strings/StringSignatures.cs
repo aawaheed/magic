@@ -76,8 +76,8 @@ namespace magic.lambda.strings.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Arg(".", "int", "Start index"),
-            Arg(".", "int", "Optional length", false, SlotChildCardinality.ZeroOrOne),
+            Arg(".", "int", "Start index", kind: "substring-arg"),
+            Arg(".", "int", "Optional length", false, SlotChildCardinality.ZeroOrOne, "substring-arg"),
         };
     }
 

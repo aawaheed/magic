@@ -78,12 +78,12 @@ namespace magic.lambda.mime.signatures
 
         public static SlotChild Content()
         {
-            return Option("content", "string", "Inline MIME part content", kind: "mime-content");
+            return Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source");
         }
 
         public static SlotChild Filename()
         {
-            return Option("filename", "string", "File path to use as MIME part content", kind: "file-path");
+            return Option("filename", "string", "File path to use as MIME part content", kind: "file-path,mime-entity-source,mime-entity-filename-source");
         }
 
         public static SlotChild Entity()

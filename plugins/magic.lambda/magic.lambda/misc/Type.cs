@@ -16,6 +16,7 @@ namespace magic.lambda.misc
         Name = "type",
         Description = "Returns the CLR type name of a value",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the value whose CLR type should be inspected",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

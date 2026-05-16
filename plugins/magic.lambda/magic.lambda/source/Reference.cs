@@ -16,6 +16,7 @@ namespace magic.lambda.source
         Name = "reference",
         Description = "Returns the first matched node as a live reference so callers can mutate it in place rather than copy its value",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the node to reference",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

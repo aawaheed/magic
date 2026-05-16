@@ -16,6 +16,7 @@ namespace magic.lambda.change
         Name = "remove-nodes",
         Description = "Removes nodes from the lambda graph",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the node or nodes to remove",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

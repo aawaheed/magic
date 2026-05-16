@@ -17,6 +17,7 @@ namespace magic.lambda.change
         Name = "insert-after",
         Description = "Inserts nodes after the specified target node",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the target node or nodes to insert after",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

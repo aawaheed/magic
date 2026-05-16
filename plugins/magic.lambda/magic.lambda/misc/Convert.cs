@@ -21,6 +21,7 @@ namespace magic.lambda.misc
         Name = "convert",
         Description = "Coerces a value to a different CLR type; useful for parsing strings into numbers, dates, booleans, or other strongly-typed values",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the value to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

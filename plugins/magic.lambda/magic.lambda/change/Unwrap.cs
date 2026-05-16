@@ -16,6 +16,7 @@ namespace magic.lambda.change
         Name = "unwrap",
         Description = "Forward-evaluates expression values on the selected nodes, replacing them with their resolved values; commonly used before [signal] or [add]",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the node or nodes whose expressions should be unwrapped",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

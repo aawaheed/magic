@@ -16,6 +16,17 @@ namespace magic.signals.contracts
     public class SlotAttribute : Attribute
     {
         /// <summary>
+        /// Runtime name of the iteration-pointer node injected into the body
+        /// scope of slots whose <see cref="ProvidesIterationPointer"/> is true
+        /// (for-each / map / filter / include). Formalizes the convention
+        /// already documented in prose on that property and hardcoded in the
+        /// iterator slot implementations — exposed as a const so the
+        /// synthesizer and other meta-tooling can generate scope-aware
+        /// expressions without re-declaring the literal.
+        /// </summary>
+        public const string IterationPointerName = ".dp";
+
+        /// <summary>
         /// Name of slot.
         /// </summary>
         public string Name { get; set; }
@@ -198,6 +209,20 @@ namespace magic.signals.contracts
         public bool WritesScopeResult { get; set; }
 
         /// <summary>
+        /// True if the slot's output preserves the row shape of its input
+        /// expression — i.e. it selects, reorders, mutates, or augments
+        /// nodes pointed to by its expression value rather than producing
+        /// a transformed result. Set on slots like [get-nodes] (selects
+        /// matching nodes), [sort] (reorders same set), [set-name] /
+        /// [set-value] / [set-x] (mutates in place). The synthesizer reads
+        /// this flag in MaybeRegisterRowShape: when the source expression
+        /// has a known row shape, the slot's own output gets registered
+        /// with the same shape so downstream consumers see
+        /// `@&lt;slot&gt;/*/&lt;field&gt;` paths as valid.
+        /// </summary>
+        public bool PreservesInputShape { get; set; }
+
+        /// <summary>
         /// True if the slot's scope cannot tolerate a mid-pipeline exit —
         /// i.e. all of its children must execute and the scope cannot be
         /// closed early so steps following it land at the outer level. Set
@@ -289,6 +314,25 @@ namespace magic.signals.contracts
         /// references. Used by [invoke] / [eval] / [eval-async].
         /// </summary>
         InvokeCall,
+        /// <summary>
+        /// Body must emit row-wrapped yields — `yield > . > N fields` — so
+        /// each iteration produces a single addressable row node in the
+        /// slot's output. Used by [map]. The synthesizer generates the
+        /// wrapped-yield body AND registers the slot's post-run row shape
+        /// (`@&lt;slot&gt;/*/<field>`) so downstream consumers can address
+        /// those fields.
+        /// </summary>
+        WrappedRowEmission,
+        /// <summary>
+        /// Body emits flat yields — `yield > N fields` directly, no `.`
+        /// wrapper — because the host slot braids the yielded children
+        /// straight into each iterated destination node (decorator). Used
+        /// by [include]. Field NAMES come from the iteration source's
+        /// known row shape so the decoration corresponds to real columns.
+        /// No new addressable output (`@&lt;slot&gt;` is empty after run);
+        /// the synthesizer does not register a post-run shape.
+        /// </summary>
+        BraidedRowEmission,
     }
 
     /// <summary>

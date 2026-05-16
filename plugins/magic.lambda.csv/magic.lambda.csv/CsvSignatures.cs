@@ -41,6 +41,7 @@ namespace magic.lambda.csv.signatures
             {
                 Name = "types",
                 Type = "lambda",
+                Kind = "csv-column-types",
                 Description = "Column type conversions keyed by column name",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -53,7 +54,7 @@ namespace magic.lambda.csv.signatures
                     {
                         Name = "*",
                         Type = "string",
-                        Kind = "type-name",
+                        Kind = "csv-column-type",
                         Description = "Type name for the column",
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,

@@ -15,6 +15,9 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public abstract IEnumerable<SlotChild> Children { get; }
 
+        /// <inheritdoc />
+        public virtual IEnumerable<SlotChild> OutputChildren => new List<SlotChild>();
+
         internal static SlotChild Option(string name, string type, string description, string defaultValue = null, string kind = null)
         {
             return new SlotChild
@@ -92,6 +95,47 @@ namespace magic.lambda.caching.signatures
         {
             Option("offset", "int", "Result offset", "0"),
             Option("limit", "int", "Maximum number of items to return", "10"),
+        };
+
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> OutputChildren => new[]
+        {
+            new SlotChild
+            {
+                Name = ".",
+                Type = "lambda",
+                Kind = "cache-entry",
+                Description = "One cached item; children carry the cache [key] and stored [value]",
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ZeroOrMore,
+                Role = SlotChildRole.StructuredObject,
+                Projection = SlotChildProjection.StructuredTree,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "key",
+                        Type = "string",
+                        Kind = "cache-key",
+                        Description = "Cached item key",
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                    new SlotChild
+                    {
+                        Name = "value",
+                        Type = "string",
+                        Kind = "cache-value",
+                        Description = "Cached item value",
+                        Mode = SlotChildMode.Value,
+                        Cardinality = SlotChildCardinality.ExactlyOne,
+                        Role = SlotChildRole.Option,
+                        Projection = SlotChildProjection.Value,
+                    },
+                },
+            },
         };
     }
 }

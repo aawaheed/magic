@@ -19,6 +19,7 @@ namespace magic.lambda.misc
         Name = "apply",
         Description = "Stamps a template lambda with values from child argument nodes, producing one fully-substituted output per [.dp]",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the template node or nodes to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

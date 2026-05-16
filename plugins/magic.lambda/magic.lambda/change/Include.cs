@@ -16,6 +16,7 @@ namespace magic.lambda.change
         Name = "include",
         Description = "Evaluates child slots and includes all returned nodes into each selected node",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the destination node or nodes to include into",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
@@ -25,6 +26,7 @@ namespace magic.lambda.change
         ReturnsDescription = "Resolves to the matched destination nodes after all returned child nodes have been included",
         ProvidesIterationPointer = true,
         ScopeRequiresStrictExit = true,
+        BodyShape = SlotBodyShape.BraidedRowEmission,
         SignatureType = typeof(global::magic.lambda.signatures.IncludeSignature))]
     public class Include : ISlot
     {

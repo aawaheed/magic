@@ -16,6 +16,7 @@ namespace magic.lambda.source
         Name = "get-count",
         Description = "Returns the number of matching nodes",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to count",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

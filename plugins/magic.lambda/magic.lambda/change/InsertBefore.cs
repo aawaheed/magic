@@ -17,6 +17,7 @@ namespace magic.lambda.change
         Name = "insert-before",
         Description = "Inserts nodes before the specified target node",
         ValueType = "expression",
+        ValueKind = "node-list",
         ValueDescription = "Expression selecting the target node or nodes to insert before",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

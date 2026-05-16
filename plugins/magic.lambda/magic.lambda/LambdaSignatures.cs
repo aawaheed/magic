@@ -60,6 +60,7 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "lambda",
+                Kind = "boolean",
                 Description = "Condition node evaluated for truthiness",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
@@ -571,6 +572,7 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "lambda",
+                Kind = "boolean",
                 Description = "Predicate body evaluated once per selected node; the selected node is kept when the body returns true",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
