@@ -185,6 +185,19 @@ namespace magic.signals.contracts
         public bool ProvidesIterationPointer { get; set; }
 
         /// <summary>
+        /// True if the slot writes to the ambient `slots.result` scope when
+        /// invoked (return / return-value / return-nodes / yield). Slots
+        /// whose executable-lambda children have
+        /// <see cref="SlotChildProjection.ReturnedResult"/> (map, include,
+        /// filter, invoke targets, …) require their body to call one of
+        /// these so the caller observes a value/child set. The synthesizer
+        /// uses this flag to restrict dynamic body element candidates inside
+        /// such bodies — picking a side-effect-only slot would leave
+        /// `slots.result` empty and cause the parent to throw at runtime.
+        /// </summary>
+        public bool WritesScopeResult { get; set; }
+
+        /// <summary>
         /// True if the slot's scope cannot tolerate a mid-pipeline exit —
         /// i.e. all of its children must execute and the scope cannot be
         /// closed early so steps following it land at the outer level. Set

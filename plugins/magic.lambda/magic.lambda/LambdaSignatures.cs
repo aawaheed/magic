@@ -583,14 +583,29 @@ namespace magic.lambda.signatures
     }
 
     /// <summary>
-    /// Signature for [include].
+    /// Signature for [include]. Body's slots.result drives what gets added
+    /// to each iterated destination node — declared via
+    /// Projection=ReturnedResult so the synthesizer knows the body must
+    /// call [yield]/[return]/[return-nodes] rather than side-effect-only
+    /// slots that would leave result.Children empty.
     /// </summary>
     public class IncludeSignature : LambdaSignature
     {
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Executable body evaluated once per selected node; all returned child nodes are included into that selected node"),
+            new SlotChild
+            {
+                Name = "*",
+                Type = "lambda",
+                Description = "Executable body evaluated once per selected node; all returned child nodes are included into that selected node",
+                Required = true,
+                Mode = SlotChildMode.ExecutableLambda,
+                Cardinality = SlotChildCardinality.OneOrMore,
+                Role = SlotChildRole.ExecutableBody,
+                Evaluation = SlotChildEvaluation.EvalSelf,
+                Projection = SlotChildProjection.ReturnedResult,
+            },
         };
     }
 

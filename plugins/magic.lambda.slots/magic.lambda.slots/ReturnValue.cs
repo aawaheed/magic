@@ -24,7 +24,8 @@ namespace magic.lambda.slots
         ReturnsKind = "return-value",
         ReturnsDescription = "Resolves to a value to the caller",
         IsBlockTerminator = true,
-        PipelineOutputUsable = false)]
+        PipelineOutputUsable = false,
+        WritesScopeResult = true)]
     public class ReturnValue : ISlot
     {
         /// <summary>
