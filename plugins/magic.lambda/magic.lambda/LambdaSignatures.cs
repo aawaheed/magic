@@ -338,8 +338,8 @@ namespace magic.lambda.signatures
                     {
                         Name = "*",
                         Type = "string",
-                        Kind = "dynamic-slot-name",
-                        Description = "Allowed slot name",
+                        Kind = "native-slot-name",
+                        Description = "Allowed native slot name (e.g. add, set-value, if) that the body is permitted to invoke",
                         Required = true,
                         Mode = SlotChildMode.Value,
                         Cardinality = SlotChildCardinality.OneOrMore,
