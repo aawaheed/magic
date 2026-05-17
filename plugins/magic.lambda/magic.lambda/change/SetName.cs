@@ -21,7 +21,7 @@ namespace magic.lambda.change
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.None,
-        SignatureType = typeof(global::magic.lambda.signatures.SourceExpressionSignature))]
+        SignatureType = typeof(global::magic.lambda.signatures.SourceStringExpressionSignature))]
     public class SetName : ISlot
     {
         /// <summary>

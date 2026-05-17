@@ -526,6 +526,36 @@ namespace magic.lambda.signatures
     }
 
     /// <summary>
+    /// Signature for slots whose source child MUST resolve to a string —
+    /// used by [set-name], which assigns the resulting value as a node NAME
+    /// (names are always strings). Distinct from SourceExpressionSignature
+    /// (used by [set-value]) which accepts any object type. Without this
+    /// constraint the synthesizer happily picks binary-returning slots like
+    /// [io.file.load.binary] as the source for [set-name], producing
+    /// nonsense ("set the name to these raw zip bytes").
+    /// </summary>
+    public class SourceStringExpressionSignature : LambdaSignature
+    {
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            new SlotChild
+            {
+                Name = "*",
+                Type = "string",
+                Kind = "text",
+                Description = "Single source child evaluated to a string; the resolved value becomes the new node name. Omit to set the name to null.",
+                Required = false,
+                Mode = SlotChildMode.ExecutableLambda,
+                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Role = SlotChildRole.SourceExpression,
+                Evaluation = SlotChildEvaluation.EvalSelf,
+                Projection = SlotChildProjection.Value,
+            },
+        };
+    }
+
+    /// <summary>
     /// Signature for loop slots whose children are evaluated once per selected node.
     /// </summary>
     public class IteratorBodySignature : LambdaSignature
