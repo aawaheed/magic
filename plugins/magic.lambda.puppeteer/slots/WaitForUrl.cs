@@ -18,6 +18,8 @@ namespace magic.lambda.puppeteer
         Description = "Waits for the page URL to match a condition",
         ValueType = "string",
         ValueKind = "puppeteer-session",
+        RequiresScope = "puppeteer-session",
+        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

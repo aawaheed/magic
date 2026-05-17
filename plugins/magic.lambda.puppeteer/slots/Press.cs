@@ -19,6 +19,8 @@ namespace magic.lambda.puppeteer
         Description = "Sends a key press to the page",
         ValueType = "string",
         ValueKind = "puppeteer-session",
+        RequiresScope = "puppeteer-session",
+        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

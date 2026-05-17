@@ -26,6 +26,8 @@ namespace magic.lambda.puppeteer
         ReturnsType = "string",
         ReturnsKind = "puppeteer-session",
         ReturnsDescription = "Resolves to the created Puppeteer session ID",
+        ProvidesScope = "puppeteer-session",
+        ScopeDescription = "Creates an open Puppeteer browser session scope for puppeteer.* slots",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerConnectSignature))]
     public class Connect : ISlotAsync
     {

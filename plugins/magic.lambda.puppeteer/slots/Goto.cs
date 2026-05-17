@@ -19,6 +19,8 @@ namespace magic.lambda.puppeteer
         Description = "Navigates the current page to a URL",
         ValueType = "string",
         ValueKind = "puppeteer-session",
+        RequiresScope = "puppeteer-session",
+        ScopeProvider = "puppeteer.connect",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

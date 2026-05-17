@@ -113,6 +113,12 @@ namespace magic.lambda.http.signatures
                 Cardinality = SlotChildCardinality.ZeroOrOne,
                 Role = SlotChildRole.DynamicMap,
                 Projection = SlotChildProjection.StructuredTree,
+                // [url-params] children are NOT independent — their names
+                // must match the `{token}` placeholders in the parent slot's
+                // url-template Input value. Mark the link so tooling derives
+                // child names from the parsed URL rather than picking from a
+                // generic catalog.
+                LinkedToValueKind = name == "url-params" ? "url-template" : null,
                 Children =
                 {
                     new SlotChild

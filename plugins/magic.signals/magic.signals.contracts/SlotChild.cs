@@ -87,6 +87,25 @@ namespace magic.signals.contracts
         public SlotChildProjection Projection { get; set; }
 
         /// <summary>
+        /// Optional cross-argument link. When set, this child's contents are
+        /// derived from the parent slot's `.Value` (or a sibling) parsed for
+        /// template tokens, when the parent's ValueKind matches this tag.
+        /// Used to wire dynamic-named arg containers like `[url-params]` to
+        /// the `{token}` placeholders inside a `url-template` parent value.
+        /// Tooling (corpus synthesizer, doc generator) reads this to keep
+        /// linked args consistent with the value they reference.
+        /// </summary>
+        public string LinkedToValueKind { get; set; }
+
+        /// <summary>
+        /// Regex pattern used to extract template tokens from the linked
+        /// value, with capture group 1 holding the token name. Defaults to
+        /// `\{([^}]+)\}` (the `{token}` URL-template syntax) when
+        /// LinkedToValueKind is set without an explicit pattern.
+        /// </summary>
+        public string LinkedTokenPattern { get; set; }
+
+        /// <summary>
         /// Structural constraints applying to this child node.
         /// </summary>
         public List<SlotConstraint> Constraints { get; } = new List<SlotConstraint>();

@@ -19,6 +19,8 @@ namespace magic.lambda.puppeteer
         Description = "Evaluates JavaScript in the page context",
         ValueType = "string",
         ValueKind = "puppeteer-session",
+        RequiresScope = "puppeteer-session",
+        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
