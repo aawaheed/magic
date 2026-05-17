@@ -24,7 +24,7 @@ namespace magic.lambda.io.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "folder-path",
+        ReturnsKind = "folder-path,text,formattable-value",
         ReturnsDescription = "Resolves to the folder portion of the supplied path")]
     public class GetPathFolder : ISlot
     {

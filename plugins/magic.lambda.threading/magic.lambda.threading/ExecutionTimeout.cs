@@ -19,7 +19,7 @@ namespace magic.lambda.threading
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the timeout was applied")]
     public class ExecutionTimeout : ISlot
     {

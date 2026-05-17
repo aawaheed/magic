@@ -23,7 +23,7 @@ namespace magic.lambda.pgsql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "sql-scalar",
+        ReturnsKind = "sql-scalar,text,formattable-value",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "pgsql.connection",
         ScopeProvider = "pgsql.connect",

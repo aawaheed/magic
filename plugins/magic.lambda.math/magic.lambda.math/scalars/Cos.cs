@@ -22,7 +22,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
-        ReturnsKind = "number",
+        ReturnsKind = "number,formattable-value",
         ReturnsDescription = "Resolves to the cosine of the supplied angle")]
     public class Cos : ISlot
     {

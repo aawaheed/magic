@@ -21,7 +21,7 @@ namespace magic.lambda.threading
         Description = "Waits for one or more child [fork] operations to finish before proceeding",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "fork-result-list",
+        ReturnsKind = "fork-result-list,node-list",
         ReturnsDescription = "Resolves to the completed [fork] child nodes with evaluated body node values and children preserved",
         ProvidesScope = "join",
         SignatureType = typeof(global::magic.lambda.threading.signatures.JoinSignature))]

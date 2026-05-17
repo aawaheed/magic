@@ -22,7 +22,7 @@ namespace magic.lambda.openai
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of tokens in the supplied text",
         ReturnIsExternallyStateful = true)]
     public class Tokenizer : ISlot

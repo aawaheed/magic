@@ -27,7 +27,7 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "context-value",
+        ReturnsKind = "context-value,text,formattable-value",
         ReturnsDescription = "Resolves to the requested stack value or context object",
         RequiresScope = "context",
         ScopeProvider = "context",

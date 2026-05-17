@@ -23,7 +23,7 @@ namespace magic.lambda.pgsql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "pgsql.connection",
         ScopeProvider = "pgsql.connect",

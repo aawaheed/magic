@@ -24,7 +24,7 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "markdown",
+        ReturnsKind = "markdown,text,formattable-value",
         ReturnsDescription = "Resolves to the generated Markdown",
         SignatureType = typeof(global::magic.lambda.html.signatures.Html2MarkdownSignature))]
     public class Html2Markdown : ISlot

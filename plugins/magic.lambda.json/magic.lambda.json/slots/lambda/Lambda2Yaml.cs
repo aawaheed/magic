@@ -25,7 +25,7 @@ namespace magic.lambda.json.slots.lambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "yaml",
+        ReturnsKind = "yaml,text,formattable-value",
         ReturnsDescription = "Resolves to the generated YAML string",
         SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2YamlSignature))]
     public class Lambda2Yaml : ISlot

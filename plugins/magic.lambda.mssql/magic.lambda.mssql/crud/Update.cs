@@ -20,7 +20,7 @@ namespace magic.lambda.mssql.crud
         Description = "Updates rows through the current SQL Server connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

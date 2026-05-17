@@ -16,7 +16,15 @@ namespace magic.lambda.misc
         Name = "type",
         Description = "Returns the CLR type name of a value",
         ValueType = "expression",
-        ValueKind = "node-list",
+        // `single-object` is the structural-kind dual of `node-list`: one
+        // value-bearing node, any value type. The runtime contract here is
+        // `.Single().Value` — exactly one node, read its value — which is
+        // semantically incompatible with `node-list` (a container kind).
+        // Combined with `ValueExpressionResolution.SingleNode`, the static
+        // input shape (kind) and the runtime arity contract reinforce each
+        // other without overlapping. Same pattern as `[invoke]`'s
+        // `lambda-object` + SingleNode.
+        ValueKind = "single-object",
         ValueDescription = "Expression selecting the value whose CLR type should be inspected",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

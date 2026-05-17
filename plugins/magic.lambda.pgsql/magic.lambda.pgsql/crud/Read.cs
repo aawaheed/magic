@@ -20,7 +20,7 @@ namespace magic.lambda.pgsql.crud
         Description = "Reads rows through the current PostgreSQL connection",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "row-list",
+        ReturnsKind = "row-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object",
         ReturnsDescription = "Returns one child node per row read from the current PostgreSQL connection",

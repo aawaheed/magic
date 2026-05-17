@@ -27,7 +27,7 @@ namespace magic.lambda.xml
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "xml",
+        ReturnsKind = "xml,text,formattable-value",
         ReturnsDescription = "Resolves to the generated XML string",
         SignatureType = typeof(global::magic.lambda.xml.signatures.Lambda2XmlSignature))]
     public class Lambda2Xml : ISlot

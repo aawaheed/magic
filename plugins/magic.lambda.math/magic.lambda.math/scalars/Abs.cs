@@ -22,7 +22,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsKind = "number",
+        ReturnsKind = "number,formattable-value",
         ReturnsDescription = "Resolves to the absolute value")]
     public class Abs : ISlot
     {

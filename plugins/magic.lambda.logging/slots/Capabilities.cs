@@ -16,7 +16,7 @@ namespace magic.lambda.logging.slots
         Description = "Returns capabilities of the current log provider",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "log-capability-list",
+        ReturnsKind = "log-capability-list,node-list",
         ReturnsDescription = "Returns [can-filter] and [can-timeshift] capability nodes for the current log provider")]
     public class Capabilities : ISlot
     {

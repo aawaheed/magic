@@ -25,7 +25,7 @@ namespace magic.lambda.csv
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "csv",
+        ReturnsKind = "csv,text,formattable-value",
         ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Lambda2CsvSignature))]
     public class Lambda2Csv : ISlot

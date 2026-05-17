@@ -28,7 +28,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the password matches the supplied hash",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.VerifyPasswordSignature))]
     public class VerifyPassword : ISlot

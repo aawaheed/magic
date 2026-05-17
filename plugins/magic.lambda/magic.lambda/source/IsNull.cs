@@ -22,7 +22,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the expression resolves to a null value")]
     [Slot(
         Name = "not-null",
@@ -34,7 +34,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the expression resolves to a non-null value")]
     public class IsNull : ISlot
     {

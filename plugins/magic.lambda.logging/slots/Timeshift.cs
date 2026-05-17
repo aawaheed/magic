@@ -27,7 +27,7 @@ namespace magic.lambda.logging.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "log-timeshift-list",
+        ReturnsKind = "log-timeshift-list,node-list",
         ReturnsElementType = "object",
         ReturnsElementKind = "log-timeshift-bucket",
         ReturnsDescription = "Returns one child node per day with [when] and [count] values for the time bucket")]

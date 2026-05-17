@@ -20,7 +20,7 @@ namespace magic.lambda.mysql.crud
         Description = "Updates rows through the current MySQL connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

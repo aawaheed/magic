@@ -16,6 +16,10 @@ namespace magic.lambda.slots
     [Slot(
         Name = "return-nodes",
         Description = "Returns child nodes or evaluated nodes to the nearest caller",
+        ValueType = "expression",
+        ValueKind = "node-list",
+        ValueDescription = "Expression evaluating to the nodes to return; omit to return the literal child nodes instead",
+        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
@@ -23,15 +27,21 @@ namespace magic.lambda.slots
         IsBlockTerminator = true,
         PipelineOutputUsable = false,
         WritesScopeResult = true,
+        ValueOrChildrenRequired = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnNodesSignature))]
     [Slot(
         Name = "yield",
         Description = "Returns multiple child nodes or evaluated nodes to the caller",
+        ValueType = "expression",
+        ValueKind = "node-list",
+        ValueDescription = "Expression evaluating to the nodes to yield; omit to yield the literal child nodes instead",
+        ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Returns child nodes to the caller",
         WritesScopeResult = true,
+        ValueOrChildrenRequired = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.YieldSignature))]
     public class ReturnNodes : ISlot
     {

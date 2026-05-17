@@ -26,7 +26,7 @@ namespace magic.lambda.csv
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "csv-row-list,csv-tree,lambda-tree",
+        ReturnsKind = "csv-row-list,csv-tree,lambda-tree,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "csv-row",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes; each child is one CSV row containing column-named values",

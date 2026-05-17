@@ -23,7 +23,7 @@ namespace magic.lambda.mssql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "mssql.connection",
         ScopeProvider = "mssql.connect",

@@ -19,7 +19,7 @@ namespace magic.lambda.threading
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the execution was cancelled")]
     public class ExecutionKill : ISlot
     {

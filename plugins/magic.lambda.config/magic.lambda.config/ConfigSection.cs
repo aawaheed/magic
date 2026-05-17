@@ -23,7 +23,7 @@ namespace magic.lambda.config
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "config-section",
+        ReturnsKind = "config-section,text,formattable-value",
         ReturnsDescription = "Returns one child node per key/value entry in the requested configuration section")]
     public class ConfigSection : ISlot
     {

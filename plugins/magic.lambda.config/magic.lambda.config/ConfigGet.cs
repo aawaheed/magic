@@ -24,7 +24,7 @@ namespace magic.lambda.config
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "config-value",
+        ReturnsKind = "config-value,text,formattable-value",
         ReturnsDescription = "Resolves to the configuration value, or the first child value when the key is missing",
         SignatureType = typeof(global::magic.lambda.config.signatures.ConfigGetSignature))]
     public class ConfigGet : ISlotAsync

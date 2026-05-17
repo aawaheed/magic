@@ -24,7 +24,7 @@ namespace magic.lambda.auth
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the current ticket belongs to at least one of the comma-separated roles")]
     public class InRole : ISlot
     {

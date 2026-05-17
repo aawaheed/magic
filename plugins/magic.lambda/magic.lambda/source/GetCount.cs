@@ -22,7 +22,7 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of nodes matched by the expression")]
     public class GetCount : ISlot
     {

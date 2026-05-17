@@ -22,7 +22,7 @@ namespace magic.data.common.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "sql-scalar",
+        ReturnsKind = "sql-scalar,text,formattable-value",
         ReturnsDescription = "Resolves to a scalar value from the current database connection",
         RequiresScope = "data.connection",
         ScopeProvider = "data.connect",

@@ -24,7 +24,7 @@ namespace magic.lambda.sqlite
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "row-list",
+        ReturnsKind = "row-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",

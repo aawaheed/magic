@@ -25,7 +25,7 @@ namespace magic.lambda.logging.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "log-entry-list",
+        ReturnsKind = "log-entry-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "log-entry",
         ReturnsDescription = "Returns matching log entries as child nodes",

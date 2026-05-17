@@ -22,7 +22,7 @@ namespace magic.lambda.git
         Description = "Lists GitHub repositories using child-node filters",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "github-repository-list",
+        ReturnsKind = "github-repository-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "github-repository",
         ReturnsDescription = "Returns one child node per GitHub repository with the projected repository metadata",

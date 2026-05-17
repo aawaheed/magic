@@ -24,7 +24,7 @@ namespace magic.lambda.caching
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "cache-key-list",
+        ReturnsKind = "cache-key-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "cache-entry",
         ReturnsDescription = "Returns one child node per cached key matching the optional filter, each with [key] and [value] children",

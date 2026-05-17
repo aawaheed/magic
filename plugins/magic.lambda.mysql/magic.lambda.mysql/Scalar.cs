@@ -24,7 +24,7 @@ namespace magic.lambda.mysql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "sql-scalar",
+        ReturnsKind = "sql-scalar,text,formattable-value",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

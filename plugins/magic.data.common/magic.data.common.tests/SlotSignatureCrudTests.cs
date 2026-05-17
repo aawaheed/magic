@@ -55,7 +55,13 @@ namespace magic.data.common.tests
             Assert.Equal(SlotChildCardinality.OneOrMore.ToString(), table.Children.First(x => x.Name == "cardinality").GetEx<string>());
             Assert.True(on.Children.First(x => x.Name == "required").GetEx<bool>());
             Assert.Contains(where.Children.First(x => x.Name == "children").Children, x => x.Name == "and");
-            Assert.Contains(children.Children, x => x.Name == "@*");
+            // [@*] used to live on CRUD signatures, but it was misleading:
+            // CRUD slots auto-generate their SQL and bind their own params
+            // internally, so user-supplied `@xxx` children are just dangling
+            // data the generated SQL never references. The schema now only
+            // exposes the structured CRUD shape; raw `@param` placeholders
+            // belong on [*.execute] / [*.scalar] / [*.select] via SqlParameter.
+            Assert.DoesNotContain(children.Children, x => x.Name == "@*");
         }
 
         [Fact]

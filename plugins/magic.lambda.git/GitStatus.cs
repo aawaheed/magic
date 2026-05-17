@@ -25,7 +25,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "git-status",
+        ReturnsKind = "git-status,text,formattable-value",
         ReturnsDescription = "Returns Git status text in value or, when structured, one child node per status line",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitStatusSignature))]
     public class GitStatus : ISlotAsync

@@ -16,7 +16,7 @@ namespace magic.lambda.system
         Description = "Returns a description of the current operating system",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "current-os-name",
+        ReturnsKind = "current-os-name,text,formattable-value",
         ReturnsDescription = "Resolves to the current operating system name")]
     public class SystemOperatingSystem : ISlot
     {

@@ -24,7 +24,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "loaded-file-list",
+        ReturnsKind = "loaded-file-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "loaded-file",
         ReturnsDescription = "Returns one unnamed child node per loaded file; each entry has a [name] child (relative file path) and a [content] child (file content as string)",

@@ -24,7 +24,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text",
+        ReturnsKind = "text,formattable-value",
         ReturnsDescription = "Resolves to the extracted substring",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SubstringSignature))]
     public class Substring : ISlotAsync

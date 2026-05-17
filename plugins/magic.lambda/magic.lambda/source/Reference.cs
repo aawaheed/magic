@@ -16,7 +16,12 @@ namespace magic.lambda.source
         Name = "reference",
         Description = "Returns the first matched node as a live reference so callers can mutate it in place rather than copy its value",
         ValueType = "expression",
-        ValueKind = "node-list",
+        // `single-object` — the runtime explicitly throws if the expression
+        // returns more than one node. `node-list` would falsely advertise a
+        // container shape; `single-object` is the structural dual
+        // ("one value-bearing node, any kind") that matches the runtime
+        // contract. Reinforced by `ValueExpressionResolution.SingleNode`.
+        ValueKind = "single-object",
         ValueDescription = "Expression selecting the node to reference",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

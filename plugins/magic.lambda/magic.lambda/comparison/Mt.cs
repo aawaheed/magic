@@ -16,7 +16,7 @@ namespace magic.lambda.comparison
         Description = "Returns true if the first operand is greater than the second operand",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Resolves to true if the first operand is greater than the second operand",
         ComparisonKind = SlotComparisonKind.GreaterThan,
         SignatureType = typeof(global::magic.lambda.signatures.ComparisonSignature))]

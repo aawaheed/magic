@@ -25,7 +25,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "dynamic-slot-name-list",
+        ReturnsKind = "dynamic-slot-name-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "dynamic-slot-name",
         ReturnsDescription = "Resolves to available slot names as child nodes")]

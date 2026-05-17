@@ -24,7 +24,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of scheduled tasks matching the optional filter")]
     public class CountTasks :ISlotAsync
     {

@@ -23,7 +23,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the file exists")]
     public class FileExists : ISlotAsync
     {

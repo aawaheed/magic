@@ -18,7 +18,7 @@ namespace magic.endpoint.services.slots.misc
         Description = "Returns the client IP address for the current request",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "ip-address",
+        ReturnsKind = "ip-address,text,formattable-value",
         ReturnsDescription = "Resolves to the client IP address for the requested IP version",
         SignatureType = typeof(global::magic.endpoint.services.signatures.IpVersionSignature))]
     public class GetIP : ISlot

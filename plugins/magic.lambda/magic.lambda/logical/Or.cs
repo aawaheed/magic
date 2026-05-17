@@ -18,7 +18,7 @@ namespace magic.lambda.logical
         Description = "Returns true if any child expression evaluates to true",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Resolves to true if any operand evaluates to true",
         SignatureType = typeof(global::magic.lambda.signatures.MultipleLogicalOperandsSignature))]
     public class Or : ISlot

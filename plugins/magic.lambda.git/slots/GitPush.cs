@@ -23,7 +23,7 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "git-output",
+        ReturnsKind = "git-output,text,formattable-value",
         ReturnsDescription = "Resolves to the git push command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitPushSignature))]
     public class GitPush : ISlotAsync

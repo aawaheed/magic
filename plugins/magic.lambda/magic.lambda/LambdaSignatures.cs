@@ -18,6 +18,11 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public virtual IEnumerable<SlotConstraint> Constraints => new SlotConstraint[0];
 
+        // Generic action body: pure imperative sequence with no return-value
+        // contract. The body can contain any slot whose side effects are
+        // useful (logging, mutation, file I/O, etc.) — including slots with
+        // ReturnsMode=None like [sleep]. Used by [else], [case], [default],
+        // [fork], etc.
         internal static SlotChild ExecutableBody(
             string description,
             SlotChildCardinality cardinality = SlotChildCardinality.ZeroOrMore)
@@ -31,6 +36,37 @@ namespace magic.lambda.signatures
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = cardinality,
                 Role = SlotChildRole.ExecutableBody,
+                Evaluation = SlotChildEvaluation.EvalSelf,
+                Projection = SlotChildProjection.Self,
+            };
+        }
+
+        // Value-returning operand body: the body is a single slot call that
+        // MUST return a value of the declared kind. Used by logical operators
+        // like [and]/[or]/[not] whose operand contract is "evaluate to a
+        // boolean". Role=Operand drives PickBodySlot to require
+        // ReturnsMode=Value; the Kind tag forces ReturnsKind to match.
+        // Without this, the body picker would happily pick [sleep] (no
+        // return) as an `[and]` operand — schema-prose can't enforce
+        // contracts, the typed channel does.
+        internal static SlotChild ExecutableOperand(
+            string description,
+            string kind,
+            SlotChildCardinality cardinality)
+        {
+            return new SlotChild
+            {
+                Name = "*",
+                Type = "lambda",
+                Kind = kind,
+                Description = description,
+                Required = cardinality == SlotChildCardinality.ExactlyOne
+                           || cardinality == SlotChildCardinality.OneOrMore
+                           || cardinality == SlotChildCardinality.TwoOrMore
+                           || cardinality == SlotChildCardinality.ExactlyTwo,
+                Mode = SlotChildMode.ExecutableLambda,
+                Cardinality = cardinality,
+                Role = SlotChildRole.Operand,
                 Evaluation = SlotChildEvaluation.EvalSelf,
                 Projection = SlotChildProjection.Self,
             };
@@ -276,7 +312,7 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Executable operand returning a boolean value", SlotChildCardinality.ExactlyOne),
+            ExecutableOperand("Executable operand returning a boolean value", "boolean", SlotChildCardinality.ExactlyOne),
         };
     }
 
@@ -288,7 +324,7 @@ namespace magic.lambda.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            ExecutableBody("Executable operand returning a boolean value", SlotChildCardinality.TwoOrMore),
+            ExecutableOperand("Executable operand returning a boolean value", "boolean", SlotChildCardinality.TwoOrMore),
         };
     }
 

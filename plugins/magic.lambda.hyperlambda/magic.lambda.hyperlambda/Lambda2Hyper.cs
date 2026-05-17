@@ -23,7 +23,7 @@ namespace magic.lambda.hyperlambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "hyperlambda",
+        ReturnsKind = "hyperlambda,text,formattable-value",
         ReturnsDescription = "Resolves to the generated Hyperlambda source",
         SignatureType = typeof(global::magic.lambda.hyperlambda.signatures.Lambda2HyperSignature))]
     public class Lambda2Hyper : ISlot

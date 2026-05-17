@@ -23,7 +23,7 @@ namespace magic.lambda.strings.concat
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text",
+        ReturnsKind = "text,formattable-value",
         ReturnsDescription = "Resolves to the concatenated string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ConcatSignature))]
     public class Concat : ISlotAsync

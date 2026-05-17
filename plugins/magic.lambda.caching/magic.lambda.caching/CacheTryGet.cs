@@ -27,7 +27,7 @@ namespace magic.lambda.caching
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "cache-value",
+        ReturnsKind = "cache-value,text,formattable-value",
         ReturnsDescription = "Resolves to the cached value, or the newly created value when the key is missing",
         SignatureType = typeof(global::magic.lambda.caching.signatures.CacheTryGetSignature))]
     public class CacheTryGet : ISlotAsync

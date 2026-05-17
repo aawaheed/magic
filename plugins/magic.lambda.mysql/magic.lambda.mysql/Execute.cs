@@ -23,7 +23,7 @@ namespace magic.lambda.mysql
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

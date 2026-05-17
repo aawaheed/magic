@@ -23,7 +23,7 @@ namespace magic.lambda.system
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the current operating system matches the supplied platform name")]
     public class IsOperatingSystem : ISlot
     {

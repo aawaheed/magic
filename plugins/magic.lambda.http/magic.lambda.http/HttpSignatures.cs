@@ -139,12 +139,19 @@ namespace magic.lambda.http.signatures
 
         internal static SlotChild Sse()
         {
-            return new SlotChild
+            // The HTTP client (MagicHttp.cs) reads the response body one line
+            // at a time, builds [.arguments] = { [message]: "<line text>" },
+            // inserts it as the first child of a clone of [.sse], and evals.
+            // Declaring Arguments here surfaces @.arguments/message inside
+            // the body for the synthesizer's path enumeration — slot
+            // consumers wire it the same way [for-each] body slots wire
+            // @.dp/#/<col>. The runtime contract and the schema agree.
+            var result = new SlotChild
             {
                 Name = ".sse",
                 Type = "lambda",
                 Kind = "sse-callback",
-                Description = "Callback executed once per server-sent event line with [.arguments/message]",
+                Description = "Callback executed once per server-sent event line; receives the line in [.arguments/message]",
                 Required = false,
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.ZeroOrOne,
@@ -152,6 +159,18 @@ namespace magic.lambda.http.signatures
                 Evaluation = SlotChildEvaluation.EvalBlock,
                 Projection = SlotChildProjection.Self,
             };
+            result.Arguments.Add(new SlotChild
+            {
+                Name = "message",
+                Type = "string",
+                Kind = "sse-message,text-line,text",
+                Description = "One server-sent event line as delivered by the HTTP stream reader",
+                Mode = SlotChildMode.Value,
+                Cardinality = SlotChildCardinality.ExactlyOne,
+                Role = SlotChildRole.Payload,
+                Projection = SlotChildProjection.Value,
+            });
+            return result;
         }
 
         internal static IEnumerable<SlotChild> Common()

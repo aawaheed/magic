@@ -18,7 +18,7 @@ namespace magic.endpoint.services.slots.misc
         Description = "Returns the server's local IP address (IPv4 by default); useful for logging or building absolute URLs",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "ip-address",
+        ReturnsKind = "ip-address,text,formattable-value",
         ReturnsDescription = "Resolves to the server IP address for the requested IP version",
         SignatureType = typeof(global::magic.endpoint.services.signatures.IpVersionSignature))]
     public class GetServerIP : ISlot

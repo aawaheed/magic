@@ -209,6 +209,24 @@ namespace magic.signals.contracts
         public bool WritesScopeResult { get; set; }
 
         /// <summary>
+        /// True if the slot's payload is delivered EITHER via its value
+        /// (typically an expression evaluating to nodes/values) OR via its
+        /// child nodes — but never neither. Runtime semantics: if Value is
+        /// set, it takes precedence; otherwise the slot reads Children.
+        /// Examples: [return-nodes] / [yield] accept either an expression
+        /// pointing at a node-list or literal child nodes; emitting them
+        /// bare with neither produces no output and teaches the LLM a
+        /// nonsense form.
+        ///
+        /// When this flag is true, the synthesizer treats the two paths as
+        /// alternatives: it picks ONE form per emission (coin-flip) so the
+        /// corpus contains clean examples of each idiom rather than the
+        /// redundant both-at-once form. The flag is opt-in — no slot is
+        /// affected by default.
+        /// </summary>
+        public bool ValueOrChildrenRequired { get; set; }
+
+        /// <summary>
         /// True if the slot's output preserves the row shape of its input
         /// expression — i.e. it selects, reorders, mutates, or augments
         /// nodes pointed to by its expression value rather than producing

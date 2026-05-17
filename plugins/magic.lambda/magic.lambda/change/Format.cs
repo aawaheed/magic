@@ -23,7 +23,7 @@ namespace magic.lambda.change
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "formatted-text,text",
+        ReturnsKind = "formatted-text,text,formattable-value",
         ReturnsDescription = "Resolves to the formatted string",
         SignatureType = typeof(global::magic.lambda.signatures.FormatSignature))]
     public class Format : ISlot

@@ -20,7 +20,7 @@ namespace magic.lambda.pgsql.crud
         Description = "Deletes rows through the current PostgreSQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count",
+        ReturnsKind = "count,number,formattable-value",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "pgsql.connection",
         ScopeProvider = "pgsql.connect",

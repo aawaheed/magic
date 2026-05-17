@@ -22,7 +22,7 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text",
+        ReturnsKind = "text,formattable-value",
         ReturnsDescription = "Resolves to the decoded text")]
     public class HtmlDecode : ISlot
     {

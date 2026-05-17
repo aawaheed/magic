@@ -21,7 +21,7 @@ namespace magic.lambda.crypto.slots.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "fingerprint",
+        ReturnsKind = "fingerprint,text,formattable-value",
         ReturnsDescription = "Resolves to the SHA256 hash of the supplied content formatted as a fingerprint")]
     public class Fingerprint : ISlot
     {

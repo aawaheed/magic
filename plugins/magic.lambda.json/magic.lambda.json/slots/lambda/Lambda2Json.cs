@@ -23,7 +23,7 @@ namespace magic.lambda.json.slots.lambda
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "json",
+        ReturnsKind = "json,text,formattable-value",
         ReturnsDescription = "Resolves to the generated JSON string",
         SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2JsonSignature))]
     public class Lambda2Json : ISlot

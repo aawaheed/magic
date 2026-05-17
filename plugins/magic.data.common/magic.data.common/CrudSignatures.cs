@@ -2,6 +2,7 @@
  * Magic Cloud, copyright (c) 2023 Thomas Hansen. See the attached LICENSE file for details. For license inquiries you can send an email to thomas@ainiro.io
  */
 
+using System;
 using System.Collections.Generic;
 using magic.signals.contracts;
 
@@ -110,8 +111,14 @@ namespace magic.data.common.signatures
             };
         }
 
-        internal static SlotChild BooleanLevel(string name, int depth)
+        // BooleanLevel composes AND/OR groups recursively. `conditionFactory`
+        // produces the LEAF condition schema — different for WHERE
+        // (literal/expression value compare) vs JOIN ON (column-ref compare).
+        // Passing the factory keeps the recursion generic; no per-context
+        // branching inside BooleanLevel itself.
+        internal static SlotChild BooleanLevel(string name, int depth, Func<SlotChild> conditionFactory = null)
         {
+            conditionFactory ??= Condition;
             var result = new SlotChild
             {
                 Name = name,
@@ -123,17 +130,21 @@ namespace magic.data.common.signatures
                 Cardinality = SlotChildCardinality.ZeroOrMore,
                 Children =
                 {
-                    Condition(),
+                    conditionFactory(),
                 },
             };
             if (depth > 0)
             {
-                result.Children.Add(BooleanLevel("and", depth - 1));
-                result.Children.Add(BooleanLevel("or", depth - 1));
+                result.Children.Add(BooleanLevel("and", depth - 1, conditionFactory));
+                result.Children.Add(BooleanLevel("or", depth - 1, conditionFactory));
             }
             return result;
         }
 
+        // WHERE condition: LHS is a column-with-operator suffix (id.eq,
+        // email.like, …), RHS is a literal value or expression to compare
+        // against. The RHS kind list starts with `text,number,...` because
+        // the comparison target is data, not another column.
         internal static SlotChild Condition()
         {
             return new SlotChild
@@ -161,14 +172,58 @@ namespace magic.data.common.signatures
             };
         }
 
+        // JOIN ON condition: LHS is a column-with-operator suffix (name
+        // pulled from sql-column-condition-names), RHS is typically ANOTHER
+        // column reference (qualified `table.col`), not a literal value.
+        // Putting `sql-qualified-column` second in the OUTER Kind list (after
+        // the LHS-naming `sql-column-condition`) makes PickLiteral fall
+        // through to sql-qualified-column-names for the RHS, so emitted
+        // joins read `users.id.eq:orders.user_id` rather than the
+        // nonsensical `users.id.eq:"some-quoted-string"` the WHERE variant
+        // would produce. The trailing text/number/... fallbacks remain so
+        // the rare literal-RHS join (`status.eq:5`) is still legal and the
+        // synth doesn't dead-end if the catalog ever misses. The INNER `[*]`
+        // (used by `.in` operator's value list) keeps qualified-column
+        // priority too — `status.in` against a column list reads naturally.
+        internal static SlotChild JoinCondition()
+        {
+            return new SlotChild
+            {
+                Name = "*",
+                Type = "object",
+                Kind = "sql-column-condition,sql-qualified-column,text,number,boolean,date,guid,content,value",
+                Description = "Join predicate: LHS is a column-with-operator suffix, RHS is typically the joined-side column reference",
+                Required = true,
+                Mode = SlotChildMode.ValueOrExpression,
+                Cardinality = SlotChildCardinality.OneOrMore,
+                Children =
+                {
+                    new SlotChild
+                    {
+                        Name = "*",
+                        Type = "object",
+                        Kind = "sql-qualified-column,text,number,boolean,date,guid,content,value",
+                        Description = "Value item used by operators such as .in (typically a column reference for join predicates)",
+                        Required = false,
+                        Mode = SlotChildMode.ValueOrExpression,
+                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                    },
+                },
+            };
+        }
+
         internal static SlotChild Join(int depth)
         {
             // Top-level [and]/[or] inside [on] are ZeroOrOne (same reason as
             // Where() — the SQL builder can render exactly one top-level
             // boolean group). ExactlyOneOf constraint forces the [on] body to
             // emit precisely one group; nested levels stay ZeroOrMore.
-            var onAnd = BooleanLevel("and", 1);
-            var onOr = BooleanLevel("or", 1);
+            // JoinCondition (not Condition) is used here so the RHS of each
+            // predicate resolves to a column reference like `orders.user_id`
+            // rather than a literal text/number — the dominant convention
+            // for SQL JOIN ON clauses.
+            var onAnd = BooleanLevel("and", 1, JoinCondition);
+            var onOr = BooleanLevel("or", 1, JoinCondition);
             onAnd.Cardinality = SlotChildCardinality.ZeroOrOne;
             onOr.Cardinality = SlotChildCardinality.ZeroOrOne;
             var result = new SlotChild
@@ -246,7 +301,6 @@ namespace magic.data.common.signatures
             Order(),
             Limit(),
             Offset(),
-            ExplicitArgument(),
         };
 
         /// <inheritdoc />
@@ -414,19 +468,6 @@ namespace magic.data.common.signatures
             };
         }
 
-        internal static SlotChild ExplicitArgument()
-        {
-            return new SlotChild
-            {
-                Name = "@*",
-                Type = "object",
-                Kind = "sql-parameter-value,text,number,boolean,date,guid,content,value",
-                Description = "Explicit SQL parameter supplied by name for generated statements that reference it",
-                Required = false,
-                Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.ZeroOrMore,
-            };
-        }
     }
 
     /// <summary>
@@ -468,7 +509,6 @@ namespace magic.data.common.signatures
             ReturnId(),
             Table(SlotChildCardinality.ExactlyOne, false),
             Values(),
-            SqlReadSignature.ExplicitArgument(),
         };
 
         internal static SlotChild Generate()
@@ -516,7 +556,6 @@ namespace magic.data.common.signatures
             Order(),
             Limit(),
             Offset(),
-            ExplicitArgument(),
         };
     }
 
@@ -532,7 +571,6 @@ namespace magic.data.common.signatures
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Values(),
             SqlCreateSignature.Where(),
-            SqlReadSignature.ExplicitArgument(),
         };
     }
 
@@ -547,7 +585,6 @@ namespace magic.data.common.signatures
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Where(),
-            SqlReadSignature.ExplicitArgument(),
         };
     }
 
@@ -564,7 +601,6 @@ namespace magic.data.common.signatures
             ReturnId(),
             Table(SlotChildCardinality.ExactlyOne, false),
             Values(),
-            SqlReadSignature.ExplicitArgument(),
         };
 
         internal static SlotChild DatabaseType()
@@ -599,7 +635,6 @@ namespace magic.data.common.signatures
             Order(),
             Limit(),
             Offset(),
-            ExplicitArgument(),
         };
     }
 
@@ -616,7 +651,6 @@ namespace magic.data.common.signatures
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Values(),
             SqlCreateSignature.Where(),
-            SqlReadSignature.ExplicitArgument(),
         };
     }
 
@@ -632,7 +666,6 @@ namespace magic.data.common.signatures
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Where(),
-            SqlReadSignature.ExplicitArgument(),
         };
     }
 

@@ -23,7 +23,7 @@ namespace magic.lambda.io.folder
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean",
+        ReturnsKind = "boolean,formattable-value",
         ReturnsDescription = "Returns true if the folder exists")]
     public class FolderExists : ISlotAsync
     {

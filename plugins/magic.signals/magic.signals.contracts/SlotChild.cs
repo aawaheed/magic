@@ -114,5 +114,23 @@ namespace magic.signals.contracts
         /// Nested child nodes accepted by this child node.
         /// </summary>
         public List<SlotChild> Children { get; } = new List<SlotChild>();
+
+        /// <summary>
+        /// For ExecutableLambda bodies: children of the synthetic
+        /// [.arguments] bag the parent slot injects at invocation. Mirrors
+        /// the iteration-pointer pattern used by [for-each]/[map]/etc.
+        /// (which surfaces @.dp/# inside their body), but with a fixed
+        /// .arguments root name instead of .dp. Empty (default) means the
+        /// body inherits no caller-injected arguments.
+        ///
+        /// Each entry's Name/Type/Kind/Description documents one child of
+        /// the [.arguments] bag. Inside the body, path enumeration surfaces
+        /// @.arguments/&lt;name&gt; with the declared kind/type so the
+        /// body slot picker and PickValue wire consumers automatically.
+        /// Example: HTTP [.sse] callbacks receive [.arguments/message]
+        /// (one SSE line per body invocation), declared on the [.sse]
+        /// schema as Arguments = { Name="message", Kind="text-line,text" }.
+        /// </summary>
+        public List<SlotChild> Arguments { get; } = new List<SlotChild>();
     }
 }

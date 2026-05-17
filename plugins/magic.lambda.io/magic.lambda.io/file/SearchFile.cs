@@ -27,7 +27,7 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "file-search-result-list",
+        ReturnsKind = "file-search-result-list,node-list",
         ReturnsElementType = "lambda",
         ReturnsElementKind = "file-search-result",
         ReturnsDescription = "Returns one child node per matching file, each containing [file] with the relative file path and [lines] with matching line numbers",
