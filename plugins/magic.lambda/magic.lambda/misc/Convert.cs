@@ -17,11 +17,19 @@ namespace magic.lambda.misc
     /// <summary>
     /// [convert] slot allowing you to convert values of nodes from one type to some other type.
     /// </summary>
+    // ValueKind intentionally omitted. [convert] reads `.Value` from the
+    // single node the expression resolves to and coerces it to a target
+    // CLR type — it does NOT want a node-list. The previous annotation
+    // `ValueKind="node-list"` clashed with `SingleNode` resolution (node-list
+    // tips only appear at multi-cardinality `/*` positions, but SingleNode
+    // requires Cardinality=1), causing MaterializePrelude to produce silently
+    // wrong-kinded expressions like `convert:x:@.template_count` pointing at
+    // a container with no value. With no ValueKind, type-matching governs
+    // candidate selection.
     [Slot(
         Name = "convert",
         Description = "Coerces a value to a different CLR type; useful for parsing strings into numbers, dates, booleans, or other strongly-typed values",
         ValueType = "expression",
-        ValueKind = "node-list",
         ValueDescription = "Expression selecting the value to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
