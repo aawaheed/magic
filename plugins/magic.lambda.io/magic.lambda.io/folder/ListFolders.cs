@@ -24,7 +24,9 @@ namespace magic.lambda.io.folder
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "folder-path-list,node-list",
+        // `string-list` added — each child node's value is a folder-path
+        // string. Consumers asking for "list of strings" must kind-match.
+        ReturnsKind = "folder-path-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "folder-path",
         ReturnsDescription = "Returns one unnamed child node per relative folder path",
@@ -39,7 +41,9 @@ namespace magic.lambda.io.folder
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "folder-path-list,node-list",
+        // `string-list` added — each child node's value is a folder-path
+        // string. Consumers asking for "list of strings" must kind-match.
+        ReturnsKind = "folder-path-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "folder-path",
         ReturnsDescription = "Returns one unnamed child node per relative folder path, recursively",

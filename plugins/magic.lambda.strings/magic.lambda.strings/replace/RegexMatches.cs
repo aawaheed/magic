@@ -25,7 +25,10 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "regex-match-list",
+        // Multi-tag chain, specific → structural: `string-list` (each match
+        // is a string) and `node-list` (topology) were both missing.
+        // Consumers asking for either generic kind must kind-match.
+        ReturnsKind = "regex-match-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "regex-match",
         ReturnsDescription = "Returns one child node per regular expression match",

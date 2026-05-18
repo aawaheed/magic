@@ -16,7 +16,11 @@ namespace magic.lambda.system.plugins
         Description = "Lists dynamically loaded plugins",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "plugin-assembly-list",
+        // Multi-tag chain, specific → structural: `string-list` (each child
+        // value is a plugin-assembly-name string) and `node-list` (topology)
+        // were both missing. Consumers asking for either generic kind must
+        // kind-match.
+        ReturnsKind = "plugin-assembly-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "plugin-assembly-name",
         ReturnsDescription = "Returns one child node per dynamically loaded plugin name")]

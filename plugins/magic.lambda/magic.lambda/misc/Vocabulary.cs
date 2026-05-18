@@ -25,7 +25,16 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "dynamic-slot-name-list,node-list",
+        // Multi-tag chain, specific → structural:
+        //   dynamic-slot-name-list  : semantic identity (list of slot names)
+        //   string-list             : every child node holds a string value;
+        //                             consumers asking for "list of strings"
+        //                             must be able to kind-match here. Was
+        //                             missing — undertagged the chain.
+        //   node-list               : structural fact (list of nodes)
+        // Same pattern as `markdown,text,formattable-value` — the producer
+        // declares every level its output legitimately belongs to.
+        ReturnsKind = "dynamic-slot-name-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "dynamic-slot-name",
         ReturnsDescription = "Resolves to available slot names as child nodes")]

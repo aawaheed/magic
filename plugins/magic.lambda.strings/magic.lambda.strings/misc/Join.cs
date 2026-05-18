@@ -18,7 +18,12 @@ namespace magic.lambda.strings.misc
         Name = "strings.join",
         Description = "Concatenates the values yielded by the expression, inserting the separator between adjacent items",
         ValueType = "lambda",
-        ValueKind = "string-list",
+        // `node-list` added — structural truth: the input is a list of
+        // nodes whose values are strings. Symmetric with the producer-side
+        // tagging on `strings.split`/`vocabulary`/etc. — consumers and
+        // producers use the same kind labels (set intersection decides
+        // matches).
+        ValueKind = "string-list,node-list",
         ValueDescription = "Expression yielding the values to join",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

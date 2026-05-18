@@ -22,7 +22,12 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "url-component",
+        // Multi-tag chain, specific → structural: `text,formattable-value`
+        // were missing — the decoded URL component IS text under the hood,
+        // and every text-consuming slot (log.info, strings.*, etc.) must be
+        // able to kind-match the output. Matches the html-decode/html-encode
+        // chains: `<specific>,text,formattable-value`.
+        ReturnsKind = "url-component,text,formattable-value",
         ReturnsDescription = "Resolves to the URL-decoded string")]
     public class UrlDecode : ISlot
     {

@@ -18,7 +18,18 @@ namespace magic.lambda.eval
         Name = "invoke",
         Description = "Invokes a lambda expression as a callable slot",
         ValueType = "lambda",
-        ValueKind = "lambda-object",
+        // Multi-tag, semantic → structural:
+        //   executable    — semantic intent: this is CODE to be invoked.
+        //                   Runtime evaluates the resolved single lambda
+        //                   with `.arguments` injection. The contract is
+        //                   "call this lambda", not "use this data tree".
+        //   lambda-object — structural: a single lambda node (enforced by
+        //                   `ValueExpressionResolution.SingleNode` + the
+        //                   runtime's `.Single()` resolution).
+        // Backward-compatible with the previous mono-tag declaration;
+        // adds the executable semantic for kind-matching against code-
+        // producing slots like `[apply]`.
+        ValueKind = "executable,lambda-object",
         ValueDescription = "Expression yielding the single lambda node to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

@@ -132,5 +132,28 @@ namespace magic.signals.contracts
         /// schema as Arguments = { Name="message", Kind="text-line,text" }.
         /// </summary>
         public List<SlotChild> Arguments { get; } = new List<SlotChild>();
+
+        /// <summary>
+        /// True when this body, at INVOCATION time, will receive caller-
+        /// supplied arguments via a synthetic [.arguments] bag — but the
+        /// argument shape is NOT pre-declared by the schema (because the
+        /// caller chooses what to pass). Examples: [function] / [slots.create]
+        /// bodies, which receive whatever args [signal] hands them.
+        ///
+        /// Distinct from Arguments above:
+        ///   Arguments        — FIXED, schema-declared callback args
+        ///                      (e.g. HTTP [.sse]'s [.arguments/message]).
+        ///   ReceivesDynamic. — DYNAMIC, names+kinds chosen by the body's
+        ///                      own consumption pattern at synth time.
+        ///
+        /// When true, the synthesizer pushes an INVENTIBLE-argument scope
+        /// for this body's emission: as the body's value pickers ask for
+        /// kinds and find nothing in scope, the engine mints fresh args
+        /// (`@.arguments/&lt;random-name&gt;`) of the requested kind on
+        /// demand, reusing across consumers that ask for the same kind.
+        /// Bodies become self-coherent — they reference what they reference,
+        /// and the implied [.arguments] shape emerges from usage.
+        /// </summary>
+        public bool ReceivesDynamicArguments { get; set; }
     }
 }

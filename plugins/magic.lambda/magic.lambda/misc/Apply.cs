@@ -19,13 +19,25 @@ namespace magic.lambda.misc
         Name = "apply",
         Description = "Stamps a template lambda with values from child argument nodes, producing one fully-substituted output per [.dp]",
         ValueType = "expression",
-        ValueKind = "node-list",
+        // `template,lambda` — multi-tag: semantic identity first (a template
+        // lambda carrying `{name}` placeholders), then the structural lambda
+        // shape. `node-list` was too generic — any list of nodes would
+        // kind-match, including data lists with no placeholders, where the
+        // slot does nothing useful. The runtime walks `idx.Value` for `{…}`
+        // markers and `idx.Children` recursively — only template-shaped
+        // lambdas make sense as input.
+        ValueKind = "template,lambda",
         ValueDescription = "Expression selecting the template node or nodes to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "node-list",
+        // `applied-template,lambda` — the output is the substituted-template
+        // lambda content. `node-list` undertagged: it asserted only the
+        // structural shape (list of nodes) and lost the lambda-ness that
+        // `ReturnsType=lambda` and `ReturnsMode=Lambda` already affirm.
+        // Identity-first multi-tag mirrors `ValueKind` above.
+        ReturnsKind = "applied-template,lambda",
         ReturnsDescription = "Resolves to the transformed template nodes after applying the supplied arguments",
         SignatureType = typeof(global::magic.lambda.signatures.ApplySignature))]
     public class Apply : ISlot

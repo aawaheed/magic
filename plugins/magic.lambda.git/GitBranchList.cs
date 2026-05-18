@@ -25,7 +25,9 @@ namespace magic.lambda.git
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "git-branch-list,node-list",
+        // `string-list` added — each child node's value is a branch-name
+        // string. Consumers asking for "list of strings" must kind-match.
+        ReturnsKind = "git-branch-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "git-branch",
         ReturnsDescription = "Returns one unnamed child node per git branch name",

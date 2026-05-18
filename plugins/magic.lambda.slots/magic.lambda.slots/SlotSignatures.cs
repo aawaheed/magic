@@ -123,6 +123,37 @@ namespace magic.lambda.slots.signatures
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.ZeroOrMore,
                 Role = SlotChildRole.ExecutableBody,
+                // `[function]` / `[slots.create]` store this body for LATER
+                // invocation via `[signal]`. By then the wrapper scope where
+                // it was authored is long gone — the stored body runs in a
+                // fresh scope where outer preludes/slot outputs don't
+                // exist. Without `SerializeLambda`, the synthesizer treats
+                // this body like a normal in-place body and freely wires
+                // outer-scope expressions into it, producing snippets that
+                // will fail at signal-time with undefined-variable errors.
+                //
+                // Aligns with `tasks.create.lambda` (same defer-and-isolate
+                // pattern via the scheduler's `Lambda()` helper) — both
+                // slots are `ClonesLambda=true` and run their body in fresh
+                // scope. The schema should reflect that runtime isolation.
+                Evaluation = SlotChildEvaluation.SerializeLambda,
+                // At INVOCATION via [signal], this body receives whatever
+                // arguments the caller chose to pass — names + kinds are NOT
+                // pre-declared on the schema (unlike HTTP [.sse]'s fixed
+                // `[message]` callback arg). ReceivesDynamicArguments=true
+                // tells the synthesizer to push an INVENTIBLE-argument scope
+                // for this body's emission: as the body's value pickers ask
+                // for kinds and find nothing in scope, the engine mints
+                // fresh args (`@.arguments/<name>`) of the requested kind
+                // on demand. Bodies become self-coherent — they reference
+                // what they reference, and the implied [.arguments] shape
+                // emerges from usage rather than being declared up front.
+                //
+                // Distinct from tasks.create's lambda which is ALSO
+                // SerializeLambda but receives NO args (the scheduler
+                // calls it with nothing) — so tasks.create's lambda keeps
+                // ReceivesDynamicArguments=false (default).
+                ReceivesDynamicArguments = true,
                 Projection = SlotChildProjection.Self,
             },
         };

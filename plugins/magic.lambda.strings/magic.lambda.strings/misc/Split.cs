@@ -25,7 +25,10 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "string-list",
+        // Structural `node-list` added — `string-list` is the semantic
+        // identity, `node-list` is the topology. Consumers asking for either
+        // must be able to kind-match.
+        ReturnsKind = "string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "string",
         ReturnsDescription = "Returns one child node per split string item",

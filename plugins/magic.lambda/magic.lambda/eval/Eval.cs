@@ -19,7 +19,19 @@ namespace magic.lambda.eval
         Name = "eval",
         Description = "Executes a lambda block; use it to run a node tree dynamically or to scope a group of statements",
         ValueType = "lambda",
-        ValueKind = "lambda-object",
+        // Multi-tag, semantic → structural:
+        //   executable    — semantic intent: this is CODE meant to be run.
+        //                   Runtime skips `.`-prefixed children (data) and
+        //                   signals every slot-named child. The contract
+        //                   is "execute these slots", not just "this is a
+        //                   tree of nodes".
+        //   lambda-object — structural: a tree of nodes.
+        // Same pattern as `markdown,text,formattable-value`. Backward-
+        // compatible — existing `lambda-object` producers still match via
+        // set intersection. Future producers explicitly producing CODE
+        // (e.g. `[apply]`'s substituted templates) can multi-tag
+        // `executable,lambda-object` and become first-class candidates.
+        ValueKind = "executable,lambda-object",
         ValueDescription = "Expression selecting the Hyperlambda nodes to evaluate",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

@@ -527,6 +527,20 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "lambda",
+                // Body's picked slot's children-of-children become the
+                // source data spliced into the target. The runtime takes
+                // those grandchildren AS IS — they MUST be a list of nodes
+                // (data), not a single value or a substituted template.
+                // Declaring `Kind="node-list"` lets the synthesizer's kind
+                // filter automatically restrict body-slot candidates to
+                // those whose ReturnsKind chain contains `node-list` —
+                // exactly the list-returning data producers (get-nodes,
+                // sort, filter, map, strings.split, strings.matches,
+                // vocabulary, request.headers.list, io.file.list, etc.).
+                // Excludes slots like [apply] (`applied-template,lambda` —
+                // executable template, not data) which would be semantically
+                // wrong to splice as raw nodes into a target.
+                Kind = "node-list",
                 Description = "Source container or node-producing slot evaluated before its child nodes are applied to the selected target location",
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,

@@ -23,7 +23,11 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "dynamic-slot-name-list,node-list",
+        // Specific → structural multi-tag. `string-list` was missing —
+        // each child node's value is a string, so consumers asking for
+        // "list of strings" must kind-match here. Same pattern as
+        // `markdown,text,formattable-value`.
+        ReturnsKind = "dynamic-slot-name-list,string-list,node-list",
         ReturnsElementType = "string",
         ReturnsElementKind = "dynamic-slot-name",
         ReturnsDescription = "Resolves to available dynamic slot names as child nodes")]
