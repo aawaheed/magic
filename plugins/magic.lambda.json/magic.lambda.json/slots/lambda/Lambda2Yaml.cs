@@ -19,8 +19,14 @@ namespace magic.lambda.json.slots.lambda
         Name = "lambda2yaml",
         Description = "Transforms a lambda hierarchy into YAML",
         ValueType = "lambda",
-        ValueKind = "lambda-tree",
-        ValueDescription = "Expression selecting the lambda hierarchy to transform",
+        // Same ValueKind as [lambda2csv] / [filter] / [map] / [include] —
+        // these five slots all consume the same shape: "list of objects".
+        // Using the identical `node-list` tag makes the synth's picker
+        // treat them uniformly; any expression that satisfies filter/map
+        // also satisfies lambda2yaml. YAML output for a list-shaped input
+        // serializes as the natural array-of-maps form.
+        ValueKind = "node-list",
+        ValueDescription = "Expression selecting the nodes (rows) to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,

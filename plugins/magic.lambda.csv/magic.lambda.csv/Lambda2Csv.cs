@@ -19,8 +19,15 @@ namespace magic.lambda.csv
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
         ValueType = "lambda",
-        ValueKind = "csv-tree,row,record,object",
-        ValueDescription = "Expression selecting the lambda hierarchy to transform",
+        // Same ValueKind as [filter] / [map] / [include] — these five
+        // slots all consume the same shape: "list of objects". Using the
+        // identical `node-list` tag makes the synth's picker treat them
+        // uniformly — whatever expression form (`x:@.var/*`,
+        // `x:@csv2lambda`, `x:@cache.list/*`, ...) works for filter/map/
+        // include also works here. CSV serialization expects each
+        // evaluated node to be a row record; a node-list is exactly that.
+        ValueKind = "node-list",
+        ValueDescription = "Expression selecting the nodes (rows) to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,

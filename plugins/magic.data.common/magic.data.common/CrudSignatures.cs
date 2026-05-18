@@ -116,7 +116,16 @@ namespace magic.data.common.signatures
         // (literal/expression value compare) vs JOIN ON (column-ref compare).
         // Passing the factory keeps the recursion generic; no per-context
         // branching inside BooleanLevel itself.
-        internal static SlotChild BooleanLevel(string name, int depth, Func<SlotChild> conditionFactory = null)
+        //
+        // `allowOr` controls whether OR subgroups are emitted at this level
+        // and all deeper levels reached through recursion. WHERE clauses use
+        // `allowOr=true` (the default) — OR-based filters are common SQL.
+        // JOIN ON clauses use `allowOr=false` — every level renders only AND
+        // subgroups. OR-based JOIN predicates are syntactically valid SQL but
+        // semantically rare and would teach the corpus an anti-pattern; the
+        // SQL builder still accepts hand-written `[or]` inside `[on]` for
+        // backward compatibility, the schema just refuses to GENERATE it.
+        internal static SlotChild BooleanLevel(string name, int depth, Func<SlotChild> conditionFactory = null, bool allowOr = true)
         {
             conditionFactory ??= Condition;
             var result = new SlotChild
@@ -135,8 +144,9 @@ namespace magic.data.common.signatures
             };
             if (depth > 0)
             {
-                result.Children.Add(BooleanLevel("and", depth - 1, conditionFactory));
-                result.Children.Add(BooleanLevel("or", depth - 1, conditionFactory));
+                result.Children.Add(BooleanLevel("and", depth - 1, conditionFactory, allowOr));
+                if (allowOr)
+                    result.Children.Add(BooleanLevel("or", depth - 1, conditionFactory, allowOr));
             }
             return result;
         }
@@ -145,6 +155,15 @@ namespace magic.data.common.signatures
         // email.like, …), RHS is a literal value or expression to compare
         // against. The RHS kind list starts with `text,number,...` because
         // the comparison target is data, not another column.
+        //
+        // The inner `*` value-list child set is ONLY meaningful for the
+        // `.in` operator (`status.in` with a list of admissible values).
+        // For every other operator (.eq, .gte, .like, …) the predicate is
+        // a single-value compare — emitting child nodes produces invalid
+        // SQL like `id.gte:5 / extra:foo`. The NamePattern-gated Excludes
+        // constraint below forbids the wildcard child schema whenever the
+        // condition's resolved name does NOT end in `.in`, so the inner
+        // child loop never runs for those cases.
         internal static SlotChild Condition()
         {
             return new SlotChild
@@ -169,6 +188,20 @@ namespace magic.data.common.signatures
                         Cardinality = SlotChildCardinality.ZeroOrMore,
                     },
                 },
+                Constraints =
+                {
+                    new SlotConstraint
+                    {
+                        Kind = SlotConstraintKind.Excludes,
+                        // Fire when the condition name does NOT end in `.in`
+                        // (covers all single-value operators: .eq, .neq, .gt,
+                        // .gte, .lt, .lte, .like, .ilike, plus bare column
+                        // names which default to equality).
+                        NamePattern = "^(?!.*\\.in$).*$",
+                        Values = { "*" },
+                        Description = "Value-list children apply only to the .in operator; other operators take a single-value RHS",
+                    },
+                },
             };
         }
 
@@ -182,9 +215,20 @@ namespace magic.data.common.signatures
         // nonsensical `users.id.eq:"some-quoted-string"` the WHERE variant
         // would produce. The trailing text/number/... fallbacks remain so
         // the rare literal-RHS join (`status.eq:5`) is still legal and the
-        // synth doesn't dead-end if the catalog ever misses. The INNER `[*]`
-        // (used by `.in` operator's value list) keeps qualified-column
-        // priority too — `status.in` against a column list reads naturally.
+        // synth doesn't dead-end if the catalog ever misses.
+        //
+        // KEY DIFFERENCE FROM Condition() (WHERE):
+        // JOIN ON conditions have NO inner value-list children — not even
+        // for the `.in` operator. WHERE allows `status.in / .:active /
+        // .:pending` because the values are LITERALS the SQL builder
+        // serializes as a constant set (IN ('active', 'pending')). In JOIN
+        // ON the RHS is a column reference like `audits.id` — there's no
+        // natural meaning to a multi-value JOIN predicate against column
+        // refs (`a.id.in (b.x, b.y)` isn't standard SQL). So the join
+        // condition is leaf-only: a single LHS-RHS pair, no children. The
+        // SQL builder still accepts hand-written `.in` value-list children
+        // inside `[on]` if anyone writes that by hand, the synth just
+        // refuses to teach it.
         internal static SlotChild JoinCondition()
         {
             return new SlotChild
@@ -192,40 +236,54 @@ namespace magic.data.common.signatures
                 Name = "*",
                 Type = "object",
                 Kind = "sql-column-condition,sql-qualified-column,text,number,boolean,date,guid,content,value",
-                Description = "Join predicate: LHS is a column-with-operator suffix, RHS is typically the joined-side column reference",
+                Description = "Join predicate: LHS is a column-with-operator suffix, RHS is the joined-side column reference (leaf-only — value-list children are a WHERE-clause feature, not meaningful in JOIN ON)",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.OneOrMore,
-                Children =
-                {
-                    new SlotChild
-                    {
-                        Name = "*",
-                        Type = "object",
-                        Kind = "sql-qualified-column,text,number,boolean,date,guid,content,value",
-                        Description = "Value item used by operators such as .in (typically a column reference for join predicates)",
-                        Required = false,
-                        Mode = SlotChildMode.ValueOrExpression,
-                        Cardinality = SlotChildCardinality.ZeroOrMore,
-                    },
-                },
+                // Lexical-context-driven naming and value: the LHS is the
+                // SOURCE table's qualified column-with-operator
+                // (`<src_table>.<col>.<op>`), the RHS is the JOIN target's
+                // qualified column (`<joined_table>.<col>`). The ancestor
+                // walk finds the nearest enclosing [table] for the source
+                // and the nearest enclosing [join] for the target — both
+                // of which sit in the immediate ancestry of this condition
+                // node. Yields semantically real predicates against tables
+                // actually in this query, instead of flat-catalog
+                // `users.tenant_id`/`invoices.id` draws unrelated to the
+                // FROM clause.
+                NameTemplate = "{ancestor:table}.{catalog:sql-column-condition-names}",
+                ValueTemplate = "{ancestor:join}.{catalog:column-name}",
+                // No Children declared — JOIN conditions are leaf nodes.
+                // (See the block comment above the method for the WHY.)
+                // The previous NamePattern Excludes constraint is gone too:
+                // with no Children, there's nothing to constrain. `.in` is
+                // now just an operator the LHS name can carry (e.g.
+                // `users.id.in:audits.id`), with no value-list semantics.
             };
         }
 
         internal static SlotChild Join(int depth)
         {
-            // Top-level [and]/[or] inside [on] are ZeroOrOne (same reason as
-            // Where() — the SQL builder can render exactly one top-level
-            // boolean group). ExactlyOneOf constraint forces the [on] body to
-            // emit precisely one group; nested levels stay ZeroOrMore.
-            // JoinCondition (not Condition) is used here so the RHS of each
-            // predicate resolves to a column reference like `orders.user_id`
-            // rather than a literal text/number — the dominant convention
-            // for SQL JOIN ON clauses.
-            var onAnd = BooleanLevel("and", 1, JoinCondition);
-            var onOr = BooleanLevel("or", 1, JoinCondition);
-            onAnd.Cardinality = SlotChildCardinality.ZeroOrOne;
-            onOr.Cardinality = SlotChildCardinality.ZeroOrOne;
+            // JOIN ON is AND-only (in the schema). The SQL builder accepts
+            // hand-written `[or]` inside `[on]` so existing Hyperlambda using
+            // OR-based joins keeps working at runtime — but the synth refuses
+            // to teach that pattern. OR-based JOIN predicates are syntactically
+            // valid SQL yet semantically rare: real JOIN ON clauses are
+            // conjunctive ("rows match when ALL of these column relationships
+            // hold"). Allowing OR in the schema would inflate the corpus with
+            // structurally legal but practically nonexistent shapes.
+            //
+            // - `allowOr: false` passed to BooleanLevel propagates to every
+            //   nested level so deep OR can't slip in via recursion either.
+            // - [on]'s child list contains ONLY [and] (no [or] sibling).
+            // - [and] is Required + ExactlyOne — no ExactlyOneOf constraint
+            //   needed (one-option choice is trivially satisfied).
+            // - JoinCondition (not Condition) is used so the RHS of each
+            //   predicate resolves to a column reference like
+            //   `orders.user_id` rather than a literal text/number.
+            var onAnd = BooleanLevel("and", 1, JoinCondition, allowOr: false);
+            onAnd.Required = true;
+            onAnd.Cardinality = SlotChildCardinality.ExactlyOne;
             var result = new SlotChild
             {
                 Name = "join",
@@ -263,20 +321,11 @@ namespace magic.data.common.signatures
                         Name = "on",
                         Type = "lambda",
                         Kind = "sql-predicate-root",
-                        Description = "Join predicate tree comparing columns or explicit parameters",
+                        Description = "Join predicate tree comparing columns (AND-only at the schema level; the SQL builder still accepts hand-written [or] for legacy code)",
                         Required = true,
                         Mode = SlotChildMode.StructuredArguments,
                         Cardinality = SlotChildCardinality.ExactlyOne,
-                        Children = { onAnd, onOr },
-                        Constraints =
-                        {
-                            new SlotConstraint
-                            {
-                                Kind = SlotConstraintKind.ExactlyOneOf,
-                                Description = "Join predicate renders one top-level boolean group",
-                                Values = { "and", "or" },
-                            },
-                        },
+                        Children = { onAnd },
                     },
                 },
             };
@@ -292,9 +341,22 @@ namespace magic.data.common.signatures
     public class SqlReadSignature : ISlotSignature
     {
         /// <inheritdoc />
+        // `[table]` is ExactlyOne for SELECT: the SQL builder DOES support
+        // multiple `[table]` siblings (rendered comma-separated as the legacy
+        // implicit cross-join `FROM t1, t2 WHERE ...`), but that form is
+        // archaic and effectively never used in modern Hyperlambda — JOINs
+        // hang off ONE primary table. Allowing OneOrMore in the schema gave
+        // the synth's PickCount a ~50% chance of emitting two top-level
+        // `[table]`s, each with its own independent JOIN chain — a Cartesian
+        // product of joined sub-trees whose JOIN predicates often reference
+        // tables that aren't even in the FROM clause. Legal SQL, semantic
+        // nonsense, and wildly over-represented in the corpus. Hand-written
+        // Hyperlambda that needs the comma-FROM form can still emit multiple
+        // `[table]` nodes — the SQL builder accepts it — but the synth no
+        // longer teaches the LLM that shape.
         public virtual IEnumerable<SlotChild> Children => new[]
         {
-            SqlCreateSignature.Table(SlotChildCardinality.OneOrMore, true),
+            SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, true),
             Columns(),
             SqlCreateSignature.Where(),
             Group(),
@@ -546,10 +608,12 @@ namespace magic.data.common.signatures
     public class DbReadSignature : SqlReadSignature
     {
         /// <inheritdoc />
+        // See SqlReadSignature: `[table]` ExactlyOne for the corpus, builder
+        // still permits multiple at runtime.
         public override IEnumerable<SlotChild> Children => new[]
         {
             DbCreateSignature.Generate(),
-            SqlCreateSignature.Table(SlotChildCardinality.OneOrMore, true),
+            SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, true),
             Columns(),
             SqlCreateSignature.Where(),
             Group(),
@@ -614,6 +678,17 @@ namespace magic.data.common.signatures
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.ZeroOrOne,
+                // Inherit from an enclosing [database-type] (e.g. data.connect's
+                // adapter). Opening a PostgreSQL connection then issuing MySQL
+                // operations against it isn't valid in real Hyperlambda — the
+                // adapter is established at the connection layer and every
+                // CRUD slot inside that connection's body must use the same
+                // adapter. The template resolves to the outer adapter when one
+                // is in scope; falls through to PickValue's flat catalog draw
+                // at the outermost level where no enclosing adapter exists
+                // (also lets data.connect itself pick a random adapter for the
+                // initial connection).
+                ValueTemplate = "{ancestor:database-type}",
             };
         }
     }
@@ -624,11 +699,13 @@ namespace magic.data.common.signatures
     public class DataReadSignature : DbReadSignature
     {
         /// <inheritdoc />
+        // See SqlReadSignature: `[table]` ExactlyOne for the corpus, builder
+        // still permits multiple at runtime.
         public override IEnumerable<SlotChild> Children => new[]
         {
             DataCreateSignature.DatabaseType(),
             DbCreateSignature.Generate(),
-            SqlCreateSignature.Table(SlotChildCardinality.OneOrMore, true),
+            SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, true),
             Columns(),
             SqlCreateSignature.Where(),
             Group(),

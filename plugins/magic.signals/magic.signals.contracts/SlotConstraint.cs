@@ -37,5 +37,15 @@ namespace magic.signals.contracts
         /// value-dependent shapes (e.g. [mime.create] with leaf-vs-multipart child structure).
         /// </summary>
         public string ValuePattern { get; set; }
+
+        /// <summary>
+        /// Optional regex pattern that the parent node's NAME must match for the constraint to apply.
+        /// When null or empty the constraint applies unconditionally (with respect to name). Lets a
+        /// schema gate child emission on the parent's literal name — useful when the operator or
+        /// modifier is encoded in the name itself (e.g. SQL column conditions like `id.eq`, `status.in`
+        /// where only `.in` should permit a value-list child set).
+        /// Combined with <see cref="ValuePattern"/> via logical AND when both are set.
+        /// </summary>
+        public string NamePattern { get; set; }
     }
 }

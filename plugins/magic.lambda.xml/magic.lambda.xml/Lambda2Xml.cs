@@ -22,9 +22,14 @@ namespace magic.lambda.xml
         Description = "Converts a lambda object to an XML fragment or document",
         ValueType = "lambda",
         ValueKind = "xml-tree",
-        ValueDescription = "Expression selecting the lambda hierarchy to transform",
+        ValueDescription = "Expression selecting a SINGLE lambda root to transform (XML has exactly one document root)",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
+        // XML's spec requires ONE document root, and the runtime enforces
+        // that with `GetNodes(input).Single()` — multi-result expressions
+        // throw at execution. Declare the constraint on the attribute so
+        // the synth's picker never wires `x:@.var/*` form here.
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
         ReturnsKind = "xml,text,formattable-value",

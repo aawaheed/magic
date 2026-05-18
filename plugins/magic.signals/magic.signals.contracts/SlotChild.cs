@@ -106,6 +106,36 @@ namespace magic.signals.contracts
         public string LinkedTokenPattern { get; set; }
 
         /// <summary>
+        /// Optional template for the picked NAME when this schema's Name is a
+        /// wildcard. Placeholders, evaluated against the prospective parent node's
+        /// tree context and the value catalog:
+        ///   <c>{ancestor:NAME[|NAME...]}</c> - literal value of the nearest
+        ///     ancestor node whose Name matches any of the given names. Empty
+        ///     string when no ancestor matches.
+        ///   <c>{catalog:KIND}</c> - random pick from the named value catalog.
+        ///     Empty string when the catalog is missing or empty.
+        ///   Any other text - inserted verbatim between placeholders.
+        /// When set, REPLACES the standard <c>&lt;kind&gt;-names</c> catalog
+        /// draw. Lets a schema declare names that depend on lexical context
+        /// (e.g. SQL JOIN condition LHS qualified by the enclosing [table]
+        /// value: <c>"{ancestor:table}.{catalog:sql-column-condition-names}"</c>).
+        /// Same conceptual pattern as <see cref="LinkedToValueKind"/> /
+        /// IterPointers / InventibleArgs / Arguments scopes — value derived
+        /// from tree-local context, expressed declaratively.
+        /// </summary>
+        public string NameTemplate { get; set; }
+
+        /// <summary>
+        /// Optional template for the picked VALUE. Same placeholder syntax as
+        /// <see cref="NameTemplate"/> — see that doc-comment. When set,
+        /// REPLACES the standard <c>&lt;kind&gt;</c> catalog draw for value
+        /// picking. Used for values whose domain depends on lexical context
+        /// (e.g. SQL JOIN condition RHS qualified by the enclosing [join]
+        /// target: <c>"{ancestor:join}.{catalog:column-name}"</c>).
+        /// </summary>
+        public string ValueTemplate { get; set; }
+
+        /// <summary>
         /// Structural constraints applying to this child node.
         /// </summary>
         public List<SlotConstraint> Constraints { get; } = new List<SlotConstraint>();
