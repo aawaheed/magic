@@ -21,13 +21,13 @@ namespace magic.lambda.io.file
         Name = "io.file.mixin",
         Description = "Loads a static file, applies same-named Hyperlambda codebehind, and returns the mixed result",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "file-path,text",
         ValueDescription = "Path to the static file to mix with its same-named .hl codebehind file",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "mixed-file-content,text,formattable-value",
+        ReturnsKind = "mixed-file-content,text",
         ReturnsDescription = "Resolves to the mixed file content in value and any codebehind-produced child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.FileMixinSignature))]
     public class Mixin : ISlotAsync

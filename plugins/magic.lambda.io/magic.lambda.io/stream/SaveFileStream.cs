@@ -20,7 +20,7 @@ namespace magic.lambda.io.stream
         Name = "io.stream.save-file",
         Description = "Writes a stream's contents to disk under the given path; commonly used after uploads or [http.get] downloads",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "file-path,text",
         ValueDescription = "File path to save the stream to",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

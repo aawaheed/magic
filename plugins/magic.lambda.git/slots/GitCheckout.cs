@@ -18,13 +18,13 @@ namespace magic.lambda.git
         Name = "git.checkout",
         Description = "Checks out a Git branch",
         ValueType = "string",
-        ValueKind = "git-repo-path",
+        ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "git-output,text,formattable-value",
+        ReturnsKind = "git-output,text",
         ReturnsDescription = "Resolves to the git checkout command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitCheckoutSignature))]
     public class GitCheckout : ISlotAsync

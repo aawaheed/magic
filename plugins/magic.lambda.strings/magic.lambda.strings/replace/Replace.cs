@@ -24,7 +24,7 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text,formattable-value",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after replacing the specified substring",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceSignature))]
     public class Replace : ISlotAsync

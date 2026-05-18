@@ -16,7 +16,7 @@ namespace magic.endpoint.services.slots.misc
         Name = "mime.add",
         Description = "Associates a file extension with a MIME content-type so the server returns the correct Content-Type header for matching responses",
         ValueType = "string",
-        ValueKind = "content-type",
+        ValueKind = "content-type,text",
         ValueDescription = "File extension or MIME type key to register",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

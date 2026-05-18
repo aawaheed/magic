@@ -21,7 +21,7 @@ namespace magic.lambda.xml
         Name = "lambda2xml",
         Description = "Converts a lambda object to an XML fragment or document",
         ValueType = "lambda",
-        ValueKind = "xml-tree",
+        ValueKind = "xml-tree,lambda-tree",
         ValueDescription = "Expression selecting a SINGLE lambda root to transform (XML has exactly one document root)",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
@@ -32,7 +32,7 @@ namespace magic.lambda.xml
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "xml,text,formattable-value",
+        ReturnsKind = "xml,text",
         ReturnsDescription = "Resolves to the generated XML string",
         SignatureType = typeof(global::magic.lambda.xml.signatures.Lambda2XmlSignature))]
     public class Lambda2Xml : ISlot

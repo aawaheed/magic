@@ -19,7 +19,7 @@ namespace magic.lambda.io.file
         Name = "io.file.list",
         Description = "Lists files in the specified folder",
         ValueType = "string",
-        ValueKind = "folder-path",
+        ValueKind = "folder-path,text",
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -27,16 +27,16 @@ namespace magic.lambda.io.file
         ReturnsType = "lambda",
         // `string-list` added — each child node's value is a file-path
         // string. Consumers asking for "list of strings" must kind-match.
-        ReturnsKind = "file-path-list,string-list,node-list",
+        ReturnsKind = "file-path-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "file-path",
+        ReturnsElementKind = "file-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative file path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
         Name = "io.file.list-recursively",
         Description = "Lists files recursively in the specified folder",
         ValueType = "string",
-        ValueKind = "folder-path",
+        ValueKind = "folder-path,text",
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -44,9 +44,9 @@ namespace magic.lambda.io.file
         ReturnsType = "lambda",
         // `string-list` added — each child node's value is a file-path
         // string. Consumers asking for "list of strings" must kind-match.
-        ReturnsKind = "file-path-list,string-list,node-list",
+        ReturnsKind = "file-path-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "file-path",
+        ReturnsElementKind = "file-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative file path, recursively",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     public class ListFiles : ISlot

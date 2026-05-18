@@ -17,7 +17,7 @@ namespace magic.lambda.math.helpers
         Description = "Calculates the remainder of a division",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsKind = "number,formattable-value",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the remainder of the modulo operation",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Modulation : ISlotAsync

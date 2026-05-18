@@ -18,12 +18,16 @@ namespace magic.lambda.xml
         Name = "xml2lambda",
         Description = "Transforms XML into a lambda hierarchy",
         ValueType = "string",
-        ValueKind = "xml",
+        ValueKind = "xml,text",
         ValueDescription = "XML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
+        // `xml-tree,lambda-tree` — XML parses into a TREE (root document
+        // with nested element children + `@attr` and `#text` children).
+        // NOT a flat node-list. Removed the erroneously-added `node-list`
+        // that would have let list-iterators wire to the document root.
         ReturnsKind = "xml-tree,lambda-tree",
         // The XML→lambda runtime preserves NO type information: every leaf
         // value comes through `HtmlDecode(InnerText)` as a string, attributes
@@ -41,7 +45,7 @@ namespace magic.lambda.xml
         // int (per a wrongly-adopted Sample) when at runtime it's a string-
         // valued container.
         ReturnsElementType = "lambda",
-        ReturnsElementKind = "xml-element",
+        ReturnsElementKind = "xml-element,lambda-tree",
         ReturnsDescription = "Resolves to the parsed XML hierarchy as child nodes; attributes are emitted as @name child nodes, text as #text child nodes, and comments/whitespace-only text nodes are omitted")]
     public class Xml2Lambda : ISlot
     {

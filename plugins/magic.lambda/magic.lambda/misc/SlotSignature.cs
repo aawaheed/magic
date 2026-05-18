@@ -19,13 +19,13 @@ namespace magic.lambda.misc
         Name = "slot.signature",
         Description = "Returns the documented input and output contract for a single compiled slot",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "slot-signature",
+        ReturnsKind = "slot-signature,lambda-tree",
         ReturnsDescription = "Resolves to input and output contract metadata for the requested slot")]
     public class SlotSignature : ISlot
     {

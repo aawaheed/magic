@@ -18,13 +18,13 @@ namespace magic.lambda.config
         Name = "config.get",
         Description = "Reads a single setting from appsettings.json by dotted key path (e.g. 'magic:auth:secret')",
         ValueType = "string",
-        ValueKind = "config-key",
+        ValueKind = "config-key,text",
         ValueDescription = "Configuration key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "config-value,text,formattable-value",
+        ReturnsKind = "config-value,text",
         ReturnsDescription = "Resolves to the configuration value, or the first child value when the key is missing",
         SignatureType = typeof(global::magic.lambda.config.signatures.ConfigGetSignature))]
     public class ConfigGet : ISlotAsync

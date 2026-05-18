@@ -22,7 +22,7 @@ namespace magic.lambda.sqlite.crud
         Description = "Inserts rows through the current SQLite connection",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "row-id",
+        ReturnsKind = "",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "sqlite.connection",
         ScopeProvider = "sqlite.connect",

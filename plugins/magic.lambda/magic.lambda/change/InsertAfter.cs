@@ -17,7 +17,9 @@ namespace magic.lambda.change
         Name = "insert-after",
         Description = "Inserts nodes after the specified target node",
         ValueType = "expression",
-        ValueKind = "node-list",
+        // `node-list,single-object` — runtime iterates `input.Evaluate()`;
+        // single-node target is just a one-element result.
+        ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the target node or nodes to insert after",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

@@ -13,13 +13,13 @@ namespace magic.lambda.threading
         Name = "execution.timeout",
         Description = "Sets a timeout in milliseconds for the current execution",
         ValueType = "int",
-        ValueKind = "timeout-ms",
+        ValueKind = "timeout-ms,integer,number",
         ValueDescription = "Timeout in milliseconds for the current execution",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean,formattable-value",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the timeout was applied")]
     public class ExecutionTimeout : ISlot
     {

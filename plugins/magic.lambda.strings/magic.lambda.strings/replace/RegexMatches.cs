@@ -28,9 +28,9 @@ namespace magic.lambda.strings.replace
         // Multi-tag chain, specific → structural: `string-list` (each match
         // is a string) and `node-list` (topology) were both missing.
         // Consumers asking for either generic kind must kind-match.
-        ReturnsKind = "regex-match-list,string-list,node-list",
+        ReturnsKind = "regex-match-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "regex-match",
+        ReturnsElementKind = "regex-match,text",
         ReturnsDescription = "Returns one child node per regular expression match",
         SignatureType = typeof(global::magic.lambda.strings.signatures.RegexStringArgumentSignature))]
     public class RegexMatches : ISlotAsync

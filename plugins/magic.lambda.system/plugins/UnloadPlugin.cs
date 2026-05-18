@@ -17,7 +17,7 @@ namespace magic.lambda.system.plugins
         Name = "system.plugin.unload",
         Description = "Unloads a plugin assembly",
         ValueType = "string",
-        ValueKind = "plugin-assembly-name",
+        ValueKind = "plugin-assembly-name,text",
         ValueDescription = "Assembly name to unload",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -18,7 +18,7 @@ namespace magic.lambda.mysql
         Name = "mysql.connect",
         Description = "Opens a MySQL connection",
         ValueType = "string",
-        ValueKind = "database-name,connection-string",
+        ValueKind = "database-name,connection-string,text",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

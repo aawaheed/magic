@@ -20,7 +20,7 @@ namespace magic.lambda.mime
         Name = ".mime.create",
         Description = "Creates a MIME message without exposing the public wrapper slot",
         ValueType = "string",
-        ValueKind = "content-type",
+        ValueKind = "content-type,text",
         ValueDescription = "Primary MIME content type",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

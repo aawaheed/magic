@@ -28,9 +28,13 @@ namespace magic.lambda.strings.misc
         // Structural `node-list` added — `string-list` is the semantic
         // identity, `node-list` is the topology. Consumers asking for either
         // must be able to kind-match.
-        ReturnsKind = "string-list,node-list",
+        ReturnsKind = "string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "string",
+        // Just `text` — the previous `string,text` had `string` as the leaf
+        // tag, but `string` is the .NET TYPE name (same name as
+        // `ReturnsElementType="string"`) — type-leak into the kind chain.
+        // Each element is just a text fragment of the original input.
+        ReturnsElementKind = "text",
         ReturnsDescription = "Returns one child node per split string item",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SplitSignature))]
     public class Split : ISlotAsync

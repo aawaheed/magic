@@ -22,7 +22,7 @@ namespace magic.lambda.sqlite.crud
         ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
         ReturnsElementType = "lambda",
-        ReturnsElementKind = "row-object",
+        ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row read from the current SQLite connection",
         RequiresScope = "sqlite.connection",
         ScopeProvider = "sqlite.connect",

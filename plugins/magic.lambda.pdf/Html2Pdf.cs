@@ -18,13 +18,13 @@ namespace magic.lambda.pdf
         Name = "html2pdf",
         Description = "Converts HTML into a PDF document",
         ValueType = "string",
-        ValueKind = "html",
+        ValueKind = "html,text",
         ValueDescription = "HTML markup to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsKind = "pdf-content",
+        ReturnsKind = "pdf-content,binary-content",
         ReturnsDescription = "Resolves to the generated PDF bytes")]
     public class Html2Pdf : ISlot
     {

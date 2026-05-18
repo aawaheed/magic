@@ -17,7 +17,7 @@ namespace magic.lambda.math.basics
         Description = "Divides numeric values",
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsKind = "number,formattable-value",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the quotient of the supplied operands",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]
     public class Division : ISlotAsync

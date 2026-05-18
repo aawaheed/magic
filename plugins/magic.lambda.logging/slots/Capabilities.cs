@@ -16,7 +16,14 @@ namespace magic.lambda.logging.slots
         Description = "Returns capabilities of the current log provider",
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "log-capability-list,node-list",
+        // `log-capabilities,lambda-tree` — the runtime adds NAMED
+        // children (`can-filter`, `can-timeshift`) to input. That's an
+        // OBJECT (named properties), NOT a list of nodes (anonymous
+        // items). The previous chain had `node-list` AND the misleading
+        // `-list` suffix; both wrong. Per the mutual-exclusion rule
+        // between node-list and lambda-tree branches: this slot
+        // commits to lambda-tree (object-shaped) only.
+        ReturnsKind = "log-capabilities,lambda-tree",
         ReturnsDescription = "Returns [can-filter] and [can-timeshift] capability nodes for the current log provider")]
     public class Capabilities : ISlot
     {

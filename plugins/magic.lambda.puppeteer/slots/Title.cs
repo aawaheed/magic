@@ -24,7 +24,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "page-title,text,formattable-value",
+        ReturnsKind = "page-title,text",
         ReturnsDescription = "Resolves to the current page title")]
     public class Title : ISlotAsync
     {

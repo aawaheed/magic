@@ -14,13 +14,19 @@ namespace magic.lambda.loops
     /// <summary>
     /// [while] slot that will evaluate its lambda object as long as its condition is true.
     /// </summary>
+    // [while] returns NOTHING to its caller. The runtime does set
+    // `input.Value = false` at the end (line 77) — but that's the same
+    // internal `if`/`else-if` chaining protocol used by [if]/[else]/
+    // [else-if]; it isn't a real value-output. [while] DOES NOT create
+    // a `slots.result` scope — it only PEEKS at one set by an outer
+    // caller (`[signal]`, `[invoke]`, …) to detect termination via
+    // [return]. So result-Value / result-Children are never populated
+    // by [while] itself. Previously declared `ReturnsMode=Both` with
+    // `ReturnsKind="lambda-result"` — flat overclaim.
     [Slot(
         Name = "while",
         Description = "Repeats execution while a condition is true",
-        ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
-        ReturnsKind = "lambda-result",
-        ReturnsDescription = "Resolves to the final iteration value and any returned child nodes",
+        ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "while",
         SignatureType = typeof(global::magic.lambda.signatures.ConditionalBlockSignature))]
     public class While : ISlot

@@ -27,7 +27,12 @@ namespace magic.lambda.source
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "value",
+        // No `ReturnsKind` narrowing — runtime is `input.GetEx<object>()`,
+        // returns whatever the resolved node's `.Value` is. Could be
+        // string / int / bool / DateTime / byte[] / lambda / anything.
+        // The previous `value` tag meant nothing — equivalent to "any
+        // object" which `ReturnsType=object` already conveys.
+        ReturnsKind = "",
         ReturnsDescription = "Resolves to the value of the first matching node",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode)]
     public class GetValue : ISlot

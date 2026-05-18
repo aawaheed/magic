@@ -19,9 +19,9 @@ namespace magic.endpoint.services.slots.misc
         // string (the child name is the file extension). Consumers asking
         // for "list of strings" must kind-match; semantic identity
         // preserved by `mime-type-list`.
-        ReturnsKind = "mime-type-list,string-list,node-list",
+        ReturnsKind = "mime-type-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "mime-type-mapping",
+        ReturnsElementKind = "mime-type-mapping,text",
         ReturnsDescription = "Resolves to one named child node per registered MIME type mapping, where the child name is the file extension and the value is the MIME type")]
     public class GetMimeTypes : ISlot
     {

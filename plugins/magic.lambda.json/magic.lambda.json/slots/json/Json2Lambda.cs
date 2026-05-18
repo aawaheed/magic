@@ -17,7 +17,7 @@ namespace magic.lambda.json.slots.json
         Name = "json2lambda",
         Description = "Transforms JSON into a lambda hierarchy",
         ValueType = "string",
-        ValueKind = "json",
+        ValueKind = "json,text",
         ValueDescription = "JSON text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

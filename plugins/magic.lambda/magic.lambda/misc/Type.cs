@@ -30,7 +30,7 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "type-name",
+        ReturnsKind = "type-name,text",
         ReturnsDescription = "Resolves to the runtime type name of the first matching value",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode)]
     public class Type : ISlot

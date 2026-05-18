@@ -21,7 +21,7 @@ namespace magic.lambda.validators.validators
         Name = "validators.recaptcha",
         Description = "Validates a reCAPTCHA response token, throwing if validation fails",
         ValueType = "string",
-        ValueKind = "recaptcha-token",
+        ValueKind = "recaptcha-token,text",
         ValueDescription = "reCAPTCHA response token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -17,13 +17,17 @@ namespace magic.lambda.misc
         Name = "int2words",
         Description = "Spells an integer out in English words (e.g. 557 becomes 'five hundred and fifty seven'); handy for invoices and cheques",
         ValueType = "long",
-        ValueKind = "integer,count",
+        // `integer,number` — runtime calls `input.GetEx<long>()` and
+        // spells the integer. Accepts negative numbers (`number < 0L`
+        // branch) — so `count` was wrong narrowing (count implies
+        // non-negative). Dropped.
+        ValueKind = "integer,number",
         ValueDescription = "Integer value to convert to words",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text,formattable-value",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the supplied integer written as words")]
     public class Int2Words : ISlot
     {

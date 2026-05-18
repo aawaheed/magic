@@ -19,13 +19,13 @@ namespace magic.lambda.git
         Name = "git.pull",
         Description = "Pulls updates from a Git remote",
         ValueType = "string",
-        ValueKind = "git-repo-path",
+        ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "git-output,text,formattable-value",
+        ReturnsKind = "git-output,text",
         ReturnsDescription = "Resolves to the git pull command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitPullSignature))]
     public class GitPull : ISlotAsync

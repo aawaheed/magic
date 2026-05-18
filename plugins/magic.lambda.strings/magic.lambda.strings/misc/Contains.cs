@@ -24,7 +24,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean,formattable-value",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string contains the supplied text",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]
     public class Contains : ISlotAsync

@@ -16,7 +16,7 @@ namespace magic.lambda.git
         Name = "git.delete-repo",
         Description = "Deletes a local Git repository",
         ValueType = "string",
-        ValueKind = "git-repo-path",
+        ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

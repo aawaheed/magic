@@ -239,7 +239,18 @@ namespace magic.data.common.signatures
                 Description = "Join predicate: LHS is a column-with-operator suffix, RHS is the joined-side column reference (leaf-only — value-list children are a WHERE-clause feature, not meaningful in JOIN ON)",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.OneOrMore,
+                // ExactlyOne — typical JOIN ON has ONE predicate (the FK
+                // linkage `t1.col = t2.col`). Composite-key joins exist but
+                // are rare; the corpus shouldn't teach 50% double-predicate
+                // joins (`OneOrMore` made PickCount return 1 or 2 with equal
+                // probability). The SQL builder still accepts multiple
+                // predicate nodes inside [and] for hand-written composite
+                // joins — only the synth refuses to emit them.
+                //
+                // Contrast with Condition() (WHERE clauses) which keeps
+                // OneOrMore — multi-predicate WHEREs (`where status='x' and
+                // amount > 100`) are common SQL.
+                Cardinality = SlotChildCardinality.ExactlyOne,
                 // Lexical-context-driven naming and value: the LHS is the
                 // SOURCE table's qualified column-with-operator
                 // (`<src_table>.<col>.<op>`), the RHS is the JOIN target's

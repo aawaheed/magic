@@ -19,7 +19,7 @@ namespace magic.lambda.caching
         Name = "cache.clear",
         Description = "Clears cached items matching the optional filter",
         ValueType = "string",
-        ValueKind = "cache-key",
+        ValueKind = "cache-key,text",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

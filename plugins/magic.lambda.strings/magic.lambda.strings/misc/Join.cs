@@ -18,18 +18,17 @@ namespace magic.lambda.strings.misc
         Name = "strings.join",
         Description = "Concatenates the values yielded by the expression, inserting the separator between adjacent items",
         ValueType = "lambda",
-        // `node-list` added — structural truth: the input is a list of
-        // nodes whose values are strings. Symmetric with the producer-side
-        // tagging on `strings.split`/`vocabulary`/etc. — consumers and
-        // producers use the same kind labels (set intersection decides
-        // matches).
+        // `string-list,node-list` — same reasoning as `[strings.concat]`:
+        // the runtime calls `.GetEx<string>()` on every evaluated node,
+        // which requires string-valued nodes. A generic `lambda-tree`
+        // would over-match (json/yaml/html trees have non-string values).
         ValueKind = "string-list,node-list",
         ValueDescription = "Expression yielding the values to join",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text,formattable-value",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the joined string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.JoinSignature))]
     public class Join : ISlotAsync

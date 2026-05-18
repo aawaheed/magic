@@ -18,7 +18,7 @@ namespace magic.lambda.caching
         Name = "cache.list",
         Description = "Lists cached keys matching the optional filter",
         ValueType = "string",
-        ValueKind = "cache-key",
+        ValueKind = "cache-key,text",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -26,7 +26,7 @@ namespace magic.lambda.caching
         ReturnsType = "lambda",
         ReturnsKind = "cache-key-list,node-list",
         ReturnsElementType = "lambda",
-        ReturnsElementKind = "cache-entry",
+        ReturnsElementKind = "cache-entry,lambda-tree",
         ReturnsDescription = "Returns one child node per cached key matching the optional filter, each with [key] and [value] children",
         SignatureType = typeof(global::magic.lambda.caching.signatures.CacheListSignature))]
     public class CacheList : ISlotAsync

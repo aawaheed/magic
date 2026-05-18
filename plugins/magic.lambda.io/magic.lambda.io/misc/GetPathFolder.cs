@@ -18,13 +18,13 @@ namespace magic.lambda.io.misc
         Name = "io.path.get-folder",
         Description = "Strips the filename from a path and returns just its folder portion (e.g. '/foo/bar/baz.txt' becomes '/foo/bar/')",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "file-path,text",
         ValueDescription = "Path to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "folder-path,text,formattable-value",
+        ReturnsKind = "folder-path,text",
         ReturnsDescription = "Resolves to the folder portion of the supplied path")]
     public class GetPathFolder : ISlot
     {

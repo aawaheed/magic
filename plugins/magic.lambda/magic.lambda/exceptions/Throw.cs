@@ -17,7 +17,7 @@ namespace magic.lambda.exceptions
         Name = "throw",
         Description = "Aborts execution by throwing an exception with the given message; optionally attach status code and public flag",
         ValueType = "string",
-        ValueKind = "exception-message",
+        ValueKind = "exception-message,text",
         ValueDescription = "Exception message to throw",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

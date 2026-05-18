@@ -21,7 +21,7 @@ namespace magic.lambda.io.file
         Name = "io.file.patch",
         Description = "Applies a unified-diff patch to a file on disk; useful for surgical edits or replaying generated diffs",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "file-path,text",
         ValueDescription = "File path to patch",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

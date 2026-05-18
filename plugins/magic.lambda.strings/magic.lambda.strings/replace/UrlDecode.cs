@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.url-decode",
         Description = "URL decodes the specified string",
         ValueType = "string",
-        ValueKind = "url-encoded",
+        ValueKind = "url-encoded,text",
         ValueDescription = "Text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -27,7 +27,7 @@ namespace magic.lambda.strings.replace
         // and every text-consuming slot (log.info, strings.*, etc.) must be
         // able to kind-match the output. Matches the html-decode/html-encode
         // chains: `<specific>,text,formattable-value`.
-        ReturnsKind = "url-component,text,formattable-value",
+        ReturnsKind = "url-component,text",
         ReturnsDescription = "Resolves to the URL-decoded string")]
     public class UrlDecode : ISlot
     {

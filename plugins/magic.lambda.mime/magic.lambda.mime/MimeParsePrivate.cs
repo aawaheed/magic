@@ -22,7 +22,11 @@ namespace magic.lambda.mime
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "lambda",
-        ReturnsKind = "mime-tree",
+        // `mime-tree,lambda-tree` — MIME parses into a TREE with NAMED
+        // children (headers, content, nested parts). Object pattern,
+        // NOT a flat list of anonymous items. Removed the wrong
+        // `node-list` tag.
+        ReturnsKind = "mime-tree,lambda-tree",
         ReturnsElementType = "object",
         ReturnsElementKind = "mime-tree-node",
         ReturnsDescription = "Resolves to a MIME entity tree where the value is the entity content type and children contain headers, content, and nested entities",

@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.html-encode",
         Description = "HTML encodes the specified string",
         ValueType = "string",
-        ValueKind = "html-unencoded",
+        ValueKind = "html-unencoded,text",
         ValueDescription = "Non-encoded HTML text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -26,7 +26,7 @@ namespace magic.lambda.strings.replace
         // `text` tag lets text-consumers (log.info, strings.*) wire to
         // the output directly, without depending on a separate supertype
         // declaration in rules.yaml. Self-documenting on the slot.
-        ReturnsKind = "html-encoded,text,formattable-value",
+        ReturnsKind = "html-encoded,text",
         ReturnsDescription = "Resolves to the HTML-encoded string")]
     public class HtmlEncode : ISlot
     {

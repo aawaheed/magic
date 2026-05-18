@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.html-decode",
         Description = "HTML decodes the specified string",
         ValueType = "string",
-        ValueKind = "html-encoded",
+        ValueKind = "html-encoded,text",
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -31,7 +31,7 @@ namespace magic.lambda.strings.replace
         // text-consuming slots (log.info, strings.*, etc.) can pick it up
         // without needing a separate supertype rule in rules.yaml. The
         // slot is the source of truth for its own kinds.
-        ReturnsKind = "html-unencoded,text,formattable-value",
+        ReturnsKind = "html-unencoded,text",
         ReturnsDescription = "Resolves to the decoded HTML markup")]
     public class HtmlDecode : ISlot
     {

@@ -19,7 +19,7 @@ namespace magic.lambda.misc
         Name = "vocabulary",
         Description = "Lists available compiled slots",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Optional prefix filter for slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -34,9 +34,9 @@ namespace magic.lambda.misc
         //   node-list               : structural fact (list of nodes)
         // Same pattern as `markdown,text,formattable-value` — the producer
         // declares every level its output legitimately belongs to.
-        ReturnsKind = "dynamic-slot-name-list,string-list,node-list",
+        ReturnsKind = "dynamic-slot-name-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "dynamic-slot-name",
+        ReturnsElementKind = "dynamic-slot-name,text",
         ReturnsDescription = "Resolves to available slot names as child nodes")]
     public class Vocabulary : ISlot
     {

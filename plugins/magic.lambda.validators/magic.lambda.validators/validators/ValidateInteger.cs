@@ -17,7 +17,7 @@ namespace magic.lambda.validators.validators
         Name = "validators.integer",
         Description = "Validates that an integer value or resolved expression result is within the allowed range, throwing if validation fails",
         ValueType = "int",
-        ValueKind = "integer",
+        ValueKind = "integer,number",
         ValueDescription = "Integer value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

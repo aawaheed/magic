@@ -18,15 +18,20 @@ namespace magic.lambda.slots
         Name = "signal",
         Description = "Invokes a dynamic slot created with [slots.create], passing child nodes as its arguments",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsKind = "dynamic-slot-result",
-        ReturnsElementType = "object",
-        ReturnsElementKind = "dynamic-slot-result-node",
+        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
+        // (and now [io.file.execute]/[execute-file]). The runtime sets
+        // `input.Value = result.Value` and `input.AddRange(result.Children)`
+        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
+        // the scoped `result`. That's the same "lambda-result" pattern.
+        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
+        // tags were phantoms — no catalog or consumer referenced them.
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
@@ -34,30 +39,40 @@ namespace magic.lambda.slots
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsKind = "dynamic-slot-result",
-        ReturnsElementType = "object",
-        ReturnsElementKind = "dynamic-slot-result-node",
+        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
+        // (and now [io.file.execute]/[execute-file]). The runtime sets
+        // `input.Value = result.Value` and `input.AddRange(result.Children)`
+        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
+        // the scoped `result`. That's the same "lambda-result" pattern.
+        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
+        // tags were phantoms — no catalog or consumer referenced them.
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.slots.signatures.ExecuteSignature))]
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to try invoking",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsKind = "dynamic-slot-result",
-        ReturnsElementType = "object",
-        ReturnsElementKind = "dynamic-slot-result-node",
+        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
+        // (and now [io.file.execute]/[execute-file]). The runtime sets
+        // `input.Value = result.Value` and `input.AddRange(result.Children)`
+        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
+        // the scoped `result`. That's the same "lambda-result" pattern.
+        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
+        // tags were phantoms — no catalog or consumer referenced them.
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]

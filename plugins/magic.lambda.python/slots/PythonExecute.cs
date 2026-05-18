@@ -25,7 +25,7 @@ namespace magic.lambda.python
         Description = "Runs a Python script or file in a subprocess and captures stdout, stderr, and exit code",
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "terminal-output",
+        ReturnsKind = "terminal-output,text",
         ReturnsDescription = "Returns stdout in value and stderr and exit code as child nodes",
         SignatureType = typeof(global::magic.lambda.python.signatures.PythonExecuteSignature))]
     public class PythonExecute : ISlotAsync

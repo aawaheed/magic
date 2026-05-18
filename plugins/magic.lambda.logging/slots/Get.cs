@@ -18,13 +18,13 @@ namespace magic.lambda.logging.slots
         Name = "log.get",
         Description = "Returns a log entry by ID",
         ValueType = "long",
-        ValueKind = "log-entry-id",
+        ValueKind = "log-entry-id,integer,number",
         ValueDescription = "ID of the log entry to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "log-entry",
+        ReturnsKind = "log-entry,lambda-tree",
         ReturnsDescription = "Resolves to the log entry as child nodes")]
     public class Get : ISlotAsync
     {

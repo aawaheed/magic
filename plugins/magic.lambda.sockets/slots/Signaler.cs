@@ -21,7 +21,7 @@ namespace magic.lambda.sockets.slots
         Name = "sockets.signal",
         Description = "Pushes a SignalR message to clients subscribed to the channel; use to broadcast events from server to browsers",
         ValueType = "string",
-        ValueKind = "socket-channel",
+        ValueKind = "socket-channel,text",
         ValueDescription = "Socket channel to publish",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

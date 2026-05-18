@@ -19,7 +19,7 @@ namespace magic.lambda.threading
         Name = "semaphore",
         Description = "Serializes access to a critical section by name; only one thread at a time can enter a given semaphore",
         ValueType = "string",
-        ValueKind = "semaphore-name",
+        ValueKind = "semaphore-name,text",
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

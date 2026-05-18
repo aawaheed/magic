@@ -21,9 +21,9 @@ namespace magic.lambda.misc
         // value is a string) and `node-list` (topology) were both missing,
         // leaving the chain undertagged. Consumers asking for "list of
         // strings" or generic "list of nodes" must kind-match.
-        ReturnsKind = "type-name-list,string-list,node-list",
+        ReturnsKind = "type-name-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "type-name",
+        ReturnsElementKind = "type-name,text",
         ReturnsDescription = "Resolves to one child node per known CLR type name")]
     public class Types : ISlot
     {

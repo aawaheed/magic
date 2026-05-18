@@ -29,13 +29,17 @@ namespace magic.lambda.slots
         WritesScopeResult = true,
         ValueOrChildrenRequired = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.ReturnNodesSignature))]
+    // [yield] runtime accepts EITHER a `[node-list]` expression in
+    // `input.Value` OR composed children (line 60-62). For the corpus
+    // we want ONLY the composed-children form — it's clearer and the
+    // expression form duplicates [return-nodes]. Removed `ValueType`/
+    // `ValueKind` and set `ValueMode=None` so the synth never wires a
+    // value. `ValueOrChildrenRequired=true` still applies — the synth
+    // now MUST populate children.
     [Slot(
         Name = "yield",
         Description = "Returns multiple child nodes or evaluated nodes to the caller",
-        ValueType = "expression",
-        ValueKind = "node-list",
-        ValueDescription = "Expression evaluating to the nodes to yield; omit to yield the literal child nodes instead",
-        ValueMode = SlotValueMode.Expression,
+        ValueMode = SlotValueMode.None,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
         ReturnsKind = "node-list",

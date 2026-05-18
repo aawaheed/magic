@@ -18,7 +18,11 @@ namespace magic.lambda.threading
         Name = "sleep",
         Description = "Delays execution for the specified number of milliseconds",
         ValueType = "int",
-        ValueKind = "timeout-ms",
+        // `timeout-ms,integer,number` — runtime calls `input.GetEx<int>()`.
+        // Fractional ms is meaningless to `Task.Delay`. Adding the
+        // `integer` middle layer that the blanket type-to-parent expander
+        // missed (it added only the most-general parent).
+        ValueKind = "timeout-ms,integer,number",
         ValueDescription = "Delay in milliseconds",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

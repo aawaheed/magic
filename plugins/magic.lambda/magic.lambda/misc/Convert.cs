@@ -34,7 +34,15 @@ namespace magic.lambda.misc
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "converted-value,text,formattable-value",
+        // No `ReturnsKind` narrowing — runtime returns int / uint / short /
+        // ushort / long / ulong / decimal / double / single / bool /
+        // DateTime / Guid / char / byte / Expression / byte[] / string /
+        // Node depending on the `[type]` argument. Just `ReturnsType=object`
+        // already says everything — a kind narrowing like `converted-value`
+        // adds zero signal (no consumer wants "converted-value"
+        // specifically, and the actual shape is whatever the user asked
+        // [type] to convert TO).
+        ReturnsKind = "",
         ReturnsDescription = "Resolves to the value converted to the requested type",
         BodyShape = SlotBodyShape.ConvertWithPrelude,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,

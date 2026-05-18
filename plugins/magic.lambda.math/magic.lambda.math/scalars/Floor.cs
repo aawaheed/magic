@@ -23,7 +23,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "number",
-        ReturnsKind = "number,formattable-value",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the rounded-down value")]
     public class Floor : ISlot
     {

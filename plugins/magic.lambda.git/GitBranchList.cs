@@ -19,7 +19,7 @@ namespace magic.lambda.git
         Name = "git.branch.list",
         Description = "Returns every branch in the local repository, marking which one is currently checked out",
         ValueType = "string",
-        ValueKind = "git-repo-path",
+        ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -27,9 +27,9 @@ namespace magic.lambda.git
         ReturnsType = "lambda",
         // `string-list` added — each child node's value is a branch-name
         // string. Consumers asking for "list of strings" must kind-match.
-        ReturnsKind = "git-branch-list,string-list,node-list",
+        ReturnsKind = "git-branch-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "git-branch",
+        ReturnsElementKind = "git-branch,text",
         ReturnsDescription = "Returns one unnamed child node per git branch name",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitBranchListSignature))]
     public class GitBranchList : ISlotAsync

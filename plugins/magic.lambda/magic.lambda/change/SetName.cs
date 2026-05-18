@@ -16,7 +16,7 @@ namespace magic.lambda.change
         Name = "set-name",
         Description = "Sets the name of matching nodes",
         ValueType = "expression",
-        ValueKind = "node-list",
+        ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes whose name should be changed",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,

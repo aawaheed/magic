@@ -18,13 +18,13 @@ namespace magic.lambda.scheduler.slots.tasks
         Name = "tasks.count",
         Description = "Counts scheduled tasks",
         ValueType = "string",
-        ValueKind = "task-id",
+        ValueKind = "task-id,text",
         ValueDescription = "Optional filter for task IDs",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count,number,formattable-value",
+        ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of scheduled tasks matching the optional filter")]
     public class CountTasks :ISlotAsync
     {

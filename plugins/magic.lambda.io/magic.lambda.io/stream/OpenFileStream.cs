@@ -18,7 +18,7 @@ namespace magic.lambda.io.stream
         Name = "io.stream.open-file",
         Description = "Opens a file as a read-only stream so large files can be processed without loading them into memory; close with [io.stream.close]",
         ValueType = "string",
-        ValueKind = "file-path",
+        ValueKind = "file-path,text",
         ValueDescription = "File path to open as a stream",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

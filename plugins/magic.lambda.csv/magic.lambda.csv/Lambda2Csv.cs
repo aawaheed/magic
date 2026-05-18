@@ -19,20 +19,20 @@ namespace magic.lambda.csv
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
         ValueType = "lambda",
-        // Same ValueKind as [filter] / [map] / [include] — these five
-        // slots all consume the same shape: "list of objects". Using the
-        // identical `node-list` tag makes the synth's picker treat them
-        // uniformly — whatever expression form (`x:@.var/*`,
-        // `x:@csv2lambda`, `x:@cache.list/*`, ...) works for filter/map/
-        // include also works here. CSV serialization expects each
-        // evaluated node to be a row record; a node-list is exactly that.
+        // `node-list` ONLY — UNLIKE [lambda2yaml]/[lambda2json]/[lambda2hyper]
+        // which can serialize arbitrary graph objects, CSV is STRICTLY
+        // tabular. A non-list lambda tree (object root, nested key/value
+        // pairs) cannot be CSV-serialized — it has no rows to emit.
+        // Removed the erroneously-added `lambda-tree` parent. Inputs must
+        // be flat node-lists (parsed CSVs, database row lists, cache
+        // lists, etc.); the `node-list` tag is the exact semantic.
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes (rows) to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "csv,text,formattable-value",
+        ReturnsKind = "csv,text",
         ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Lambda2CsvSignature))]
     public class Lambda2Csv : ISlot

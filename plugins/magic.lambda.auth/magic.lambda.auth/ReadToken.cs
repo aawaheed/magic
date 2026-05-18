@@ -23,7 +23,7 @@ namespace magic.backend.slots
         Name = "auth.token.read",
         Description = "Validates a JWT token and verifies that it contains one of the required roles",
         ValueType = "string",
-        ValueKind = "jwt",
+        ValueKind = "jwt,text",
         ValueDescription = "JWT token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

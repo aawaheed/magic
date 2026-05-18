@@ -19,7 +19,7 @@ namespace magic.lambda.json.slots.yaml
         Name = "yaml2lambda",
         Description = "Transforms YAML into a lambda hierarchy",
         ValueType = "string",
-        ValueKind = "yaml",
+        ValueKind = "yaml,text",
         ValueDescription = "YAML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

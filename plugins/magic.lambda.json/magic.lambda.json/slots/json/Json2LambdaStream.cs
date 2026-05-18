@@ -28,7 +28,7 @@ namespace magic.lambda.json.slots.json
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "json-tree",
+        ReturnsKind = "json-tree,lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes",
         SignatureType = typeof(global::magic.lambda.json.signatures.JsonStreamSignature))]
     public class Json2LambdaStream : ISlotAsync

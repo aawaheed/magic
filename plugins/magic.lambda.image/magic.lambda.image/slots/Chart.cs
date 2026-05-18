@@ -20,13 +20,13 @@ namespace magic.lambda.image.slots
         Name = "image.chart",
         Description = "Renders a bar, stacked, or grouped chart from the supplied series data as a PNG image",
         ValueType = "string",
-        ValueKind = "chart-type",
+        ValueKind = "chart-type,text",
         ValueDescription = "Chart type to create, such as bars, stacked, or grouped",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsKind = "image",
+        ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the generated chart image bytes",
         SignatureType = typeof(global::magic.lambda.image.signatures.ChartSignature))]
     public class Chart : ISlot

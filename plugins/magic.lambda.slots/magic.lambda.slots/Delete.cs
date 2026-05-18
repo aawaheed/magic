@@ -15,7 +15,7 @@ namespace magic.lambda.slots
         Name = "slots.delete",
         Description = "Deletes a dynamic slot",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

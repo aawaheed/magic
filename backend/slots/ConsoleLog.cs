@@ -16,7 +16,7 @@ namespace magic.backend.slots
         Name = "console.log",
         Description = "Writes a message to the server console",
         ValueType = "string",
-        ValueKind = "log-message",
+        ValueKind = "log-message,text",
         ValueDescription = "Message to write to the server console",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

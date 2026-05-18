@@ -17,13 +17,13 @@ namespace magic.lambda.logging.slots
         Name = "log.count",
         Description = "Returns the total number of log entries, optionally restricted to a single content type",
         ValueType = "string",
-        ValueKind = "content-type",
+        ValueKind = "content-type,text",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "int",
-        ReturnsKind = "count,number,formattable-value",
+        ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of log entries matching the optional query")]
     public class Count : ISlotAsync
     {

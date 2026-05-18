@@ -16,7 +16,7 @@ namespace magic.lambda.strings.replace
         Name = "strings.url-encode",
         Description = "URL encodes the specified string",
         ValueType = "string",
-        ValueKind = "url-component",
+        ValueKind = "url-component,text",
         ValueDescription = "Text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -26,7 +26,7 @@ namespace magic.lambda.strings.replace
         // were missing — the URL-encoded output IS still text, and every
         // text-consuming slot must be able to kind-match it. Mirrors the
         // html-encode chain: `<specific>,text,formattable-value`.
-        ReturnsKind = "url-encoded,text,formattable-value",
+        ReturnsKind = "url-encoded,text",
         ReturnsDescription = "Resolves to the URL-encoded string")]
     public class UrlEncode : ISlot
     {

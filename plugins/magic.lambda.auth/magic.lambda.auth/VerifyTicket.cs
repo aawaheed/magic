@@ -18,7 +18,13 @@ namespace magic.lambda.auth
         Name = "auth.ticket.verify",
         Description = "Verifies that the current user is authenticated and optionally in one of the specified roles",
         ValueType = "string",
-        ValueKind = "role",
+        // `role-list,text` — runtime treats the input as a comma-separated
+        // string of roles (e.g. "admin,manager") and passes it to
+        // `TicketFactory.VerifyTicket` which splits and checks each.
+        // Previous tag was `role` (singular) — flat mischaracterization.
+        // `role-list` keys into a dedicated catalog of comma-separated
+        // role strings; `text` is the structural parent.
+        ValueKind = "role-list,text",
         ValueDescription = "Optional comma-separated roles to require",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

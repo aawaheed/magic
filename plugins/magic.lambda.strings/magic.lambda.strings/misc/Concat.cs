@@ -17,18 +17,21 @@ namespace magic.lambda.strings.concat
         Name = "strings.concat",
         Description = "Concatenates strings",
         ValueType = "lambda",
-        // `node-list` added — structural truth: the input is a list of
-        // nodes whose values are strings. Symmetric with the producer-side
-        // tagging on `strings.split`/`vocabulary`/etc. — consumers and
-        // producers use the same kind labels (set intersection decides
-        // matches).
+        // `string-list,node-list` — runtime calls `.GetEx<string>()` on
+        // each evaluated node, which REQUIRES the nodes to carry STRING
+        // VALUES at their .Value position. A flat list of string-valued
+        // nodes satisfies that; a generic `lambda-tree` (json-tree /
+        // yaml-tree / html-tree / etc.) has heterogeneous nested values
+        // and would produce garbage when ToString'd. Dropped the over-
+        // expanded `lambda-tree` parent (added by the type-aware
+        // expander; should have been excluded by careful audit).
         ValueKind = "string-list,node-list",
         ValueDescription = "Expression yielding the text segments to concatenate when not supplied as child nodes",
         ValueRequired = false,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "text,formattable-value",
+        ReturnsKind = "text",
         ReturnsDescription = "Resolves to the concatenated string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ConcatSignature))]
     public class Concat : ISlotAsync

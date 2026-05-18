@@ -17,7 +17,7 @@ namespace magic.lambda.slots
         Name = "slots.vocabulary",
         Description = "Lists dynamically created slots",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Optional filter for dynamic slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -27,9 +27,9 @@ namespace magic.lambda.slots
         // each child node's value is a string, so consumers asking for
         // "list of strings" must kind-match here. Same pattern as
         // `markdown,text,formattable-value`.
-        ReturnsKind = "dynamic-slot-name-list,string-list,node-list",
+        ReturnsKind = "dynamic-slot-name-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "dynamic-slot-name",
+        ReturnsElementKind = "dynamic-slot-name,text",
         ReturnsDescription = "Resolves to available dynamic slot names as child nodes")]
     public class Vocabulary : ISlot
     {

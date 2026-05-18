@@ -17,13 +17,13 @@ namespace magic.lambda.io.folder
         Name = "io.folder.exists",
         Description = "Returns true if a folder exists",
         ValueType = "string",
-        ValueKind = "folder-path",
+        ValueKind = "folder-path,text",
         ValueDescription = "Folder path to test",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean,formattable-value",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the folder exists")]
     public class FolderExists : ISlotAsync
     {

@@ -29,7 +29,7 @@ namespace magic.lambda.puppeteer
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "byte[]",
-        ReturnsKind = "image",
+        ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the screenshot image bytes",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerScreenshotSignature))]
     public class Screenshot : ISlotAsync

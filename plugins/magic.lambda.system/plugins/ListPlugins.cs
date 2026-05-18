@@ -20,9 +20,9 @@ namespace magic.lambda.system.plugins
         // value is a plugin-assembly-name string) and `node-list` (topology)
         // were both missing. Consumers asking for either generic kind must
         // kind-match.
-        ReturnsKind = "plugin-assembly-list,string-list,node-list",
+        ReturnsKind = "plugin-assembly-list,string-list",
         ReturnsElementType = "string",
-        ReturnsElementKind = "plugin-assembly-name",
+        ReturnsElementKind = "plugin-assembly-name,text",
         ReturnsDescription = "Returns one child node per dynamically loaded plugin name")]
     public class ListPlugins : ISlot
     {

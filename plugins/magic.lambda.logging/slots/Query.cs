@@ -19,7 +19,7 @@ namespace magic.lambda.logging.slots
         Name = "log.query",
         Description = "Returns recent log entries with most-recent-first ordering; supports optional content-type filtering and pagination",
         ValueType = "string",
-        ValueKind = "content-type",
+        ValueKind = "content-type,text",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -27,7 +27,7 @@ namespace magic.lambda.logging.slots
         ReturnsType = "lambda",
         ReturnsKind = "log-entry-list,node-list",
         ReturnsElementType = "lambda",
-        ReturnsElementKind = "log-entry",
+        ReturnsElementKind = "log-entry,lambda-tree",
         ReturnsDescription = "Returns matching log entries as child nodes",
         SignatureType = typeof(global::magic.lambda.logging.signatures.LogQuerySignature))]
     public class Query : ISlotAsync

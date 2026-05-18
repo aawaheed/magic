@@ -17,13 +17,13 @@ namespace magic.lambda.system
         Name = "system.is-os",
         Description = "Returns true if the current operating system matches the specified platform",
         ValueType = "string",
-        ValueKind = "os-name",
+        ValueKind = "os-name,text",
         ValueDescription = "Operating system platform name to compare against, typically WINDOWS, LINUX, OSX, or FREEBSD",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "bool",
-        ReturnsKind = "boolean,formattable-value",
+        ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the current operating system matches the supplied platform name")]
     public class IsOperatingSystem : ISlot
     {

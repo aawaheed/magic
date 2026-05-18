@@ -22,7 +22,7 @@ namespace magic.lambda.math.scalars
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "double",
-        ReturnsKind = "number,formattable-value",
+        ReturnsKind = "number",
         ReturnsDescription = "Resolves to the sine of the supplied angle")]
     public class Sin : ISlot
     {

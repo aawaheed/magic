@@ -20,15 +20,18 @@ namespace magic.lambda.io.file
         Name = "io.file.execute",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
         ValueType = "string",
-        ValueKind = "hyperlambda-file",
+        ValueKind = "hyperlambda-file,text",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsKind = "hyperlambda-result",
-        ReturnsElementType = "object",
-        ReturnsElementKind = "hyperlambda-result-node",
+        // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
+        // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
+        // inside a `slots.result` scope and copies whatever [return]
+        // produced back into `input`. Was `dynamic-slot-result` — phantom
+        // tag that no catalog/consumer referenced.
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
@@ -36,15 +39,18 @@ namespace magic.lambda.io.file
         Name = "execute-file",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
         ValueType = "string",
-        ValueKind = "hyperlambda-file",
+        ValueKind = "hyperlambda-file,text",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "object",
-        ReturnsKind = "hyperlambda-result",
-        ReturnsElementType = "object",
-        ReturnsElementKind = "hyperlambda-result-node",
+        // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
+        // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
+        // inside a `slots.result` scope and copies whatever [return]
+        // produced back into `input`. Was `dynamic-slot-result` — phantom
+        // tag that no catalog/consumer referenced.
+        ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileUnwrapSignature))]
     public class ExecuteFile : ISlotAsync

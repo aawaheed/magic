@@ -21,13 +21,13 @@ namespace magic.lambda.git
         Name = "github.repo.create",
         Description = "Creates a GitHub repository",
         ValueType = "string",
-        ValueKind = "github-repo-name",
+        ValueKind = "github-repo-name,text",
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "github-repository",
+        ReturnsKind = "github-repository,lambda-tree",
         ReturnsDescription = "Resolves to the created GitHub repository as child nodes projected from the API response",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoCreateSignature))]
     public class GitHubRepoCreate : ISlotAsync

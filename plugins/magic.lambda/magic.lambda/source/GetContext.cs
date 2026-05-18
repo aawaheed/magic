@@ -21,13 +21,18 @@ namespace magic.lambda.slots
         Name = "get-context",
         Description = "Returns a stack value or context object from the current execution context",
         ValueType = "string",
-        ValueKind = "context-name",
+        ValueKind = "context-name,text",
         ValueDescription = "Context name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "object",
-        ReturnsKind = "context-value,text,formattable-value",
+        // `context-value` only — runtime is `signaler.Peek<object>(...)`,
+        // returns whatever was pushed by [context] (any object: string,
+        // int, byte[], lambda, DateTime, MimeEntity, etc.). The previous
+        // `,text` parent was an overclaim — context values are NOT
+        // necessarily text.
+        ReturnsKind = "context-value",
         ReturnsDescription = "Resolves to the requested stack value or context object",
         RequiresScope = "context",
         ScopeProvider = "context",

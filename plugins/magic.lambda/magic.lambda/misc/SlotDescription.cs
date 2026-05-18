@@ -18,13 +18,13 @@ namespace magic.lambda.misc
         Name = "slot.description",
         Description = "Returns the description for a single compiled slot",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsType = "string",
-        ReturnsKind = "slot-description",
+        ReturnsKind = "slot-description,text",
         ReturnsDescription = "Resolves to the description of the requested slot")]
     public class SlotDescription : ISlot
     {

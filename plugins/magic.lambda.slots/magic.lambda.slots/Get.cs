@@ -15,13 +15,18 @@ namespace magic.lambda.slots
         Name = "slots.get",
         Description = "Returns a dynamic slot by name",
         ValueType = "string",
-        ValueKind = "dynamic-slot-name",
+        ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsType = "lambda",
-        ReturnsKind = "dynamic-slot-lambda",
+        // `dynamic-slot-lambda,lambda-object,lambda-tree` — the runtime
+        // returns the stored body of a `[slots.create]`-registered slot,
+        // which IS executable code. Tagging it `lambda-object` lets
+        // `[invoke]`/`[eval]` pick it as a valid producer for direct
+        // invocation. `lambda-tree` is the structural parent.
+        ReturnsKind = "dynamic-slot-lambda,lambda-object,lambda-tree",
         ReturnsDescription = "Resolves to the dynamic slot lambda body as child nodes")]
     public class Get : ISlot
     {

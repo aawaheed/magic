@@ -23,7 +23,7 @@ namespace magic.lambda.mysql.crud
         ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
         ReturnsElementType = "lambda",
-        ReturnsElementKind = "row-object",
+        ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row read from the current MySQL connection",
         RequiresScope = "mysql.connection",
         ScopeProvider = "mysql.connect",

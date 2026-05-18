@@ -19,13 +19,13 @@ namespace magic.lambda.git
         Name = "git.status",
         Description = "Returns Git repository status",
         ValueType = "string",
-        ValueKind = "git-repo-path",
+        ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsType = "string",
-        ReturnsKind = "git-status,text,formattable-value",
+        ReturnsKind = "git-status,text",
         ReturnsDescription = "Returns Git status text in value or, when structured, one child node per status line",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitStatusSignature))]
     public class GitStatus : ISlotAsync
