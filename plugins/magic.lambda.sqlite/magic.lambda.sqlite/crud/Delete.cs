@@ -19,11 +19,9 @@ namespace magic.lambda.sqlite.crud
         Name = "sqlite.delete",
         Description = "Deletes rows through the current SQLite connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "sqlite.connection",
-        ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync

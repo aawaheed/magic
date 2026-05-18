@@ -17,15 +17,12 @@ namespace magic.lambda.mime
     [Slot(
         Name = "mime.parse",
         Description = "Parses a raw MIME message into a lambda tree of headers and body parts; commonly used for email or multipart payloads",
-        ValueType = "string",
         ValueKind = "mime-message,text",
         ValueDescription = "Raw MIME message to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "content-type,text",
-        ReturnsElementType = "object",
         ReturnsElementKind = "mime-tree-node",
         ReturnsDescription = "Resolves to the parsed MIME entity content type as the node value, and headers, content, and nested entities as child nodes",
         SignatureType = typeof(global::magic.lambda.mime.signatures.MimeParseSignature))]

@@ -16,13 +16,11 @@ namespace magic.lambda.loops
     [Slot(
         Name = "filter",
         Description = "Filters selected nodes using the child lambda as a predicate",
-        ValueType = "expression",
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to filter",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to clones of the selected nodes whose predicate body returns true",
         // Filter's runtime is pure subsetting — output items are a SUBSET
@@ -42,7 +40,6 @@ namespace magic.lambda.loops
         PreservesInputShape = true,
         ProvidesIterationPointer = true,
         ScopeRequiresStrictExit = true,
-        BodyShape = SlotBodyShape.BooleanPredicate,
         SignatureType = typeof(global::magic.lambda.signatures.FilterSignature))]
     public class Filter : ISlot
     {

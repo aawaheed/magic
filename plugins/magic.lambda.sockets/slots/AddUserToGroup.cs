@@ -18,7 +18,6 @@ namespace magic.lambda.sockets.slots
     [Slot(
         Name = "sockets.user.add-to-group",
         Description = "Adds a user to a socket group",
-        ValueType = "string",
         ValueKind = "username,text",
         ValueDescription = "Username to add to the socket group",
         ValueRequired = true,

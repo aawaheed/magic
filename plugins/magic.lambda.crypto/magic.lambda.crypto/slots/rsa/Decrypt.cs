@@ -16,13 +16,11 @@ namespace magic.lambda.crypto.slots.rsa
     [Slot(
         Name = "crypto.rsa.decrypt",
         Description = "Decrypts RSA encrypted data",
-        ValueType = "string|byte[]",
         ValueKind = "rsa-encrypted-package",
         ValueDescription = "Encrypted package to decrypt",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "content,binary-content",
         ReturnsDescription = "Resolves to the decrypted content as text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaPrivateKeySignature))]

@@ -16,7 +16,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.copy",
         Description = "Copies a file on the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "Source file path",
         ValueRequired = true,
@@ -26,7 +25,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.move",
         Description = "Moves a file on the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "Source file path",
         ValueRequired = true,

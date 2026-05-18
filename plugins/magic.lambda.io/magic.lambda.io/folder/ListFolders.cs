@@ -17,34 +17,28 @@ namespace magic.lambda.io.folder
     [Slot(
         Name = "io.folder.list",
         Description = "Lists folders in the specified folder",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `string-list` added — each child node's value is a folder-path
         // string. Consumers asking for "list of strings" must kind-match.
         ReturnsKind = "folder-path-list,string-list",
-        ReturnsElementType = "string",
         ReturnsElementKind = "folder-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative folder path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
     [Slot(
         Name = "io.folder.list-recursively",
         Description = "Lists folders recursively in the specified folder",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `string-list` added — each child node's value is a folder-path
         // string. Consumers asking for "list of strings" must kind-match.
         ReturnsKind = "folder-path-list,string-list",
-        ReturnsElementType = "string",
         ReturnsElementKind = "folder-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative folder path, recursively",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]

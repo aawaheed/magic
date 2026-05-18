@@ -20,7 +20,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.patch",
         Description = "Applies a unified-diff patch to a file on disk; useful for surgical edits or replaying generated diffs",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to patch",
         ValueRequired = true,

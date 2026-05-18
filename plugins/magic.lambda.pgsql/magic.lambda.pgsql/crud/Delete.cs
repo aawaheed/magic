@@ -19,11 +19,9 @@ namespace magic.lambda.pgsql.crud
         Name = "pgsql.delete",
         Description = "Deletes rows through the current PostgreSQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync

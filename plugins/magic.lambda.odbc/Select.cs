@@ -17,19 +17,15 @@ namespace magic.lambda.odbc
     [Slot(
         Name = "odbc.select",
         Description = "Executes a SELECT query on the current ODBC connection",
-        ValueType = "string",
         ValueKind = "sql-select,text",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
         RequiresScope = "odbc.connection",
-        ScopeProvider = "odbc.connect",
         ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync

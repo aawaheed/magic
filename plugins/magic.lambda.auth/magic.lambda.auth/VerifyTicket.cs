@@ -17,7 +17,6 @@ namespace magic.lambda.auth
     [Slot(
         Name = "auth.ticket.verify",
         Description = "Verifies that the current user is authenticated and optionally in one of the specified roles",
-        ValueType = "string",
         // `role-list,text` — runtime treats the input as a comma-separated
         // string of roles (e.g. "admin,manager") and passes it to
         // `TicketFactory.VerifyTicket` which splits and checks each.

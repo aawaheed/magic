@@ -18,7 +18,6 @@ namespace magic.lambda.source
         Name = "get-first-value",
         Description = "Returns the first non-null value produced by candidate child nodes",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         // No `ReturnsKind` narrowing — runtime returns the first
         // non-null .Value found, which can be any object. The previous
         // `value` tag was meaningless given `ReturnsType=object`.

@@ -21,13 +21,11 @@ namespace magic.lambda.scheduler.slots.scheduler
     [Slot(
         Name = "tasks.schedule",
         Description = "Schedules a stored task for future execution; use [due] for a one-shot run or [repeats] for a recurring pattern",
-        ValueType = "string",
         ValueKind = "task-id,text",
         ValueDescription = "Task ID to schedule",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "schedule-id,text",
         ReturnsDescription = "Resolves to the created schedule ID",
         PipelineOutputUsable = false,

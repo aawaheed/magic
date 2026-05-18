@@ -14,16 +14,13 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.title",
         Description = "Returns the current page title",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "page-title,text",
         ReturnsDescription = "Resolves to the current page title")]
     public class Title : ISlotAsync

@@ -18,12 +18,10 @@ namespace magic.lambda.eval
         Name = "whitelist",
         Description = "Evaluates a lambda with a restricted whitelist of allowed slots",
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the evaluated lambda's value result and any returned child nodes",
         ProvidesScope = "whitelist",
         ClonesLambda = true,
-        RequiresInvokedSlotInventoryChild = "vocabulary",
         SignatureType = typeof(global::magic.lambda.signatures.WhitelistSignature))]
     public class Whitelist : ISlotAsync
     {

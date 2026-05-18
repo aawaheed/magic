@@ -15,13 +15,11 @@ namespace magic.lambda.image.slots
     [Slot(
         Name = "image.convert",
         Description = "Re-encodes an image into a different format (e.g. PNG to JPEG) preserving its pixel content",
-        ValueType = "string|Stream",
         ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "Stream",
         ReturnsKind = "image",
         ReturnsDescription = "Resolves to the converted image stream unless [dest] is supplied, in which case the converted image is saved to disk and nothing is returned",
         SignatureType = typeof(global::magic.lambda.image.signatures.ImageTransformSignature))]

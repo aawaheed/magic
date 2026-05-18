@@ -16,16 +16,13 @@ namespace magic.lambda.misc
     [Slot(
         Name = "context",
         Description = "Creates a named stack context object retrievable with [get-context] while evaluating a lambda block",
-        ValueType = "string",
         ValueKind = "context-name,text",
         ValueDescription = "Context name to create on the stack while evaluating the lambda block",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "context",
-        ScopeKey = "input",
         ScopeDescription = "Creates a named context scope retrievable by [get-context] using the same input value",
-        BodyShape = SlotBodyShape.NamedContext,
         SignatureType = typeof(global::magic.lambda.signatures.ContextSignature))]
     public class Context : ISlot
     {

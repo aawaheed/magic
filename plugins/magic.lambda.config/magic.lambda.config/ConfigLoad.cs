@@ -16,7 +16,6 @@ namespace magic.lambda.config
         Name = "config.load",
         Description = "Returns the raw contents of appsettings.json; pair with [config.save] for round-trip config editing",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "json,text",
         ReturnsDescription = "Resolves to the raw appsettings.json content")]
     public class LoadAppSettings : ISlotAsync

@@ -24,9 +24,7 @@ namespace magic.endpoint.services.slots.misc
         Name = "endpoints.list",
         Description = "Lists dynamic Hyperlambda endpoints with metadata",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "endpoint-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "endpoint,lambda-tree",
         ReturnsDescription = "Resolves to one child node per discovered endpoint, including its endpoint metadata")]
     public class ListEndpoints : ISlotAsync

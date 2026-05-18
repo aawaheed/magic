@@ -17,7 +17,6 @@ namespace magic.lambda.dates
         Name = "time",
         Description = "Constructs a TimeSpan value from child nodes",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "TimeSpan",
         ReturnsKind = "timespan",
         ReturnsDescription = "Resolves to the constructed TimeSpan value",
         SignatureType = typeof(global::magic.lambda.dates.signatures.TimeSignature))]

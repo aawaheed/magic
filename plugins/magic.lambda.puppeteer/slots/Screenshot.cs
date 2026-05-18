@@ -19,16 +19,13 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.screenshot",
         Description = "Captures a screenshot of the page",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the screenshot image bytes",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerScreenshotSignature))]

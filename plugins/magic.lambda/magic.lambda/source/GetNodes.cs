@@ -14,15 +14,12 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-nodes",
         Description = "Returns clones of every node matching the expression as children of the current node",
-        ValueType = "expression",
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "node-list",
-        ReturnsElementType = "object",
         ReturnsElementKind = "node",
         ReturnsDescription = "Resolves to the nodes matched by the expression as child nodes",
         PreservesInputShape = true)]

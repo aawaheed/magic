@@ -18,7 +18,6 @@ namespace magic.lambda.csv
     [Slot(
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
-        ValueType = "lambda",
         // `node-list` ONLY — UNLIKE [lambda2yaml]/[lambda2json]/[lambda2hyper]
         // which can serialize arbitrary graph objects, CSV is STRICTLY
         // tabular. A non-list lambda tree (object root, nested key/value
@@ -31,7 +30,6 @@ namespace magic.lambda.csv
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "csv,text",
         ReturnsDescription = "Resolves to the CSV content in value and column type nodes as children",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Lambda2CsvSignature))]

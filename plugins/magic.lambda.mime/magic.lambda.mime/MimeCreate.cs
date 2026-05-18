@@ -19,13 +19,11 @@ namespace magic.lambda.mime
     [Slot(
         Name = "mime.create",
         Description = "Builds a MIME message from headers and child [entity] nodes; useful for sending email or composing multipart payloads",
-        ValueType = "string",
         ValueKind = "content-type,text",
         ValueDescription = "Primary MIME content type",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "mime-message,text",
         ReturnsDescription = "Resolves to the MIME message text in value or, when structured, MIME header and content nodes as children",
         SignatureType = typeof(global::magic.lambda.mime.signatures.MimeCreateSignature))]

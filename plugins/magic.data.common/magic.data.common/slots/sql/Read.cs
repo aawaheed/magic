@@ -16,7 +16,6 @@ namespace magic.data.common.slots.sql
         Name = "sql.read",
         Description = "Builds a parameterized SELECT SQL statement",
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the generated SQL string in value and the generated parameter nodes as children",
         SignatureType = typeof(global::magic.data.common.signatures.SqlReadSignature))]

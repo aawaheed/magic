@@ -16,7 +16,6 @@ namespace magic.lambda.strings.concat
     [Slot(
         Name = "strings.concat",
         Description = "Concatenates strings",
-        ValueType = "lambda",
         // `string-list,node-list` — runtime calls `.GetEx<string>()` on
         // each evaluated node, which REQUIRES the nodes to carry STRING
         // VALUES at their .Value position. A flat list of string-valued
@@ -30,7 +29,6 @@ namespace magic.lambda.strings.concat
         ValueRequired = false,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the concatenated string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ConcatSignature))]

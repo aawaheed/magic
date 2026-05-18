@@ -16,7 +16,6 @@ namespace magic.lambda.validators.validators
     [Slot(
         Name = "validators.enum",
         Description = "Validates that a value or resolved expression result is one of the allowed options, throwing if validation fails",
-        ValueType = "string",
         ValueKind = "enum-value,text",
         ValueDescription = "Value or expression selecting the node or nodes to validate",
         ValueRequired = true,

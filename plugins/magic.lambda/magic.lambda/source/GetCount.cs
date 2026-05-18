@@ -15,7 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-count",
         Description = "Returns the number of matching nodes",
-        ValueType = "expression",
         // `node-list` ONLY — runtime accepts any cardinality, BUT counting
         // a single-object expression always yields 1, which carries no
         // information for training data. The slot's semantic purpose is
@@ -30,7 +29,6 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "number",
         ReturnsDescription = "Resolves to the number of nodes matched by the expression")]
     public class GetCount : ISlot

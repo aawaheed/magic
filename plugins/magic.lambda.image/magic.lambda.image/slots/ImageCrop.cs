@@ -19,13 +19,11 @@ namespace magic.lambda.image.slots
     [Slot(
         Name = "image.crop",
         Description = "Cuts a rectangular region out of an image at the given x, y, width, and height",
-        ValueType = "string|Stream",
         ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to crop",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "Stream",
         ReturnsKind = "image",
         ReturnsDescription = "Resolves to the cropped image stream unless [dest] is supplied, in which case the cropped image is saved to disk and nothing is returned",
         SignatureType = typeof(global::magic.lambda.image.signatures.ImageCropSignature))]

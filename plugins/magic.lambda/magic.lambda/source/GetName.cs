@@ -15,7 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-name",
         Description = "Returns the name of the first matching node",
-        ValueType = "expression",
         // `single-object` — reads the .Name of exactly one node. The runtime
         // throws if the expression resolves to more than one. `node-list`
         // (a container kind) would lie about the contract; `single-object`
@@ -26,7 +25,6 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "node-name,text",
         ReturnsDescription = "Resolves to the name of the first matching node",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode)]

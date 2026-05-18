@@ -18,7 +18,6 @@ namespace magic.lambda.misc
     [Slot(
         Name = "apply",
         Description = "Stamps a template lambda with values from child argument nodes, producing one fully-substituted output per [.dp]",
-        ValueType = "expression",
         // `template,lambda-tree` — multi-tag: semantic identity first (a
         // template lambda carrying `{name}` placeholders), then the
         // structural lambda-tree shape. The earlier `lambda` tag was the
@@ -29,7 +28,6 @@ namespace magic.lambda.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `applied-template,lambda-object,lambda-tree` — semantic chain:
         // an applied template IS executable code (`lambda-object` —
         // narrowest), which IS a lambda tree (structural parent). This

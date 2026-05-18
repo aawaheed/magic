@@ -18,13 +18,11 @@ namespace magic.lambda.image.slots
     [Slot(
         Name = "image.resize",
         Description = "Resizes an image to the specified width and height; useful for generating thumbnails or fitting screen sizes",
-        ValueType = "string|Stream",
         ValueKind = "image-file",
         ValueDescription = "Source image filename or stream to resize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "Stream",
         ReturnsKind = "image",
         ReturnsDescription = "Resolves to the resized image stream unless [dest] is supplied, in which case the resized image is saved to disk and nothing is returned",
         SignatureType = typeof(global::magic.lambda.image.signatures.ImageResizeSignature))]

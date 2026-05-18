@@ -17,7 +17,6 @@ namespace magic.lambda.pgsql
         Description = "Rolls back the current PostgreSQL transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "pgsql.transaction",
-        ScopeProvider = "pgsql.transaction.create",
         ScopeDescription = "Requires an active PostgreSQL transaction created by [pgsql.transaction.create]")]
     public class RollbackTransaction : ISlot
     {

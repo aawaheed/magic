@@ -21,13 +21,11 @@ namespace magic.lambda.pdf
     [Slot(
         Name = "pdf2text",
         Description = "Extracts text from a PDF file or stream",
-        ValueType = "string|byte[]|Stream",
         ValueKind = "pdf-file,pdf-content,binary-content",
         ValueDescription = "PDF file path, bytes, or stream to extract text from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Returns extracted text in value or, when preserving pages, one child node per page",
         SignatureType = typeof(global::magic.lambda.pdf.signatures.Pdf2TextSignature))]

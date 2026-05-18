@@ -18,7 +18,6 @@ namespace magic.lambda.json.slots.lambda
     [Slot(
         Name = "lambda2yaml",
         Description = "Transforms a lambda hierarchy into YAML",
-        ValueType = "lambda",
         // `lambda-tree,node-list` — accepts ANY lambda input. Tree
         // producers (csv-tree/json-tree/yaml-tree/lambda-tree) match via
         // `lambda-tree`; flat-list lambda producers match via `node-list`.
@@ -29,7 +28,6 @@ namespace magic.lambda.json.slots.lambda
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "yaml,text",
         ReturnsDescription = "Resolves to the generated YAML string",
         SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2YamlSignature))]

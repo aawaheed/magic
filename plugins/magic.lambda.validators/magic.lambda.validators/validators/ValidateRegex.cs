@@ -17,13 +17,11 @@ namespace magic.lambda.validators.validators
     [Slot(
         Name = "validators.regex",
         Description = "Validates that a value or resolved expression result matches a regular expression, throwing if validation fails",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
-        AcceptsPipelineInput = false,
         SignatureType = typeof(global::magic.lambda.validators.signatures.RegexValidatorSignature))]
     public class ValidateRegex : ISlot
     {

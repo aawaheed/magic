@@ -15,7 +15,6 @@ namespace magic.lambda.io.stream
     [Slot(
         Name = "io.stream.close",
         Description = "Closes and disposes a stream previously opened by [io.stream.open-file] or similar; always call to release the file handle",
-        ValueType = "Stream",
         ValueKind = "stream",
         ValueDescription = "Stream instance to close",
         ValueRequired = true,

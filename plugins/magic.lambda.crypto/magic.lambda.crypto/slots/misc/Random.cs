@@ -18,10 +18,8 @@ namespace magic.lambda.crypto.slots.misc
         Name = "crypto.random",
         Description = "Returns a cryptographically secure random string or random bytes",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "random-content,binary-content",
         ReturnsDescription = "Resolves to a random string, or random bytes when [raw] is true",
-        ReturnIsExternallyStateful = true,
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CryptoRandomSignature))]
     public class Random : ISlot
     {

@@ -488,7 +488,6 @@ mail.smtp.send
         [Slot(
         Name = ".io.folder.root",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the absolute dynamic files root folder")]
         class GetRootFolderSlot : ISlot
         {

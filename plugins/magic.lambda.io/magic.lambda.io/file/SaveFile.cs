@@ -17,7 +17,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "save-file",
         Description = "Saves a text file to the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to save",
         ValueRequired = true,
@@ -27,7 +26,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.save",
         Description = "Saves a text file to the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to save",
         ValueRequired = true,
@@ -37,7 +35,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.save.binary",
         Description = "Saves a binary file to the server",
-        ValueType = "string",
         ValueKind = "binary-file,text",
         ValueDescription = "File path to save",
         ValueRequired = true,

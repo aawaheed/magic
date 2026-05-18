@@ -16,10 +16,8 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.click",
         Description = "Clicks an element on the page",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

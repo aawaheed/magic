@@ -19,11 +19,9 @@ namespace magic.lambda.mysql.crud
         Name = "mysql.delete",
         Description = "Deletes rows through the current MySQL connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mysql.connection",
-        ScopeProvider = "mysql.connect",
         ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync

@@ -18,13 +18,11 @@ namespace magic.lambda.git
     [Slot(
         Name = "github.repo.delete",
         Description = "Deletes a GitHub repository",
-        ValueType = "string",
         ValueKind = "github-repo-name,text",
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true after the repository has been deleted",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitHubRepoDeleteSignature))]

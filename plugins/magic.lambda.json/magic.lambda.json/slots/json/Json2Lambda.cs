@@ -16,13 +16,11 @@ namespace magic.lambda.json.slots.json
     [Slot(
         Name = "json2lambda",
         Description = "Transforms JSON into a lambda hierarchy",
-        ValueType = "string",
         ValueKind = "json,text",
         ValueDescription = "JSON text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "json-tree,lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes")]
     public class Json2Lambda : ISlot

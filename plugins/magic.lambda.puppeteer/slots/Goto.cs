@@ -17,15 +17,12 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.goto",
         Description = "Navigates the current page to a URL",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "url,puppeteer-page-loaded,text",
         ReturnsDescription = "Resolves to the resolved page URL after navigation",
         SignatureType = typeof(global::magic.lambda.puppeteer.signatures.PuppeteerGotoSignature))]

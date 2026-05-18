@@ -15,7 +15,6 @@ namespace magic.lambda.slots
     [Slot(
         Name = "function",
         Description = "Creates a dynamic slot that can be invoked with [signal]",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to create",
         ValueRequired = true,
@@ -26,7 +25,6 @@ namespace magic.lambda.slots
     [Slot(
         Name = "slots.create",
         Description = "Creates a dynamic slot that can be invoked with [signal]",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to create",
         ValueRequired = true,

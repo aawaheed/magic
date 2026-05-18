@@ -16,17 +16,14 @@ namespace magic.lambda.sqlite
     [Slot(
         Name = "sqlite.execute",
         Description = "Executes SQL on the current SQLite connection",
-        ValueType = "string",
         ValueKind = "sql-execute,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "sqlite.connection",
-        ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync

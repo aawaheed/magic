@@ -16,7 +16,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.delete",
         Description = "Deletes a file on the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to delete",
         ValueRequired = true,

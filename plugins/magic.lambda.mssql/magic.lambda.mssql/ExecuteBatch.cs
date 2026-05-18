@@ -21,19 +21,15 @@ namespace magic.lambda.mssql
     [Slot(
         Name = "mssql.execute-batch",
         Description = "Executes a batch SQL script on the current SQL Server connection",
-        ValueType = "string",
         ValueKind = "sql-batch,text",
         ValueDescription = "Batch SQL script to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "sql-batch-result-list,node-list",
-        ReturnsElementType = "object",
         ReturnsElementKind = "row",
         ReturnsDescription = "Returns one child node per batch execution result",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]")]
     public class ExecuteBatch : ISlotAsync
     {

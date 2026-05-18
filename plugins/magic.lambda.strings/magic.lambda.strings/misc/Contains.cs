@@ -17,13 +17,11 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.contains",
         Description = "Returns true if a string contains the specified text",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to search",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string contains the supplied text",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]

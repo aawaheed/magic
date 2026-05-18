@@ -16,17 +16,14 @@ namespace magic.lambda.pgsql
     [Slot(
         Name = "pgsql.execute",
         Description = "Executes SQL on the current PostgreSQL connection",
-        ValueType = "string",
         ValueKind = "sql-execute,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync

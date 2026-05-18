@@ -15,13 +15,11 @@ namespace magic.lambda.strings.builder
     [Slot(
         Name = "strings.builder.append",
         Description = "Appends text to the current [strings.builder] scope",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to append to the current [strings.builder] scope",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         RequiresScope = "strings.builder",
-        ScopeProvider = "strings.builder",
         ScopeDescription = "Requires an active string builder scope created by [strings.builder]",
         ReturnsMode = SlotReturnsMode.None)]
     public class Append : ISlot

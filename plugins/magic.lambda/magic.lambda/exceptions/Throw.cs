@@ -16,7 +16,6 @@ namespace magic.lambda.exceptions
     [Slot(
         Name = "throw",
         Description = "Aborts execution by throwing an exception with the given message; optionally attach status code and public flag",
-        ValueType = "string",
         ValueKind = "exception-message,text",
         ValueDescription = "Exception message to throw",
         ValueRequired = false,

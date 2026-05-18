@@ -20,7 +20,6 @@ namespace magic.lambda.crypto.slots.rsa
         Name = "crypto.rsa.create-key",
         Description = "Generates a fresh RSA key pair; returns the public key and private key as separate child nodes for storage or distribution",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "rsa-key-pair,lambda-tree",
         ReturnsDescription = "Resolves to the generated RSA key pair as child nodes",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.RsaCreateKeySignature))]

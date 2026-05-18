@@ -17,7 +17,6 @@ namespace magic.lambda.mssql
     [Slot(
         Name = "mssql.connect",
         Description = "Opens a SQL Server connection",
-        ValueType = "string",
         ValueKind = "database-name,connection-string,text",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = false,

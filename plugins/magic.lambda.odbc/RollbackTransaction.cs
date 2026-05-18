@@ -17,7 +17,6 @@ namespace magic.lambda.odbc
         Description = "Rolls back the current ODBC transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "odbc.transaction",
-        ScopeProvider = "odbc.transaction.create",
         ScopeDescription = "Requires an active ODBC transaction created by [odbc.transaction.create]")]
     public class RollbackTransaction : ISlot
     {

@@ -16,7 +16,6 @@ namespace magic.lambda.math.basics
         Name = "math.multiply",
         Description = "Multiplies numeric values",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "number",
         ReturnsKind = "number",
         ReturnsDescription = "Resolves to the product of the supplied operands",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]

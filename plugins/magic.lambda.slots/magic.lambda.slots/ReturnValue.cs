@@ -14,13 +14,11 @@ namespace magic.lambda.slots
     [Slot(
         Name = "return-value",
         Description = "Returns a value to the caller",
-        ValueType = "object",
         ValueKind = "return-value",
         ValueDescription = "Value to return to the nearest caller",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "return-value",
         ReturnsDescription = "Resolves to a value to the caller",
         IsBlockTerminator = true,

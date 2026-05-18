@@ -17,7 +17,6 @@ namespace magic.data.common.slots
         Description = "Commits the current database transaction using the configured provider",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "data.transaction",
-        ScopeProvider = "data.transaction.create",
         ScopeDescription = "Requires an active database transaction created by [data.transaction.create]")]
     public class CommitTransaction : DataSlotBase
     {

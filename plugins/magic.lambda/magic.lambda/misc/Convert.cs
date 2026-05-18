@@ -20,7 +20,6 @@ namespace magic.lambda.misc
     [Slot(
         Name = "convert",
         Description = "Coerces a value to a different CLR type; useful for parsing strings into numbers, dates, booleans, or other strongly-typed values",
-        ValueType = "expression",
         // `single-object` — reads `.Value` from exactly one node and coerces
         // it. The previous `node-list` annotation was a structural lie (the
         // runtime calls `.Single().Value`) that caused MaterializePrelude to
@@ -33,7 +32,6 @@ namespace magic.lambda.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         // No `ReturnsKind` narrowing — runtime returns int / uint / short /
         // ushort / long / ulong / decimal / double / single / bool /
         // DateTime / Guid / char / byte / Expression / byte[] / string /
@@ -44,7 +42,6 @@ namespace magic.lambda.misc
         // [type] to convert TO).
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the value converted to the requested type",
-        BodyShape = SlotBodyShape.ConvertWithPrelude,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         SignatureType = typeof(global::magic.lambda.signatures.ConvertSignature))]
     public class Convert : ISlot

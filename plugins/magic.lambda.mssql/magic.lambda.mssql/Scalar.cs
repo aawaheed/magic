@@ -16,17 +16,14 @@ namespace magic.lambda.mssql
     [Slot(
         Name = "mssql.scalar",
         Description = "Executes SQL and returns a scalar value from the current SQL Server connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync

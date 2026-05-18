@@ -21,13 +21,11 @@ namespace magic.lambda.crypto.slots.combinations
     [Slot(
         Name = "crypto.decrypt",
         Description = "Decrypts data using the configured combination algorithm",
-        ValueType = "string|byte[]",
         ValueKind = "crypto-encrypted-package",
         ValueDescription = "Encrypted package to decrypt and optionally verify",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "content,binary-content",
         ReturnsDescription = "Resolves to the decrypted content as text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationDecryptSignature))]

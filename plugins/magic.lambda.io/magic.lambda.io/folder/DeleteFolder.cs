@@ -16,7 +16,6 @@ namespace magic.lambda.io.folder
     [Slot(
         Name = "io.folder.delete",
         Description = "Deletes a folder on the server",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Folder path to delete",
         ValueRequired = true,

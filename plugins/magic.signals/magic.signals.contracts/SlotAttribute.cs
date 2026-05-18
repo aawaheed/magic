@@ -37,11 +37,6 @@ namespace magic.signals.contracts
         public string Description { get; set; }
 
         /// <summary>
-        /// Optional CLR-ish type name for the slot's input value argument.
-        /// </summary>
-        public string ValueType { get; set; }
-
-        /// <summary>
         /// Optional semantic kind for the slot's input value argument.
         /// </summary>
         public string ValueKind { get; set; }
@@ -71,23 +66,9 @@ namespace magic.signals.contracts
         public SlotReturnsMode ReturnsMode { get; set; }
 
         /// <summary>
-        /// Optional CLR-ish type name for the slot's documented return payload.
-        /// For <see cref="SlotReturnsMode.Value"/> this describes
-        /// <see cref="magic.node.Node.Value"/>, and for
-        /// <see cref="SlotReturnsMode.Lambda"/> it describes the child-node
-        /// payload returned from the slot.
-        /// </summary>
-        public string ReturnsType { get; set; }
-
-        /// <summary>
         /// Optional semantic kind for the slot's documented return payload.
         /// </summary>
         public string ReturnsKind { get; set; }
-
-        /// <summary>
-        /// Optional CLR-ish type name for elements returned as child nodes.
-        /// </summary>
-        public string ReturnsElementType { get; set; }
 
         /// <summary>
         /// Optional semantic kind for elements returned as child nodes.
@@ -117,17 +98,6 @@ namespace magic.signals.contracts
         public string RequiresScope { get; set; }
 
         /// <summary>
-        /// Optional slot that creates the required runtime scope.
-        /// </summary>
-        public string ScopeProvider { get; set; }
-
-        /// <summary>
-        /// Optional source for the scope key, for instance "input" when the
-        /// provider and consumer must use the same input value.
-        /// </summary>
-        public string ScopeKey { get; set; }
-
-        /// <summary>
         /// Optional human-readable description of the runtime scope contract.
         /// </summary>
         public string ScopeDescription { get; set; }
@@ -155,13 +125,6 @@ namespace magic.signals.contracts
         public string Preconditions { get; set; }
 
         /// <summary>
-        /// Declares the structural shape of the slot's lambda body when one is
-        /// present. Used by the synthesizer to route body generation through a
-        /// dedicated builder per shape, replacing per-slot rule lists.
-        /// </summary>
-        public SlotBodyShape BodyShape { get; set; }
-
-        /// <summary>
         /// True if this slot terminates the surrounding lambda block at runtime
         /// (return, return-nodes, return-value, throw, tasks.schedule). The
         /// synthesizer treats terminators differently across several layers:
@@ -177,16 +140,6 @@ namespace magic.signals.contracts
         /// output as a source.
         /// </summary>
         public bool PipelineOutputUsable { get; set; } = true;
-
-        /// <summary>
-        /// True if the slot can accept a pipeline-injected input value or
-        /// child wiring. Default true. Slots whose input must be the literal
-        /// declared at synthesis time (e.g. validators.regex, where the
-        /// pattern must match the validated value declared in a prelude) set
-        /// this to false.
-        /// </summary>
-        public bool AcceptsPipelineInput { get; set; } = true;
-
         /// <summary>
         /// True if the slot exposes the iteration data pointer @.dp/# to its
         /// executable body. Set on for-each, map, filter, include. The body
@@ -251,15 +204,6 @@ namespace magic.signals.contracts
         public bool ScopeRequiresStrictExit { get; set; }
 
         /// <summary>
-        /// True if the slot's return value depends on external state (RNG,
-        /// cache contents, token counter, …) and therefore CAN'T be used as
-        /// a comparison operand against a static literal — the comparison
-        /// could never be predicted at generation time. Set on
-        /// openai.tokenize, cache.count, crypto.random and similar.
-        /// </summary>
-        public bool ReturnIsExternallyStateful { get; set; }
-
-        /// <summary>
         /// Declares how the slot resolves its input expression to a runtime
         /// value. Slots that require the expression to resolve to a SINGLE
         /// node (get-value, get-name, invoke, convert, type, reference) set
@@ -267,90 +211,6 @@ namespace magic.signals.contracts
         /// (ChildNodes) sources into them.
         /// </summary>
         public SlotValueExpressionResolution ValueExpressionResolution { get; set; }
-
-        /// <summary>
-        /// Optional comparison-family tag for slots usable as Magic's
-        /// boolean comparisons. Drives the literal-picker that pairs the
-        /// right-hand operand value with the comparison's semantics (eq
-        /// picks the same value, neq picks a different value, mt picks a
-        /// smaller value, lt picks a larger value).
-        /// </summary>
-        public SlotComparisonKind ComparisonKind { get; set; }
-
-        /// <summary>
-        /// Optional name of a child node whose contents the synthesizer must
-        /// keep in sync with the slot names invoked by the slot's executable
-        /// body. Set on whitelist as "vocabulary": after the body is built,
-        /// the post-pass walks the body subtree and ensures every invoked
-        /// slot name appears in the named child.
-        /// </summary>
-        public string RequiresInvokedSlotInventoryChild { get; set; }
-    }
-
-    /// <summary>
-    /// Body-shape contract for slots whose executable body is generated
-    /// outside the standard signature schema walk. Each value identifies a
-    /// dedicated body builder that knows the slot's body contract.
-    /// </summary>
-    public enum SlotBodyShape
-    {
-        /// <summary>Default — body follows the slot signature's Children.</summary>
-        None,
-        /// <summary>
-        /// Body is a boolean predicate (and/or/single comparison) followed
-        /// by a return:x:- result. Used by [filter] and [include].
-        /// </summary>
-        BooleanPredicate,
-        /// <summary>
-        /// Body is a list of [case] entries plus an optional [default]
-        /// where case values match the slot's input. Used by [switch].
-        /// </summary>
-        SwitchCase,
-        /// <summary>
-        /// Body consumes a prelude-declared `.convertValue` and converts it
-        /// to a target type declared via a child. Used by [convert].
-        /// </summary>
-        ConvertWithPrelude,
-        /// <summary>
-        /// Slot wraps a lambda block, taking a context name as its value and
-        /// a sibling [value] child. Used by [context].
-        /// </summary>
-        NamedContext,
-        /// <summary>
-        /// Slot wraps a lambda block without a value of its own. Used by
-        /// [strings.builder].
-        /// </summary>
-        SimpleScope,
-        /// <summary>
-        /// Body's children come from a Mustache-style template the slot
-        /// reads from a prelude variable. Used by [strings.mixin].
-        /// </summary>
-        MixinTemplate,
-        /// <summary>
-        /// Slot invokes a dynamically named slot whose argument set is
-        /// determined by inspecting the prelude lambda's [.arguments]
-        /// references. Used by [invoke] / [eval] / [eval-async].
-        /// </summary>
-        InvokeCall,
-        /// <summary>
-        /// Body must emit row-wrapped yields — `yield > . > N fields` — so
-        /// each iteration produces a single addressable row node in the
-        /// slot's output. Used by [map]. The synthesizer generates the
-        /// wrapped-yield body AND registers the slot's post-run row shape
-        /// (`@&lt;slot&gt;/*/<field>`) so downstream consumers can address
-        /// those fields.
-        /// </summary>
-        WrappedRowEmission,
-        /// <summary>
-        /// Body emits flat yields — `yield > N fields` directly, no `.`
-        /// wrapper — because the host slot braids the yielded children
-        /// straight into each iterated destination node (decorator). Used
-        /// by [include]. Field NAMES come from the iteration source's
-        /// known row shape so the decoration corresponds to real columns.
-        /// No new addressable output (`@&lt;slot&gt;` is empty after run);
-        /// the synthesizer does not register a post-run shape.
-        /// </summary>
-        BraidedRowEmission,
     }
 
     /// <summary>
@@ -368,21 +228,4 @@ namespace magic.signals.contracts
         SingleNode,
     }
 
-    /// <summary>
-    /// Comparison family for slots that act as Magic's boolean comparisons.
-    /// Drives right-hand-operand literal selection.
-    /// </summary>
-    public enum SlotComparisonKind
-    {
-        /// <summary>Default — not a comparison slot.</summary>
-        None,
-        /// <summary>Equality: right operand should be the same value as left.</summary>
-        Equality,
-        /// <summary>Inequality: right operand should differ from left.</summary>
-        Inequality,
-        /// <summary>Greater-than (mt / mte): right operand should be smaller than left.</summary>
-        GreaterThan,
-        /// <summary>Less-than (lt / lte): right operand should be larger than left.</summary>
-        LessThan,
-    }
 }

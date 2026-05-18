@@ -14,7 +14,6 @@ namespace magic.lambda.validators.validators
     [Slot(
         Name = "validators.mandatory",
         Description = "Validates that the input value or resolved expression result is present, throwing if validation fails",
-        ValueType = "object",
         ValueKind = "validated-value",
         ValueDescription = "Literal value or expression to validate as mandatory",
         ValueRequired = true,

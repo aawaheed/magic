@@ -19,7 +19,6 @@ namespace magic.lambda.auth
         Name = "auth.ticket.create",
         Description = "Issues a signed JWT carrying the supplied username, roles, and claims; typically returned after a successful login",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "jwt,text",
         ReturnsDescription = "Resolves to the created JWT ticket string",
         SignatureType = typeof(global::magic.lambda.auth.signatures.CreateTicketSignature))]

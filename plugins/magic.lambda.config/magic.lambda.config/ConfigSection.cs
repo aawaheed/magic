@@ -16,13 +16,11 @@ namespace magic.lambda.config
     [Slot(
         Name = "config.section",
         Description = "Reads an entire appsettings.json section by key, returning its keys and nested values as child nodes",
-        ValueType = "string",
         ValueKind = "config-key,text",
         ValueDescription = "Configuration section to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "config-section,text,lambda-tree",
         ReturnsDescription = "Returns one child node per key/value entry in the requested configuration section")]
     public class ConfigSection : ISlot

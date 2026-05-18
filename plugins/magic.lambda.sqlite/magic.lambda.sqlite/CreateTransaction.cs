@@ -18,7 +18,6 @@ namespace magic.lambda.sqlite
         Description = "Creates a SQLite transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "sqlite.connection",
-        ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         ProvidesScope = "sqlite.transaction",
         ScopeRequiresStrictExit = true)]

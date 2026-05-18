@@ -16,7 +16,6 @@ namespace magic.lambda.validators.validators
     [Slot(
         Name = "validators.string",
         Description = "Validates that a string value or resolved expression result is within the allowed length range, throwing if validation fails",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "String value or expression selecting the node or nodes to validate",
         ValueRequired = true,

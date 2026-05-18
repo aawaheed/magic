@@ -16,13 +16,11 @@ namespace magic.lambda.misc
     [Slot(
         Name = "floatArray2bytes",
         Description = "Serializes a sequence of float values into raw bytes; useful for embedding vectors or feeding binary APIs",
-        ValueType = "float[]",
         ValueKind = "float-list",
         ValueDescription = "Float values to convert to bytes",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "binary-content",
         ReturnsDescription = "Resolves to the float array converted to bytes")]
     public class FloatArray2Bytes : ISlot

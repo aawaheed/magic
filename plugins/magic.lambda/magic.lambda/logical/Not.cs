@@ -16,7 +16,6 @@ namespace magic.lambda.logical
         Name = "not",
         Description = "Negates a boolean expression",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if the operand evaluates to false",
         SignatureType = typeof(global::magic.lambda.signatures.SingleLogicalOperandSignature))]

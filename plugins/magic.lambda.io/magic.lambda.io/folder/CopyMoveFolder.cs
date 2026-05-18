@@ -16,7 +16,6 @@ namespace magic.lambda.io.folder
     [Slot(
         Name = "io.folder.copy",
         Description = "Copies a folder on the server",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Source folder path",
         ValueRequired = true,
@@ -26,7 +25,6 @@ namespace magic.lambda.io.folder
     [Slot(
         Name = "io.folder.move",
         Description = "Moves a folder on the server",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Source folder path",
         ValueRequired = true,

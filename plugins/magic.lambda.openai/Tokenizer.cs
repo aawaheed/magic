@@ -15,16 +15,13 @@ namespace magic.lambda.openai
     [Slot(
         Name = "openai.tokenize",
         Description = "Counts how many OpenAI tokens the given text consumes; useful for estimating cost or staying under context limits",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to tokenize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
-        ReturnsDescription = "Resolves to the number of tokens in the supplied text",
-        ReturnIsExternallyStateful = true)]
+        ReturnsDescription = "Resolves to the number of tokens in the supplied text")]
     public class Tokenizer : ISlot
     {
         /// <summary>

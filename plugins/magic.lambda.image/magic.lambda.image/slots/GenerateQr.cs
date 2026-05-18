@@ -17,13 +17,11 @@ namespace magic.lambda.image.slots
     [Slot(
         Name = "image.generate-qr",
         Description = "Renders the supplied text or URL into a PNG QR code; commonly used for links and payment codes",
-        ValueType = "string",
         ValueKind = "qr-content,url,text",
         ValueDescription = "Text or URL to encode in the QR code",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the generated QR code image bytes",
         SignatureType = typeof(global::magic.lambda.image.signatures.QrSignature))]

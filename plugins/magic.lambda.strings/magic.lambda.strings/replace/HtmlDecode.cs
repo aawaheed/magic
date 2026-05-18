@@ -15,13 +15,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.html-decode",
         Description = "HTML decodes the specified string",
-        ValueType = "string",
         ValueKind = "html-encoded,text",
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         // Decoded HTML markup, not bare text — `&lt;p&gt;` becomes `<p>`,
         // and what comes out is raw HTML. Multi-tag the kind to declare
         // the slot's full contract directly on the attribute: the primary

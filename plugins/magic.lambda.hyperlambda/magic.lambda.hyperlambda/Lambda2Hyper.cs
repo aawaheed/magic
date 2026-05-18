@@ -16,7 +16,6 @@ namespace magic.lambda.hyperlambda
     [Slot(
         Name = "lambda2hyper",
         Description = "Transforms a lambda hierarchy into Hyperlambda",
-        ValueType = "lambda",
         // `lambda-tree,node-list` — accepts ANY lambda input (tree or
         // flat list). Hyperlambda can serialize both shapes.
         ValueKind = "lambda-tree,node-list",
@@ -24,7 +23,6 @@ namespace magic.lambda.hyperlambda
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "hyperlambda,text",
         ReturnsDescription = "Resolves to the generated Hyperlambda source",
         SignatureType = typeof(global::magic.lambda.hyperlambda.signatures.Lambda2HyperSignature))]

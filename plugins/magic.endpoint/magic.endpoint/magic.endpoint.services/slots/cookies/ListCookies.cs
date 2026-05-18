@@ -16,7 +16,6 @@ namespace magic.endpoint.services.slots.cookies
         Name = "request.cookies.list",
         Description = "Lists request cookies",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `cookie-map,lambda-tree` — runtime is
         //   `input.AddRange(request.Cookies.Select(x => new Node(x.Key, x.Value)))`
         // — each child node's NAME is the cookie key, its VALUE is the
@@ -26,7 +25,6 @@ namespace magic.endpoint.services.slots.cookies
         // commit to lambda-tree, not the list branches.
         // Renamed `-list` suffix to `-map` to reflect actual shape.
         ReturnsKind = "cookie-map,lambda-tree",
-        ReturnsElementType = "string",
         ReturnsElementKind = "cookie-value,text",
         ReturnsDescription = "Resolves to one child node per request cookie, with the cookie name as the node name and its value as the node value")]
     public class ListCookies : ISlot

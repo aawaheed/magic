@@ -16,17 +16,14 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mysql.execute",
         Description = "Executes SQL on the current MySQL connection",
-        ValueType = "string",
         ValueKind = "sql-execute,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "mysql.connection",
-        ScopeProvider = "mysql.connect",
         ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync

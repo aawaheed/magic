@@ -13,16 +13,13 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.url",
         Description = "Returns the current page URL",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "url,text",
         ReturnsDescription = "Resolves to the current page URL")]
     public class Url : ISlot

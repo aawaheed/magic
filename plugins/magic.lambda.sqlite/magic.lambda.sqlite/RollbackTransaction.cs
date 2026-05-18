@@ -17,7 +17,6 @@ namespace magic.lambda.sqlite
         Description = "Rolls back the current SQLite transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "sqlite.transaction",
-        ScopeProvider = "sqlite.transaction.create",
         ScopeDescription = "Requires an active SQLite transaction created by [sqlite.transaction.create]")]
     public class RollbackTransaction : ISlot
     {

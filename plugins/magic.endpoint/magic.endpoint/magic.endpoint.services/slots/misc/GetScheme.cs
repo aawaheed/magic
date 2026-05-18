@@ -15,7 +15,6 @@ namespace magic.endpoint.services.slots.misc
         Name = "request.scheme",
         Description = "Returns the scheme (http or https) of the current incoming request",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "http-scheme,text",
         ReturnsDescription = "Resolves to the scheme of the current request, such as http or https")]
     public class GetScheme : ISlot

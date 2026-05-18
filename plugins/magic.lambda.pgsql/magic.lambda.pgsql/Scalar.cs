@@ -16,17 +16,14 @@ namespace magic.lambda.pgsql
     [Slot(
         Name = "pgsql.scalar",
         Description = "Executes SQL and returns a scalar value from the current PostgreSQL connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync

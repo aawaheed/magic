@@ -18,7 +18,6 @@ namespace magic.lambda.threading
     [Slot(
         Name = "semaphore",
         Description = "Serializes access to a critical section by name; only one thread at a time can enter a given semaphore",
-        ValueType = "string",
         ValueKind = "semaphore-name,text",
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,

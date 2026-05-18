@@ -17,7 +17,6 @@ namespace magic.lambda.logical
         Name = "and",
         Description = "Returns true if all children evaluate to true",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Resolves to true if all operands evaluate to true",
         SignatureType = typeof(global::magic.lambda.signatures.MultipleLogicalOperandsSignature))]

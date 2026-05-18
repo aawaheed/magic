@@ -16,7 +16,6 @@ namespace magic.lambda.math.helpers
     [Slot(
         Name = "math.increment",
         Description = "Increments the numeric nodes selected by the input expression",
-        ValueType = "expression",
         ValueKind = "numeric-node",
         ValueDescription = "Expression selecting the numeric node or nodes to increment",
         ValueRequired = true,

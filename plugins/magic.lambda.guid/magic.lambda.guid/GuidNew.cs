@@ -15,7 +15,6 @@ namespace magic.lambda.guid
         Name = "guid.new",
         Description = "Generates a random version-4 GUID for use as a unique identifier",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "guid,text",
         ReturnsDescription = "Resolves to a new GUID string")]
     public class GuidNew : ISlot

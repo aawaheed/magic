@@ -18,7 +18,6 @@ namespace magic.lambda.system.plugins
         Name = "system.compile",
         Description = "Compiles C# code from child nodes into an assembly",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "plugin-assembly-bytes,binary-content",
         ReturnsDescription = "Resolves to the compiled assembly bytes",
         SignatureType = typeof(global::magic.lambda.system.plugins.signatures.CompileSignature))]

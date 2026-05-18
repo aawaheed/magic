@@ -16,13 +16,11 @@ namespace magic.lambda.math.scalars
     [Slot(
         Name = "math.floor",
         Description = "Rounds a number down",
-        ValueType = "number",
         ValueKind = "number",
         ValueDescription = "Numeric value to round",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "number",
         ReturnsKind = "number",
         ReturnsDescription = "Resolves to the rounded-down value")]
     public class Floor : ISlot

@@ -18,18 +18,15 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.split",
         Description = "Splits a string at every occurrence of the separator and returns each segment as an unnamed child node",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to split",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // Structural `node-list` added — `string-list` is the semantic
         // identity, `node-list` is the topology. Consumers asking for either
         // must be able to kind-match.
         ReturnsKind = "string-list",
-        ReturnsElementType = "string",
         // Just `text` — the previous `string,text` had `string` as the leaf
         // tag, but `string` is the .NET TYPE name (same name as
         // `ReturnsElementType="string"`) — type-leak into the kind chain.

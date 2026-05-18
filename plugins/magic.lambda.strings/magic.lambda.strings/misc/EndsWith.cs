@@ -18,13 +18,11 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.ends-with",
         Description = "Returns true if a string ends with the specified text",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string ends with the supplied text",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SingleStringArgumentSignature))]

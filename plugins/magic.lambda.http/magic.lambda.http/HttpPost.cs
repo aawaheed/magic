@@ -16,13 +16,11 @@ namespace magic.lambda.http
     [Slot(
         Name = "http.post",
         Description = "Issues an HTTP POST to the specified URL with payload from [payload] or [filename]; returns the response body and headers",
-        ValueType = "string",
         ValueKind = "url-template,text",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "lambda",
         ReturnsKind = "http-response,lambda-tree",
         ReturnsDescription = "Resolves to the HTTP status code in value and response headers and content as child nodes",
         SignatureType = typeof(global::magic.lambda.http.signatures.HttpPayloadRequestSignature))]

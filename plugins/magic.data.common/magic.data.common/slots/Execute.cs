@@ -15,17 +15,14 @@ namespace magic.data.common.slots
     [Slot(
         Name = "data.execute",
         Description = "Executes SQL against the current database connection",
-        ValueType = "string",
         ValueKind = "sql-execute,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "data.connection",
-        ScopeProvider = "data.connect",
         ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataExecuteSignature))]
     public class Execute : DataSlotBase

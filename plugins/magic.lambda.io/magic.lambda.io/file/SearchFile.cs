@@ -20,15 +20,12 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.search",
         Description = "Searches for files on the server",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Folder path to search from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "file-search-result-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "file-search-result,lambda-tree",
         ReturnsDescription = "Returns one child node per matching file, each containing [file] with the relative file path and [lines] with matching line numbers",
         SignatureType = typeof(global::magic.lambda.io.signatures.SearchFileSignature))]

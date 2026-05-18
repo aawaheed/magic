@@ -19,11 +19,9 @@ namespace magic.lambda.mysql.crud
         Name = "mysql.update",
         Description = "Updates rows through the current MySQL connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mysql.connection",
-        ScopeProvider = "mysql.connect",
         ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbUpdateSignature))]
     public class Update : ISlotAsync

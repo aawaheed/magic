@@ -15,17 +15,14 @@ namespace magic.data.common.slots
     [Slot(
         Name = "data.scalar",
         Description = "Executes SQL and returns a scalar value from the current database connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to a scalar value from the current database connection",
         RequiresScope = "data.connection",
-        ScopeProvider = "data.connect",
         ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataExecuteSignature))]
     public class Scalar : DataSlotBase

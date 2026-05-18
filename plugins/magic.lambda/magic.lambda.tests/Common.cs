@@ -20,7 +20,6 @@ namespace magic.lambda.tests
         [Slot(
         Name = "foo",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the constant string \"OK\"")]
         public class FooSlot : ISlot
         {

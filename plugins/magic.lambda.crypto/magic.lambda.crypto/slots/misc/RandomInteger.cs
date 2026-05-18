@@ -19,7 +19,6 @@ namespace magic.lambda.crypto.slots.misc
         Name = "crypto.random.int",
         Description = "Returns a cryptographically secure random integer; use the optional [max] to cap the upper bound",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "random-number,integer,number",
         ReturnsDescription = "Resolves to a random integer less than the optional [max] value",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CryptoRandomIntegerSignature))]

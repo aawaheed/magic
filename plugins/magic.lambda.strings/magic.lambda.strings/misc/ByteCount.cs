@@ -15,13 +15,11 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.byte-count",
         Description = "Returns the UTF-8 byte length of a string; useful for size checks where multi-byte characters matter",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of bytes in the string")]
     public class ByteCount : ISlot

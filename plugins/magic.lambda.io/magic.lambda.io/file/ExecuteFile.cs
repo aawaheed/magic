@@ -19,13 +19,11 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.execute",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
-        ValueType = "string",
         ValueKind = "hyperlambda-file,text",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
         // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
         // inside a `slots.result` scope and copies whatever [return]
@@ -38,13 +36,11 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "execute-file",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
-        ValueType = "string",
         ValueKind = "hyperlambda-file,text",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
         // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
         // inside a `slots.result` scope and copies whatever [return]

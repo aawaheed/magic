@@ -19,11 +19,9 @@ namespace magic.lambda.mssql.crud
         Name = "mssql.update",
         Description = "Updates rows through the current SQL Server connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbUpdateSignature))]
     public class Update : ISlotAsync

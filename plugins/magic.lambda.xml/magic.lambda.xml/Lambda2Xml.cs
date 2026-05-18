@@ -20,7 +20,6 @@ namespace magic.lambda.xml
     [Slot(
         Name = "lambda2xml",
         Description = "Converts a lambda object to an XML fragment or document",
-        ValueType = "lambda",
         ValueKind = "xml-tree,lambda-tree",
         ValueDescription = "Expression selecting a SINGLE lambda root to transform (XML has exactly one document root)",
         ValueRequired = true,
@@ -31,7 +30,6 @@ namespace magic.lambda.xml
         // the synth's picker never wires `x:@.var/*` form here.
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "xml,text",
         ReturnsDescription = "Resolves to the generated XML string",
         SignatureType = typeof(global::magic.lambda.xml.signatures.Lambda2XmlSignature))]

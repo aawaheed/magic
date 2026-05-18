@@ -15,13 +15,11 @@ namespace magic.lambda.math.scalars
     [Slot(
         Name = "math.sin",
         Description = "Calculates the sine of the specified value",
-        ValueType = "number",
         ValueKind = "number",
         ValueDescription = "Numeric value to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "double",
         ReturnsKind = "number",
         ReturnsDescription = "Resolves to the sine of the supplied angle")]
     public class Sin : ISlot

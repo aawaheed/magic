@@ -12,7 +12,6 @@ namespace magic.signals.tests.slots
     [Slot(
         Name = "foo.bar.async",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the input text with \"world\" appended")]
     public class FooBarAsync : ISlotAsync
     {

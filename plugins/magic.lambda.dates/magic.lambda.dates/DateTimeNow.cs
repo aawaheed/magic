@@ -15,7 +15,6 @@ namespace magic.lambda.dates
         Name = "date.now",
         Description = "Returns the current server time in UTC",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "DateTime",
         ReturnsKind = "date",
         ReturnsDescription = "Resolves to the current UTC date and time")]
     public class DateTimeNow : ISlot

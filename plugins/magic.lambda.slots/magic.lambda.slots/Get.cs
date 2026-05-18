@@ -14,13 +14,11 @@ namespace magic.lambda.slots
     [Slot(
         Name = "slots.get",
         Description = "Returns a dynamic slot by name",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `dynamic-slot-lambda,lambda-object,lambda-tree` — the runtime
         // returns the stored body of a `[slots.create]`-registered slot,
         // which IS executable code. Tagging it `lambda-object` lets

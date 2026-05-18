@@ -17,19 +17,15 @@ namespace magic.lambda.mssql
     [Slot(
         Name = "mssql.select",
         Description = "Executes a SELECT query on the current SQL Server connection",
-        ValueType = "string",
         ValueKind = "sql-select,text",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync

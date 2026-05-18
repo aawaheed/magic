@@ -17,13 +17,11 @@ namespace magic.lambda.slots
     [Slot(
         Name = "signal",
         Description = "Invokes a dynamic slot created with [slots.create], passing child nodes as its arguments",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets
         // `input.Value = result.Value` and `input.AddRange(result.Children)`
@@ -38,13 +36,11 @@ namespace magic.lambda.slots
     [Slot(
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets
         // `input.Value = result.Value` and `input.AddRange(result.Children)`
@@ -58,13 +54,11 @@ namespace magic.lambda.slots
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the dynamic slot to try invoking",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "object",
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets
         // `input.Value = result.Value` and `input.AddRange(result.Children)`

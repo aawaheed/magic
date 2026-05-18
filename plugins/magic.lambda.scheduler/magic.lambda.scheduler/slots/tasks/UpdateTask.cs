@@ -15,7 +15,6 @@ namespace magic.lambda.scheduler.slots.tasks
     [Slot(
         Name = "tasks.update",
         Description = "Overwrites a stored task's body or description without altering its existing schedules",
-        ValueType = "string",
         ValueKind = "task-id,text",
         ValueDescription = "Task ID to update",
         ValueRequired = false,

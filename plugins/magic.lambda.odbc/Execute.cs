@@ -16,17 +16,14 @@ namespace magic.lambda.odbc
     [Slot(
         Name = "odbc.execute",
         Description = "Executes SQL on the current ODBC connection",
-        ValueType = "string",
         ValueKind = "sql-execute,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected by the SQL statement",
         RequiresScope = "odbc.connection",
-        ScopeProvider = "odbc.connect",
         ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Execute : ISlotAsync

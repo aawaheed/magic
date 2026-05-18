@@ -18,7 +18,6 @@ namespace magic.lambda.logging.slots
     [Slot(
         Name = "log.fatal",
         Description = "Writes a fatal-level log entry; reserve for unrecoverable failures that warrant immediate attention",
-        ValueType = "string",
         ValueKind = "log-message,text",
         ValueDescription = "Log message to write",
         ValueRequired = true,

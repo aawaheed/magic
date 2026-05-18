@@ -17,13 +17,11 @@ namespace magic.lambda.auth
     [Slot(
         Name = "auth.ticket.in-role",
         Description = "Returns true if the current ticket belongs to one of the specified roles",
-        ValueType = "string",
         ValueKind = "role,text",
         ValueDescription = "Comma-separated roles to test for",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the current ticket belongs to at least one of the comma-separated roles")]
     public class InRole : ISlot

@@ -16,7 +16,6 @@ namespace magic.lambda.system.plugins
     [Slot(
         Name = "system.plugin.execute",
         Description = "Loads, executes, and unloads a plugin in a single scope",
-        ValueType = "string|byte[]",
         ValueKind = "plugin-assembly,binary-content",
         ValueDescription = "Plugin assembly filename or assembly bytes",
         ValueRequired = true,

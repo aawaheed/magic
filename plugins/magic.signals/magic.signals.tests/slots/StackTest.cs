@@ -10,7 +10,6 @@ namespace magic.signals.tests.slots
     [Slot(
         Name = "stack.test",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsDescription = "Resolves to the stored stack value")]
     public class StackTest : ISlot
     {
@@ -23,7 +22,6 @@ namespace magic.signals.tests.slots
     [Slot(
         Name = "stack.test.dispose",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the stored disposable stack value converted to a string")]
     public class StackTestDispose : ISlot
     {

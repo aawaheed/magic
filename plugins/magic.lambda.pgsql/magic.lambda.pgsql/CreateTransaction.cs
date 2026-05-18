@@ -18,7 +18,6 @@ namespace magic.lambda.pgsql
         Description = "Creates a PostgreSQL transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         ProvidesScope = "pgsql.transaction",
         ScopeRequiresStrictExit = true)]

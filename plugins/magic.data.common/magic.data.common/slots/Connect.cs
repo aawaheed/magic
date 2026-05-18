@@ -15,7 +15,6 @@ namespace magic.data.common.slots
     [Slot(
         Name = "data.connect",
         Description = "Opens a database connection using the configured provider",
-        ValueType = "string",
         ValueKind = "database-name,connection-string,text",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = false,

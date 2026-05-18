@@ -16,17 +16,14 @@ namespace magic.lambda.sqlite
     [Slot(
         Name = "sqlite.scalar",
         Description = "Executes SQL and returns a scalar value from the current SQLite connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "sqlite.connection",
-        ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync

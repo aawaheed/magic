@@ -18,7 +18,6 @@ namespace magic.lambda.odbc
         Description = "Creates a ODBC transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "odbc.connection",
-        ScopeProvider = "odbc.connect",
         ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         ProvidesScope = "odbc.transaction",
         ScopeRequiresStrictExit = true)]

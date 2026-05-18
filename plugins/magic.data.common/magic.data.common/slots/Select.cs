@@ -15,19 +15,15 @@ namespace magic.data.common.slots
     [Slot(
         Name = "data.select",
         Description = "Executes a query and returns rows from the current database connection",
-        ValueType = "string",
         ValueKind = "sql-select,text",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Resolves to query result rows as child nodes",
         RequiresScope = "data.connection",
-        ScopeProvider = "data.connect",
         ScopeDescription = "Requires an open database connection created by [data.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DataSelectSignature))]
     public class Select : DataSlotBase

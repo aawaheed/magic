@@ -18,13 +18,11 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.password.hash",
         Description = "Hashes a plaintext password with bcrypt and a per-user salt; check candidates later with [crypto.password.verify]",
-        ValueType = "string",
         ValueKind = "password,text",
         ValueDescription = "Password to hash",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "password-hash,text",
         ReturnsDescription = "Resolves to the password hash")]
     public class HashPassword : ISlot

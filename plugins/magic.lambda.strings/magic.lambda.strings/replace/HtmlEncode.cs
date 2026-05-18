@@ -15,13 +15,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.html-encode",
         Description = "HTML encodes the specified string",
-        ValueType = "string",
         ValueKind = "html-unencoded,text",
         ValueDescription = "Non-encoded HTML text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         // Entity-encoded HTML is still text under the hood — the trailing
         // `text` tag lets text-consumers (log.info, strings.*) wire to
         // the output directly, without depending on a separate supertype

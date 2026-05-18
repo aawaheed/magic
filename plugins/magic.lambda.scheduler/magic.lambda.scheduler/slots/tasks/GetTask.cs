@@ -18,13 +18,11 @@ namespace magic.lambda.scheduler.slots.tasks
     [Slot(
         Name = "tasks.get",
         Description = "Looks up a single stored task by ID and returns its body, description, and next due date",
-        ValueType = "string",
         ValueKind = "task-id,text",
         ValueDescription = "Task ID to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "task,lambda-tree",
         ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node",
         SignatureType = typeof(global::magic.lambda.scheduler.signatures.GetTaskSignature))]

@@ -18,13 +18,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.replace-not-of",
         Description = "Replaces characters not found in the supplied allow-list",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after replacing characters not found in the allowed set",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceTwoArgsSignature))]

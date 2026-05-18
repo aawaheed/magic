@@ -20,7 +20,6 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.unzip",
         Description = "Extracts a zip archive on the server",
-        ValueType = "string",
         ValueKind = "zip-file,text",
         ValueDescription = "Zip archive path to extract",
         ValueRequired = true,

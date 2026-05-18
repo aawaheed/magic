@@ -17,7 +17,6 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.join",
         Description = "Concatenates the values yielded by the expression, inserting the separator between adjacent items",
-        ValueType = "lambda",
         // `string-list,node-list` — same reasoning as `[strings.concat]`:
         // the runtime calls `.GetEx<string>()` on every evaluated node,
         // which requires string-valued nodes. A generic `lambda-tree`
@@ -27,7 +26,6 @@ namespace magic.lambda.strings.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the joined string",
         SignatureType = typeof(global::magic.lambda.strings.signatures.JoinSignature))]

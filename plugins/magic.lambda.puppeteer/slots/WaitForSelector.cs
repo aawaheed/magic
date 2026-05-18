@@ -15,10 +15,8 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.wait-for-selector",
         Description = "Waits for a selector to appear",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

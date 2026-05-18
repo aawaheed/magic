@@ -16,7 +16,6 @@ namespace magic.lambda.misc
     [Slot(
         Name = "int2words",
         Description = "Spells an integer out in English words (e.g. 557 becomes 'five hundred and fifty seven'); handy for invoices and cheques",
-        ValueType = "long",
         // `integer,number` — runtime calls `input.GetEx<long>()` and
         // spells the integer. Accepts negative numbers (`number < 0L`
         // branch) — so `count` was wrong narrowing (count implies
@@ -26,7 +25,6 @@ namespace magic.lambda.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the supplied integer written as words")]
     public class Int2Words : ISlot

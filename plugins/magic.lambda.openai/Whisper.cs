@@ -17,7 +17,6 @@ namespace magic.lambda.openai
         Name = "openai.whisper",
         Description = "Transcribes audio content using OpenAI Whisper",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the transcribed text",
         SignatureType = typeof(global::magic.lambda.openai.signatures.WhisperSignature))]

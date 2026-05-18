@@ -16,7 +16,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "format",
         Description = "Formats a value using a .NET format string and optional culture; useful for currencies, dates, and number rendering",
-        ValueType = "object",
         // `scalar` — the runtime calls `string.Format(culture, pattern,
         // value)` which accepts ANY object as the format target (bool /
         // int / DateTime / double / string / Guid / TimeSpan / …). The
@@ -32,7 +31,6 @@ namespace magic.lambda.change
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         // `text` only — the runtime returns `string.Format(...)`, which IS
         // text. The previous `formatted-text` narrowing existed as a
         // catalog tag but no consumer asks for it specifically, so it

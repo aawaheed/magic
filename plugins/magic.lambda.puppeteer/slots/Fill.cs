@@ -19,10 +19,8 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.fill",
         Description = "Fills an input element with text",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

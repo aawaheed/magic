@@ -16,10 +16,8 @@ namespace magic.lambda.puppeteer
     [Slot(
         Name = "puppeteer.select",
         Description = "Selects an option in a select element",
-        ValueType = "string",
         ValueKind = "puppeteer-session",
         RequiresScope = "puppeteer-session",
-        ScopeProvider = "puppeteer.connect",
         Preconditions = "puppeteer-page-loaded",
         ValueDescription = "Puppeteer session ID",
         ValueRequired = true,

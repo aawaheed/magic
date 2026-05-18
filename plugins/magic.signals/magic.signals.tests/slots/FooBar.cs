@@ -11,7 +11,6 @@ namespace magic.signals.tests.slots
     [Slot(
         Name = "foo.bar",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the input text with \"world\" appended")]
     public class FooBar : ISlot
     {

@@ -20,13 +20,11 @@ namespace magic.lambda.caching
     [Slot(
         Name = "cache.try-get",
         Description = "Returns a cached value by key if it exists, or creates a new cached item and returning it",
-        ValueType = "string",
         ValueKind = "cache-key,text",
         ValueDescription = "Cache key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "cache-value,text",
         ReturnsDescription = "Resolves to the cached value, or the newly created value when the key is missing",
         SignatureType = typeof(global::magic.lambda.caching.signatures.CacheTryGetSignature))]

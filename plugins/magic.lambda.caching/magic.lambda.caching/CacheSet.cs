@@ -18,7 +18,6 @@ namespace magic.lambda.caching
     [Slot(
         Name = "cache.set",
         Description = "Stores a value in the in-memory cache under a key, with an optional sliding expiration",
-        ValueType = "string",
         ValueKind = "cache-key,text",
         ValueDescription = "Cache key to store",
         ValueRequired = true,

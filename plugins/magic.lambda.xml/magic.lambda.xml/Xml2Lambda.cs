@@ -17,13 +17,11 @@ namespace magic.lambda.xml
     [Slot(
         Name = "xml2lambda",
         Description = "Transforms XML into a lambda hierarchy",
-        ValueType = "string",
         ValueKind = "xml,text",
         ValueDescription = "XML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `xml-tree,lambda-tree` — XML parses into a TREE (root document
         // with nested element children + `@attr` and `#text` children).
         // NOT a flat node-list. Removed the erroneously-added `node-list`
@@ -44,7 +42,6 @@ namespace magic.lambda.xml
         // `math.round:x:@xml2lambda/0/0` — the synth thought /0/0 was an
         // int (per a wrongly-adopted Sample) when at runtime it's a string-
         // valued container.
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "xml-element,lambda-tree",
         ReturnsDescription = "Resolves to the parsed XML hierarchy as child nodes; attributes are emitted as @name child nodes, text as #text child nodes, and comments/whitespace-only text nodes are omitted")]
     public class Xml2Lambda : ISlot

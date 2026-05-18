@@ -15,13 +15,11 @@ namespace magic.lambda.change
     [Slot(
         Name = "sort",
         Description = "Sorts selected nodes using the child lambda as a comparer",
-        ValueType = "expression",
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to sort",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to the sorted nodes selected by the expression as child nodes",
         PreservesInputShape = true,

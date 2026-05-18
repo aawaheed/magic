@@ -17,13 +17,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.replace",
         Description = "Returns the text with every occurrence of [what] swapped for [with]; pass an empty [with] to strip matches",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after replacing the specified substring",
         SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceSignature))]

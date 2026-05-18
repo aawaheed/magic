@@ -15,7 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "null",
         Description = "Returns true if the specified node or expression is null",
-        ValueType = "expression",
         // Multi-tag — `[null]`/`[not-null]` scan via `FirstOrDefault(x =>
         // x.Value != null)`, which works on ANY cardinality. Both a single-
         // node source ("is this one null?") and a multi-node source ("are
@@ -27,13 +26,11 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the expression resolves to a null value")]
     [Slot(
         Name = "not-null",
         Description = "Returns true if the specified node or expression is not null",
-        ValueType = "expression",
         // Multi-tag — `[null]`/`[not-null]` scan via `FirstOrDefault(x =>
         // x.Value != null)`, which works on ANY cardinality. Both a single-
         // node source ("is this one null?") and a multi-node source ("are
@@ -45,7 +42,6 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the expression resolves to a non-null value")]
     public class IsNull : ISlot

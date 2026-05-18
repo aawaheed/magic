@@ -14,13 +14,11 @@ namespace magic.endpoint.services.slots.misc
         Name = "mime.list",
         Description = "Lists registered MIME type mappings",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `string-list` added — each child node's value is a mime-type
         // string (the child name is the file extension). Consumers asking
         // for "list of strings" must kind-match; semantic identity
         // preserved by `mime-type-list`.
         ReturnsKind = "mime-type-list,string-list",
-        ReturnsElementType = "string",
         ReturnsElementKind = "mime-type-mapping,text",
         ReturnsDescription = "Resolves to one named child node per registered MIME type mapping, where the child name is the file extension and the value is the MIME type")]
     public class GetMimeTypes : ISlot

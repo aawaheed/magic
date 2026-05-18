@@ -16,7 +16,6 @@ namespace magic.lambda.crypto.slots.misc
     [Slot(
         Name = "crypto.seed",
         Description = "Adds entropy to the secure random number generator; useful when supplying additional out-of-band randomness",
-        ValueType = "string",
         ValueKind = "crypto-seed,text",
         ValueDescription = "Seed value for the random generator",
         ValueRequired = true,

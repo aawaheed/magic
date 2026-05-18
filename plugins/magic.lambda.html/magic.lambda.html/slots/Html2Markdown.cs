@@ -17,13 +17,11 @@ namespace magic.lambda.html.slots
     [Slot(
         Name = "html2markdown",
         Description = "Transforms HTML into Markdown",
-        ValueType = "string",
         ValueKind = "html,text",
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "markdown,text",
         ReturnsDescription = "Resolves to the generated Markdown",
         SignatureType = typeof(global::magic.lambda.html.signatures.Html2MarkdownSignature))]

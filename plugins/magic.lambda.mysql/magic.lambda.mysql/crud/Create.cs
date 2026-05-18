@@ -21,11 +21,9 @@ namespace magic.lambda.mysql.crud
         Name = "mysql.create",
         Description = "Inserts rows through the current MySQL connection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "mysql.connection",
-        ScopeProvider = "mysql.connect",
         ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbCreateSignature))]
     public class Create : ISlotAsync

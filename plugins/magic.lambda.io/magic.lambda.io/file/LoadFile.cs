@@ -16,37 +16,31 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "load-file",
         Description = "Loads a text file from the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load",
         Description = "Loads a text file from the server",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
     [Slot(
         Name = "io.file.load.binary",
         Description = "Loads a binary file from the server",
-        ValueType = "string",
         ValueKind = "binary-file,text",
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "binary-file-content,binary-content,fingerprint-source",
         ReturnsDescription = "Resolves to the loaded binary file bytes")]
     public class LoadFile : ISlotAsync

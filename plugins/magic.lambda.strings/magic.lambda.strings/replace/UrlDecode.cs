@@ -15,13 +15,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.url-decode",
         Description = "URL decodes the specified string",
-        ValueType = "string",
         ValueKind = "url-encoded,text",
         ValueDescription = "Text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         // Multi-tag chain, specific → structural: `text,formattable-value`
         // were missing — the decoded URL component IS text under the hood,
         // and every text-consuming slot (log.info, strings.*, etc.) must be

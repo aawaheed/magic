@@ -19,11 +19,9 @@ namespace magic.lambda.mssql.crud
         Name = "mssql.delete",
         Description = "Deletes rows through the current SQL Server connection; include a [where] child unless intentionally deleting every row in the table",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbDeleteSignature))]
     public class Delete : ISlotAsync

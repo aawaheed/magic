@@ -16,13 +16,11 @@ namespace magic.lambda.hyperlambda
     [Slot(
         Name = "hyper2lambda",
         Description = "Transforms Hyperlambda into a lambda hierarchy",
-        ValueType = "string",
         ValueKind = "hyperlambda,text",
         ValueDescription = "Hyperlambda text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `lambda-tree` only — Hyperlambda parses into a TREE. Same
         // reasoning as html2lambda / xml2lambda: removed `node-list`
         // because the root is one document, not an iterable list.

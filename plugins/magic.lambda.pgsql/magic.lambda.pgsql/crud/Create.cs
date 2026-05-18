@@ -21,11 +21,9 @@ namespace magic.lambda.pgsql.crud
         Name = "pgsql.create",
         Description = "Inserts rows through the current PostgreSQL connection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbCreateSignature))]
     public class Create : ISlotAsync

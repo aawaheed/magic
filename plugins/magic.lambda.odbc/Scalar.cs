@@ -16,17 +16,14 @@ namespace magic.lambda.odbc
     [Slot(
         Name = "odbc.scalar",
         Description = "Executes SQL and returns a scalar value from the current ODBC connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "odbc.connection",
-        ScopeProvider = "odbc.connect",
         ScopeDescription = "Requires an open ODBC connection created by [odbc.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync

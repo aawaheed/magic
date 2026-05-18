@@ -18,14 +18,12 @@ namespace magic.lambda.sqlite
     [Slot(
         Name = "sqlite.backup",
         Description = "Creates a backup of the current SQLite connection",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "Target SQLite database filename under files/data/",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "sqlite.connection",
-        ScopeProvider = "sqlite.connect",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]")]
     public class Backup : ISlotAsync
     {

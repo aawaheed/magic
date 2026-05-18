@@ -15,7 +15,6 @@ namespace magic.endpoint.services.slots.misc
     [Slot(
         Name = "response.status.set",
         Description = "Overrides the HTTP status code returned to the caller (e.g. 201 Created, 404 Not Found, 500 Internal Error)",
-        ValueType = "int",
         ValueKind = "http-status-code,integer,number",
         ValueDescription = "HTTP status code to set",
         ValueRequired = true,

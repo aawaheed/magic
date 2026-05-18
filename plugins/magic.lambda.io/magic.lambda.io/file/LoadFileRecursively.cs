@@ -17,15 +17,12 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.load-recursively",
         Description = "Loads files recursively from the specified folder",
-        ValueType = "string",
         ValueKind = "folder-path,text",
         ValueDescription = "Folder path to load from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "loaded-file-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "loaded-file,lambda-tree",
         ReturnsDescription = "Returns one unnamed child node per loaded file; each entry has a [name] child (relative file path) and a [content] child (file content as string)",
         SignatureType = typeof(global::magic.lambda.io.signatures.LoadFilesRecursivelySignature))]

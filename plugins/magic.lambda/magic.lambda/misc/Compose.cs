@@ -16,7 +16,6 @@ namespace magic.lambda.misc
         Name = "compose",
         Description = "Builds an expression at runtime by concatenating the evaluated child node values; useful for dynamic node selection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "Expression",
         ReturnsKind = "expression",
         ReturnsDescription = "Resolves to the composed expression",
         SignatureType = typeof(global::magic.lambda.signatures.ComposeSignature))]

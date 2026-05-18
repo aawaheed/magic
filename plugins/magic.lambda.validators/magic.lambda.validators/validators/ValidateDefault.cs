@@ -15,7 +15,6 @@ namespace magic.lambda.validators.validators
     [Slot(
         Name = "validators.default",
         Description = "Adds default child nodes to the nodes selected by the input expression",
-        ValueType = "expression",
         ValueKind = "lambda-object",
         ValueDescription = "Expression selecting the node or nodes to apply defaults to",
         ValueRequired = true,

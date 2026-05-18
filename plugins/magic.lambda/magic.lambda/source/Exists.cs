@@ -15,7 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "exists",
         Description = "Returns true if the specified node or expression exists",
-        ValueType = "expression",
         // Multi-tag — `[exists]`/`[not-exists]` test EXPRESSION-RESULT
         // PRESENCE via `.Any()`, which works on ANY cardinality. A single-
         // node source ("does this one exist?") is as valid as a multi-node
@@ -27,13 +26,11 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the expression resolves to one or more nodes")]
     [Slot(
         Name = "not-exists",
         Description = "Returns true if the specified node or expression does not exist",
-        ValueType = "expression",
         // Multi-tag — `[exists]`/`[not-exists]` test EXPRESSION-RESULT
         // PRESENCE via `.Any()`, which works on ANY cardinality. A single-
         // node source ("does this one exist?") is as valid as a multi-node
@@ -45,7 +42,6 @@ namespace magic.lambda.source
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the expression resolves to no nodes")]
     public class Exists : ISlot

@@ -17,7 +17,6 @@ namespace magic.lambda.mysql
         Description = "Rolls back the current SQL Server transaction",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "mssql.transaction",
-        ScopeProvider = "mssql.transaction.create",
         ScopeDescription = "Requires an active SQL Server transaction created by [mssql.transaction.create]")]
     public class RollbackTransaction : ISlot
     {

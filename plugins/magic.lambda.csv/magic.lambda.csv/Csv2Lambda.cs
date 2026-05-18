@@ -19,13 +19,11 @@ namespace magic.lambda.csv
     [Slot(
         Name = "csv2lambda",
         Description = "Transforms CSV into a lambda hierarchy",
-        ValueType = "string",
         ValueKind = "csv,text",
         ValueDescription = "CSV text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `csv-tree,node-list` — CSV is STRICTLY a flat list of rows.
         // The `node-list` branch is the right structural parent;
         // `lambda-tree` would imply "arbitrary structure" which CSV
@@ -37,7 +35,6 @@ namespace magic.lambda.csv
         // is tagged `csv-row,lambda-tree` at the element level — that
         // structural fact is internal to each row, not the outer list.
         ReturnsKind = "csv-tree,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "csv-row,lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes; each child is one CSV row containing column-named values",
         SignatureType = typeof(global::magic.lambda.csv.signatures.Csv2LambdaSignature))]

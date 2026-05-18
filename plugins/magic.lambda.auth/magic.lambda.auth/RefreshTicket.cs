@@ -21,7 +21,6 @@ namespace magic.lambda.auth
         Name = "auth.ticket.refresh",
         Description = "Issues a new JWT with an extended expiration based on the current ticket, so active users don't get logged out",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "jwt,text",
         ReturnsDescription = "Resolves to the refreshed JWT ticket string",
         SignatureType = typeof(global::magic.lambda.auth.signatures.RefreshTicketSignature))]

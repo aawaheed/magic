@@ -13,7 +13,6 @@ namespace magic.lambda.pgsql
     /// </summary>
     [Slot(Name = ".db-factory.connection.pgsql", Description = "Creates a PostgreSQL connection factory",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "NpgsqlConnection",
         ReturnsKind = "database-connection",
         ReturnsDescription = "Resolves to a new PostgreSQL connection instance")]
     public class ConnectionFactory : ISlot

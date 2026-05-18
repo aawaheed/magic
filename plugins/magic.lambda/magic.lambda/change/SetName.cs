@@ -15,7 +15,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "set-name",
         Description = "Sets the name of matching nodes",
-        ValueType = "expression",
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes whose name should be changed",
         ValueRequired = true,

@@ -15,7 +15,6 @@ namespace magic.endpoint.services.slots.misc
         Name = "request.url",
         Description = "Returns the requested URL path and exposes each query-string parameter as a child node",
         ReturnsMode = SlotReturnsMode.Both,
-        ReturnsType = "string",
         ReturnsKind = "url,text",
         ReturnsDescription = "Resolves to the full request URL in value and the parsed query string parameters as child nodes")]
     public class GetUrl : ISlot

@@ -17,7 +17,6 @@ namespace magic.lambda.pgsql
     [Slot(
         Name = "pgsql.connect",
         Description = "Opens a PostgreSQL connection",
-        ValueType = "string",
         ValueKind = "database-name,connection-string,text",
         ValueDescription = "Optional DATABASE_NAME or [CONNECTION_STRING|DATABASE_NAME] override",
         ValueRequired = false,

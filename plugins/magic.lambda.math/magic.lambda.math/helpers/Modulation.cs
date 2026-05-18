@@ -16,7 +16,6 @@ namespace magic.lambda.math.helpers
         Name = "math.modulo",
         Description = "Calculates the remainder of a division",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "number",
         ReturnsKind = "number",
         ReturnsDescription = "Resolves to the remainder of the modulo operation",
         SignatureType = typeof(global::magic.lambda.math.signatures.ArithmeticSignature))]

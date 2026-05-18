@@ -17,13 +17,11 @@ namespace magic.lambda.io.stream
     [Slot(
         Name = "io.stream.read",
         Description = "Reads from an open stream",
-        ValueType = "Stream",
         ValueKind = "stream",
         ValueDescription = "Stream instance to read from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "byte[]",
         ReturnsKind = "binary-content,fingerprint-source",
         ReturnsDescription = "Resolves to the bytes read from the stream")]
     public class ReadStream : ISlotAsync

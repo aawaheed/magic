@@ -19,13 +19,10 @@ namespace magic.lambda.mssql.crud
         Name = "mssql.read",
         Description = "Reads rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row read from the current SQL Server connection",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbReadSignature))]
     public class Read : ISlotAsync

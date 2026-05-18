@@ -17,13 +17,11 @@ namespace magic.lambda.dates
     [Slot(
         Name = "date.format",
         Description = "Formats a DateTime using a .NET format string (e.g. yyyy-MM-dd HH:mm) for display or logging",
-        ValueType = "DateTime",
         ValueKind = "date",
         ValueDescription = "Date value to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "formatted-date,text",
         ReturnsDescription = "Resolves to the formatted date string",
         SignatureType = typeof(global::magic.lambda.dates.signatures.DateFormatSignature))]

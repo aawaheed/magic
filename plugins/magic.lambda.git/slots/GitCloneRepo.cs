@@ -16,13 +16,11 @@ namespace magic.lambda.git
     [Slot(
         Name = "git.clone-repo",
         Description = "Clones a Git repository",
-        ValueType = "string",
         ValueKind = "git-url,text",
         ValueDescription = "Repository URL to clone",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "git-output,text",
         ReturnsDescription = "Resolves to the git clone command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitCloneRepoSignature))]

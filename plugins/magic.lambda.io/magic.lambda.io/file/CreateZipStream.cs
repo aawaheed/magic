@@ -19,7 +19,6 @@ namespace magic.lambda.io.file
         Name = "io.content.zip-stream",
         Description = "Builds an in-memory zip stream from child entries; useful for returning an archive over HTTP without writing to disk",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "Stream",
         ReturnsKind = "zip-stream",
         ReturnsDescription = "Resolves to a zip stream containing the supplied entries",
         SignatureType = typeof(global::magic.lambda.io.signatures.ZipContentSignature))]

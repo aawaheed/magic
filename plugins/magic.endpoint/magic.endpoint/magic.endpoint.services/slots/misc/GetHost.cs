@@ -15,7 +15,6 @@ namespace magic.endpoint.services.slots.misc
         Name = "request.host",
         Description = "Returns the host header (domain and optional port) of the current incoming request",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "host-name,text",
         ReturnsDescription = "Resolves to the host name from the current request")]
     public class GetHost : ISlot

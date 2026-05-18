@@ -15,13 +15,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.capitalize",
         Description = "Returns the input with its first character upper-cased; remainder is left untouched",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to capitalize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the capitalized string")]
     public class Capitalize : ISlot

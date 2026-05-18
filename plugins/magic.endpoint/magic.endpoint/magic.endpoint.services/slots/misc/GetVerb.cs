@@ -15,7 +15,6 @@ namespace magic.endpoint.services.slots.misc
         Name = "request.verb",
         Description = "Returns the HTTP verb (get, post, put, delete, etc.) of the current incoming request",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "http-method,text",
         ReturnsDescription = "Resolves to the HTTP verb of the current request")]
     public class GetVerb : ISlot

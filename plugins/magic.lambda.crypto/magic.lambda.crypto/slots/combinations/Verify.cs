@@ -18,13 +18,11 @@ namespace magic.lambda.crypto.slots.combinations
     [Slot(
         Name = "crypto.verify",
         Description = "Verifies a signature using the configured combination algorithm",
-        ValueType = "string|byte[]",
         ValueKind = "crypto-signature",
         ValueDescription = "Signed package to verify",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "content,binary-content",
         ReturnsDescription = "Resolves to the verified content as text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.CombinationVerifySignature))]

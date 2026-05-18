@@ -19,7 +19,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "set-x",
         Description = "Sets node values without evaluating expressions in the source",
-        ValueType = "expression",
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,
@@ -29,7 +28,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "set-value",
         Description = "Sets node values in the lambda graph",
-        ValueType = "expression",
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes whose value should be changed",
         ValueRequired = true,

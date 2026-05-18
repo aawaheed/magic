@@ -21,11 +21,9 @@ namespace magic.lambda.mssql.crud
         Name = "mssql.create",
         Description = "Inserts rows through the current SQL Server connection",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the created row ID when [return-id] is true, otherwise null",
         RequiresScope = "mssql.connection",
-        ScopeProvider = "mssql.connect",
         ScopeDescription = "Requires an open SQL Server connection created by [mssql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbCreateSignature))]
     public class Create : ISlotAsync

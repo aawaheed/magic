@@ -18,13 +18,11 @@ namespace magic.lambda.misc
     [Slot(
         Name = "vocabulary",
         Description = "Lists available compiled slots",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Optional prefix filter for slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // Multi-tag chain, specific → structural:
         //   dynamic-slot-name-list  : semantic identity (list of slot names)
         //   string-list             : every child node holds a string value;
@@ -35,7 +33,6 @@ namespace magic.lambda.misc
         // Same pattern as `markdown,text,formattable-value` — the producer
         // declares every level its output legitimately belongs to.
         ReturnsKind = "dynamic-slot-name-list,string-list",
-        ReturnsElementType = "string",
         ReturnsElementKind = "dynamic-slot-name,text",
         ReturnsDescription = "Resolves to available slot names as child nodes")]
     public class Vocabulary : ISlot

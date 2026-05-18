@@ -17,19 +17,15 @@ namespace magic.lambda.pgsql
     [Slot(
         Name = "pgsql.select",
         Description = "Executes a SELECT query on the current PostgreSQL connection",
-        ValueType = "string",
         ValueKind = "sql-select,text",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "row-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "row-object,lambda-tree",
         ReturnsDescription = "Returns one child node per row returned by the SELECT query",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbSelectSignature))]
     public class Select : ISlotAsync

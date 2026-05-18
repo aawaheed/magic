@@ -17,7 +17,6 @@ namespace magic.endpoint.services.slots.misc
         Name = "request.ip",
         Description = "Returns the client IP address for the current request",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "ip-address,text",
         ReturnsDescription = "Resolves to the client IP address for the requested IP version",
         SignatureType = typeof(global::magic.endpoint.services.signatures.IpVersionSignature))]

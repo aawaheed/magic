@@ -18,13 +18,11 @@ namespace magic.lambda.misc
     [Slot(
         Name = "slot.signature",
         Description = "Returns the documented input and output contract for a single compiled slot",
-        ValueType = "string",
         ValueKind = "dynamic-slot-name,text",
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "slot-signature,lambda-tree",
         ReturnsDescription = "Resolves to input and output contract metadata for the requested slot")]
     public class SlotSignature : ISlot
@@ -91,7 +89,6 @@ namespace magic.lambda.misc
         static bool HasInput(SlotAttribute signature)
         {
             return
-                !string.IsNullOrEmpty(signature.ValueType) ||
                 !string.IsNullOrEmpty(signature.ValueKind) ||
                 !string.IsNullOrEmpty(signature.ValueDescription) ||
                 signature.ValueRequired ||
@@ -105,7 +102,6 @@ namespace magic.lambda.misc
         {
             return
                 signature.ReturnsMode != SlotReturnsMode.None ||
-                !string.IsNullOrEmpty(signature.ReturnsType) ||
                 !string.IsNullOrEmpty(signature.ReturnsKind) ||
                 !string.IsNullOrEmpty(signature.ReturnsDescription);
         }
@@ -126,8 +122,6 @@ namespace magic.lambda.misc
             return
                 !string.IsNullOrEmpty(signature.ProvidesScope) ||
                 !string.IsNullOrEmpty(signature.RequiresScope) ||
-                !string.IsNullOrEmpty(signature.ScopeProvider) ||
-                !string.IsNullOrEmpty(signature.ScopeKey) ||
                 !string.IsNullOrEmpty(signature.ScopeDescription);
         }
 
@@ -137,7 +131,6 @@ namespace magic.lambda.misc
         static Node CreateInputNode(SlotAttribute signature)
         {
             var result = new Node("input");
-            result.Add(new Node("type", signature.ValueType));
             if (!string.IsNullOrEmpty(signature.ValueKind))
                 result.Add(new Node("kind", signature.ValueKind));
             result.Add(new Node("description", signature.ValueDescription));
@@ -153,11 +146,8 @@ namespace magic.lambda.misc
         {
             var result = new Node("output");
             result.Add(new Node("mode", signature.ReturnsMode.ToString()));
-            result.Add(new Node("type", signature.ReturnsType));
             if (!string.IsNullOrEmpty(signature.ReturnsKind))
                 result.Add(new Node("kind", signature.ReturnsKind));
-            if (!string.IsNullOrEmpty(signature.ReturnsElementType))
-                result.Add(new Node("element-type", signature.ReturnsElementType));
             if (!string.IsNullOrEmpty(signature.ReturnsElementKind))
                 result.Add(new Node("element-kind", signature.ReturnsElementKind));
             result.Add(new Node("description", signature.ReturnsDescription));
@@ -180,10 +170,6 @@ namespace magic.lambda.misc
                 result.Add(new Node("provides", signature.ProvidesScope));
             if (!string.IsNullOrEmpty(signature.RequiresScope))
                 result.Add(new Node("requires", signature.RequiresScope));
-            if (!string.IsNullOrEmpty(signature.ScopeProvider))
-                result.Add(new Node("provider", signature.ScopeProvider));
-            if (!string.IsNullOrEmpty(signature.ScopeKey))
-                result.Add(new Node("key", signature.ScopeKey));
             if (!string.IsNullOrEmpty(signature.ScopeDescription))
                 result.Add(new Node("description", signature.ScopeDescription));
             return result;

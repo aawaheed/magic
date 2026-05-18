@@ -14,7 +14,6 @@ namespace magic.lambda.branching
     [Slot(
         Name = "case",
         Description = "Evaluates a single case branch inside [switch]",
-        ValueType = "object",
         ValueKind = "switch-value",
         ValueDescription = "Case value to match against the [switch] input value",
         ValueRequired = true,

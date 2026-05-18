@@ -15,13 +15,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.url-encode",
         Description = "URL encodes the specified string",
-        ValueType = "string",
         ValueKind = "url-component,text",
         ValueDescription = "Text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         // Multi-tag chain, specific → structural: `text,formattable-value`
         // were missing — the URL-encoded output IS still text, and every
         // text-consuming slot must be able to kind-match it. Mirrors the

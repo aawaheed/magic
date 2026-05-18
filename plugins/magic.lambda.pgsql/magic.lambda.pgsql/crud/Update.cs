@@ -19,11 +19,9 @@ namespace magic.lambda.pgsql.crud
         Name = "pgsql.update",
         Description = "Updates rows through the current PostgreSQL connection; use [where] to constrain affected rows",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of rows affected",
         RequiresScope = "pgsql.connection",
-        ScopeProvider = "pgsql.connect",
         ScopeDescription = "Requires an open PostgreSQL connection created by [pgsql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbUpdateSignature))]
     public class Update : ISlotAsync

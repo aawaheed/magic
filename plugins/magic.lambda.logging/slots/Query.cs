@@ -18,15 +18,12 @@ namespace magic.lambda.logging.slots
     [Slot(
         Name = "log.query",
         Description = "Returns recent log entries with most-recent-first ordering; supports optional content-type filtering and pagination",
-        ValueType = "string",
         ValueKind = "content-type,text",
         ValueDescription = "Optional content type filter",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "log-entry-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "log-entry,lambda-tree",
         ReturnsDescription = "Returns matching log entries as child nodes",
         SignatureType = typeof(global::magic.lambda.logging.signatures.LogQuerySignature))]

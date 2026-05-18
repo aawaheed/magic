@@ -16,7 +16,6 @@ namespace magic.lambda.json.slots.lambda
         Name = ".lambda2json-raw",
         Description = "Transforms a lambda hierarchy into a raw JSON container without serializing it to a string",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "JContainer",
         ReturnsKind = "json,text",
         ReturnsDescription = "Resolves to the generated raw JSON container",
         SignatureType = typeof(global::magic.lambda.json.signatures.Lambda2JsonRawSignature))]

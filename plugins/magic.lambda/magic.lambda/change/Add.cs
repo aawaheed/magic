@@ -15,7 +15,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "add",
         Description = "Appends source nodes to selected destination containers",
-        ValueType = "expression",
         // `node-list,single-object` — the runtime iterates `input.Evaluate()`
         // which returns the expression's result set; a single-node target
         // is just a one-element result, identical to a list of N nodes

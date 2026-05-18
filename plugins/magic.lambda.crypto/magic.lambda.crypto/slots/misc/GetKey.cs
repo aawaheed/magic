@@ -17,13 +17,11 @@ namespace magic.lambda.crypto.slots.misc
     [Slot(
         Name = "crypto.get-key",
         Description = "Returns or derives a cryptographic key",
-        ValueType = "string|byte[]",
         ValueKind = "crypto-encrypted-package",
         ValueDescription = "Encrypted package to extract the key fingerprint from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "crypto-key-fingerprint",
         ReturnsDescription = "Resolves to the package key fingerprint as text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.GetKeySignature))]

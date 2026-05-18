@@ -15,7 +15,6 @@ namespace magic.lambda.logging.slots
         Name = "log.capabilities",
         Description = "Returns capabilities of the current log provider",
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `log-capabilities,lambda-tree` — the runtime adds NAMED
         // children (`can-filter`, `can-timeshift`) to input. That's an
         // OBJECT (named properties), NOT a list of nodes (anonymous

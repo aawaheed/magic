@@ -17,15 +17,12 @@ namespace magic.lambda.caching
     [Slot(
         Name = "cache.list",
         Description = "Lists cached keys matching the optional filter",
-        ValueType = "string",
         ValueKind = "cache-key,text",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         ReturnsKind = "cache-key-list,node-list",
-        ReturnsElementType = "lambda",
         ReturnsElementKind = "cache-entry,lambda-tree",
         ReturnsDescription = "Returns one child node per cached key matching the optional filter, each with [key] and [value] children",
         SignatureType = typeof(global::magic.lambda.caching.signatures.CacheListSignature))]

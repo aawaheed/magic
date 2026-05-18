@@ -16,7 +16,6 @@ namespace magic.lambda.sockets.slots
     [Slot(
         Name = "sockets.user.remove-from-group",
         Description = "Removes a user from a socket group",
-        ValueType = "string",
         ValueKind = "username,text",
         ValueDescription = "Username to remove from the socket group",
         ValueRequired = true,

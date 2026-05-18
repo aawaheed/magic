@@ -16,13 +16,11 @@ namespace magic.lambda.io.file
     [Slot(
         Name = "io.file.exists",
         Description = "Returns true if a file exists",
-        ValueType = "string",
         ValueKind = "file-path,text",
         ValueDescription = "File path to test",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "bool",
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the file exists")]
     public class FileExists : ISlotAsync

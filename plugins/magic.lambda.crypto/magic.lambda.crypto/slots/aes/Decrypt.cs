@@ -16,13 +16,11 @@ namespace magic.lambda.crypto.slots.aes
     [Slot(
         Name = "crypto.aes.decrypt",
         Description = "Decrypts AES encrypted data",
-        ValueType = "string|byte[]",
         ValueKind = "aes-encrypted-package",
         ValueDescription = "Encrypted package to decrypt",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "content,binary-content",
         ReturnsDescription = "Resolves to the decrypted content as text or raw bytes when [raw] is true",
         SignatureType = typeof(global::magic.lambda.crypto.signatures.AesSignature))]

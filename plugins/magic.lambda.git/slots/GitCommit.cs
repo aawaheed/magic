@@ -17,13 +17,11 @@ namespace magic.lambda.git
     [Slot(
         Name = "git.commit",
         Description = "Stages all changes in the repo and creates a new commit with the supplied message and author",
-        ValueType = "string",
         ValueKind = "git-repo-path,text",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "git-output,text",
         ReturnsDescription = "Resolves to the git commit command output",
         SignatureType = typeof(global::magic.lambda.git.signatures.GitCommitSignature))]

@@ -1117,7 +1117,6 @@ io.file.exists:/existing.txt
 
         [Slot(Name = "foo",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsDescription = "Resolves to the constant string \"success\"")]
         public class EventSource : ISlot
         {

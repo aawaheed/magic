@@ -15,13 +15,11 @@ namespace magic.lambda.branching
     [Slot(
         Name = "switch",
         Description = "Evaluates one of several branches based on the input value",
-        ValueType = "object",
         ValueKind = "switch-value",
         ValueDescription = "Value to compare against the child [case] values",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
-        BodyShape = SlotBodyShape.SwitchCase,
         SignatureType = typeof(global::magic.lambda.signatures.SwitchSignature))]
     public class Switch : ISlot
     {

@@ -17,17 +17,14 @@ namespace magic.lambda.mysql
     [Slot(
         Name = "mysql.scalar",
         Description = "Executes SQL and returns a scalar value from the current MySQL connection",
-        ValueType = "string",
         ValueKind = "sql-scalar,text",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "object",
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the scalar result of the SQL statement",
         RequiresScope = "mysql.connection",
-        ScopeProvider = "mysql.connect",
         ScopeDescription = "Requires an open MySQL connection created by [mysql.connect]",
         SignatureType = typeof(global::magic.data.common.signatures.DbExecuteSignature))]
     public class Scalar : ISlotAsync

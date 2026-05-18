@@ -18,7 +18,6 @@ namespace magic.lambda.caching
     [Slot(
         Name = "cache.clear",
         Description = "Clears cached items matching the optional filter",
-        ValueType = "string",
         ValueKind = "cache-key,text",
         ValueDescription = "Optional filter for cache keys",
         ValueRequired = false,

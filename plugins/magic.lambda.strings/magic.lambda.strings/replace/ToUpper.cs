@@ -14,13 +14,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.to-upper",
         Description = "Transforms input text to uppercase",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the uppercased string")]
     public class ToUpper : ISlot

@@ -15,7 +15,6 @@ namespace magic.lambda.mssql
         Name = ".db-factory.connection.mssql",
         Description = "Creates a SQL Server connection factory",
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "SqlConnection",
         ReturnsKind = "database-connection",
         ReturnsDescription = "Resolves to a new SQL Server connection instance")]
     public class ConnectionFactory : ISlot

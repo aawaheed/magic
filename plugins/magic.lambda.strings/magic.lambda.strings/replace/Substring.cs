@@ -17,13 +17,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.substring",
         Description = "Extracts a portion of a string starting at the given offset and optional length; out-of-range bounds throw",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the extracted substring",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SubstringSignature))]

@@ -17,13 +17,11 @@ namespace magic.lambda.html.slots
     [Slot(
         Name = "html2lambda",
         Description = "Transforms HTML into a lambda hierarchy",
-        ValueType = "string",
         ValueKind = "html,text",
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        ReturnsType = "lambda",
         // `html-tree,lambda-tree` — HTML parses into a TREE (root document
         // with nested element children), NOT a flat list. Removed
         // `node-list` — claiming iterability would let list-consumers

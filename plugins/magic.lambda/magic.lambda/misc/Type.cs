@@ -15,7 +15,6 @@ namespace magic.lambda.misc
     [Slot(
         Name = "type",
         Description = "Returns the CLR type name of a value",
-        ValueType = "expression",
         // `single-object` is the structural-kind dual of `node-list`: one
         // value-bearing node, any value type. The runtime contract here is
         // `.Single().Value` — exactly one node, read its value — which is
@@ -29,7 +28,6 @@ namespace magic.lambda.misc
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "string",
         ReturnsKind = "type-name,text",
         ReturnsDescription = "Resolves to the runtime type name of the first matching value",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode)]

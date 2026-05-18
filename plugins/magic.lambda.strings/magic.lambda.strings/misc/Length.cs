@@ -14,13 +14,11 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.length",
         Description = "Returns the length of a string",
-        ValueType = "string",
         ValueKind = "text",
         ValueDescription = "Text to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Value,
-        ReturnsType = "int",
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of characters in the string")]
     public class Length : ISlot
