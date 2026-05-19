@@ -115,9 +115,18 @@ namespace magic.lambda.strings.signatures
     public class SplitSignature : StringSignature
     {
         /// <inheritdoc />
+        // Cardinality narrowed to ExactlyOne for the corpus. The runtime
+        // accepts multiple separators (Split.cs collects every `[.]` child
+        // and passes the array to String.Split), but emitting more than one
+        // confuses the teaching signal — readers see `strings.split` with a
+        // primary separator and a second incidental token without an
+        // obvious reason. ExactlyOne keeps the generated examples to the
+        // common, idiomatic shape. Authors who legitimately need multiple
+        // separators can still write them by hand against the unchanged
+        // runtime.
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Arg(".", "string", "Separator to split on", true, SlotChildCardinality.OneOrMore, "string-separator"),
+            Arg(".", "string", "Separator to split on", true, SlotChildCardinality.ExactlyOne, "string-separator"),
         };
     }
 

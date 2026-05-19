@@ -132,6 +132,37 @@ namespace magic.lambda.http.signatures
                         Cardinality = SlotChildCardinality.ZeroOrMore,
                         Role = SlotChildRole.Option,
                         Projection = SlotChildProjection.Value,
+                        // For [headers]/*, dispatch the VALUE catalog off the
+                        // header NAME. The merged `http-header-value` pool
+                        // is structurally varied but semantically lies for
+                        // typed headers — `Accept: en` or `Cache-Control:
+                        // 600` would teach wrong combinations. The
+                        // `catalog-by-name` placeholder picks a name-
+                        // appropriate catalog (content-type for Accept /
+                        // Content-Type, bearer-token for Authorization,
+                        // date for If-Modified-Since etc.); falls back to
+                        // the generic pool for any header name without a
+                        // typed dispatch (X-Request-ID, X-Correlation-ID,
+                        // User-Agent, Forwarded, …). [query]/* and
+                        // [url-params]/* stay unchanged — their values
+                        // are inherently free-form, so the generic catalog
+                        // is the right pick.
+                        ValueTemplate = name == "headers"
+                            ? "{catalog-by-name:" +
+                                "^Accept$=content-type|" +
+                                "^Content-Type$=content-type|" +
+                                "^Authorization$=bearer-token|" +
+                                "^Proxy-Authorization$=bearer-token|" +
+                                "^If-Modified-Since$=date|" +
+                                "^If-Unmodified-Since$=date|" +
+                                "^Last-Modified$=date|" +
+                                "^Date$=date|" +
+                                "^Expires$=date|" +
+                                "^X-Request-ID$=guid|" +
+                                "^X-Correlation-ID$=guid|" +
+                                "^X-Trace-ID$=guid|" +
+                                "*=http-header-value}"
+                            : null,
                     },
                 },
             };

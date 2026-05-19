@@ -30,7 +30,15 @@ namespace magic.lambda.puppeteer.signatures
             };
         }
 
-        protected static SlotChild Args(string name, string description)
+        // `childKind` parameterises the catalog the synth draws each
+        // argument value from. Different callers want different argument
+        // domains: `puppeteer.connect [args]` takes Chrome process flags
+        // (`--no-sandbox`, `--window-size=...`) — drawn from `browser-arg`.
+        // `puppeteer.evaluate-async [args]` and similar JavaScript-execution
+        // callers want JS-typed arg values — drawn from `javascript-argument`.
+        // Sharing this helper kept the schema shape DRY but baked in the
+        // wrong default catalog; explicit kind per call site fixes that.
+        protected static SlotChild Args(string name, string description, string childKind = "javascript-argument")
         {
             return new SlotChild
             {
@@ -48,7 +56,7 @@ namespace magic.lambda.puppeteer.signatures
                     {
                         Name = ".",
                         Type = "string",
-                        Kind = "javascript-argument",
+                        Kind = childKind,
                         Description = "Argument value",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
@@ -69,7 +77,7 @@ namespace magic.lambda.puppeteer.signatures
             Option("max-lifetime-minutes", "int", "Maximum session lifetime in minutes"),
             Option("headless", "bool", "Whether the browser should run headless", defaultValue: "true"),
             Option("timeout", "int", "Browser launch timeout in milliseconds"),
-            Args("args", "Browser launch arguments"),
+            Args("args", "Browser launch arguments", childKind: "browser-arg"),
             Option("user-data-dir", "string", "Browser user data directory", kind: "folder-path"),
             Option("executable", "string", "Browser executable path", kind: "executable-path"),
             Option("executable-path", "string", "Browser executable path", kind: "executable-path"),
@@ -105,7 +113,7 @@ namespace magic.lambda.puppeteer.signatures
         {
             Option("selector", "string", "CSS selector", true, kind: "css-selector"),
             Option("button", "string", "Mouse button to click", defaultValue: "left", kind: "mouse-button"),
-            Option("click-count", "int", "Number of clicks"),
+            Option("click-count", "int", "Number of clicks", kind: "click-count"),
             Option("delay", "int", "Delay in milliseconds between mouse down and up"),
         };
     }

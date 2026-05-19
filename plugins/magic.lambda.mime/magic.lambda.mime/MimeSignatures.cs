@@ -186,6 +186,27 @@ namespace magic.lambda.mime.signatures
             };
             leafExcludesEntity.Values.Add("entity");
 
+            // Binary MIME parts can't carry inline [content] — strings won't
+            // round-trip as raw bytes (a `video/mp4` part with `[content]:
+            // "The weekly sales report..."` is nonsense). Force these onto
+            // [filename] only. Combined with the ExactlyOneOf above, the
+            // synth's constraint filter applies Excludes first (forbidding
+            // `content`), then ExactlyOneOf("content","filename") collapses
+            // to the only remaining choice — `filename`. Same trick the
+            // multipartExcludesLeaf constraint uses below.
+            //
+            // Pattern covers the typical binary leaf families: image/*,
+            // video/*, audio/*, plus the application/* subtypes whose
+            // payload is binary (pdf, zip, gzip, tar, 7z, MS-Office docs,
+            // octet-stream).
+            var binaryExcludesInlineContent = new SlotConstraint
+            {
+                Kind = SlotConstraintKind.Excludes,
+                Description = "Binary MIME parts cannot carry inline [content] — reference the bytes via [filename]",
+                ValuePattern = @"^(image/|video/|audio/|application/(octet-stream|pdf|zip|gzip|x-tar|x-bzip2|x-7z-compressed|vnd\.ms-excel|vnd\.openxmlformats-officedocument))",
+            };
+            binaryExcludesInlineContent.Values.Add("content");
+
             var multipart = new SlotConstraint
             {
                 Kind = SlotConstraintKind.AtLeastOneOf,
@@ -202,7 +223,12 @@ namespace magic.lambda.mime.signatures
             };
             multipartExcludesLeaf.Values.AddRange(new[] { "content", "filename" });
 
-            return new[] { leaf, leafExcludesEntity, multipart, multipartExcludesLeaf };
+            // Order matters: Excludes constraints must run BEFORE the
+            // ExactlyOneOf(leaf) so the latter sees `content` already in
+            // the Forbidden set for binary types and collapses to
+            // `filename`. ApplyConstraintsTo iterates constraints in
+            // declaration order — declare exclusions first.
+            return new[] { binaryExcludesInlineContent, leafExcludesEntity, leaf, multipartExcludesLeaf, multipart };
         }
     }
 

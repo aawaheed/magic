@@ -17,7 +17,8 @@ namespace magic.data.common.slots
         Description = "Rolls back the current database transaction using the configured provider",
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "data.transaction",
-        ScopeDescription = "Requires an active database transaction created by [data.transaction.create]")]
+        ScopeDescription = "Requires an active database transaction created by [data.transaction.create]",
+        SignatureType = typeof(global::magic.data.common.signatures.DataTransactionSignature))]
     public class RollbackTransaction : DataSlotBase
     {
         /// <summary>

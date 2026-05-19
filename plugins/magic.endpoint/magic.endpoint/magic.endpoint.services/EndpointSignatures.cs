@@ -43,6 +43,32 @@ namespace magic.endpoint.services.signatures
                 Cardinality = SlotChildCardinality.OneOrMore,
                 Role = SlotChildRole.DynamicMap,
                 Projection = SlotChildProjection.Value,
+                // Dispatch the value catalog off the header NAME — same
+                // pattern HttpSignatures.cs uses for request `[headers]/*`.
+                // Without this, the header NAME comes from
+                // `http-response-header-value-names` (which exists) but
+                // the VALUE picker looks for `http-response-header-value`
+                // (which doesn't exist as a top-level catalog) and falls
+                // back to `sample-XXXX` placeholders — producing nonsense
+                // like `Expires:sample-d440`. Dispatch routes Date / ETag /
+                // Cache-Control / auth headers / correlation IDs to typed
+                // catalogs; everything else falls through to the generic
+                // `http-header-value` pool (the merged request-header
+                // catalog — fine for response use too).
+                ValueTemplate =
+                    "{catalog-by-name:" +
+                    "^Content-Type$=content-type|" +
+                    "^Expires$=date|" +
+                    "^Last-Modified$=date|" +
+                    "^Date$=date|" +
+                    "^If-Modified-Since$=date|" +
+                    "^If-Unmodified-Since$=date|" +
+                    "^X-Request-ID$=guid|" +
+                    "^X-Correlation-ID$=guid|" +
+                    "^X-Trace-ID$=guid|" +
+                    "^WWW-Authenticate$=bearer-token|" +
+                    "^Proxy-Authenticate$=bearer-token|" +
+                    "*=http-header-value}",
             },
         };
     }
