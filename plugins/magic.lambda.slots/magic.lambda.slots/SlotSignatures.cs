@@ -27,6 +27,7 @@ namespace magic.lambda.slots.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "value",
                 Description = description,
                 Required = false,
                 Mode = SlotChildMode.Arguments,

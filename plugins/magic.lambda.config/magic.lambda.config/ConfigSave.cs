@@ -21,6 +21,7 @@ namespace magic.lambda.config
         ValueDescription = "Valid JSON object content to save to appsettings.json",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class SaveAppSettings : ISlotAsync
     {

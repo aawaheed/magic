@@ -78,12 +78,46 @@ namespace magic.lambda.mime.signatures
 
         public static SlotChild Content()
         {
-            return Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source");
+            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source");
+            // Dispatch the catalog draw on the parent entity's MIME type so
+            // [content] under [entity:application/json] gets JSON, [entity:
+            // application/xml] gets XML, etc. — instead of every leaf type
+            // pulling from the same generic prose catalog. The synth's
+            // `catalog-by-parent-value` placeholder reads the parent node's
+            // resolved value (literal or expression-resolved) and dispatches.
+            result.ValueTemplate =
+                "{catalog-by-parent-value:" +
+                "^application/json=json|" +
+                "^application/xml=xml|" +
+                "^text/html=html|" +
+                "^application/yaml=yaml|" +
+                "^text/csv=csv|" +
+                "*=mime-content}";
+            return result;
         }
 
         public static SlotChild Filename()
         {
-            return Option("filename", "string", "File path to use as MIME part content", kind: "file-path,mime-entity-source,mime-entity-filename-source");
+            var result = Option("filename", "string", "File path to use as MIME part content", kind: "file-path,mime-entity-source,mime-entity-filename-source");
+            // Same dispatch pattern as Content() above, but routed to typed
+            // file-path catalogs so [filename] under [entity:image/jpeg] gets
+            // an image path, [entity:application/zip] gets a .zip path, etc.
+            // Falls back to the generic `file-path` catalog for MIME types
+            // without a dedicated typed-file catalog.
+            result.ValueTemplate =
+                "{catalog-by-parent-value:" +
+                "^image/=image-file|" +
+                "^application/pdf=pdf-file|" +
+                "^application/zip=zip-file|" +
+                "^application/octet-stream=binary-file|" +
+                "^application/json=json-file|" +
+                "^application/xml=xml-file|" +
+                "^text/html=html-file|" +
+                "^application/yaml=yaml-file|" +
+                "^text/csv=csv-file|" +
+                "^text/plain=text-file|" +
+                "*=file-path}";
+            return result;
         }
 
         public static SlotChild Entity()

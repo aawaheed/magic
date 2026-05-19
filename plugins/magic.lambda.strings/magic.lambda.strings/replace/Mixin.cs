@@ -21,10 +21,11 @@ namespace magic.lambda.strings.replace
     [Slot(
         Name = "strings.mixin",
         Description = "Applies string interpolation from child expressions",
-        ValueKind = "mixin-template,text",
+        ValueKind = "mixin-template",
         ValueDescription = "Template text to interpolate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the rendered string after applying codebehind and expressions",

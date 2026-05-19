@@ -21,6 +21,7 @@ namespace magic.lambda.html.slots
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `html-tree,lambda-tree` — HTML parses into a TREE (root document
         // with nested element children), NOT a flat list. Removed

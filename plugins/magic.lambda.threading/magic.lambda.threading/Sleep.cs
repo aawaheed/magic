@@ -25,6 +25,7 @@ namespace magic.lambda.threading
         ValueDescription = "Delay in milliseconds",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class Sleep : ISlotAsync
     {

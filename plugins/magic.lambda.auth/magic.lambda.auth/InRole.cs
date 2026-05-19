@@ -21,6 +21,7 @@ namespace magic.lambda.auth
         ValueDescription = "Comma-separated roles to test for",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the current ticket belongs to at least one of the comma-separated roles")]

@@ -19,6 +19,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // Multi-tag chain, specific → structural: `text,formattable-value`
         // were missing — the URL-encoded output IS still text, and every

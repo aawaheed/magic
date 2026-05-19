@@ -24,6 +24,7 @@ namespace magic.lambda.slots
         ValueDescription = "Context name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // `context-value` only — runtime is `signaler.Peek<object>(...)`,
         // returns whatever was pushed by [context] (any object: string,

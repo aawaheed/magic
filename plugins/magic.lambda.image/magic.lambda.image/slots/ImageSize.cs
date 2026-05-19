@@ -20,6 +20,7 @@ namespace magic.lambda.image.slots
         ValueDescription = "Image filename to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "image-dimensions,lambda-tree",
         ReturnsDescription = "Returns [width:int] and [height:int] child nodes for the image dimensions")]

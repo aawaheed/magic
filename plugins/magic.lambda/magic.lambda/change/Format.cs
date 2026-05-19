@@ -30,6 +30,7 @@ namespace magic.lambda.change
         ValueDescription = "Value to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // `text` only — the runtime returns `string.Format(...)`, which IS
         // text. The previous `formatted-text` narrowing existed as a

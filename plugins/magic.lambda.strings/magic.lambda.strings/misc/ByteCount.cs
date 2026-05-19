@@ -19,6 +19,7 @@ namespace magic.lambda.strings.misc
         ValueDescription = "Text to measure",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of bytes in the string")]

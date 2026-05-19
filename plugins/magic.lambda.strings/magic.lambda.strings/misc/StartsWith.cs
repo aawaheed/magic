@@ -22,6 +22,7 @@ namespace magic.lambda.strings.misc
         ValueDescription = "Text to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string starts with the supplied text",

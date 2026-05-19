@@ -21,6 +21,7 @@ namespace magic.lambda.xml
         ValueDescription = "XML text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `xml-tree,lambda-tree` — XML parses into a TREE (root document
         // with nested element children + `@attr` and `#text` children).

@@ -24,6 +24,7 @@ namespace magic.lambda.io.file
         ValueDescription = "Path to the static file to mix with its same-named .hl codebehind file",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "mixed-file-content,text",
         ReturnsDescription = "Resolves to the mixed file content in value and any codebehind-produced child nodes",

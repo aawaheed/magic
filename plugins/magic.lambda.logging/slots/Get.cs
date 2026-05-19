@@ -21,6 +21,7 @@ namespace magic.lambda.logging.slots
         ValueDescription = "ID of the log entry to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "log-entry,lambda-tree",
         ReturnsDescription = "Resolves to the log entry as child nodes")]

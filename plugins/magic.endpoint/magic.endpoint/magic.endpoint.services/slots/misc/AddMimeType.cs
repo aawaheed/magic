@@ -19,6 +19,7 @@ namespace magic.endpoint.services.slots.misc
         ValueDescription = "File extension or MIME type key to register",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.endpoint.services.signatures.MimeAddSignature))]
     public class AddMimeType : ISlot

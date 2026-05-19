@@ -22,6 +22,7 @@ namespace magic.lambda.git
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true after the repository has been deleted",

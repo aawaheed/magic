@@ -21,6 +21,7 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets
@@ -40,6 +41,7 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets
@@ -58,6 +60,7 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to try invoking",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         // `lambda-result` — unified with [invoke]/[while]/[whitelist]
         // (and now [io.file.execute]/[execute-file]). The runtime sets

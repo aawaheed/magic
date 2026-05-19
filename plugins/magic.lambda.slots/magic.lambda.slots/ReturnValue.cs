@@ -18,6 +18,7 @@ namespace magic.lambda.slots
         ValueDescription = "Value to return to the nearest caller",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "return-value",
         ReturnsDescription = "Resolves to a value to the caller",

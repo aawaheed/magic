@@ -20,6 +20,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class DeleteFile : ISlotAsync
     {

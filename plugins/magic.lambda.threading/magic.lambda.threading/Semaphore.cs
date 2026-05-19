@@ -22,6 +22,7 @@ namespace magic.lambda.threading
         ValueDescription = "Semaphore name used to serialize access",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "semaphore",
         SignatureType = typeof(global::magic.lambda.threading.signatures.SemaphoreSignature))]

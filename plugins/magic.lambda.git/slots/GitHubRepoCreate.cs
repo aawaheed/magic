@@ -24,6 +24,7 @@ namespace magic.lambda.git
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "github-repository,lambda-tree",
         ReturnsDescription = "Resolves to the created GitHub repository as child nodes projected from the API response",

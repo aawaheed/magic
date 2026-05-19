@@ -36,7 +36,7 @@ namespace magic.endpoint.services.signatures
             {
                 Name = "*",
                 Type = "string",
-                Kind = "http-header-value",
+                Kind = "http-response-header-value",
                 Description = "Response header name and value",
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,

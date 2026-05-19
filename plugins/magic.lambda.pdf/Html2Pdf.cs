@@ -21,6 +21,7 @@ namespace magic.lambda.pdf
         ValueDescription = "HTML markup to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "pdf-content,binary-content",
         ReturnsDescription = "Resolves to the generated PDF bytes")]

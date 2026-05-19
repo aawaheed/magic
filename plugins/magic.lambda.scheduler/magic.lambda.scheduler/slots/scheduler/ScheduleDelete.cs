@@ -20,6 +20,7 @@ namespace magic.lambda.scheduler.slots.scheduler
         ValueDescription = "Schedule ID to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class ScheduleDelete : ISlotAsync
     {

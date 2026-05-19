@@ -20,6 +20,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to test",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the file exists")]

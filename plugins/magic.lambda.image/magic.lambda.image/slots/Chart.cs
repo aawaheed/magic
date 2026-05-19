@@ -23,6 +23,7 @@ namespace magic.lambda.image.slots
         ValueDescription = "Chart type to create, such as bars, stacked, or grouped",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the generated chart image bytes",

@@ -18,6 +18,7 @@ namespace magic.lambda.slots
         ValueDescription = "Name of the dynamic slot to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `dynamic-slot-lambda,lambda-object,lambda-tree` — the runtime
         // returns the stored body of a `[slots.create]`-registered slot,

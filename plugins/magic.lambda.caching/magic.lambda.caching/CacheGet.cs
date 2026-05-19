@@ -20,6 +20,7 @@ namespace magic.lambda.caching
         ValueDescription = "Cache key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "cache-value,text",
         ReturnsDescription = "Resolves to the cached value, or null if the key does not exist")]

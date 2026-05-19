@@ -20,6 +20,7 @@ namespace magic.endpoint.services.slots.headers
         ValueDescription = "Header name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "http-header-value,text",
         ReturnsDescription = "Resolves to the value of the named request header, or null if it does not exist")]

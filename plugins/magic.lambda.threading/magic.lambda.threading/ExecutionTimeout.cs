@@ -16,6 +16,7 @@ namespace magic.lambda.threading
         ValueDescription = "Timeout in milliseconds for the current execution",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the timeout was applied")]

@@ -22,6 +22,7 @@ namespace magic.lambda.sockets.slots
         ValueDescription = "Username to add to the socket group",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.sockets.signatures.SocketGroupSignature))]
     public class AddUserToGroup : ISlotAsync

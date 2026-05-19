@@ -20,6 +20,7 @@ namespace magic.lambda.system.plugins
         ValueDescription = "Assembly name to unload",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class UnloadPlugin : ISlot
     {

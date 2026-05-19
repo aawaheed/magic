@@ -21,6 +21,7 @@ namespace magic.lambda.image.slots
         ValueDescription = "Text or URL to encode in the QR code",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "image,binary-content",
         ReturnsDescription = "Resolves to the generated QR code image bytes",

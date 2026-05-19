@@ -21,6 +21,7 @@ namespace magic.lambda.io.folder
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `string-list` added — each child node's value is a folder-path
         // string. Consumers asking for "list of strings" must kind-match.
@@ -35,6 +36,7 @@ namespace magic.lambda.io.folder
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `string-list` added — each child node's value is a folder-path
         // string. Consumers asking for "list of strings" must kind-match.

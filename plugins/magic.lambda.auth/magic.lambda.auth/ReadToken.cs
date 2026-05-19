@@ -26,6 +26,7 @@ namespace magic.backend.slots
         ValueDescription = "JWT token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.auth.signatures.ReadTokenSignature))]
     public class ReadToken : ISlot

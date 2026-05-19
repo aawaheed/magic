@@ -69,6 +69,34 @@ namespace magic.lambda.strings.signatures
     }
 
     /// <summary>
+    /// Signature for [strings.replace-not-of] — first arg is the allow-list
+    /// character set, second is the replacement string for non-matching chars.
+    /// </summary>
+    public class ReplaceNotOfSignature : StringSignature
+    {
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Arg(".", "string", "Allowed characters; any character not in this set is replaced", kind: "character-set"),
+            Arg(".", "string", "Replacement text for non-matching characters", kind: "character-replacement"),
+        };
+    }
+
+    /// <summary>
+    /// Signature for [strings.regex.replace] — first arg is a regex pattern,
+    /// second is the replacement string.
+    /// </summary>
+    public class RegexReplaceSignature : StringSignature
+    {
+        /// <inheritdoc />
+        public override IEnumerable<SlotChild> Children => new[]
+        {
+            Arg(".", "string", "Regular expression pattern to match", kind: "regex-pattern"),
+            Arg(".", "string", "Replacement text", kind: "character-replacement"),
+        };
+    }
+
+    /// <summary>
     /// Signature for [strings.substring].
     /// </summary>
     public class SubstringSignature : StringSignature
@@ -199,13 +227,24 @@ namespace magic.lambda.strings.signatures
             new SlotChild
             {
                 Name = "*",
-                Type = "object",
+                Type = "string",
+                Kind = "string-values",
                 Description = "Argument passed to embedded Hyperlambda snippets invoked from the template",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.ZeroOrMore,
                 Role = SlotChildRole.Arguments,
                 Projection = SlotChildProjection.ArgumentBag,
+                // The arg child names are NOT independent — they must match
+                // the `{{*/token}}` placeholders inside the parent slot's
+                // mixin-template Input value. Mark the link and the token
+                // pattern so the synth derives child names from the parsed
+                // template instead of inventing random ones. Same mechanism
+                // [http.get]'s [url-params] uses against url-template inputs;
+                // here the wildcard child IS the linked schema (no wrapper)
+                // because mixin args are direct children of the slot.
+                LinkedToValueKind = "mixin-template",
+                LinkedTokenPattern = @"\{\{\*/([^}]+)\}\}",
             },
         };
     }

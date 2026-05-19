@@ -22,10 +22,11 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after replacing characters not found in the allowed set",
-        SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceTwoArgsSignature))]
+        SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceNotOfSignature))]
     public class ReplaceNotOf : ISlotAsync
     {
         /// <summary>

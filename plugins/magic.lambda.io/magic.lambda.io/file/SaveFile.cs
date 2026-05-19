@@ -21,6 +21,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
     [Slot(
@@ -30,6 +31,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
     [Slot(
@@ -39,6 +41,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to save",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.BinaryFileSaveSignature))]
     public class SaveFile : ISlotAsync

@@ -47,5 +47,19 @@ namespace magic.lambda.dates.signatures
             Option("seconds", "int", "Number of seconds", defaultValue: "0"),
             Option("milliseconds", "int", "Number of milliseconds", defaultValue: "0"),
         };
+
+        public IEnumerable<SlotConstraint> Constraints
+        {
+            get
+            {
+                var c = new SlotConstraint
+                {
+                    Kind = SlotConstraintKind.AtLeastOneOf,
+                    Description = "[time] requires at least one component (days/hours/minutes/seconds/milliseconds)",
+                };
+                c.Values.AddRange(new[] { "days", "hours", "minutes", "seconds", "milliseconds" });
+                return new[] { c };
+            }
+        }
     }
 }

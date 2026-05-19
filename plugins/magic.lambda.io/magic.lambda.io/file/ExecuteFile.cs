@@ -23,6 +23,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
         // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
@@ -40,6 +41,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
         // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file

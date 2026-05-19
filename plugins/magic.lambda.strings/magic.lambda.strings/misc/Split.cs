@@ -22,6 +22,7 @@ namespace magic.lambda.strings.misc
         ValueDescription = "Text to split",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // Structural `node-list` added — `string-list` is the semantic
         // identity, `node-list` is the topology. Consumers asking for either

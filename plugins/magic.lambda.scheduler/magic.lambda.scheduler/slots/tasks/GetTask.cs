@@ -22,6 +22,7 @@ namespace magic.lambda.scheduler.slots.tasks
         ValueDescription = "Task ID to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "task,lambda-tree",
         ReturnsDescription = "Resolves to the task fields as child nodes, optionally including a [schedules] node",

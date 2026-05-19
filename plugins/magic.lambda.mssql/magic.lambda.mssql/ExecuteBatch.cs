@@ -25,6 +25,7 @@ namespace magic.lambda.mssql
         ValueDescription = "Batch SQL script to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "sql-batch-result-list,node-list",
         ReturnsElementKind = "row",

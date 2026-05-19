@@ -24,6 +24,7 @@ namespace magic.lambda.validators.validators
         ValueDescription = "reCAPTCHA response token to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.validators.signatures.RecaptchaValidatorSignature))]
     public class ValidateReCaptcha : ISlotAsync

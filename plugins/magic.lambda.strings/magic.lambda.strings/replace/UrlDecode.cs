@@ -19,6 +19,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // Multi-tag chain, specific → structural: `text,formattable-value`
         // were missing — the decoded URL component IS text under the hood,

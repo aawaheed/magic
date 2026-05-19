@@ -21,6 +21,7 @@ namespace magic.lambda.io.stream
         ValueDescription = "File path to open as a stream",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "stream",
         ReturnsDescription = "Resolves to an open file stream")]

@@ -21,6 +21,7 @@ namespace magic.lambda.html.slots
         ValueDescription = "HTML markup to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "markdown,text",
         ReturnsDescription = "Resolves to the generated Markdown",

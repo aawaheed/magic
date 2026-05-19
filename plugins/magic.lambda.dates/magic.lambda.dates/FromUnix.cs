@@ -19,6 +19,7 @@ namespace magic.lambda.dates
         ValueDescription = "Unix timestamp to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "date",
         ReturnsDescription = "Resolves to the date represented by the supplied Unix timestamp")]

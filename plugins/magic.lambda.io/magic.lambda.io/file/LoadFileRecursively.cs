@@ -21,6 +21,7 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to load from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "loaded-file-list,node-list",
         ReturnsElementKind = "loaded-file,lambda-tree",

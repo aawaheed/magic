@@ -20,6 +20,7 @@ namespace magic.lambda.config
         ValueDescription = "Configuration section to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "config-section,text,lambda-tree",
         ReturnsDescription = "Returns one child node per key/value entry in the requested configuration section")]

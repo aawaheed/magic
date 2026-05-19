@@ -24,6 +24,7 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to search from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "file-search-result-list,node-list",
         ReturnsElementKind = "file-search-result,lambda-tree",

@@ -19,6 +19,7 @@ namespace magic.lambda.branching
         ValueDescription = "Value to compare against the child [case] values",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.signatures.SwitchSignature))]
     public class Switch : ISlot

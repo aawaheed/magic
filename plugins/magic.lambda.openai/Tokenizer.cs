@@ -19,6 +19,7 @@ namespace magic.lambda.openai
         ValueDescription = "Text to tokenize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "integer,number",
         ReturnsDescription = "Resolves to the number of tokens in the supplied text")]

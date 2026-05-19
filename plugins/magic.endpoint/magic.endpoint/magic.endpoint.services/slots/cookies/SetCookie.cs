@@ -21,6 +21,7 @@ namespace magic.endpoint.services.slots.cookies
         ValueDescription = "Cookie name to set",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.endpoint.services.signatures.ResponseCookieSetSignature))]
     public class SetCookie : ISlot

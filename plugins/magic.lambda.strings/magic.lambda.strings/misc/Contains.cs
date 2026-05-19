@@ -21,6 +21,7 @@ namespace magic.lambda.strings.misc
         ValueDescription = "Text to search",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the string contains the supplied text",

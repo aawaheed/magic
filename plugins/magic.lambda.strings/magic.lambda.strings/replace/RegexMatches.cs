@@ -22,6 +22,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to match against the regular expression",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // Multi-tag chain, specific → structural: `string-list` (each match
         // is a string) and `node-list` (topology) were both missing.

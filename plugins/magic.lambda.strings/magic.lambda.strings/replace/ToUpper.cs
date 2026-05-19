@@ -18,6 +18,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the uppercased string")]

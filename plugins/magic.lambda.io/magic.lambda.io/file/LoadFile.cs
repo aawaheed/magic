@@ -20,6 +20,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
@@ -30,6 +31,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
@@ -40,6 +42,7 @@ namespace magic.lambda.io.file
         ValueDescription = "File path to load",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "binary-file-content,binary-content,fingerprint-source",
         ReturnsDescription = "Resolves to the loaded binary file bytes")]

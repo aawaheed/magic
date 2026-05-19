@@ -22,6 +22,7 @@ namespace magic.lambda.html.slots
         ValueDescription = "Markdown text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "html,text",
         ReturnsDescription = "Resolves to the HTML in value and any YAML front matter as child nodes",

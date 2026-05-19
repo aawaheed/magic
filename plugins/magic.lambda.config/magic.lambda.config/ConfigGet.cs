@@ -21,6 +21,7 @@ namespace magic.lambda.config
         ValueDescription = "Configuration key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "config-value,text",
         ReturnsDescription = "Resolves to the configuration value, or the first child value when the key is missing",

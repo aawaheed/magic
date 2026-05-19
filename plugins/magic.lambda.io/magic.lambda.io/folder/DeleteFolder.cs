@@ -20,6 +20,7 @@ namespace magic.lambda.io.folder
         ValueDescription = "Folder path to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class DeleteFolder : ISlotAsync
     {

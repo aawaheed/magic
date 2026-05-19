@@ -23,6 +23,7 @@ namespace magic.lambda.csv
         ValueDescription = "CSV text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `csv-tree,node-list` — CSV is STRICTLY a flat list of rows.
         // The `node-list` branch is the right structural parent;

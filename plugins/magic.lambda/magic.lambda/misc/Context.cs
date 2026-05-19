@@ -20,6 +20,7 @@ namespace magic.lambda.misc
         ValueDescription = "Context name to create on the stack while evaluating the lambda block",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         ProvidesScope = "context",
         ScopeDescription = "Creates a named context scope retrievable by [get-context] using the same input value",

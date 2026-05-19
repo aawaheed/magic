@@ -23,10 +23,11 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the string after applying the regular-expression replacement",
-        SignatureType = typeof(global::magic.lambda.strings.signatures.ReplaceTwoArgsSignature))]
+        SignatureType = typeof(global::magic.lambda.strings.signatures.RegexReplaceSignature))]
     public class RegexReplace : ISlotAsync
     {
         /// <summary>

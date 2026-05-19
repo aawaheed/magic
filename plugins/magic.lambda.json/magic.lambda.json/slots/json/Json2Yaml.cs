@@ -22,6 +22,7 @@ namespace magic.lambda.json.slots.json
         ValueDescription = "JSON text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "yaml,text",
         ReturnsDescription = "Resolves to the generated YAML string")]

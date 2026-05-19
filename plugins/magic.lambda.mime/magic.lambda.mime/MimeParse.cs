@@ -21,6 +21,7 @@ namespace magic.lambda.mime
         ValueDescription = "Raw MIME message to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "content-type,text",
         ReturnsElementKind = "mime-tree-node",

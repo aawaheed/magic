@@ -22,6 +22,7 @@ namespace magic.lambda.crypto.slots.hash
         ValueDescription = "Password to hash",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "password-hash,text",
         ReturnsDescription = "Resolves to the password hash")]

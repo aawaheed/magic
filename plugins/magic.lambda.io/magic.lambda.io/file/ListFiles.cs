@@ -22,6 +22,7 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `string-list` added — each child node's value is a file-path
         // string. Consumers asking for "list of strings" must kind-match.
@@ -36,6 +37,7 @@ namespace magic.lambda.io.file
         ValueDescription = "Folder path to list files from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `string-list` added — each child node's value is a file-path
         // string. Consumers asking for "list of strings" must kind-match.

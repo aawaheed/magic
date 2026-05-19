@@ -21,6 +21,7 @@ namespace magic.lambda.dates
         ValueDescription = "Date value to format",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "formatted-date,text",
         ReturnsDescription = "Resolves to the formatted date string",

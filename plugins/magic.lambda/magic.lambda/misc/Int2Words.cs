@@ -24,6 +24,7 @@ namespace magic.lambda.misc
         ValueDescription = "Integer value to convert to words",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the supplied integer written as words")]

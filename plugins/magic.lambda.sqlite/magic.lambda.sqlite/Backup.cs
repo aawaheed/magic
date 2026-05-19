@@ -22,6 +22,7 @@ namespace magic.lambda.sqlite
         ValueDescription = "Target SQLite database filename under files/data/",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         RequiresScope = "sqlite.connection",
         ScopeDescription = "Requires an open SQLite connection created by [sqlite.connect]")]

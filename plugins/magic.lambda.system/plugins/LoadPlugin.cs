@@ -24,6 +24,7 @@ namespace magic.lambda.system.plugins
         ValueDescription = "Plugin assembly filename or assembly bytes",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class LoadPlugin : ISlot
     {

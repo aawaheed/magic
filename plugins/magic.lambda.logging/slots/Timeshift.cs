@@ -24,6 +24,7 @@ namespace magic.lambda.logging.slots
         ValueDescription = "Search string or log entry type to aggregate over the last two weeks",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "log-timeshift-list,node-list",
         ReturnsElementKind = "log-timeshift-bucket",

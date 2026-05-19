@@ -19,6 +19,7 @@ namespace magic.lambda.html.slots
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "html,text",
         ReturnsDescription = "Resolves to the decoded text")]

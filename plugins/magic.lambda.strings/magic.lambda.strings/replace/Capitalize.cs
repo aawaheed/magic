@@ -19,6 +19,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Text to capitalize",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text",
         ReturnsDescription = "Resolves to the capitalized string")]

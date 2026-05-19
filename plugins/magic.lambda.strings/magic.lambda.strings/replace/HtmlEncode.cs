@@ -19,6 +19,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "Non-encoded HTML text to encode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // Entity-encoded HTML is still text under the hood — the trailing
         // `text` tag lets text-consumers (log.info, strings.*) wire to

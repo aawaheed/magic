@@ -19,6 +19,7 @@ namespace magic.endpoint.services.slots.misc
         ValueDescription = "HTTP status code to set",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None)]
     public class SetStatusCode : ISlot
     {

@@ -90,6 +90,7 @@ namespace magic.lambda.auth.signatures
             var result = List(name, type, description);
             result.Role = SlotChildRole.DynamicMap;
             result.Children[0].Description = "Named map entry";
+            result.Children[0].Kind = name == "claims" ? "jwt-claim" : result.Children[0].Kind;
             return result;
         }
     }

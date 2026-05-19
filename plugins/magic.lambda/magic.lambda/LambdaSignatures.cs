@@ -340,6 +340,7 @@ namespace magic.lambda.signatures
             {
                 Name = "*",
                 Type = "object",
+                Kind = "value",
                 Description = "Argument passed to the invoked lambda through its [.arguments] node",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -723,7 +724,7 @@ namespace magic.lambda.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("public", "bool", "Whether the exception message may be returned to clients", "false"),
-            Option("status", "int", "HTTP status code associated with the exception", "500"),
+            Option("status", "int", "HTTP status code associated with the exception", "500", kind: "http-status-code"),
             Option("field", "string", "Optional form field or control ID associated with the exception", kind: "form-field-id"),
         };
 

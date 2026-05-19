@@ -19,6 +19,7 @@ namespace magic.endpoint.services.slots.cookies
         ValueDescription = "Cookie name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "cookie-value,text",
         ReturnsDescription = "Resolves to the value of the named request cookie, or null if it does not exist")]

@@ -21,6 +21,7 @@ namespace magic.lambda.misc
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "slot-description,text",
         ReturnsDescription = "Resolves to the description of the requested slot")]

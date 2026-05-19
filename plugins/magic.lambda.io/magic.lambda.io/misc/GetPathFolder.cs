@@ -21,6 +21,7 @@ namespace magic.lambda.io.misc
         ValueDescription = "Path to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "folder-path,text",
         ReturnsDescription = "Resolves to the folder portion of the supplied path")]

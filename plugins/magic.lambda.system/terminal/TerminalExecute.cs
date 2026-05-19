@@ -26,6 +26,7 @@ namespace magic.lambda.system.terminal
         ValueDescription = "Command to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "terminal-output,text",
         ReturnsDescription = "Resolves to the standard output from the executed command",

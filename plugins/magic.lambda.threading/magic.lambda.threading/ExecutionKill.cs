@@ -16,6 +16,7 @@ namespace magic.lambda.threading
         ValueDescription = "Execution ID to cancel",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the execution was cancelled")]

@@ -20,6 +20,7 @@ namespace magic.lambda.system
         ValueDescription = "Operating system platform name to compare against, typically WINDOWS, LINUX, OSX, or FREEBSD",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "boolean",
         ReturnsDescription = "Returns true if the current operating system matches the supplied platform name")]

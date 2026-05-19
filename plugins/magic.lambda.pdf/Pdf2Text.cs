@@ -25,6 +25,7 @@ namespace magic.lambda.pdf
         ValueDescription = "PDF file path, bytes, or stream to extract text from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "text",
         ReturnsDescription = "Returns extracted text in value or, when preserving pages, one child node per page",

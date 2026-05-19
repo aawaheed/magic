@@ -37,8 +37,8 @@ namespace magic.lambda.validators.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("min", "long", "Minimum accepted value"),
-            Option("max", "long", "Maximum accepted value"),
+            Option("min", "long", "Minimum accepted value", kind: "validator-min-integer"),
+            Option("max", "long", "Maximum accepted value", kind: "validator-max-integer"),
         };
     }
 
@@ -46,8 +46,8 @@ namespace magic.lambda.validators.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("min", "int", "Minimum accepted length", defaultValue: "0"),
-            Option("max", "int", "Maximum accepted length", defaultValue: "int.MaxValue"),
+            Option("min", "int", "Minimum accepted length", defaultValue: "0", kind: "validator-min-length"),
+            Option("max", "int", "Maximum accepted length", defaultValue: "int.MaxValue", kind: "validator-max-length"),
         };
     }
 
@@ -55,8 +55,8 @@ namespace magic.lambda.validators.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("min", "date", "Earliest accepted date"),
-            Option("max", "date", "Latest accepted date"),
+            Option("min", "date", "Earliest accepted date", kind: "validator-min-date"),
+            Option("max", "date", "Latest accepted date", kind: "validator-max-date"),
         };
     }
 

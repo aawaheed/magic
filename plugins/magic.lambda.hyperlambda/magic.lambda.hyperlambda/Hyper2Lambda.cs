@@ -20,6 +20,7 @@ namespace magic.lambda.hyperlambda
         ValueDescription = "Hyperlambda text to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
         // `lambda-tree` only — Hyperlambda parses into a TREE. Same
         // reasoning as html2lambda / xml2lambda: removed `node-list`

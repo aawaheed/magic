@@ -19,6 +19,7 @@ namespace magic.lambda.strings.replace
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
+        ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         // Decoded HTML markup, not bare text — `&lt;p&gt;` becomes `<p>`,
         // and what comes out is raw HTML. Multi-tag the kind to declare

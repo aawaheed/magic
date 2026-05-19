@@ -73,6 +73,7 @@ namespace magic.lambda.math.signatures
             {
                 Name = "min",
                 Type = "int",
+                Kind = "validator-min-integer",
                 Description = "Inclusive lower bound; requires [max] and must appear before it",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
@@ -84,6 +85,7 @@ namespace magic.lambda.math.signatures
             {
                 Name = "max",
                 Type = "int",
+                Kind = "validator-max-integer",
                 Description = "Exclusive upper bound; when supplied without [min], the lower bound is 0",
                 Required = false,
                 Mode = SlotChildMode.ValueOrExpression,
