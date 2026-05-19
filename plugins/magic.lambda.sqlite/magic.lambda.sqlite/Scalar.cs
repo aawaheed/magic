@@ -13,10 +13,11 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.scalar] slot for executing a scalar type of SQL command.
     /// </summary>
+    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "sqlite.scalar",
         Description = "Executes SQL and returns a scalar value from the current SQLite connection",
-        ValueKind = "sql-scalar,text",
+        ValueKind = "sql-scalar",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

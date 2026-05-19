@@ -16,10 +16,11 @@ namespace magic.lambda.mime
     /// Notice, caller is responsible for disposing any streams created during process, but this
     /// can be easily done by using the MimeBuilder.DisposeStreams on the MimeEntity returned.
     /// </summary>
+    // 'text' pruned: this slot needs a MIME content-type, not arbitrary text.
     [Slot(
         Name = ".mime.create",
         Description = "Creates a MIME message without exposing the public wrapper slot",
-        ValueKind = "content-type,text",
+        ValueKind = "content-type",
         ValueDescription = "Primary MIME content type",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

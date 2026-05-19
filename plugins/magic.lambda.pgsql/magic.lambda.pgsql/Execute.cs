@@ -13,10 +13,11 @@ namespace magic.lambda.pgsql
     /// <summary>
     /// [pgsql.execute] slot for executing a non query SQL command.
     /// </summary>
+    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "pgsql.execute",
         Description = "Executes SQL on the current PostgreSQL connection",
-        ValueKind = "sql-execute,text",
+        ValueKind = "sql-execute",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

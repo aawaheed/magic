@@ -13,10 +13,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.clone-repo] slot to clone a repo.
     /// </summary>
+    // 'text' pruned: this slot needs a git repository URL, not arbitrary text.
     [Slot(
         Name = "git.clone-repo",
         Description = "Clones a Git repository",
-        ValueKind = "git-url,text",
+        ValueKind = "git-url",
         ValueDescription = "Repository URL to clone",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

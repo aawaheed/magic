@@ -15,10 +15,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.fetch] slot to fetch updates from a remote.
     /// </summary>
+    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.fetch",
         Description = "Fetches updates from a Git remote",
-        ValueKind = "git-repo-path,text",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -17,10 +17,11 @@ namespace magic.lambda.slots
     /// from being able to retrieve objects intended for only being used
     /// by C# code - which would have been a security issue it was allowed.
     /// </summary>
+    // 'text' pruned: this slot needs a context name, not arbitrary text.
     [Slot(
         Name = "get-context",
         Description = "Returns a stack value or context object from the current execution context",
-        ValueKind = "context-name,text",
+        ValueKind = "context-name",
         ValueDescription = "Context name to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

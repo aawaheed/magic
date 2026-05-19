@@ -15,10 +15,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.remote.add] slot to add a git remote.
     /// </summary>
+    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.remote.add",
         Description = "Adds a Git remote",
-        ValueKind = "git-repo-path,text",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

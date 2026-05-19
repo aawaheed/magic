@@ -14,10 +14,11 @@ namespace magic.lambda.mssql
     /// [mssql.select] slot, for executing a select type of SQL, returning
     /// data rows to the caller.
     /// </summary>
+    // 'text' pruned: this slot needs SQL SELECT syntax, not arbitrary text.
     [Slot(
         Name = "mssql.select",
         Description = "Executes a SELECT query on the current SQL Server connection",
-        ValueKind = "sql-select,text",
+        ValueKind = "sql-select",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

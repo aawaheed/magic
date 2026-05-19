@@ -14,10 +14,11 @@ namespace magic.lambda.odbc
     /// [odbc.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
+    // 'text' pruned: this slot needs SQL SELECT syntax, not arbitrary text.
     [Slot(
         Name = "odbc.select",
         Description = "Executes a SELECT query on the current ODBC connection",
-        ValueKind = "sql-select,text",
+        ValueKind = "sql-select",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -15,10 +15,11 @@ namespace magic.lambda.misc
     /// [vocabulary] slot allowing you to dynamically retrieve the names
     /// of all slots that exists in the system.
     /// </summary>
+    // 'text' pruned: this slot needs a slot name filter, not arbitrary text.
     [Slot(
         Name = "vocabulary",
         Description = "Lists available compiled slots",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Optional prefix filter for slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

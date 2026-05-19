@@ -16,10 +16,11 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.create] slot that will create a new task.
     /// </summary>
+    // 'text' pruned: this slot needs a task ID, not arbitrary text.
     [Slot(
         Name = "tasks.create",
         Description = "Saves a named task containing a Hyperlambda body that can later be scheduled or executed on demand",
-        ValueKind = "task-id,text",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to create",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

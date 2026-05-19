@@ -15,10 +15,11 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.backup] slot for backing up the current SQLite connection.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "sqlite.backup",
         Description = "Creates a backup of the current SQLite connection",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "Target SQLite database filename under files/data/",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

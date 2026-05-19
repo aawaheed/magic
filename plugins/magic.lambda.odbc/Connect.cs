@@ -14,10 +14,11 @@ namespace magic.lambda.odbc
     /// <summary>
     /// [odbc.connect] slot for connecting to an ODBC database server instance.
     /// </summary>
+    // 'text' pruned: this slot needs an ODBC connection string, not arbitrary text.
     [Slot(
         Name = "odbc.connect",
         Description = "Opens a ODBC connection",
-        ValueKind = "connection-string,text",
+        ValueKind = "connection-string",
         ValueDescription = "Optional ODBC connection string override; ODBC does not use the database-name shorthand supported by other database providers",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

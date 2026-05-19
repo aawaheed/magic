@@ -18,10 +18,11 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.mixin] slot for mxing static strings with the result of executing Hyperlambda.
     /// </summary>
+    // 'text' added: a mixin template body is structurally arbitrary text, so any producer returning `text` (lambda2hyper, format, file-load, strings.upper, etc.) can legitimately wire as the template source. The `mixin-template` tag stays first so LinkedToValueKind on [strings.mixin]'s argument children keeps matching.
     [Slot(
         Name = "strings.mixin",
         Description = "Applies string interpolation from child expressions",
-        ValueKind = "mixin-template",
+        ValueKind = "mixin-template,text",
         ValueDescription = "Template text to interpolate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

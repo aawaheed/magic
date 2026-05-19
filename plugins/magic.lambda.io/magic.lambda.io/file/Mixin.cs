@@ -17,10 +17,11 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.mixin] slot for mixing a static content file with its associated Hyperlambda file.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.mixin",
         Description = "Loads a static file, applies same-named Hyperlambda codebehind, and returns the mixed result",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "Path to the static file to mix with its same-named .hl codebehind file",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

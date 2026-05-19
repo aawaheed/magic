@@ -14,10 +14,11 @@ namespace magic.lambda.io.misc
     /// [io.path.get-folder] slot for making it easier to retrieve only the
     /// folder parts of some specified path.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.path.get-folder",
         Description = "Strips the filename from a path and returns just its folder portion (e.g. '/foo/bar/baz.txt' becomes '/foo/bar/')",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "Path to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

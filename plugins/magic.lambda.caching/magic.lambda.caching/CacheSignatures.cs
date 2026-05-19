@@ -44,7 +44,8 @@ namespace magic.lambda.caching.signatures
         /// <inheritdoc />
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("value", "string", "Value to store; omitted or null removes the cached item", kind: "cache-value"),
+            // 'text' added: cache values are arbitrary application strings (session blobs, computed text, serialized payloads) — any `text` producer should be wirable as the stored value. `cache-value` stays first for catalog selection.
+            Option("value", "string", "Value to store; omitted or null removes the cached item", kind: "cache-value,text"),
             Option("expiration", "long", "Expiration in seconds", "5", "duration-seconds"),
         };
     }

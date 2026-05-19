@@ -12,10 +12,11 @@ namespace magic.lambda.crypto.slots.aes
     /// <summary>
     /// [crypto.aes.encrypt] slot to encrypt some content using a symmetric cryptography algorithm (AES).
     /// </summary>
+    // 'text' added: AES-encrypting arbitrary text payloads (secrets, tokens, message bodies) is the primary use case — any `text` producer should be wirable. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.aes.encrypt",
         Description = "Encrypts data using AES",
-        ValueKind = "content,binary-content",
+        ValueKind = "content,binary-content,text",
         ValueDescription = "Content to encrypt",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

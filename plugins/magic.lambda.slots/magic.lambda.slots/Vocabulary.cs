@@ -13,10 +13,11 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.vocabulary] slot that will return the names of all dynamically created slots to caller.
     /// </summary>
+    // 'text' pruned: this slot needs a dynamic slot name filter, not arbitrary text.
     [Slot(
         Name = "slots.vocabulary",
         Description = "Lists dynamically created slots",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Optional filter for dynamic slot names",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

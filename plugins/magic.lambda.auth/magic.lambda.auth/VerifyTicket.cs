@@ -23,7 +23,8 @@ namespace magic.lambda.auth
         // Previous tag was `role` (singular) — flat mischaracterization.
         // `role-list` keys into a dedicated catalog of comma-separated
         // role strings; `text` is the structural parent.
-        ValueKind = "role-list,text",
+        // 'text' pruned: this slot needs a comma-separated role list, not arbitrary text.
+        ValueKind = "role-list",
         ValueDescription = "Optional comma-separated roles to require",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

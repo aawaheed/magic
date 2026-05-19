@@ -13,10 +13,11 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP PATCH verb towards some resource.
     /// </summary>
+    // 'text' pruned: this slot needs a URL template, not arbitrary text.
     [Slot(
         Name = "http.patch",
         Description = "Issues an HTTP PATCH to the specified URL with a payload; used to apply partial updates to a remote resource",
-        ValueKind = "url-template,text",
+        ValueKind = "url-template",
         ValueDescription = "URL to send the request to; supports {placeholder} segments substituted from [url-params]",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

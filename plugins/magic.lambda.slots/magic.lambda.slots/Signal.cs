@@ -14,10 +14,11 @@ namespace magic.lambda.slots
     /// <summary>
     /// [signal] slot for invoking dynamically created slots, that have been created with the [slots.create] slot.
     /// </summary>
+    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "signal",
         Description = "Invokes a dynamic slot created with [slots.create], passing child nodes as its arguments",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -34,10 +35,11 @@ namespace magic.lambda.slots
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
+    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to invoke",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -53,10 +55,11 @@ namespace magic.lambda.slots
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.slots.signatures.ExecuteSignature))]
+    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to try invoking",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

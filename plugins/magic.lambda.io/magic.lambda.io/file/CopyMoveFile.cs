@@ -13,19 +13,21 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.copy]/[io.file.move] slot for moving a file on your server.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.copy",
         Description = "Copies a file on the server",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "Source file path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.FileCopyMoveSignature))]
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.move",
         Description = "Moves a file on the server",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "Source file path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

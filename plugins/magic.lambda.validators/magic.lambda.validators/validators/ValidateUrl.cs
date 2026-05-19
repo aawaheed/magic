@@ -13,10 +13,11 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.url] slot, for verifying that some input is a valid URL.
     /// </summary>
+    // 'text' pruned: this slot needs a URL, not arbitrary text.
     [Slot(
         Name = "validators.url",
         Description = "Validates that a value or resolved expression result is a URL, throwing if validation fails",
-        ValueKind = "url,text",
+        ValueKind = "url",
         ValueDescription = "URL value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

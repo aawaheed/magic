@@ -13,10 +13,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.create-repo] slot to initialise a folder as a Git repo.
     /// </summary>
+    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "git.create-repo",
         Description = "Initializes a Git repository",
-        ValueKind = "folder-path,text",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to initialize as a repository",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

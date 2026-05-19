@@ -78,7 +78,8 @@ namespace magic.lambda.mime.signatures
 
         public static SlotChild Content()
         {
-            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source");
+            // 'text' added: an inline MIME [content] body genuinely accepts arbitrary text (mail body, JSON serialized payload, log entry, etc.), so any `text` producer can wire here. The ValueTemplate catalog-by-parent-value dispatch below still picks the typed JSON/XML/HTML/etc. catalog for synthesis — the multi-tag just widens upstream wire-up.
+            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source,text");
             // Dispatch the catalog draw on the parent entity's MIME type so
             // [content] under [entity:application/json] gets JSON, [entity:
             // application/xml] gets XML, etc. — instead of every leaf type

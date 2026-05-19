@@ -12,10 +12,11 @@ namespace magic.data.common.slots
     /// [data.select] slot, for executing some SQL towards a database and returning a record result,
     /// according to your configuration settings.
     /// </summary>
+    // 'text' pruned: this slot needs SQL SELECT syntax, not arbitrary text.
     [Slot(
         Name = "data.select",
         Description = "Executes a query and returns rows from the current database connection",
-        ValueKind = "sql-select,text",
+        ValueKind = "sql-select",
         ValueDescription = "SQL query to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

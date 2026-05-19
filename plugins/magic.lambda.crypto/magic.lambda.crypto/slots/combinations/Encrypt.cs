@@ -19,10 +19,11 @@ namespace magic.lambda.crypto.slots.combinations
     /// This slot will first cryptographically sign the message, then encrypt it,
     /// resulting in a format you can read about in the project's README.md file.
     /// </summary>
+    // 'text' added: arbitrary text (messages, payloads, log entries, user-supplied strings) is the primary input for sign-and-encrypt — any `text` producer should be wirable. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.encrypt",
         Description = "Encrypts data using the configured combination algorithm",
-        ValueKind = "content,binary-content",
+        ValueKind = "content,binary-content,text",
         ValueDescription = "Content to sign and encrypt",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

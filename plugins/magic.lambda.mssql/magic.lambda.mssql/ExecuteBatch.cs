@@ -18,10 +18,11 @@ namespace magic.lambda.mssql
     /// A batch script is typically a create database schema SQL file, which contains "GO" commands within it.
     /// This SQL cannot be executed in Microsoft SQL server using a simple SqlCommand.
     /// </summary>
+    // 'text' pruned: this slot needs SQL batch script syntax, not arbitrary text.
     [Slot(
         Name = "mssql.execute-batch",
         Description = "Executes a batch SQL script on the current SQL Server connection",
-        ValueKind = "sql-batch,text",
+        ValueKind = "sql-batch",
         ValueDescription = "Batch SQL script to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

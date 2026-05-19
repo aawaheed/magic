@@ -14,10 +14,11 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.list] slot for listing folders on server.
     /// </summary>
+    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.folder.list",
         Description = "Lists folders in the specified folder",
-        ValueKind = "folder-path,text",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -29,10 +30,11 @@ namespace magic.lambda.io.folder
         ReturnsElementKind = "folder-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative folder path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
+    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.folder.list-recursively",
         Description = "Lists folders recursively in the specified folder",
-        ValueKind = "folder-path,text",
+        ValueKind = "folder-path",
         ValueDescription = "Folder path to list subfolders from",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

@@ -17,10 +17,11 @@ namespace magic.lambda.logging.slots
     /// [log.timeshift] slot for querying log items by specified content in a timeshift series
     /// over the last 2 weeks.
     /// </summary>
+    // 'text' pruned: this slot needs a log search query, not arbitrary text.
     [Slot(
         Name = "log.timeshift",
         Description = "Aggregates log entries into time buckets",
-        ValueKind = "log-search,text",
+        ValueKind = "log-search",
         ValueDescription = "Search string or log entry type to aggregate over the last two weeks",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

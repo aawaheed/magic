@@ -12,10 +12,11 @@ namespace magic.endpoint.services.slots.misc
     /// <summary>
     /// [mime.add] slot for associating a file extension with a MIME type.
     /// </summary>
+    // 'text' pruned: this slot needs a MIME content-type, not arbitrary text.
     [Slot(
         Name = "mime.add",
         Description = "Associates a file extension with a MIME content-type so the server returns the correct Content-Type header for matching responses",
-        ValueKind = "content-type,text",
+        ValueKind = "content-type",
         ValueDescription = "File extension or MIME type key to register",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

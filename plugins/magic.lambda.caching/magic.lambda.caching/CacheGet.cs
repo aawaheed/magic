@@ -13,10 +13,11 @@ namespace magic.lambda.caching
     /// <summary>
     /// [cache.get] slot returning an item from the cache, if existing.
     /// </summary>
+    // 'text' pruned: this slot needs a cache key, not arbitrary text.
     [Slot(
         Name = "cache.get",
         Description = "Returns a cached value by key",
-        ValueKind = "cache-key,text",
+        ValueKind = "cache-key",
         ValueDescription = "Cache key to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

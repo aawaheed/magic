@@ -20,7 +20,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash",
         Description = "Hashes input using SHA256 by default, or the supplied [algorithm] child",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -31,7 +32,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash.sha1",
         Description = "Hashes input using the SHA1 algorithm",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -42,7 +44,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash.md5",
         Description = "Hashes input using the MD5 algorithm",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -53,7 +56,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash.sha256",
         Description = "Hashes input using the SHA256 algorithm",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -64,7 +68,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash.sha384",
         Description = "Hashes input using the SHA384 algorithm",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -75,7 +80,8 @@ namespace magic.lambda.crypto.slots.hash
     [Slot(
         Name = "crypto.hash.sha512",
         Description = "Hashes input using the SHA512 algorithm",
-        ValueKind = "content,binary-content",
+        // 'text' added: hashing arbitrary text (passwords, identifiers, payload strings, log entries) is a primary use case for these slots — any `text` producer should be able to wire as the hash input. The `content,binary-content` tags stay for byte[]/content semantics.
+        ValueKind = "content,binary-content,text",
         ValueDescription = "String or byte[] content to hash when [filename] is not supplied",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

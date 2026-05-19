@@ -17,10 +17,11 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.patch] slot for patching a file on your server using a unified diff patch.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.patch",
         Description = "Applies a unified-diff patch to a file on disk; useful for surgical edits or replaying generated diffs",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "File path to patch",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

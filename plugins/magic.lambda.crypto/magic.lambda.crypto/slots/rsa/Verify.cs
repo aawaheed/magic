@@ -15,10 +15,11 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.verify] slot to verify that some piece of text was cryptographically
     /// signed with a specific private key.
     /// </summary>
+    // 'text' added: verifying signatures against arbitrary text payloads (messages, tokens, manifests) is the primary use case — any `text` producer should be wirable. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.rsa.verify",
         Description = "Verifies an RSA signature",
-        ValueKind = "content,binary-content",
+        ValueKind = "content,binary-content,text",
         ValueDescription = "Content to verify against the supplied signature",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

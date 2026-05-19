@@ -13,10 +13,11 @@ namespace magic.lambda.image.slots
     /// <summary>
     /// [image.size] slot for returning the width and height of an existing image.
     /// </summary>
+    // 'text' pruned: this slot needs an image file path, not arbitrary text.
     [Slot(
         Name = "image.size",
         Description = "Returns the width and height of an image",
-        ValueKind = "image-file,text",
+        ValueKind = "image-file",
         ValueDescription = "Image filename to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

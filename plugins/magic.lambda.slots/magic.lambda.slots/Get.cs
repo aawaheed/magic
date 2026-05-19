@@ -11,10 +11,11 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.get] slot for retrieving slot that has been created with the [slots.create] slot.
     /// </summary>
+    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "slots.get",
         Description = "Returns a dynamic slot by name",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the dynamic slot to retrieve",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

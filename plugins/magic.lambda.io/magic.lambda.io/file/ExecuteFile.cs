@@ -16,10 +16,11 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.execute] slot for executing a Hyperlambda file on your server.
     /// </summary>
+    // 'text' pruned: this slot needs a Hyperlambda file path, not arbitrary text.
     [Slot(
         Name = "io.file.execute",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
-        ValueKind = "hyperlambda-file,text",
+        ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
@@ -34,10 +35,11 @@ namespace magic.lambda.io.file
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
+    // 'text' pruned: this slot needs a Hyperlambda file path, not arbitrary text.
     [Slot(
         Name = "execute-file",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
-        ValueKind = "hyperlambda-file,text",
+        ValueKind = "hyperlambda-file",
         ValueDescription = "File path to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

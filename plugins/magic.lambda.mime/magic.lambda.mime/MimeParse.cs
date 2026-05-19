@@ -14,10 +14,11 @@ namespace magic.lambda.mime
     /// <summary>
     /// Parses a MIME message and returns its as a hierarchical object of lambda to caller.
     /// </summary>
+    // 'text' pruned: this slot needs a raw MIME message, not arbitrary text.
     [Slot(
         Name = "mime.parse",
         Description = "Parses a raw MIME message into a lambda tree of headers and body parts; commonly used for email or multipart payloads",
-        ValueKind = "mime-message,text",
+        ValueKind = "mime-message",
         ValueDescription = "Raw MIME message to parse",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

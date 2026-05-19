@@ -15,10 +15,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.branch.list] slot to list branches.
     /// </summary>
+    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.branch.list",
         Description = "Returns every branch in the local repository, marking which one is currently checked out",
-        ValueKind = "git-repo-path,text",
+        ValueKind = "git-repo-path",
         ValueDescription = "Repository path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

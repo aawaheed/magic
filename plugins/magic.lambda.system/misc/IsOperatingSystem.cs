@@ -13,10 +13,11 @@ namespace magic.lambda.system
     /// [system.execute] slot that allows you to execute a system process,
     /// passing in arguments, and returning the result of the execution.
     /// </summary>
+    // 'text' pruned: this slot needs a constrained OS platform name, not arbitrary text.
     [Slot(
         Name = "system.is-os",
         Description = "Returns true if the current operating system matches the specified platform",
-        ValueKind = "os-name,text",
+        ValueKind = "os-name",
         ValueDescription = "Operating system platform name to compare against, typically WINDOWS, LINUX, OSX, or FREEBSD",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

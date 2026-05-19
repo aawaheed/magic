@@ -51,7 +51,8 @@ namespace magic.endpoint.services.signatures
     {
         public override IEnumerable<SlotChild> Children => new[]
         {
-            Option("value", "string", "Cookie value", true, "cookie-value"),
+            // 'text' added: a cookie [value] is arbitrary text content (session ids, user tokens, serialized state, free-form strings) — any `text` producer should be wirable. `cookie-value` stays first for catalog selection.
+            Option("value", "string", "Cookie value", true, "cookie-value,text"),
             Option("expires", "DateTime", "Cookie expiration"),
             Option("http-only", "bool", "Whether the cookie is HTTP-only"),
             Option("secure", "bool", "Whether the cookie is secure"),

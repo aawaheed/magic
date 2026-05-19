@@ -13,10 +13,11 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [mysql.execute] slot for executing a non query SQL command.
     /// </summary>
+    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "mysql.execute",
         Description = "Executes SQL on the current MySQL connection",
-        ValueKind = "sql-execute,text",
+        ValueKind = "sql-execute",
         ValueDescription = "SQL statement to execute",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

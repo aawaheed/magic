@@ -209,11 +209,12 @@ namespace magic.lambda.http.signatures
             {
                 var result = new List<SlotChild>(Common())
                 {
+                    // 'text' added: a request [payload] can be a plain-text body (Content-Type: text/plain, custom protocols, raw POST bodies). Any `text` producer (lambda2hyper, format, strings result, log entry) is a legitimate payload source. Structured payloads still match `http-request-payload` for the transform path.
                     new SlotChild
                     {
                         Name = "payload",
                         Type = "object|lambda",
-                        Kind = "http-request-payload",
+                        Kind = "http-request-payload,text",
                         Description = "Request payload value or structured payload transformed according to Content-Type",
                         Required = false,
                         Mode = SlotChildMode.SourceLambda,

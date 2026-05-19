@@ -13,10 +13,11 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.enum] slot, for verifying that some string value is one of the specified options.
     /// </summary>
+    // 'text' pruned: this slot needs an enum value, not arbitrary text.
     [Slot(
         Name = "validators.enum",
         Description = "Validates that a value or resolved expression result is one of the allowed options, throwing if validation fails",
-        ValueKind = "enum-value,text",
+        ValueKind = "enum-value",
         ValueDescription = "Value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

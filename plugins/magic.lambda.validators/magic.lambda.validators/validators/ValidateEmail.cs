@@ -13,10 +13,11 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.email] slot, for verifying that some input is a valid email address.
     /// </summary>
+    // 'text' pruned: this slot needs an email address, not arbitrary text.
     [Slot(
         Name = "validators.email",
         Description = "Validates that a value or resolved expression result is an email address, throwing if validation fails",
-        ValueKind = "email,text",
+        ValueKind = "email",
         ValueDescription = "Email value or expression selecting the node or nodes to validate",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

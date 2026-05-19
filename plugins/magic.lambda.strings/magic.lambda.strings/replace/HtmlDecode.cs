@@ -12,10 +12,11 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.url-decode] slot that URL decodes the specified string.
     /// </summary>
+    // 'text' pruned: this slot needs already-HTML-encoded text, not arbitrary text.
     [Slot(
         Name = "strings.html-decode",
         Description = "HTML decodes the specified string",
-        ValueKind = "html-encoded,text",
+        ValueKind = "html-encoded",
         ValueDescription = "HTML encoded text to decode",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

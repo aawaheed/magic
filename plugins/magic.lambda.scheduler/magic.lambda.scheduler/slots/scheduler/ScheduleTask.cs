@@ -18,10 +18,11 @@ namespace magic.lambda.scheduler.slots.scheduler
     /// [tasks.schedule] slot that will schedule an existing task for being executed, either
     /// according to some [repeats], or at a specific [due] date in the future.
     /// </summary>
+    // 'text' pruned: this slot needs a task ID, not arbitrary text.
     [Slot(
         Name = "tasks.schedule",
         Description = "Schedules a stored task for future execution; use [due] for a one-shot run or [repeats] for a recurring pattern",
-        ValueKind = "task-id,text",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to schedule",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,

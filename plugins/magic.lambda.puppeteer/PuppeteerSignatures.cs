@@ -115,7 +115,8 @@ namespace magic.lambda.puppeteer.signatures
         public override IEnumerable<SlotChild> Children => new[]
         {
             Option("selector", "string", "CSS selector", true, kind: "css-selector"),
-            Option("text", "string", "Text to send", kind: "form-text"),
+            // 'text' added: the typed-into-form text is arbitrary user content — any `text` producer (lambda2hyper output, format result, strings.* result, file-load) should be wirable. `form-text` stays first to keep the form-context catalog selection.
+            Option("text", "string", "Text to send", kind: "form-text,text"),
             Option("config-key", "string", "Configuration key resolving the text to send", kind: "config-key"),
             Option("delay", "int", "Delay in milliseconds between key presses"),
         };

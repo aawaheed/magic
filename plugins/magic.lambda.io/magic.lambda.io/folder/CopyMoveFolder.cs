@@ -13,19 +13,21 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.copy]/[io.folder.move] slot for copying a folder on your server.
     /// </summary>
+    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.folder.copy",
         Description = "Copies a folder on the server",
-        ValueKind = "folder-path,text",
+        ValueKind = "folder-path",
         ValueDescription = "Source folder path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.FolderCopyMoveSignature))]
+    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.folder.move",
         Description = "Moves a folder on the server",
-        ValueKind = "folder-path,text",
+        ValueKind = "folder-path",
         ValueDescription = "Source folder path",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

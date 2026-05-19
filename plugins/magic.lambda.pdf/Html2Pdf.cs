@@ -14,10 +14,11 @@ namespace magic.lambda.pdf
     /// <summary>
     /// [html2pdf] slot for converting HTML to PDF.
     /// </summary>
+    // 'text' pruned: this slot needs HTML markup, not arbitrary text.
     [Slot(
         Name = "html2pdf",
         Description = "Converts HTML into a PDF document",
-        ValueKind = "html,text",
+        ValueKind = "html",
         ValueDescription = "HTML markup to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

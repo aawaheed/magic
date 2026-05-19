@@ -15,10 +15,11 @@ namespace magic.lambda.misc
     /// [slot.signature] slot allowing you to retrieve the documented
     /// input and output contract of a single compiled slot.
     /// </summary>
+    // 'text' pruned: this slot needs a slot name, not arbitrary text.
     [Slot(
         Name = "slot.signature",
         Description = "Returns the documented input and output contract for a single compiled slot",
-        ValueKind = "dynamic-slot-name,text",
+        ValueKind = "dynamic-slot-name",
         ValueDescription = "Name of the compiled slot to inspect",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

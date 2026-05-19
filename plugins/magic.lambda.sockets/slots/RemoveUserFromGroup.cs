@@ -13,10 +13,11 @@ namespace magic.lambda.sockets.slots
     /// <summary>
     /// [sockets.user.remove-from-group] slot that allows you to explicitly remove a user from a group.
     /// </summary>
+    // 'text' pruned: this slot needs a username, not arbitrary text.
     [Slot(
         Name = "sockets.user.remove-from-group",
         Description = "Removes a user from a socket group",
-        ValueKind = "username,text",
+        ValueKind = "username",
         ValueDescription = "Username to remove from the socket group",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

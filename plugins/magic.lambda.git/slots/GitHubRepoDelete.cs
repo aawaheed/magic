@@ -15,10 +15,11 @@ namespace magic.lambda.git
     /// <summary>
     /// [github.repo.delete] slot to delete a GitHub repository.
     /// </summary>
+    // 'text' pruned: this slot needs a GitHub repository name, not arbitrary text.
     [Slot(
         Name = "github.repo.delete",
         Description = "Deletes a GitHub repository",
-        ValueKind = "github-repo-name,text",
+        ValueKind = "github-repo-name",
         ValueDescription = "GitHub repository name",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

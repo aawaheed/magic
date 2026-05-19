@@ -13,10 +13,11 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.delete] slot for deleting a folder on server.
     /// </summary>
+    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.delete",
         Description = "Deletes a file on the server",
-        ValueKind = "file-path,text",
+        ValueKind = "file-path",
         ValueDescription = "File path to delete",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

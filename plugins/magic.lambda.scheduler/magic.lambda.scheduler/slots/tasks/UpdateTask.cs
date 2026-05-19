@@ -12,10 +12,11 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.update] slot that will update an existing task.
     /// </summary>
+    // 'text' pruned: this slot needs a task ID, not arbitrary text.
     [Slot(
         Name = "tasks.update",
         Description = "Overwrites a stored task's body or description without altering its existing schedules",
-        ValueKind = "task-id,text",
+        ValueKind = "task-id",
         ValueDescription = "Task ID to update",
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
