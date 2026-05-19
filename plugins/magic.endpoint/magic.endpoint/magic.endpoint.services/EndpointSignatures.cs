@@ -63,11 +63,19 @@ namespace magic.endpoint.services.signatures
                     "^Date$=date|" +
                     "^If-Modified-Since$=date|" +
                     "^If-Unmodified-Since$=date|" +
+                    "^Retry-After$=date|" +
                     "^X-Request-ID$=guid|" +
                     "^X-Correlation-ID$=guid|" +
                     "^X-Trace-ID$=guid|" +
                     "^WWW-Authenticate$=bearer-token|" +
                     "^Proxy-Authenticate$=bearer-token|" +
+                    "^(Accept-Language|Content-Language)$=http-locale|" +
+                    "^(ETag|If-Match|If-None-Match)$=http-etag|" +
+                    "^Cache-Control$=http-cache-control-directive|" +
+                    "^Pragma$=http-cache-control-directive|" +
+                    "^(Accept-Encoding|Content-Encoding|Transfer-Encoding|Content-Transfer-Encoding|TE)$=http-encoding-directive|" +
+                    "^(Range|Content-Range|Accept-Ranges|If-Range)$=http-range-value|" +
+                    "^User-Agent$=http-user-agent|" +
                     "*=http-header-value}",
             },
         };

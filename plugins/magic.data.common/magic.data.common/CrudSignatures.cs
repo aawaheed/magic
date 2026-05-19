@@ -112,7 +112,15 @@ namespace magic.data.common.signatures
             };
         }
 
-        internal static SlotChild Where()
+        // `required` (default false) — pass true for UPDATE/DELETE schemas so
+        // the corpus never teaches a WHERE-less destructive statement. SELECT
+        // /COUNT/SCALAR/READ accept optional WHERE (filter-less queries are
+        // legitimate). UPDATE/DELETE without WHERE silently rewrites or
+        // destroys every row in the table — a dangerous production
+        // anti-pattern the corpus shouldn't model. Runtime still accepts
+        // WHERE-less DELETE/UPDATE if hand-authored; this only constrains
+        // synth emission.
+        internal static SlotChild Where(bool required = false)
         {
             // The SQL builder concatenates top-level boolean groups under
             // [where] with no joiner between them (see SqlWhereBuilder
@@ -131,10 +139,12 @@ namespace magic.data.common.signatures
                 Name = "where",
                 Type = "lambda",
                 Kind = "sql-predicate-root",
-                Description = "Optional boolean predicate tree",
-                Required = false,
+                Description = required
+                    ? "Required boolean predicate tree — destructive SQL must constrain affected rows"
+                    : "Optional boolean predicate tree",
+                Required = required,
                 Mode = SlotChildMode.StructuredArguments,
-                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Cardinality = required ? SlotChildCardinality.ExactlyOne : SlotChildCardinality.ZeroOrOne,
                 Children = { and, or },
                 Constraints =
                 {
@@ -246,13 +256,29 @@ namespace magic.data.common.signatures
                 {
                     new SlotChild
                     {
-                        Name = "*",
+                        // Anonymous list-item child. Name is the literal `.`
+                        // so emission renders the canonical `.: <value>` form
+                        // the SQL builder serializes as an IN list. Earlier
+                        // wildcard `*` made ChildName pick a real identifier
+                        // from kind-keyed catalogs (description, title, …),
+                        // producing `email.in / description: x:@…` which the
+                        // SQL builder reads as a sibling column instead of
+                        // an IN list element. Hard-coding `.` is right here
+                        // — list items in this shape have no semantic name.
+                        Name = ".",
                         Type = "object",
                         Kind = "text,number,boolean,date,guid,content,value",
                         Description = "Value item used by operators such as .in",
                         Required = false,
                         Mode = SlotChildMode.ValueOrExpression,
-                        Cardinality = SlotChildCardinality.ZeroOrMore,
+                        // TwoOrMore — a meaningful IN clause has ≥2 admissible
+                        // values. Single-element IN lists are legal SQL but
+                        // semantically pointless (use `.eq` for that). The
+                        // outer NamePattern Excludes below zeroes this out
+                        // for non-.in operators (.eq/.gt/etc.) so single-
+                        // value predicates don't accidentally inherit the
+                        // ≥2 cardinality.
+                        Cardinality = SlotChildCardinality.TwoOrMore,
                     },
                 },
                 Constraints =
@@ -263,10 +289,31 @@ namespace magic.data.common.signatures
                         // Fire when the condition name does NOT end in `.in`
                         // (covers all single-value operators: .eq, .neq, .gt,
                         // .gte, .lt, .lte, .like, .ilike, plus bare column
-                        // names which default to equality).
+                        // names which default to equality). Excludes the
+                        // literal-`.` list-item schema so these operators
+                        // render as `column.op: <value>` with no children.
                         NamePattern = "^(?!.*\\.in$).*$",
-                        Values = { "*" },
+                        Values = { "." },
                         Description = "Value-list children apply only to the .in operator; other operators take a single-value RHS",
+                    },
+                    new SlotConstraint
+                    {
+                        Kind = SlotConstraintKind.Excludes,
+                        // Complementary half: fire when the condition name
+                        // DOES end in `.in`. Forbid the special sentinel
+                        // `input` so BuildNonExecChild suppresses the
+                        // outer condition's scalar value — the IN payload
+                        // lives in the `.:` children, not on the condition
+                        // node itself. Without this, the emitter produces
+                        // `email.in: alice@x.test / .: bob@x.test / .:
+                        // carol@x.test` which the SQL builder reads as
+                        // "first value belongs to the predicate, the
+                        // children are list items" — inconsistent and
+                        // unrunnable. Forbidding `input` keeps the
+                        // contract clean: `.in` is a valueless container.
+                        NamePattern = "\\.in$",
+                        Values = { "input" },
+                        Description = "The .in operator is a valueless container; its admissible values live entirely in the `.:` child list",
                     },
                 },
             };
@@ -712,7 +759,9 @@ namespace magic.data.common.signatures
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Values(),
-            SqlCreateSignature.Where(),
+            // WHERE is REQUIRED for executable UPDATE — corpus must not
+            // model "UPDATE x SET ..." statements that touch every row.
+            SqlCreateSignature.Where(required: true),
         };
     }
 
@@ -726,7 +775,9 @@ namespace magic.data.common.signatures
         {
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
-            SqlCreateSignature.Where(),
+            // WHERE is REQUIRED for executable DELETE — same rationale as
+            // DbUpdateSignature.
+            SqlCreateSignature.Where(required: true),
         };
     }
 
@@ -837,7 +888,8 @@ namespace magic.data.common.signatures
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
             SqlCreateSignature.Values(),
-            SqlCreateSignature.Where(),
+            // WHERE is REQUIRED — same rationale as DbUpdateSignature.
+            SqlCreateSignature.Where(required: true),
         };
     }
 
@@ -852,7 +904,8 @@ namespace magic.data.common.signatures
             DataCreateSignature.DatabaseType(),
             DbCreateSignature.Generate(),
             SqlCreateSignature.Table(SlotChildCardinality.ExactlyOne, false),
-            SqlCreateSignature.Where(),
+            // WHERE is REQUIRED — same rationale as DbDeleteSignature.
+            SqlCreateSignature.Where(required: true),
         };
     }
 

@@ -71,6 +71,26 @@ namespace magic.lambda.mime.signatures
                         Cardinality = SlotChildCardinality.ZeroOrMore,
                         Role = SlotChildRole.Option,
                         Projection = SlotChildProjection.Value,
+                        // Same name-keyed dispatch HttpSignatures.cs uses for
+                        // HTTP `[headers]/*` — MIME headers also include
+                        // typed fields like Content-Type / Content-Language /
+                        // Date / address headers. Without dispatch, the
+                        // wildcard child draws from the merged
+                        // `mime-header-value` pool which is structurally
+                        // varied but semantically wrong for typed headers
+                        // (e.g. `From: gzip` is nonsense). Catalog-by-name
+                        // picks a name-appropriate catalog; falls back to
+                        // the generic pool for free-form headers
+                        // (Subject, Message-ID, X-Custom-*, …) where the
+                        // typed pool is the right pick.
+                        ValueTemplate =
+                            "{catalog-by-name:" +
+                            "^Content-Type$=content-type|" +
+                            "^Content-Language$=http-locale|" +
+                            "^Content-Transfer-Encoding$=http-encoding-directive|" +
+                            "^Date$=date|" +
+                            "^(From|To|Cc|Bcc|Reply-To|Sender|Return-Path)$=email|" +
+                            "*=mime-header-value}",
                     },
                 },
             };
@@ -128,7 +148,10 @@ namespace magic.lambda.mime.signatures
 
         // Depth-limited recursion so the schema can describe nested multiparts while staying finite.
         // At the innermost level (depth==0) the schema has no nested [entity] child, so the value
-        // must be a leaf MIME type — a different description routes the value picker to a leaf-only catalog.
+        // must be a leaf MIME type — a different Kind routes the value picker to a leaf-only catalog
+        // (`mime-content-types-leaf`) instead of the union `content-type` catalog (which contains
+        // multipart entries too). Picking a multipart value here would create a `multipart/*` entity
+        // with no nested [entity] children — which the AtLeastOneOf(entity) constraint then rejects.
         //
         // Cardinality intentionally = TwoOrMore on the entity SlotChild itself. This expresses the
         // runtime invariant "multipart needs ≥ 2 parts" at the contract level — BuildChildren's
@@ -142,7 +165,10 @@ namespace magic.lambda.mime.signatures
             {
                 Name = "entity",
                 Type = "string",
-                Kind = "content-type",
+                // At depth 0, force leaf MIME types only — there's no nested
+                // [entity] child available, so a multipart value would be a
+                // schema/constraint contradiction.
+                Kind = depth > 0 ? "content-type" : "mime-content-types-leaf",
                 Description = depth > 0 ?
                     "Nested MIME entity content type; same leaf-vs-multipart shape as the parent [mime.create] value" :
                     "Innermost MIME leaf entity content type; must be a leaf type because no further [entity] nesting is permitted here",
@@ -207,10 +233,17 @@ namespace magic.lambda.mime.signatures
             };
             binaryExcludesInlineContent.Values.Add("content");
 
+            // AtLeastOneOf says "[entity] must be present at all"; the actual
+            // minimum of 2 is encoded on the [entity] SlotChild itself
+            // (Cardinality.TwoOrMore). Synthesizer.ForceEmitRequired honors
+            // that cardinality when emitting required children, so this pair
+            // together enforces "multipart needs ≥ 2 [entity] children".
+            // Multipart with a single part is technically legal per RFC 2046
+            // but semantically pointless — train on the meaningful shape.
             var multipart = new SlotConstraint
             {
                 Kind = SlotConstraintKind.AtLeastOneOf,
-                Description = "Multipart MIME parts require one or more [entity] children",
+                Description = "Multipart MIME parts require two or more [entity] children",
                 ValuePattern = @"^multipart/.+$",
             };
             multipart.Values.Add("entity");

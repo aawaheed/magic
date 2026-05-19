@@ -15,11 +15,22 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.verify] slot to verify that some piece of text was cryptographically
     /// signed with a specific private key.
     /// </summary>
-    // 'text' added: verifying signatures against arbitrary text payloads (messages, tokens, manifests) is the primary use case — any `text` producer should be wirable. `content,binary-content` stay for byte[] payloads.
+    // 'text' REMOVED: verify needs the EXACT bytes that were signed; wiring it
+    // to an arbitrary text producer (lambda2hyper output, lambda2html, log
+    // entries, formatted strings, free-form prose preludes) is structurally
+    // wrong — the content was never signed, so verification would always fail
+    // at runtime. The corpus was showing snippets like:
+    //   .invoiceBody:<p>Hello <strong>world</strong></p>
+    //   crypto.rsa.verify:x:@.invoiceBody
+    // teaching the model that random HTML is a valid verify input. Keep only
+    // `content,binary-content` — opaque byte/string content that carries the
+    // signed payload as-is (e.g. paired with [signature]). The sign side
+    // (crypto.rsa.sign) keeps `text` because signing arbitrary text IS a
+    // legitimate use case — verify is the asymmetric half.
     [Slot(
         Name = "crypto.rsa.verify",
         Description = "Verifies an RSA signature",
-        ValueKind = "content,binary-content,text",
+        ValueKind = "content,binary-content",
         ValueDescription = "Content to verify against the supplied signature",
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,

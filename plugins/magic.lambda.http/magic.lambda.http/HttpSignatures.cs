@@ -158,9 +158,17 @@ namespace magic.lambda.http.signatures
                                 "^Last-Modified$=date|" +
                                 "^Date$=date|" +
                                 "^Expires$=date|" +
+                                "^Retry-After$=date|" +
                                 "^X-Request-ID$=guid|" +
                                 "^X-Correlation-ID$=guid|" +
                                 "^X-Trace-ID$=guid|" +
+                                "^(Accept-Language|Content-Language)$=http-locale|" +
+                                "^(ETag|If-Match|If-None-Match)$=http-etag|" +
+                                "^Cache-Control$=http-cache-control-directive|" +
+                                "^Pragma$=http-cache-control-directive|" +
+                                "^(Accept-Encoding|Content-Encoding|Transfer-Encoding|Content-Transfer-Encoding|TE)$=http-encoding-directive|" +
+                                "^(Range|Content-Range|Accept-Ranges|If-Range)$=http-range-value|" +
+                                "^User-Agent$=http-user-agent|" +
                                 "*=http-header-value}"
                             : null,
                     },
