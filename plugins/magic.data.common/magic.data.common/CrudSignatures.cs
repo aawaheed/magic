@@ -70,43 +70,19 @@ namespace magic.data.common.signatures
                         Required = true,
                         Mode = SlotChildMode.ValueOrExpression,
                         Cardinality = SlotChildCardinality.OneOrMore,
-                        // Dispatch the VALUE catalog off the column NAME. The
-                        // broad Kind above is a UNION (any string-shaped
-                        // producer matched on `text`) which produced wrong
-                        // pairings like `created_at:x:@git.create-repo` — a
-                        // date column carrying a git command's text output.
-                        // Real SQL inserts have NAME-DRIVEN value types:
-                        // `*_at` is a date, `*_id` is an integer, `email`
-                        // is an email, `active` is a boolean, etc. Routing
-                        // by column-name regex picks a type-appropriate
-                        // catalog every time. Falls back to `string-values`
-                        // for names without a typed pattern (status,
-                        // notes, description, label, …).
+                        // Column-name → catalog dispatch (date columns →
+                        // date catalog, `_id` → integer, `email` → email,
+                        // etc.) lives in rules.yaml under `dispatch-rules:`
+                        // (target-kind: sql-column-value). Picked up by
+                        // Kind at child-emit time.
                         //
-                        // Trade-off: with a ValueTemplate set, expressions
-                        // (e.g. `x:@.someVar`) aren't wired into these
-                        // columns — the template always wins and returns a
-                        // literal. That's acceptable: realistic SQL value
-                        // lists are predominantly literals, and the
-                        // corpus's expression variety comes from many
-                        // other slots.
-                        ValueTemplate =
-                            "{catalog-by-name:" +
-                            "^.+_at$=date|" +
-                            "^(created|updated|expires|deleted|posted|started|ended|scheduled)$=date|" +
-                            "^email$=email|" +
-                            "^.+_email$=email|" +
-                            "^url$=url|" +
-                            "^.+_url$=url|" +
-                            "^id$=integer|" +
-                            "^.+_id$=integer|" +
-                            "^(amount|price|total|balance|fee|cost|rate|fees)$=number|" +
-                            "^.+_(amount|price|total|balance|cost|rate)$=number|" +
-                            "^(quantity|count|priority|attempts|retries|depth|rank|score|age|version)$=integer|" +
-                            "^.+_(count|quantity|retries|attempts)$=integer|" +
-                            "^(active|enabled|visible|approved|verified|archived|deleted|published|completed|locked|paid|shipped|cancelled)$=boolean|" +
-                            "^(is|has|can|should)_.+$=boolean|" +
-                            "*=string-values}",
+                        // Trade-off: with a ValueTemplate effectively set
+                        // (via dispatch lookup), expressions (`x:@.someVar`)
+                        // aren't wired into these columns — the template
+                        // always wins and returns a literal. That's
+                        // acceptable: realistic SQL value lists are
+                        // predominantly literals, and the corpus's
+                        // expression variety comes from many other slots.
                     },
                 },
             };
@@ -222,36 +198,17 @@ namespace magic.data.common.signatures
                 Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
                 Cardinality = SlotChildCardinality.OneOrMore,
-                // Same column-name-driven catalog dispatch as Values()/* above
-                // — see that schema for rationale. Difference: WHERE condition
-                // names carry an OPTIONAL operator suffix (`.eq`, `.neq`,
-                // `.gt`, `.gte`, `.lt`, `.lte`, `.like`, `.ilike`, `.in`;
-                // bare name defaults to equality). Each regex therefore
-                // tolerates an optional `(\.\w+)?` at the end so
-                // `created_at.gt` routes to the date catalog the same way
-                // `created_at` does.
+                // Column-name → catalog dispatch lives in rules.yaml under
+                // `dispatch-rules:` (target-kind: sql-column-condition).
+                // Same patterns as the sql-column-value ruleset but each
+                // pattern tolerates an OPTIONAL operator suffix (`.eq`,
+                // `.in`, `.gte`, …) so `created_at.gt` still routes to
+                // the date catalog. Picked up by Kind at child-emit time.
                 //
-                // The nested `[*]` value-list child (for `.in` operators)
-                // keeps the broad Kind because its values are anonymous list
-                // items, not column-named cells — biasing them by name isn't
-                // applicable.
-                ValueTemplate =
-                    "{catalog-by-name:" +
-                    "^.+_at(\\.\\w+)?$=date|" +
-                    "^(created|updated|expires|deleted|posted|started|ended|scheduled)(\\.\\w+)?$=date|" +
-                    "^email(\\.\\w+)?$=email|" +
-                    "^.+_email(\\.\\w+)?$=email|" +
-                    "^url(\\.\\w+)?$=url|" +
-                    "^.+_url(\\.\\w+)?$=url|" +
-                    "^id(\\.\\w+)?$=integer|" +
-                    "^.+_id(\\.\\w+)?$=integer|" +
-                    "^(amount|price|total|balance|fee|cost|rate|fees)(\\.\\w+)?$=number|" +
-                    "^.+_(amount|price|total|balance|cost|rate)(\\.\\w+)?$=number|" +
-                    "^(quantity|count|priority|attempts|retries|depth|rank|score|age|version)(\\.\\w+)?$=integer|" +
-                    "^.+_(count|quantity|retries|attempts)(\\.\\w+)?$=integer|" +
-                    "^(active|enabled|visible|approved|verified|archived|deleted|published|completed|locked|paid|shipped|cancelled)(\\.\\w+)?$=boolean|" +
-                    "^(is|has|can|should)_.+?(\\.\\w+)?$=boolean|" +
-                    "*=string-values}",
+                // The nested `[.]` value-list child (for `.in` operators)
+                // keeps the broad Kind because its values are anonymous
+                // list items, not column-named cells — biasing them by
+                // name isn't applicable.
                 Children =
                 {
                     new SlotChild

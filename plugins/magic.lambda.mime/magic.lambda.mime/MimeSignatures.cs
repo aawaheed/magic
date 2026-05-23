@@ -71,26 +71,10 @@ namespace magic.lambda.mime.signatures
                         Cardinality = SlotChildCardinality.ZeroOrMore,
                         Role = SlotChildRole.Option,
                         Projection = SlotChildProjection.Value,
-                        // Same name-keyed dispatch HttpSignatures.cs uses for
-                        // HTTP `[headers]/*` — MIME headers also include
-                        // typed fields like Content-Type / Content-Language /
-                        // Date / address headers. Without dispatch, the
-                        // wildcard child draws from the merged
-                        // `mime-header-value` pool which is structurally
-                        // varied but semantically wrong for typed headers
-                        // (e.g. `From: gzip` is nonsense). Catalog-by-name
-                        // picks a name-appropriate catalog; falls back to
-                        // the generic pool for free-form headers
-                        // (Subject, Message-ID, X-Custom-*, …) where the
-                        // typed pool is the right pick.
-                        ValueTemplate =
-                            "{catalog-by-name:" +
-                            "^Content-Type$=content-type|" +
-                            "^Content-Language$=http-locale|" +
-                            "^Content-Transfer-Encoding$=http-encoding-directive|" +
-                            "^Date$=date|" +
-                            "^(From|To|Cc|Bcc|Reply-To|Sender|Return-Path)$=email|" +
-                            "*=mime-header-value}",
+                        // Header-name → catalog dispatch lives in rules.yaml
+                        // under `dispatch-rules:` (target-kind:
+                        // mime-header-value). Picked up by Kind at
+                        // child-emit time.
                     },
                 },
             };
@@ -98,47 +82,16 @@ namespace magic.lambda.mime.signatures
 
         public static SlotChild Content()
         {
-            // 'text' added: an inline MIME [content] body genuinely accepts arbitrary text (mail body, JSON serialized payload, log entry, etc.), so any `text` producer can wire here. The ValueTemplate catalog-by-parent-value dispatch below still picks the typed JSON/XML/HTML/etc. catalog for synthesis — the multi-tag just widens upstream wire-up.
-            var result = Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source,text");
-            // Dispatch the catalog draw on the parent entity's MIME type so
-            // [content] under [entity:application/json] gets JSON, [entity:
-            // application/xml] gets XML, etc. — instead of every leaf type
-            // pulling from the same generic prose catalog. The synth's
-            // `catalog-by-parent-value` placeholder reads the parent node's
-            // resolved value (literal or expression-resolved) and dispatches.
-            result.ValueTemplate =
-                "{catalog-by-parent-value:" +
-                "^application/json=json|" +
-                "^application/xml=xml|" +
-                "^text/html=html|" +
-                "^application/yaml=yaml|" +
-                "^text/csv=csv|" +
-                "*=mime-content}";
-            return result;
+            // 'text' added: an inline MIME [content] body genuinely accepts arbitrary text (mail body, JSON serialized payload, log entry, etc.), so any `text` producer can wire here. Parent-value → catalog dispatch (e.g. application/json → json catalog) lives in rules.yaml under `dispatch-rules:` (target-kind: mime-content). No schema-side declaration needed.
+            return Option("content", "string", "Inline MIME part content", kind: "mime-content,mime-entity-source,text");
         }
 
         public static SlotChild Filename()
         {
-            var result = Option("filename", "string", "File path to use as MIME part content", kind: "file-path,mime-entity-source,mime-entity-filename-source");
-            // Same dispatch pattern as Content() above, but routed to typed
-            // file-path catalogs so [filename] under [entity:image/jpeg] gets
-            // an image path, [entity:application/zip] gets a .zip path, etc.
-            // Falls back to the generic `file-path` catalog for MIME types
-            // without a dedicated typed-file catalog.
-            result.ValueTemplate =
-                "{catalog-by-parent-value:" +
-                "^image/=image-file|" +
-                "^application/pdf=pdf-file|" +
-                "^application/zip=zip-file|" +
-                "^application/octet-stream=binary-file|" +
-                "^application/json=json-file|" +
-                "^application/xml=xml-file|" +
-                "^text/html=html-file|" +
-                "^application/yaml=yaml-file|" +
-                "^text/csv=csv-file|" +
-                "^text/plain=text-file|" +
-                "*=file-path}";
-            return result;
+            // Parent-value → typed file-path catalog dispatch (image/* →
+            // image-file, application/pdf → pdf-file, etc.) lives in
+            // rules.yaml under `dispatch-rules:` (target-kind: file-path).
+            return Option("filename", "string", "File path to use as MIME part content", kind: "file-path,mime-entity-source,mime-entity-filename-source");
         }
 
         public static SlotChild Entity()

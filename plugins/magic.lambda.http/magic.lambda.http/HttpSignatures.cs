@@ -132,45 +132,16 @@ namespace magic.lambda.http.signatures
                         Cardinality = SlotChildCardinality.ZeroOrMore,
                         Role = SlotChildRole.Option,
                         Projection = SlotChildProjection.Value,
-                        // For [headers]/*, dispatch the VALUE catalog off the
-                        // header NAME. The merged `http-header-value` pool
-                        // is structurally varied but semantically lies for
-                        // typed headers — `Accept: en` or `Cache-Control:
-                        // 600` would teach wrong combinations. The
-                        // `catalog-by-name` placeholder picks a name-
-                        // appropriate catalog (content-type for Accept /
-                        // Content-Type, bearer-token for Authorization,
-                        // date for If-Modified-Since etc.); falls back to
-                        // the generic pool for any header name without a
-                        // typed dispatch (X-Request-ID, X-Correlation-ID,
-                        // User-Agent, Forwarded, …). [query]/* and
-                        // [url-params]/* stay unchanged — their values
-                        // are inherently free-form, so the generic catalog
-                        // is the right pick.
-                        ValueTemplate = name == "headers"
-                            ? "{catalog-by-name:" +
-                                "^Accept$=content-type|" +
-                                "^Content-Type$=content-type|" +
-                                "^Authorization$=bearer-token|" +
-                                "^Proxy-Authorization$=bearer-token|" +
-                                "^If-Modified-Since$=date|" +
-                                "^If-Unmodified-Since$=date|" +
-                                "^Last-Modified$=date|" +
-                                "^Date$=date|" +
-                                "^Expires$=date|" +
-                                "^Retry-After$=date|" +
-                                "^X-Request-ID$=guid|" +
-                                "^X-Correlation-ID$=guid|" +
-                                "^X-Trace-ID$=guid|" +
-                                "^(Accept-Language|Content-Language)$=http-locale|" +
-                                "^(ETag|If-Match|If-None-Match)$=http-etag|" +
-                                "^Cache-Control$=http-cache-control-directive|" +
-                                "^Pragma$=http-cache-control-directive|" +
-                                "^(Accept-Encoding|Content-Encoding|Transfer-Encoding|Content-Transfer-Encoding|TE)$=http-encoding-directive|" +
-                                "^(Range|Content-Range|Accept-Ranges|If-Range)$=http-range-value|" +
-                                "^User-Agent$=http-user-agent|" +
-                                "*=http-header-value}"
-                            : null,
+                        // Header-name → catalog dispatch lives in rules.yaml
+                        // under `dispatch-rules:` (target-kind:
+                        // http-header-value). The synth picks it up by Kind
+                        // at child-emit time — no schema-side declaration
+                        // needed here. Query and URL-params children share
+                        // this schema but use different Kind tags
+                        // (`query-parameter-value`, `url-parameter-value`)
+                        // which have no dispatch ruleset, so they fall
+                        // through to the generic catalog draw, same as
+                        // before.
                     },
                 },
             };

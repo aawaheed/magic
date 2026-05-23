@@ -43,40 +43,10 @@ namespace magic.endpoint.services.signatures
                 Cardinality = SlotChildCardinality.OneOrMore,
                 Role = SlotChildRole.DynamicMap,
                 Projection = SlotChildProjection.Value,
-                // Dispatch the value catalog off the header NAME — same
-                // pattern HttpSignatures.cs uses for request `[headers]/*`.
-                // Without this, the header NAME comes from
-                // `http-response-header-value-names` (which exists) but
-                // the VALUE picker looks for `http-response-header-value`
-                // (which doesn't exist as a top-level catalog) and falls
-                // back to `sample-XXXX` placeholders — producing nonsense
-                // like `Expires:sample-d440`. Dispatch routes Date / ETag /
-                // Cache-Control / auth headers / correlation IDs to typed
-                // catalogs; everything else falls through to the generic
-                // `http-header-value` pool (the merged request-header
-                // catalog — fine for response use too).
-                ValueTemplate =
-                    "{catalog-by-name:" +
-                    "^Content-Type$=content-type|" +
-                    "^Expires$=date|" +
-                    "^Last-Modified$=date|" +
-                    "^Date$=date|" +
-                    "^If-Modified-Since$=date|" +
-                    "^If-Unmodified-Since$=date|" +
-                    "^Retry-After$=date|" +
-                    "^X-Request-ID$=guid|" +
-                    "^X-Correlation-ID$=guid|" +
-                    "^X-Trace-ID$=guid|" +
-                    "^WWW-Authenticate$=bearer-token|" +
-                    "^Proxy-Authenticate$=bearer-token|" +
-                    "^(Accept-Language|Content-Language)$=http-locale|" +
-                    "^(ETag|If-Match|If-None-Match)$=http-etag|" +
-                    "^Cache-Control$=http-cache-control-directive|" +
-                    "^Pragma$=http-cache-control-directive|" +
-                    "^(Accept-Encoding|Content-Encoding|Transfer-Encoding|Content-Transfer-Encoding|TE)$=http-encoding-directive|" +
-                    "^(Range|Content-Range|Accept-Ranges|If-Range)$=http-range-value|" +
-                    "^User-Agent$=http-user-agent|" +
-                    "*=http-header-value}",
+                // Header-name → catalog dispatch lives in rules.yaml under
+                // `dispatch-rules:` (target-kind: http-response-header-
+                // value). The synth picks it up by Kind at child-emit time
+                // — no schema-side declaration needed here.
             },
         };
     }
