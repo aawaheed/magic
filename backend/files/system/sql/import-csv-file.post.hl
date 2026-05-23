@@ -15,6 +15,9 @@ validators.mandatory:x:@.arguments/*/file
 validators.mandatory:x:@.arguments/*/file/*/name
 validators.mandatory:x:@.arguments/*/file/*/stream
 
+// Ensures user is authorized to access endpoint.
+auth.ticket.verify:root
+
 // Basic logging.
 log.info:Getting ready to import CSV file and create table based upon its structure
    databaseType:x:@.arguments/*/databaseType
