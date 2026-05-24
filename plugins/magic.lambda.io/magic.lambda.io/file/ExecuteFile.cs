@@ -33,7 +33,11 @@ namespace magic.lambda.io.file
         // tag that no catalog/consumer referenced.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
-        ClonesLambda = true,
+        // ClonesLambda removed: [io.file.execute]'s children are
+        // ARGUMENTS, not a body. The lambda being eval'd is a fresh
+        // parse from disk (`HyperlambdaParser.Parse(hyperlambda)`),
+        // not the slot's own children. No ExecutableLambda children
+        // exist on the signature, so the flag was a no-op anyway.
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
     // 'text' pruned: this slot needs a Hyperlambda file path, not arbitrary text.
     [Slot(

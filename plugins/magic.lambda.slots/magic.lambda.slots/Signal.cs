@@ -33,7 +33,11 @@ namespace magic.lambda.slots
         // tags were phantoms — no catalog or consumer referenced them.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
-        ClonesLambda = true,
+        // ClonesLambda removed: [signal]'s children are ARGUMENTS,
+        // not a body. The lambda being cloned at runtime is the
+        // STORED dynamic slot fetched from `Create._slots[name]`,
+        // not the slot's own children. No ExecutableLambda children
+        // on the signature → flag was a no-op no matter what.
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
@@ -74,7 +78,9 @@ namespace magic.lambda.slots
         // tags were phantoms — no catalog or consumer referenced them.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
-        ClonesLambda = true,
+        // ClonesLambda removed: same reasoning as [signal] above —
+        // children are arguments, lambda being cloned comes from
+        // the dynamic-slot registry, not from this invocation.
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     public class SignalSlot : ISlotAsync
     {

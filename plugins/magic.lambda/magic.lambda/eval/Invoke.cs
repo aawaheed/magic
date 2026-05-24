@@ -33,7 +33,13 @@ namespace magic.lambda.eval
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes",
-        ClonesLambda = true,
+        // ClonesLambda removed: [invoke]'s children are ARGUMENTS
+        // (`Role = Arguments`, `Mode = ValueOrExpression`), not a body.
+        // The lambda being cloned at runtime is the VALUE target
+        // (`input.Get<Expression>().Evaluate(input).Single().Clone()`),
+        // not the slot's own children. The synth's ClonesLambda barrier
+        // only gates ExecutableLambda children — [invoke] has none, so
+        // the flag was a no-op declaration that lied about semantics.
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         SignatureType = typeof(global::magic.lambda.signatures.InvokeSignature))]
     public class Invoke : ISlotAsync

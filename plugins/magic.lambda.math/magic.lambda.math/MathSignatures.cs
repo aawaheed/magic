@@ -20,7 +20,12 @@ namespace magic.lambda.math.signatures
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.TwoOrMore,
-                Role = SlotChildRole.Operand,
+                // OperandPaired (not Operand): arithmetic operations combine
+                // their operands; mixing numeric subtypes (decimal + int)
+                // produces ambiguous coercion. The synth narrows subsequent
+                // operands to the first operand's specific numeric kind so
+                // the corpus shows consistent typing in math chains.
+                Role = SlotChildRole.OperandPaired,
                 Evaluation = SlotChildEvaluation.EvalSelf,
                 Projection = SlotChildProjection.Value,
             },
@@ -39,7 +44,11 @@ namespace magic.lambda.math.signatures
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.ExactlyTwo,
-                Role = SlotChildRole.Operand,
+                // OperandPaired (not Operand): dot product takes two
+                // VECTORS that must share an element type for the
+                // element-wise product to be meaningful. Sibling-kind
+                // narrowing keeps both vectors of the same element kind.
+                Role = SlotChildRole.OperandPaired,
                 Evaluation = SlotChildEvaluation.EvalSelf,
                 Projection = SlotChildProjection.Children,
             },

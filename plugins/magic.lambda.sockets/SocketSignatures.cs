@@ -63,10 +63,23 @@ namespace magic.lambda.sockets.signatures
             {
                 Name = "args",
                 Type = "lambda",
+                // Kind declared so the synth's sample-driven payload-body
+                // materialization (BuildNonExecChild's StructuredTree+Payload
+                // branch) has a lookup key into the `socket-args-samples`
+                // catalog. Without a Kind, sample lookup is skipped and the
+                // body emits empty — see `<kind>-samples` mechanism.
+                Kind = "socket-args",
                 Description = "Payload serialized to JSON and sent with the socket message",
-                Required = false,
+                // Required (was: false). Schema previously allowed empty-
+                // payload pings, but in practice signaling without a body
+                // is a degenerate case — recipients would have to re-fetch
+                // state, defeating the point of the message. Runtime
+                // (Signaler.cs:111) still tolerates null args defensively,
+                // but the corpus should teach the meaningful pattern: every
+                // sockets.signal carries a body explaining WHAT happened.
+                Required = true,
                 Mode = SlotChildMode.ValueOrExpression,
-                Cardinality = SlotChildCardinality.ZeroOrOne,
+                Cardinality = SlotChildCardinality.ExactlyOne,
                 Role = SlotChildRole.Payload,
                 Evaluation = SlotChildEvaluation.UnwrapDescendants,
                 Projection = SlotChildProjection.StructuredTree,

@@ -181,7 +181,12 @@ namespace magic.lambda.signatures
                 Required = true,
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.ExactlyTwo,
-                Role = SlotChildRole.Operand,
+                // OperandPaired (not Operand): comparators COMPARE the two
+                // operands as a unit; their types must agree (comparing a
+                // string to a number is a semantic error). The synthesizer
+                // captures the first operand's resolved kind and constrains
+                // the second to producers whose primary kind matches.
+                Role = SlotChildRole.OperandPaired,
                 Evaluation = SlotChildEvaluation.EvalSelf,
                 Projection = SlotChildProjection.Value,
             },

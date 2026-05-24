@@ -58,7 +58,16 @@ namespace magic.lambda.threading.signatures
                 Mode = SlotChildMode.ExecutableLambda,
                 Cardinality = SlotChildCardinality.OneOrMore,
                 Role = SlotChildRole.ExecutableBody,
-                Evaluation = SlotChildEvaluation.EvalSelf,
+                // `SerializeLambda` declares "body executes in isolated
+                // runtime context" — the synth's generic name for the
+                // clone/serialize-then-parse/detach property. Join.cs
+                // clones each [fork] child (`idxThread.Clone()`) and
+                // evaluates the clone on a separate thread; the clone
+                // is detached from [join]'s DOM, so expressions inside
+                // can't resolve outer-scope references. Same flag the
+                // synth uses for [tasks.create]/[.lambda] (serialized
+                // to DB) — different mechanism, same isolation property.
+                Evaluation = SlotChildEvaluation.SerializeLambda,
                 Projection = SlotChildProjection.Self,
             },
         };
