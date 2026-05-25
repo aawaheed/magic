@@ -17,11 +17,17 @@ namespace magic.lambda.strings.misc
     [Slot(
         Name = "strings.join",
         Description = "Concatenates the values yielded by the expression, inserting the separator between adjacent items",
-        // `string-list,node-list` — same reasoning as `[strings.concat]`:
-        // the runtime calls `.GetEx<string>()` on every evaluated node,
-        // which requires string-valued nodes. A generic `lambda-tree`
-        // would over-match (json/yaml/html trees have non-string values).
-        ValueKind = "string-list,node-list",
+        // `string-list` only — runtime calls `.GetEx<string>()` on every
+        // evaluated node, which requires the iterated nodes' .Value to be
+        // string. Bare `node-list` was previously included as a fallback
+        // but over-matched: any multi-cardinality path gets tagged
+        // `node-list` by EffectiveTipKind regardless of element type,
+        // including object-lists where elements have nested children and
+        // no string .Value (e.g. `@.attributes/*` from an object-list
+        // sample). Those produce garbage when joined. `string-list`
+        // narrows to paths whose TipKind explicitly carries the element-
+        // kind contract.
+        ValueKind = "string-list",
         ValueDescription = "Expression yielding the values to join",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
