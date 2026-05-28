@@ -13,7 +13,6 @@ namespace magic.lambda.io.folder
     /// <summary>
     /// [io.folder.create] slot for creating a new folder on server.
     /// </summary>
-    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.folder.create",
         Description = "Creates a folder on the server",

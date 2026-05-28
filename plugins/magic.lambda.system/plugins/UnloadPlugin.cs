@@ -13,7 +13,6 @@ namespace magic.lambda.system.plugins
     /// <summary>
     /// [system.plugin.unload] slot that will unload a previously loaded assembly.
     /// </summary>
-    // 'text' pruned: this slot needs a plugin assembly name, not arbitrary text.
     [Slot(
         Name = "system.plugin.unload",
         Description = "Unloads a plugin assembly",

@@ -16,7 +16,6 @@ namespace magic.lambda.csv
     /// <summary>
     /// [csv2lambda] slot for transforming from CSV to a lambda object.
     /// </summary>
-    // 'text' pruned: this slot needs CSV syntax, not arbitrary text.
     [Slot(
         Name = "csv2lambda",
         Description = "Transforms CSV into a lambda hierarchy",
@@ -26,16 +25,6 @@ namespace magic.lambda.csv
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `csv-tree,node-list` — CSV is STRICTLY a flat list of rows.
-        // The `node-list` branch is the right structural parent;
-        // `lambda-tree` would imply "arbitrary structure" which CSV
-        // does NOT have. Per the mutual-exclusion rule between the
-        // node-list and lambda-tree branches: producers commit to ONE
-        // (csv2lambda is firmly in the node-list branch). `csv-tree`
-        // keys into the `csv-tree:` sample catalog for prelude
-        // materialization. Each row IS structured (named columns) and
-        // is tagged `csv-row,lambda-tree` at the element level — that
-        // structural fact is internal to each row, not the outer list.
         ReturnsKind = "csv-tree,node-list",
         ReturnsElementKind = "csv-row,lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes; each child is one CSV row containing column-named values",

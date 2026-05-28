@@ -12,7 +12,6 @@ namespace magic.lambda.strings.replace
     /// <summary>
     /// [strings.url-decode] slot that URL decodes the specified string.
     /// </summary>
-    // 'text' pruned: this slot needs already-HTML-encoded text, not arbitrary text.
     [Slot(
         Name = "strings.html-decode",
         Description = "HTML decodes the specified string",
@@ -22,15 +21,6 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
-        // Decoded HTML markup, not bare text — `&lt;p&gt;` becomes `<p>`,
-        // and what comes out is raw HTML. Multi-tag the kind to declare
-        // the slot's full contract directly on the attribute: the primary
-        // kind is `html-unencoded` (the inverse of html-encode's input)
-        // so kind-strict consumers wire correctly, and the trailing `text`
-        // tag self-declares that the output is also text-compatible —
-        // text-consuming slots (log.info, strings.*, etc.) can pick it up
-        // without needing a separate supertype rule in rules.yaml. The
-        // slot is the source of truth for its own kinds.
         ReturnsKind = "html-unencoded,text",
         ReturnsDescription = "Resolves to the decoded HTML markup")]
     public class HtmlDecode : ISlot

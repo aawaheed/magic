@@ -20,26 +20,11 @@ namespace magic.lambda.misc
     [Slot(
         Name = "convert",
         Description = "Coerces a value to a different CLR type; useful for parsing strings into numbers, dates, booleans, or other strongly-typed values",
-        // `single-object` — reads `.Value` from exactly one node and coerces
-        // it. The previous `node-list` annotation was a structural lie (the
-        // runtime calls `.Single().Value`) that caused MaterializePrelude to
-        // wire container references like `convert:x:@.template_count` at a
-        // value-less list root. `single-object` is the structural dual of
-        // `node-list` — "one value-bearing node, any value type" — and pairs
-        // correctly with `ValueExpressionResolution.SingleNode`.
         ValueKind = "single-object",
         ValueDescription = "Expression selecting the value to convert",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        // No `ReturnsKind` narrowing — runtime returns int / uint / short /
-        // ushort / long / ulong / decimal / double / single / bool /
-        // DateTime / Guid / char / byte / Expression / byte[] / string /
-        // Node depending on the `[type]` argument. Just `ReturnsType=object`
-        // already says everything — a kind narrowing like `converted-value`
-        // adds zero signal (no consumer wants "converted-value"
-        // specifically, and the actual shape is whatever the user asked
-        // [type] to convert TO).
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the value converted to the requested type",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,

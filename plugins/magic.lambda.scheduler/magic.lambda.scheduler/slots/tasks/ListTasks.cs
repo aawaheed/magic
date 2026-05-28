@@ -14,7 +14,6 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.list] slot that will return the names of all tasks in the system.
     /// </summary>
-    // 'text' pruned: this slot needs a task ID filter, not arbitrary text.
     [Slot(
         Name = "tasks.list",
         Description = "Returns all stored tasks; supports an optional ID filter and pagination via [limit] and [offset]",

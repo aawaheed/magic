@@ -14,7 +14,6 @@ namespace magic.endpoint.services.slots.cookies
     /// <summary>
     /// [response.cookies.set] slot for creating and returning a cookie to the client.
     /// </summary>
-    // 'text' pruned: this slot needs a cookie name, not arbitrary text.
     [Slot(
         Name = "response.cookies.set",
         Description = "Sets a response cookie",

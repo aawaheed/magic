@@ -18,13 +18,6 @@ namespace magic.lambda.csv
     [Slot(
         Name = "lambda2csv",
         Description = "Transforms a lambda hierarchy into CSV",
-        // `node-list` ONLY — UNLIKE [lambda2yaml]/[lambda2json]/[lambda2hyper]
-        // which can serialize arbitrary graph objects, CSV is STRICTLY
-        // tabular. A non-list lambda tree (object root, nested key/value
-        // pairs) cannot be CSV-serialized — it has no rows to emit.
-        // Removed the erroneously-added `lambda-tree` parent. Inputs must
-        // be flat node-lists (parsed CSVs, database row lists, cache
-        // lists, etc.); the `node-list` tag is the exact semantic.
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes (rows) to transform",
         ValueRequired = true,

@@ -21,10 +21,6 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
-        // Multi-tag chain, specific → structural: `text,formattable-value`
-        // were missing — the URL-encoded output IS still text, and every
-        // text-consuming slot must be able to kind-match it. Mirrors the
-        // html-encode chain: `<specific>,text,formattable-value`.
         ReturnsKind = "url-encoded,text",
         ReturnsDescription = "Resolves to the URL-encoded string")]
     public class UrlEncode : ISlot

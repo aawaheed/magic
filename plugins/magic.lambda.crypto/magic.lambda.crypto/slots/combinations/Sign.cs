@@ -14,7 +14,6 @@ namespace magic.lambda.crypto.slots.combinations
     /// <summary>
     /// [crypto.sign] slot that signs the specified content using the spcified arguments.
     /// </summary>
-    // 'text' added: signing arbitrary text (messages, manifests, tokens, log entries) is the primary input shape — any `text` producer is a legitimate sign-input source. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.sign",
         Description = "Signs data using the configured combination algorithm",

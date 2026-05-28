@@ -15,9 +15,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "unwrap",
         Description = "Forward-evaluates expression values on the selected nodes, replacing them with their resolved values; commonly used before [signal] or [add]",
-        // `node-list,single-object` — runtime iterates `input.Evaluate()`
-        // and calls `Expression.Unwrap()` on each; single-node target is
-        // a one-element result, equally valid.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes whose expressions should be unwrapped",
         ValueRequired = true,

@@ -16,7 +16,6 @@ namespace magic.lambda.mime
     /// <summary>
     /// Creates a MIME message and returns it as a MIME message to caller.
     /// </summary>
-    // 'text' pruned: this slot needs a MIME content-type, not arbitrary text.
     [Slot(
         Name = "mime.create",
         Description = "Builds a MIME message from headers and child [entity] nodes; useful for sending email or composing multipart payloads",

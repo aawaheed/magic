@@ -18,11 +18,6 @@ namespace magic.lambda.json.slots.lambda
     [Slot(
         Name = "lambda2yaml",
         Description = "Transforms a lambda hierarchy into YAML",
-        // `node-list` only — narrowed from `lambda-tree,node-list`. Synth's
-        // picker now ONLY wires `/*` (multi-cardinality) DOM paths into
-        // lambda2yaml. A bare single-node prelude reference like
-        // `@.headers` won't match — synth must emit `@.headers/*` so the
-        // YAML output reflects iteration over the row list.
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes (rows) to transform",
         ValueRequired = true,

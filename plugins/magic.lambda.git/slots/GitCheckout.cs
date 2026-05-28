@@ -14,7 +14,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.checkout] slot to switch branches, optionally creating it.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.checkout",
         Description = "Checks out a Git branch",

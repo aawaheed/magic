@@ -15,7 +15,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.branch.list] slot to list branches.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.branch.list",
         Description = "Returns every branch in the local repository, marking which one is currently checked out",
@@ -24,8 +23,6 @@ namespace magic.lambda.git
         ValueRequired = true,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `string-list` added — each child node's value is a branch-name
-        // string. Consumers asking for "list of strings" must kind-match.
         ReturnsKind = "git-branch-list,string-list",
         ReturnsElementKind = "git-branch,text",
         ReturnsDescription = "Returns one unnamed child node per git branch name",

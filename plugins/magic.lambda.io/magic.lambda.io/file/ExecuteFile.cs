@@ -16,7 +16,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.execute] slot for executing a Hyperlambda file on your server.
     /// </summary>
-    // 'text' pruned: this slot needs a Hyperlambda file path, not arbitrary text.
     [Slot(
         Name = "io.file.execute",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
@@ -26,20 +25,9 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
-        // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
-        // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
-        // inside a `slots.result` scope and copies whatever [return]
-        // produced back into `input`. Was `dynamic-slot-result` — phantom
-        // tag that no catalog/consumer referenced.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
-        // ClonesLambda removed: [io.file.execute]'s children are
-        // ARGUMENTS, not a body. The lambda being eval'd is a fresh
-        // parse from disk (`HyperlambdaParser.Parse(hyperlambda)`),
-        // not the slot's own children. No ExecutableLambda children
-        // exist on the signature, so the flag was a no-op anyway.
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileSignature))]
-    // 'text' pruned: this slot needs a Hyperlambda file path, not arbitrary text.
     [Slot(
         Name = "execute-file",
         Description = "Loads a Hyperlambda file and evaluates it as if it were inlined; child nodes become its [.arguments]",
@@ -49,11 +37,6 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
-        // `lambda-result` — same return shape as [invoke]/[while]/[whitelist]
-        // /[signal]/[execute]/[try-signal]. Runtime executes the loaded file
-        // inside a `slots.result` scope and copies whatever [return]
-        // produced back into `input`. Was `dynamic-slot-result` — phantom
-        // tag that no catalog/consumer referenced.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the executed file's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.io.signatures.ExecuteFileUnwrapSignature))]

@@ -13,8 +13,7 @@ using magic.lambda.crypto.lib.rsa;
 namespace magic.lambda.crypto.slots.rsa
 {
     /// <summary>
-    /// [crypto.rsa.create-key] slot to create an RSA keypair and return as DER encoded,
-    /// .
+    /// [crypto.rsa.create-key] slot to create an RSA keypair and return as DER encoded.
     /// </summary>
     [Slot(
         Name = "crypto.rsa.create-key",

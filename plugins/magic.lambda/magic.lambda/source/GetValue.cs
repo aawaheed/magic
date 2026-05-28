@@ -15,21 +15,11 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-value",
         Description = "Returns the value of the first matching node",
-        // `single-object` — reads the .Value of exactly one node via
-        // GetEx<object>(), which does single-node resolution. `node-list`
-        // would advertise a container shape the slot can't actually consume;
-        // `single-object` is the structural dual matching the runtime
-        // contract. Reinforced by `ValueExpressionResolution.SingleNode`.
         ValueKind = "single-object",
         ValueDescription = "Expression selecting the node whose value should be retrieved",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Value,
-        // No `ReturnsKind` narrowing — runtime is `input.GetEx<object>()`,
-        // returns whatever the resolved node's `.Value` is. Could be
-        // string / int / bool / DateTime / byte[] / lambda / anything.
-        // The previous `value` tag meant nothing — equivalent to "any
-        // object" which `ReturnsType=object` already conveys.
         ReturnsKind = "",
         ReturnsDescription = "Resolves to the value of the first matching node",
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode)]

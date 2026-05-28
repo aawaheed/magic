@@ -13,7 +13,6 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP DELETE verb towards some resource.
     /// </summary>
-    // 'text' pruned: this slot needs a URL template, not arbitrary text.
     [Slot(
         Name = "http.delete",
         Description = "Issues an HTTP DELETE to the specified URL; used to remove a remote resource",

@@ -13,7 +13,6 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP PUT verb towards some resource.
     /// </summary>
-    // 'text' pruned: this slot needs a URL template, not arbitrary text.
     [Slot(
         Name = "http.put",
         Description = "Issues an HTTP PUT to the specified URL with a payload; commonly used to replace a remote resource in full",

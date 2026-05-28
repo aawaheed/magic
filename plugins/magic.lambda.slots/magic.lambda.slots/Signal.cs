@@ -14,7 +14,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [signal] slot for invoking dynamically created slots, that have been created with the [slots.create] slot.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "signal",
         Description = "Invokes a dynamic slot created with [slots.create], passing child nodes as its arguments",
@@ -24,22 +23,9 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
-        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
-        // (and now [io.file.execute]/[execute-file]). The runtime sets
-        // `input.Value = result.Value` and `input.AddRange(result.Children)`
-        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
-        // the scoped `result`. That's the same "lambda-result" pattern.
-        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
-        // tags were phantoms — no catalog or consumer referenced them.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
-        // ClonesLambda removed: [signal]'s children are ARGUMENTS,
-        // not a body. The lambda being cloned at runtime is the
-        // STORED dynamic slot fetched from `Create._slots[name]`,
-        // not the slot's own children. No ExecutableLambda children
-        // on the signature → flag was a no-op no matter what.
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "execute",
         Description = "Invokes a dynamic slot after unwrapping descendant expressions",
@@ -49,17 +35,9 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
-        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
-        // (and now [io.file.execute]/[execute-file]). The runtime sets
-        // `input.Value = result.Value` and `input.AddRange(result.Children)`
-        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
-        // the scoped `result`. That's the same "lambda-result" pattern.
-        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
-        // tags were phantoms — no catalog or consumer referenced them.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
         SignatureType = typeof(global::magic.lambda.slots.signatures.ExecuteSignature))]
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "try-signal",
         Description = "Invokes a dynamic slot if it exists and ignores missing slots",
@@ -69,18 +47,8 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Both,
-        // `lambda-result` — unified with [invoke]/[while]/[whitelist]
-        // (and now [io.file.execute]/[execute-file]). The runtime sets
-        // `input.Value = result.Value` and `input.AddRange(result.Children)`
-        // — i.e. whatever [return]/[return-value]/[return-nodes] put into
-        // the scoped `result`. That's the same "lambda-result" pattern.
-        // The earlier `dynamic-slot-result`/`dynamic-slot-result-node`
-        // tags were phantoms — no catalog or consumer referenced them.
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked slot's value result and any returned child nodes",
-        // ClonesLambda removed: same reasoning as [signal] above —
-        // children are arguments, lambda being cloned comes from
-        // the dynamic-slot registry, not from this invocation.
         SignatureType = typeof(global::magic.lambda.slots.signatures.SignalSignature))]
     public class SignalSlot : ISlotAsync
     {

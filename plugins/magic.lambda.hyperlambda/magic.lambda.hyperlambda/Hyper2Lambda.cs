@@ -13,7 +13,6 @@ namespace magic.lambda.hyperlambda
     /// <summary>
     /// [lambda] slot, allowing you to transform a piece of Hyperlambda to a lambda hierarchy.
     /// </summary>
-    // 'text' pruned: this slot needs Hyperlambda source syntax, not arbitrary text.
     [Slot(
         Name = "hyper2lambda",
         Description = "Transforms Hyperlambda into a lambda hierarchy",
@@ -23,9 +22,6 @@ namespace magic.lambda.hyperlambda
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `lambda-tree` only — Hyperlambda parses into a TREE. Same
-        // reasoning as html2lambda / xml2lambda: removed `node-list`
-        // because the root is one document, not an iterable list.
         ReturnsKind = "lambda-tree",
         ReturnsDescription = "Resolves to the parsed lambda hierarchy as child nodes",
         SignatureType = typeof(global::magic.lambda.hyperlambda.signatures.Hyper2LambdaSignature))]

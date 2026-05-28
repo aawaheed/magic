@@ -14,7 +14,6 @@ namespace magic.lambda.caching
     /// <summary>
     /// [cache.list] slot returning all cache items to caller.
     /// </summary>
-    // 'text' pruned: this slot needs a cache key filter, not arbitrary text.
     [Slot(
         Name = "cache.list",
         Description = "Lists cached keys matching the optional filter",

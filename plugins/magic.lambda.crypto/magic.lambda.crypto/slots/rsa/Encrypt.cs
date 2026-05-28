@@ -13,7 +13,6 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.encrypt] slot to encrypt some content using a public key that can only be decrypted
     /// using its public key.
     /// </summary>
-    // 'text' added: RSA-encrypting arbitrary text payloads is the primary use case (tokens, secrets, message bodies) — any `text` producer should be wirable. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.rsa.encrypt",
         Description = "Encrypts data using RSA",

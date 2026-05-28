@@ -16,10 +16,6 @@ namespace magic.lambda.misc
         Name = "types",
         Description = "Lists every CLR type name recognized by Hyperlambda; useful when [convert] or [type] needs a valid target",
         ReturnsMode = SlotReturnsMode.Lambda,
-        // Multi-tag chain, specific → structural: `string-list` (each child
-        // value is a string) and `node-list` (topology) were both missing,
-        // leaving the chain undertagged. Consumers asking for "list of
-        // strings" or generic "list of nodes" must kind-match.
         ReturnsKind = "type-name-list,string-list",
         ReturnsElementKind = "type-name,text",
         ReturnsDescription = "Resolves to one child node per known CLR type name")]

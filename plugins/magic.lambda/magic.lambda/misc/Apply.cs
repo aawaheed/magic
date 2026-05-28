@@ -18,21 +18,11 @@ namespace magic.lambda.misc
     [Slot(
         Name = "apply",
         Description = "Stamps a template lambda with values from child argument nodes, producing one fully-substituted output per [.dp]",
-        // `template,lambda-tree` — multi-tag: semantic identity first (a
-        // template lambda carrying `{name}` placeholders), then the
-        // structural lambda-tree shape. The earlier `lambda` tag was the
-        // .NET TYPE name leaked into the kind chain — redundant with
-        // `ValueType=lambda` and not a kind at all. Removed.
         ValueKind = "template,lambda-tree",
         ValueDescription = "Expression selecting the template node or nodes to transform",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `applied-template,lambda-object,lambda-tree` — semantic chain:
-        // an applied template IS executable code (`lambda-object` —
-        // narrowest), which IS a lambda tree (structural parent). This
-        // marks `[apply]`'s output as a valid producer for `[invoke]`/
-        // `[eval]` which consume `lambda-object`.
         ReturnsKind = "applied-template,lambda-object,lambda-tree",
         ReturnsDescription = "Resolves to the transformed template nodes after applying the supplied arguments",
         SignatureType = typeof(global::magic.lambda.signatures.ApplySignature))]

@@ -17,7 +17,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [github.repo.create] slot to create a GitHub repository.
     /// </summary>
-    // 'text' pruned: this slot needs a GitHub repository name, not arbitrary text.
     [Slot(
         Name = "github.repo.create",
         Description = "Creates a GitHub repository",

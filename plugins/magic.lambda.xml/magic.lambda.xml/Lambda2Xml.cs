@@ -20,19 +20,10 @@ namespace magic.lambda.xml
     [Slot(
         Name = "lambda2xml",
         Description = "Converts a lambda object to an XML fragment or document",
-        // `xml-tree` only — narrowed from `xml-tree,lambda-tree`. The
-        // synth's picker will now ONLY wire xml-tree-tagged preludes
-        // (proper @attr / #text shape) into lambda2xml. Flat-lambda
-        // preludes from lambda-tree: catalog stay out — they'd produce
-        // valid but uninformative XML like `<task><id>42</id></task>`.
         ValueKind = "xml-tree",
         ValueDescription = "Expression selecting a SINGLE lambda root to transform (XML has exactly one document root)",
         ValueRequired = true,
         ValueMode = SlotValueMode.Expression,
-        // XML's spec requires ONE document root, and the runtime enforces
-        // that with `GetNodes(input).Single()` — multi-result expressions
-        // throw at execution. Declare the constraint on the attribute so
-        // the synth's picker never wires `x:@.var/*` form here.
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "xml,text",

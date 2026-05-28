@@ -13,7 +13,6 @@ namespace magic.lambda.odbc
     /// <summary>
     /// [odbc.execute] slot for executing a non query SQL command towards a previously opened ODBC connection.
     /// </summary>
-    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "odbc.execute",
         Description = "Executes SQL on the current ODBC connection",

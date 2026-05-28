@@ -14,7 +14,6 @@ namespace magic.lambda.pgsql
     /// <summary>
     /// [pgsql.connect] slot for connecting to a PostgreSQL server instance.
     /// </summary>
-    // 'text' pruned: this slot needs a database name or connection string, not arbitrary text.
     [Slot(
         Name = "pgsql.connect",
         Description = "Opens a PostgreSQL connection",

@@ -13,7 +13,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.load] slot for loading a file on your server.
     /// </summary>
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "load-file",
         Description = "Loads a text file from the server",
@@ -25,7 +24,6 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.load",
         Description = "Loads a text file from the server",
@@ -37,7 +35,6 @@ namespace magic.lambda.io.file
         ReturnsMode = SlotReturnsMode.Value,
         ReturnsKind = "text-file-content,text",
         ReturnsDescription = "Resolves to the loaded file content")]
-    // 'text' pruned: this slot needs a binary file path, not arbitrary text.
     [Slot(
         Name = "io.file.load.binary",
         Description = "Loads a binary file from the server",

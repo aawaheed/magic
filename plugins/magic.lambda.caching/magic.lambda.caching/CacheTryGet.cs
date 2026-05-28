@@ -17,7 +17,6 @@ namespace magic.lambda.caching
     /// returning it as is - If item doesn't exists, the slot will invoke your [.lambda]
     /// callback, to create item, store item into cache, and return the item to the caller.
     /// </summary>
-    // 'text' pruned: this slot needs a cache key, not arbitrary text.
     [Slot(
         Name = "cache.try-get",
         Description = "Returns a cached value by key if it exists, or creates a new cached item and returning it",

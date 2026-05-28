@@ -14,7 +14,6 @@ namespace magic.lambda.misc
     /// [slot.description] slot allowing you to retrieve the description
     /// of a single compiled slot.
     /// </summary>
-    // 'text' pruned: this slot needs a slot name, not arbitrary text.
     [Slot(
         Name = "slot.description",
         Description = "Returns the description for a single compiled slot",

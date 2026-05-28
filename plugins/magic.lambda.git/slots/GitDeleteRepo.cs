@@ -12,7 +12,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.delete-repo] slot to delete existing repo.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.delete-repo",
         Description = "Deletes a local Git repository",

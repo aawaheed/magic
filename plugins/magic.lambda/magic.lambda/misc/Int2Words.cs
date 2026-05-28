@@ -16,10 +16,6 @@ namespace magic.lambda.misc
     [Slot(
         Name = "int2words",
         Description = "Spells an integer out in English words (e.g. 557 becomes 'five hundred and fifty seven'); handy for invoices and cheques",
-        // `integer,number` — runtime calls `input.GetEx<long>()` and
-        // spells the integer. Accepts negative numbers (`number < 0L`
-        // branch) — so `count` was wrong narrowing (count implies
-        // non-negative). Dropped.
         ValueKind = "integer,number",
         ValueDescription = "Integer value to convert to words",
         ValueRequired = true,

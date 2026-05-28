@@ -16,16 +16,6 @@ namespace magic.lambda.strings.concat
     [Slot(
         Name = "strings.concat",
         Description = "Concatenates strings",
-        // `string-list` only — runtime calls `.GetEx<string>()` on each
-        // evaluated node, which REQUIRES the nodes to carry STRING
-        // VALUES at their .Value position. Bare `node-list` was
-        // previously included as a fallback but over-matched: any multi-
-        // cardinality path gets tagged `node-list` by EffectiveTipKind
-        // regardless of element type, including object-lists where
-        // elements have nested children and no string .Value. Those
-        // produce garbage when ToString'd. `string-list` narrows to
-        // paths whose TipKind explicitly carries the element-kind
-        // contract.
         ValueKind = "string-list",
         ValueDescription = "Expression yielding the text segments to concatenate when not supplied as child nodes",
         ValueRequired = false,

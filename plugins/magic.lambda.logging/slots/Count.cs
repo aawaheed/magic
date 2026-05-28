@@ -13,7 +13,6 @@ namespace magic.lambda.logging.slots
     /// <summary>
     /// [log.count] slot for counting total number of log items, optionally matching specified content type.
     /// </summary>
-    // 'text' pruned: this slot needs a content-type filter, not arbitrary text.
     [Slot(
         Name = "log.count",
         Description = "Returns the total number of log entries, optionally restricted to a single content type",

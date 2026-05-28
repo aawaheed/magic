@@ -17,7 +17,6 @@ namespace magic.lambda.sockets.slots
     /// [sockets.signal] slot that allows you to publish a message to subscribers
     /// having subscribed to the specified message over a (web) socket connection.
     /// </summary>
-    // 'text' pruned: this slot needs a socket channel name, not arbitrary text.
     [Slot(
         Name = "sockets.signal",
         Description = "Pushes a SignalR message to clients subscribed to the channel; use to broadcast events from server to browsers",

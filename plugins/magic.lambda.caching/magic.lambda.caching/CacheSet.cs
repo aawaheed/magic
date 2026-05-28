@@ -15,7 +15,6 @@ namespace magic.lambda.caching
     /// <summary>
     /// [cache.set] slot saving its first child node's value to the memory cache.
     /// </summary>
-    // 'text' pruned: this slot needs a cache key, not arbitrary text.
     [Slot(
         Name = "cache.set",
         Description = "Stores a value in the in-memory cache under a key, with an optional sliding expiration",

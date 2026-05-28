@@ -21,10 +21,6 @@ namespace magic.lambda.strings.replace
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
-        // Entity-encoded HTML is still text under the hood — the trailing
-        // `text` tag lets text-consumers (log.info, strings.*) wire to
-        // the output directly, without depending on a separate supertype
-        // declaration in rules.yaml. Self-documenting on the slot.
         ReturnsKind = "html-encoded,text",
         ReturnsDescription = "Resolves to the HTML-encoded string")]
     public class HtmlEncode : ISlot

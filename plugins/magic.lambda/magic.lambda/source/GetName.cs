@@ -15,11 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-name",
         Description = "Returns the name of the first matching node",
-        // `single-object` — reads the .Name of exactly one node. The runtime
-        // throws if the expression resolves to more than one. `node-list`
-        // (a container kind) would lie about the contract; `single-object`
-        // is the structural dual that says "one value-bearing node, any
-        // kind." Reinforced by `ValueExpressionResolution.SingleNode`.
         ValueKind = "single-object",
         ValueDescription = "Expression selecting the node whose name should be retrieved",
         ValueRequired = true,

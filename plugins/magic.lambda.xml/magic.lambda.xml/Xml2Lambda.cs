@@ -14,7 +14,6 @@ namespace magic.lambda.xml
     /// <summary>
     /// [xml2lambda] slot for transforming a piece of XML to a lambda hierarchy.
     /// </summary>
-    // 'text' pruned: this slot needs XML syntax, not arbitrary text.
     [Slot(
         Name = "xml2lambda",
         Description = "Transforms XML into a lambda hierarchy",
@@ -24,26 +23,7 @@ namespace magic.lambda.xml
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `xml-tree,lambda-tree` — XML parses into a TREE (root document
-        // with nested element children + `@attr` and `#text` children).
-        // NOT a flat node-list. Removed the erroneously-added `node-list`
-        // that would have let list-iterators wire to the document root.
         ReturnsKind = "xml-tree,lambda-tree",
-        // The XML→lambda runtime preserves NO type information: every leaf
-        // value comes through `HtmlDecode(InnerText)` as a string, attributes
-        // become `@name:"value"` (string) children, text nodes become
-        // `#text:"value"` (string) children. So while the STRUCTURE is a
-        // lambda tree, every leaf is a string-typed `xml-element` — not
-        // `int`/`bool`/`decimal` like the lambda-tree catalog suggests.
-        //
-        // Declaring ReturnsElementKind tells the synth's provenance
-        // validator (ComputeSlotOutputProvenance) to reject Sample picks
-        // whose ItemKind doesn't intersect — so a lambda-tree Sample with
-        // typed leaves can't be silently adopted for `xml2lambda`'s output
-        // path enumeration. Without this, snippet 100 in the audit showed
-        // `math.round:x:@xml2lambda/0/0` — the synth thought /0/0 was an
-        // int (per a wrongly-adopted Sample) when at runtime it's a string-
-        // valued container.
         ReturnsElementKind = "xml-element,lambda-tree",
         ReturnsDescription = "Resolves to the parsed XML hierarchy as child nodes; attributes are emitted as @name child nodes, text as #text child nodes, and comments/whitespace-only text nodes are omitted")]
     public class Xml2Lambda : ISlot

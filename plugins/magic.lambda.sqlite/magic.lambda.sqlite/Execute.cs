@@ -13,7 +13,6 @@ namespace magic.lambda.sqlite
     /// <summary>
     /// [sqlite.execute] slot for executing a non query SQL command.
     /// </summary>
-    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "sqlite.execute",
         Description = "Executes SQL on the current SQLite connection",

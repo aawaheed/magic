@@ -14,7 +14,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.save] slot for saving a file on your server.
     /// </summary>
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "save-file",
         Description = "Saves a text file to the server",
@@ -25,7 +24,6 @@ namespace magic.lambda.io.file
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.save",
         Description = "Saves a text file to the server",
@@ -36,7 +34,6 @@ namespace magic.lambda.io.file
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.None,
         SignatureType = typeof(global::magic.lambda.io.signatures.TextFileSaveSignature))]
-    // 'text' pruned: this slot needs a binary file path, not arbitrary text.
     [Slot(
         Name = "io.file.save.binary",
         Description = "Saves a binary file to the server",

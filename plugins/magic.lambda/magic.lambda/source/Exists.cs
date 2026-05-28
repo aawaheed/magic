@@ -15,12 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "exists",
         Description = "Returns true if the specified node or expression exists",
-        // Multi-tag — `[exists]`/`[not-exists]` test EXPRESSION-RESULT
-        // PRESENCE via `.Any()`, which works on ANY cardinality. A single-
-        // node source ("does this one exist?") is as valid as a multi-node
-        // source ("do any of these exist?"). `node-list` alone lied — the
-        // synthesizer never wired single-object sources. Both belong on
-        // the contract. Same pattern as `[null]`/`[not-null]`/`[get-count]`.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the nodes to test for",
         ValueRequired = true,
@@ -31,12 +25,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "not-exists",
         Description = "Returns true if the specified node or expression does not exist",
-        // Multi-tag — `[exists]`/`[not-exists]` test EXPRESSION-RESULT
-        // PRESENCE via `.Any()`, which works on ANY cardinality. A single-
-        // node source ("does this one exist?") is as valid as a multi-node
-        // source ("do any of these exist?"). `node-list` alone lied — the
-        // synthesizer never wired single-object sources. Both belong on
-        // the contract. Same pattern as `[null]`/`[not-null]`/`[get-count]`.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the nodes to test for",
         ValueRequired = true,

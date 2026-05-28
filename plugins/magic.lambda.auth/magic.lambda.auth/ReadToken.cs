@@ -19,7 +19,6 @@ namespace magic.backend.slots
     /// <summary>
     /// [auth.token.read] slot validating a specified JWT token.
     /// </summary>
-    // 'text' pruned: this slot needs a JWT token, not arbitrary text.
     [Slot(
         Name = "auth.token.read",
         Description = "Validates a JWT token and verifies that it contains one of the required roles",

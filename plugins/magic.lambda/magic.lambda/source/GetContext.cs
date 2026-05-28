@@ -17,7 +17,6 @@ namespace magic.lambda.slots
     /// from being able to retrieve objects intended for only being used
     /// by C# code - which would have been a security issue it was allowed.
     /// </summary>
-    // 'text' pruned: this slot needs a context name, not arbitrary text.
     [Slot(
         Name = "get-context",
         Description = "Returns a stack value or context object from the current execution context",
@@ -27,11 +26,6 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Value,
-        // `context-value` only — runtime is `signaler.Peek<object>(...)`,
-        // returns whatever was pushed by [context] (any object: string,
-        // int, byte[], lambda, DateTime, MimeEntity, etc.). The previous
-        // `,text` parent was an overclaim — context values are NOT
-        // necessarily text.
         ReturnsKind = "context-value",
         ReturnsDescription = "Resolves to the requested stack value or context object",
         RequiresScope = "context",

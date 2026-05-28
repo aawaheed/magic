@@ -13,7 +13,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.exists] slot for checking if a file already exists from before or not.
     /// </summary>
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.file.exists",
         Description = "Returns true if a file exists",

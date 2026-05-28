@@ -16,7 +16,6 @@ namespace magic.lambda.io.stream
     /// [io.stream.save-file] slot for saving a stream on your server
     /// to the specified filename.
     /// </summary>
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.stream.save-file",
         Description = "Writes a stream's contents to disk under the given path; commonly used after uploads or [http.get] downloads",

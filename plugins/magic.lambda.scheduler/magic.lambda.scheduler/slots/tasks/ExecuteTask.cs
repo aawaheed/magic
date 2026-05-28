@@ -12,7 +12,6 @@ namespace magic.lambda.scheduler.slots.tasks
     /// <summary>
     /// [tasks.execute] slot that will execute the task with the specified ID.
     /// </summary>
-    // 'text' pruned: this slot needs a task ID, not arbitrary text.
     [Slot(
         Name = "tasks.execute",
         Description = "Runs a stored task synchronously right now, ignoring its schedule; handy for ad-hoc invocations or testing",

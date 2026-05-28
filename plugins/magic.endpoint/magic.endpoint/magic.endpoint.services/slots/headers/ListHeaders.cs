@@ -20,12 +20,6 @@ namespace magic.endpoint.services.slots.headers
         Name = "request.headers.list",
         Description = "Lists request headers",
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `http-header-map,lambda-tree` — runtime is
-        //   `input.AddRange(request.Headers.Select(x => new Node(x.Key, x.Value)))`
-        // — each child node's NAME is the header name, its VALUE is the
-        // header value. OBJECT pattern (named children), NOT a node-list /
-        // string-list (which require anonymous `.` items). Same fix as
-        // `request.cookies.list`.
         ReturnsKind = "http-header-map,lambda-tree",
         ReturnsElementKind = "http-header-value,text",
         ReturnsDescription = "Resolves to one child node per request header, with the header name as the node name and its value as the node value")]

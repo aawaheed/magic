@@ -15,9 +15,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "remove-nodes",
         Description = "Removes nodes from the lambda graph",
-        // `node-list,single-object` — runtime iterates `input.Evaluate()`
-        // and calls `UnTie()` on each result. A single-node expression
-        // produces a one-element result, equally valid for removal.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the node or nodes to remove",
         ValueRequired = true,

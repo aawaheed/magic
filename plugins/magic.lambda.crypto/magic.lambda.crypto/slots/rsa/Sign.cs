@@ -13,7 +13,6 @@ namespace magic.lambda.crypto.slots.rsa
     /// [crypto.rsa.sign] slot to cryptographically sign some piece of data with some
     /// private RSA key.
     /// </summary>
-    // 'text' added: RSA-signing arbitrary text (messages, tokens, manifests, log entries) is the primary use case — any `text` producer is a legitimate signing source. `content,binary-content` stay for byte[] payloads.
     [Slot(
         Name = "crypto.rsa.sign",
         Description = "Signs data using RSA",

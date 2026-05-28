@@ -15,7 +15,6 @@ namespace magic.lambda.logging.slots
     /// [log.query] slot for listing log items sequentially according to most recent items first,
     /// optionally matching specified content type.
     /// </summary>
-    // 'text' pruned: this slot needs a content-type filter, not arbitrary text.
     [Slot(
         Name = "log.query",
         Description = "Returns recent log entries with most-recent-first ordering; supports optional content-type filtering and pagination",

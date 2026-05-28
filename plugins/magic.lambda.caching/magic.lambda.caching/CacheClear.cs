@@ -15,7 +15,6 @@ namespace magic.lambda.caching
     /// [cache.clear] slot clearing memory cache entirely, or optionally taking a filter
     /// declaring which items to clear.
     /// </summary>
-    // 'text' pruned: this slot needs a cache key filter, not arbitrary text.
     [Slot(
         Name = "cache.clear",
         Description = "Clears cached items matching the optional filter",

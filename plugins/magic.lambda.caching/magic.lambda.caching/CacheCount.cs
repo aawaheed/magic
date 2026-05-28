@@ -15,7 +15,6 @@ namespace magic.lambda.caching
     /// [cache.count] slot returning the number of cacheds items matching
     /// optional filter to caller.
     /// </summary>
-    // 'text' pruned: this slot needs a cache key filter, not arbitrary text.
     [Slot(
         Name = "cache.count",
         Description = "Counts cached items matching the optional filter",

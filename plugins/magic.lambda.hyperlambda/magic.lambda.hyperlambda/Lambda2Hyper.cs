@@ -16,8 +16,6 @@ namespace magic.lambda.hyperlambda
     [Slot(
         Name = "lambda2hyper",
         Description = "Transforms a lambda hierarchy into Hyperlambda",
-        // `lambda-tree,node-list` — accepts ANY lambda input (tree or
-        // flat list). Hyperlambda can serialize both shapes.
         ValueKind = "lambda-tree,node-list",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,

@@ -15,7 +15,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.list] slot for listing files on server.
     /// </summary>
-    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.file.list",
         Description = "Lists files in the specified folder",
@@ -25,13 +24,10 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `string-list` added — each child node's value is a file-path
-        // string. Consumers asking for "list of strings" must kind-match.
         ReturnsKind = "file-path-list,string-list",
         ReturnsElementKind = "file-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative file path",
         SignatureType = typeof(global::magic.lambda.io.signatures.ListDirectorySignature))]
-    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.file.list-recursively",
         Description = "Lists files recursively in the specified folder",
@@ -41,8 +37,6 @@ namespace magic.lambda.io.file
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `string-list` added — each child node's value is a file-path
-        // string. Consumers asking for "list of strings" must kind-match.
         ReturnsKind = "file-path-list,string-list",
         ReturnsElementKind = "file-path,text",
         ReturnsDescription = "Returns one unnamed child node per relative file path, recursively",

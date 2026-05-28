@@ -16,8 +16,6 @@ namespace magic.lambda.change
     [Slot(
         Name = "insert-before",
         Description = "Inserts nodes before the specified target node",
-        // `node-list,single-object` — runtime iterates `input.Evaluate()`;
-        // single-node target is just a one-element result.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the target node or nodes to insert before",
         ValueRequired = true,

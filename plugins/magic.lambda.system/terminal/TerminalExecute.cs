@@ -19,7 +19,6 @@ namespace magic.lambda.system.terminal
     /// [system.execute] slot that allows you to execute a system process,
     /// passing in arguments, and returning the result of the execution.
     /// </summary>
-    // 'text' pruned: this slot needs a shell command, not arbitrary text.
     [Slot(
         Name = "system.execute",
         Description = "Spawns a shell process with the given command and arguments and returns its captured output",

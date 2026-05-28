@@ -13,7 +13,6 @@ namespace magic.lambda.mssql
     /// <summary>
     /// [mssql.execute] slot for executing a non query type of SQL.
     /// </summary>
-    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "mssql.execute",
         Description = "Executes SQL on the current SQL Server connection",

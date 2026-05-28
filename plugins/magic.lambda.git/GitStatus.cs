@@ -15,7 +15,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.status] slot to show repository status.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.status",
         Description = "Returns Git repository status",

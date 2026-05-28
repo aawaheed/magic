@@ -15,7 +15,6 @@ namespace magic.lambda.scheduler.slots.tasks
     /// [tasks.get] slot that will return an existing task with the specified name,
     /// including its next due date.
     /// </summary>
-    // 'text' pruned: this slot needs a task ID, not arbitrary text.
     [Slot(
         Name = "tasks.get",
         Description = "Looks up a single stored task by ID and returns its body, description, and next due date",

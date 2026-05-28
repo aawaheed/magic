@@ -14,7 +14,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.commit] slot to create a commit in a repo.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.commit",
         Description = "Stages all changes in the repo and creates a new commit with the supplied message and author",

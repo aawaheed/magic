@@ -15,7 +15,6 @@ namespace magic.lambda.threading
     /// [semaphore] slot, allowing you to create a semaphore,
     /// only allowing one caller entry into some lambda object at the same time.
     /// </summary>
-    // 'text' pruned: this slot needs a semaphore name, not arbitrary text.
     [Slot(
         Name = "semaphore",
         Description = "Serializes access to a critical section by name; only one thread at a time can enter a given semaphore",

@@ -12,7 +12,6 @@ namespace magic.data.common.slots
     /// [data.execute] slot, for executing some SQL towards a database,
     /// according to your configuration settings.
     /// </summary>
-    // 'text' pruned: this slot needs SQL syntax, not arbitrary text.
     [Slot(
         Name = "data.execute",
         Description = "Executes SQL against the current database connection",

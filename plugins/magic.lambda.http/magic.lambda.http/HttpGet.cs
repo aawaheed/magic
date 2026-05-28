@@ -13,7 +13,6 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP GET verb towards some resource.
     /// </summary>
-    // 'text' pruned: this slot needs a URL template, not arbitrary text.
     [Slot(
         Name = "http.get",
         Description = "Issues an HTTP GET to the specified URL and returns the response body, status code, and headers",

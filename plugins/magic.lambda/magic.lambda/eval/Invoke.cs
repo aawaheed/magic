@@ -17,15 +17,6 @@ namespace magic.lambda.eval
     [Slot(
         Name = "invoke",
         Description = "Invokes a lambda expression as a callable slot",
-        // `lambda-object,lambda-tree` — the runtime calls
-        // `input.Get<Expression>().Evaluate(input).Single().Clone()` and
-        // signals `eval` on the cloned lambda. Resolves to ONE lambda
-        // node (enforced by `ValueExpressionResolution.SingleNode`).
-        // Dropped `executable` — it duplicated `lambda-object` (both
-        // mean "lambda to run") and `[apply]` (the producer the comment
-        // claimed it was matching against) now advertises
-        // `applied-template,lambda-tree`. Matching is still covariant
-        // via `lambda-tree`.
         ValueKind = "lambda-object,lambda-tree",
         ValueDescription = "Expression yielding the single lambda node to invoke",
         ValueRequired = true,
@@ -33,13 +24,6 @@ namespace magic.lambda.eval
         ReturnsMode = SlotReturnsMode.Both,
         ReturnsKind = "lambda-result",
         ReturnsDescription = "Resolves to the invoked lambda's value result and any returned child nodes",
-        // ClonesLambda removed: [invoke]'s children are ARGUMENTS
-        // (`Role = Arguments`, `Mode = ValueOrExpression`), not a body.
-        // The lambda being cloned at runtime is the VALUE target
-        // (`input.Get<Expression>().Evaluate(input).Single().Clone()`),
-        // not the slot's own children. The synth's ClonesLambda barrier
-        // only gates ExecutableLambda children — [invoke] has none, so
-        // the flag was a no-op declaration that lied about semantics.
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         SignatureType = typeof(global::magic.lambda.signatures.InvokeSignature))]
     public class Invoke : ISlotAsync

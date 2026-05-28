@@ -24,14 +24,7 @@ namespace magic.lambda.strings.misc
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // Structural `node-list` added — `string-list` is the semantic
-        // identity, `node-list` is the topology. Consumers asking for either
-        // must be able to kind-match.
         ReturnsKind = "string-list",
-        // Just `text` — the previous `string,text` had `string` as the leaf
-        // tag, but `string` is the .NET TYPE name (same name as
-        // `ReturnsElementType="string"`) — type-leak into the kind chain.
-        // Each element is just a text fragment of the original input.
         ReturnsElementKind = "text",
         ReturnsDescription = "Returns one child node per split string item",
         SignatureType = typeof(global::magic.lambda.strings.signatures.SplitSignature))]

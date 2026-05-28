@@ -15,7 +15,6 @@ namespace magic.lambda.sockets.slots
     /// <summary>
     /// [sockets.user.add-to-group] slot that allows you to explicitly add a user to a group.
     /// </summary>
-    // 'text' pruned: this slot needs a username, not arbitrary text.
     [Slot(
         Name = "sockets.user.add-to-group",
         Description = "Adds a user to a socket group",

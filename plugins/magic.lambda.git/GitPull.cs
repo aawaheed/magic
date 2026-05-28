@@ -15,7 +15,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.pull] slot to pull updates from a remote.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.pull",
         Description = "Pulls updates from a Git remote",

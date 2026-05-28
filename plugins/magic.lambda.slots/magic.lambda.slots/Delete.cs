@@ -11,7 +11,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.delete] slot for deleting slot that has been created with the [slots.create] slot.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "slots.delete",
         Description = "Deletes a dynamic slot",

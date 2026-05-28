@@ -12,7 +12,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.create] slot that creates a dynamic slot, that can be invoked using the [signal] slot.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "function",
         Description = "Creates a dynamic slot that can be invoked with [signal]",
@@ -23,7 +22,6 @@ namespace magic.lambda.slots
         ReturnsMode = SlotReturnsMode.None,
         ClonesLambda = true,
         SignatureType = typeof(global::magic.lambda.slots.signatures.CreateSlotSignature))]
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "slots.create",
         Description = "Creates a dynamic slot that can be invoked with [signal]",

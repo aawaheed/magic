@@ -13,7 +13,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.vocabulary] slot that will return the names of all dynamically created slots to caller.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name filter, not arbitrary text.
     [Slot(
         Name = "slots.vocabulary",
         Description = "Lists dynamically created slots",
@@ -22,10 +21,6 @@ namespace magic.lambda.slots
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // Specific → structural multi-tag. `string-list` was missing —
-        // each child node's value is a string, so consumers asking for
-        // "list of strings" must kind-match here. Same pattern as
-        // `markdown,text,formattable-value`.
         ReturnsKind = "dynamic-slot-name-list,string-list",
         ReturnsElementKind = "dynamic-slot-name,text",
         ReturnsDescription = "Resolves to available dynamic slot names as child nodes")]

@@ -15,7 +15,6 @@ namespace magic.lambda.misc
     /// [vocabulary] slot allowing you to dynamically retrieve the names
     /// of all slots that exists in the system.
     /// </summary>
-    // 'text' pruned: this slot needs a slot name filter, not arbitrary text.
     [Slot(
         Name = "vocabulary",
         Description = "Lists available compiled slots",
@@ -24,15 +23,6 @@ namespace magic.lambda.misc
         ValueRequired = false,
         ValueMode = SlotValueMode.ValueOrExpression,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // Multi-tag chain, specific → structural:
-        //   dynamic-slot-name-list  : semantic identity (list of slot names)
-        //   string-list             : every child node holds a string value;
-        //                             consumers asking for "list of strings"
-        //                             must be able to kind-match here. Was
-        //                             missing — undertagged the chain.
-        //   node-list               : structural fact (list of nodes)
-        // Same pattern as `markdown,text,formattable-value` — the producer
-        // declares every level its output legitimately belongs to.
         ReturnsKind = "dynamic-slot-name-list,string-list",
         ReturnsElementKind = "dynamic-slot-name,text",
         ReturnsDescription = "Resolves to available slot names as child nodes")]

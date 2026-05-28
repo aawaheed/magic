@@ -11,7 +11,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.get] slot for retrieving slot that has been created with the [slots.create] slot.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "slots.get",
         Description = "Returns a dynamic slot by name",
@@ -21,11 +20,6 @@ namespace magic.lambda.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `dynamic-slot-lambda,lambda-object,lambda-tree` — the runtime
-        // returns the stored body of a `[slots.create]`-registered slot,
-        // which IS executable code. Tagging it `lambda-object` lets
-        // `[invoke]`/`[eval]` pick it as a valid producer for direct
-        // invocation. `lambda-tree` is the structural parent.
         ReturnsKind = "dynamic-slot-lambda,lambda-object,lambda-tree",
         ReturnsDescription = "Resolves to the dynamic slot lambda body as child nodes")]
     public class Get : ISlot

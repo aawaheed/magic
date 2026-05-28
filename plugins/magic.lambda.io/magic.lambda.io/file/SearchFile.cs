@@ -17,7 +17,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.search] slot for searching files by content.
     /// </summary>
-    // 'text' pruned: this slot needs a folder path, not arbitrary text.
     [Slot(
         Name = "io.file.search",
         Description = "Searches for files on the server",

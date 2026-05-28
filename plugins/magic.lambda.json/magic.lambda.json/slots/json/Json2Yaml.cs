@@ -15,7 +15,6 @@ namespace magic.lambda.json.slots.json
     /// <summary>
     /// [json2yaml] slot for transforming a piece of JSON to a YAML string.
     /// </summary>
-    // 'text' pruned: this slot needs JSON syntax, not arbitrary text.
     [Slot(
         Name = "json2yaml",
         Description = "Transforms JSON into YAML",

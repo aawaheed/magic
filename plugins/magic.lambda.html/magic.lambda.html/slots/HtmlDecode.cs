@@ -12,7 +12,6 @@ namespace magic.lambda.html.slots
     /// <summary>
     /// [html-decode] slot to decode HTML encoded content
     /// </summary>
-    // 'text' pruned: this slot needs already-HTML-encoded text, not arbitrary text.
     [Slot(
         Name = "html-decode",
         Description = "HTML decodes the specified string",

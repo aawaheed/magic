@@ -11,7 +11,6 @@ namespace magic.lambda.slots
     /// <summary>
     /// [slots.exists] slot that will check if a dynamic slot exists or not.
     /// </summary>
-    // 'text' pruned: this slot needs a dynamic slot name, not arbitrary text.
     [Slot(
         Name = "slots.exists",
         Description = "Returns true if a dynamic slot exists",

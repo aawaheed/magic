@@ -17,7 +17,6 @@ namespace magic.lambda.validators.validators
     /// <summary>
     /// [validators.recaptcha] slot, for using reCAPTCHA validators.
     /// </summary>
-    // 'text' pruned: this slot needs a reCAPTCHA token, not arbitrary text.
     [Slot(
         Name = "validators.recaptcha",
         Description = "Validates a reCAPTCHA response token, throwing if validation fails",

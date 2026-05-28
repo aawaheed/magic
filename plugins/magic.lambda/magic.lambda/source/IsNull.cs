@@ -15,12 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "null",
         Description = "Returns true if the specified node or expression is null",
-        // Multi-tag — `[null]`/`[not-null]` scan via `FirstOrDefault(x =>
-        // x.Value != null)`, which works on ANY cardinality. Both a single-
-        // node source ("is this one null?") and a multi-node source ("are
-        // any of these non-null?") are valid. `node-list` alone lied —
-        // single-object sources never matched. Same pattern as `[exists]`/
-        // `[not-exists]`/`[get-count]`.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the value to test for null",
         ValueRequired = true,
@@ -31,12 +25,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "not-null",
         Description = "Returns true if the specified node or expression is not null",
-        // Multi-tag — `[null]`/`[not-null]` scan via `FirstOrDefault(x =>
-        // x.Value != null)`, which works on ANY cardinality. Both a single-
-        // node source ("is this one null?") and a multi-node source ("are
-        // any of these non-null?") are valid. `node-list` alone lied —
-        // single-object sources never matched. Same pattern as `[exists]`/
-        // `[not-exists]`/`[get-count]`.
         ValueKind = "node-list,single-object",
         ValueDescription = "Expression selecting the value to test for null",
         ValueRequired = true,

@@ -15,15 +15,6 @@ namespace magic.lambda.source
     [Slot(
         Name = "get-count",
         Description = "Returns the number of matching nodes",
-        // `node-list` ONLY — runtime accepts any cardinality, BUT counting
-        // a single-object expression always yields 1, which carries no
-        // information for training data. The slot's semantic purpose is
-        // multi-match counting; single-object inputs produce trivially
-        // useless snippets like `get-count:x:@.someScalar` → 1. Different
-        // from `[exists]` / `[null]` / `[not-null]` which DO carry meaning
-        // on single-node inputs (existence/null checks of a single value
-        // are common idioms). The attribute reflects semantic intent, not
-        // runtime tolerance.
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the nodes to count",
         ValueRequired = true,

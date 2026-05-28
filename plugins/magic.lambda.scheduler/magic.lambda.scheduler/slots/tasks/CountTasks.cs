@@ -14,7 +14,6 @@ namespace magic.lambda.scheduler.slots.tasks
     /// [tasks.count] slot that will return the number of tasks in your
     /// system matching the optional filter condition.
     /// </summary>
-    // 'text' pruned: this slot needs a task ID filter, not arbitrary text.
     [Slot(
         Name = "tasks.count",
         Description = "Counts scheduled tasks",

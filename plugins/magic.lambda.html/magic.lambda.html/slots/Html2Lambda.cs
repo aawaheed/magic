@@ -14,7 +14,6 @@ namespace magic.lambda.html.slots
     /// <summary>
     /// [html2lambda] slot for transforming a piece of HTML to a lambda hierarchy.
     /// </summary>
-    // 'text' pruned: this slot needs HTML markup, not arbitrary text.
     [Slot(
         Name = "html2lambda",
         Description = "Transforms HTML into a lambda hierarchy",
@@ -24,12 +23,6 @@ namespace magic.lambda.html.slots
         ValueMode = SlotValueMode.ValueOrExpression,
         ValueExpressionResolution = SlotValueExpressionResolution.SingleNode,
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `html-tree,lambda-tree` — HTML parses into a TREE (root document
-        // with nested element children), NOT a flat list. Removed
-        // `node-list` — claiming iterability would let list-consumers
-        // ([filter]/[map]/[lambda2csv]/[lambda2yaml]) wire to this output
-        // where their iteration would produce single-element-then-done
-        // results from the document root, not row data.
         ReturnsKind = "html-tree,lambda-tree",
         ReturnsDescription = "Resolves to the parsed HTML hierarchy as child nodes")]
     public class Html2Lambda : ISlot

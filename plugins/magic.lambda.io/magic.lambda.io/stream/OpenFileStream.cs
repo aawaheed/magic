@@ -14,7 +14,6 @@ namespace magic.lambda.io.stream
     /// [io.stream.open-file] slot for opening a file in read only mode
     /// and returning it as a stream to caller.
     /// </summary>
-    // 'text' pruned: this slot needs a file path, not arbitrary text.
     [Slot(
         Name = "io.stream.open-file",
         Description = "Opens a file as a read-only stream so large files can be processed without loading them into memory; close with [io.stream.close]",

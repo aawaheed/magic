@@ -13,7 +13,6 @@ namespace magic.lambda.http
     /// <summary>
     /// Invokes the HTTP POST verb towards some resource.
     /// </summary>
-    // 'text' pruned: this slot needs a URL template, not arbitrary text.
     [Slot(
         Name = "http.post",
         Description = "Issues an HTTP POST to the specified URL with payload from [payload] or [filename]; returns the response body and headers",

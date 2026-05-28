@@ -17,7 +17,6 @@ namespace magic.lambda.io.file
     /// <summary>
     /// [io.file.unzip] slot for unzipping a previously zipped file.
     /// </summary>
-    // 'text' pruned: this slot needs a zip-file path, not arbitrary text.
     [Slot(
         Name = "io.file.unzip",
         Description = "Extracts a zip archive on the server",

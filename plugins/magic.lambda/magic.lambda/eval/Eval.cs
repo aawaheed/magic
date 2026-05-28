@@ -18,9 +18,6 @@ namespace magic.lambda.eval
     [Slot(
         Name = "eval",
         Description = "Executes a lambda block; use it to run a node tree dynamically or to scope a group of statements",
-        // `lambda-object,lambda-tree` — runtime takes an expression (or
-        // children), iterates slot-named non-dot children, and signals
-        // each. Dropped `executable` — duplicated `lambda-object`.
         ValueKind = "lambda-object,lambda-tree",
         ValueDescription = "Expression selecting the Hyperlambda nodes to evaluate",
         ValueRequired = true,

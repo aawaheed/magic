@@ -20,11 +20,6 @@ namespace magic.lambda.threading
         Name = "join",
         Description = "Waits for one or more child [fork] operations to finish before proceeding",
         ReturnsMode = SlotReturnsMode.Lambda,
-        // `fork-result-list,node-list` — runtime populates `input` with
-        // the COMPLETED fork nodes (one child per `[fork]` it waited on).
-        // Removed `lambda-tree` (over-expansion from a prior pass) — the
-        // shape isn't a generic lambda tree, it's specifically a flat
-        // list of fork results.
         ReturnsKind = "fork-result-list,node-list",
         ReturnsDescription = "Resolves to the completed [fork] child nodes with evaluated body node values and children preserved",
         ProvidesScope = "join",

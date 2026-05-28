@@ -9,7 +9,9 @@ using magic.signals.contracts;
 
 namespace magic.lambda.threading
 {
-    // 'text' pruned: this slot needs an execution ID, not arbitrary text.
+    /// <summary>
+    /// [execution.kill] to kill a process by its ID
+    /// </summary>
     [Slot(
         Name = "execution.kill",
         Description = "Cancels a running execution by execution ID",

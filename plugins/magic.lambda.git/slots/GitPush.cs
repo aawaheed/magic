@@ -13,7 +13,6 @@ namespace magic.lambda.git
     /// <summary>
     /// [git.push] slot to push changes to a remote.
     /// </summary>
-    // 'text' pruned: this slot needs a git repository path, not arbitrary text.
     [Slot(
         Name = "git.push",
         Description = "Pushes changes to a Git remote",

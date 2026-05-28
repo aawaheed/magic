@@ -16,16 +16,6 @@ namespace magic.lambda.json.slots.lambda
     [Slot(
         Name = "lambda2json",
         Description = "Transforms a lambda hierarchy into JSON",
-        // `node-list` only — narrowed from `lambda-tree,node-list`. Synth's
-        // picker now ONLY wires `/*` (multi-cardinality) DOM paths into
-        // lambda2json. A bare single-node prelude reference like
-        // `@.rows` won't match — synth must emit `@.rows/*` so the JSON
-        // output reflects iteration over the row list. Tree-shaped
-        // inputs (csv-tree/json-tree/yaml-tree/lambda-tree) are picked up
-        // through their `node-list` tag on the parent producer's children
-        // expression. html-tree/xml-tree are intentionally excluded
-        // because they carry markup-specific structure that doesn't
-        // serialize cleanly to JSON.
         ValueKind = "node-list",
         ValueDescription = "Expression selecting the lambda hierarchy to transform",
         ValueRequired = true,

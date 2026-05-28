@@ -16,8 +16,7 @@ namespace magic.lambda.image.slots
   /// <summary>
   /// [image.chart] slot for creating charts.
   /// </summary>
-  // 'text' pruned: this slot needs a constrained chart-type name, not arbitrary text.
-  [Slot(
+    [Slot(
         Name = "image.chart",
         Description = "Renders a bar, stacked, or grouped chart from the supplied series data as a PNG image",
         ValueKind = "chart-type",

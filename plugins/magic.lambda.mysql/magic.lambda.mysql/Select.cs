@@ -15,7 +15,6 @@ namespace magic.lambda.mysql
     /// [mysql.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    // 'text' pruned: this slot needs SQL SELECT syntax, not arbitrary text.
     [Slot(
         Name = "mysql.select",
         Description = "Executes a SELECT query on the current MySQL connection",

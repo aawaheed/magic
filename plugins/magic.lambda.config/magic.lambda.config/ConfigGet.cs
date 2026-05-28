@@ -14,7 +14,6 @@ namespace magic.lambda.config
     /// <summary>
     /// [config.get] slot for retrieving a configuration key.
     /// </summary>
-    // 'text' pruned: this slot needs a dotted configuration key path, not arbitrary text.
     [Slot(
         Name = "config.get",
         Description = "Reads a single setting from appsettings.json by dotted key path (e.g. 'magic:auth:secret')",

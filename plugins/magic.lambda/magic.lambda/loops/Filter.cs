@@ -23,20 +23,6 @@ namespace magic.lambda.loops
         ReturnsMode = SlotReturnsMode.Lambda,
         ReturnsKind = "node-list",
         ReturnsDescription = "Resolves to clones of the selected nodes whose predicate body returns true",
-        // Filter's runtime is pure subsetting — output items are a SUBSET
-        // of input items, with each item's shape preserved 1:1. The output
-        // kind is therefore NOT independently known; it's whatever the
-        // input's kind was. The synthesizer reads this flag and propagates
-        // the input expression's source kind chain to filter's own output
-        // path, so `[filter]:x:@csv2lambda` inherits the full
-        // `csv-row-list,csv-tree,lambda-tree,node-list` chain — making
-        // filter and csv2lambda interchangeable at downstream consumers
-        // that ask for any specific kind in that chain.
-        //
-        // Same flag drives iter-pointer Sample selection in the body:
-        // `.dp` inside filter's predicate adopts ONE ITEM of the input's
-        // source shape, so expressions like `x:@.dp/email` (when filtering
-        // csv-rows that have an `email` field) become valid emissions.
         PreservesInputShape = true,
         ProvidesIterationPointer = true,
         ScopeRequiresStrictExit = true,

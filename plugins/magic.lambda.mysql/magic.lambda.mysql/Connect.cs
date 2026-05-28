@@ -14,7 +14,6 @@ namespace magic.lambda.mysql
     /// <summary>
     /// [mysql.connect] slot for connecting to a MySQL server instance.
     /// </summary>
-    // 'text' pruned: this slot needs a database name or connection string, not arbitrary text.
     [Slot(
         Name = "mysql.connect",
         Description = "Opens a MySQL connection",
